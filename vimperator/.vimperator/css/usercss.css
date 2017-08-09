@@ -1,0 +1,57 @@
+ input, input[type="password"], input[type="checkbox"], input[type=radio], select  {
+    background: black !important;
+    color: #87C097 !important;
+    body>*>*>*>*>* *{background-color:#182818!important}
+     font-weight: normal !important;  
+      border-top: 1px solid #77A077 !important;
+      border-bottom: 1px solid #77A077 !important;
+      border-left: 1px solid #77A077 !important;
+      border-right: 1px solid #77A077 !important;
+}
+
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document url-prefix(http://), url-prefix(ftp://), url-prefix(file://), url-prefix(https://) {
+
+* {
+color: #77A077 !important;
+background: none !important;
+background-color: black !important;
+font-size: 22px !important;
+line-height: 24px !important;
+letter-spacing: 0px !important;
+min-width: 0px !important;
+font-family: "Terminus", "Courier New", "Courier", monospace !important;
+border-color: #77A077 !important;
+}
+
+hr {
+height: 1px !important;
+background-color: #77A077 !important;
+color: #77A077 !important;
+}
+
+tr.ipbtable,
+td.ipbtable
+{ /* required for text in tables, because tables do not inherit from body */
+background: transparent;
+color: #77A077;
+}
+
+
+a:link { color: #77CC9F !important }
+a:visited { color: #77CC9F !important }
+/*a:hover { color: #77CC9F !important; background: #007000 !important }*/
+a:active { color: #77CC9F !important }
+
+a[target]:before, *[lang]:before,*[lang]:after, img, iframe {
+font-size: smaller !important;
+background-image: none !important;
+z-index: 5 !important;
+border-bottom: 1px solid #87D087 !important;
+border-left: 1px solid #87D087 !important;
+border-right: 1px solid #87D087 !important;
+border-top: 1px solid #87D087 !important;
+
+}
+}

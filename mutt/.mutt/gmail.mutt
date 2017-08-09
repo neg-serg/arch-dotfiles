@@ -1,0 +1,21 @@
+# Gmail information
+
+unset record # gmail does this automatically
+set postponed   = "+[Gmail].Drafts"
+unset signature
+
+# use msmtp to send outgoing mail to the mailserver
+# see ~/.msmtp for configuration
+set sendmail="/usr/bin/msmtp -a gmail"
+
+set from="serg.zorg@gmail.com"
+
+# Thread yourself
+my_hdr bcc: serg.zorg@gmail.com
+
+# pgp settings
+unmy_hdr X-PGP-Key
+set pgp_autosign = no
+
+# vim: set ft=muttrc
+

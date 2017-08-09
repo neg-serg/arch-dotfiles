@@ -1,0 +1,8 @@
+REGEXP \b(((https?|ftp|gopher)|mailto):(//)?[^ <>"\t]*|(www|ftp)[0-9]?\.[-a-z0-9.]+)[^ .,;\t\n\r<">\):]?[^, <>"\t]*[^] .,;\t\n\r<">\):]
+#REGEXP ((http|https|ftp|gopher):(//)?[^ <>"\t]*|www\.[-a-z0-9.]+)[^ .,;\t<">\):]
+COMMAND /usr/bin/nohup firefox -remote "openURL("%s", new-tab)" >/dev/null 2>&1 &
+#COMMAND vimprobable2 -e $(</tmp/tabbed.xid) %s & 2>/dev/null
+#COMMAND uzbl-browser -c ~/.config/uzbl/config --uri %s
+# set browser
+# http://does-not-exist.org/mail-archives/mutt-users/msg18479.html
+COMMAND exec >> /tmp/urlview.out 2>&1; set -x; firefox

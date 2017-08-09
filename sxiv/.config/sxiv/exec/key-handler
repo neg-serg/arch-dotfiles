@@ -1,0 +1,188 @@
+#!/bin/zsh
+
+function resolve_file {
+    if  [[ ! -L "$1" && -f "$1" ]]; then
+        echo $(readlink -f "$1")
+    elif [[ -L "$1" ]]; then
+        builtin print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
+    elif [[ "${1#/}" == "$1" ]]; then
+        echo "$(pwd)/$1"
+    else
+        echo "${1}"
+    fi
+}
+
+function resolve_file2 {
+    if [[ -f "$1" ]]; then
+        builtin print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
+    elif [[ "${1#/}" == "$1" ]]; then
+        builtin print "$(pwd)/$1"
+    else
+        builtin print "${1}"
+    fi
+}
+
+source ${XDG_CONFIG_HOME}/sxiv/exec/rofi_config
+
+opt="$1";
+
+readonly tmpfs="/tmp"
+readonly TAGFILE="${XDG_CONFIG_HOME}/sxiv/tags"
+
+readonly tmp_file="${tmpfs}/sxiv.$$"
+readonly tmp_file2="${tmpfs}/sxiv2.$$"
+readonly tmp_imgur="${tmpfs}/sxiv_imgur.$$"
+
+readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
+readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
+
+readonly location_=2
+readonly padding_=2
+readonly bw_=2
+
+readonly rofi_cmd=(rofi -dmenu 
+                    -yoffset "${yoffst_}"
+                    -opacity "${opacity_}"
+                    -lines "${lines_}"
+                    -font "${font_}"
+                    "${color_}"
+                    -bw "${bw_}"
+                    -location "${location_}"
+                    -padding "${padding_}"
+                    -width "${width_}"
+                    -matching fuzzy
+                   )
+
+function finish_(){
+    rm -f "${tmp_file}"
+    rm -f "${tmp_file2}"
+    rm -f "${tmp_imgur}"
+}
+
+function rotate() {
+    local degree="$1"
+    while read file; do
+        case "$(file -b -i "${file}")" in
+        image/jpeg*) jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}" ;;
+        *)           mogrify  -rotate "${degree}" "${file}" ;;
+        esac
+    done
+}
+
+function rename() {
+    >>"${tmp_file}"
+    dest=$(printf "%s" "$(basename "${fp}")" | eval $(echo ${rofi_cmd} -p '"[rem] >> "'))
+    [[ -n "${dest}" ]] && \
+        fp=$(< "${tmp_file}") && \
+        mv "${fp}" "$(dirname "${fp}")/${dest}"
+    trap finish_ EXIT
+}
+
+function by_rating() { 
+    sort -r -t '|' -nk2 "${z_data_file}" \
+    | mawk -F '|' '{print $1}' 
+}
+
+function by_fasd_last_use() {
+    _FASD_DATA="${XDG_DATA_HOME}/sxiv_do.data" fasd -tlR
+}
+
+function proc() {
+    alias ourcmd_=by_fasd_last_use
+
+    [[ $1 == "copy" ]] && cmd="cp" && cmd_w="copy"
+    [[ $1 == "move" ]] && cmd="mv" && cmd_w="move"
+    >>"${tmp_file}"
+    if [[ -z "${dest}" ]] ; then
+        dest=$(ourcmd_ | sed 's:^'${HOME}':~:' \
+      | eval $(echo ${rofi_cmd} -p "\"[${cmd}] >> \"") \
+      | sed 's:^~:'${HOME}':')
+    fi
+    [[ -z "${dest}" ]] && exit 0
+    if [[ -d "${dest}" ]] ; then
+        while read line; do
+            file_name="$(resolve_file ${line})"
+            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
+        done < "${tmp_file}"
+        _FASD_DATA="${z_data_file}" fasd -A "${dest}"
+        printf "%s\n" "${cmd_w} "${dest}"" > "${last_action}"
+    else
+        _FASD_DATA="${z_data_file}" fasd -D "${dest}"
+    fi
+
+    unalias ourcmd_
+
+    trap finish_ EXIT
+}
+
+function delete() {
+    >>"${tmp_file}"
+    local readonly dest="${HOME}/trash/1st-level/pic"
+    [[ -z "${dest}" ]] && exit 0
+    if [[ -d "${dest}" ]]; then
+        while read line; do
+            file_name="$(resolve_file ${line})"
+            eval $(echo mv $(echo \"${file_name}\") ${dest})
+        done < "${tmp_file}"
+        printf "%s\n" "move "${dest}"" > "${last_action}"
+    fi
+    trap finish_ EXIT
+}
+
+function rep() {
+    >"${tmp_file}"
+    file=($(< "${last_action}"))
+    action=${file[1]} dest=${file[2]}
+    if [[ -d "${dest}" ]] ; then
+        while read line; do
+            file_name="$(resolve_file ${line})"
+            echo $file_name
+            [[ ${action} == "move" ]] && cmd="mv"
+            [[ ${action} == "copy" ]] && cmd="cp"
+            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
+        done < ${tmp_file}
+    fi
+    trap finish_ EXIT
+}
+
+function copy_name() {
+    local st_="<span weight='bold' color='$(xrq color4)'>"
+    local gr_="<span weight='bold' color='$(xrq color2)'>"
+    local cl_="</span>"
+    local bold_="<span weight='bold'>"
+    >>"${tmp_file2}"
+    local fp=$(< "${tmp_file2}")
+    local fname="$(resolve_file ${fp})"
+    xsel -bi <<< "${fname}"
+    ~/bin/scripts/pic_notify "${fname}"
+    trap finish_ EXIT
+}
+
+function imgur_it() {
+    >>"${tmp_imgur}"
+    while read f; do
+        fp="$(resolve_file ${f})"
+        xsel -i <<< $(~/bin/img "${fp}" |tee -a ~/tmp/imgur_output_)
+        xsel -i <<< $(xsel -o|awk '/original/{print $2}')
+    done < "${tmp_imgur}"
+    trap finish_ EXIT
+}
+
+case "${opt}" in
+    "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
+    "C-comma")  rotate 270 ;;
+    "C-period") rotate  90 ;;
+    "C-slash")  rotate 180 ;;
+    "C-less")   rotate -90 ;;
+    "C-d")      delete ;;
+    "v")        proc move ;;
+    "C-c")      proc copy ;;
+    "C-r")      rename ;;
+    "r")        rep ;;
+    "c")        copy_name ;;
+    "C-1")      xargs -n1 hsetroot -center ;;
+    "C-2")      xargs -n1 hsetroot -fill ;;
+    "C-3")      xargs -n1 hsetroot -full ;;
+    "C-4")      xargs -n1 hsetroot -tile ;;
+    "C-i")      imgur_it ;;
+esac

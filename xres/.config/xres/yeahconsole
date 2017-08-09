@@ -1,0 +1,9 @@
+yeahconsole*term: urxvt
+yeahconsole*background: black
+!yeahconsole*screenWidth: Display width
+yeahconsole*consoleHeight: 29
+yeahconsole*aniDelay: 0
+yeahconsole*stepSize: 1
+!yeahconsole*toggleKey: Control+P
+yeahconsole*tkeyFull: Alt+F11
+

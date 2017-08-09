@@ -1,0 +1,4 @@
+#compdef catp
+
+# simple.
+_pids

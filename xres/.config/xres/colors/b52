@@ -1,0 +1,1750 @@
+b52.foreground: #a0a0a0
+b52.background: #1B1D1E
+b52.color0: #1B1D1E
+b52.color8: #505354
+b52.color1: #F92672
+b52.color9: #FF669D
+b52.color2: #A6E22E
+b52.color10: #BEED5F
+b52.color3: #FD971F
+b52.color11: #E6DB74
+b52.color4: #66D9EF
+b52.color12: #66D9EF
+b52.color5: #9E6FFE
+b52.color13: #9E6FFE
+b52.color6: #5E7175
+b52.color14: #A3BABF
+b52.color7: #CCCCC6
+b52.color15: #F8F8F2
+
+bcat.background: #1f1912
+bcat.foreground: #d5fac8
+! (black: dark_brown / light_brown)
+bcat.color0: #0a0806
+bcat.color8: #816749
+! (red: red / pink)
+bcat.color1: #d80450
+bcat.color9: #ec6c99
+! (green: green / lime_green)
+bcat.color2: #76bc20
+bcat.color10: #94d900
+! (yellow: orange / yellow)
+bcat.color3: #fbb32f
+bcat.color11: #e5e339
+! (blue: blue / pastel_green)
+bcat.color4: #3f91f1
+bcat.color12: #d8ff84
+! (magenta: burnt_orange / lavender)
+bcat.color5: #f63f05
+bcat.color13: #e6a2f3
+! (cyan: pastel_blue / pastel_blue)
+bcat.color6: #8ccdea
+bcat.color14: #8ccdea
+! (white: brown / tan)
+bcat.color7: #1f1912
+bcat.color15: #fee3b4
+
+! c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kie License
+!URxvt*background: rgba:0000/0000/0000/c000
+c00kiez.foreground: #DDEEDD
+c00kiez.background: #181818
+! Black
+c00kiez.color0: #222222
+c00kiez.color8: #454545
+! Red
+c00kiez.color1: #F60606
+c00kiez.color9: #F60606
+! Green
+c00kiez.color2: #72F91D
+c00kiez.color10:#93FF00
+! Yellow
+c00kiez.color3: #FF971F
+c00kiez.color11:#FFBF00
+! Blue
+c00kiez.color4: #44A7EE
+c00kiez.color12:#0071FF
+! Magneta
+c00kiez.color5: #9E6FFE
+c00kiez.color13:#B18CFE
+! Cyan
+c00kiez.color6: #5E7175
+c00kiez.color14:#A3BABF
+! White
+c00kiez.color7: #FFFFFF
+c00kiez.color15:#FFFFFF
+
+
+! -- by CalcAndCoffee modified DaisukeAramaki -- !
+! Black
+CalcAndCoffee.color0: #262729
+CalcAndCoffee.color8: #554444
+! Red
+CalcAndCoffee.color1: #F92671
+CalcAndCoffee.color9: #F92671
+! Green
+CalcAndCoffee.color2: #A6E22E
+CalcAndCoffee.color10: #A6E22E
+! Yellow
+CalcAndCoffee.color3: #FD971F
+CalcAndCoffee.color11: #FD971F
+! Blue
+CalcAndCoffee.color4: #66D9EF
+CalcAndCoffee.color12: #66D9EF
+! Magenta
+CalcAndCoffee.color5: #9E6FFE
+CalcAndCoffee.color13: #9E6FFE
+! Cyan
+CalcAndCoffee.color6: #5E7175
+CalcAndCoffee.color14: #A3BABF
+! White
+CalcAndCoffee.color7: #F8F8F2
+CalcAndCoffee.color15: #F8F8F2
+
+
+!Theme One ~ default
+Collection1.background: rgb:00/00/00
+Collection1.foreground: rgb:a8/a8/a8
+Collection1.color0:     rgb:00/00/00
+Collection1.color1:     rgb:a8/00/00
+Collection1.color2:     rgb:00/a8/00
+Collection1.color3:     rgb:a8/54/00
+Collection1.color4:     rgb:00/00/a8
+Collection1.color5:     rgb:a8/00/a8
+Collection1.color6:     rgb:00/a8/a8
+Collection1.color7:     rgb:a8/a8/a8
+Collection1.color8:     rgb:54/50/54
+Collection1.color9:     rgb:f8/54/50
+Collection1.color10:    rgb:50/fc/50
+Collection1.color11:    rgb:f8/fc/50
+Collection1.color12:    rgb:50/54/f8
+Collection1.color13:    rgb:f8/54/f8
+Collection1.color14:    rgb:50/fc/f8
+Collection1.color15:    rgb:f8/fc/f8
+
+!Theme Two
+Collection2.background: rgb:00/00/00
+Collection2.foreground: rgb:7f/7f/7f
+Collection2.color0:     rgb:00/00/00
+Collection2.color1:     rgb:9e/18/28
+Collection2.color2:     rgb:ae/ce/92
+Collection2.color3:     rgb:96/8a/38
+Collection2.color4:     rgb:41/41/71
+Collection2.color5:     rgb:96/3c/59
+Collection2.color6:     rgb:41/81/79
+Collection2.color7:     rgb:be/be/be
+Collection2.color8:     rgb:66/66/66
+Collection2.color9:     rgb:cf/61/71
+Collection2.color10:    rgb:c5/f7/79
+Collection2.color11:    rgb:ff/f7/96
+Collection2.color12:    rgb:41/86/be
+Collection2.color13:    rgb:cf/9e/be
+Collection2.color14:    rgb:71/be/be
+Collection2.color15:    rgb:ff/ff/ff
+
+!Theme one
+Collection3.background: rgb:00/00/00
+Collection3.foreground: rgb:cf/cf/cf
+Collection3.color0:     rgb:00/00/00
+Collection3.color1:     rgb:e0/10/10
+Collection3.color2:     rgb:20/ad/20
+Collection3.color3:     rgb:d4/c2/4f
+Collection3.color4:     rgb:23/1b/b8
+Collection3.color5:     rgb:9c/38/85
+Collection3.color6:     rgb:1d/bd/b8
+Collection3.color7:     rgb:fe/fe/fe
+Collection3.color8:     rgb:6a/6a/6a
+Collection3.color9:     rgb:e8/3a/3d
+Collection3.color10:    rgb:35/e9/56
+Collection3.color11:    rgb:ff/ff/2f
+Collection3.color12:    rgb:3a/53/f0
+Collection3.color13:    rgb:e6/28/ba
+Collection3.color14:    rgb:1c/f5/f5
+Collection3.color15:    rgb:ff/ff/ff
+
+!Theme Four
+Collection4.background: rgb:00/00/00
+Collection4.foreground: rgb:ff/ff/ff
+Collection4.color0:     rgb:00/00/00
+Collection4.color1:     rgb:d3/62/65
+Collection4.color2:     rgb:ae/ce/91
+Collection4.color3:     rgb:e7/e1/8c
+Collection4.color4:     rgb:7a/7a/b0
+Collection4.color5:     rgb:96/3c/59
+Collection4.color6:     rgb:41/81/79
+Collection4.color7:     rgb:be/be/be
+Collection4.color8:     rgb:66/66/66
+Collection4.color9:     rgb:ef/81/71
+Collection4.color10:    rgb:e5/f7/79
+Collection4.color11:    rgb:ff/f7/96
+Collection4.color12:    rgb:41/86/be
+Collection4.color13:    rgb:ef/9e/be
+Collection4.color14:    rgb:71/be/be
+Collection4.color15:    rgb:ff/ff/ff
+
+!Theme Five
+Collection5.background: rgb:ad/aa/ad
+Collection5.foreground: rgb:00/00/00
+Collection5.color0:     rgb:00/00/00
+Collection5.color1:     rgb:64/0f/19
+Collection5.color2:     rgb:63/79/6b
+Collection5.color3:     rgb:ad/71/42
+Collection5.color4:     rgb:4f/4f/89
+Collection5.color5:     rgb:b2/5c/7c
+Collection5.color6:     rgb:52/75/6b
+Collection5.color7:     rgb:ad/aa/ad
+Collection5.color8:     rgb:52/55/52
+Collection5.color9:     rgb:a5/61/63
+Collection5.color10:    rgb:ce/c2/63
+Collection5.color11:    rgb:73/ae/70
+Collection5.color12:    rgb:36/70/9f
+Collection5.color13:    rgb:aa/82/9c
+Collection5.color14:    rgb:51/89/89
+Collection5.color15:    rgb:ff/ff/ef
+
+!Theme Six
+Collection6.background: rgb:be/be/be
+Collection6.foreground: rgb:21/21/21
+Collection6.color0:     rgb:00/00/00
+Collection6.color1:     rgb:bf/72/76
+Collection6.color2:     rgb:86/af/80
+Collection6.color3:     rgb:96/8a/38
+Collection6.color4:     rgb:36/73/b5
+Collection6.color5:     rgb:9a/70/b2
+Collection6.color6:     rgb:7a/be/cc
+Collection6.color7:     rgb:db/db/db
+Collection6.color8:     rgb:66/92/af
+Collection6.color9:     rgb:e5/50/5f
+Collection6.color10:    rgb:87/bc/87
+Collection6.color11:    rgb:e0/d9/5c
+Collection6.color12:    rgb:1b/85/d6
+Collection6.color13:    rgb:ad/73/ba
+Collection6.color14:    rgb:33/8e/aa
+Collection6.color15:    rgb:f4/f4/f4
+
+!Theme Seven
+Collection7.background: rgb:67/67/67
+Collection7.foreground: rgb:ff/ff/ff
+Collection7.color0:     rgb:00/00/00
+Collection7.color1:     rgb:bf/46/46
+Collection7.color2:     rgb:67/b2/5f
+Collection7.color3:     rgb:cf/c4/4e
+Collection7.color4:     rgb:51/60/83
+Collection7.color5:     rgb:ca/6e/ff
+Collection7.color6:     rgb:92/b2/f8
+Collection7.color7:     rgb:d5/d5/d5
+Collection7.color8:     rgb:00/00/00
+Collection7.color9:     rgb:f4/8a/8a
+Collection7.color10:    rgb:a5/d7/9f
+Collection7.color11:    rgb:e1/da/84
+Collection7.color12:    rgb:a2/bb/ff
+Collection7.color13:    rgb:e2/b0/ff
+Collection7.color14:    rgb:ba/cd/f8
+Collection7.color15:    rgb:d5/d5/d5
+
+!Theme Eight
+Collection8.background: rgb:10/10/10
+Collection8.foreground: rgb:d3/d3/d3
+Collection8.color0:     rgb:10/10/10
+Collection8.color1:     rgb:cd/5c/5c
+Collection8.color2:     rgb:2e/8b/57
+Collection8.color3:     rgb:f0/e6/8c
+Collection8.color4:     rgb:b0/c4/de
+Collection8.color5:     rgb:ba/55/d3
+Collection8.color6:     rgb:46/82/b4
+Collection8.color7:     rgb:d3/d3/d3
+Collection8.color8:     rgb:4d/4d/4d
+Collection8.color9:     rgb:ff/6a/6a
+Collection8.color10:    rgb:8f/bc/8f
+Collection8.color11:    rgb:ff/fa/cd
+Collection8.color12:    rgb:1e/90/ff
+Collection8.color13:    rgb:db/70/93
+Collection8.color14:    rgb:5f/9e/a0
+Collection8.color15:    rgb:ff/ff/ff
+
+!Theme Nine
+Collection9.background: rgb:1a/1a/1a
+Collection9.foreground: rgb:d6/d6/d6
+Collection9.color0:     rgb:00/00/00
+Collection9.color1:     rgb:9e/18/28
+Collection9.color2:     rgb:00/88/00
+Collection9.color3:     rgb:96/8a/38
+Collection9.color4:     rgb:41/41/71
+Collection9.color5:     rgb:96/3c/59
+Collection9.color6:     rgb:41/81/79
+Collection9.color7:     rgb:be/be/be
+Collection9.color8:     rgb:66/66/66
+Collection9.color9:     rgb:cf/61/71
+Collection9.color10     rgb:7c/bc/8c
+Collection9.color11     rgb:ff/f7/96
+Collection9.color12     rgb:41/86/be
+Collection9.color13     rgb:cf/9e/be
+Collection9.color14     rgb:71/be/be
+Collection9.color15:    rgb:ff/ff/ff
+
+!Theme Ten
+Collection0xA.background: rgb:1a/1a/1a
+Collection0xA.foreground: rgb:d6/d6/d6
+Collection0xA.color0:     rgb:00/00/00
+Collection0xA.color1:     rgb:98/56/5e
+Collection0xA.color2:     rgb:66/82/5d
+Collection0xA.color3:     rgb:96/91/76
+Collection0xA.color4:     rgb:4d/65/85
+Collection0xA.color5:     rgb:96/73/95
+Collection0xA.color6:     rgb:5f/7f/7b
+Collection0xA.color7:     rgb:b3/b3/b3
+Collection0xA.color8:     rgb:73/73/73
+Collection0xA.color9:     rgb:cf/a3/a9
+Collection0xA.color10:    rgb:ca/f7/bb
+Collection0xA.color11:    rgb:ff/f8/bc
+Collection0xA.color12:    rgb:83/a3/be
+Collection0xA.color13:    rgb:bb/a9/cf
+Collection0xA.color14:    rgb:96/cc/cc
+Collection0xA.color15:    rgb:ff/ff/ff
+
+!Theme Eleven
+Collection0xB.background: rgb:33/33/33
+Collection0xB.foreground: rgb:ff/ff/ff
+Collection0xB.color0:     rgb:33/33/33
+Collection0xB.color8:     rgb:33/33/33
+Collection0xB.color1:     rgb:ff/a0/a0
+Collection0xB.color9:     rgb:ff/a0/a0
+Collection0xB.color2:     rgb:98/fb/98
+Collection0xB.color10:    rgb:9a/cd/32
+Collection0xB.color3:     rgb:f0/e6/8c
+Collection0xB.color11:    rgb:f0/e6/8c
+Collection0xB.color4:     rgb:87/ce/eb
+Collection0xB.color12:    rgb:87/ce/eb
+Collection0xB.color5:     rgb:ff/a0/a0
+Collection0xB.color13:    rgb:ff/a0/a0
+Collection0xB.color6:     rgb:87/ce/eb
+Collection0xB.color14:    rgb:87/ce/eb
+Collection0xB.color7:     rgb:ff/ff/ff
+Collection0xB.color15:    rgb:ff/ff/ff
+
+!Theme Twelve
+Collection0xC.foreground: rgb:ff/ff/ff
+Collection0xC.background: rgb:00/00/00
+Collection0xC.color0:     rgb:00/00/00
+Collection0xC.color1:     rgb:bf/72/76
+Collection0xC.color2:     rgb:86/af/80
+Collection0xC.color3:     rgb:96/8a/38
+Collection0xC.color4:     rgb:36/73/b5
+Collection0xC.color5:     rgb:9a/70/b2
+Collection0xC.color6:     rgb:7a/be/cc
+Collection0xC.color7:     rgb:db/db/db
+Collection0xC.color8:     rgb:66/92/af
+Collection0xC.color9:     rgb:e5/50/5f
+Collection0xC.color10:    rgb:87/bc/87
+Collection0xC.color11:    rgb:e0/d9/5c
+Collection0xC.color12:    rgb:1b/85/d6
+Collection0xC.color13:    rgb:ad/73/ba
+Collection0xC.color14:    rgb:33/8e/aa
+Collection0xC.color15:    rgb:f4/f4/f4
+
+!Theme Thirteen
+Collection0xD.background: rgb:00/00/00
+Collection0xD.foreground: rgb:aa/aa/aa
+Collection0xD.color0:     rgb:00/00/00
+Collection0xD.color1:     rgb:9e/18/28
+Collection0xD.color2:     rgb:ae/ce/92
+Collection0xD.color3:     rgb:96/8a/38
+Collection0xD.color4:     rgb:41/41/71
+Collection0xD.color5:     rgb:96/3c/59
+Collection0xD.color6:     rgb:7f/9f/7f
+Collection0xD.color7:     rgb:be/be/be 
+Collection0xD.color8:     rgb:66/66/66
+Collection0xD.color9:     rgb:cf/61/71
+Collection0xD.color10:    rgb:af/c5/af
+Collection0xD.color11:    rgb:f0/df/af
+Collection0xD.color12:    rgb:8e/9f/bc
+Collection0xD.color13:    rgb:dc/a3/a3
+Collection0xD.color14:    rgb:95/c1/c5
+Collection0xD.color15:    rgb:ff/ff/ff
+
+!Theme Fourteen
+Collection0xF.background: rgb:95/95/95
+Collection0xF.foreground: rgb:00/00/00
+Collection0xF.color0:     rgb:7f/7f/7f
+Collection0xF.color1:     rgb:cd/00/00
+Collection0xF.color2:     rgb:00/8b/00
+Collection0xF.color3:     rgb:ee/ee/00
+Collection0xF.color4:     rgb:00/00/cd
+Collection0xF.color5:     rgb:cd/00/cd
+Collection0xF.color6:     rgb:00/ee/ee
+Collection0xF.color7:     rgb:fa/eb/d7
+Collection0xF.color8:     rgb:e5/e5/e5
+Collection0xF.color9:     rgb:80/00/00
+Collection0xF.color10:    rgb:00/50/20
+Collection0xF.color11:    rgb:99/55/00
+Collection0xF.color12:    rgb:00/40/80
+Collection0xF.color13:    rgb:44/33/00
+Collection0xF.color14:    rgb:30/60/80
+Collection0xF.color15:    rgb:ff/ff/ff
+
+!Theme Fifteen
+Collection0xG.background: rgb:1d/2b/3a
+Collection0xG.foreground: rgb:be/be/be
+Collection0xG.color0:     rgb:00/00/00
+Collection0xG.color1:     rgb:d3/62/65
+Collection0xG.color2:     rgb:ae/ce/91
+Collection0xG.color3:     rgb:e7/e1/8c
+Collection0xG.color4:     rgb:7a/7a/b0
+Collection0xG.color5:     rgb:96/3c/59
+Collection0xG.color6:     rgb:41/81/79
+Collection0xG.color7:     rgb:be/be/be
+Collection0xG.color8:     rgb:66/66/66
+Collection0xG.color9:     rgb:ef/81/71
+Collection0xG.color10:    rgb:e5/f7/79
+Collection0xG.color11:    rgb:ff/f7/99
+Collection0xG.color12:    rgb:41/86/be
+Collection0xG.color13:    rgb:ef/9e/be
+Collection0xG.color14:    rgb:71/be/be
+Collection0xG.color15:    rgb:ff/ff/ff
+
+!Theme Sixteen
+Collection0xH.background: rgb:00/00/00
+Collection0xH.foreground: rgb:be/be/be
+Collection0xH.color0:     rgb:00/00/00
+Collection0xH.color1:     rgb:9e/18/28
+Collection0xH.color2:     rgb:ae/ce/92
+Collection0xH.color3:     rgb:96/8a/38
+Collection0xH.color4:     rgb:41/41/71
+Collection0xH.color5:     rgb:96/3c/59
+Collection0xH.color6:     rgb:41/81/79
+Collection0xH.color7:     rgb:be/be/be
+Collection0xH.color8:     rgb:66/66/66
+Collection0xH.color9:     rgb:cf/61/71
+Collection0xH.color10:    rgb:c5/f7/79
+Collection0xH.color11:    rgb:ff/f7/96
+Collection0xH.color12:    rgb:41/86/be
+Collection0xH.color13:    rgb:cf/9e/be
+Collection0xH.color14:    rgb:71/be/be
+Collection0xH.color15:    rgb:ff/ff/ff
+
+!Theme Seventeen
+Collection0xJ.background: rgb:00/00/00
+Collection0xJ.foreground: rgb:e5/e5/e5
+Collection0xJ.color0:     rgb:00/00/00
+Collection0xJ.color1:     rgb:ff/00/00
+Collection0xJ.color2:     rgb:00/ff/00
+Collection0xJ.color3:     rgb:ff/ff/00
+Collection0xJ.color4:     rgb:00/00/ff
+Collection0xJ.color5:     rgb:ff/00/ff
+Collection0xJ.color6:     rgb:00/ff/ff
+Collection0xJ.color7:     rgb:ff/ff/ff
+Collection0xJ.color8:     rgb:ff/d3/9b
+Collection0xJ.color9:     rgb:ff/82/47
+Collection0xJ.color10:    rgb:ff/82/ab
+Collection0xJ.color11:    rgb:87/ce/fa
+Collection0xJ.color12:    rgb:ff/ff/ff
+Collection0xJ.color13:    rgb:ff/ff/ff
+Collection0xJ.color14:    rgb:ff/ff/ff
+Collection0xJ.color15:    rgb:ff/ff/ff
+
+!Theme Eighteen
+Collection0xK.color0:  rgb:00/00/00
+Collection0xK.color1:  rgb:9e/18/28
+Collection0xK.color2:  rgb:5c/b2/47
+Collection0xK.color3:  rgb:96/8a/38
+Collection0xK.color4:  rgb:41/61/a0
+Collection0xK.color5:  rgb:9b/76/8e
+Collection0xK.color6:  rgb:41/91/89
+Collection0xK.color7:  rgb:be/be/be   
+Collection0xK.color8:  rgb:66/66/66
+Collection0xK.color9:  rgb:cf/61/71
+Collection0xK.color10: rgb:c5/f7/79
+Collection0xK.color11: rgb:ff/f7/96
+Collection0xK.color12: rgb:41/86/be
+Collection0xK.color13: rgb:cf/9e/be
+Collection0xK.color14: rgb:71/be/be
+Collection0xK.color15: rgb:dd/dd/dd
+
+!Theme Nineteen
+Collection0xL.color0:  rgb:00/00/00
+Collection0xL.color1:  rgb:b0/70/50
+Collection0xL.color2:  rgb:12/91/4e
+Collection0xL.color3:  rgb:a0/a0/70
+Collection0xL.color4:  rgb:3e/45/81
+Collection0xL.color5:  rgb:a0/70/a0
+Collection0xL.color6:  rgb:70/a0/a0
+Collection0xL.color7:  rgb:a0/a0/a0
+Collection0xL.color8:  rgb:60/60/60
+Collection0xL.color9:  rgb:b0/70/50
+Collection0xL.color10: rgb:12/91/4e
+Collection0xL.color11: rgb:c0/c0/90
+Collection0xL.color12: rgb:3e/45/81
+Collection0xL.color13: rgb:c0/90/c0
+Collection0xL.color14: rgb:90/c0/c0
+Collection0xL.color15: rgb:ff/ff/ff
+
+!Theme Twenty
+Collection0xM.foreground: rgb:aa/aa/aa
+Collection0xM.background: rgb:00/00/00
+Collection0xM.color0:     rgb:30/34/30
+Collection0xM.color1:     rgb:bf/79/79
+Collection0xM.color2:     rgb:97/b2/6b
+Collection0xM.color3:     rgb:cd/cd/c1
+Collection0xM.color4:     rgb:86/a2/be
+Collection0xM.color5:     rgb:d9/b7/98
+Collection0xM.color6:     rgb:a1/b5/cd
+Collection0xM.color7:     rgb:ff/ff/ff
+Collection0xM.color8:     rgb:cd/b5/cd
+Collection0xM.color9:     rgb:f4/a4/5f
+Collection0xM.color10:    rgb:c5/f7/79
+Collection0xM.color11:    rgb:ff/ff/ef
+Collection0xM.color12:    rgb:98/af/d9
+Collection0xM.color13:    rgb:d7/d9/98
+Collection0xM.color14:    rgb:a1/b5/cd
+Collection0xM.color15:    rgb:de/de/de
+
+!Theme Twenty-One
+Collection0xY.background: rgb:1a/1a/1a
+Collection0xY.foreground: rgb:aa/aa/aa
+Collection0xY.color0:     rgb:00/00/00
+Collection0xY.color8:     rgb:66/66/66
+Collection0xY.color1:     rgb:9e/18/28
+Collection0xY.color9:     rgb:bc/57/66
+Collection0xY.color2:     rgb:00/88/00
+Collection0xY.color10:    rgb:61/a1/71
+Collection0xY.color3:     rgb:d2/bb/4b
+Collection0xY.color11:    rgb:e7/db/52
+Collection0xY.color4:     rgb:41/41/71
+Collection0xY.color12:    rgb:50/85/af
+Collection0xY.color5:     rgb:96/3c/59
+Collection0xY.color13:    rgb:a9/7a/99
+Collection0xY.color6:     rgb:41/81/79
+Collection0xY.color14:    rgb:6b/a4/a4
+Collection0xY.color7:     rgb:be/be/be
+Collection0xY.color15:    rgb:ff/ff/ff
+
+!Theme Twenty-Two
+Collection0xT.background: rgb:00/00/00
+Collection0xT.foreground: rgb:be/be/be
+Collection0xT.color0:     rgb:00/00/00
+Collection0xT.color1:     rgb:d3/62/65
+Collection0xT.color2:     rgb:ae/ce/91
+Collection0xT.color3:     rgb:e7/e1/8c
+Collection0xT.color4:     rgb:7a/7a/b0
+Collection0xT.color5:     rgb:96/3c/59
+Collection0xT.color6:     rgb:7f/9f/7f
+Collection0xT.color7:     rgb:be/be/be
+Collection0xT.color8:     rgb:66/66/66
+Collection0xT.color9:     rgb:ef/81/71
+Collection0xT.color10:    rgb:e5/f7/79
+Collection0xT.color11:    rgb:f0/df/af
+Collection0xT.color12:    rgb:8e/9f/bc
+Collection0xT.color13:    rgb:ef/9e/be
+Collection0xT.color14:    rgb:71/be/be
+Collection0xT.color15:    rgb:ff/ff/ff
+
+!Theme Twenty-Three
+Collection0xU.background:   rgb:0e/0e/0e
+Collection0xU.foreground:   rgb:4a/d5/e1
+Collection0xU.color0:       rgb:00/00/00
+Collection0xU.color1:       rgb:dc/74/d1
+Collection0xU.color2:       rgb:0e/b8/c7
+Collection0xU.color3:       rgb:df/e3/7e
+Collection0xU.color5:       rgb:9e/88/f0
+Collection0xU.color6:       rgb:73/f7/ff
+Collection0xU.color7:       rgb:e1/dd/dd
+Collection0xU.color8:       rgb:8b/8f/93
+Collection0xU.color9:       rgb:dc/74/d1
+Collection0xU.color10:      rgb:0e/b8/c7
+Collection0xU.color11:      rgb:df/e3/7e
+Collection0xU.color13:      rgb:9e/88/f0
+Collection0xU.color14:      rgb:73/f7/ff
+Collection0xU.color15:      rgb:e1/dd/dd
+
+!Theme Twenty-Four
+Collection0xP.color0:  rgb:00/00/00
+Collection0xP.color1:  rgb:cd/5c/5c
+Collection0xP.color2:  rgb:8e/ae/71
+Collection0xP.color3:  rgb:d2/b4/8c
+Collection0xP.color4:  rgb:5f/7b/8a
+Collection0xP.color5:  rgb:cd/cd/b4
+Collection0xP.color6:  rgb:68/68/68
+Collection0xP.color7:  rgb:ff/ff/ff
+Collection0xP.color8:  rgb:00/00/00
+Collection0xP.color9:  rgb:ee/63/63
+Collection0xP.color10: rgb:95/c7/49
+Collection0xP.color11: rgb:cd/cd/c1
+Collection0xP.color12: rgb:6b/7b/8a
+Collection0xP.color13: rgb:cd/cd/b4
+Collection0xP.color14: rgb:77/87/98
+Collection0xP.color15: rgb:ca/ca/ca
+
+!Theme Twenty-Five
+Collection0xV.color0:  rgb:00/00/00
+Collection0xV.color1:  rgb:80/00/00
+Collection0xV.color2:  rgb:00/80/00
+Collection0xV.color3:  rgb:d0/d0/90
+Collection0xV.color4:  rgb:00/00/80
+Collection0xV.color5:  rgb:80/00/80
+Collection0xV.color6:  rgb:a6/ca/f0
+Collection0xV.color7:  rgb:d0/d0/d0
+Collection0xV.color8:  rgb:b0/b0/b0
+Collection0xV.color9:  rgb:f0/80/60
+Collection0xV.color10: rgb:60/f0/80
+Collection0xV.color11: rgb:e0/c0/60
+Collection0xV.color12: rgb:80/c0/e0
+Collection0xV.color13: rgb:f0/c0/f0
+Collection0xV.color14: rgb:c0/d8/f8
+Collection0xV.color15: rgb:e0/e0/e0
+
+console_cookierati.color0:  #222222  !black
+console_cookierati.color1:  #c5000b  !darkred
+console_cookierati.color2:  #579d1c  !darkgreen
+console_cookierati.color3:  #ff420e  !darkyellow
+console_cookierati.color4:  #0066cc  !darkblue
+console_cookierati.color5:  #9c3885  !darkmagenta
+console_cookierati.color6:  #426870  !darkcyan
+console_cookierati.color7:  #e2e2e5  !lightgrey
+console_cookierati.color8:  #454545  !black bold
+console_cookierati.color9:  #ff0000  !red
+console_cookierati.color10: #a6cd07 !green
+console_cookierati.color11: #ff950e !yellow
+console_cookierati.color12: #4bb5c1 !blue
+console_cookierati.color13: #d11793 !magenta
+console_cookierati.color14: #6e7c75 !cyan
+console_cookierati.color15: #ffffff !white
+
+console_fflarex.color0: #0f0f0f !black
+console_fflarex.color1: #803232 !darkred
+console_fflarex.color2: #5b762f !darkgreen
+console_fflarex.color3: #cdc673 !brown
+console_fflarex.color4: #324c80 !darkblue
+console_fflarex.color5: #706c9a !darkmagenta
+console_fflarex.color6: #92b19e !darkcyan
+console_fflarex.color7: #cccccc !lightgrey
+console_fflarex.color8: #333333 !darkgrey
+console_fflarex.color9: #982b2b !red
+console_fflarex.color10: #89b83f !green
+console_fflarex.color11: #efe58b !yellow
+console_fflarex.color12: #2b4f98 !blue
+console_fflarex.color13: #826ab1 !magenta
+console_fflarex.color14: #a1cdcd !cyan
+console_fflarex.color15: #dedede !white
+
+console_librec00kiez.color0   #222222
+console_librec00kiez.color1   #c5000b
+console_librec00kiez.color2   #579d1c
+console_librec00kiez.color3   #ff420e
+console_librec00kiez.color4   #004586
+console_librec00kiez.color5   #9932CC
+console_librec00kiez.color6   #5E7175
+console_librec00kiez.color7   #FFFFFF
+console_librec00kiez.color8   #454545
+console_librec00kiez.color9   #ff0000
+console_librec00kiez.color10  #aecf00
+console_librec00kiez.color11  #ff950e
+console_librec00kiez.color12  #0066cc
+console_librec00kiez.color13  #d11793
+console_librec00kiez.color14  #A3BABF
+console_librec00kiez.color15  #FFFFFF
+
+! c00kiemon5ter (ivan.kanak@gmail.com) ~ under cookie License (C)
+c00kiemon5ter.foreground: #ddeedd
+c00kiemon5ter.background: #0e1116
+! black
+c00kiemon5ter.color0: #222222
+c00kiemon5ter.color8: #454545
+! red
+c00kiemon5ter.color1: #c5000b
+c00kiemon5ter.color9: #ff0000
+! green
+c00kiemon5ter.color2:  #579d1c
+c00kiemon5ter.color10: #a6cd07
+! yellow
+c00kiemon5ter.color3:  #ff420e
+c00kiemon5ter.color11: #ff950e
+! blue
+c00kiemon5ter.color4:  #007091
+c00kiemon5ter.color12: #4bb5c1
+! magneta
+c00kiemon5ter.color5:  #960050
+c00kiemon5ter.color13: #d11793
+! cyan
+c00kiemon5ter.color6:  #426870
+c00kiemon5ter.color14: #6e7c75
+! white
+c00kiemon5ter.color7:  #e2e2e5
+c00kiemon5ter.color15: #ffffff
+
+!black
+cyrusza-stolen.color0            : #2E2E34343636
+cyrusza-stolen.color8            : #555557575353
+! red
+cyrusza-stolen.color1            : #CCCC00000000
+cyrusza-stolen.color9            : #EFEF29292929
+! green
+cyrusza-stolen.color2            : #4E4E9A9A0606
+cyrusza-stolen.color10           : #8A8AE2E23434
+! yellow
+cyrusza-stolen.color3            : #C4C4A0A00000
+cyrusza-stolen.color11           : #FCFCE9E94F4F
+! blue
+cyrusza-stolen.color4            : #34346565A4A4
+cyrusza-stolen.color12           : #72729F9FCFCF
+! magenta
+cyrusza-stolen.color5            : #757550507B7B
+cyrusza-stolen.color13           : #ADAD7F7FA8A8
+! cyan
+cyrusza-stolen.color6            : #060698209A9A
+cyrusza-stolen.color14           : #3434E2E2E2E2
+! white
+cyrusza-stolen.color7            : #D3D3D7D7CFCF
+cyrusza-stolen.color15           : #EEEEEEEEECEC
+
+Daisuke2.foreground: #DDEEDD
+Daisuke2.background: #1C1C1C
+
+! Daisuke 2
+! Black
+Daisuke2.color0:    #000000
+Daisuke2.color8:    #555753
+! Red
+Daisuke2.color1:    #ff6565
+Daisuke2.color9:    #ff8d8d
+! Green
+Daisuke2.color2:    #93d44f
+Daisuke2.color10:   #c8e7a8
+! Yellow
+Daisuke2.color3:    #eab93d
+Daisuke2.color11:   #ffc123
+! Blue
+Daisuke2.color4:    #204a87
+Daisuke2.color12:   #3465a4
+! Mangenta
+Daisuke2.color5:    #ce5c00
+Daisuke2.color13:   #f57900
+! Cyan
+Daisuke2.color6:    #89b6e2
+Daisuke2.color14:   #46a4ff
+! White
+Daisuke2.color7:    #cccccc
+Daisuke2.color15:   #ffffff
+
+Digerati.background: #202020
+Digerati.foreground: #e2e2e5
+Digerati.color0:  #303030
+Digerati.color1:  #c03000
+Digerati.color2:  #b1d631
+Digerati.color3:  #fecf35
+Digerati.color4:  #426870
+Digerati.color5:  #6D506D
+Digerati.color6:  #4bb5c1
+Digerati.color7:  #e2e2e5
+Digerati.color8:  #5F5F5F
+Digerati.color9:  #FF3A78
+Digerati.color10: #A6CD07
+Digerati.color11: #B5C865
+Digerati.color12: #4A7781
+Digerati.color13: #FF3B77
+Digerati.color14: #4bb5c1
+Digerati.color15: #e2e2e5
+
+
+! -- by drkwolf -- !
+! -- vim theme ~ molokai -- !
+!URxvtdrkwolf.shading:40
+drkwolf.background: #262626
+drkwolf.foreground: light grey
+!black
+drkwolf.color0: #222222
+drkwolf.color8: #554444
+!red
+drkwolf.color1: #EA6868
+drkwolf.color9: #FF7272
+!green
+drkwolf.color2: #ABCB8D
+drkwolf.color10: #AFD78A
+!yellow
+drkwolf.color3: #E8AE5B
+drkwolf.color11: #FFA75D
+!blue
+drkwolf.color4: #71C5F4
+drkwolf.color12: #67CDE9
+!magenta
+drkwolf.color5: #E2BAF1
+drkwolf.color13: #ECAEE9
+!cyan
+drkwolf.color6: #21F1EA
+drkwolf.color14: #36FFFC
+!white
+drkwolf.color7: #F1F1F1
+drkwolf.color15: #FFFFFF
+
+
+ganja.foreground: #DDEEDD
+ganja.background: #1C1C1C
+!black 
+ganja.color0 : #222222
+ganja.color8 : #454545
+!red
+ganja.color1 : #F92672
+ganja.color9 : #F92672
+!green
+ganja.color2 : #A6E22E
+ganja.color10: #A6E22E
+!yellow
+ganja.color3 : #FD971F
+ganja.color11: #FD971F
+!blue
+ganja.color4 : #4682B4
+ganja.color12: #4682B4
+!magenta
+ganja.color5 : #AE81FF
+ganja.color13: #AE81FF
+!cyan
+ganja.color6: #89b6e2
+ganja.color14: #46a4ff
+!white
+ganja.color7 : #FFFFFF
+ganja.color15: #FFFFFF
+
+! Colors
+hickop.background:        #262626
+hickop.foreground:        #c2c2b0
+! Black + DarkGrey
+hickop.color0:            #262626
+hickop.color8:            #73675b
+! DarkRed + Red
+hickop.color1:            #a64211
+hickop.color9:            #cc5214
+! DarkGreen + Green
+hickop.color2:            #638046
+hickop.color10:           #80a65b
+! DarkYellow + Yellow
+hickopcolor3:            #bf8c25
+hickopcolor11:           #e6a82d
+! DarkBlue + Blue
+hickop.color4:            #4d6d99
+hickop.color12:           #6088bf
+! DarkMangenta + Mangenta
+hickopcolor5:            #996b89
+hickopcolor13:           #bf86ac
+! DarkCyan + Cyan
+hickop.color6:            #6b8e99
+hickop.color14:           #86b1bf
+! LightGrey + White
+hickop.color7:            #998a7a
+hickop.color15:           #c2c2b0
+
+
+irrlicht.foreground:     #DDDDDD
+irrlicht.background:     #121212
+!black
+irrlicht.color0:         #1C1C20
+irrlicht.color8:         #666666
+!red
+irrlicht.color1:         #AE3C3E
+irrlicht.color9:         #EE6363
+!green
+irrlicht.color2:         #4A5C28
+irrlicht.color10:        #9ACD32
+!brown/yellow
+irrlicht.color3:         #DAA520
+irrlicht.color11:        #FFC125
+!blue
+irrlicht.color4:         #6F99B4
+irrlicht.color12:        #7C96B0
+!magenta
+irrlicht.color5:         #8B7B8B
+irrlicht.color13:        #D8BFD8
+!cyan
+irrlicht.color6:         #0A5163
+irrlicht.color14:        #118FAF
+!white
+irrlicht.color7:         #DDDDDD
+irrlicht.color15:        #FFFFFF
+
+
+ivory_dark.background:  #2D2C28
+ivory_dark.foreground:  #A4A6AB
+ivory_dark.colorBD:     #DBDDE2
+ivory_dark.colorIT:     #DBDDE2
+ivory_dark.colorUL:     #DBDDE2
+ivory_dark.cursorColor: #53CAD9
+! BLACK
+ivory_dark.color0:      #5B5955
+ivory_dark.color8:      #707277
+! WHITE
+ivory_dark.color7:      #DBDDE2
+ivory_dark.color15:     #F7F9FF
+! RED
+ivory_dark.color1:      #C4756E
+ivory_dark.color9:      #F6A299
+! YELLOW
+ivory_dark.color3:      #9B8A4B
+ivory_dark.color11:     #CAB775
+! GREEN
+ivory_dark.color2:      #559A6A
+ivory_dark.color10:     #82C896
+! CYAN
+ivory_dark.color6:      #019BAA
+ivory_dark.color14:     #53CAD9
+! BLUE
+ivory_dark.color4:      #6A8DCA
+ivory_dark.color12:     #98BBFB
+! MAGENTA
+ivory_dark.color5:      #B577AC
+ivory_dark.color13:     #E5A4DB
+
+ivory_light.background:  #FEF9EC
+ivory_light.foreground:  #6D727E
+ivory_light.colorBD:     #3E424D
+ivory_light.colorIT:     #3E424D
+ivory_light.colorUL:     #3E424D
+ivory_light.cursorColor: #007693
+! BLACK
+ivory_light.color0:      #C5C1B4
+ivory_light.color8:      #A1A6B2
+! WHITE
+ivory_light.color7:      #3E424D
+ivory_light.color15:     #282C36
+! RED
+ivory_light.color1:      #E75C58
+ivory_light.color9:      #B22B31
+! YELLOW
+ivory_light.color3:      #A08A00
+ivory_light.color11:     #715F00
+! GREEN
+ivory_light.color2:      #00A250
+ivory_light.color10:     #007427
+! CYAN
+ivory_light.color6:      #00A4C1
+ivory_light.color14:     #007693
+! BLUE
+ivory_light.color4:      #208FFB
+ivory_light.color12:     #0065CA
+! MAGENTA
+ivory_light.color5:      #D160C4
+ivory_light.color13:     #A03196
+
+!bg & fg
+jousi.background: #1F1F1F
+jousi.foreground: #FFFFFF
+!black
+jousi.color0: #262729
+jousi.color8: #3F3F3F
+!red
+jousi.color1: #F90670
+jousi.color9: #FF669D
+!green
+!jousi.color2: #A5D11D
+!jousi.color10: #BEED5F
+jousi.color2: #BEED5F
+jousi.color10: #D9FF6D
+!yellow
+jousi.color3: #FF971F
+jousi.color11: #E6DB74
+!blue
+jousi.color4: #44A7EE
+jousi.color12: #66A7FF
+!magenta
+jousi.color5: #9E6FFE
+!jousi.color13: #9E6FFE
+jousi.color13: #B18CFE
+!cyan
+jousi.color6: #88C9FF
+jousi.color14: #A3BABF
+!white
+jousi.color7: #FFFFFF
+jousi.color15: #FFFFFF
+
+jstandler.background: #1f1f1f
+jstandler.foreground: #beed5f
+
+jstandler.color0: #000000
+jstandler.color1: #A80000
+jstandler.color2: #ED254F
+jstandler.color3: #A85400
+jstandler.color4: #020202
+jstandler.color5: #A800A8
+jstandler.color6: #00A8A8
+jstandler.color7: #A8A8A8
+jstandler.color8: #545054
+jstandler.color9: #F85450
+jstandler.color10: #ED254F
+jstandler.color11: #ED254F
+jstandler.color12: #5054F8
+jstandler.color13: #ED254F
+jstandler.color14: #50FCF8
+jstandler.color15: #F8FCF8
+
+
+k3ttc4r.foreground: #dddddd
+k3ttc4r.background: #151515
+!black
+k3ttc4r.color0:  #393939
+k3ttc4r.color8:  #474747
+!red
+k3ttc4r.color1:  #da4939
+k3ttc4r.color9:  #ff6c5c
+!green
+k3ttc4r.color2:  #519f50
+k3ttc4r.color10: #a5c261
+!yellow
+k3ttc4r.color3:  #cc7833
+k3ttc4r.color11: #bc9458
+!blue
+k3ttc4r.color4:  #6d9cbe
+k3ttc4r.color12: #d0d0ff
+!magenta
+k3ttc4r.color5:  #9f5079
+k3ttc4r.color13: #a761c2
+!cyan
+k3ttc4r.color6:  #435d75
+k3ttc4r.color14: #6e98a4
+!white
+k3ttc4r.color7:  #dddddd
+k3ttc4r.color15: #dddddd
+
+
+! c00kiemon5ter (ivan.kanak@gmail.com) ~ under c00kie License
+librec00kiez.foreground: #DDEEDD
+librec00kiez.background: #111111
+! Black
+librec00kiez.color0: #222222
+librec00kiez.color8: #454545
+! Red
+librec00kiez.color1: #c5000b
+librec00kiez.color9: #ff0000
+! Green
+librec00kiez.color2: #579d1c
+librec00kiez.color10:#aecf00
+! Yellow
+librec00kiez.color3: #ff420e
+librec00kiez.color11:#ff950e
+! Blue
+librec00kiez.color4: #004586
+librec00kiez.color12:#0066cc
+! Magneta
+librec00kiez.color5: #9932CC
+librec00kiez.color13:#d11793
+! Cyan
+librec00kiez.color6: #5E7175
+librec00kiez.color14:#A3BABF
+! White
+librec00kiez.color7: #FFFFFF
+librec00kiez.color15:#FFFFFF
+
+!! -- by Longbow -- !
+Longbow.borderColor: #343434
+Longbow.background: #343434
+Longbow.foreground: #cdcdcd
+!black
+Longbow.color0: #222222
+Longbow.color8: #454545
+!red
+Longbow.color1: #9E5641
+Longbow.color9: #CC896D
+!green
+Longbow.color2: #6C7E55
+Longbow.color10: #C4DF90
+!yellow
+Longbow.color3: #CAAF2B
+Longbow.color11: #FFE080
+!blue
+Longbow.color4: #7FB8D8
+Longbow.color12: #B8DDEA
+!magenta
+Longbow.color5: #956D9D
+Longbow.color13: #C18FCB
+!cyan
+Longbow.color6: #4c8ea1
+Longbow.color14: #6bc1d0
+!white
+Longbow.color7: #808080
+Longbow.color15: #cdcdcd
+
+
+!black
+mason_larobina.color0:               #353535
+mason_larobina.color8:               #666666
+!red
+mason_larobina.color1:               #D81860
+mason_larobina.color9:               #F00060
+!green
+mason_larobina.color2:               #B7CE42
+mason_larobina.color10:              #BDE077
+!brown/yellow
+mason_larobina.color3:               #FEA63C
+mason_larobina.color11:              #FFE863
+!blue
+mason_larobina.color4:               #6F99B4
+mason_larobina.color12:              #7C96B0
+!magenta
+mason_larobina.color5:               #8B7B8B
+mason_larobina.color13:              #D8BFD8
+!cyan
+mason_larobina.color6:               #A7A15E
+mason_larobina.color14:              #F0E68C
+!white
+mason_larobina.color7:               #DDDDDD
+mason_larobina.color15:              #FFFFFF
+mason_larobina.background:           #212021
+mason_larobina.foreground:           #DDDDDD
+
+
+mattikus.background:	#1C1C1C
+mattikus.foreground:	#A9A9A9
+!black
+mattikus.color0:	#1C1C1C
+mattikus.color8:	#4d4d4d
+!red
+mattikus.color1:	#D81860
+mattikus.color9:	#F00060
+!green
+mattikus.color2:	#B7CE42
+mattikus.color10:	#BDE077
+!yellow
+mattikus.color3:	#FEA63C
+mattikus.color11:	#FFE863
+!blue
+mattikus.color4:	#66AABB
+mattikus.color12:	#AACCBB
+!magenta
+mattikus.color5:	#B7416E
+mattikus.color13:	#BB4466
+!cyan
+mattikus.color6:	#5E7175
+mattikus.color14:	#A3BABF
+!white
+mattikus.color7:	#DDEEDD
+mattikus.color15:	#6C887A
+
+! vim: ft=xdefaults
+mmso2.background: #080808
+mmso2.foreground: #ffffff
+!black
+mmso2.color0:	#030303
+mmso2.color8:	#1c1c1c
+!red
+mmso2.color1:	#ff4747
+mmso2.color9:	#ff6767
+!green
+mmso2.color2:	#a8e134
+mmso2.color10:	#b2c470
+!yellow
+mmso2.color3:	#ffb400
+mmso2.color11:	#efbd5c
+!blue
+mmso2.color4:	#0066ee
+mmso2.color12:	#2a7cff
+!magenta
+mmso2.color5:	#d237ad
+mmso2.color13:	#bd6cce
+!cyan
+mmso2.color6:	#18dfb0
+mmso2.color14:	#7fc4a4
+!white
+mmso2.color7:	#dedede
+mmso2.color15:	#ffffff
+
+puzzled.foreground: #DDEEDD
+puzzled.background: #1C1C1C
+
+! Molokai MOD
+!black 
+puzzled.color0 : #222222
+puzzled.color8 : #454545
+!red
+puzzled.color1 : #F92672
+puzzled.color9 : #F92672
+!green
+puzzled.color2 : #A6E22E
+puzzled.color10: #A6E22E
+!yellow
+puzzled.color3 : #FD971F
+puzzled.color11: #FD971F
+!blue
+puzzled.color4 : #4682B4
+puzzled.color12: #4682B4
+!magenta
+puzzled.color5 : #AE81FF
+puzzled.color13: #AE81FF
+!cyan
+puzzled.color6: #89b6e2
+puzzled.color14: #46a4ff
+!white
+puzzled.color7 : #FFFFFF
+puzzled.color15: #FFFFFF
+
+! -- by Rasi -- !
+Rasi.foreground:              #a0a0a0
+!Rasi.background:              #1B1D1E
+Rasi.background:              #121212
+!black
+Rasi.color0:                  #1B1D1E
+Rasi.color8:                  #505354
+!red
+Rasi.color1:                  #F92672
+Rasi.color9:                  #FF5995
+!green
+Rasi.color2:                  #82B414
+Rasi.color10:                 #B6E354
+!yellow
+Rasi.color3:                  #FD971F
+Rasi.color11:                 #FEED6C
+!blue
+Rasi.color4:                  #4E82AA
+Rasi.color12:                 #0C73C2
+!magenta
+Rasi.color5:                  #8C54FE
+Rasi.color13:                 #9E6FFE
+!cyan
+Rasi.color6:                  #465457
+Rasi.color14:                 #899CA1
+!white
+Rasi.color7:                  #CCCCC6
+Rasi.color15:                 #F8F8F2
+
+
+Reasons.foreground:#a0a0a0
+Reasons.background:#1B1D1E
+
+!black
+Reasons.color0:    #1B1D1E
+Reasons.color8:    #505354
+!red
+Reasons.color1:    #F92672
+Reasons.color9:    #FF669D
+!green
+Reasons.color2:    #A6E22E
+Reasons.color10:   #BEED5F
+!yellow
+Reasons.color3:    #FD971F
+Reasons.color11:   #E6DB74
+!blue
+Reasons.color4:    #66D9EF
+Reasons.color12:   #66D9EF
+!magenta
+Reasons.color5:    #9E6FFE
+Reasons.color13:   #9E6FFE
+!cyan
+Reasons.color6:    #5E7175
+Reasons.color14:   #A3BABF
+!white
+Reasons.color7:    #CCCCC6
+Reasons.color15:   #F8F8F2
+
+
+! by Rezza
+Rezza.foreground:     rgb:dd/dd/dd
+Rezza.background:     rgb:22/22/22
+!!black
+Rezza.color0:         rgb:19/19/19
+Rezza.color8:         rgb:25/25/25
+!!red
+Rezza.color1:         rgb:80/32/32
+Rezza.color9:         rgb:98/2b/2b
+!!green
+Rezza.color2:         rgb:5b/76/2f
+Rezza.color10:        rgb:89/b8/3f
+!!brown/yellow
+Rezza.color3:         rgb:aa/99/43
+Rezza.color11:        rgb:ef/ef/60
+!!blue
+Rezza.color4:         rgb:32/4c/80
+Rezza.color12:        rgb:2b/4f/98
+!!magenta
+Rezza.color5:         rgb:70/6c/9a
+Rezza.color13:        rgb:82/6a/b1
+!!cyan
+Rezza.color6:         rgb:92/b1/9e
+Rezza.color14:        rgb:a1/cd/cd
+!!white
+Rezza.color7:         rgb:ff/ff/ff
+Rezza.color15:        rgb:dd/dd/dd
+
+
+!---------------------------------------------------
+! file:            .colours/sicp
+! author:        marcus lauver <sicpsnake@gmail.com>
+!---------------------------------------------------
+
+sicpsnake.background:                        #171717
+sicpsnake.foreground:                        #ffffff
+
+! Black ------------------------------
+sicpsnake.color0:              #292929
+sicpsnake.color8:              #3d3d3d
+! Red --------------------------------
+sicpsnake.color1:              #DE6951
+sicpsnake.color9:              #c56a47
+! Green ------------------------------
+sicpsnake.color2:              #bcda55
+sicpsnake.color10:             #9dbf60
+! Yellow -----------------------------
+sicpsnake.color3:              #E2A564
+sicpsnake.color11:             #EC8A25
+! Blue -------------------------------
+sicpsnake.color4:              #2187F6
+sicpsnake.color12:             #5495DC
+! Magenta ----------------------------
+sicpsnake.color5:              #875C8D
+sicpsnake.color13:             #E41F66
+! Cyan -------------------------------
+sicpsnake.color6:              #4390B1
+sicpsnake.color14:             #276CC2
+! White ------------------------------
+sicpsnake.color7:              #D2D2D2
+sicpsnake.color15:             #ffffff
+! EOD --------------------------------
+
+
+! c00kiemon5ter (ivan.kanak@gmail.com) ~ under cookie License (C)
+solarcookies.background: #0e1116
+solarcookies.foreground: #e2ded0
+! black
+solarcookies.color0:  #252525
+solarcookies.color8:  #426870
+! red
+solarcookies.color1:  #c5000b
+solarcookies.color9:  #ff2e13
+! green
+solarcookies.color2:  #579d1c
+solarcookies.color10: #a6cd07
+! yellow
+solarcookies.color3:  #ff950e
+solarcookies.color11: #f5d63d
+! blue
+solarcookies.color4:  #073642
+solarcookies.color12: #007091
+! magneta
+solarcookies.color5:  #960050
+solarcookies.color13: #ff1d77
+! cyan
+solarcookies.color6:  #00a8a8
+solarcookies.color14: #00d8cd
+! white
+solarcookies.color7:  #eee8d5
+solarcookies.color15: #fdf6e3
+
+
+! Solarized color scheme for the X Window System
+!
+! http://ethanschoonover.com/solarized
+! Common
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+! Dark
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+! Light
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+solarized.background:              S_base03
+solarized.foreground:              S_base0
+!solarized.fading:                  40
+solarized.fadeColor:               S_base03
+solarized.cursorColor:             S_base1
+solarized.pointerColorBackground:  S_base01
+solarized.pointerColorForeground:  S_base1
+solarized.color0:                  S_base02
+solarized.color1:                  S_red
+solarized.color2:                  S_green
+solarized.color3:                  S_yellow
+solarized.color4:                  S_blue
+solarized.color5:                  S_magenta
+solarized.color6:                  S_cyan
+solarized.color7:                  S_base2
+solarized.color9:                  S_orange
+solarized.color8:                  S_base03
+solarized.color10:                 S_base01
+solarized.color11:                 S_base00
+solarized.color12:                 S_base0
+solarized.color13:                 S_violet
+solarized.color14:                 S_base1
+solarized.color15:                 S_base3
+
+
+splittercode.background: #1c1c1c
+splittercode.foreground: #f0f0f0
+splittercode.color0:     rgb:00/00/00
+splittercode.color1:     rgb:bf/72/76
+splittercode.color2:     rgb:86/af/80
+splittercode.color3:     rgb:96/8a/38
+splittercode.color4:     rgb:36/73/b5
+splittercode.color5:     rgb:9a/70/b2
+splittercode.color6:     rgb:7a/be/cc
+splittercode.color7:     rgb:db/db/db
+splittercode.color8:     rgb:66/92/af
+splittercode.color9:     rgb:e5/50/5f
+splittercode.color10:    rgb:87/bc/87
+splittercode.color11:    rgb:e0/d9/5c
+splittercode.color12:    rgb:1b/85/d6
+splittercode.color13:    rgb:ad/73/ba
+splittercode.color14:    rgb:33/8e/aa
+splittercode.color15:    rgb:f4/f4/f4
+
+
+! -- by Square -- !
+Square.foreground:    #bdbdbd
+Square.background: #131013
+Square.color0:    #151517
+Square.color1:    #ea6868
+Square.color2:    #5cb247
+Square.color3:    #dbbb4b
+Square.color4:    #4385ee
+Square.color5:    #75507b
+Square.color6:    #5E7175
+Square.color7:    #f2f2f2
+Square.color8:    #554444
+Square.color9:    #e05050
+Square.color10:   #9ead72
+Square.color11:   #dd7d33
+Square.color12:   #41a6be
+Square.color13:   #666690
+Square.color14:   #107080
+Square.color15:   #e2e2e2
+
+
+! --  by ~SuperTrain
+!black
+SuperTrain.color0: #1C1C1C
+SuperTrain.color8: #4d4d4d
+!red
+SuperTrain.color1: #D81860
+SuperTrain.color9: #F00060
+!green
+SuperTrain.color2: #B7CE42
+SuperTrain.color10: #BDE077
+!yellow
+SuperTrain.color3: #FEA63C
+SuperTrain.color11: #FFE863
+!blue
+SuperTrain.color4: #66AABB
+SuperTrain.color12: #AACCBB
+!magenta
+SuperTrain.color5: #9E6FFE
+SuperTrain.color13: #9E6FFE
+!cyan
+SuperTrain.color6: #5E7175
+SuperTrain.color14: #A3BABF
+!white
+SuperTrain.color7: #DDEEDD
+SuperTrain.color15: #6C887A
+!magenta
+SuperTrain.color5: #B7416E
+SuperTrain.color13: #BB4466
+
+
+!-- Tango color scheme
+! Black
+Tango.color0: #2e3436
+Tango.color8: #555753
+! Red
+Tango.color1: #cc0000
+Tango.color9: #ef2929
+! Green
+Tango.color2: #4e9a06
+Tango.color10: #8ae234
+! Yellow
+Tango.color3: #c4a000
+Tango.color11: #fce94f
+! Blue
+Tango.color4: #00AFFF
+Tango.color12: #729fcf
+! Purple
+Tango.color5: #75507b
+Tango.color13: #ad7fa8
+! Cyan
+Tango.color6: #0b939b
+Tango.color14: #00f5e9
+! White
+Tango.color15: #eeeeec
+Tango.color7: #d3d7cf
+
+! tangoesque scheme
+Tangoesque.background:  #222222
+Tangoesque.foreground:  #aaaaaa
+! Black
+Tangoesque.color0:      #000000
+Tangoesque.color8:      #555753
+! Red
+Tangoesque.color1:      #ff6565
+Tangoesque.color9:      #ff8d8d
+! Green
+Tangoesque.color2:      #93d44f
+Tangoesque.color10:     #c8e7a8
+! Yellow
+Tangoesque.color3:      #eab93d
+Tangoesque.color11:     #ffc123
+! Blue
+Tangoesque.color4:      #204a87
+Tangoesque.color12:     #3465a4
+! Mangenta
+Tangoesque.color5:      #ce5c00
+Tangoesque.color13:     #f57900
+! Cyan 
+Tangoesque.color6:      #89b6e2
+Tangoesque.color14:     #46a4ff
+! White
+Tangoesque.color7:      #cccccc
+Tangoesque.color15:     #ffffff
+
+Taters.foreground: #DDEEDD
+Taters.background: #1C1C1C
+!black
+Taters.color0: #1C1C1C
+Taters.color8: #4d4d4d
+!red
+Taters.color1: #D81860
+Taters.color9: #F00060
+!green
+Taters.color2: #B7CE42
+Taters.color10: #BDE077
+!yellow
+Taters.color3: #FEA63C
+Taters.color11: #FFE863
+!blue
+Taters.color4: #66AABB
+Taters.color12: #AACCBB
+!magenta
+Taters.color5: #B7416E
+Taters.color13: #BB4466
+!cyan
+Taters.color6: #5E7175
+Taters.color14: #A3BABF
+!white
+Taters.color7: #DDEEDD
+Taters.color15: #6C887A
+
+
+
+! -- by Thayer -- !
+Thayer.foreground:#a0a0a0
+Thayer.background:#1b1d1e
+!molokai inspired colors
+!black
+Thayer.color0:    #1b1d1e
+Thayer.color8:    #505354
+!red
+Thayer.color1:    #f92672
+Thayer.color9:    #ff5995
+!green
+Thayer.color2:    #82b414
+Thayer.color10:   #b6e354
+!yellow
+Thayer.color3:    #fd971f
+Thayer.color11:   #feed6c
+!blue
+Thayer.color4:    #56c2d6
+Thayer.color12:   #8cedff
+!magenta
+Thayer.color5:    #8c54fe
+Thayer.color13:   #9e6ffe
+!cyan
+Thayer.color6:    #465457
+Thayer.color14:   #899ca1
+!white
+Thayer.color7:    #ccccc6
+Thayer.color15:   #f8f8f2
+
+
+trapd00r.foreground: #DDEEDD
+trapd00r.background: #1C1C1C
+
+trapd00r.color0:              rgb:00/00/00
+trapd00r.color1:              rgb:4C/8C/38
+trapd00r.color2:              rgb:5F/A1/23
+trapd00r.color2:              rgb:27/CA/25
+trapd00r.color3:              rgb:A4/00/8A
+trapd00r.color4:              rgb:5f/7b/8a
+trapd00r.color5:              rgb:1D/90/B6
+trapd00r.color6:              rgb:68/68/68
+trapd00r.color7:              rgb:ff/ff/ff
+trapd00r.color8:              rgb:3C/3C/3C
+trapd00r.color9:              rgb:D6/93/00
+trapd00r.color10:             rgb:95/c7/49
+trapd00r.color11:             rgb:BB/00/5e
+trapd00r.color12              rgb:6b/7b/8a
+trapd00r.color13:             rgb:BB/7D/00
+trapd00r.color14:             rgb:36/7F/C5
+trapd00r.color15:             rgb:ff/ff/ff
+
+
+tvale.background:    #000000
+tvale.foreground:    #FFFFFF
+
+!black
+tvale.color0 :            #222222
+tvale.color8 :            #454545
+!red
+tvale.color1 :            #B22222
+tvale.color9 :            #FA8072
+!green
+tvale.color2 :            #556B2F
+tvale.color10:            #9ACD32
+!yellow
+tvale.color3 :            #B8860B
+tvale.color11:            #DAA520
+!blue
+tvale.color4 :            #4682B4
+tvale.color12:            #6495ED
+!magenta
+tvale.color5 :            #9932CC
+tvale.color13:            #DA70D6
+!cyan
+tvale.color6 :            #87CEEB
+tvale.color14:            #B0E0E6
+!white
+tvale.color7 :            #C0C0C0
+tvale.color15:            #FFFFFF
+
+
+! whordijk
+whordijk.background:  #3f3f3f
+whordijk.foreground:  #dcdccc
+! black + red
+!URxvtwhordijk.color0:     #3f3f3f
+whordijk.color0:      #1E2320
+whordijk.color1:      #705050
+! green + yellow
+whordijk.color2:      #60b48a
+whordijk.color3:      #dfaf8f
+! blue + purple
+whordijk.color4:      #506070
+whordijk.color5:      #dc8cc3
+! cyan + white
+whordijk.color6:      #8cd0d3
+whordijk.color7:      #dcdccc
+! bright-black + bright-red
+whordijk.color8:      #709080
+whordijk.color9:      #dca3a3
+! bright-green + bright-yellow
+whordijk.color10:     #c3bf9f
+whordijk.color11:     #f0dfaf
+! bright-blue + bright-purple
+whordijk.color12:     #94bff3
+whordijk.color13:     #ec93d3
+! bright-cyan + bright-white
+whordijk.color14:     #93e0e3
+whordijk.color15:     #ffffff
+
+
+Vintage*background:     #170F0D
+Vintage*foreground:     #746C48
+Vintage*cursorColor:    #6666CC
+Vintage.underlineColor: #777777
+Vintage*colorBD:        #C8B984
+Vintage*color0:         #392925
+Vintage*color8:         #544B2E
+Vintage*color1:         #98724C
+Vintage*color9:         #AF652F
+Vintage*color2:         #908F32
+Vintage*color10:        #C3C13D
+Vintage*color3:         #AA964C
+Vintage*color11:        #C8B55B
+Vintage*color4:         #7B854E
+Vintage*color12:        #70A16C
+Vintage*color5:         #6B5644
+Vintage*color13:        #98724C
+Vintage*color6:         #5C5142
+Vintage*color14:        #778725
+Vintage*color7:         #C8B55B
+Vintage*color15:        #E4DC8C
+Vintage.colorIT:        #cacaca
+Vintage.colorBD:        #ae8510
+Vintage.colorUL:        #a28c64
+
+
+gruvbox.color24: #076678
+gruvbox.color66: #427b58
+gruvbox.color88: #9d0006
+gruvbox.color96: #8f3f71
+gruvbox.color100: #79740e
+gruvbox.color108: #8ec07c
+gruvbox.color109: #83a598
+gruvbox.color130: #af3a03
+gruvbox.color136: #b57614
+gruvbox.color142: #b8bb26
+gruvbox.color167: #fb4934
+gruvbox.color175: #d3869b
+gruvbox.color208: #fe8019
+gruvbox.color214: #fabd2f
+gruvbox.color223: #ebdbb2
+gruvbox.color228: #f4e8ba
+gruvbox.color229: #fdf4c1
+gruvbox.color230: #ffffc8
+gruvbox.color234: #1d2021
+gruvbox.color235: #282828
+gruvbox.color236: #32302f
+gruvbox.color237: #3c3836
+gruvbox.color239: #504945
+gruvbox.color241: #665c54
+gruvbox.color243: #7c6f64
+gruvbox.color244: #928374
+gruvbox.color245: #928374
+gruvbox.color246: #a89984
+gruvbox.color248: #bdae93
+gruvbox.color250: #d5c4a1
+
+invisibone.background: #262626
+invisibone.foreground: #A8A8A8
+invisibone.colorBD: #D0D0D0
+invisibone.colorIT: #D0D0D0
+invisibone.colorUL: #D0D0D0
+invisibone.color0: #303030
+invisibone.color8: #767676
+invisibone.color7: #D0D0D0
+invisibone.color15: #FFFFFF
+invisibone.color1: #D370A3
+invisibone.color9: #FFA7DA
+invisibone.color2: #6D9E3F
+invisibone.color10: #A3D572
+invisibone.color4: #6095C5
+invisibone.color12: #98CBFE
+invisibone.color3: #B58858
+invisibone.color11: #EFBD8B
+invisibone.color6: #3BA275
+invisibone.color14: #75DAA9
+invisibone.color5: #AC7BDE
+invisibone.color13: #E5B0FF
+
+
+turqouse*background:     #004040
+turqouse*foreground:     #00C0C0
+turqouse*cursorColor:    #00C0C0
+turqouse*color0:         #004040
+turqouse*color1:         #00C0C0 
+turqouse*color2:         #00C0C0 
+turqouse*color3:         #00C0C0 
+turqouse*color4:         #00C0C0 
+turqouse*color5:         #00C0C0 
+turqouse*color6:         #00C0C0 
+turqouse*color7:         #00C0C0 
+turqouse*color8:         #00C0C0 
+turqouse*color9:         #00C0C0 
+turqouse*color10:        #00C0C0 
+turqouse*color11:        #00C0C0 
+turqouse*color12:        #00C0C0 
+turqouse*color13:        #00C0C0 
+turqouse*color14:        #00C0C0 
+turqouse*color15:        #00C0C0 
+turqouse*colorBD:        #00C0C0
+turqouse.colorIT:        #00C0C0
+turqouse.colorUL:        #00C0C0

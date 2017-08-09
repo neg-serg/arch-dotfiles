@@ -1,0 +1,17 @@
+body input[type], body textarea[name], body input[name], body input[id], body select[name]{-moz-appearance:none!important; color: #666666!important; -moz-border-radius:4px !important; border-width: 1px!important; border-color: #1F3B4F!important;border-style:solid!important; background:#002222 none  !important}
+/*body select[name]{-moz-appearance:none!important; color: #666666!important; -moz-border-radius:4px !important; border-width: 1px!important; border-color: #1F3B4F!important;border-style:solid!important; background-color:#002222!important}*/
+/*
+body input>*, body textarea>*{background:transparent none  !important; color: #666666!important; border-style:solid!important; border-width: 0px!important;}
+body select *{background-color:transparent !important; color: #666666!important; border-style:solid!important; border-width: 0px!important;}
+pre:not(:empty), code:not(:empty) , cite:not(:empty), pre:not(:empty) *, code:not(:empty) *, cite:not(:empty) *{color: #002222!important;}
+*/
+input, input[type="password"], input[type="checkbox"], input[type=radio], select  {
+  background: black !important;
+  color: #a0a0a0 !important;
+   font-weight: normal !important;	
+    border-top: 1px solid #1F3B4F !important;
+    border-bottom: 1px solid #1F3B4F !important;
+    border-left: 1px solid #1F3B4F !important;
+    border-right: 1px solid #1F3B4F !important;
+  }
+

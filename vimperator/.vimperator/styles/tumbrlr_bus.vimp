@@ -1,0 +1,21 @@
+style -name tumblr-businessstyle tumblr.com <<EOM
+  .image {
+    opacity: 1;
+    width: 25% !important;
+    height: 25% !important;
+  }
+  img[src*="media.tumblr.com"] {
+    opacity: .3;
+    max-width: 150px !important;
+    max-height: 150px !important;
+  }
+  object embed {
+    max-width: 150px !important;
+    max-height: 150px !important;
+  }
+  .photo .photo_loading {
+    background-image: none !important;
+  }
+EOM
+styledisable -name tumblr-businessstyle
+nnoremap ,st :styletoggle -name tumblr-businessstyle<CR>

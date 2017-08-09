@@ -1,0 +1,8 @@
+bashrun*font: xft:Envy Code R:style=Bold Oblique:pixelsize=20
+bashpad*foreground: white
+bashpad*scrollBar: false
+bashpad*inheritPixmap: false
+bashpad*borderColor: pink
+bashpad*background: black
+bashpad*geometry: 90x1+150+650
+bashpad*font: xft:Andale Mono:style=Bold Oblique:pixelsize=20

@@ -1,0 +1,22 @@
+set sidebar_width=24
+set sidebar_visible=no
+color sidebar_new blue black
+
+# color sidebar_new yellow default
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+
+# up/down to select next, prev folder
+# right to open selected folder
+bind index,pager <up> sidebar-prev
+bind index,pager <down> sidebar-next
+bind index,pager <right> sidebar-open
+
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+# vim:ft=muttrc

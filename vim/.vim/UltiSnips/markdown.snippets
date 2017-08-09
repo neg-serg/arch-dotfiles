@@ -1,0 +1,50 @@
+priority -50
+
+snippet sec "Section" b
+# ${1:Section Name} #
+$0
+endsnippet
+
+snippet ssec "Sub Section" b
+## ${1:Section Name} ##
+$0
+endsnippet
+
+snippet sssec "SubSub Section" b
+### ${1:Section Name} ### $0
+endsnippet
+
+snippet par "Paragraph" b
+#### ${1:Paragraph Name} ####
+$0
+endsnippet
+
+snippet spar "Paragraph" b
+##### ${1:Paragraph Name} #####
+$0
+endsnippet
+
+snippet img "Image"
+![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+endsnippet
+
+snippet ilc "Inline Code" i
+\`$1\`$0
+endsnippet
+
+snippet cbl "Codeblock" b
+\`\`\`
+$1
+\`\`\`
+$0
+endsnippet
+
+snippet front
+	---
+	title: ${1:Title}
+	author: Joel
+	layout: post
+	permalink: `strftime("/%Y/%m/%d")`/${2:slug}.html
+	---
+endsnippet
+# vim:ft=snippets:

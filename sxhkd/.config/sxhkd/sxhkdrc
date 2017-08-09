@@ -1,0 +1,40 @@
+super + apostrophe
+    ~/bin/scripts/wm_restart
+XF86AudioMute
+    pactl set-sink-mute 1 toggle
+super + quotedbl
+    ~/bin/scripts/wm_restart soft
+XF86Audio{Prev,Next,Play,Stop}
+    mpc -q {prev,next,toggle,stop}
+XF86Audio{Lower,Raise}Volume
+	~/bin/scripts/vol_ {-1,+1}
+super + control + XF86Audio{Raise,Lower}Volume
+    pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+    #dash -c "pactl set-sink-mute $(SCRIPT_OUTPUT=1 ~/bin/pls -sink | head -1) 0 ; \
+    #         pactl set-sink-volume $(SCRIPT_OUTPUT=1 ~/bin/pls -sink | head -1) +5%"
+super + 8
+    mpc -q volume 0 || amixer -q set Master 0% mute
+super + shift + 8
+    mpc -q volume 35 || amixer -q set Master 35% unmute 
+{super + control + shift + u,XF86Sleep}
+    sudo systemctl suspend
+super + U
+    eject -T
+super + c
+    roficlip
+super + u
+    udiskie-umount -a
+super + M
+    ~/bin/scripts/rofi_mpd
+super + control + r ; { c, d, i, r }
+    { \
+        xcalib -c, \
+        xcalib -alter -invert, \
+        xcalib -alter -invert, \
+        xcalib -gc 1.08 -co 97 ~/.config/color_profiles/x230.icm
+    }
+alt + grave
+    rofi -pid ~/tmp/rofi_runner.pid -show run -location 6 -lines 2 -columns 8 -matching fuzzy -case-sensitive=false -tokenize 
+super + shift + {5,6}
+    ~/bin/wl {set,rand}
+# vim: set ft=sxhkdrc:

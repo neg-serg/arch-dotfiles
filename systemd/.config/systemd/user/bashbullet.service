@@ -1,0 +1,11 @@
+[Unit]
+Description=BashBullet
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+ExecStart=/usr/bin/screen -S bashbullet-session -dm bashbullet
+ExecStop=/usr/bin/screen -S bashbullet-session -X quit
+
+[Install]
+WantedBy=default.target

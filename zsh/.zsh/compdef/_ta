@@ -1,0 +1,40 @@
+#compdef ta
+
+## Copyright (c) 2011, Frank Terbeck <ft@bewatermyfriend.org>
+##
+## Permission to use, copy, modify, and/or distribute this software for any
+## purpose with or without fee is hereby granted, provided that the above
+## copyright notice and this permission notice appear in all copies.
+##
+## THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+## WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+## MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+## ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+## WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+## ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+# This completion uses a helper from zsh's `tmux' completion. The problem is
+# that this helper only becomes visible when the _tmux completion is called
+# for the first time. This makes a fake call to _tmux when *this* completion
+# is used for the first time.
+() {
+    compadd() { return 1; }
+    zstyle() { return 1; }
+    trap 'unfunction compadd zstyle' EXIT INT
+    _tmux
+    unfunction compadd zstyle
+    trap - EXIT INT
+}
+
+function _ta() {
+    local -a arguments
+    arguments=(
+        '-d[detach other clients when attaching to existing sessions]'
+        '-x[do not `exec'\'' off to tmux; just call it]'
+        '*::existing tmux sessions:__tmux-sessions'
+    )
+    _arguments -s $arguments
+}
+
+_ta "$@"

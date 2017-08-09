@@ -1,0 +1,11 @@
+rofi.color-enabled: true
+rofi.color-window: #000000, #002b37, #000000
+rofi.color-normal: #000000, #819396, #000000, #194558, #ffffff
+rofi.color-active: #000000, #194558, #000000, #194558, #66c6ff
+rofi.color-urgent: #000000, #da4281, #000000, #194558, #890661
+
+!rofi.bg:            #000000
+!rofi.fg:            #666666
+!rofi.hlfg:          #aaaaaa
+!rofi.hlbg:          #194558
+!rofi.bc:            #202020

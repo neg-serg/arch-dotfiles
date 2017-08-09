@@ -1,0 +1,435 @@
+hi Bell <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt; 
+    border: none; 
+    background-color: black;
+EOM
+
+hi Boolean <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    color: #001742;
+EOM
+
+hi CmdLine>*  <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi CmdLine <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    background: black;
+    color: #CCCCCC;
+EOM
+
+hi CmdOutput <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    black-space: pre;
+EOM
+
+hi CompDesc <<EOM
+    color: #CCCCCC;
+    width: 500px;
+    max-width: 2000px;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    color: #666;
+EOM
+
+hi CompGroup:not(:first-of-type) <<EOM
+    color: #CCCCCC;
+    margin-top: 1eex;
+    font-family: "PragmataPro for Powerline";
+EOM
+
+hi CompIcon <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    width: 16px;
+    min-width: 16px;
+    display: inline-block;
+    margin-right: .5ex;
+EOM
+
+hi CompIcon>img <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    max-width: 16px;
+    max-height: 16px;
+    vertical-align: middle;
+EOM
+
+hi CompItem>* <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    padding: -8px -8px;
+    max-height: 16px;
+EOM
+
+hi CompItem  <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    padding: -8px -8px;
+    max-height: 16px;
+EOM
+
+hi CompItem[selected] <<EOM
+    color: #001742;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    background: #184253;
+    box-shadow: 0px 0px 1px #002625;
+EOM
+
+hi CompMsg  <<EOM
+    font-style:color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    italic;
+    margin-left: 16px;
+EOM
+
+hi CompResult <<EOM
+    color: #CCCCCC;
+    width: 500px;
+    max-width: 500px;
+    overflow: hidden;
+    font-family: "PragmataPro for Powerline" ;
+    font-size: 12pt !important;
+EOM
+
+hi CompTitle>* <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    padding: 1px 0.5ex;
+EOM
+
+hi CompTitle <<EOM
+    color: #CCCCCC;
+    -moz-appearance: statusbar;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    font-weight: bold;
+    text-indent: 5px;
+    height: 20px;
+EOM
+
+hi ContentSeparator <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    border-top: 1px dotted #ccc;
+EOM
+
+hi Disabled <<EOM
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    color: #001742;
+EOM
+
+hi Enabled <<EOM
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    color: #1C793D;
+EOM
+
+hi ErrorMsg <<EOM
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    color: #008888;
+    background: black;
+    font-weight: bold;
+EOM
+
+hi WarningMsg <<EOM
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    color: #008888;
+    background: black;
+    font-weight: bold;
+EOM
+
+hi Filter <<EOM
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    border-radius: 2px;
+    background: #101010;
+    border: 1px #004240;
+    border: none;
+    color: white;
+EOM
+
+hi FrameIndicator <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    background-color: #001742;
+    opacity: 0.5;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+EOM
+
+hi Function <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi HintActive <<EOM
+    background-color: #001742;
+    color: white !important;
+EOM
+
+hi Hint <<EOM
+    background-color: #001742;
+    border-radius: 4px;
+    font-family: "PragmataPro for Powerline";
+    font-size: 10pt;
+    color:#89CDD2;
+    font-weight: bold !important;
+EOM
+
+hi HintElem <<EOM
+    background-color: #CCCCCC !important;
+    color: black !important;
+    border-radius: 2px;
+EOM
+
+hi HintImage <<EOM
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    opacity: .8;
+EOM
+
+hi Indicator <<EOM
+    color: #557C90;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi InfoMsg <<EOM
+    color: #808080;
+    background: black ;
+    font-weight: Normal;
+    font-family: PragmataPro for Powerline;
+    font-size: 12pt;
+EOM
+
+hi InfoMsg <<EOM
+    color: #cccccc;
+    background: black;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Key  <<EOM
+    color: #CCCCCC;
+    font-weight: bold;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Keyword <<EOM
+    color: #001742;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi LineNr <<EOM
+    color: #808080;
+    background: black;
+    font-weight: Normal;
+    font-family: PragmataPro for Powerline;
+    font-size: 12pt;
+EOM
+
+hi Message <<EOM
+    color: #CCCCCC;
+    black-space: normal;
+    min-width: 100%;
+    padding-left: 2em;
+    text-indent: -2em;
+    display: block;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi ModeMsg <<EOM
+    color: #008888 !important;
+    border-radius: 1px;
+    padding: 0px 5px;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    font-weight: bold;
+EOM
+
+hi MoreMsg <<EOM
+    color: #808080;
+    background: black ;
+    font-weight: Normal;
+    font-family: PragmataPro for Powerline;
+    font-size: 12pt;
+EOM
+
+hi NonText <<EOM
+    color: #CCCCCC;
+    color: #2774FB;
+    min-height: 16px;
+    padding-left: 2px;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Normal <<EOM
+    color: #CCCCCC;
+    background: black ;
+    font-weight: Normal;
+    font-family: PragmataPro for Powerline;
+    font-size: 12pt;
+EOM
+
+hi Null <<EOM
+    color: #2774FB;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Number <<EOM
+    color: #2774FB;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Object <<EOM
+    color: #CCCCCC;
+    color: maroon;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Preview <<EOM
+    color: #CCCCCC;
+    color: gray;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi PromptText <<EOM
+    background-color: black !important;
+    color: #cccccc !important;
+    border-radius: 1px;
+    padding: 4px 4px;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    font-weight: bold;
+EOM
+
+hi Prompt <<EOM
+    width: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Question  <<EOM
+    color: #1C793D;
+    background: black;
+    font-weight: bold;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi String  <<EOM
+    color: #CCCCCC;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi TabNumber <<EOM
+    color: #CCCCCC;
+    font-weight: bold;
+    margin: 0px;
+    padding-right: .3ex;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Tag <<EOM
+    color: #557C90;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi Tag:not(:empty) <<EOM
+    color: #355D93;
+    background-color: #E6F2FC;
+    border-radius: 2px;
+    padding: 1px 2px;
+    font-size: 12pt;
+    font-family: "PragmataPro for Powerline";
+EOM
+
+hi Title <<EOM
+    color: #cccccc;
+    background: black;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi URL <<EOM
+    color: #CCCCCC;
+    text-decoration: none;
+    color: #666666;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+hi URL:hover <<EOM
+    color: #CCCCCC;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+EOM
+
+"-- It should be at the end --------------------
+hi StatusLine <<EOM
+    font-family: "PragmataPro for Powerline";
+    font-size: 12pt;
+    font-weight: bold;
+    background: black;
+    color: #CCCCCC;
+    border-top: 1px solid #1F3B4F !important;
+    border-bottom: 1px solid #1F3B4F !important;
+    border-left: 1px solid #1F3B4F !important;
+    border-right: 1px solid #1F3B4F !important;
+EOM
+
+"ime-controller
+"style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
+
+" hi -append Normal  background: rgba(0,0,0,.90);
+" hi -append ModeMsg background: rgba(0,0,0,.90);
+
+" style -name parsonas chrome://* <<EOM
+"     #main-window { background-repeat: repeat-y !important;}
+"     #browser-bottombox { background-image: none !important; }
+"     #liberator-multiline-output, #liberator-completions { background: transparent !important; }
+" EOM

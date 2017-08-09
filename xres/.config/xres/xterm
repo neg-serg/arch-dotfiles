@@ -1,0 +1,4 @@
+XTerm*utf8: 1
+XTerm*ScrollBar: false
+XTerm*SaveLines: 0
+XTerm*fullscreen: never

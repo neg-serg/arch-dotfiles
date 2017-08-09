@@ -1,0 +1,6 @@
+xv*background:     #000000
+xv*foreground:     #555555
+xv.browseMode:     true
+xv.ctrlMap:        true
+xv.ctrlGeometry:   +300+300
+xv.geometry:       +0+0

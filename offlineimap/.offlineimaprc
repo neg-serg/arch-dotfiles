@@ -1,0 +1,49 @@
+[general]
+accounts = Gmail
+maxsyncaccounts = 3
+pythonfile = ~/bin/scripts/utf7.py
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+quick = 30
+postsynchook = notmuch new
+autorefresh = 3
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/.local/mail/gmail
+nametrans: lambda s: {  '[Gmail]/Starred'   : '[Gmail].Starred',
+                        '[Gmail]/Trash'     : '[Gmail].Trash',
+                        '[Gmail]/Sent Mail' : '[Gmail].Sent Mail',
+                        '[Gmail]/Important' : '[Gmail].Important',
+                        '[Gmail]/Drafts'    : '[Gmail].Drafts',
+                        '[Gmail]/All Mail'  : '[Gmail].All Mail',
+                        'INBOX'             : 'INBOX'
+                      }.get (s, s).decode ('imap4-utf-7').encode ('utf8')
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = serg.zorg@gmail.com
+remotepasseval = get_pass()
+realdelete = no
+maxconnections = 3
+keepalive = 60
+holdconnectionopen = yes
+
+nametrans = lambda foldername: foldername.decode('imap4-utf-7').encode('utf-8')
+
+folderfilter = lambda folder: folder not in ['[Gmail].Trash',
+                                             '[Gmail].Important',
+                                             '[Gmail].Spam',
+                                             ]
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[mbnames]
+enabled = yes
+sep = " "
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "~/.local/mail/gmail/%(foldername)s"
+footer = "\n"

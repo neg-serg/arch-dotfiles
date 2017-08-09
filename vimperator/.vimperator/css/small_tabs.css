@@ -1,0 +1,84 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+
+ /* Shrink tab titles by 10% */
+
+.tabbrowser-tabs .tab-text {
+  font-size: 95%;
+  height:10px;
+}
+
+
+.tabbrowser-strip {height: 20px !important;}
+
+.tabbrowser-tab {
+-moz-appearance: none !important;
+-moz-border-image: none !important;
+-moz-border-radius: 0 !important;
+padding: 0 7px !important;
+border-right: 0px solid !important;
+border-left: 0px solid !important;
+border-width: 0px !important;
+background: transparent !important;
+height: 15px !important;
+min-height: 10px !important;
+text-align: center !important;
+-moz-appearance: none !important;
+}
+
+
+
+tabpanels {
+  -moz-appearance: tabpanels;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  padding: 0px !important;
+
+}
+
+.tabs-closebutton {
+padding: 0px !important;
+margin: 0px !important;
+}
+
+/* icons on tab on regular, hover, and selected */
+.tabbrowser-tabs *|tab .tab-icon {
+display: none;
+}
+
+/* Show icons on selected tab */
+
+.tabbrowser-tabs tab[selected="true"] .tab-icon {
+height: 14px;
+display: -moz-box;
+}
+
+
+#nav-bar, #PersonalToolbar {
+border: 0 !important;
+height: 26px !important;
+}
+
+
+/*
+* Personal Menu
+*/
+
+
+#appmenu-toolbar-button {
+  height: 13px !important;
+  width: 10px;
+  size: 10px;
+
+/*list-style-image: url("chrome://branding/content/icon16.png");*/
+
+}
+#appmenu-toolbar-button > .toolbarbutton-text,
+#appmenu-toolbar-button > .toolbarbutton-menu-dropmarker {
+  display: none !important;
+}
+
+
+scrollbar {
+  display: none !important;
+}

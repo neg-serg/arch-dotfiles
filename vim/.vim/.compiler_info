@@ -1,0 +1,126 @@
+" compiler infomation file
+" Maintainer: StarWing
+" Last Change: 2010-01-28 20:56:01
+" need ctk {{{1
+
+if !exists('g:loaded_ctk')
+    finish
+endif
+let s:cpo_save = &cpo
+set cpo&vim
+
+" Common default info {{{1
+
+au FileType c,cpp SetDefaultInfo!
+	\ cmd='!$cc $flags $input $libs -o $output'
+	\ run='!$output' input='%:.' output='%:t:r'
+	\ asm_run=":pedit $output"
+	\ asm_output='$output.s'
+	\ debug_run='!gdb -q $output'
+
+au FileType javascript,lua,m4,perl,python,ruby,scheme SetDefaultInfo!
+        \ cmd='#RUN_DIRECT'
+        \ run='!$cc $flags $src $args' src='%:.'
+        \ flags='' args=''
+
+if has('unix')
+    au FileType c,cpp SetDefaultInfo asm_output='$output.s'
+else
+    au FileType c,cpp SetDefaultInfo asm_output='$output.asm'
+endif
+
+
+" filetype C {{{1
+
+au FileType c SetExtensionName c
+au FileType c SetCompilerInfo! gcc
+    	\ title='GNU C Compiler'
+    	\ cc='gcc' flags='-Wall' libs='' cmdmap='<m-c>' runmap='<m-1> <f5>'
+    	\ asm_title='GCC to ASM' asm_flags='-S $flags'
+    	\ debug_title='GCC with debug' debug_flags='-ggdb $flags'
+
+au FileType c SetCompilerInfo! vc6  
+    	\ title='Microsoft Visual C'
+    	\ cc='cl' flags='-W4' libs='' runmap='<m-2> <f6>'
+    	\ asm_title='Microsoft VC to ASM' asm_flags='/FAs $flags'
+
+" filetype C++ {{{1
+
+au FileType cpp SetExtensionName cpp
+au FileType cpp SetCompilerInfo! g++
+    	\ title='GNU Compiler Collection - C++'
+    	\ cc='g++' flags='-Wall' libs='' cmdmap='<m-c>' runmap='<m-1> <f5>'
+    	\ asm_title='G++ to ASM' asm_flags='-S $flags'
+    	\ debug_title='G++ with debug' debug_flags='-ggdb $flags'
+
+au FileType cpp SetCompilerInfo! vc++
+    	\ title='Microsoft Visual C++'
+    	\ cc='cl' flags='-W4' libs='' runmap='<m-2> <f6>'
+    	\ asm_title='Microsoft VC++ to ASM'
+    	\ asm_flags='/FAs $flags'
+
+" filetype graphviz {{{1
+
+au FileType dot SetExtensionName dot
+au FileType dot SetCompilerInfo! dot
+	    \ title='graphviz(dot)' cc='dot' flags='-Tpng'
+	    \ cmd='$cc $flags $input -o $output.png'
+	    \ run='$output.png'
+
+" filetype javascript {{{1
+au filetype javascript SetExtensionName js
+au filetype javascript SetCompilerInfo! js
+	    \ title='glue' cc='glue'
+
+" filetype lua {{{1
+
+au FileType lua SetExtensionName lua
+au FileType lua SetCompilerInfo! lua
+	    \ title='lua' cc='lua' src='-- %:.'
+
+au FileType lua SetCompilerInfo! metalua
+	    \ title='metalua' cc='metalua'
+
+" filetype m4 {{{1
+
+au FileType m4 SetExtensionName m4
+au FileType m4 SetCompilerInfo! m4
+	    \ title='m4' cc='m4' src='-- %:.'
+
+" filetype perl {{{1
+
+au FileType perl SetExtensionName pl
+au FileType perl SetCompilerInfo! perl
+	    \ title='perl' cc='perl' src='-- %:.'
+
+" filetype python {{{1
+
+au FileType python SetExtensionName py
+au FileType python SetCompilerInfo! python
+	    \ title='Python' cc='python'
+
+" filetype rst {{{1
+
+au FileType rest SetExtensionName rst
+au FileType rest SetCompilerInfo rst2html
+	    \ cc='rst2html' input='%:.' output='%:r.html'
+	    \ cmd='!$cc $flags $input $output' flags='--stylesheet=default.css --link-stylesheet'
+	    \ run='!"$output"'
+
+
+" filetype ruby {{{1
+
+au FileType ruby SetExtensionName rb
+au FileType ruby SetCompilerInfo! ruby
+            \ title='Ruby 1.9.1 - Matz' cc='ruby' src='-- %:.'
+
+" filetype scheme {{{1
+
+au FileType scheme SetExtensionName scm
+au FileType scheme SetCompilerInfo! chicken
+            \ title='chicken' cc='csi' flags='-q'
+
+" terminational works {{{1
+let &cpo = s:cpo_save
+unlet s:cpo_save " }}}1
+" vim: ff=unix ft=vim fdm=marker sw=4 ts=8 sta

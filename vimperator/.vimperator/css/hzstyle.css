@@ -1,0 +1,120 @@
+body {
+    color: {{foreground}};
+    background-color: {{background}};
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    padding-bottom: 15%;
+    padding-top: 5%;
+}
+
+a {
+    color: {{fg_comment}};
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover {
+    color: {{foreground}};
+}
+
+nav a {
+    {{'transition: '|css_compat('color 0.1s ease-in;')}}
+}
+
+p {
+    margin-top: 1em;
+    width: 40em;
+}
+
+pre, code {
+    font-family: monospace;
+}
+
+#header {
+    float: left;
+    width: 30%;
+}
+
+#content {
+    margin-left: 30%;
+    padding-left: 64px;
+    margin-right: 3%;
+}
+
+#home {
+    background-image: url("{{ home }}/img/ab-logo.png");
+    background-repeat: no-repeat;
+    width: 233px;
+    height: 18px;
+    margin-left: auto; 
+}
+
+#navigation {
+    text-align: right;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+#navigation ul li {
+    margin-bottom: 0.5em;
+}
+
+.thumbnails {
+    width: 66%;
+}
+
+.thumbnails ul li {
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
+.thumbnails ul li, .arrows ul li {
+    display: inline-block;
+}
+
+.arrows {
+    color: {{ fg_comment }};
+    margin-bottom: 3%;
+}
+
+.arrows img {
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+.pagenum {
+    margin-left: 15%;
+}
+
+.image footer {
+    margin-top: 3em;
+    margin-left: 1em;
+    font-size: smaller;
+}
+
+.meta p {
+    margin-top: 0em;
+    color: {{ fg_comment }};
+}
+
+#content article img {
+    margin: 2em;
+}
+
+.hide-text {
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('{{ home }}/fonts/SourceSansPro-Regular-webfont.eot');
+    src: url('{{ home }}/fonts/SourceSansPro-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('{{ home }}/fonts/SourceSansPro-Regular-webfont.woff') format('woff'),
+    url('{{ home }}/fonts/SourceSansPro-Regular-webfont.ttf') format('truetype'),
+    url('{{ home }}/fonts/SourceSansPro-Regular-webfont.svg#SourceSansProRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

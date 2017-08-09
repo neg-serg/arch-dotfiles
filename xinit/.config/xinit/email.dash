@@ -1,0 +1,6 @@
+#!/bin/dash
+SCRIPT_HOME=~/bin/scripts
+if ! pgrep -f "python2 $SCRIPT_HOME/email_notifier.py --body" > /dev/null; then
+    $SCRIPT_HOME/email_notifier.py --body &
+fi
+

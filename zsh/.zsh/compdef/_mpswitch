@@ -1,0 +1,12 @@
+#compdef mpswitch
+
+# hub function called for completion
+_mpswitch() {
+    if (( CURRENT > 3 )); then
+        _message "no further arguments"
+    else
+        _hosts
+    fi
+}
+
+_mpswitch "$@"

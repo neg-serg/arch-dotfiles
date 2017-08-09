@@ -1,0 +1,10 @@
+! fonts {{{
+!#define FONT_NORMAL xft:terminus:style=Regular:pixelsize=10:antialias=1:hinting=1:hintstyle=
+!#define FONT_BOLD xft:terminus:style=Bold:pixelsize=10:antialias=1:hinting=1:hintstyle=3
+!#define FONT_ITALIC xft:terminus:style=Italic:pixelsize=10:antialias=1:hinting=1:hintstyle=3
+!#define FONT_BOLDITALIC xft:DejaVu Sans Mono:style=Book:pixelsize=10:antialias=1:hinting=1:hintstyle=3
+
+!#define FONT_NORMAL 6x10
+!#define FONT_BOLD -fontforge-proggytinysz-bold-r-normal--10-80-96-96-c-60-iso8859-1
+!#define FONT_ITALIC -b&h-lucidatypewriter-bold-r-normal-sans-10-100-75-75-m-60-iso10646-1
+!#define FONT_BOLDITALIC xft:DejaVu Sans Mono:style=Book:pixelsize=10:antialias=1:hinting=1:hintstyle=3

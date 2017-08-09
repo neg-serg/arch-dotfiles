@@ -1,0 +1,123 @@
+[global]
+    font                  = EmojiOne Color, Iosevka 12, PragmataPro for Powerline 12
+    markup                = full
+    plain_text            = false
+    format                = "<b>%s</b>\n%b"
+    sort                  = true
+    alignment             = left
+    bounce_freq           = 4
+    show_age_threshold    = 60
+    ignore_newline        = false
+    geometry              = "550x12-8-35"
+    shrink                = false
+    transparency          = 8
+    idle_threshold        = 120
+    monitor               = 0
+    follow                = mouse
+    sticky_history        = true
+    show_indicators       = false
+    indicate_hidden       = true
+    line_height           = 0
+    separator_height      = 1
+    padding               = 8
+    horizontal_padding    = 8
+    separator_color       = frame
+    startup_notification  = false
+    dmenu                 = /usr/bin/rofi -p dunst:
+    browser               = /usr/bin/firefox -new-tab
+    icon_position         = left
+    icon_folders          = /home/neg/.icons/custom_dunst:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/devices
+    max_icon_size         = 200
+    title                 = Dunst
+    class                 = Dunst
+    stack_duplicates      = false
+    hide_duplicates_count = false
+    frame_width           = 1
+    frame_color           = "#073642"
+
+
+[shortcuts]
+    close_all = mod4+space
+    history   = mod4+shift+0
+    context   = mod4+ctrl+shift+0
+
+[urgency_low]
+    background = "#010204"
+    foreground = "#888888"
+    timeout    = 4
+
+[urgency_normal]
+    background = "#000000"
+    foreground = "#ffffff"
+    timeout    = 4
+
+[urgency_critical]
+    background = "#010204"
+    foreground = "#cc2222"
+    timeout    = 0
+
+[irc_hilight]
+    appname    = weechat
+    urgency    = low
+    format     = "<span weight='normal' letter_spacing='3000' color='#aaaaaa'>%s</span>\n%b"
+
+[notify-send]
+    appname    = notify-send
+    urgency    = normal
+    format     = "<span weight='normal' letter_spacing='1000' color='#aaaaaa'>👽 %s</span>\n%b"
+
+[skype]
+    appname    = skype
+    format     = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
+    urgency    = normal
+
+[pic_notify]
+    appname    = screenshot 
+    script     = "/home/neg/bin/scripts/pic_notify"
+    urgency    = normal
+    format     = ""
+
+[mpd]
+    appname    = mpd-notification
+    format     = ""
+    script     = "/home/neg/bin/scripts/prepare_image"
+    urgency    = normal
+
+
+# thx to [mbellgb]
+[scrot]
+    summary = scrot
+    format = "<b>  %s</b>\n%b"
+
+[mopidy]
+    summary = Mopidy
+    appname = notify-send
+    urgency = low
+    format = "<b>  %s</b>\n%b"
+
+[google-play-music-desktop-player]
+    appname = Electron
+    urgency = low
+    format = "<b>  %s</b>\n%b"
+    new_icon = applications-multimedia
+
+[usb]
+    summary = Automount
+    format = "<b> %s</b>\n%b"
+
+[slack]
+    summary = Slack Notification
+    format = "<b> %s</b>\n%b"
+
+[weechat]
+    appname = weechat
+    format = "<b>  %s</b>\n%b"
+
+[Pushbullet]
+    summary = "*Motorola MotoG3*"
+    format = "<b> %s</b>\n%b"
+    urgency = low
+
+[spotify]
+    appname = Spotify
+    urgency = normal

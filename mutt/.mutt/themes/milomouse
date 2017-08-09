@@ -1,0 +1,73 @@
+# set default
+color normal white default
+
+# main colors
+color status brightmagenta default
+color indicator black magenta
+color tree black default
+color error default default
+color message brightmagenta default
+
+# uncolor certain messages
+uncolor index "~P"
+uncolor index "~C @.com"
+uncolor index "~N ~u"
+uncolor index "~N !~u"
+uncolor index "~T"
+uncolor index "~D"
+
+# and recolor them appropriately
+color index default default "~P"
+color index green default "~C @.com"
+color index brightblue default "~N ~u"  # new ML mail
+color index blue default "~N !~u" # new non-ML mail
+color index red default "~T"
+color index brightred default "~D"
+
+# set up the headers
+color header blue black "^from:"
+color header blue black "^to:"
+color header cyan black "^X-PGP-Key:"
+color header magenta black "^cc:"
+color header brightmagenta black "^date:"
+color header brightblue black "^subject:"
+
+# message bodies
+color attachment brightblack default
+color search default magenta
+color signature brightblack default
+color tilde blue default
+
+# urls
+color body red default "(^|<| )mailto:[^ ]+@[^ ]( |>|$)"
+color body brightred default "(^|<| )(scp|http|https|ftp|file|telnet|news|finger)://[^ ]+( |>|$)"
+
+# emoticons
+color body brightmagenta default "(^| )+(|[<>|])[8;:](|[^ ])[)(/|DOPS]( |$)+"
+color body brightmagenta default "(^| )+[)(/|DOPS](|[^ ])[8;:](|[<>|])( |$)+"
+
+# *bold*, _underline_, and /italic/
+color body brightblack default "(^| )\\*[^ ]+\\*( |$)"
+
+# quote blocks
+color quoted magenta default
+color quoted1 blue default
+color quoted2 magenta default
+color quoted3 blue default
+color quoted4 magenta default
+color quoted5 blue default
+color quoted6 magenta default
+color quoted7 blue default
+color quoted8 magenta default
+color quoted9 blue default
+
+# gpg (from thayer)
+color body green default "^gpg: Good signature from"
+color body brightred default "^gpg: Bad signature from"
+color body brightred default "^gpg: BAD signature from"
+color body brightred default "^gpg: Note: This key has expired!"
+color body brightyellow default "^gpg: WARNING: This key is not certified with a trusted signature!"
+color body brightyellow default "^gpg:          There is no indication that the signature belongs to the owner."
+color body brightyellow default "^gpg: can't handle these multiple signatures"
+color body brightyellow default "^gpg: signature verification suppressed"
+color body brightyellow default "^gpg: invalid node with packet of type"

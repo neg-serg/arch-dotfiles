@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Example for ~/.sxiv/exec/image-info
+# Called by sxiv(1) whenever an image gets loaded,
+# with the name of the image file as its first argument.
+# The output is displayed in sxiv's status bar.
+
+s="  " # field separator
+
+filename="${1##*/}"
+filesize=$(du -Hh "$1" | awk '{print $1}')
+
+geometry=$(identify -format '%wx%h' "$1[0]")
+
+tags=$(exiv2 -q pr -pi "$1" | awk '$1~"Keywords" { printf("%s,", $4); }')
+tags=${tags%,}
+
+echo "${filename}${s}${geometry}${tags:+$s}${tags}${s}${filesize}"
+

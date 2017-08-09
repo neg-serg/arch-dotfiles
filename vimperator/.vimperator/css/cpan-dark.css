@@ -1,0 +1,48 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document
+ domain('cpan.org'),
+ domain("perl.org")
+{
+   html, body, tbody, tr, td, div { background-color: #252525 !important; color: #ffffff !important }
+   pre {
+      display: block !important ; 
+      background-color: #252525 !important ;
+      border: #FF8F00 solid 0.1em !important ;
+      color: #ffffff !important ;
+      font-family: "Terminus" !important ;
+      margin:  1em 2em 2em 1.3em !important ;
+      overflow: auto !important ;
+      padding: 0.5em 2em 1em 1em !important ;
+      text-align: left !important ;
+      white-space: pre !important ;
+      font-family: "Terminus" !important ;
+   }   
+
+   /* defaults for all links */
+   a:link, a:visited { color: #717171 !important } 
+   a:active { font-weight: bold !important }
+   a:hover { color: #FF8F00 !important }
+   h1, h2, h3, h4, h5 { color: #ffffff !important }
+
+
+
+
+
+   .pod pre { color: #ffffff !important ; background-color: #252525 !important; }
+   code.inline { border-width: 0 !important ; background-color: #252525 !important }
+   code.inline span.w { color: #ffffff !important }
+   code.inline span.i { color: #ffffff !important }
+   code.inline span.n { color: #ffffff !important }
+   code.inline span.s { color: #ffffff !important }
+   pre.verbatim { background-color: #252525 !important; }
+   pre.verbatim span.w { color: #ffffff !important; }
+   pre.verbatim span.b { color: #ffffff !important; }
+   pre.verbatim span.c { color: #ffffff !important; }
+   pre.verbatim span.i { color: #ffffff !important; }
+   pre.verbatim span.q { color: #ffffff !important; }
+   pre.verbatim span.s { color: #ffffff !important; }
+   pre.verbatim span.cm,
+   pre.verbatim span.sc { color: #ffffff !important; font-weight: bold !important }
+
+}

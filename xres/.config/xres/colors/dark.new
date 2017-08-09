@@ -1,0 +1,32 @@
+! -------------------------------------------------
+! file:     .colours/dark                           
+! author:   jason ryan - http://jasonwryan.com/    
+! vim:nu:ai:si:et:ts=4:sw=4:ft=txt:
+! -------------------------------------------------
+
+*cursorColor:           #5E468C
+
+!black
+*color0:#3D3D3D
+*color8:#5E5E5E
+!red
+*color1:#8A2F58
+*color9:#CF4F88
+!green
+*color2:#287373
+*color10:#53A6A6
+!yellow
+*color3:#914E89
+*color11:#BF85CC
+!blue
+*color4:#395573
+*color12:#4779B3
+!magenta
+*color5:#5E468C
+*color13:#7F62B3
+!cyan
+*color6:#2B7694
+*color14:#47959E
+!white
+*color7:#899CA1
+*color15:#C0C0C0

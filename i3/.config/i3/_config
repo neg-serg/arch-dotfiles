@@ -1,0 +1,283 @@
+set_from_resource $background background
+set_from_resource $foreground foreground
+
+set_from_resource $color54    color54
+set_from_resource $color56    color56
+set_from_resource $color200   color200
+set_from_resource $color204   color204
+set_from_resource $color205   color205
+
+set_from_resource $FOCUS      color204
+set_from_resource $UNFOCUS    color204
+set_from_resource $BORDERF    color205
+set_from_resource $BORDERU    color0
+
+set_from_resource $black    color0
+
+set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
+set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
+set $sclient [class="^(Steam|steam|explorer.exe)$"]
+set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)$"]
+
+set shmlog on
+set workspace_layout tabbed
+
+set $mod Mod4
+set $alt Mod1
+floating_modifier $mod
+
+set $myfont PragmataPro for Powerline 10
+set $zerofont PragmataPro for Powerline 0
+font pango: $zerofont
+
+focus_follows_mouse no
+focus_on_window_activation smart
+focus_follows_mouse no
+
+mouse_warping none # warp the mouse to the middle of the window when changing to a different screen
+popup_during_fullscreen smart
+
+# Disable titlebar
+new_window pixel 2
+new_float pixel 3
+
+show_marks no
+
+set $soft_restart killall -SIGUSR1 i3status
+
+#--[ Colorscheme ]----------------------------------------------------
+client.focused 		  	$black  $BORDERF $FOCUS    $BORDERF
+client.focused_inactive	$black  $UNFOCUS $UNFOCUS  $UNFOCUS
+client.unfocused		$black  $BORDERU $UNFOCUS  $BORDERU
+client.urgent			$black  $FOCUS   $FOCUS    $FOCUS
+client.background		$black           
+
+#--[ Gaps ]--------------------------------
+smart_gaps on
+smart_borders on
+gaps inner 4
+gaps outer 8
+hide_edge_borders both
+#------------------------------------------
+set $exit mode "default"
+bindsym $alt+e mode ""
+#bindsym $mod+r mode ""
+bindsym $mod+Shift+w mode ""
+#------------------------------------------
+bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
+bindsym $mod+Shift+o exec ~/dev/src/hud-menu/hud-menu.py
+bindsym $mod+Shift+BackSpace mode " "
+mode " " {
+    bindsym $mod+Shift+BackSpace mode "default"
+}
+#------------------------------------------
+bindsym --release Print exec ~/bin/scripts/screenshot
+bindsym --release Shift+Print ~/bin/scripts/screenshot current
+bindsym $mod+Control+{w,a,s,d} move {up,left,down,right}
+bindsym $mod+Control+g exec ~/.config/i3/i3_switch_workspace
+#------------------------------------------
+
+set {$term,$ws1}   α:term
+set {$web,$ws2}   β:web
+set {$doc,$ws3}   γ:doc
+set {$dev,$ws4}   δ:dev
+set {$media,$ws5}   ε:media
+set {$gimp,$ws6}  ζ:gimp
+set {$admin,$ws7}  η:admin
+set {$ide,$ws8}   θ:ide
+set {$steam,$ws9}   ι:steam
+set {$torrent,$ws10}  κ:torrent
+set {$vm,$ws11} λ:vm
+set {$wine,$ws12} μ:wine
+set {$spotify,ws13}  ν:spotify
+set {$sxiv}  ξ: [pic]
+set {$graph}  ο: [graph]
+
+bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
+bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
+bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
+bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
+bindsym $mod+Shift+e exec  ~/.config/i3/ns.py toggle weechat
+bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
+
+bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
+
+bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
+
+for_window $browsers  move container to workspace $web, workspace $web, focus
+for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
+for_window [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] floating enable, move container to workspace $dev, workspace $dev, focus
+for_window [class="cool-retro-term"] floating enable
+for_window [class="Cr3" instance="cr3"] move container to workspace $doc
+for_window [class="^(Emacs|Atom)$"] move container to workspace $dev, workspace $dev, focus
+for_window [class="Emacs" instance="emacs" title="Question"] floating enable
+for_window [class="(feh|qiv)"] floating enable
+for_window [class="Gimp"] move container to workspace $gimp, workspace $gimp, focus
+for_window [class="darktable"] move container to workspace $gimp, workspace $gimp, focus
+for_window [class="Gimp" window_role="^(gimp-file-{open,save}|gimp-message-dialog|gimp-image-new|gimp-toolbox-color-dialog)$"]  floating enable
+for_window [class="guncharmap"]  move container to workspace $doc
+for_window [class="(?i)dota.*"] floating enable, move container to workspace $wine, workspace $wine, focus
+for_window [class="^(inkscape|simple-scan)$"] move container to workspace $graph
+for_window [class="(?i)^.*vim$"] move container to workspace $dev, workspace $dev, focus
+for_window [class="(?i)^(VirtualBox|vmware|QEMU|spic).*$"] move container to workspace $vm, focus
+for_window [class="(?i)(Wine|Crossover)"] floating enable, move container to workspace $wine, workspace $wine, focus
+for_window [title="^.*.exe$"] floating enable, move container to workspace $wine, workspace $wine, focus
+for_window [class="^jetbrains-(idea|clion|andrond-studio).*"] move container to workspace $ide, workspace $ide, focus
+for_window [class="^(libreoffice|abiword).*$"]  move container to workspace $doc
+for_window [class="^MainTerminal$"] move container to workspace $term, workspace $gimp, focus
+for_window [class="^(MPlayer|mplayer2|mpv|cheese)$"] move container to workspace $media, workspace $media, focus
+for_window [class="^lollypop$"] move container to workspace $media, workspace $media, focus
+for_window [class="Nicotine.*" instance="nicotine"] floating enable
+for_window [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]  move container to workspace $doc, workspace $doc, focus
+for_window [class="rdesktop" instance="rdesktop"] floating enable
+for_window [class="spotify"] move container to workspace $spotify
+for_window [class="Sxiv"]  move container to workspace $sxiv, workspace $sxiv, focus
+for_window [class="Sxiv$"] move scratchpad, move position 25 32, resize set 1833 1102, focus
+for_window [class="^(Tilda|Guake)$"] floating enable
+for_window [class="^(Vuze|Ktorrent)$"] move container to workspace $torrent
+for_window [class="^(Xmessage|XFontSel|XCalc|Xfce)$"] floating enable
+for_window [class="^(XRebirth|UE4Editor)$"] floating enable, move container to workspace $wine, workspace $wine, focus
+for_window [class="yakuake"] floating enable
+for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"] floating enable
+for_window [instance="^(gcalctool|galculator)$"] floating enable
+for_window [instance="gparted"] move container to workspace $admin
+for_window [instance="_logs_"] move container to workspace $admin
+for_window [instance="recoll"] move container to workspace $admin
+for_window [instance="^(remmina|htop_term|glances_term|gnome-disks)$"] move container to workspace $admin
+for_window [instance="^(subl3|sublime_text)$"] move container to workspace $dev, workspace $dev, focus
+for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floating enable
+for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
+for_window [instance="wicd"] floating enable
+for_window [instance="^(wim|nwim)$"] move container to workspace $dev, workspace $dev, focus
+for_window $sclient move container to workspace $steam, workspace $steam, focus
+for_window $steam_games move container to workspace $steam, workspace $steam, fullscreen enable, focus
+for_window $steam_all mark steam_all, move container to workspace $steam, workspace $steam, focus
+for_window [title="^Compress.*"] floating enable
+for_window [title="Preferences$"] floating enable
+for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
+for_window [title="^webcam$"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
+for_window [window_type="(?i)^(dialog|menu|utility|toolbar)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+
+#for_window [class="^headset$"] floating enable
+#for_window [title="^Headset - Player$"] move container to workspace trash
+
+mode "" {
+    #-------------------------------------------------------
+    bindsym c mode ""
+    bindsym $mod+Shift+space mode "default", floating toggle
+    bindsym $mod+space mode "default", focus mode_toggle
+    bindsym e mode "default", [urgent=latest] focus
+    bindsym Control+R mode "default", [class=Cr3] focus
+    bindsym a mode "default", [window_type=dialog] scratchpad show
+    bindsym w mode "default", exec ~/bin/webcam
+    bindsym d mode "default", exec ~/bin/scripts/dzen-dict
+    bindsym {i,o,Shift+O} mode "default", exec ~/bin/pls -{output,sink,vol}
+    bindsym q mode "default", exec ~/bin/mpd_sel.sh
+    bindsym Shift+k mode "default", exec ~/bin/scripts/toggle_keynav
+    bindsym Control+t mode "default", exec tor-browser-en
+	bindsym Shift+d floating toggle; $exit
+	bindsym Shift+l exec ~/bin/scripts/lock/lock.sh && sleep 1s; $exit
+	bindsym Shift+v exec ~/bin/qemu/vm_menu; $exit
+
+    bindsym {$mod,$alt,}+s exec python3 ~/.config/i3/ns.py run im skype, mode "default"
+    bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py run im tel, mode "default"
+    bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
+    bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"
+
+    bindsym {Return,Escape,Control+C,Control+G} $exit
+}
+
+mode "" {
+    bindsym {c,p} exec ~/bin/scripts/lpwd {,type}, $exit
+    bindsym {Return,Escape,Control+C,Control+G} $exit
+}
+
+bindsym $mod+F1 exec ~/.config/i3/circle.py next jetbrains-idea
+bindsym $mod+x exec ~/.config/i3/circle.py next term
+bindsym $mod+1 exec ~/.config/i3/circle.py next wim
+bindsym $mod+Shift+1 exec ~/.config/i3/circle.py next emacs
+bindsym $mod+Control+v exec ~/.config/i3/circle.py next vm
+bindsym $mod+Control+e exec ~/.config/i3/circle.py next steam
+bindsym $mod+w exec ~/.config/i3/circle.py next web
+bindsym $mod+b exec ~/.config/i3/circle.py next vid
+bindsym $mod+o exec ~/.config/i3/circle.py next doc
+bindsym $mod+Control+q kill
+bindsym $alt+g exec rofi -show
+bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
+bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
+bindsym $mod+q fullscreen toggle
+bindsym $mod+grave exec ~/.config/i3/focus-next-visible.py
+bindsym $mod+Control+grave exec ~/.config/i3/i3-cmd.py
+bindsym $mod+Shift+slash workspace back_and_forth
+
+bindsym $alt+Tab exec python3 ~/.config/i3/flast.py switch
+bindsym $mod+slash exec python3 ~/.config/i3/flast.py switch
+
+# resize window (you can also use the mouse for that)
+mode "" {
+    bindsym {h,Shift+h} resize {shrink,grow} left 4
+    bindsym {j,Shift+j} resize {shrink,grow} down 4
+    bindsym {k,Shift+k} resize {shrink,grow} up 4
+    bindsym {l,Shift+l} resize {shrink,grow} right 4
+    bindsym {semicolon,Shift+colon} resize {shrink,grow} right 4
+    bindsym {Return,Escape,Control+C,Control+G} $exit
+}
+
+mode "" {
+    bindsym Shift+{p,c} focus {parent,child}
+	bindsym {grave,t,s,h,v} layout {default,tabbed,stacking,splith,splitv}; $exit
+    bindsym Shift+{h,v} split {h,v}; $exit
+	bindsym {j,k,h,l} split {vertical,vertical,horizontal,horizontal}; $exit
+
+	bindsym Control+{a,3} layout toggle all
+	bindsym Control+s layout toggle split
+	bindsym Control+t layout toggle
+
+    bindsym {Return,Escape,Control+C,Control+G} $exit
+}
+
+mode "" {
+	bindsym {o,i} mode gaps-{outer,inner}
+    bindsym {Return,Escape,Control+C,Control+G} $exit
+}
+
+mode "gaps-outer" {
+	bindsym {plus,minus}  gaps outer current {plus,minus} 5
+	bindsym 0     gaps outer current set 0
+
+	bindsym Shift+{plus,minus}  gaps outer all {plus,minus} 5
+	bindsym Shift+0     gaps outer all set 0
+
+    bindsym {Return,Escape,Control+C,Control+G} $exit
+}
+
+mode "gaps-inner" {
+	bindsym {plus,minus}  gaps inner current {plus,minus} 5
+	bindsym 0     gaps inner current set 0
+
+	bindsym Shift+{plus,minus}  gaps inner all {plus,minus} 5
+	bindsym Shift+0     gaps inner all set 0
+
+    bindsym {Return,Escape,Control+C,Control+G} $exit
+}
+
+for_window [class="^(telegram-desktop|skypeforlinux|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
+for_window [class="mpd-pad2"] move scratchpad, move absolute position 400 400, resize set 1200 600
+for_window [instance="mutt"] move scratchpad, move absolute position 293 0, resize set 1250 700
+for_window [class="ranger"] move scratchpad, move absolute position 170 18, resize set 1132 760
+for_window [class="teardrop"] move scratchpad, move absolute position 39 4, resize set 1844 704
+for_window [class="youtube-get"] move scratchpad, move absolute position 247 13, resize set 1339 866
+for_window [class="_weechat_"] move scratchpad, move absolute position 112 33, resize set 1736 1091
+
+exec_always polybar -c ~/.config/polybar/main {tiny,main}
+
+exec python3 ~/.config/i3/disable-standby-fs.py
+exec python3 ~/.config/i3/nsd.py
+exec python3 ~/.config/i3/circled.py
+exec python3 ~/.config/i3/flastd.py
+
+exec --no-startup-id clipster -d
+
+# vim:filetype=i3

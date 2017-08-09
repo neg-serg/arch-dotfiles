@@ -1,0 +1,1213 @@
+###
+### FUNCS.BC - A LARGE NUMBER OF FUNCTIONS FOR GNU BC
+###
+
+## Not to be regarded as suitable for any purpose
+## Not guaranteed to return correct answers
+
+scale=10;
+
+define pi(){return(a(1)*4)}         ; pi  = pi()
+                                      e   = e(1)
+define phi(){return((1+sqrt(5))/2)} ; phi = phi()
+define psi(){return((1-sqrt(5))/2)} ; psi = psi()
+
+# Reset base to ten
+define rstb() {
+	obase=ibase=A;
+}
+
+d0=0;d1=1;d2=2;d3=3;d4=4;d5=5;d6=6;d7=7;d8=8;d9=9
+d10=10;d11=11;d12=12;d13=13;d14=14;d15=15;d16=16;d17=17;d18=18;d19=19
+d20=20;d21=21;d22=22;d23=23;d24=24;d25=25;d26=26;d27=27;d28=28;d29=29
+d30=30;d31=31;d32=32;d33=33;d34=34;d35=35;d36=36;d37=37;d38=38;d39=39
+
+## Integer and Rounding
+
+# Round to next integer nearest 0:  -1.99 -> 1, 0.99 -> 0
+define int(x)   { auto os;os=scale;scale=0;x/=1;scale=os;return(x) } 
+
+# Round down to integer below x
+define floor(x) {
+  auto os,xx;os=scale;scale=0
+  xx=x/1;if(xx>x)xx-=1
+  scale=os;return(xx)
+}
+
+# Round up to integer above x
+define ceil(x) {
+  auto os,xx;x*=-1;os=scale;scale=0
+  xx=x/1;if(xx>x)xx-=1
+  scale=os;return(-xx)
+}
+
+# Fractional part of x:  12.345 -> 0.345
+define frac(x) {
+  auto os,xx;os=scale;scale=0
+  xx=x/1;if(xx>x)xx-=1
+  scale=os;return(x-xx)
+}
+
+# Absolute value of x
+define abs(x) { if(x<0)return(-x)else return(x) }
+
+# Sign of x
+define sgn(x) { if(x<0)return(-1)else if(x>0)return(1);return(0) }
+
+# Round x up to next multiple of y
+define round_up(  x,y) { return(y*ceil( x/y )) }
+
+# Round x down to previous multiple of y
+define round_down(x,y) { return(y*floor(x/y )) }
+
+# Round x to the nearest multiple of y
+define round(     x,y) {
+  auto os,oib;
+  os=scale;oib=ibase
+  scale+=1;ibase=A
+    y*=floor(x/y+.5)
+  ibase=oib;scale=os
+  return y
+}
+
+# Find the remainder of x/y
+define int_remainder(x,y) {
+  auto os;
+  os=scale;scale=0
+   x/=1;y/=1;x%=y
+  scale=os
+  return(x)
+}
+define remainder(x,y) {
+  os=scale;scale=0
+   if(x==x/1&&y==y/1){scale=os;return int_remainder(x,y)}
+  scale=os
+  return(x-round_down(x,y))
+}
+
+# Greatest common divisor of x and y
+define int_gcd(x,y) {
+  auto r,os;
+  os=scale;scale=0
+  x/=1;y/=1
+  while(y>0){r=x%y;x=y;y=r}
+  scale=os
+  return(x)
+}
+define gcd(x,y) {
+  auto r,os;
+  os=scale;scale=0
+   if(x==x/1&&y==y/1){scale=os;return int_gcd(x,y)}
+  scale=os
+  while(y>0){r=remainder(x,y);x=y;y=r}
+  return(x)
+}
+
+# Lowest common multiple of x and y
+define int_lcm(x,y) {
+  auto r,m,os;
+  os=scale;scale=0
+  x/=1;y/=1
+  m=x*y
+  while(y>0){r=x%y;x=y;y=r}
+  m/=x
+  scale=os
+  return(m)
+}
+define lcm(x,y) { return (x*y/gcd(x,y)) }
+
+# Remove largest possible power of 2 from x
+define oddpart(x){
+  auto os;
+  os=scale;scale=0;x/=1
+  if(x==0){scale=os;return 1}
+  while(!x%2)x/=2
+  scale=os;return x
+}
+
+# Largest power of 2 in x
+define evenpart(x) {
+  auto os;
+  os=scale;scale=0
+  x/=oddpart(x/1)
+  scale=os;return x
+}
+
+## Trig / Hyperbolic Trig
+
+# Sine
+define sin(x) { return s(x) } # alias for standard library
+# Cosine
+define cos(x) { return c(x) } # alias for standard library
+# Tangent
+define tan(x)   { auto c;c=c(x);if(c==0)c=A^-scale;return(s(x)/c) }
+
+# Secant
+define sec(x)   { auto c;c=c(x);if(c==0)c=A^-scale;return(   1/c) }
+# Cosecant
+define cosec(x) { auto s;s=s(x);if(s==0)s=A^-scale;return(   1/s) }
+# Cotangent
+define cotan(x) { auto s;s=s(x);if(s==0)s=A^-scale;return(c(x)/s) }
+
+# Arcsine
+define arcsin(x) { if(x==-1||x==1)return(2*a(1)*x);return( a(x/sqrt(1-x^2)) ) } 
+# Arccosine
+define arccos(x) { if(x==0)return(0);return 2*a(1)-arcsin(x) }
+
+# Arctangent (one argument)
+define arctan(x)  { return a(x) } # alias for standard library
+
+# Arctangent (two arguments)
+define arctan2(x,y) { 
+  auto p;
+  if(x==0&&y==0)return(0)
+  p=(1-sgn(y))*2*a(1)*(2*(x>=0)-1)
+  if(x==0||y==0)return(p)
+  return(p+a(x/y))
+}
+
+# Arcsecant
+define arcsec(x)      { return( a(x/sqrt(x^2-1)) ) }
+# Arccosecant
+define arccosec(x)    { return( a(x/sqrt(x^2-1))+2*a(1)*(sgn(x)-1) ) }
+# Arccotangent (one argument)
+define arccotan(x)    { return( a(x)+2*a(1) ) }
+# Arccotangent (two arguments)
+define arccotan2(x,y) { return( arctan(x,y)+2*a(1) ) }
+
+# Hyperbolic Sine
+define sinh(x) { auto t;t=e(x);return((t-1/t)/2) }
+# Hyperbolic Cosine
+define cosh(x) { auto t;t=e(x);return((t+1/t)/2) }
+# Hyperbolic Tangent
+define tanh(x) { auto t;t=e(2*x)-1;return(t/(t+2)) }
+
+# Hyperbolic Secant
+define sech(x)   { auto t;t=e(x);return(2/(t+1/t)) }
+# Hyperbolic Cosecant
+define cosech(x) { auto t;t=e(x);return(2/(t-1/t)) }
+# Hyperbolic Cotangent
+define coth(x)   { auto t;t=e(2*x)-1;return((t+2)/t) }
+
+# Hyperbolic Arcsine
+define arcsinh(x) { return( l(x+sqrt(x^2+1)) ) }
+# Hyperbolic Arccosine
+define arccosh(x) { return( l(x+sqrt(x^2-1)) ) }
+# Hyperbolic Arctangent
+define arctanh(x) { return( l((1+x)/(1-x))/2 ) }
+
+# Hyperbolic Arcsecant
+define arcsech(x)   { return( l((sqrt(1-x^2)+1)/x) ) }
+# Hyperbolic Arccosecant
+define arccosech(x) { return( l((sqrt(1+x^2)*sgn(x)+1)/x) ) }
+# Hyperbolic Arccotangent
+define arccoth(x)   { return( l((x+1)/(x-1))/2 ) }
+
+# Length of the diagonal vector (0,0)-(x,y) [pythagoras]
+define pyth(x,y) { return(sqrt(x^2+y^2)) }
+define pyth3(x,y,z) { return(sqrt(x^2+y^2+z^2)) }
+
+# Gudermannian Function
+define gudermann(x)    { return 2*(a(e(x))-a(1)) }
+# Inverse Gudermannian Function
+define arcgudermann(x) {
+  return arctanh(s(x))
+}
+
+# Bessel function
+define besselj(n,x) { return j(n,x) } # alias for standard library
+
+## Exponential / Logs
+
+# Exponential e^x
+define exp(x) { return e(x) } # alias for standard library
+
+# Natural Logarithm (base e)
+define ln(x) {
+  if(x< 0){print "ln error: logarithm of a negative number\n";return 0}
+  if(x==0)print "ln error: logarithm of zero; negative infinity\n"
+  return l(x)
+} # alias for standard library
+
+# workhorse function for pow and log
+# Helps determine whether a fractional power is legitimate for a negative number
+# returns 0 for even/odd; 1 for odd/odd; 2 for odd/even; 3 for irrational
+define id_frac_(y){
+  auto os,oib,es,eps,i,cf[],st;
+  oib=ibase;ibase=A
+  os=scale;scale=0
+   es=3*os/4
+  scale=os
+   eps=10^-es
+   y+=eps/10
+  scale=es
+   y/=1
+  scale=0
+  if(y<0)y*=-1
+  st=y-y/1
+  if(st<eps){y=(y/1)%2;scale=os;ibase=oib;return y}#integers are x/1
+  # Determine parity of numerator and denominator of fractional part of y with an
+  # inspired finite state machine and continued fraction based tape construct
+  i=0;y=st
+  while(1) {
+    scale=es;y=1/y;scale=0
+    y-=(cf[i+=1]=y/1)
+    if(i>100){cf[i=1]=3;break}#escape if number seems irrational
+    if(1.5*length(cf[i])>es){cf[i]=0;i-=1;break}#cheat: assume rational
+    cf[i]=(cf[i]-1)%2+1
+    if(y==0)break;#completely rational
+  }
+  if(i==0){print "id_frac_: something is wrong; y=";y}
+  st=cf[i];if(st<3)while(i-=1)st=(cf[i]*(st+1))%3
+  scale=os;ibase=oib
+  return st;
+}
+
+# Raise x to the y-th power
+define pow(x,y) {
+ auto os,p,ix,iy,fy,st;
+ if(y==0) return 1
+ if(x==0) return 0
+ os=scale;scale=0
+  ix=x/1;iy=y/1;fy=y-iy
+ scale=os;scale=length(x/1)
+ if(y!=iy&&x<0){
+   st=id_frac_(fy)
+   if(st==0)return  pow(-x,y) # even/odd
+   if(st==1)return -pow(-x,y) #  odd/odd
+   print "pow error: "
+   if(st==2)print "even root"
+   if(st==3)print "irrational power"
+   print " of a negative number\n"
+   return 0
+ }
+ if(y==iy) {
+   if(x==ix){p=ix^iy;if(iy>0){scale=0;p/=1};scale=os;return p/1}
+   scale*=2;p=x^iy;scale=os;return p/1
+ }
+ p=ix^iy*e(fy/1*l(x))
+ scale=os*3
+ if(ix)p*=(x/ix)^iy
+ scale=os
+ return p/1
+ #The above is usually faster and more accurate than
+ # return( e(y*l(x)) );
+}
+
+# y-th root of x [ x^(1/y) ]
+define root(x,y) {
+  auto os,iy,iz,z,xn;
+  z = pow(x,1/y)
+  os=scale;scale=0;if(x==x/1&&y==(iy=y/1)){
+   if((xn=(iz=1+z/1)^iy)==x){scale=os;return iz}
+   if((xn=(iz-=1)^iy)==x){scale=os;return iz}
+  }
+  scale=os;return z
+}
+
+# Logarithm of x in given base:  log(2, 32) = 5 because 2^5 = 32
+#  tries to return a real answer where possible when given negative numbers
+#  e.g.     log(-2,  64) = 6 because (-2)^6 =   64
+#  likewise log(-2,-128) = 7 because (-2)^7 = -128
+define log(base,x) {
+  auto os,i,l,sx,st;
+  if(base==x)return 1;
+  if(x==0){print "log error: logarithm of zero; negative infinity\n"; return  l(0)}
+  if(x==1)return 0;
+  if(base==0){print "log error: zero-based logarithm\n";                 return    0 }
+  if(base==1){print "log error: one-based logarithm;positive infinity\n";return -l(0)}
+  scale+=6
+  if((-1<base&&base<0)||(0<base&&base<1)){x=-log(1/base,x);scale-=6;return x/1}
+  if((-1<x   &&   x<0)||(0<x   &&   x<1)){x=-log(base,1/x);scale-=6;return x/1}
+  if(base<0){
+    sx=1;if(x<0){x*=-1;sx=-1}
+    l=log(-base,x)
+    st=id_frac_(l)
+    if((st==0&&sx==1)||(st==1&&sx==-1))return l;
+    print "log error: -ve base: "
+    if(st<=1)print "wrong sign for "
+    print "implied "
+    if(st<=1)print "odd root/integer power\n"
+    if(st==2)print "even root\n"
+    if(st==3)print "irrational power\n"
+    return 0;
+  }
+  if(x<0){
+    print "log error: +ve base: logarithm of a negative number\n"
+    return 0;
+  }
+  x=l(x)/l(base);scale-=6;return x/1
+}
+
+# Integer-only logarithm of x in given base
+# (compare digits function in digits.bc)
+define int_log(base,x) { 
+ auto os,c;
+ if(0<x&&x<=1) {return -int_log(base,1/x)}
+ os=scale;scale=0;base/=1;x/=1
+  if(base<2)base=ibase;
+  if(x==0)     {scale=os;return  1-base*A^os}
+  if(x<base)   {scale=os;return  0    }
+  c=-1;while(x){c+=1;x/=base}
+ scale=os;return(c)
+}
+
+# Lambert's W function 0 branch; Numerically solves w*e(w) = x for w
+# * is slow to converge near -1/e at high scales
+define lambertw0(x) {
+  auto oib, a, b, w, ow, lx, ew, eps;
+  oib=ibase;ibase=A
+  ew = -e(-1)
+  if (x<ew) {
+    print "lambertw0: expected argument in range [-1/e,oo)\n"
+    ibase=oib
+    return 1-A^scale
+  }
+  if (x==ew) {ibase=oib;return -1}
+  # First approximation from :
+  #   http://www.desy.de/~t00fri/qcdins/texhtml/lambertw/
+  #   (A. Ringwald and F. Schrempp)
+  # via Wikipedia
+  if(x < 0){
+    w = x/ew
+  } else if(x < 500){
+    lx=l(x+1);w=0.665*(1+0.0195*lx)*lx+0.04
+  } else {
+    lx=l(x);w=l(x-4)-(1-1/lx)*l(lx)
+  }
+  # Iteration adapted from code found on Wikipedia
+  #   apparently by an anonymous user at 147.142.207.26
+  #   and later another at 87.68.32.52
+  ow = 0
+  eps = 10^-scale
+  scale += 3
+  while(abs(ow-w)>eps&&w>-1){
+    iters += 1
+    ow = w
+    ew = e(w)
+    a = w*ew
+    b = a+ew
+    a -= x
+    if(a==0)break
+    b = b/a - 1 + 1/(w+1)
+    w -= 1/b
+    if(x<-0.367)w-=eps
+  }
+  scale -= 3
+  ibase=oib
+  return w/1
+}
+
+# Lambert's W function -1 branch; Numerically solves w*e(w) = x for w
+# * is slow to converge near -1/e at high scales
+define lambertw_1(x) {
+  auto oib,os,oow,ow,w,ew,eps,iters;
+  oib=ibase;ibase=A
+  ew = -e(-1)
+  if(ew>x||x>=0) {
+    print "lambertw_1: expected argument in [-1/e,0)\n"
+    ibase=oib
+    return 1-A^scale
+  }
+  if(x==ew) return -1;
+  os=scale
+  eps=10^-os
+  scale+=3
+  oow=ow=0
+  w=x
+  w=l(-w)
+  w-=l(-w)
+  w+=sqrt(eps)
+  iters=0
+  while(abs(ow-w)>eps){
+    oow=ow;ow=w
+    if(w==-1)break
+    w=(x*e(-w)+w^2)/(w+1)
+    if(iters+=1==20||oow==w){iters=0;w-=10^-scale;scale+=2}
+  }
+  scale=os;ibase=oib
+  return w/1
+}
+
+# LambertW wrapper; takes most useful branch based on x
+# to pick a branch manually, use lambertw_1 or lambertw0 directly
+define w(x) {
+  if(x<0)return lambertw_1(x)
+  return lambertw0(x)
+}
+
+# Numerically solve pow(y,y) = x for y
+define powroot(x) {
+  auto r;
+  if(x==0) {
+    print "powroot error: attempt to solve for zero\n"
+    return 0
+  }
+  if(x==1||x==-1) {return x}
+  if(x<=r=e(-e(-1))){
+    print "powroot error: unimplemented for values\n  <0";r
+    return 0
+  }
+  r = l(x)
+  r /= w(r)
+  return r
+}
+
+## Fibonacci
+
+# n-th Fibonacci number over the reals
+define fibonacci(n){
+  auto a,b,c,intn,count,fracn,s5,os
+  if(n==0)return 0
+  os=scale;scale=0;count=intn=n/1
+  if(n<0){
+    scale=os;
+    a=-fibonacci(-n)
+    if(n==intn)return a*(-1)^(-intn)
+    return a*c(a(1)*4*n)
+  }
+  count+=2;
+  a=-1;b=1;c=0
+  while(--count){
+    c=a+b;a=b;b=c
+  }
+  scale=os;
+  if(n==intn)return c
+  
+  fracn=n-intn
+  s5=sqrt(5)
+  a=e(fracn*l( (1+s5)/2 ))
+  a*=(s5*c+sqrt(5*c^2+4*(-1)^intn))/2
+  a=(a-c(a(1)*4*n)/a)/s5
+  return a
+}
+
+# inverse of the above - cannot deal with values below 1 (except 0)
+# but is accurate to within 'scale' decimal places otherwise
+define inverse_fibonacci(f) {
+  auto a,b,c,intn,intf,fracf,s5,phinx2,eps,s5f,z5f2,lph,pi,os
+  if(f==0)return f
+  if(f<1)return 0 # avoid multivalued mess
+  os=scale;scale=0;intf=f/1
+  a=-1;b=1;c=0
+  for(intn=-2;c<=intf;intn++){
+    c=a+b;a=b;b=c
+  }
+  scale=os
+  if(f==a)return intn
+  c=a
+  s5=sqrt(5)
+  phinx2=s5*c+sqrt(5*c^2+4*(-1)^intn)
+  lph=l( (1+s5)/2 )
+  pi=a(1)*4
+  s5f=s5*f
+  z5f2=5*f^2
+  a=0.5 #start guess
+  os+=8
+  for(scale=8;scale<=os;scale+=8){
+    b=0
+    eps=A^(2-scale)
+    while(abs(a-b)>eps){
+      b=a
+      a=s5f+sqrt(z5f2+4*c(pi*(intn+a)))
+      a/=phinx2
+      a=l(a)/lph
+    }
+    a=(a+b)/2
+  }
+  os-=8;scale=os;a/=1
+  return intn+a
+}
+
+# n-th Lucas number over the reals
+define lucas(n){
+  auto a,b,c,intn,count,fracn,os
+  if(n==0)return 2
+  os=scale;scale=0;count=intn=n/1
+  if(n<0){
+    scale=os;
+    a=lucas(-n)
+    if(n==intn)return a*(-1)^(-intn)
+    return a*c(a(1)*4*n)
+  }
+  count+=2;
+  a=3;b=-1;c=2
+  while(--count){
+    c=a+b;a=b;b=c
+  }
+  scale=os;
+  if(n==intn)return c
+  
+  fracn=n-intn
+  a=e(fracn*l( (1+sqrt(5))/2 ))
+  a*=(c+sqrt(c^2-4*(-1)^intn))/2
+  a=a+c(a(1)*4*n)/a
+  return a
+}
+
+# inverse of the above - inaccurate with values below 2 (except -1, 0 and 1)
+# but is accurate to within 'scale' decimal places otherwise
+define inverse_lucas(l) {
+  auto a,b,c,intn,intl,fracl,phinx2,eps,l2,lph,pi,os
+  if(l<-1)return -1
+  if(-1<=l&&l<1)return ((7-3*l)*l-A)/(2*A)
+  if(1<=l&&l<=2)return 2-l # avoid multivalued mess
+  os=scale;scale=0;intl=l/1
+  a=3;b=-1;c=2
+  for(intn=-2;c<=intl;intn++){
+    c=a+b;a=b;b=c
+  }
+  scale=os
+  if(l==a)return intn
+  c=a
+  phinx2=c+sqrt(c^2-4*(-1)^intn)
+  lph=l( (1+sqrt(5))/2 )
+  pi=a(1)*4
+  l2=l^2
+  a=0.5 #start guess
+  os+=8
+  for(scale=8;scale<=os;scale+=8){
+    b=0
+    eps=A^(2-scale)
+    while(abs(a-b)>eps){
+      b=a
+      a=l+sqrt(l2-4*c(pi*(intn+a)))
+      a/=phinx2
+      a=l(a)/lph
+    }
+  }
+  os-=8;scale=os;a/=1
+  return intn+a
+}
+
+## Factorials
+
+# Gosper's approximation to the natural log of x!
+define gosper(x) {
+ auto os,s,intx,pi;
+ pi=4*a(1);
+ if(x==0)return 0 
+ if(x<0){
+   os=scale;scale=0;intx=x/1;scale=os
+   if(x==intx) return (-1)^x*A^scale
+   x*=-1;pi*=x
+   s=s(pix)
+   if(s<=0) return 1-A^scale
+   return l(pix)-l(s)-gosper(x)
+ }
+ return(  x*(l(x)-1) + ( l(2*x+1/3)+ l(pi) )/2  )
+}
+
+# Gosper's approximation to n!
+define gfactorial(n) { return ceil(e(gosper(n))) }
+
+# Nemes' approximation to the natural log of x!
+# with minor tweak to bring it closer to the true value
+define nemes(x) {
+ auto os,s,lx,intx,pix;
+ pix=4*a(1)*x;
+ if(x==0)return 0 
+ if(x<0){
+   os=scale;scale=0;intx=x/1;scale=os
+   if(x==intx) return (-1)^x*A^scale
+   x*=-1;pix*=-1
+   s=s(pix)
+   if(s<=0) return 1-A^scale
+   return l(pix)-l(s)-nemes(x)
+ }
+ lx = l(x)
+ s = x*(lx-1) + l(2*pix)/2 + 1/(C*x + 2/(5*x + (5*A+3)/(4*A+2)/x))
+ s -= e(-7*(9/8+lx)) # minor correction
+ return s;
+}
+
+# Nemes' approximation to n!
+define nemfactorial(n) { return e(nemes(n)) }
+
+# x! - an approximation to the factorial function over the reals
+#      is accurate as possible for all integers and half-integers
+#      interpolates otherwise
+define factorial(x) {
+ auto i,xx,x2,xx2,k,a,b,na,nb,os,oib
+ if(x==0||x==1)return 1
+ oib=ibase;ibase=A
+ if(x==0.5){ibase=oib;return sqrt(a(1))}
+ if(0<x&&x<1){
+  x+=1
+  return factorial(x)/x
+ }
+ os=scale;scale=0;xx=x/1;scale=os
+ if(x<0){
+   if(x==xx) return (-1)^x*10^scale
+   x=-x;
+   a=pi()*x;
+   ibase=oib
+   return a/s(a)/factorial(x)
+ }
+ x2=2*x
+ os=scale;scale=0;xx2=x2/1;scale=os
+ if(x==xx){
+  xx=1;for(i=x;i>=1;i--)xx*=i
+  ibase=oib
+  return xx;
+ } else if (x2==xx2) {
+  x-=.5
+  xx=1;for(i=x2;i>x;i--)xx*=i
+  scale+=x;
+   xx/=2^(xx2-1)
+   xx*=sqrt(a(1));
+  scale-=x;
+  ibase=oib
+  return xx/1;
+ }
+ /* Other factorial cases here */
+  x2=2*(x-xx)
+  if(x2>.5){
+   x2-=.5
+   xx+=.5
+  }
+  xx+=5
+   a=   factorial(xx)
+  na=nemfactorial(xx)
+   b=   factorial(xx+0.5)
+  nb=nemfactorial(xx+0.5)
+  k=na/a
+  k+=(nb/b-k)*x2
+  xx=nemfactorial(x+5)/(k*(x+5)*(x+4)*(x+3)*(x+2)*(x+1))
+ ibase=oib
+ return xx;
+}
+
+# logarithm of the above
+define lnfactorial(x) {
+ auto i,xx,x2,xx2,k,a,b,na,nb,os,oib;
+ if(x==0||x==1)return 0
+ oib=ibase;ibase=A
+ if(x==0.5){ibase=oib;return l(a(1))/2}
+ if(x<=2470){ibase=oib;return l(factorial(x))} # l(factorial()) is faster below 2470ish
+ if(0<x&&x<1){
+  x+=1
+  return lnfactorial(x)-l(x)
+ }
+ os=scale;scale=0;xx=x/1;scale=os
+ if(x<0){
+   x=-x;
+   a=a(1)*4*x;
+   ibase=oib
+   na = s(a)
+   if(na<=0) return 1-10^scale
+   return l(a)-l(na)-lnfactorial(x)
+ }
+ x2=2*x
+ os=scale;scale=0;xx2=x2/1;scale=os
+ if(x==xx){
+  xx=0.5*x*10^-scale;for(i=x;i>=1;i--)xx+=l(i)
+  ibase=oib
+  return xx;
+ } else if (x2==xx2) {
+  x-=.5
+  xx=0.5*x*10^-scale;for(i=x2;i>x;i--)xx+=l(i)
+  scale*=2;
+   xx-=(xx2-1)*l(2)
+   xx+=0.5*l(a(1))
+  scale/=2;
+  ibase=oib
+  return xx/1;
+ }
+ /* Other factorial cases here */
+  x2=2*(x-xx)
+  if(x2>.5){
+   x2-=.5
+   xx+=.5
+  }
+  xx+=5
+   a=lnfactorial(xx)
+  na=      nemes(xx)
+   b=lnfactorial(xx+0.5)
+  nb=      nemes(xx+0.5)
+  k=na/a
+  k+=(nb/b-k)*x2
+  k=(11*k-3)/8 # correction
+  xx=(nemes(x+5)-l(x+5)-l(x+4)-l(x+3)-l(x+2)-l(x+1))/k
+ ibase=oib
+ return xx;
+}
+
+# Inverse factorial (approximate)
+#   Based on a derivation by David W. Cantrell in sci.math
+define inverse_factorial(x) {
+  auto t,f,eps,os,oib;
+  if(x==1||x==2) return x;
+  oib=ibase;ibase=A;
+  if(0.89<=x&&x<=3.9){
+    os=scale
+    if(scale>25)scale=25
+    eps = 10^(5-scale);if(eps>1)eps=1
+    t=x;f=x-factorial(t)
+    while(abs(f)>eps){t+=f/x;f=x-factorial(t)}
+    scale=os;ibase=oib
+    return t
+  }
+  scale += 3
+  t = l((x+0.036534)/sqrt(8*a(1)))
+  t /= lambertw0(t/e(1))
+  t -= .5
+  scale -= 3
+  ibase=oib
+  return t/1 
+}
+
+# Number of permutations of r items from a group of n
+# ... using integers only
+define int_permutation(n,r) {
+ auto i,p,os;
+ os=scale;scale=0;n/=1;r/=1
+ if(n<0||r<0||r>n)return(0)
+ p=1;for(i=n;i>n-r;i--)p*=i
+ scale=os;return(p)
+}
+
+# ... using real numbers
+define permutation(n,r) { return factorial(n)/factorial(n-r) }
+
+# Number of combinations of r items from a group of n
+# ... using integers only
+define int_combination(n,r) {
+ auto c,os;
+ os=scale;scale=0;n/=1;r/=1
+ if(n<0||r<0||r>n)return(0)
+ if(2*r>n)r=n-r
+ c=int_permutation(n,r)/factorial(r)
+ scale=os;return(c) 
+}
+
+# ... using real numbers
+define combination(n,r) { return factorial(n)/factorial(n-r)/factorial(r) }
+
+# y-th factorial of x: x!_y
+# ... integers only
+define int_multifactorial(y,x) {
+ auto i,xx,os;
+ os=scale;scale=0;x/=1;y/=1
+ xx=1;for(i=x;i>=1;i-=y)xx*=i
+ scale=os;return(xx);
+}
+
+define semifactorial(x) {
+ auto i,xx;
+ if(x==0||x==1)return 1
+ xx=int((x+1)/2)
+ if(x<0&&x==xx*2-1){
+   return (-1)^xx*semifactorial(-2*xx-1)
+ }
+ xx=int(x)
+ if(x==xx){
+  xx=1;for(i=x;i>=1;i-=2)xx*=i
+  return(xx)
+ }
+ x/=2
+ xx=factorial(x)
+ x-=.5
+ xx*=e(x*l(2))
+ xx/=sqrt(a(1))
+ return xx
+}
+
+## Triangular numbers
+
+# xth triangular number
+define tri(x) {
+  auto xx
+  x=x*(x+1)/2;xx=int(x)
+  if(x==xx)return(xx)
+  return(x)
+}
+
+# 'triangular root' of x
+define trirt(x) {
+  auto xx
+  x=(sqrt(1+8*x)-1)/2;xx=int(x)
+  if(x==xx)x=xx
+  return(x)
+}
+
+# Workhorse for following 2 functions
+define tri_step_(t,s) {
+  auto tt
+  t=t+(1+s*sqrt(1+8*t))/2;tt=int(t)
+  if(tt==t)return(tt)
+  return(t)
+}
+
+# Turn tri(x) into tri(x+1) without knowing x
+define tri_succ(t) {
+  return(tri_step_(t,0+1))
+}
+
+# Turn tri(x) into tri(x-1) without knowing x
+define tri_pred(t) {
+  return(tri_step_(t,0-1))
+}
+
+## Polygonal Numbers
+
+# the xth s-gonal number:
+#   e.g. poly(3, 4) = tri(4) = 1+2+3+4 = 10; poly(4, x) = x^2, etc
+define poly(s, x) {
+  auto xx
+  x*=(s/2-1)*(x-1)+1;xx=int(x);if(x==xx)x=xx
+  return x
+}
+
+# inverse of the above = polygonal root:
+#   e.g. inverse_poly(3,x)=trirt(x); inverse_poly(4,x)=sqrt(x), etc
+define inverse_poly(s, r) {
+  auto t,xx
+  t=(s-=2)-2
+  r=(sqrt(8*s*r+t^2)+t)/s/2;xx=int(r);if(r==xx)r=xx
+  return r
+}
+
+# converse of poly(); solves poly(s,x)=r for s
+#   i.e. if the xth polygonal number is r, how many sides has the polygon?
+#   e.g. if the 5th polygonal number is 15, converse_poly(5,15) = 3
+#     so the polygon must have 3 sides! (15 is the 5th triangular number)
+define converse_poly(x,r) {
+  auto xx
+  x=2*((r/x-1)/(x-1)+1);xx=int(x);if(x==xx)x=xx
+  return x
+}
+
+## Arithmetic-Geometric mean
+
+define arigeomean(a,b) {
+  auto c;
+  while(a!=b){c=(a+b)/2;a=sqrt(a*b);b=c}
+  return a
+}
+
+
+###
+### LOGIC.BC - BITWISE FUNCTIONS FOR GNU BC
+###
+
+# Twos complement is assumed for negative numbers
+#  this avoids awkward problems like negative zero
+
+## Word size handling
+
+# Global variable like 'scale' or 'length'
+#  When zero, bitwidth is assumed to be infinite
+bitwidth=0
+
+# to be used by functions reliant on bitwidth
+define checkbitwidth_() {
+  auto os;os=scale;scale=0;bitwidth/=1;scale=os
+  if(bitwidth<0){
+    print "Negative bitwidth, set to 0\n"
+    bitwidth=0
+  }
+  return 0;
+}
+
+# returns bitwidth of a variable
+#  (is a simplified version of digits() function in digits.bc)
+define bitwidth(x) {
+  auto os,c;
+  os=scale;scale=0;x/=1
+   if(x<0)x*=-1
+   c=0;while(x){c+=1;x/=2}
+  scale=os;return(c)
+}
+
+# cast signed values into unsigned values
+define unsign(x) {
+  auto os,z; x+=checkbitwidth_()
+  os=scale;scale=0
+  x/=1
+  if(x<0){
+    if(bitwidth==0){
+      x+=2^(bitwidth(x)+1)
+    }else{
+      x+=2^(bitwidth+1)
+    }
+  }
+  if(bitwidth)x%=2^bitwidth
+  scale=os;return x;
+}
+
+# cast unsigned values into signed values
+define resign(x) {
+  auto os,t; x+=checkbitwidth_()
+  os=scale;scale=0
+  x/=1
+  if(bitwidth==0||x<0){scale=os;return x}
+    # can't do anything when bitwidth is infinite or x already has a sign!
+  x%=(t=2^bitwidth)
+  if(x>=t/2)x-=t
+  scale=os;return x;
+}
+
+## Common bitwise
+
+# Perform a bitwise logical NOT of x
+#  not the same as removing the sign!
+define not(x) {
+  return -1-x
+}
+
+# Perform a bitwise logical AND of x and y
+define and(x,y) {
+ auto n,z,t,os;
+ os=scale;scale=0
+ n=0;x/=1;y/=1
+ if(x<0){
+   if(y<0){scale=os;return -1-or(-1-x,-1-y)}# not(or(not(x),not(y)))
+   x=-1-x;n=1
+ }
+ if(y<0){t=-1-y;y=x;x=t;n=1}
+ z=0;t=1;while(x||y){
+  if(x%2!=n&&y%2)z+=t
+  t*=2;x/=2;y/=2
+ }
+ scale=os;return (z)
+}
+
+# Perform a bitwise logical OR of x and y
+define or(x,y) {
+ auto z,t,a,b,c,os;
+ os=scale;scale=0
+ x/=1;y/=1
+ if(x<0||y<0){scale=os;return -1-and(-1-x,-1-y)}# not(and(not(x),not(y)))
+ z=0;t=1;while(x||y){
+  if((c=a=x%4)!=(b=y%4)){c=a+b;if(c>3)c=3}
+  z+=t*c
+  t*=4;x/=4;y/=4
+ }
+ scale=os;return (z)
+}
+
+  ## NB: and() and or() are mutually reliant
+  ##     though not mutually recursive
+  ##     Both could also be reliant on not()
+  ##     but this has be avoided
+
+# Perform a bitwise logical EXCLUSIVE-OR of x and y
+define xor(x,y) {
+ auto n,z,t,a,b,c,os;
+ os=scale;scale=0
+ n=0;x/=1;y/=1
+ if(x<0){x=-1-x;n=!n}
+ if(y<0){y=-1-y;n=!n}
+ z=0;t=1;while(x||y){
+  c=(a=x%4)+(b=y%4) # doing calculations in
+  if(!c%2)c=a+4-b   # base 4 is faster
+  z+=t*(c%4)
+  t*=4;x/=4;y/=4
+ }
+ if(n)z=-1-z
+ scale=os;return (z)
+}
+
+## Bit shifting
+
+# Reverse bits in x
+define bitrev(x) {
+ auto os,z,w; x+=checkbitwidth_()
+ os=scale;scale=0
+ x/=1;w=bitwidth
+ if(x<0){
+   if(w==0){scale=os;return -1}
+   scale=os
+   return -bitrev(-x-1)-1 #not(bitrev(not(x)))
+ }
+ if(w)x%=2^w
+ z=0;for(;x||w>0;w--){z=z*2+(x%2);x/=2}
+ scale=os;return(z)
+}
+
+# Perform a LEFT-SHIFT of x by n places
+define shl(x,n) {
+ auto os,w,s; x+=checkbitwidth_()
+ if(n<0)return shr(x,-n)
+ s=1;if(x<0)x*=(s=-1)
+ os=scale;scale=0
+  x/=1;x*=2^(n/1)
+  if(bitwidth)if(x>=(w=2^bitwidth))x%=w
+ scale=os;return s*x
+}
+
+# Perform a RIGHT-SHIFT of x by n places
+define shr(x,n) {
+ auto os
+ if(n<0)return shl(x,-n)
+ os=scale;scale=0
+  x/=2^(n/1)
+ scale=os;return x
+}
+
+define rol(x,n) {
+  auto os,s,w,t; x+=checkbitwidth_();
+  if(n<0)return ror(x,-n);
+  os=scale;scale=0
+   x/=1;if(w=bitwidth)n%=w
+   s=1;if(x<0){x=-1-x;s=-1}
+   x*=2^(n/1)
+   if((w=2^w)==1){
+     if(s<0)x=-1-x;
+     scale=os;return x
+   }
+   t=x%w;x=t+(x-t)/w
+   if(s<0)x=w-1-x
+   if(x>=w/2)x-=w
+  scale=os;return x;
+}
+
+define ror(x,n) {
+  auto os,s; x+=checkbitwidth_();
+  if(n<0)return rol(x,-n);
+  if(bitwidth)return rol(x,bitwidth-n)
+  os=scale;scale=0
+   x/=1;n=2^(n/1)
+   s=1;if(x<0){x=-1-x;s=-1}
+   if(x%n){
+     # low order 1s cannot roll to infinite high order positions where
+     # 0s should be without invoking a class of infinities
+     print "ror: can't rotate low order bits to infinity\n"
+     scale=os;return s*(A^scale-1)
+   }
+   x/=n
+   if(s<0)x=-1-x
+  scale=os;return x
+}
+
+## Gray Code
+
+# Convert a value to its graycode equivalent
+define graycode(x) {
+  auto n;
+  n=0;if(x<0){n=1;x=-1-x}
+  x=xor(x,x/2)
+  if(n)x=-1-x
+  return x
+}
+
+# Inverse of graycode
+define inverse_graycode(x) {
+  auto os,n,a[],b,i,y
+  os=scale;scale=0
+   x/=1;n=0;if(x<0){n=1;x=-1-x}
+   for(i=0;x;x/=2)a[i++]=x%2
+   y=0;b=0;for(i-=1;i>=0;i--)y=2*y+(b=(b!=a[i]))
+   if(n)y=-1-y
+  scale=os;return y
+}
+
+## 'Multiplication'
+
+# NB: none of these are equivalent to nim multiplication
+
+# Perform bitwise logical OR 'multiplication' of x and y
+define orm(x,y){
+  auto os,s,z;
+  os=scale;scale=0
+  x/=1;y/=1;s=1;if(x<0){x*=-1;s*=-1};if(y<0){y*=-1;s*=-1}
+  z=0;while(y){if(y%2)z=or(z,x);x*=2;y/=2}
+  scale=os;return s*z
+}
+
+# Perform bitwise logical EXCLUSIVE-OR 'multiplication' of x and y
+define xorm(x,y){
+  auto os,s,z;
+  os=scale;scale=0
+  x/=1;y/=1;s=1;if(x<0){x*=-1;s*=-1};if(y<0){y*=-1;s*=-1}
+  z=0;while(y){if(y%2)z=xor(z,x);x*=2;y/=2}
+  scale=os;return s*z
+}
+
+# Perform bitwise logical AND 'multiplication' of x and y
+#   note use of initial z=-1 rather than z=0 to guarantee
+#   best chance of nonzero result
+define andm(x,y){
+  auto os,s,z;
+  os=scale;scale=0
+  x/=1;y/=1;s=1;if(x<0){x*=-1;s*=-1};if(y<0){y*=-1;s*=-1}
+  z=-1;while(y){if(y%2)z=and(z,x);x*=2;y/=2}
+  scale=os;return s*z
+}
+
+## Floating point
+
+# Workhorse for the below; Bitwise multiplier
+bw_mult_ml_ = 1
+bw_mult_sc_ = 0
+define bw_mult_(sc) {
+  if(bw_mult_sc_!=sc)bw_mult_ml_=2^bitwidth(A^(bw_mult_sc_=sc))
+  return 8*bw_mult_ml_
+}
+
+# Perform XOR on binary floating point representations of x and y
+define xorf(x,y){
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t;y*=t
+ scale=os;return( xor(x,y)/t )
+}
+
+# Perform OR on binary floating point representations of x and y
+define orf(x,y){
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t;y*=t
+ scale=os;return( or(x,y)/t )
+}
+
+# Perform AND on binary floating point representations of x and y
+define andf(x,y){
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t;y*=t
+ scale=os;return( and(x,y)/t )
+}
+
+## Floating point + 'Multiplication'
+
+# Perform XOR-M on binary floating point representations of x and y
+define xormf(x,y){
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t;y*=t;t^=2
+ scale=os;return( xorm(x,y)/t )
+}
+
+# Perform OR-M on binary floating point representations of x and y
+define ormf(x,y){
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t;y*=t;t^=2
+ scale=os;return( orm(x,y)/t )
+}
+
+# Perform AND-M on binary floating point representations of x and y
+define andmf(x,y){
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t;y*=t;t^=2
+ scale=os;return( andm(x,y)/t )
+}
+
+## Gray Code + Floating Point
+
+define graycodef(x) {
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t
+ scale=os;return( graycode(x)/t )
+}
+
+define inverse_graycodef(x) {
+ auto os,t
+ os=scale;scale=0
+  t=bw_mult_(os);x*=t
+ scale=os;return( inverse_graycode(x)/t )
+}

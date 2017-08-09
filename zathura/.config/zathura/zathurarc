@@ -1,0 +1,85 @@
+set database sqlite
+
+unmap q
+unmap d 
+unmap <C-q>
+set font "PragmataPro for Powerline 12"
+
+set default-bg "#191C21"
+set default-fg "#969896"
+set statusbar-bg "#060606"
+set statusbar-fg "#666666"
+
+set inputbar-bg "#1d1f21"
+set inputbar-fg "#9f9f9f"
+
+map ; focus_inputbar ":"
+
+set inputbar-bg "#000000"
+set inputbar-fg "#cccccc"
+
+set completion-bg "#232323"
+set completion-fg "#bbbbbb"
+
+set tabbar-bg "#191919"
+set tabbar-fg "#98a7b6"
+set tabbar-focus-bg "#232323"
+set tabbar-focus-fg "#a488d9"
+
+set completion-group-bg "#101010"
+set completion-group-fg "#eeeeee"
+set completion-highlight-fg "#6A9FB5"
+set completion-highlight-bg "#073642"
+
+set highlight-color "#073642"
+set highlight-active-color "#47A2B9"
+
+set completion-bg "#000000"
+set completion-fg "#666666"
+
+set notification-error-bg "#d554dd"
+set notification-error-fg "#eeeeee"
+set notification-warning-bg "#98a7b6"
+set notification-warning-fg "#000000"
+
+set statusbar-bg "#191C21"
+set statusbar-fg "#cccccc"
+
+map <C-[> abort
+map <C-с> abort
+map <F11> toggle_fullscreen
+map <C-l> reload
+map R rotate rotate-ccw
+map <PageUp> navigate previous
+map <PageDown> navigate next
+map <A-1> set "pages-per-row 1"
+map <A-2> set "pages-per-row 2"
+map <C-1> set "first-page-column 1"
+map <C-2> set "first-page-column 2"
+
+set notification-error-bg "#AC4142"
+set notification-error-fg "#151515"
+
+set notification-warning-bg "#AC4142"
+set notification-warning-fg "#151515"
+
+set notification-bg "#191C21"
+set notification-fg "#6A9FB5"
+
+set statusbar-home-tilde true
+set window-title-home-tilde true
+
+# setting recolor-keep true will keep any color your pdf has.
+# if it is false, it'll just be black and white
+set recolor-keephue "false"
+map <A-w> set recolor "true"
+map <C-w> set recolor-keephue "false"
+map <C-e> set recolor-reverse-video "true"
+set recolor-lightcolor "#191C21"
+set recolor-darkcolor "#D3DAE3"
+
+set zoom-step 10
+map [normal] q zoom out
+map [normal] w zoom in
+map [normal] e adjust_window best-fit
+map ,, nohlsearch

@@ -1,0 +1,24 @@
+#S51 Volume Knob
+begin
+ prog = irexec
+ remote = RM-1500
+ button = vol-
+ repeat = 1
+ config = mpc volume -1 
+end
+
+#begin
+# prog = irexec
+# remote = RM-1500
+# button = mute
+# repeat = 1
+# config = if [ `amixer sget Master|grep "Front Left:"|awk '{print $3}'` -gt 0 ]; then alsactl store -f ~/.asound.state; amixer sset Master 0; amixer sset 'Power LED' off; else alsactl restore -f ~/.asound.state; amixer sset 'Power LED' on;  fi 
+#end
+
+begin
+ prog = irexec
+ remote = RM-1500
+ button = vol+
+ repeat = 1
+ config = mpc volume +1
+end

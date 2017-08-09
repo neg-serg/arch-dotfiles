@@ -1,0 +1,17 @@
+! XPDF
+xpdf*viKeys: true
+! XDVI
+xdvi*mainTranslations: #override\
+        <Key>K: up-or-previous()\n\
+        <Key>J: down-or-next()\n\
+        Shift <Btn1Down>: drag(+) \n\
+        <Btn1Down>: drag(|) \n\
+        <Btn2Down>: text-selection()\n\
+        <Btn3Down>: source-special()\n\
+        <Btn4Down>: up-or-previous()\n\
+        <Btn5Down>: down-or-next()
+xdvi*shrinkFactor: 6
+xdvi*editor: gvim --servername VIM --remote
+xdvi*expertMode: 0
+xdvi*mouseMode: 1
+xdvi*noInitFile: true

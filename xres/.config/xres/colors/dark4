@@ -1,0 +1,23 @@
+! /----------------------------------\
+! | synthwave                        |
+! | originally based on dkegs urban  |
+! | https://fsociety.info 2016       |
+! \----------------------------------/
+*.background: [97]#312e39
+*.foreground: #c0a79a
+*.color0:#33303b
+*.color8:#4f4b58
+*.color1:#87404f
+*.color9:#CF4F88
+*.color2:#4c9882
+*.color10:#53A6A6
+*.color3:#71949a
+*.color11:#BF85CC
+*.color4:#615772
+*.color12:#4779B3
+*.color5:#783e57
+*.color13:#7F62B3
+*.color6:#554757
+*.color14:#47959E
+*.color7:#c0a79a
+*.color15:#C0C0C0

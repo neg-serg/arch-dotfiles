@@ -1,0 +1,22 @@
+keycode 222 = XF86PowerOff
+keycode 223 = XF86Sleep
+keycode 236 = XF86Mail
+keycode 229 = XF86Search
+keycode 230 = XF86Favorites
+keycode 178 = XF86WWW
+
+keycode 162 = XF86AudioPlay
+keycode 164 = XF86AudioStop
+keycode 160 = XF86AudioMute
+keycode 124 = XF86AudioPrev
+keycode 125 = XF86AudioNext
+keycode 176 = XF86AudioRaiseVolume
+keycode 174 = XF86AudioLowerVolume
+keycode 172 = XF86AudioPlay
+
+add Mod4 = Super_L
+clear Lock
+remove Lock = 66
+keycode 66 = Control_L
+add Control = Control_L
+keycode 105 = ISO_Level3_Shift

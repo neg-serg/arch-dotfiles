@@ -1,0 +1,18 @@
+!! swap Alt_L with Super_L (my preferred window-manager Mod)
+!! this keeps Super_L closer to the thumb
+!! also make Alt_R=Win and Menu=Alt_R
+remove Mod1 = Alt_L Alt_R
+remove Mod4 = Super_L
+keycode 133 = Alt_L
+keycode 64 = Super_L
+keysym Menu = Alt_R
+keysym Alt_R = Super_L
+add Mod1 = Alt_L Alt_R
+add Mod4 = Super_L
+
+!! remove [useless] Caps_Lock action..
+!! clone Control_L into Caps_Lock instead
+!remove lock = Caps_Lock
+!keysym Caps_Lock = Control_L
+!add lock = Caps_Lock
+!add control = Control_L

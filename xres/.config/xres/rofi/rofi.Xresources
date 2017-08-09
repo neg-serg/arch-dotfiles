@@ -1,0 +1,25 @@
+rofi.font:                          PragmataPro for Powerline 15
+rofi.location:                      6
+rofi.yoffset:                       -22
+rofi.terminal:                      st
+rofi.run-command:                   {cmd}
+rofi.run-shell-command:             st {cmd}
+rofi.levenshtein-sort:              false
+rofi.hide-scrollbar:                false
+rofi.parse-hosts:                   false
+rofi.auto-select:                   false
+
+rofi.fuzzy:                         true
+rofi.glob:                          true
+rofi.tokenize:                      true
+rofi.case-sensitive:                false
+rofi.fixed-num-lines:               false
+
+rofi.separator-style:               solid
+rofi.markup-rows:                   false
+rofi.fullscreen:                    false
+rofi.fake-transparency:             false
+rofi.lazy-filter-limit:             1000
+
+#include </home/neg/.config/xres/rofi/colors.Xresources>
+#include </home/neg/.config/xres/rofi/keys.Xresources>

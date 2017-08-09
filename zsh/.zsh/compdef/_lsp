@@ -1,0 +1,13 @@
+#compdef lsp
+
+_arguments -s \
+	'-a[show hidden files]' \
+	'-c[use ctime instead of mtime]' \
+	'-F[append type indicator to filenames]' \
+	'(-S)-t[sort by time]' \
+	'(-t)-S[sort by size]' \
+	'-r[reverse sort]' \
+	'-h[show help]' \
+	'*:files:_files'
+
+# vim: ft=zsh :

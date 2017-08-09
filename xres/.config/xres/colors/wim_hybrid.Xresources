@@ -1,0 +1,64 @@
+wim.skipBuiltinGlyphs:    true
+wim.lineSpace:            0
+wim.pointerBlank:         true
+wim.pointerColorBackground: #586e75
+wim.pointerColorForeground: #93a1a1
+!wim.allow_bold:           false
+wim.intensityStyles:      false
+!wim.meta8:                true
+
+wim*background:            #E4E4E4
+wim*foreground:            #000000
+wim*cursorColor:           #111111
+
+!--[ black ]--------------------
+wim.color0:#121212
+wim.color8:#3d3d3d
+!--[ red ]----------------------
+wim.color1:#8a2f58
+wim.color9:#a44fcf
+!--[ green ]--------------------
+wim.color2:#287373
+wim.color10:#53a6a6
+!--[yellow ]--------------------
+wim.color3:#914e89
+wim.color11:#bf85cc
+!--[ blue ]---------------------
+wim.color4:#395573
+wim.color12:#4779b3
+!--[ magenta ]------------------
+wim.color5:#5e468c
+wim.color13:#7f62b3
+!--[ cyan ]---------------------
+wim.color6:#2b7694
+wim.color14:#47959e
+!--[ white ]--------------------
+wim.color7:#899ca1
+wim.color15:#c0c0c0
+
+wim.color17:#002b36
+wim.color18:#073642
+
+wim.color22:#2b768d
+wim.color32:#002b36
+wim.color62:#002B36
+wim.color64:#003623
+wim.color77:#2e8b57
+wim.color89:#232030
+wim.color124:#920000
+wim.color125:#680020
+wim.color126:#780000
+wim.color127:#5f0000
+wim.color162:#cc6666
+wim.color230:#eee8d5
+wim.color231:#fdfdfd
+wim.color232:#262626
+wim.color233:#040404
+wim.color234:#080808
+wim.color239:#121212
+wim.color240:#151515
+wim.color244:#586e75
+wim.color235:#373b41
+wim.color250:#666666
+wim.color251:#afa0f0
+wim.color253:#c5c8c6

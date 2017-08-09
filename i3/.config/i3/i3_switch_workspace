@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function gen_workspaces() {
+    i3-msg -t get_workspaces | \
+        tr ',' '\n' | \
+        grep "name" | \
+        sed 's/"name":"\(.*\)"/\1/g' | \
+        sort -n
+}
+
+ws=$( (echo empty; gen_workspaces)  | rofi -dmenu -p "Select workspace:")
+
+if [[ "empty" = "${ws}" ]]; then
+    "${XDG_CONFIG_HOME}/i3/i3_empty_workspace.sh"
+elif [ -n "${ws}" ]; then
+    i3-msg workspace "${ws}"
+fi

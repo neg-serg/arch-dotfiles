@@ -1,0 +1,32 @@
+! Rofi configuration
+! ------------------
+rofi.font: Sansation 18
+rofi.width: 100
+rofi.bw: 0
+rofi.lines: 7
+rofi.padding: 500
+
+rofi.separator-style: solid
+rofi.color-enabled: true
+rofi.color-window: argb:cc000000, #3ea290, #3ea290
+rofi.color-normal: argb:00000000, #888888, argb:00000000, argb:00000000, #3ea290
+rofi.color-active: argb:00000000, #3ea290, argb:00000000, #3ea290, #000000
+rofi.color-urgent: argb:00000000, #52ad91, argb:00000000, #52ad91, #000000
+
+*.color0:       #3d3d3d
+*.color1:       #6673bf
+*.color2:       #3ea290
+*.color3:       #b0ead9
+*.color4:       #31658c
+*.color5:       #596196
+*.color6:       #8292b2
+*.color7:       #c8cacc
+
+*.color8:       #4d4d4d
+*.color9:       #899aff
+*.color10:      #52ad91
+*.color11:      #98c9bb
+*.color12:      #477ab3
+*.color13:      #7882bf
+*.color14:      #95a7cc
+*.color15: #edeff2

@@ -1,0 +1,4 @@
+Emacs.fontBackend:        xft
+Emacs.menuBar:            off
+Emacs.toolBar:            -1
+Emacs.verticalScrollBars: off

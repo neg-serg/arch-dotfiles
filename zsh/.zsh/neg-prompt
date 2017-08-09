@@ -1,0 +1,59 @@
+#!/usr/bin/zsh
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+
+local red_color="%{"$'\033[03;31m'"%}"
+local green_color="%{"$'\033[03;32m'"%}"
+local white_color="%{"$'\033[00;38;5;7m'"%}"
+local dark_blue_color="%{"$'\033[00;38;5;4m'"%}"
+local blue_color="%{"$'\033[00;38;5;61m'"%}"
+local purple_color="%{"$'\033[00;38;5;91m'"%}"
+local black_color="%{"$'\033[00m'"%}"
+
+[[ $UID -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_pretoken="${dark_blue_color}[${NOCOLOR}"
+[[ $UID -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_token="${dark_blue_color}] ${purple_color}>>${NOCOLOR} "
+[[ $UID -eq 0 ]] && _neg_promptcolor=${red_color} && _neg_user_token="# "
+
+# _neg_hashes="$(hash -d|tr -d \')"
+# while read i; do 
+#     what_change=$(echo ${_neg_tilda_path}|grep -o "$(awk -F '=' '{print $2}' <<< ${i})")
+#     if [[ ${what_change} != "" ]]; then
+#         fst_arg=$(awk -F '=' '{print $1}' <<< ${i})
+#         _neg_tilda_path=${fst_arg}
+#     fi
+# done <<< ${_neg_hashes[@]}
+
+setopt sh_word_split
+local _neg_dyn_pwd=""
+local _neg_full_path="$(pwd)"
+local _neg_tilda_path=${_neg_full_path/${HOME}/\~}
+# write the home directory as a tilda
+[[ ${_neg_tilda_path[2,-1]} == "/" ]] && _neg_tilda_path=${_neg_tilda_path[2,-1]}
+# otherwise the first element of split_path would be empty.
+local _neg_forwards_in_tilda_path=${_neg_tilda_path//[^["\/"]/}
+# remove everything that is not a "/"
+local _neg_number_of_elements_in_tilda_path=$(( $#_neg_forwards_in_tilda_path + 1 ))
+# we removed the first forward slash, so we need one more element than the number of slashes
+local _neg_saveIFS="${IFS}"
+IFS="/"
+local _neg_split_path=(${_neg_tilda_path})
+local _neg_start_of_loop=1
+local _neg_end_of_loop=${_neg_number_of_elements_in_tilda_path}
+for i in {$_neg_start_of_loop..$_neg_end_of_loop}; do
+    if [[ $i == $_neg_end_of_loop ]]; then
+        _neg_to_be_added=$_neg_split_path[i]'/'
+        _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+    else
+        _neg_to_be_added=${_neg_split_path[i]}
+        _neg_to_be_added=${_neg_to_be_added}"${blue_color}/${white_color}"
+        # _neg_to_be_added=$_neg_to_be_added[1,1]'/'
+        _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+    fi
+done
+unsetopt sh_word_split
+IFS=${_neg_saveIFS}
+[[ ${_neg_full_path/${HOME}/\~} != ${_neg_full_path} ]] && _neg_dyn_pwd=${_neg_dyn_pwd/\/~/~}
+# remove the slash in front of ${HOME}
+_neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}${black_color}$_neg_user_token%b%k%f"
+# _neg_prompt="%n@%m%F${_neg_promptcolor} $_neg_dyn_pwd[0,-2]${black_color}$_neg_user_token%b%k%f"
+echo ${_neg_prompt}

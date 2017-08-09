@@ -1,0 +1,239 @@
+#--[ View settings ]-----------------------------------------------------------------------------------------------
+set main-view   = line-number:no,interval=5 id:no date:relative author:full commit-title:yes,graph,refs,overflow=no
+set blame-view  = date:relative author:full file-name:auto id:yes,color line-number:no,interval=5 text
+set blob-view   = line-number:yes,interval=1 text
+set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no
+set grep-view   = file-name:no line-number:yes,interval=1 text
+set log-view    = line-number:yes,interval=1 text
+set pager-view  = line-number:yes,interval=1 text
+set refs-view   = date:relative author:full ref commit-title
+set stage-view  = line-number:yes,interval=1 text
+set stash-view  = line-number:no,interval=5 id:no date:default author:full commit-title
+set status-view = line-number:no,interval=5 status:short file-name
+set tree-view   = line-number:no,interval=5 mode author:full file-size date:default id:no file-name
+
+set show-changes        = yes   # Show changes commits in the main view?
+set wrap-lines          = no    # Wrap long lines in pager views?
+set tab-size            = 2     # Number of spaces to use when expanding tabs
+set line-graphics       = utf-8 # Enum: ascii, default, utf-8
+
+set reference-format    = [branch] <tag> {remote} ~replace~
+
+#--[ How to read content from git ]-----------------------------------------------------
+set commit-order               = default   # Enum: default, topo, date, reverse (main)
+set status-show-untracked-dirs = yes       # Show files in untracked directories? (status)
+set ignore-space               = no        # Enum: no, all, some, at-eol (diff)
+set show-notes                 = yes       # When non-bool passed as `--show-notes          = ...` (diff)
+
+set refresh-mode               = auto      # Enum: manual, auto, after-command, periodic
+set refresh-interval           = 10        # Interval in seconds between refreshes
+set ignore-case                = no        # Ignore case when searching?
+set focus-child                = yes       # Move focus to child view when opened?
+set horizontal-scroll          = 50%       # Number of columns to scroll as % of width
+set split-view-height          = 67%       # Number of lines for bottom view as % of height
+set vertical-split             = auto      # Enum: horizontal, vertical, auto; Use auto to
+                                           # switch to horizontal split when width allows it
+set editor-line-number         = yes       # Automatically pass line number to editor? Used
+                                           # for opening file at specific line e.g. from a diff
+set mouse                      = no        # Enable mouse support?
+set mouse-scroll               = 3         # Number of lines to scroll via the mouse
+
+#--[ View switching ]--------
+bind generic    m   view-main
+bind generic    d   view-diff
+bind generic    l   view-log
+bind generic    t   view-tree
+bind generic    f   view-blob
+bind generic    b   view-blame
+bind generic    r   view-refs
+bind generic    p   view-pager
+bind generic    h   view-help
+bind generic    s   view-status
+bind generic    S   view-status     # Compat binding to avoid going crazy!
+bind generic    c   view-stage
+bind generic    y   view-stash
+bind generic    g   view-grep
+
+# View manipulation
+bind generic    <Enter> enter           # Enter and open selected entry
+bind generic    <Lt>    back            # Go back to the previous view state
+bind generic    <Down>  next            # Move to next
+bind generic    <C-N>   next          
+bind generic    <Up>    previous        # Move to previous
+bind generic    <C-P>   previous
+bind generic    ,       parent          # Move to parent
+bind generic    <Tab>   view-next       # Move focus to the next view
+bind generic    R       refresh         # Reload and refresh view
+bind generic    <F5>    refresh
+bind generic    O       maximize        # Maximize the current view
+bind generic    q       view-close      # Close the current view
+bind generic    Q       quit            # Close all views and quit
+
+#--[ View specific ]------------------------------------------------------
+bind status u   status-update           # Stage/unstage changes in file
+bind status !   status-revert           # Revert changes in file
+bind status M   status-merge            # Open git-mergetool(1)
+bind stage  u   status-update           # Stage/unstage current diff (c)hunk
+bind stage  1   stage-update-line       # Stage/unstage current line
+bind stage  !   status-revert           # Revert current diff (c)hunk
+bind stage  \   stage-split-chunk       # Split current diff (c)hunk
+bind stage  @   :/^@@                   # Jump to next (c)hunk
+bind stage  [   :toggle diff-context -1 # Decrease the diff context
+bind stage  ]   :toggle diff-context +1 # Increase the diff context
+bind main   G   :toggle commit-title-graph # Toggle revision graph visualization
+bind main   F   :toggle commit-title-refs  # Toggle reference display (tags/branches)
+
+#--[ Cursor navigation ]---------------
+bind generic    k   move-up
+bind generic    j   move-down
+bind generic    <PgDown> move-page-down
+bind generic    <C-D>   move-page-down
+bind generic    <Space> move-page-down
+bind generic    <PgUp>  move-page-up
+bind generic    <C-U>   move-page-up
+bind generic    -   move-page-up
+bind generic    <Home>  move-first-line
+bind generic    <End>   move-last-line
+
+#--[ Scrolling ]-------------------------
+bind generic    |       scroll-first-col
+bind generic    <Left>  scroll-left
+bind generic    <Right> scroll-right
+bind generic    <Ins>   scroll-line-up
+bind generic    <C-Y>   scroll-line-up
+bind generic    <Del>   scroll-line-down
+bind generic    <C-E>   scroll-line-down
+bind generic    <SBack> scroll-page-up
+bind generic    <SFwd>  scroll-page-down
+
+#--[ Searching ]---------------
+bind generic    /   search
+bind generic    ?   search-back
+bind generic    n   find-next
+bind generic    N   find-prev
+
+#--[ Option manipulation ]----------------------------------------------------------
+bind generic    o   options                 # Open the options menu
+bind generic    I   :toggle sort-order      # Toggle ascending/descending sort order
+bind generic    i   :toggle sort-field      # Toggle field to sort by
+bind generic    D   :toggle date            # Toggle date display
+bind generic    A   :toggle author          # Toggle author display
+bind generic    ~   :toggle line-graphics   # Toggle (line) graphics mode
+bind generic    F   :toggle file-name       # Toggle file name display
+bind generic    W   :toggle ignore-space    # Toggle ignoring whitespace in diffs
+bind generic    ?   :toggle commit-order    # Toggle commit ordering
+
+#--[ Misc ]-----------------------------------------------------
+bind generic    e   edit                # Open in editor
+bind generic    :   prompt              # Open the prompt
+bind generic    <C-L>   screen-redraw   # Redraw the screen
+bind generic    z   stop-loading        # Stop all loading views
+bind generic    v   show-version        # Show Tig version
+
+#--[ Color settings ]----------------------
+color "diff --"             yellow  default
+color "@@"                  magenta default
+color "+"                   green   default
+color " +"                  green   default
+color "-"                   red     default
+color " -"                  red     default
+color "index "              blue    default
+color "old file mode "      yellow  default
+color "new file mode "      yellow  default
+color "deleted file mode "  yellow  default
+color "copy from "          yellow  default
+color "copy to "            yellow  default
+color "rename from "        yellow  default
+color "rename to "          yellow  default
+color "similarity "         yellow  default
+color "dissimilarity "      yellow  default
+color "diff-tree "          blue    default
+color "Author: "            cyan    default
+color "Commit: "            magenta default
+color "Tagger: "            magenta default
+color "Merge: "             blue    default
+color "Date: "              yellow  default
+color "AuthorDate: "        yellow  default
+color "CommitDate: "        yellow  default
+color "TaggerDate: "        yellow  default
+color "Refs: "              red     default
+color "Reflog: "            red     default
+color "Reflog message: "    yellow  default
+color "stash@{"             magenta default
+color "commit "             green   default
+color "parent "             blue    default
+color "tree "               blue    default
+color "author "             green   default
+color "committer "          magenta default
+color "    Signed-off-by"   yellow  default
+color "    Acked-by"        yellow  default
+color "    Tested-by"       yellow  default
+color "    Reviewed-by"     yellow  default
+color default               default default normal
+color cursor                white   18
+color title-blur            black   blue
+color title-focus           black   blue
+color status                green   default
+color delimiter             magenta default
+color date                  blue    default
+color mode                  cyan    default
+color id                    magenta default
+color overflow              red default
+color header                yellow  default
+color section               cyan    default
+color directory             yellow  default
+color file                  default default
+color grep.file             blue    default
+color file-size             default default
+color line-number           cyan    default
+color title-blur            white   blue
+color title-focus           white   blue    bold
+color main-commit           default default
+color main-tag              magenta default bold
+color main-local-tag        magenta default
+color main-remote           yellow  default
+color main-replace          cyan    default
+color main-tracked          yellow  default bold
+color main-ref              cyan    default
+color main-head             cyan    default bold
+color stat-none             default default
+color stat-staged           magenta default
+color stat-unstaged         magenta default
+color stat-untracked        magenta default
+color help-group            blue    default
+color help-action           yellow  default
+color diff-stat             blue    default
+color palette-0             magenta default
+color palette-1             yellow  default
+color palette-2             cyan    default
+color palette-3             green   default
+color palette-4             default default
+color palette-5             white   default
+color palette-6             red default
+color graph-commit          blue    default
+
+#--[ Mappings for colors read from git configuration. ]--
+#--[ Set to "no" to disable. ]---------------------------
+set git-colors = \
+    branch.current=main-head \
+    branch.local=main-ref \
+    branch.plain=main-ref \
+    branch.remote=main-remote \
+    \
+    diff.meta=diff-header \
+    diff.meta=diff-index \
+    diff.meta=diff-oldmode \
+    diff.meta=diff-newmode \
+    diff.frag=diff-chunk \
+    diff.old=diff-del \
+    diff.new=diff-add \
+    \
+    grep.filename=grep.file \
+    grep.linenumber=grep.line-number \
+    grep.separator=grep.delimiter \
+    \
+    status.branch=status.header \
+    status.added=stat-staged \
+    status.updated=stat-staged \
+    status.changed=stat-unstaged \
+    status.untracked=stat-untracked

@@ -1,0 +1,14 @@
+write
+-l
+dir
+fuzzy
+mpvsocket
+input-ipc-server
+offline
+log
+offline
+ExecStart
+bounce
+fre
+yes
+dupl

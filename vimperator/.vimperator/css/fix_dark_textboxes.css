@@ -1,0 +1,25 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document url-prefix(http), url-prefix(file) {
+
+pre, input, textarea {
+   color: black !important;
+   background: white !important;
+   border-left-color: gray !important;
+   border-right-color: gray !important;
+   border-top-color: gray !important;
+   border-bottom-color: gray !important;
+}
+
+/* Uncomment this part if you also want to apply to forms and the like. */
+input:not([type="button"]):not([type="checkbox"])
+:not([type="submit"]):not([type="reset"]), 
+select {
+    color: black !important;
+    border-left-color: gray !important;
+    border-right-color: gray !important;
+    border-top-color: gray !important;
+    border-bottom-color: gray !important;
+}
+ 
+}

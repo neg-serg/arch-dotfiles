@@ -1,0 +1,141 @@
+/*
+  Author: Twily      2014
+  Website: http://twily.info/
+
+  This style is based on https://userstyles.org/styles/31267/global-dark-style-changes-everything-to-dark
+*/
+
+/* AGENT_SHEET */
+@namespace html url(http://www.w3.org/1999/xhtml);
+@namespace xul url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+
+/*----- SITES TO EXCLUDE -----*/
+@-moz-document regexp("https?://(?!(localhost|twily.info|.*.4chan.org|.*.facebook.com|.*.dnb.no|.*.yourworldoftext.com)).*"),
+url-prefix(ftp://), url-prefix(about), url-prefix(javascript) {
+    /* global background and colors */
+    html { background: #121212 !important; }
+    
+    hr { visibility: hidden !important; height: 10px !important; }
+    
+    * {
+        color: #7A7A7A !important; text-shadow: none !important;
+        background-color: transparent !important; box-shadow: none !important;
+        border-color: #1A1A1A !important;
+        border-top-color: #1A1A1A !important; border-bottom-color: #1A1A1A !important;
+        border-left-color: #1A1A1A !important; border-right-color: #1A1A1A !important;
+    }
+    *:before, *:after { background-color: transparent !important; border-color: #1A1A1A !important; }
+    
+    /* links */
+    a, a *, a:link, a:link *
+    a:visited, a:visited * {
+        color: #55468c !important; text-decoration: none !important;
+    }
+    a:hover, a:hover *,
+    a:active, a:active * {
+        color: #b359a4 !important; text-decoration: underline !important;
+    }
+    
+    /* input */
+    input[type="text"] *, input[type="password"] *, textarea * {
+        -moz-appearance: none !important;
+        background: #1A1A1A !important; color: #737373 !important;
+        border: 0 !important;
+    }
+    input[type="button"], input[type="submit"],
+    input[type="button"] *, input[type="submit"] *,
+    button, button * {
+        -moz-appearance: none !important;
+        background-color: #3B3B3B !important; color: #737373 !important;
+        border: 0 !important;
+    }
+ 
+    select, select * {
+        -moz-appearance: none !important; border: 0 !important;
+        background: #1A1A1A !important; color: #737373 !important;
+    }
+    
+    /* headlines */
+    h1, h2, h3, h4, h5, h6, h1 *, h2 *, h3 *, strong, [id*="headline"], [class*="headline"], [id*="header"], [class*="header"] td { color: #858585 !important; }
+    a h1, a h2, a h3, a h4, a h5, a h6, h1 a, h2 a, h3 a, a strong, a[id*="headline"], a[class*="headline"], a[id*="header"], a[class*="header"] { text-decoration: underline !important; }
+    
+    [class*="error"], [class*="alert"], code, span[onclick], div[onclick] { color: #8E5055 !important; }
+    
+    ::-moz-selection { background: #8c4681 !important; color: #0D0D0D !important; }
+    :focus { outline: none !important; }
+    
+    div[style="display: block;"] { background: rgba(0,0,0,.2) !important; }
+    
+    table {
+        background: #1A1A1A !important;
+    }
+    table > tbody > tr:nth-child(even),
+    table > tbody > tr > td:nth-child(even) {
+        background-color: rgba(0,0,0,.2) !important;
+    }
+    
+    /* menu etc */
+    iframe, embed, header, nav, footer, label [onclick], nav ul, div[style*="position:"][style*="left:"][style*="visible"],
+    div[style*="z-index:"][style*="left:"][style*="visible"], div[style*="-moz-user-select"], div[role="menu"], div[role="dialog"],
+    span[class*="script"] div, [id*="menu"], [class*="dropdown"], [class*="popup"], [class*="title"],
+    ul[style*="display:"], ul[style*="visibility:"] ul, [id*="nav"] ul, [class*="menu"], a[onclick][style*="display"], a[id*="ghosteryfirefox"],
+    #ghostery-purple-bubble, #translator-popup, .menu, .tooltip, .hovercard, .vbmenu_popup {
+        background: rgba(0,0,0,.2) !important;
+    }
+    
+    /* images */
+    img { opacity: 0.7 !important; transition: .2s !important; }
+    img:hover, a:hover img { opacity: 1 !important; }
+   
+    img.decoded { background: none !important; }
+    
+    body, *:not(:empty):not(html):not(span):not(a):not(b):not(option):not(img):not([style="display: block;"]):not([onclick*="open"]):not([onclick*="s_objectID"])
+    :not([class*="stars"]):not([id="rating"]):not([class="rating"]):not([class*="SPRITE"]):not([id*="SPRITE"]):not([class*="item"]):not([id*="item"])
+    :not([class*="thumb"]):not([class*="icon"]):not(.text):not([id*="lbImage"]):not([class*="cc-in"]):not([class*="gr-body"]):not([id*="watch"]):not(#globalsearch):not(.sp),
+    .r3_hm, .gmbutton2 b, .gtab-i, .ph, .bstab-iLft, .csb, #pagination div, [style*="sprite2.png"], #mw-head-base, #mw-page-base {
+        background-image: none !important;
+    }
+}
+
+/* ----- ABOUT PAGES BACKGROUND ----- */
+@-moz-document url-prefix(about) {
+    * { background: none #121212 !important; }
+    body > * { background-color: #121212 !important; }
+    #list-view, #list-view * { background-color: #1A1A1A !important; }
+    #detail-view, #detail-view * { background: #1A1A1A !important; }
+    #addons-page > * >  *, #addons-page > * > * > * > * { border-color: transparent !important; }
+}
+
+/* --- CUSTOM WEBSITES --- */
+@-moz-document domain("yourworldoftext.com") { /* Your World Of Text */
+    * { background: #121212 !important; color: #666 !important; }
+    .active-cursor { background: #8c466a !important; color: #aaa !important; }
+    td[style*="background-color"] { color: #b3596b !important; }
+}
+
+@-moz-document domain("coolandspicy.net") { /* Cool and Spicy */
+     #wrapper { background: #121212 !important; }
+}
+
+@-moz-document domain("teknik.io") { /* Teknik Desktops */
+    .navbar { background: #121212 !important; }
+    .btn, .btn * { background: #6b59b3 !important; color: #ccc !important; border-radius: 2px !important; }
+    .btn:hover, .btn:hover * { background: #b35987 !important; color: #eee !important; }
+    .tag { background: #8c466a !important; padding: 4px !important; border-radius: 2px !important; }
+       .tag * { color: #ccc !important; font-size: 8pt !important;  }
+       
+     #viewDesktop *, #viewCreation * { background-color: #121212 !important; }
+       #viewDesktop .close, #viewCreation .close { color: #6b59b3 !important; opacity: 1 !important; }
+       #viewDesktop img, #viewCreation img { opacity: 1 !important; }
+       .img-rounded { border-radius: 2px !important; }
+}
+
+@-moz-document domain("stumbleupon.com") { /* StumbleUpOn */
+    .icon.stumble .loader { background: #6b59b3 !important; }
+       .icon.stumble .text { color: #ccc !important; }
+       .icon.stumble .text:hover { background: #b35987 !important; color: #eee !important; }
+}
+
+/*----- FIX WHITE NEW TAB FLASH -----*/
+tabbrowser tabpanels, #appcontent > #content { background: #1A1A1A !important; }
+

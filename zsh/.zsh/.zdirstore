@@ -1,0 +1,7 @@
+if [ -d ~/.zsh ]; then pushd -q ~/.zsh; fi
+if [ -d ~/.vim/ruby ]; then pushd -q ~/.vim/ruby; fi
+if [ -d ~/.vim ]; then pushd -q ~/.vim; fi
+if [ -d ~/.vim/bundle/vim-powerline/plugin ]; then pushd -q ~/.vim/bundle/vim-powerline/plugin; fi
+if [ -d ~/.vim/bundle/vim-powerline/autoload/Powerline/Themes ]; then pushd -q ~/.vim/bundle/vim-powerline/autoload/Powerline/Themes; fi
+if [ -d ~/.vim/bundle/vim-powerline/autoload ]; then pushd -q ~/.vim/bundle/vim-powerline/autoload; fi
+if [ -d ~/.vim/bundle ]; then pushd -q ~/.vim/bundle; fi

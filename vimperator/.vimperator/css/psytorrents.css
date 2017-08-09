@@ -1,0 +1,31 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("tba.psytorrents.info") {
+
+body {
+font: normal .72em/1.5em Verdana, 'Trebuchet MS', sans-serif;
+color: #fff;
+background: #384467 !important;
+}
+
+a {
+color: #000 !important;
+}
+
+a:hover {
+color: #0072CF !important;
+background: inherit !important;
+}
+
+#header {
+background: #000 !important;
+}
+
+#menu {
+background: #384467 !important;
+font: bold 1.1em/1.5em Verdana, 'Trebuchet MS', sans-serif !important;
+color: #fff !important;
+}
+
+
+}

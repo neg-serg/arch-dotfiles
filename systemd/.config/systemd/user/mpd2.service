@@ -1,0 +1,11 @@
+[Unit]
+Description=Music Player Daemon
+After=network.target sound.target
+
+[Service]
+ExecStart=/usr/bin/mpd --no-daemon /home/neg/.mpd.conf
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target

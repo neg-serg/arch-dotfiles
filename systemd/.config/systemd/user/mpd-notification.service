@@ -1,0 +1,11 @@
+[Unit]
+Description=MPD Notification
+After=network.target sound.target mpd2.service
+
+[Service]
+ExecStart=/usr/bin/mpd-notification
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target

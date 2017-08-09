@@ -1,0 +1,950 @@
+#compdef openssl
+
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for openssl, based on 1.0.1e 11 Feb 2013
+#
+#  Last updated: 29.06.2013
+#
+# ------------------------------------------------------------------------------
+# Authors
+# -------
+#
+#  * Valodim ( https://github.com/Valodim )
+#
+# ------------------------------------------------------------------------------
+#
+# This completion is anything but complete! However, adding more stuff is at
+# this point just monkey work, and I lost motivation. I might add some more
+# here and there. Feel free to add more yourself, at this point it should be
+# simple to write completions for most subcommands with copy & paste.
+#
+# Oh, also missing are engine names for -engine completion. Yeah.
+#
+#    asn1parse
+#  x ca
+#    ciphers
+#    cms
+#    crl
+#  x crl2pkcs7
+#  x dgst
+#  x dh
+#    dhparam
+#  x dsa
+#  x dsaparam
+#    ec
+#    ecparam
+#  x enc
+#    engine
+#  x errstr
+#    gendh
+#  x gendsa
+#    genpkey
+#  x genrsa
+#  x nseq
+#    ocsp
+#  x passwd
+#    pkcs12
+#  x pkcs7
+#  x pkcs8
+#    pkey
+#    pkeyparam
+#    pkeyutl
+#  x prime
+#  x rand
+#    req
+#  x rsa
+#    rsautl
+#  x s_client
+#    s_server
+#    s_time
+#    sess_id
+#  x smime
+#  x speed
+#    spkac
+#  x srp
+#    ts
+#  x verify
+#  x version
+#  x x509
+#
+# ------------------------------------------------------------------------------
+
+_openssl_build_cache () {
+
+    local param=_openssl_${1//-/_}
+    typeset -gHa $param
+
+    if _cache_invalid openssl-$1 || ! _retrieve_cache openssl-$1; then
+        eval $param=$2
+        _store_cache openssl-$1 $param
+    fi
+
+}
+
+_openssl_pass () {
+
+    # completing a source parameter?
+    if compset -P '(#b)(*):'; then
+        case $match[1] in
+            pass) _message 'password' ;;
+             env) _parameters -g '*export*' ;;
+            file) _files ;;
+              fd) _message 'file descriptor (number)' ;;
+               *) _message 'unknown password source' ;;
+        esac
+        return 0
+    fi
+
+    local expl
+
+    # complete password sources
+    _wanted -V pass-source expl 'password source' \
+        compadd -S: -- pass env file fd
+    _wanted -V pass-source expl 'password source' \
+        compadd -- stdin
+
+    return 0
+
+}
+
+_openssl_hostport () {
+
+    if compset -P '*:'; then
+        _message -e ports 'port number'
+    else
+        compset -S ':*' 
+        _hosts -S : -r ' \t\n\-'
+
+    fi
+
+    return 0
+
+}
+
+_openssl_ciphers () {
+
+    integer ret=1
+    local expl
+
+    _tags cipher-algorithms-aliases cipher-algorithms 
+    while _tags; do
+        if _requested cipher-algorithms expl 'Cipher Algorithms'; then
+            _openssl_build_cache cipher-algorithms '( ${${(f)"$(_call_program openssl-$1 openssl list-$1)"}:#*=*} )'
+            compadd "$expl[@]" "$@" -a _openssl_cipher_algorithms && ret=0
+        fi
+
+        if _requested cipher-algorithms-aliases expl 'Cipher Algorithm Aliases'; then
+            _openssl_build_cache cipher-algorithms-aliases '( ${${(M)${(f)"$(_call_program openssl-$1 openssl list-cipher-algorithms)"}:#[A-Z0-9-]# =*}%% =*} )'
+            compadd "$expl[@]" "$@" -a _openssl_cipher_algorithms_aliases && ret=0
+        fi
+        (( ret )) || break
+    done
+
+    return ret
+}
+
+_openssl_x509_nameopt () {
+
+    # trivial support for negation - just ignore the minus
+    compset -P '-'
+
+    local -a formats
+    formats=(
+       'compat:use old format'
+       'RFC2253:format compatible with RFC2253'
+       'oneline:oneline format, more readable than RFC2253'
+       'multiline:a multiline format'
+    )
+
+    _describe -t x509-formats 'Output Formats' formats
+
+    _wanted x509-nameopts expl 'Name Options' compadd -- \
+       esc_2253 esc_ctrl esc_msb use_quote utf8 no_type show_type \
+       dump_der dump_nostr dump_all dump_unknown \
+       sep_comma_plus sep_comma_plus_space sep_semi_plus_space sep_multiline \
+       dn_rev nofname sname lname oid align space_eq
+
+}
+
+_openssl_x509_textopt () {
+
+    _wanted x509-textopts expl 'Text Options' compadd -- \
+       compatible ca_default \
+       no_header no_version no_serial no_signame no_validity \
+       no_subject no_issuer no_pubkey no_sigdump no_aux no_extensions \
+       ext_default ext_error ext_parse ext_dump \
+
+}
+
+_openssl_c_ca () {
+
+    _arguments \
+       '-startdate[certificate validity notBefore]:date (YYMMDDHHMMSSZ)' \
+       '-enddate[certificate validity notAfter]:date (YYMMDDHHMMSSZ)' \
+       '-verbose[print extra information]' \
+       '-days[specify number of days to certify for]:certification time (days)' \
+       '-in[certificate request input file]:input filename (PEM):_files' \
+       '-out[output file]:output filename:_files' \
+       '-config[set config file]:config file:_files' \
+       '-name[specify config file section]:config section' \
+       '-md[message digest algorithm to use]:message digest algorithm:( md2 md5 sha sha1 )' \
+       '-policy[specify CA policy to support]:policy' \
+       '-keyfile[set private key file to sign requests with]' \
+       '-keyform[set private key file format]:file format:( PEM ENGINE )' \
+       '-key[private key decryption key]:key' \
+       '-cert[specify CA cert file]:CA cert:_files' \
+       '-selfsign[sign certificate with its own key]' \
+       '*-in[input PEM encoded certificate request]:cert request (PEM):_files -g "*.(pem|cer|crt)"' \
+       '*-out[output file]:output file:_files' \
+       '-outdir[set output dir]:output directory:_files -/' \
+       '-spkac[sign specified SPKAC formatted file]:SPKAC file:_files' \
+       '-ss_cert[sign specified self signed cert]:self signed cert:_files' \
+       '-preserveDN[do not reorder DN]' \
+       '-noemailDN[omit email field in certificate subject]' \
+       '-batch[process non-interactively, do not ask before signing certificates]' \
+       '-msie_hack[enable hack for old msie certenr3 format]' \
+       '-subj[override request subject]:subject' \
+       '-utf8[use utf8 for input instead of ASCII]' \
+       '-multivalue-rdn[support multivalued RDNs]' \
+       '-extensions[specify extension section]:extension section' \
+       '-extfile[config file with X509v3 extensions]:config file:_files' \
+       '-engine[specify engine]:id:' \
+       '-status[show certificate status for specified serial number]:serial number' \
+       '-updatedb[update db for expired certificates]' \
+       '-gencrl[Generate a new CRL]' \
+       '-crldays[set days until next CRL]:days' \
+       '-crlhours[set hours until next CRL]:hours' \
+       '-crlexts[specify CRL extension section]:CRL extension section' \
+       '-crl_reason[set CRL revocation reason]:recovation reason' \
+       '-crl_hold[set CRL hold instruction]:instruction:( holdInstructionNone holdInstructionCallIssuer holdInstructionReject )' \
+       '-crl_compromise[use keyCompromise as revocation reason with specified compromise time]:date (YYMMDDHHMMSSZ)' \
+       '-crl_CA_compromise[use CACompromise as revocation reason with specified compromise time]:date (YYMMDDHHMMSSZ)' \
+       '-revoke[revoke specified certificate]:cert file:_files' \
+       '-infiles[requests to process]:*CA request:_files' \
+        && return 0
+
+}
+
+_openssl_c_crl2pkcs7 () {
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER PEM)' \
+       '-outform[specify output format]:output format:(DER PEM)' \
+       '-in[input filename]:input filename:_files' \
+       '-out[output filename]:output filename:_files' \
+       '*-certfile[certificate chain files to trusted CA]:certificate file:_files' \
+       '-nocrl[do not load crl (load certs from -certfile only)]' \
+        && return 0
+
+}
+
+_openssl_c_dgst () {
+
+    if (( CURRENT == 2 )) && [[ $words[1] == dgst ]]; then
+        local expl
+        _openssl_build_cache message-digest-algorithms '( ${${(f)"$(_call_program openssl-$1 openssl list-$1)"}:#*=*} )'
+        _wanted digest-algorithm expl 'Digest Algorithm' \
+            compadd -P - -a _openssl_message_digest_algorithms && return 0
+    else
+        _arguments \
+           '-c[print digest in two digit groups separated by colons]' \
+           '-d[print out BIO debugging information]' \
+           '-hex[output digest as a hex dump]' \
+           '-binary[output the digest or signature in binary form]' \
+           '-hmac[specify HMAC key]:hmac key' \
+           '-non-fips-allow[allow use of non FIPS digest]' \
+           '-passin[input file password source]:password source:_openssl_pass' \
+           '-sign[digitally sign the digest using the private key in "filename"]:private key file:_files' \
+           '-keyform[specify key format to sign digest with]:key format:( PEM ENGINE )' \
+           '-sigopt[pass algorithm specific options]:algorithm option (key\:string)' \
+           '-verify[verify the signature using specified public key]:public key file:_files' \
+           '-prverify[verify the signature using specified private key]:private key file:_files' \
+           '-signature[specify signature to verify]:signature file:_files' \
+           '-hmac[create a hashed MAC using specified key]:hmac key' \
+           '-mac[create MAC]:MAC algorithm:( HMAC ghost-mac )' \
+           '-macopt[pass mac specific options]:MAC option (key\:string)' \
+           '-rand[specify random seed files]:random file(s):{compset -P "*\:"; _files -S \: -q}' \
+           '*:input files:_files' \
+            && return 0
+    fi
+
+}
+
+_openssl_c_dh () {
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER PEM)' \
+       '-outform[specify output format]:output format:(DER PEM)' \
+       '-in[input filename]:input filename:_files' \
+       '-out[output filename]:output filename:_files' \
+       '-check[check the dh paramters]' \
+       '(-C -noout)-text[output human readable text]' \
+       '(-text -noout)-C[output C code]' \
+       '(-text -C)-noout[suppress output]' \
+       '-engine[specify engine]:id:' \
+        && return 0
+
+}
+
+_openssl_c_dsa () {
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER PEM)' \
+       '-outform[specify output format]:output format:(DER PEM)' \
+       '-in[input filename]:input filename:_files' \
+       '-passin[input file password source]:password source:_openssl_pass' \
+       '-out[output filename]:output filename:_files' \
+       '-passout[output file password source]:password source:_openssl_pass' \
+       '-sgckey[use modified NET algorithm (for Microsoft IIS and SGC keys)]' \
+       '(-des3 -idea)-des[encrypt private key with DES]' \
+       '(-des -idea)-des3[encrypt private key with triple DES]' \
+       '(-des -des3)-idea[encrypt private key with IDEA]' \
+       '-text[print key components in addition to the encoded version]' \
+       '-noout[do not output encoded key]' \
+       '-modulus[print modulus of the key]' \
+       '-check[check consistency of RSA private key]' \
+       '-pubin[read public key instead of private]' \
+       '-pubout[write public key only]' \
+       '-engine[specify engine]:id:' \
+        && return 0
+
+}
+
+_openssl_c_dsaparam () {
+
+    integer ret=1
+    local curcontext="$curcontext" state line
+    declare -A opt_args
+
+    _arguments -C \
+       '-inform[specify input format]:input format:(DER PEM)' \
+       '-outform[specify output format]:output format:(DER PEM)' \
+       '-in[specify input filename]:file:_files' \
+       '-out[specify output filename]:file:_files' \
+       '-text[print the certificate in text form]' \
+       '-C[print the certificate in C code form]' \
+       '-noout[do not output encoded key]' \
+       '-genkey[generate dsa key]' \
+       '-rand[specify random seed files]:file(s):{compset -P "*\:"; _files -S \: -q}' \
+       '-engine[specify engine]:id:' \
+       ': :->bits' && ret=0
+
+    # this is kind of a hack, but _arguments screws up with unspecified numeric arguments :\
+    case $state in
+      (bits)
+          [[ $words[$CURRENT] == '' || -prefix [0-9] ]] && _message -e dsaparam-bits 'number of bits' && ret=0
+        ;;
+    esac
+
+    return ret
+}
+
+_openssl_c_enc () {
+
+    if (( CURRENT == 2 )) && [[ $words[1] == enc ]]; then
+        _openssl_ciphers -P - && return 0
+    else
+        _arguments \
+           '-in[specify input filename]:file:_files' \
+           '-out[specify output filename]:file:_files' \
+           '-pass[the password source]:password source:_openssl_pass' \
+           '-e[encrypt input data (default)]' \
+           '-d[decrypt input data]' \
+           '(-base64 -a)'{-base64,-a}'[base64 process the data]' \
+           '-A[process on one line if base64 processing is enabled]' \
+           '-k[the password to derive the key from (deprecated)]:password' \
+           '-kfile[read the password to derive the key from the first line of filename (deprecated)]:password file:_files' \
+           '-nosalt[do not use a salt]' \
+           '-salt[use salt when encrypting (default)]' \
+           '-S[specify actual salt to use]:salt (hex digits)' \
+           '-K[specify the actual key to use]:key (hex digits)' \
+           '-iv[specify the actual IV to use]:iv (hex digits)' \
+           '-p[print out the key and IV]' \
+           '-P[print out the key and IV and exit]' \
+           '-bufsize[specify buffer size for I/O]:buffer size (bytes)' \
+           '-nopad[disable standard block padding]' \
+           '-debug[debug the BIOs used for I/O]' \
+           '-z[compress or decompress clear text using zlib before encryption or after decryption]' \
+           '-none[use NULL cipher]' \
+            && return 0
+    fi
+
+}
+
+_openssl_c_errstr () {
+
+    _arguments \
+        ':Error Code: ' \
+     && return 0
+
+}
+
+_openssl_c_gendsa () {
+
+    _arguments \
+       '-out[output filename]:output filename:_files' \
+       '(-des3 -idea)-des[encrypt private key with DES]' \
+       '(-des -idea)-des3[encrypt private key with triple DES]' \
+       '(-des -des3)-idea[encrypt private key with IDEA]' \
+       '-rand[specify random seed files]:file(s):{compset -P "*\:"; _files -S \: -q}' \
+       '-engine[specify engine]:id:' \
+       ':DSA parameter file:_files'\
+        && return 0
+
+}
+
+_openssl_c_genrsa () {
+
+    integer ret=1
+    local curcontext="$curcontext" state line
+    declare -A opt_args
+
+    _arguments -C \
+       '-out[output filename]:output filename:_files' \
+       '-passout[output file password source]:password source:_openssl_pass' \
+       '(-des3 -idea)-des[encrypt private key with DES]' \
+       '(-des -idea)-des3[encrypt private key with triple DES]' \
+       '(-des -des3)-idea[encrypt private key with IDEA]' \
+       '(-F4 -3)'{-F4,-3}'[public exponent to use]:exponent:(65537 3)' \
+       '-rand[specify random seed files]:file(s):{compset -P "*\:"; _files -S \: -q}' \
+       '-engine[specify engine]:id:' \
+       ': :->rsa-key-size' \
+        && ret=0
+
+    # this is kind of a hack, but _arguments screws up with unspecified numeric arguments :\
+    case $state in
+      (rsa-key-size)
+          [[ $words[$CURRENT] == '' || -prefix [0-9] ]] && _message -e rsa-key-size 'rsa key size (bits)' && ret=0
+        ;;
+    esac
+
+    return ret
+}
+
+
+_openssl_c_nseq () {
+
+    _arguments \
+       '-in[input filename]:input filename:_files' \
+       '-out[output filename]:output filename:_files' \
+       '-toseq[generate netscape certificate sequence (default extract)]' \
+        && ret=0
+
+    return ret
+}
+
+_openssl_c_passwd () {
+
+    integer ret=1
+    local curcontext="$curcontext" state line
+    declare -A opt_args
+
+    _arguments -C \
+       '-crypt[use standard Unix password algorithm (default)]' \
+       '-1[use MD5-based password algorithm]' \
+       '-apr1[use MD5-based password algorithm, Apache variant]' \
+       '-salt[use provided salt]:salt' \
+       '-in[read passwords from file]:input file:_files' \
+       '-stdin[read passwords from stdin]' \
+       '-noverify[never verify when reading password from terminal]' \
+       '-quiet[disable warnings]' \
+       '-table[format output as table]' \
+       '-reverse[switch table columns]' \
+       '*:password:->password' && ret=0
+
+    # this is kind of a hack, but _arguments screws up with unspecified numeric arguments :\
+    case $state in
+      (password)
+          [[ $words[$CURRENT] == '' || -prefix [^-] ]] && _message -e password 'password(s)' && ret=0
+        ;;
+    esac
+
+    return ret
+
+}
+
+_openssl_c_pkcs7 () {
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER PEM)' \
+       '-outform[specify output format]:output format:(DER NET PEM)' \
+       '-in[input filename]:input filename:_files' \
+       '-out[output filename]:output filename:_files' \
+       '-print_certs[print any certs or crl in the input]' \
+       '-text[print full details of certificates]' \
+       '-noout[do not output encoded data]' \
+       '-engine[specify engine]:id:' \
+        && return 0
+
+}
+
+_openssl_c_pkcs8 () {
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER PEM)' \
+       '-outform[specify output format]:output format:(DER PEM)' \
+       '-in[input filename]:input filename:_files' \
+       '-out[output filename]:output filename:_files' \
+       '-passin[input file password source]:password source:_openssl_pass' \
+       '-passout[output file password source]:password source:_openssl_pass' \
+       '(-nooct -embed -nsdb)-topk8[output PKCS8 file]' \
+       '(-topk8 -embed -nsdb)-nooct[use (nonstandard) no octet format]' \
+       '(-topk8 -nooct -nsdb)-embed[use (nonstandard) embedded DSA parameters format]' \
+       '(-topk8 -nooct -embed)-nsdb[use (nonstandard) DSA Netscape DB format]' \
+       '-noiter[use 1 as iteration count]' \
+       '-nocrypt[use or expect unencrypted private key]' \
+       '(-v1)-v2[use PKCS#5 v2.0 with spcified cipher]:cipher:_openssl_ciphers' \
+       '(-v2)-v1[use PKCS#5 v1.5 with spcified cipher]:cipher:( \
+            PBE-MD2-DES PBE-MD5-DES PBE-SHA1-RC2-64 PBE-MD2-RC2-64 \
+            PBE-MD5-RC2-64 PBE-SHA1-DES PBE-SHA1-RC4-128 PBE-SHA1-RC4-40 \
+            PBE-SHA1-3DES PBE-SHA1-2DES PBE-SHA1-RC2-128 PBE-SHA1-RC2-40 \
+        )' \
+       '-engine[specify engine]:id:' \
+        && return 0
+
+}
+
+_openssl_c_pkey () {
+
+    # we get extendedglob from _openssl 
+    if (( ${#${(@M)words:#-[A-Z][A-Z0-9-]#}} == 0 )); then
+        _openssl_ciphers -P - && ret=0
+    fi
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER PEM)' \
+       '-outform[specify output format]:output format:(DER PEM)' \
+       '-in[input filename]:input filename:_files' \
+       '-out[output filename]:output filename:_files' \
+       '-passin[input file password source]:password source:_openssl_pass' \
+       '-passout[output file password source]:password source:_openssl_pass' \
+       '-text[prints out key components in plain text]' \
+       '-text_pub[print only public key components in plain text]' \
+       '-noout[do not output encoded version of the key]' \
+       '-pubin[read public rather than private key from input file]' \
+       '-pubout[write public rather than private key from input file]' \
+       '-engine[specify engine]:id:' \
+        && return 0
+}
+
+_openssl_c_prime () {
+
+    # missing _arguments hack... hm.
+
+    _arguments \
+       '-checks[number of checks to perform]:number of checks' \
+       '-hex[read prime as hex string]' \
+       ':prime:' \
+        && return 0
+
+}
+
+_openssl_c_rand () {
+
+    integer ret=1
+    local curcontext="$curcontext" state line
+    declare -A opt_args
+
+    _arguments -C \
+       '-out[output filename]:output filename:_files' \
+       '-rand[specify random seed files]:file(s):{compset -P "*\:"; _files -S \: -q}' \
+       '-base64[encode output in base64]' \
+       '-hex[print output as hex string]' \
+       '*: :->rand-bytes' \
+        && ret=0
+
+    # this is kind of a hack, but _arguments screws up with unspecified numeric arguments :\
+    case $state in
+      (rand-bytes)
+          [[ $words[$CURRENT] == '' || -prefix [0-9] ]] && _message -e rand-bytes  'number of random bytes'&& ret=0
+        ;;
+    esac
+
+    return ret
+
+}
+
+_openssl_c_rsa () {
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER NET PEM)' \
+       '-outform[specify output format]:output format:(DER NET PEM)' \
+       '-in[input filename]:input filename:_files' \
+       '-passin[input file password source]:password source:_openssl_pass' \
+       '-out[output filename]:output filename:_files' \
+       '-passout[output file password source]:password source:_openssl_pass' \
+       '-sgckey[use modified NET algorithm (for Microsoft IIS and SGC keys)]' \
+       '(-des3 -idea)-des[encrypt private key with DES]' \
+       '(-des -idea)-des3[encrypt private key with triple DES]' \
+       '(-des -des3)-idea[encrypt private key with IDEA]' \
+       '-text[print key components in addition to the encoded version]' \
+       '-noout[do not output encoded key]' \
+       '-modulus[print modulus of the key]' \
+       '-check[check consistency of RSA private key]' \
+       '-pubin[read public key instead of private]' \
+       '-pubout[write public key only]' \
+       '-engine[specify engine]:id:' \
+        && return 0
+
+}
+
+_openssl_c_s_client () {
+
+    _arguments \
+       '-connect[specify the host and optional port to connect to]:host\:port:_openssl_hostport' \
+       '-cert[certificate to use, if one is requested by the server]:certname:_files' \
+       '-certform[specify certificate format to use]:format:( DER PEM )' \
+       '-key[specify private key to use]:keyfile:_files' \
+       '-keyform[private format to use]:format:( DER PEM )' \
+       '-pass[the private key password source]:password source:_openssl_pass' \
+       '-verify[specify verification depth]:depth' \
+       '-CApath[directory to use for server certificate verification]:directory:_files -/' \
+       '-CAfile[file containing trusted certificates to use during server authentication]:file:_files' \
+       '-reconnect[reconnect 5 times using the same session ID]' \
+       '-pause[pauses 1 second between each read and write call]' \
+       '-showcerts[display whole server certificate chain]' \
+       '-prexit[print session information at exit]' \
+       '-state[prints out the SSL session states]' \
+       '-debug[print extensive debugging information including a hex dump of all traffic]' \
+       '-msg[show all protocol messages with hex dump]' \
+       '-nbio_test[tests non-blocking I/O]' \
+       '-nbio[turns on non-blocking I/O]' \
+       '-crlf[translate line feeds from the terminal into CR+LF]' \
+       '(-quiet)-ign_eof[do not shut down at eof]' \
+       '-quiet[do not print session and certificate information]' \
+       '-psk_identity[use specified identity when using a PSK cipher suite]:identity' \
+       '-psk[specify psk key]:key (hexadecimal)' \
+       '-bugs[enable workarounds for a number of known bugs in ssl implementations]' \
+       '-cipher[set accepted cipher list]:cipherlist' \
+       '-starttls[use starttls protocol]:protocol:( smtp pop3 imap ftp )' \
+       '-tlsextdebug[print out a hex dump of any TLS extensions received from the server]' \
+       '-no_ticket[disable RFC4507bis session ticket support]' \
+       '-sess_out[output SSL session to filename]:session file (pem):_files -g "*.pem"' \
+       '-sess_in[load SSL session from filename to resume from]:session file (pem):_files -g "*.pem"' \
+       '-engine[specify engine]:id:' \
+       '-rand[specify random seed files]:file(s):{compset -P "*\:"; _files -S \: -q}' \
+       '-purpose[verify for given purpose]:purpose:( sslclient sslserver nssslserver smimesign smimeencrypt )' \
+       '-issuer_checks[print diagnostics related to issuer certificate searches]' \
+       '*-policy[enable policy processing with given user-initial-policy-set]:policy' \
+       '-policy_check[enable certificate policy processing]' \
+       '-ignore_critical[do not reject certificate if an unsupported critical extension is present]' \
+       '-x509_strict[strict X.509 compliance, disable non-compliant workarounds for broken certificates]' \
+       '-extended_crl[enable extended CRL features]' \
+       '-check_ss_sig[verify the signature on the self-signed root CA]' \
+       '-crl_check[Checks end entity certificate validity by attempting to look up a valid CRL]' \
+       '-crl_check_all[Checks the validity of all certificates in the chain by attempting to look up valid CRLs]' \
+     - exclusive \
+       '-ssl2' '-ssl3' '-tls1' \
+     - inclusive \
+       '-no_ssl2' '-no_ssl3' '-no_tls1' \
+       && return 0
+
+}
+
+_openssl_c_smime () {
+
+    integer ret=1
+
+    # we get extendedglob from _openssl 
+    if (( ${#${(@M)words:#-[A-Z][A-Z0-9-]#}} == 0 )); then
+        _openssl_ciphers -P - && ret=0
+    fi
+
+    _arguments \
+       '(-decrypt -sign -verify -resign)-encrypt[encrypt message]' \
+       '(-encrypt -sign -verify -resign)-decrypt[decrypt encrypted message]' \
+       '(-encrypt -decrypt -verify -resign)-sign[sign message]' \
+       '(-encrypt -decrypt -sign -resign)-verify[verify signed message]' \
+       '(-encrypt -decrypt -sign -verify)-resign[add signers to existing message]' \
+       '-pk7out[output PKCS#7 structure]' \
+       '(-stream -indef)'{-stream,-indef}'[enable streaming I/O for encoding operations]' \
+       '-noindef[disable streaming I/O]' \
+       '-nointern[do not search certificates in message for signer]' \
+       '-nochain[do not use chained certification]' \
+       '-nosigs[do not verify message signature]' \
+       '-noverify[do not verify signers certificate]' \
+       '-nocerts[do not include signers certificate when signing]' \
+       '-nodetach[use opaque signing]' \
+       '-noattr[do not include any signed attributes]' \
+       '-binary[do not translate message to text]' \
+       '-certfile[other certificates file]:certificate file:_files' \
+       '-signer[signer certificate file]:certificate file:_files' \
+       '-recip[recipient certificate file]:certificate file:_files' \
+       '(-signer -recip)-inkey[input private key]:certificate file:_files' \
+       '-content[supply or override content for detached signature]:content file:_files' \
+       '-to[email to address]:to address:_email_address' \
+       '-from[email from address]:from address:_email_address' \
+       '-subject[email subject]:subject' \
+       '-text[add (or remove) text/plain MIME headers]' \
+       '-in[input filename]:input filename:_files' \
+       '-inform[specify input format]:input format:(SMIME DER PEM)' \
+       '-keyform[specify private key format]:key format:(PEM ENGINE)' \
+       '-out[output filename]:output filename:_files' \
+       '-outform[specify output format]:output format:(SMIME DER PEM)' \
+       '-CApath[directory to use for server certificate verification]:cert directory:_files -/' \
+       '-CAfile[file containing trusted certificates to use during server authentication]:trusted cert file:_files' \
+       '-crl_check[Checks end entity certificate validity by attempting to look up a valid CRL]' \
+       '-crl_check_all[Checks the validity of all certificates in the chain by attempting to look up valid CRLs]' \
+       '-engine[specify engine]:id:' \
+       '-passin[input file password source]:password source:_openssl_pass' \
+       '-rand[specify random seed files]:file(s):{compset -P "*\:"; _files -S \: -q}' \
+       '-purpose[verify for given purpose]:purpose:( sslclient sslserver nssslserver smimesign smimeencrypt )' \
+       '-issuer_checks[print diagnostics related to issuer certificate searches]' \
+       '*-policy[enable policy processing with given user-initial-policy-set]:policy' \
+       '-policy_check[enable certificate policy processing]' \
+       '-ignore_critical[do not reject certificate if an unsupported critical extension is present]' \
+       '-x509_strict[strict X.509 compliance, disable non-compliant workarounds for broken certificates]' \
+       '-extended_crl[enable extended CRL features]' \
+       '-check_ss_sig[verify the signature on the self-signed root CA]' \
+       '-crl_check[Checks end entity certificate validity by attempting to look up a valid CRL]' \
+       '-crl_check_all[Checks the validity of all certificates in the chain by attempting to look up valid CRLs]' \
+       '*:recipient certificates:_files' \
+        && ret=0
+
+    return ret
+
+}
+
+_openssl_c_speed () {
+
+    # can't properly parse this dynamically, since the values are given in a
+    # hardly specified format, and only as an error message in &2.
+
+    _arguments \
+       '-e[specify EVP]:EVP e' \
+       '-decrypt[time decryption rather than encryption (EVP only)]' \
+       '-mr[produce machine readable output]' \
+       '-multi[run multiple benchmarks]:threads' \
+       '-engine[specify engine]:id:' \
+       '*:test:(
+            md4      md5      hmac     sha1     sha256   sha512   whirlpoolrmd160 \
+            seed-cbc rc2-cbc  bf-cbc \
+            des-cbc  des-ede3 aes-128-cbc aes-192-cbc aes-256-cbc aes-128-ige aes-192-ige aes-256-ige  \
+            camellia-128-cbc camellia-192-cbc camellia-256-cbc rc4 \
+            rsa512   rsa1024  rsa2048  rsa4096 \
+            dsa512   dsa1024  dsa2048 \
+            ecdsap160 ecdsap192 ecdsap224 ecdsap256 ecdsap384 ecdsap521 \
+            ecdsak163 ecdsak233 ecdsak283 ecdsak409 ecdsak571 \
+            ecdsab163 ecdsab233 ecdsab283 ecdsab409 ecdsab571 \
+            ecdsa \
+            ecdhp160  ecdhp192  ecdhp224  ecdhp256  ecdhp384  ecdhp521 \
+            ecdhk163  ecdhk233  ecdhk283  ecdhk409  ecdhk571 \
+            ecdhb163  ecdhb233  ecdhb283  ecdhb409  ecdhb571 \
+            ecdh \
+            seed     rc2      des      aes      camellia rsa      blowfish \
+        )' \
+        && return 0
+
+}
+
+_openssl_c_srp () {
+
+    integer ret=1
+    local curcontext="$curcontext" state line
+    declare -A opt_args
+
+    _arguments -C \
+       '(-modify -delete -list)-add[add user and srp verifier]' \
+       '(-add -delete -list)-modify[modify srp verifier of an existing user]' \
+       '(-add -modify -list)-delete[delete user from verifier file]' \
+       '(-add -modify -delete)-list[list users]' \
+       '-verbose[print extra information]' \
+       '-config[set config file]:config file:_files' \
+       '-name[use specifed srp definition]:srp definition name' \
+       '-srpvfile[set srp verifier file]:srp verifier file:_files' \
+       '-gn[specify g and N values to be used for new verifier]' \
+       '-userinfo[set additional info for user]:additional info' \
+       '-passin[input file password source]:password source:_openssl_pass' \
+       '-passout[output file password source]:password source:_openssl_pass' \
+       '-engine[specify engine]:id:' \
+       '-rand[specify random seed files]:file(s):{compset -P "*\:"; _files -S \: -q}' \
+       ':user:->srp-user' \
+        && ret=0
+
+    # this is kind of a hack, but _arguments screws up with unspecified numeric arguments :\
+    case $state in
+      (srp-user)
+          [[ $words[$CURRENT] == '' || -prefix [^-] ]] && _message -e srp-user  'user' && ret=0
+        ;;
+    esac
+
+    return ret
+
+}
+
+_openssl_c_verify () {
+
+    _arguments \
+       '-CApath[directory to use for server certificate verification]:cert directory:_files -/' \
+       '-CAfile[file containing trusted certificates to use during server authentication]:trusted cert file:_files' \
+       '-untrusted[file containing untrusted certificates]:untrusted cert file:_files' \
+       '-purpose[verify for given purpose]:purpose:( sslclient sslserver nssslserver smimesign smimeencrypt )' \
+       '-issuer_checks[print diagnostics related to issuer certificate searches]' \
+       '*-policy[enable policy processing with given user-initial-policy-set]:policy' \
+       '-policy_check[enable certificate policy processing]' \
+       '-explicit_policy[set policy variable require-explicit-policy]' \
+       '-inhibit_any[set policy variable inhibit-any-policy]' \
+       '-inhibit_map[set policy variable inhibit-policy-mapping]' \
+       '-policy_print[print diagnostics related to policy processing]' \
+       '-crl_check[Checks end entity certificate validity by attempting to look up a valid CRL]' \
+       '-crl_check_all[Checks the validity of all certificates in the chain by attempting to look up valid CRLs]' \
+       '-ignore_critical[do not reject certificate if an unsupported critical extension is present]' \
+       '-x509_strict[strict X.509 compliance, disable non-compliant workarounds for broken certificates]' \
+       '-extended_crl[enable extended CRL features]' \
+       '-use_deltas[enable support for delta CRLs]' \
+       '-check_ss_sig[verify the signature on the self-signed root CA]' \
+       '-verbose[print extra information]' \
+       '(- *)-help[print out a usage message]' \
+       '*:certificate file:_files' \
+        && return 0
+
+}
+
+_openssl_c_version () {
+
+    _arguments \
+       '-a[print all]' \
+       '-v[print the current OpenSSL version]' \
+       '-b[print the date the current version of OpenSSL was built]' \
+       '-o[print option information: various options set when the library was built]' \
+       '-c[print compilation flags]' \
+       '-p[print platform setting]' \
+       '-d[print OPENSSLDIR setting]' \
+        && return 0
+
+}
+
+_openssl_c_x509 () {
+
+    _arguments \
+       '-inform[specify input format]:input format:(DER PEM NET)' \
+       '-outform[specify output format]:output format:(DER PEM NET)' \
+       '-keyform[specify private key format]:key format:(DER PEM)' \
+       '-CAform[specify CA format]:CA format:(DER PEM NET)' \
+       '-CAkeyform[specify CA key format]:CA key format:(DER PEM NET)' \
+       '-in[input filename]:input filename:_files' \
+       '-passin[input file password source]:password source:_openssl_pass' \
+       '-out[output filename]:output filename:_files' \
+       '-serial[print serial number value]' \
+       {-hash,-subject_hash}'[print subject hash value]' \
+       '-subject_hash_old[print old-style (MD5) subject hash value]' \
+       '-issuer_hash[print issuer hash value]' \
+       '-issuer_hash_old[print old-style (MD5) issuer hash value]' \
+       '-subject[print subject DN]' \
+       '-issuer[print issuer DN]' \
+       '-email[print email address(es)]' \
+       '-startdate[notBefore field]' \
+       '-enddate[notAfter field]' \
+       '-purpose[print out certificate purposes]' \
+       '-dates[both Before and After dates]' \
+       '-modulus[print the RSA key modulus]' \
+       '-pubkey[output the public key]' \
+       '-fingerprint[print the certificate fingerprint]' \
+       '-alias[output certificate alias]' \
+       '-noout[no certificate output]' \
+       '-ocspid[print OCSP hash values for the subject name and public key]' \
+       '-ocsp_uri[print OCSP Responder URL(s)]' \
+       '-trustout[output a "trusted" certificate]' \
+       '-clrtrust[clear all trusted purposes]' \
+       '-clrreject[clear all rejected purposes]' \
+       '-addtrust[trust certificate for a given purpose]:purpose:( clientAuth serverAuth emailProtection )' \
+       '-addreject[reject certificate for a given purpose]:purpose:( clientAuth serverAuth emailProtection )' \
+       '-setalias[set certificate alias]:alias' \
+       '-days[specify expiry date]:expiry time (days)' \
+       '-checkend[check whether the cert expires in specified number of seconds]:expiry time (seconds)' \
+       '-signkey[self sign cert with specified key]:key' \
+       '-x509toreq[output a certification request object]' \
+       '-req[input is a certificate request, sign and output]' \
+       '-CA[set CA certificate file]:CA certificate (pem):_files -g "*.pem"' \
+       '-CAkey[set CA certificate key file]:CA certificate key (pem):_files -g "*.pem"' \
+       '-CAcreateserial[create serial number file if it does not exist]' \
+       '-CAserial[set CA serial file]:CA serial file:_files' \
+       '-set_serial[set serial number to use]:serial number' \
+       '-text[print the certificate in text form]' \
+       '-C[print the certificate in C code form]' \
+       '-md2[use md2 digest]' \
+       '-md5[use md5 digest]' \
+       '-sha1[use sha1 digest]' \
+       '-mdc2[use mdc2 digest]' \
+       '-extfile[configuration file with X509V3 extensions to add]:configuration file:_files' \
+       '-extensions[specify section from config file with X509V3 extensions to add]:section' \
+       '-clrext[delete extensions before signing and input certificate]' \
+       '-engine[specify engine]:id:' \
+       '*-nameopt[set various certificate name options]:option:_openssl_x509_nameopt' \
+       '*-certopt[set various certificate text options]:option:_openssl_x509_textopt' \
+        && return 0
+
+}
+
+_openssl_commands () {
+
+    local expl ret=1
+    _tags pseudo-commands standard-commands cipher-commands message-digest-commands
+
+    while _tags; do
+        _requested -V pseudo-commands expl 'Pseudo Commands' \
+            compadd list-standard-commands list-message-digest-commands \
+                    list-cipher-commands list-cipher-algorithms list-message-digest-algorithms \
+                    list-public-key-algorithms && ret=0
+
+        _requested -V standard-commands expl "Standard Commands" \
+            compadd -a _openssl_standard_commands && ret=0
+
+        _requested -V message-digest-commands expl "Message Digest Commands" \
+            compadd -a _openssl_message_digest_commands && ret=0
+
+        _requested -V cipher-commands expl "Cipher Commands" \
+            compadd -a _openssl_cipher_commands && ret=0
+
+        (( ret )) || break
+    done
+
+    return ret
+
+}
+
+_openssl () {
+
+    setopt localoptions extendedglob
+
+    # set up some cached data for later
+    local types
+    types=( standard-commands cipher-commands message-digest-commands )
+    for t in $types; _openssl_build_cache $t '( ${${(f)"$(_call_program openssl-$1 openssl list-$1)"}:#*=*} )'
+
+    integer ret=1
+    local curcontext="$curcontext" state line
+    declare -A opt_args
+
+    _arguments -C \
+      '(-): :->command' \
+      '(-)*:: :->option-or-argument' && ret=0
+
+    case $state in
+      (command)
+        _openssl_commands && ret=0
+        ;;
+      (option-or-argument)
+        curcontext=${curcontext%:*:*}:openssl-$words[1]:
+        if (( $+functions[_openssl_c_$words[1]] )); then
+            _openssl_c_$words[1] && ret=0
+        elif (( $+_openssl_message_digest_commands[(r)${words[1]#-}] )); then
+            _openssl_c_dgst && ret=0
+        elif (( $+_openssl_cipher_commands[(r)${words[1]#-}] )); then
+            _openssl_c_enc && ret=0
+        else
+            _message "no completion for command ${words[1]#-}"
+            _files
+            ret=0
+        fi
+        ;;
+    esac
+
+    return ret
+
+}
+
+_openssl "$@"

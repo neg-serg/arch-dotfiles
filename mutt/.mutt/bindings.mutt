@@ -1,0 +1,57 @@
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop 
+
+bind pager p previous-unread # NOT to JUMP to next/prev one!
+bind pager n next-unread # It's better to use p & p for this
+bind pager ,p print-message # Print message when viewing it
+
+macro pager W "|urlscan 2> /dev/null\n"
+macro index S "!~/.mutt/scripts/msgnum.sh\r"
+
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+macro index p "<enter-command>set pager_index_lines=30"
+macro index P "<enter-command>set pager_index_lines=0"
+
+bind index g noop
+bind pager g noop
+bind attach g noop
+
+macro index ZQ   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+
+bind index gg first-entry
+bind index G last-entry
+bind index R group-reply
+bind index u sync-mailbox
+bind index <space> collapse-thread
+bind index _ collapse-all
+bind compose p postpone-message
+bind pager k previous-line
+bind pager j next-line
+bind pager gg top
+bind pager G bottom
+bind pager R group-reply
+bind attach <return> view-mailcap
+bind attach,browser,pager,index ZZ exit
+
+macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"
+
+macro index,pager,attach gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager,attach ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
+macro index,pager,attach gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent mail"
+macro index,pager,attach gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
+macro index,pager,attach g* "<change-folder>=[Gmail].Starred<enter>" "Go to starred"
+macro index,pager,attach gt "<change-folder>=[Gmail].Trash<enter>" "Go to trash"
+macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
+
+# 'A' shows all messages again (supersedes default <alias> binding)
+macro index A "<limit>all\n" "show all messages (undo limit)"
+macro index X "|~/.mutt/mimedump"
+macro pager X "|~/.mutt/mimedump"
+
+macro index g/ "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/external/mutt-notmuch-py/mutt-notmuch-py<enter><change-folder-readonly>~/tmp/mutt_results<enter>" \
+          "search mail (using notmuch)"
+
+# vim:ft=muttrc

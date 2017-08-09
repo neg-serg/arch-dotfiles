@@ -1,0 +1,5 @@
+style "vimfix" {
+  bg[NORMAL] = "#000000" # this matches my gvim theme 'Normal' bg color.
+}
+widget "vim-main-window.*GtkForm" style "vimfix"
+gtk-key-theme-name="Vim"

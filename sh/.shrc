@@ -1,0 +1,47 @@
+if [ -x $(which cope_path 2> /dev/null) ]; then
+    _cope_path=$(cope_path)
+    for i in $_cope_path/*; do alias $i=\"$i\" 2> /dev/null; done
+    alias df="$_cope_path/df -hT"
+fi
+
+alias pstree="pstree -U "$@" | sed '
+	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
+	s/[{}]/\x1B[31m&\x1B[0m/g
+	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
+alias pscpu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
+alias psmem='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
+
+alias '?=bc -l <<<'
+
+alias ls="ls --color=auto"   # do we have GNU ls with color-support?
+if [[ ! -x "${BIN_HOME}/l" ]]; then
+    if  [[ -x "${BIN_HOME}/lsp" ]]; then
+        alias l="lsp"
+        if [[ -x "/usr/bin/vendor_perl/ls++" ]]; then 
+            alias l="ls++"; 
+        else 
+            alias l="ls -aChkopl --group-directories-first --color=auto";
+        fi
+    fi
+fi
+
+function mp(){ for i; do mpv --input-unix-socket=~/tmp/mpv_socket "${i}"; done }
+alias mpa="mpv -fs -ao null --input-unix-socket=${HOME}/tmp/mpv_socket"
+alias grep="grep --color=auto"
+
+alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
+
+alias u="umount"
+
+alias s="sudo"
+alias x='xargs'
+alias rd="rmdir"
+
+alias tree="tree --dirsfirst -C"
+alias acpi="acpi -V"
+
+alias gdb8="gdb -x ${XDG_CONFIG_HOME}/gdb/gdbinit8.gdb"
+alias gdbv="gdb -x ${XDG_CONFIG_HOME}/gdb/voltron.gdb"
+alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
+
+alias gs='git status --short -b'

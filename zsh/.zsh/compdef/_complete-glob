@@ -1,0 +1,34 @@
+#compdef -k menu-select ^x^i
+
+function _complete-glob() {
+
+    local gresult format REPLY
+
+
+    # get glob results
+    setopt localoptions nullglob
+    gresult=( ${~words[$CURRENT]} )
+
+    # got none? just mention it then
+    (( $#gresult > 0 )) || { _message "No matches for $PREFIX" && return 0 }
+
+    # we can't use _description, for some reason it screws up menu-select! sheesh!
+    # gotta find the formats ourselves... anyone got a better solution, let me know.
+    zstyle -s ":completion:${curcontext}:$1" format format \
+        || zstyle -s ":completion:${curcontext}:descriptions" format format \
+        || format="%d"
+
+    # add the old glob, for good measure
+    zformat -f REPLY "$format" "d:Original glob"
+    compadd -U -Q -V glob -X $REPLY -- $PREFIX
+
+    # clear prefix
+    PREFIX=
+
+    # add actual matches
+    zformat -f REPLY "$format" "d:Glob matches"
+    compadd -V matches -X $REPLY -f -a gresult
+
+}
+
+_complete-glob "$@"
