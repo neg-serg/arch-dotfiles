@@ -6,3 +6,12 @@
 	path = @doom_emacs/.emacs.d
     url = https://github.com/hlissner/.emacs.d
 	ignore = untracked
+[submodule "@tmux/.tmux/tmux-yank"]
+	path = @tmux/.tmux/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank
+[submodule "@tmux/.tmux/tmux-fingers"]
+	path = @tmux/.tmux/tmux-fingers
+	url = https://github.com/Morantron/tmux-fingers
+[submodule "@tmux/.tmux/tmux-resurrect"]
+	path = @tmux/.tmux/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
