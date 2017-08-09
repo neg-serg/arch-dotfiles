@@ -1,0 +1,8 @@
+[submodule "@spacemacs/.emacs.d"]
+	path = @spacemacs/.emacs.d
+	url = https://github.com/syl20bnr/spacemacs
+	ignore = untracked
+[submodule "@doom_emacs/.emacs.d"]
+	path = @doom_emacs/.emacs.d
+    url = https://github.com/hlissner/.emacs.d
+	ignore = untracked
