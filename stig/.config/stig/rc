@@ -1,0 +1,14 @@
+set tui.theme neg.theme
+# Host that runs Transmission daemon
+# set srv.url otherhost:123
+
+# Poll every 10 seconds
+set tui.poll 4
+
+# Default columns in torrent lists
+set columns.torrents name ratio rate-up rate-down
+
+# Open a few tabs
+tab ls active --sort !progress,path,!rate
+tab ls paused --sort !progress --columns name,progress,ratio,size
+tab ls isolated --sort tracker --columns name,path
