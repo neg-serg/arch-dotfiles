@@ -6,9 +6,9 @@ set tui.theme neg.theme
 set tui.poll 4
 
 # Default columns in torrent lists
-set columns.torrents name ratio rate-up rate-down
+# set columns.torrents name ratio rate-up rate-down
 
-# Open a few tabs
-tab ls active --sort !progress,path,!rate
-tab ls paused --sort !progress --columns name,progress,ratio,size
-tab ls isolated --sort tracker --columns name,path
+# # Open a few tabs
+# tab ls active --sort !progress,path,!rate
+# tab ls paused --sort !progress --columns name,progress,ratio,size
+# tab ls isolated --sort tracker --columns name,path
