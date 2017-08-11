@@ -1,0 +1,13 @@
+[Unit]
+Description=transmission service
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/transmission-daemon -g /home/neg/.config/transmission-daemon -f --log-error
+Restart=on-failure
+RestartSec=30
+ExecReload=/bin/kill -s HUP $MAINPID
+
+[Install]
+WantedBy=default.target
