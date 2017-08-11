@@ -587,6 +587,8 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('icymind/NeoSolarized')
         "solarized-24bit
         call dein#add('ericbn/vim-solarized')
+        "breezy: nice new neovim colorscheme
+        call dein#add('fneu/breezy')
         "dracula colorscheme
         call dein#add('dracula/vim')
         "dark and cold colorscheme

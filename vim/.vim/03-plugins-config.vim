@@ -1000,7 +1000,7 @@ if dein#tap('lightline.vim')
         \ 'component_type': {
         \   'syntastic': 'error',
         \ },
-        \ 'colorscheme': 'Dracula',
+        \ 'colorscheme': 'breezy',
         \ 'separator': { 'left': '▒', 'right': '▒' },
         \ 'subseparator': { 'left': '┆', 'right': '┆' }
     \ }
