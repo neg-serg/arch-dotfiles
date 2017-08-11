@@ -61,7 +61,7 @@ hide_edge_borders both
 #------------------------------------------
 set $exit mode "default"
 bindsym $alt+e mode ""
-#bindsym $mod+r mode ""
+bindsym $mod+r mode ""
 bindsym $mod+Shift+w mode ""
 #------------------------------------------
 bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
@@ -160,9 +160,6 @@ for_window [window_type="(?i)^(dialog|menu|utility|toolbar)$"] floating enable, 
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
-#for_window [class="^headset$"] floating enable
-#for_window [title="^Headset - Player$"] move container to workspace trash
-
 mode "" {
     #-------------------------------------------------------
     bindsym c mode ""
@@ -195,14 +192,10 @@ mode "" {
 }
 
 bindsym $mod+F1 exec ~/.config/i3/circle.py next jetbrains-idea
-bindsym $mod+x exec ~/.config/i3/circle.py next term
-bindsym $mod+1 exec ~/.config/i3/circle.py next wim
+bindsym $mod+{x,1} exec ~/.config/i3/circle.py next {term,wim}
 bindsym $mod+Shift+1 exec ~/.config/i3/circle.py next emacs
-bindsym $mod+Control+v exec ~/.config/i3/circle.py next vm
-bindsym $mod+Control+e exec ~/.config/i3/circle.py next steam
-bindsym $mod+w exec ~/.config/i3/circle.py next web
-bindsym $mod+b exec ~/.config/i3/circle.py next vid
-bindsym $mod+o exec ~/.config/i3/circle.py next doc
+bindsym $mod+Control+{v,e} exec ~/.config/i3/circle.py next {vm,steam}
+bindsym $mod+{w,b,o} exec ~/.config/i3/circle.py next {web,vid,doc}
 bindsym $mod+Control+q kill
 bindsym $alt+g exec rofi -show
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
@@ -273,11 +266,9 @@ for_window [class="_weechat_"] move scratchpad, move absolute position 112 33, r
 
 exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
-exec python3 ~/.config/i3/disable-standby-fs.py
-exec python3 ~/.config/i3/nsd.py
-exec python3 ~/.config/i3/circled.py
-exec python3 ~/.config/i3/flastd.py
-
-exec --no-startup-id clipster -d
+exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/disable-standby-fs.py
+exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/nsd.py
+exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/circled.py
+exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/flastd.py
 
 # vim:filetype=i3
