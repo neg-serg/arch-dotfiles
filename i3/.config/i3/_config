@@ -104,6 +104,12 @@ bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
 bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
 
+
+for_window [window_type="dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+for_window [window_type="menu"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+for_window [window_type="utility"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+for_window [window_type="toolbar"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+
 for_window $browsers  move container to workspace $web, workspace $web, focus
 for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
 for_window [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] floating enable, move container to workspace $dev, workspace $dev, focus
@@ -156,7 +162,6 @@ for_window [title="^Compress.*"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
 for_window [title="^webcam$"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
-for_window [window_type="(?i)^(dialog|menu|utility|toolbar)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
