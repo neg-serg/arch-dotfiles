@@ -1,0 +1,52 @@
+
+" twittperator.js
+let g:twittperator_use_chirp = 1
+let g:twittperator_screen_name = "anekos"
+let g:twittperator_history_limit = 5000
+let g:twittperator_use_ssl_connection_for_api_ep = 1
+let g:twittperator_lang = "ja"
+let g:twittperator_count = 50
+
+let g:twittperator_plugin_sstp = 0
+let g:twittperator_plugin_setuden = 0
+let g:twittperator_plugin_urusai_namakubi = 0
+let g:twittperator_plugin_echo_tweet = 0
+let g:twittperator_plugin_reply_popup_alert = 0
+let g:twittperator_plugin_twlist_win = 0
+let g:twittperator_plugin_pong = 1
+let g:twittperator_plugin_colorful_log_writer = 1
+let g:twittperator_plugin_add_url_completer = 1
+let g:twittperator_plugin_anti_goji = 1
+let g:twittperator_plugin_twsidebar = 1
+let g:twittperator_plugin_eject_alert = 1
+let g:twittperator_plugin_eject_alert_device = '/dev/sr0'
+let g:twittperator_plugin_ril = 1
+let g:twittperator_plugin_mstrans = 1
+let g:twittperator_plugin_copy = 1
+let g:twittperator_plugin_twsidebar_expand_url = 1
+
+" twittperator.js
+nnoremap <Leader>ww :<C-u>tw<Space>
+nnoremap <Leader>wr :<C-u>tw<Space>@
+nnoremap <Leader>wR :<C-u>tw<Space>RT<Space>@
+nnoremap <Leader>W  :<C-u>tw!<Space>
+nnoremap <Leader>w@ :<C-u>tw!@
+nnoremap <Leader>wa :<C-u>tw!@
+nnoremap <Leader>wA :<C-u>tw!sbm<Space>
+nnoremap <Leader>wf :<C-u>tw!+
+nnoremap <Leader>w? :<C-u>tw!?
+nnoremap <Leader>w/ :<C-u>tw!/
+nnoremap <Leader>wc :<C-u>tw!copy<Space>
+nnoremap <Leader>wi :<C-u>tw!info<Space>
+nnoremap <Leader>wt :<C-u>tw!track<Space>
+nnoremap <Leader>wT :<C-u>tw!thread<Space>
+nnoremap <Leader>wd :<C-u>tw!delete<Space>
+nnoremap <Leader>wh :<C-u>tw!home<Space>
+nnoremap <Leader>ws :<C-u>tw!status<Space>
+nnoremap <Leader>wl :<C-u>tw!ril<Space>
+
+nnoremap <Leader>w1 :<C-u>tws<Space>tab<Space>0<CR>
+nnoremap <Leader>w2 :<C-u>tws<Space>tab<Space>1<CR>
+nnoremap <Leader>w3 :<C-u>tws<Space>tab<Space>2<CR>
+nnoremap <Leader>w4 :<C-u>tws<Space>tab<Space>3<CR>
+nnoremap <Leader>w5 :<C-u>tws<Space>tab<Space>4<CR>

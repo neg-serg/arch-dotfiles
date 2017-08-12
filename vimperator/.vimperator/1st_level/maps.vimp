@@ -1,0 +1,161 @@
+" Add Mapping `C-c' copy or stop loading
+javascript <<EOF
+mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text or stop loading',
+  function(){
+    var sel = window.content.window.getSelection().toString();
+    if (sel){
+      copyToClipboard(sel,true);
+    } else {
+      BrowserStop();
+    }
+  }
+);
+EOF
+
+map <C-O> <NOP>
+map <C-\> <NOP>
+
+noremap # gt
+noremap E gT
+
+map  gr gT
+
+map <C-S-w> <NOP>
+nmap <C-S-w> <NOP>
+vmap <C-S-w> <NOP>
+imap <C-S-w> <NOP>
+cmap <C-S-w> <NOP>
+map <C-q> <NOP>
+nmap <C-q> <NOP>
+vmap <C-q> <NOP>
+imap <C-q> <NOP>
+cmap <C-q> <NOP>
+map <F1> <NOP>
+map q <NOP>
+
+map  <C-tab> <NOP>
+nmap <C-n> <NOP>
+
+noremap j 3j
+noremap k 3k
+
+noremap Km :set gui=navigation <Enter>
+noremap KM :set gui=none <Enter>
+
+map  U :undo<Space>
+map <F4> gn
+
+imap  <C-y> <S-Ins>
+map  <C-y> <S-Ins>
+cmap  <C-y> <S-Ins>
+vmap  <C-y> <S-Ins>
+nnoremap  w b
+map $ <End>
+
+cnoremap <C-[> <Esc>
+inoremap <C-[> <Esc>
+cnoremap <C-ъ> <Esc>
+inoremap <C-ъ> <Esc>
+
+cnoremap <Esc> <C-[>
+inoremap <Esc> <C-[>
+cnoremap <Esc> <C-[>
+inoremap <Esc> <C-[>
+
+" hints-for-embedded.js
+let g:hints_for_embedded_mode = "e"
+
+" walk-input
+let g:walk_input_map_forward = '<C-,>'
+let g:walk_input_map_backward = '<C-.> <C-S-,>'
+
+nmap <silent> ,, :noh<CR>
+imap <C-y> <S-Ins>
+cmap <C-y> <S-Ins>
+vmap <C-y> <S-Ins>
+
+map <C-p> <Up>
+imap <C-p> <Up>
+map <C-n> <Down>
+imap <C-n> <Down>
+map <C-b> <Left>
+map <C-f> <Right>
+
+map <silent> B :bmarks<CR>
+
+map <silent> <F4> :set complete=lS<CR>
+map <silent> <F5> :set complete=bookmark<CR>
+nmap ,d :downloads<CR>
+
+imap <c-a> <home>
+cmap <c-a> <home>
+imap <a-f> <C-Right>
+cmap <a-f> <C-Right>
+imap <a-b> <C-Left>
+cmap <a-b> <C-Left>
+imap <c-e> <end>
+cmap <c-e> <end>
+imap <c-f> <Right>
+imap <c-b> <Left>
+
+map <silent> <C-s>i  :silent set defsearch=ix<CR>
+map <silent> <C-s>s  :silent set defsearch=searx<CR>
+map <silent> <C-s>g  :silent set defsearch=google<CR>
+
+imap <a-d> <C-S-Right><Del>
+cmap <a-d> <C-S-Right><Del>
+imap <A-и> <C-Left>
+imap <A-а> <C-Right>
+imap <A-в> <C-S-Right><Del>
+cmap <A-и> <C-Left>
+cmap <A-а> <C-Right>
+cmap <A-в> <C-S-Right><Del>
+
+map I_<C-w> I_<C-BS>
+map <silent> s :sidebar<Space>
+map <silent> S :sbclose<CR>
+map gq :noscript popup<cr>
+
+" " Russian language keyboard mappings (UTF-8)
+map <silent> щ  :silent !xkb-switch -s us &<CR>o
+map <silent> е  :silent !xkb-switch -s us &<CR>t
+map <silent> пш :silent !xkb-switch -s us &<CR>gi
+map <silent> а  :silent !xkb-switch -s us &<CR>f
+map <silent> А  :silent !xkb-switch -s us &<CR>F
+map <silent> ж  :silent !xkb-switch -s us &<CR>;
+map <silent> Ж  :silent !xkb-switch -s us &<CR>:
+nmap <silent> . :silent !xkb-switch -s us &<CR>/
+
+nmap хх [[
+nmap ъъ ]]
+
+map ё `
+map э '
+map й q
+map ц w
+map к r
+map н y
+map г u
+map ш i
+map з p
+map ф a
+map ы s
+map в d
+map п g
+map П G
+map р h
+map о j
+map л k
+map д l
+map я z
+map с c
+map ь m
+map б ,
+map ю .
+map Ё ~
+
+map gr gT
+map пк gT
+map пе gt
+
+ignorekeys clear
