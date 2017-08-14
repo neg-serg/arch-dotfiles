@@ -39,8 +39,8 @@ nmap <C-n> <NOP>
 noremap j 3j
 noremap k 3k
 
-noremap Km :set gui=navigation <Enter>
-noremap KM :set gui=none <Enter>
+noremap !m :set gui=navigation <Enter>
+noremap @M :set gui=none <Enter>
 
 map  U :undo<Space>
 map <F4> gn
