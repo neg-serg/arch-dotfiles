@@ -65,7 +65,7 @@ bindsym $mod+r mode ""
 bindsym $mod+Shift+w mode ""
 #------------------------------------------
 bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
-bindsym $mod+Shift+o exec ~/dev/src/hud-menu/hud-menu.py
+bindsym $mod+Shift+o exec ~/dev/src/1st_level/hud-menu/hud-menu.py
 bindsym $mod+Shift+BackSpace mode " "
 mode " " {
     bindsym $mod+Shift+BackSpace mode "default"
@@ -93,7 +93,7 @@ set {$spotify,ws13}  ν:spotify
 set {$sxiv}  ξ: [pic]
 set {$graph}  ο: [graph]
 
-bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
+bindsym $mod+f [con_mark="ncmpcpp_fun"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp_fun
 bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
 bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
 bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
