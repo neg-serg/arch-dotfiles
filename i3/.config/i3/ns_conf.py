@@ -106,6 +106,11 @@ class ns_settings(object):
                 'geom' : "1200x600+400+400",
                 'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
             },
+            'ncmpcpp_fun': {
+                'class' : { 'cool-retro-term' },
+                'geom' : "1200x600+400+400",
+                'prog': 'cool-retro-term --program ncmpcpp'
+            },
             'weechat': {
                 'class' : { '_weechat_' },
                 'geom' : "1736x1091+112+33",
