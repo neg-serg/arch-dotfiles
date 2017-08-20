@@ -1,0 +1,84 @@
+#--=[ mpd ]=---------------
+mpd_host = "localhost"
+mpd_port = 6600
+mpd_music_dir = "~/music"
+mpd_crossfade_time = "0"
+user_interface = "classic"
+#--=[ Visualizer ]=---------------
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "no"
+visualizer_color = 091,097,108,104,99,105,111
+visualizer_type = ellipse
+
+#--=[ Playlist ]=---------------
+playlist_disable_highlight_delay = "1"
+playlist_show_remaining_time = "yes"
+playlist_display_mode = "classic"
+cyclic_scrolling = "no"
+lines_scrolled = "4"
+mouse_list_scroll_whole_page = "no"
+
+use_console_editor = "yes"
+external_editor = "/usr/sbin/nvim"
+
+jump_to_now_playing_song_at_start = "yes"
+
+#--=[ Bars ]=---------------
+song_status_format = "{$8%a} $5⟫$8⟫$5⟫ {$8%t} $5⟫$8⟫$5⟫ $b{$8%b}$/b $b({$8%y})$/b"
+song_list_format = " $0$8$8%5n$0$8 $(236)|$7 $7%26a$7 $(236)~>$7 $6%44t$(1) $R $(236)< $8%5l $(236)| $(8)%28b$(8)  "
+song_library_format = "{%n > }{%t}|{%f}"
+now_playing_suffix = "$/b$(24)◂$3"
+progressbar_look = "─╼ "
+# progressbar_look = "─╼·"
+#progressbar_look = "─□"
+#progressbar_look = "─╼━"
+#progressbar_look = "─═ "
+titles_visibility = "no"
+header_visibility = "no"
+statusbar_visibility = "yes" 
+display_bitrate = "yes"
+display_remaining_time = "no"
+clock_display_seconds = "yes"
+
+#--=[ Browser ]=--------------
+browser_playlist_prefix = "$2plist »$9 "
+browser_display_mode = "classic"
+incremental_seeking = "yes"
+seek_time = "4"
+message_delay_time = "1"
+
+#--=[ Colors ]=---------------
+colors_enabled = "yes"
+discard_colors_if_item_is_selected = "yes"
+header_window_color = "black"
+volume_color = "cyan"
+state_line_color = "black"
+state_flags_color = "green"
+main_window_color = "default"
+color1 = "cyan"
+color2 = "default"
+
+progressbar_color = "white"
+progressbar_elapsed_color = "cyan"
+
+statusbar_color = "white"
+
+current_item_prefix = "$(blue)$r"
+current_item_suffix = "$/r$(end)"
+current_item_inactive_column_prefix="$(default)$r"
+current_item_inactive_column_suffix="$/r$(end)"
+
+song_window_title_format = "ncmpcpp ─╼ {%a - %t} {[%b{%d}]} <{%l}>"
+search_engine_display_mode = "columns" (classic/columns)
+follow_now_playing_lyrics = "yes"
+default_tag_editor_pattern = "%n - %t"
+default_find_mode = "normal"
+ignore_leading_the = "yes"
+ignore_diacritics = "yes"
+default_place_to_search_in = "database"
+show_hidden_files_in_local_browser = "no"
+active_window_border = "black"
+empty_tag_marker = "[...]"
+regular_expressions = "extended"
+#  vim: set ts=2 sw=2 tw=0 :
