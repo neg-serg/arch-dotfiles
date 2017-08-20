@@ -1,0 +1,72 @@
+input-ipc-server=/tmp/mpvsocket
+fullscreen=yes
+  
+ao=pulse
+
+cache=65536
+slang=ru,rus
+alang=en
+monitoraspect=16:10
+geometry=100%:100%
+
+profile=opengl-hq
+vd-lavc-threads=9
+screenshot-template="~/dw/scr-%F_%P"
+vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+hwdec=cuda
+
+# # I am dont like gui
+# no-osc
+
+osd-font="PragmataPro for Powerline"
+
+sub-scale=.4
+sub-gauss=.75
+sub-gray=yes
+sub-auto=fuzzy
+sub-font="Segoe UI Historic"
+
+osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?vo-drop-frame-count:${!vo-drop-frame-count==0: Dropped: ${vo-drop-frame-count}}}${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
+osd-font-size=12
+term-osd-bar-chars = "──╼ ·"
+# make the OSD progress bar be big and centered like in mplayer and mplayer2
+osd-bar-align-y=0
+osd-bar-h=2
+osd-border-size=1
+osd-color='#CCE6EEFA'
+osd-border-color='#99000000'
+osd-bar-align-y=0.8
+
+ytdl
+ytdl-format=bestvideo+bestaudio
+
+cursor-autohide=1000
+really-quiet
+
+volume=40
+
+[profile.opengl-hq]
+hwdec=vdpau
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
+interpolation
+temporal-dither
+blend-subtitles=yes
+target-prim=adobe
+target-trc=auto
+
+[cuda]
+hwdec=cuda
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
+interpolation
+temporal-dither
+blend-subtitles=yes
+target-prim=adobe
+target-trc=auto
+
+[extension.flac]
+term-osd-bar=yes
+
+[extension.mp3]
+term-osd-bar=yes
