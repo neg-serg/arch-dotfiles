@@ -93,7 +93,7 @@ set {$spotify,ws13}  ν:spotify
 set {$sxiv}  ξ: [pic]
 set {$graph}  ο: [graph]
 
-bindsym $mod+f [con_mark="ncmpcpp_fun"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp_fun
+bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
 bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
 bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
 bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
