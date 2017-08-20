@@ -15,6 +15,7 @@ type = Maildir
 localfolders = ~/.local/mail/gmail
 nametrans: lambda s: {  '[Gmail]/Starred'   : '[Gmail].Starred',
                         '[Gmail]/Trash'     : '[Gmail].Trash',
+                        'gmail/Trash'       : '[Gmail].Trash',
                         '[Gmail]/Sent Mail' : '[Gmail].Sent Mail',
                         '[Gmail]/Important' : '[Gmail].Important',
                         '[Gmail]/Drafts'    : '[Gmail].Drafts',
@@ -36,6 +37,8 @@ nametrans = lambda foldername: foldername.decode('imap4-utf-7').encode('utf-8')
 folderfilter = lambda folder: folder not in ['[Gmail].Trash',
                                              '[Gmail].Important',
                                              '[Gmail].Spam',
+                                             '[Gmail].All Mail',
+                                             'Trash'
                                              ]
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
