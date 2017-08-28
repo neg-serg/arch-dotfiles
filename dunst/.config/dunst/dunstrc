@@ -26,12 +26,12 @@
     dmenu                 = /usr/bin/rofi -p dunst:
     browser               = /usr/bin/firefox -new-tab
     icon_position         = left
-    icon_folders          = /home/neg/.icons/custom_dunst:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/devices
+    icon_path             = /home/neg/.icons/custom_dunst:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/devices
     max_icon_size         = 200
     title                 = Dunst
     class                 = Dunst
-    stack_duplicates      = false
-    hide_duplicates_count = false
+    stack_duplicates      = true
+    hide_duplicate_count  = true
     frame_width           = 1
     frame_color           = "#073642"
 
@@ -73,14 +73,14 @@
 
 [pic_notify]
     appname    = screenshot 
-    script     = "/home/neg/bin/scripts/pic_notify"
+    script     = "~/bin/scripts/pic_notify"
     urgency    = normal
     format     = ""
 
 [mpd]
     appname    = mpd-notification
     format     = ""
-    script     = "/home/neg/bin/scripts/prepare_image"
+    script     = "~/bin/scripts/prepare_image"
     urgency    = normal
 
 
