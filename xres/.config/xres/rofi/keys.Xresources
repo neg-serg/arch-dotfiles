@@ -1,6 +1,5 @@
 rofi.kb-primary-paste:              Control+Shift+v,Shift+Insert
 rofi.kb-secondary-paste:            Control+v,Insert
-rofi.kb-clear-line:                 Control+u
 rofi.kb-move-front:                 Control+a
 rofi.kb-move-end:                   Control+e
 rofi.kb-move-word-back:             Alt+b
@@ -16,7 +15,6 @@ rofi.kb-accept-custom:              Control+Return
 rofi.kb-accept-entry-continue:      Shift+Return
 rofi.kb-mode-next:                  Shift+Right,Control+Tab
 rofi.kb-mode-previous:              Shift+Left,Control+Shift+Tab
-rofi.kb-delete-entry:               Control+w
 rofi.kb-row-left:                   Control+Page_Up
 rofi.kb-row-right:                  Control+Page_Down
 rofi.kb-row-up:                     Up,Control+p,Shift+Tab
