@@ -261,7 +261,7 @@ mode "gaps-inner" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-for_window [class="^(telegram-desktop|skypeforlinux|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
+for_window [class="^(telegram-desktop|skypeforlinux|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
 for_window [class="mpd-pad2"] move scratchpad, move absolute position 400 400, resize set 1200 600
 for_window [instance="mutt"] move scratchpad, move absolute position 293 0, resize set 1250 700
 for_window [class="ranger"] move scratchpad, move absolute position 170 18, resize set 1132 760
