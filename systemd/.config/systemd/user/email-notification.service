@@ -1,6 +1,6 @@
 [Unit]
 Description=My email notification script
-After=sockets.target
+After=dunst.service
 
 [Service]
 Type=simple
