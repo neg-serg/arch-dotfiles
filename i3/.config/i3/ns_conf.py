@@ -93,11 +93,18 @@ class ns_settings(object):
                 'prog_dict': {
                     "tel" : {
                         "prog": "telegram-desktop",
-                        "includes": { 'TelegramDesktop', 'Telegram-desktop', 'telegram-desktop' },
+                        "includes": {
+                            'TelegramDesktop',
+                            'Telegram-desktop',
+                            'telegram-desktop'
+                        },
                     },
                     "skype" : {
                         "prog": "skypeforlinux",
-                        "includes": { 'skypeforlinux' },
+                        "includes": {
+                            'skypeforlinux',
+                            'Skype Preview'
+                        },
                     }
                 }
             },
