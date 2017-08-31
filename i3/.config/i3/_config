@@ -104,7 +104,6 @@ bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
 bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
 
-
 for_window [window_type="dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_type="menu"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_type="utility"] floating enable, move absolute position 180 20, resize set 1556 620, focus
@@ -182,12 +181,12 @@ mode "" {
 	bindsym Shift+d floating toggle; $exit
 	bindsym Shift+l exec ~/bin/scripts/lock/lock.sh && sleep 1s; $exit
 	bindsym Shift+v exec ~/bin/qemu/vm_menu; $exit
-
+    #-------------------------------------------------------
     bindsym {$mod,$alt,}+s exec python3 ~/.config/i3/ns.py run im skype, mode "default"
     bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py run im tel, mode "default"
     bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
     bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"
-
+    #-------------------------------------------------------
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
@@ -209,16 +208,17 @@ bindsym $mod+q fullscreen toggle
 bindsym $mod+grave exec ~/.config/i3/focus-next-visible.py
 bindsym $mod+Control+grave exec ~/.config/i3/i3-cmd.py
 bindsym $mod+Shift+slash workspace back_and_forth
-
+#-------------------------------------------------------
 bindsym $alt+Tab exec python3 ~/.config/i3/flast.py switch
 bindsym $mod+slash exec python3 ~/.config/i3/flast.py switch
-
+#-------------------------------------------------------
 # resize window (you can also use the mouse for that)
 mode "" {
     bindsym {h,Shift+h} resize {shrink,grow} left 4
     bindsym {j,Shift+j} resize {shrink,grow} down 4
     bindsym {k,Shift+k} resize {shrink,grow} up 4
     bindsym {l,Shift+l} resize {shrink,grow} right 4
+    #-------------------------------------------------------
     bindsym {semicolon,Shift+colon} resize {shrink,grow} right 4
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
@@ -228,11 +228,11 @@ mode "" {
 	bindsym {grave,t,s,h,v} layout {default,tabbed,stacking,splith,splitv}; $exit
     bindsym Shift+{h,v} split {h,v}; $exit
 	bindsym {j,k,h,l} split {vertical,vertical,horizontal,horizontal}; $exit
-
+    #-------------------------------------------------------
 	bindsym Control+{a,3} layout toggle all
-	bindsym Control+s layout toggle split
-	bindsym Control+t layout toggle
-
+	bindsym Control+s     layout toggle split
+	bindsym Control+t     layout toggle
+    #-------------------------------------------------------
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
@@ -242,38 +242,35 @@ mode "" {
 }
 
 mode "gaps-outer" {
-	bindsym {plus,minus}  gaps outer current {plus,minus} 5
-	bindsym 0     gaps outer current set 0
+	bindsym {plus,minus}        gaps outer current {plus,minus} 5
+	bindsym 0                   gaps outer current set 0
 
 	bindsym Shift+{plus,minus}  gaps outer all {plus,minus} 5
-	bindsym Shift+0     gaps outer all set 0
+	bindsym Shift+0             gaps outer all set 0
 
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 mode "gaps-inner" {
-	bindsym {plus,minus}  gaps inner current {plus,minus} 5
-	bindsym 0     gaps inner current set 0
+	bindsym {plus,minus}        gaps inner current {plus,minus} 5
+	bindsym 0                   gaps inner current set 0
 
 	bindsym Shift+{plus,minus}  gaps inner all {plus,minus} 5
-	bindsym Shift+0     gaps inner all set 0
+	bindsym Shift+0             gaps inner all set 0
 
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 for_window [class="^(telegram-desktop|skypeforlinux|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
-for_window [class="mpd-pad2"] move scratchpad, move absolute position 400 400, resize set 1200 600
-for_window [instance="mutt"] move scratchpad, move absolute position 293 0, resize set 1250 700
-for_window [class="ranger"] move scratchpad, move absolute position 170 18, resize set 1132 760
-for_window [class="teardrop"] move scratchpad, move absolute position 39 4, resize set 1844 704
-for_window [class="youtube-get"] move scratchpad, move absolute position 247 13, resize set 1339 866
-for_window [class="_weechat_"] move scratchpad, move absolute position 112 33, resize set 1736 1091
+for_window [class="mpd-pad2"]    move scratchpad, move absolute position 400 400, resize set 1200 600
+for_window [instance="mutt"]     move scratchpad, move absolute position 293 0,   resize set 1250 700
+for_window [class="ranger"]      move scratchpad, move absolute position 170 18,  resize set 1132 760
+for_window [class="teardrop"]    move scratchpad, move absolute position 39  4,   resize set 1844 704
+for_window [class="youtube-get"] move scratchpad, move absolute position 247 13,  resize set 1339 866
+for_window [class="_weechat_"]   move scratchpad, move absolute position 112 33,  resize set 1736 1091
 
 exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
-exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/disable-standby-fs.py
-exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/nsd.py
-exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/circled.py
-exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/flastd.py
+exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/{disable-standby-fs,nsd,circled,flastd}.py
 
 # vim:filetype=i3
