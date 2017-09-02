@@ -43,6 +43,13 @@ class named_scratchpad(SingletonMixin):
         [self.group_list.append(group) for group in Conf]
         self.prev_id=0
 
+        self.i3 = i3ipc.Connection()
+
+        self.mark_all(hide=True)
+
+        self.i3.on('window::new', self.mark_group)
+        self.i3.on('window::close', self.cleanup_mark)
+
     def make_mark(self, group : str) -> str:
         output=(group) + str(str(uuid.uuid4().fields[-1]))
         return 'mark {}'.format(output)
@@ -194,79 +201,71 @@ class named_scratchpad(SingletonMixin):
         elif len(args) == 1:
             switch_[args[0]]()
 
-def mark_group(self, event) -> None:
-    def scratch_move() -> None:
-        con_cmd=ns.make_mark(group)+', move scratchpad,'+conf_.get_geom(group)
-        con.command(con_cmd)
-        marked[group].append(con)
+    def mark_group(self, i3, event) -> None:
+        def scratch_move() -> None:
+            con_cmd=self.make_mark(group)+', move scratchpad,'+conf_.get_geom(group)
+            con.command(con_cmd)
+            marked[group].append(con)
 
-    def check_by(attr : str) -> bool:
-        if attr in Conf[group]:
-            return getattr(con, 'window_'+attr) in Conf[group][attr]
-        else:
-            return False
+        def check_by(attr : str) -> bool:
+            if attr in Conf[group]:
+                return getattr(con, 'window_'+attr) in Conf[group][attr]
+            else:
+                return False
 
-    con=event.container
+        con=event.container
 
-    for group in Conf:
-        ns=named_scratchpad.instance()
-        for attr in ["class", "instance"]:
-            if check_by(attr):
-                scratch_move()
-
-def mark_all(hide : bool=True) -> None:
-    def scratch_move():
-        hide_cmd=''
-        if hide:
-            hide_cmd=', [con_id=__focused__] scratchpad show'
-
-        con_cmd=ns.make_mark(group)+', move scratchpad,'+conf_.get_geom(group)+hide_cmd
-        con.command(con_cmd)
-        marked[group].append(con)
-
-    def check_by(attr : str) -> bool:
-        if attr in Conf[group]:
-            return getattr(con, 'window_'+attr) in Conf[group][attr]
-        else:
-            return False
-
-    window_list = i3.get_tree().leaves()
-    for group in Conf:
-        ns=named_scratchpad.instance()
-        for con in window_list:
+        for group in Conf:
             for attr in ["class", "instance"]:
                 if check_by(attr):
                     scratch_move()
 
-def cleanup_mark(self, event) -> None:
-    for tag in Conf:
-        for j,win in enumerate(marked[tag]):
-            if win.id == event.container.id:
-                del marked[tag][j]
+    def mark_all(self, hide : bool=True) -> None:
+        def scratch_move():
+            hide_cmd=''
+            if hide:
+                hide_cmd=', [con_id=__focused__] scratchpad show'
+
+            con_cmd=self.make_mark(group)+', move scratchpad,'+conf_.get_geom(group)+hide_cmd
+            con.command(con_cmd)
+            marked[group].append(con)
+
+        def check_by(attr : str) -> bool:
+            if attr in Conf[group]:
+                return getattr(con, 'window_'+attr) in Conf[group][attr]
+            else:
+                return False
+
+        window_list = i3.get_tree().leaves()
+        for group in Conf:
+            for con in window_list:
+                for attr in ["class", "instance"]:
+                    if check_by(attr):
+                        scratch_move()
+
+    def cleanup_mark(self, i3, event) -> None:
+        for tag in Conf:
+            for j,win in enumerate(marked[tag]):
+                if win.id == event.container.id:
+                    del marked[tag][j]
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    i3 = i3ipc.Connection()
-    name='ns_scratchd'
-
-    mng=daemon_manager.instance()
-    mng.add_daemon(name)
-
-    def cleanup_all():
-        daemon_=mng.daemons[name]
-        if os.path.exists(daemon_.fifo_):
-            os.remove(daemon_.fifo_)
-
-    import atexit
-    atexit.register(cleanup_all)
 
     ns=named_scratchpad.instance()
 
-    mark_all(hide=True)
+    daemon_manager=daemon_manager.instance()
 
-    i3.on('window::new', mark_group)
-    i3.on('window::close', cleanup_mark)
+    ns.daemon_name='ns_scratchd'
+    daemon_manager.add_daemon(ns.daemon_name)
 
-    mainloop=Thread(target=mng.daemons[name].mainloop, args=(ns,)).start()
+    def cleanup_all_daemons():
+        daemon=daemon_manager.daemons[ns.daemon_name]
+        if os.path.exists(daemon.fifo_):
+            os.remove(daemon.fifo_)
 
-    i3.main()
+    import atexit
+    atexit.register(cleanup_all_daemons)
+
+    mainloop=Thread(target=daemon_manager.daemons[ns.daemon_name].mainloop, args=(ns,)).start()
+    ns.i3.main()
