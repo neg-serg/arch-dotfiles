@@ -123,7 +123,7 @@ class cycle_window(SingletonMixin):
                         run_prog()
                         return
 
-                    for target_,item in zip(range(len(self.tagged[tag])),self.tagged[tag]):
+                    for target_,item in enumerate(self.tagged[tag]):
                         if class_eq_priority():
                             fullscreened=i3.get_tree().find_fullscreen()
                             for win in fullscreened:

@@ -46,10 +46,7 @@ class named_scratchpad(SingletonMixin):
         return 'mark {}'.format(output)
 
     def focus(self, gr):
-        for j,i in zip(
-                range(len(marked[gr])),
-                marked[gr]
-            ):
+        for j,i in enumerate(marked[gr]):
             marked[gr][j].command('move container to workspace current')
 
     def toggle(self, gr):
@@ -100,7 +97,7 @@ class named_scratchpad(SingletonMixin):
                             if w.id == i.id:
                                 i3.command('[con_id=%s] focus' % w.id)
 
-                    for j,i in zip(range(len(marked[gr])), marked[gr]):
+                    for j,i in enumerate(marked[gr]):
                         if not focused.window_class in target_class_list_set:
                             if marked[gr][j].window_class not in target_class_list_set:
                                 self.next_win()
@@ -115,10 +112,7 @@ class named_scratchpad(SingletonMixin):
         self.fullscreen_list=[]
 
     def unfocus(self, gr):
-        for j,i in zip(
-                range(len(marked[gr])),
-                marked[gr]
-            ):
+        for j,i in enumerate(marked[gr]):
             marked[gr][j].command('move scratchpad')
         self.restore_fullscreens()
 
@@ -150,10 +144,7 @@ class named_scratchpad(SingletonMixin):
 
         def next_win_(group):
             self.focus(group)
-            for number,win in zip(
-                    range(len(marked[group])),
-                    marked[group]
-                ):
+            for number,win in enumerate(marked[group]):
                 if focused_.id != win.id:
                     marked[group][number].command('move container to workspace current')
                     marked[group].insert(len(marked[group]), marked[group].pop(number))
@@ -231,7 +222,7 @@ def mark_all(hide=True):
 
 def cleanup_mark(self, event):
     for tag in settings_:
-        for j,win in zip(range(len(marked[tag])),marked[tag]):
+        for j,win in enumerate(marked[tag]):
             if win.id == event.container.id:
                 del marked[tag][j]
 

@@ -17,7 +17,7 @@ class ns_settings(object):
             attrib_list=self.settings[tag][attr]
             if len(attrib_list)>1:
                 ret+='('
-            for iter,item in zip(range(len(attrib_list)),attrib_list):
+            for iter,item in enumerate(attrib_list):
                 if iter+1 < len(attrib_list):
                     ret+=item+'|'
                 else:
