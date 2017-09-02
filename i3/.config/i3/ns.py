@@ -8,6 +8,7 @@ Usage:
   nclient.py toggle <name>
   nclient.py run <name> <prog>
   nclient.py next
+  nclient.py geom_restore
   nclient.py hide_current
   nclient.py (-h | --help)
   nclient.py --version
@@ -26,7 +27,15 @@ fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name_+'.fifo'))
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    possible_commands=["show","hide","toggle","next","hide_current","run"]
+    possible_commands=[
+        "show",
+        "hide",
+        "toggle",
+        "next",
+        "hide_current",
+        "run",
+        "geom_restore"
+    ]
 
     for i in argv:
         if argv[i] and i in set(possible_commands):

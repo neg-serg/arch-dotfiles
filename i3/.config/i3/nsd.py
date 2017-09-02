@@ -125,14 +125,14 @@ class named_scratchpad(SingletonMixin):
                     vmarked+=1
         return vmarked
 
-    def apply_to_current_group(self, func):
-        def get_current_group(self,focused):
-            for group in settings_:
-                for i in marked[group]:
-                    if focused.id == i.id:
-                        return group
+    def get_current_group(self,focused):
+        for group in settings_:
+            for i in marked[group]:
+                if focused.id == i.id:
+                    return group
 
-        curr_group=get_current_group(self,i3.get_tree().find_focused())
+    def apply_to_current_group(self, func):
+        curr_group=self.get_current_group(i3.get_tree().find_focused())
         if curr_group != None:
             func(curr_group)
             return True
@@ -159,6 +159,23 @@ class named_scratchpad(SingletonMixin):
             self.prev_id=i3.get_tree().find_focused().id
             i3.command('[con_id=__focused__] scratchpad show')
 
+    def geom_restore_all(self):
+        for group in settings_:
+            geom_restore(group)
+
+    def geom_restore(self, group):
+        for j,win in enumerate(marked[group]):
+            # delete previous mark
+            del marked[group][j]
+
+            # then make a new mark and move scratchpad
+            win_cmd=self.make_mark(group)+', move scratchpad,'+settings_obj_.get_geom(group)
+            win.command(win_cmd)
+            marked[group].append(win)
+
+    def geom_restore_current(self):
+        groupwins=self.apply_to_current_group(self.geom_restore)
+
     def switch(self, args):
         switch_ = {
             "show": self.focus,
@@ -166,6 +183,7 @@ class named_scratchpad(SingletonMixin):
             "next": self.next_win,
             "toggle": self.toggle,
             "hide_current": self.hide_current,
+            "geom_restore": self.geom_restore_current,
             "run": self.run_prog,
         }
 

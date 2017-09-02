@@ -99,6 +99,7 @@ bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
 bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
 bindsym $mod+Shift+e exec  ~/.config/i3/ns.py toggle weechat
 bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
+bindsym $mod+Control+Shift+R exec python3 ~/.config/i3/ns.py geom_restore
 
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
