@@ -43,6 +43,17 @@ class cycle_window(SingletonMixin):
             self.tagged[i]=list({})
             self.counters[i]=0
 
+        self.i3 = i3ipc.Connection()
+
+        self.invalidate_tags_info()
+
+        self.i3.on('window::new', self.add_acceptable)
+        self.i3.on('window::close', self.del_acceptable)
+        self.i3.on("window::focus", self.save_current_win)
+        self.i3.on("window::fullscreen_mode", self.handle_fullscreen)
+
+        self.current_win=i3.get_tree().find_focused()
+
     def go_next(self, tag):
         def tag_conf():
             return glob_settings[tag]
@@ -138,7 +149,7 @@ class cycle_window(SingletonMixin):
                 else:
                     go_next_()
         except KeyError:
-            invalidate_tags_info()
+            self.invalidate_tags_info()
             self.go_next(tag)
 
     def switch(self, args):
@@ -150,116 +161,96 @@ class cycle_window(SingletonMixin):
         elif len(args) == 1:
             switch_[args[0]]()
 
-def redis_update_count(tag):
-    cw=cycle_window.instance()
-    if tag in cw.tagged and type(cw.tagged[tag]) == list:
-        tag_count_dict={tag: len(cw.tagged[tag])}
-        redis_db_.hmset('count_dict', tag_count_dict)
-    else:
-        redis_db_.hmset('count_dict', {tag:0})
+    def redis_update_count(self, tag):
+        if tag in self.tagged and type(self.tagged[tag]) == list:
+            tag_count_dict={tag: len(self.tagged[tag])}
+            redis_db_.hmset('count_dict', tag_count_dict)
+        else:
+            redis_db_.hmset('count_dict', {tag:0})
 
-def find_acceptable_windows_by_class(tag, wlist):
-    cw=cycle_window.instance()
-    for con in wlist:
-        if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
-            cw.tagged[tag].append({ 'win':con, 'focused':False })
-        elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
-            cw.tagged[tag].append({ 'win':con, 'focused':False })
-    redis_update_count(tag)
-
-def invalidate_tags_info():
-    cw=cycle_window.instance()
-    wlist = i3.get_tree().leaves()
-    cw.tagged={}
-
-    for tag in glob_settings:
-        cw.tagged[tag]=list({})
-
-    for tag in glob_settings:
-        find_acceptable_windows_by_class(tag, wlist)
-
-def add_acceptable(self, event):
-    cw=cycle_window.instance()
-
-    def add_tagged_win():
-        cw.tagged[tag].append({'win':con,'focused':con.focused})
-        redis_update_count(tag)
-
-    con = event.container
-    for tag in glob_settings:
-        try:
+    def find_acceptable_windows_by_class(self, tag, wlist):
+        for con in wlist:
             if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
-                add_tagged_win()
+                self.tagged[tag].append({ 'win':con, 'focused':False })
             elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
-                add_tagged_win()
-        except KeyError:
-            invalidate_tags_info()
-            add_acceptable(self, event)
+                self.tagged[tag].append({ 'win':con, 'focused':False })
+        self.redis_update_count(tag)
 
-def del_acceptable(self, event):
-    def del_tagged_win():
-        if 'win' in cw.tagged[tag]:
-            if cw.tagged[tag]['win'].id in cw.restorable:
-                cw.restorable.remove(cw.tagged[tag]['win'].id)
-        del cw.tagged[tag]
+    def invalidate_tags_info(self):
+        wlist = i3.get_tree().leaves()
+        self.tagged={}
 
-    cw=cycle_window.instance()
-    con = event.container
-    for tag in glob_settings:
-        try:
-            if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
-                del_tagged_win()
-            elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
-                del_tagged_win()
-            redis_update_count(tag)
-        except KeyError:
-            invalidate_tags_info()
-            del_acceptable(self, event)
+        for tag in glob_settings:
+            self.tagged[tag]=list({})
 
-def save_current_win(self,event):
-    con=event.container
-    cw=cycle_window.instance()
-    cw.current_win=con
+        for tag in glob_settings:
+            self.find_acceptable_windows_by_class(tag, wlist)
 
-def handle_fullscreen(self,event):
-    cw=cycle_window.instance()
-    con=event.container
-    if cw.interactive:
-        if con.fullscreen_mode:
-            if con.id not in cw.restorable:
-                cw.restorable.append(con.id)
-        if not con.fullscreen_mode:
-            if con.id in cw.restorable:
-                cw.restorable.remove(con.id)
+    def add_acceptable(self, i3, event):
+        def add_tagged_win():
+            self.tagged[tag].append({'win':con,'focused':con.focused})
+            self.redis_update_count(tag)
 
+        con = event.container
+        for tag in glob_settings:
+            try:
+                if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+                    add_tagged_win()
+                elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+                    add_tagged_win()
+            except KeyError:
+                self.invalidate_tags_info()
+                self.add_acceptable(i3, event)
+
+    def del_acceptable(self, i3, event):
+        def del_tagged_win():
+            if 'win' in self.tagged[tag]:
+                if self.tagged[tag]['win'].id in self.restorable:
+                    self.restorable.remove(self.tagged[tag]['win'].id)
+            del self.tagged[tag]
+
+        con = event.container
+        for tag in glob_settings:
+            try:
+                if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+                    del_tagged_win()
+                elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+                    del_tagged_win()
+                self.redis_update_count(tag)
+            except KeyError:
+                self.invalidate_tags_info()
+                self.del_acceptable(i3, event)
+
+    def save_current_win(self, i3, event):
+        con=event.container
+        self.current_win=con
+
+    def handle_fullscreen(self, i3, event):
+        con=event.container
+        if self.interactive:
+            if con.fullscreen_mode:
+                if con.id not in self.restorable:
+                    self.restorable.append(con.id)
+            if not con.fullscreen_mode:
+                if con.id in self.restorable:
+                    self.restorable.remove(con.id)
 
 if __name__ == '__main__':
-    argv = docopt(__doc__, version='i3 window tag circle 0.5')
+    argv = docopt(__doc__, version='i3 Window Tag Circle 0.5')
 
-    i3 = i3ipc.Connection()
-    name = 'circled'
+    cw = cycle_window.instance()
+    cw.daemon_name = 'circled'
 
-    cw=cycle_window.instance()
-    cw.current_win=i3.get_tree().find_focused()
+    daemon_manager = daemon_manager.instance()
+    daemon_manager.add_daemon(cw.daemon_name)
 
-    mng=daemon_manager.instance()
-    mng.add_daemon(name)
-
-    def cleanup_all():
-        daemon_=mng.daemons[name]
-        if os.path.exists(daemon_.fifo_):
-            os.remove(daemon_.fifo_)
+    def cleanup_all_daemons():
+        daemon = daemon_manager.daemons[cw.daemon_name]
+        if os.path.exists(daemon.fifo_):
+            os.remove(daemon.fifo_)
 
     import atexit
-    atexit.register(cleanup_all)
+    atexit.register(cleanup_all_daemons)
 
-    invalidate_tags_info()
-
-    i3.on('window::new', add_acceptable)
-    i3.on('window::close', del_acceptable)
-    i3.on("window::focus", save_current_win)
-    i3.on("window::fullscreen_mode", handle_fullscreen)
-
-    mainloop=Thread(target=mng.daemons[name].mainloop, args=(cw,)).start()
-
-    i3.main()
+    mainloop = Thread(target=daemon_manager.daemons[cw.daemon_name].mainloop, args=(cw,)).start()
+    cw.i3.main()
