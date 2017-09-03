@@ -252,20 +252,19 @@ class named_scratchpad(SingletonMixin):
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
 
-    ns=named_scratchpad.instance()
+    ns = named_scratchpad.instance()
+    ns.daemon_name = 'ns_scratchd'
 
-    daemon_manager=daemon_manager.instance()
-
-    ns.daemon_name='ns_scratchd'
+    daemon_manager = daemon_manager.instance()
     daemon_manager.add_daemon(ns.daemon_name)
 
     def cleanup_all_daemons():
-        daemon=daemon_manager.daemons[ns.daemon_name]
+        daemon = daemon_manager.daemons[ns.daemon_name]
         if os.path.exists(daemon.fifo_):
             os.remove(daemon.fifo_)
 
     import atexit
     atexit.register(cleanup_all_daemons)
 
-    mainloop=Thread(target=daemon_manager.daemons[ns.daemon_name].mainloop, args=(ns,)).start()
+    mainloop = Thread(target=daemon_manager.daemons[ns.daemon_name].mainloop, args=(ns,)).start()
     ns.i3.main()
