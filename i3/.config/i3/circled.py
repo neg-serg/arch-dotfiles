@@ -36,7 +36,7 @@ class cycle_window(SingletonMixin):
         self.tagged={}
         self.counters={}
         self.restorable=[]
-        self.interact=1
+        self.interactive=True
         self.repeats=0
 
         for i in glob_settings:
@@ -81,7 +81,7 @@ class cycle_window(SingletonMixin):
                 fullscreened=i3.get_tree().find_fullscreen()
                 for win in fullscreened:
                     if cur_win_in_current_class_set() and cur_win().id == win.id:
-                        self.interact=0
+                        self.interactive=False
                         win.command('fullscreen disable')
 
             target_i()['win'].command('focus')
@@ -93,10 +93,10 @@ class cycle_window(SingletonMixin):
                 now_focused=target_i()['win'].id
                 for id in self.restorable:
                     if id == now_focused:
-                        self.interact=0
+                        self.interactive=False
                         i3.command('[con_id=%s] fullscreen enable' % now_focused)
 
-            self.interact=1
+            self.interactive=True
 
         def go_to_not_repeat():
             inc_c()
@@ -129,7 +129,7 @@ class cycle_window(SingletonMixin):
                             for win in fullscreened:
                                 tag_classes_set=set(glob_settings[tag]["classes"])
                                 if win.window_class in tag_classes_set and win.window_class != glob_settings[tag]["priority"]:
-                                    self.interact=0
+                                    self.interactive=False
                                     win.command('fullscreen disable')
                             go_next_(inc_counter=False)
                             return
@@ -172,8 +172,8 @@ def invalidate_tags_info():
     wlist = i3.get_tree().leaves()
     cw.tagged={}
 
-    for i in glob_settings:
-        cw.tagged[i]=list({})
+    for tag in glob_settings:
+        cw.tagged[tag]=list({})
 
     for tag in glob_settings:
         find_acceptable_windows_by_class(tag, wlist)
@@ -224,7 +224,7 @@ def save_current_win(self,event):
 def handle_fullscreen(self,event):
     cw=cycle_window.instance()
     con=event.container
-    if cw.interact == 1:
+    if cw.interactive:
         if con.fullscreen_mode:
             if con.id not in cw.restorable:
                 cw.restorable.append(con.id)
