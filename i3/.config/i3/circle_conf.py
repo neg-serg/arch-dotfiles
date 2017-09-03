@@ -9,6 +9,7 @@ class cycle_settings(object):
                     'Firefox',
                     'Tor Browser',
                     'Chromium',
+                    'Vivaldi-stable',
                 },
                 'prog':"firefox",
                 'priority':'Firefox',
