@@ -29,8 +29,6 @@ padding-right = 0 # offset from -x
 module-margin-right = 0; looks nice
 module-margin-left  = 0
 
-#separator = 
-#separator = >
 modules-left = date i3 xkeyboard network mail
 modules-center = 
 modules-right = mpd 
