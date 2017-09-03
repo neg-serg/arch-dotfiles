@@ -31,6 +31,13 @@ class FocusWatcher(SingletonMixin):
         self.prev_time = 0
         self.curr_time = 0
 
+        self.i3 = i3ipc.Connection()
+        wmii_like_goback=True
+
+        self.i3.on('window::focus', self.on_window_focus)
+        if wmii_like_goback:
+            self.i3.on('window::close', self.go_back_if_nothing)
+
     def switch(self, args):
         switch_ = {
             "switch": self.alt_tab,
@@ -53,49 +60,39 @@ class FocusWatcher(SingletonMixin):
                     self.curr_time = time.time()
                 break
 
-def on_window_focus(self, event):
-    wid = event.container.id
-    fw=FocusWatcher.instance()
+    def on_window_focus(self, i3, event):
+        wid = event.container.id
 
-    if wid in fw.window_list:
-        fw.window_list.remove(wid)
+        if wid in self.window_list:
+            self.window_list.remove(wid)
 
-    fw.window_list.insert(0, wid)
-    if len(fw.window_list) > max_win_history_:
-        del fw.window_list[max_win_history_:]
+        self.window_list.insert(0, wid)
+        if len(self.window_list) > max_win_history_:
+            del self.window_list[max_win_history_:]
 
-def go_back_if_nothing(self, event):
-    con=event.container
-    fw=FocusWatcher.instance()
-    focused_=i3.get_tree().find_focused()
-    if not len(find_visible_windows(get_windows_on_ws())) \
-       and "[pic]" in focused_.workspace().name:
-        fw.alt_tab(0)
+    def go_back_if_nothing(self, i3, event):
+        con=event.container
+        focused_=self.i3.get_tree().find_focused()
+        if not len(find_visible_windows(get_windows_on_ws())) \
+        and "[pic]" in focused_.workspace().name:
+            self.alt_tab(0)
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 nice alt-tab 1.0')
-    i3 = i3ipc.Connection()
-    wmii_like_goback=True
 
-    name='flastd-i3'
+    fw = FocusWatcher.instance()
+    fw.daemon_name='flastd-i3'
 
-    fw=FocusWatcher.instance()
+    daemon_manager = daemon_manager.instance()
+    daemon_manager.add_daemon(fw.daemon_name)
 
-    mng=daemon_manager.instance()
-    mng.add_daemon(name)
-
-    def cleanup_all():
-        daemon_=mng.daemons[name]
-        if os.path.exists(daemon_.fifo_):
-            os.remove(daemon_.fifo_)
+    def cleanup_all_daemons():
+        daemon = daemon_manager.daemons[fw.daemon_name]
+        if os.path.exists(daemon.fifo_):
+            os.remove(daemon.fifo_)
 
     import atexit
-    atexit.register(cleanup_all)
+    atexit.register(cleanup_all_daemons)
 
-    i3.on('window::focus', on_window_focus)
-    if wmii_like_goback:
-        i3.on('window::close', go_back_if_nothing)
-
-    mainloop=Thread(target=mng.daemons[name].mainloop, args=(fw,)).start()
-
-    i3.main()
+    mainloop=Thread(target=daemon_manager.daemons[fw.daemon_name].mainloop, args=(fw,)).start()
+    fw.i3.main()
