@@ -99,12 +99,12 @@ function proc() {
       | sed 's:^~:'${HOME}':')
     fi
     [[ -z "${dest}" ]] && exit 0
-    if [[ -d "${dest}" ]] ; then
+    if [[ -d "${dest}" ]]; then
         while read line; do
             file_name="$(resolve_file ${line})"
             eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
         done < "${tmp_file}"
-        _FASD_DATA="${z_data_file}" fasd -A "${dest}"
+        _FASD_DATA="${z_data_file}" fasd -RA "${dest}"
         printf "%s\n" "${cmd_w} "${dest}"" > "${last_action}"
     else
         _FASD_DATA="${z_data_file}" fasd -D "${dest}"
