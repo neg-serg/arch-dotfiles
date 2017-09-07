@@ -346,3 +346,9 @@ weechat/.weechat/weechat.log
 weechat/.weechat/buflist.conf
 mpd/.mpd/mpd.pid
 mpd/.mpd/mpd.db
+offlineimap/.offlineimap/Account-Gmail
+offlineimap/.offlineimap/mbnames
+offlineimap/.offlineimap/Repository-Gmail-Local
+offlineimap/.offlineimap/Repository-Gmail-Remote
+vim/.vim/cache_vimdiff
+vim/.vim/state_vimdiff.vim
