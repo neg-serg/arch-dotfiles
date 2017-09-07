@@ -19,3 +19,21 @@ net
 n
 -n
 -n
+dir
+4444
+serial
+444
+netcat
+qmp
+list bus
+bus
+serial
+serial
+mon
+mon
+-mon
+-mon
+-mon
+mon:
+-graphic
+-q
