@@ -18,7 +18,6 @@ nexec() { [[ -z $(pidof "$1") ]]; }
 source "${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh"
 source "${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh"
 source "${XDG_CONFIG_HOME}/xinit/compositing.zsh"
-source "${XDG_CONFIG_HOME}/xinit/email.dash"
 
 eval $(gpg-agent --daemon)
 
