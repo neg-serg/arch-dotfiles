@@ -2,8 +2,7 @@ set verbose=0
 set gui=none
 colorscheme vimpwhite
 
-"set defsearch=google
-set defsearch=google
+set defsearch=searx
 set suggestengines=dc
 
 set hintchars=12345
