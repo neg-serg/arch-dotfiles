@@ -180,18 +180,6 @@ rpmbuild() {
     return $status
 }
 
-function gfshow(){
-    git log --graph --color=always \
-            --format="%C(auto)%h%d %s %C(bold black)(%cr) %C(bold blue)<%an>" "$@" |
-    SHELL="/bin/bash" fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=ctrl-s \
-        --exact --cycle --inline-info --prompt="Commits> " \
-        --bind "ctrl-m:execute:
-                (grep -o '[0-9a-f]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF_EOF'
-        {}
-    FZF_EOF"
-}
-
 function allip(){
     netstat -lantp \
   | grep ESTABLISHED \
@@ -202,27 +190,49 @@ function allip(){
 
 
 function flac2alac() {
-	local infile="$1"
-	local outfile="${infile/%flac/m4a}"
-	local album_artist=$(metaflac --show-tag='ALBUM ARTIST' "$infile" | sed 's/ALBUM ARTIST=//g')
+    for infile in "$@"; do
+        [[ "${infile}" != *.flac ]] && continue
+        outfile="${infile/%flac/m4a}"
 
-	echo "Converting ${infile} to ${outfile} ..."
+        album_artist=$(metaflac --show-tag='ALBUM ARTIST' "${infile}" | sed 's/ALBUM ARTIST=//g')
+        album="$(metaflac --show-tag=album "${infile}" | sed 's/[^=]*=//')"
+        artist="$(metaflac --show-tag=artist "${infile}" | sed 's/[^=]*=//')"
+        date="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
+        title="$(metaflac --show-tag=title "${infile}" | sed 's/[^=]*=//')"
+        year="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
+        genre="$(metaflac --show-tag=genre "${infile}" | sed 's/[^=]*=//')"
+        tracknumber="$(metaflac --show-tag=tracknumber "${infile}" | sed 's/[^=]*=//')"
 
-	ffmpeg -i "$infile" -acodec flac -metadata album_artist="$album_artist" "$outfile"
+        ffmpeg -i "${infile}" -c:a alac \
+            -metadata album_artist="${album_artist}" \
+            -metadata album="${album}" \
+            -metadata artist="${artist}" \
+            -metadata title="${title}" \
+            -metadata date="${date}" \
+            -metadata genre="${genre}" \
+            -metadata tracknumber="${tracknumber}" \
+                "${outfile}" 
+    done
 }
 
 function flac2mp3(){
-    for f in "$@"; do
-        [[ "$f" != *.flac ]] && continue
-        album="$(metaflac --show-tag=album "$f" | sed 's/[^=]*=//')"
-        artist="$(metaflac --show-tag=artist "$f" | sed 's/[^=]*=//')"
-        date="$(metaflac --show-tag=date "$f" | sed 's/[^=]*=//')"
-        title="$(metaflac --show-tag=title "$f" | sed 's/[^=]*=//')"
-        year="$(metaflac --show-tag=date "$f" | sed 's/[^=]*=//')"
-        genre="$(metaflac --show-tag=genre "$f" | sed 's/[^=]*=//')"
-        tracknumber="$(metaflac --show-tag=tracknumber "$f" | sed 's/[^=]*=//')"
+    for infile in "$@"; do
+        [[ "${infile}" != *.flac ]] && continue
+        album="$(metaflac --show-tag=album "${infile}" | sed 's/[^=]*=//')"
+        artist="$(metaflac --show-tag=artist "${infile}" | sed 's/[^=]*=//')"
+        date="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
+        title="$(metaflac --show-tag=title "${infile}" | sed 's/[^=]*=//')"
+        year="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
+        genre="$(metaflac --show-tag=genre "${infile}" | sed 's/[^=]*=//')"
+        tracknumber="$(metaflac --show-tag=tracknumber "${infile}" | sed 's/[^=]*=//')"
 
-        flac --decode --stdout "$f" | lame -b 320 --add-id3v2 --tt "$title" --ta "$artist" --tl "$album" --ty "$year" --tn "$tracknumber" --tg "$genre" - "${f%.flac}.mp3"
+        flac --decode --stdout "${infile}" | lame -b 320 --add-id3v2 \
+            --tt "${title}" \
+            --ta "${artist}" \
+            --tl "${album}" \
+            --ty "${year}" \
+            --tn "${tracknumber}" \
+            --tg "${genre}" - "${f%.flac}.mp3"
     done
 }
 
