@@ -140,6 +140,7 @@ RESET 0 # reset to "normal" color
 *#                00;38;5;235
 .aux              01;38;5;235
 .bak              01;38;5;235
+.bck              00;38;5;244
 .bbl              01;38;5;235
 .blg              01;38;5;235
 .cache            01;38;5;235
@@ -152,6 +153,7 @@ RESET 0 # reset to "normal" color
 .swp              01;38;5;235
 .temp             00;38;5;244
 .tmp              00;38;5;244
+.added            00;38;5;244
                  
 .chm              00;38;5;235
 .djv              00;38;5;7
