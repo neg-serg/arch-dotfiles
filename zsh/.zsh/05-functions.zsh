@@ -168,7 +168,7 @@ function discover () {
 XC() { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
 
 function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
-function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
+function dropcache { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
 
 # un-smart function for viewing/editing history file (still use 'fc/history'):
 function zhist {
