@@ -153,7 +153,7 @@ RESET 0 # reset to "normal" color
 .swp              01;38;5;235
 .temp             00;38;5;244
 .tmp              00;38;5;244
-.added            00;38;5;244
+.added            00;38;5;235
                  
 .chm              00;38;5;235
 .djv              00;38;5;7
