@@ -7,6 +7,7 @@ class cycle_settings(object):
             'web' : {
                 'classes' : {
                     'Firefox',
+                    'Waterfox',
                     'Tor Browser',
                     'Chromium',
                     'Vivaldi-stable',
