@@ -23,7 +23,7 @@ from docopt import docopt
 from circle_conf import *
 from singleton_mixin import *
 from script_i3_general import *
-from threading import Thread, enumerate
+from threading import Thread
 
 import redis
 
