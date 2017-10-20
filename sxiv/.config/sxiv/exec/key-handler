@@ -146,10 +146,6 @@ function rep() {
 }
 
 function copy_name() {
-    local st_="<span weight='bold' color='$(xrq color4)'>"
-    local gr_="<span weight='bold' color='$(xrq color2)'>"
-    local cl_="</span>"
-    local bold_="<span weight='bold'>"
     >>"${tmp_file2}"
     local fp=$(< "${tmp_file2}")
     local fname="$(resolve_file ${fp})"
