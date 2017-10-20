@@ -1,22 +1,24 @@
 #!/bin/zsh
 
+cmds_=("cp" "mv")
+
 function resolve_file {
-    if  [[ ! -L "$1" && -f "$1" ]]; then
-        echo $(readlink -f "$1")
-    elif [[ -L "$1" ]]; then
-        builtin print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
-    elif [[ "${1#/}" == "$1" ]]; then
-        echo "$(pwd)/$1"
+    if  [[ ! -L "${1}" && -f "${1}" ]]; then
+        echo $(readlink -f "${1}")
+    elif [[ -L "${1}" ]]; then
+        builtin print "$(cd $(dirname "${1}") && pwd -P)/$(basename "${1}")"
+    elif [[ "${1#/}" == "${1}" ]]; then
+        echo "$(pwd)/${1}"
     else
         echo "${1}"
     fi
 }
 
 function resolve_file2 {
-    if [[ -f "$1" ]]; then
-        builtin print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
-    elif [[ "${1#/}" == "$1" ]]; then
-        builtin print "$(pwd)/$1"
+    if [[ -f "${1}" ]]; then
+        builtin print "$(cd $(dirname "${1}") && pwd -P)/$(basename "${1}")"
+    elif [[ "${1#/}" == "${1}" ]]; then
+        builtin print "$(pwd)/${1}"
     else
         builtin print "${1}"
     fi
@@ -54,13 +56,11 @@ readonly rofi_cmd=(rofi -dmenu
                    )
 
 function finish_(){
-    rm -f "${tmp_file}"
-    rm -f "${tmp_file2}"
-    rm -f "${tmp_imgur}"
+    rm -f "${tmp_file}" "${tmp_file2}" "${tmp_imgur}"
 }
 
 function rotate() {
-    local degree="$1"
+    local degree="${1}"
     while read file; do
         case "$(file -b -i "${file}")" in
         image/jpeg*) jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}" ;;
@@ -89,9 +89,9 @@ function by_fasd_last_use() {
 
 function proc() {
     alias ourcmd_=by_fasd_last_use
+    local action="$1"
 
-    [[ $1 == "copy" ]] && cmd="cp" && cmd_w="copy"
-    [[ $1 == "move" ]] && cmd="mv" && cmd_w="move"
+    (( ${cmds_[(I)${action}]} )) && { cmd="${action}"; cmd_w="${action}" }
     >>"${tmp_file}"
     if [[ -z "${dest}" ]] ; then
         dest=$(ourcmd_ | sed 's:^'${HOME}':~:' \
@@ -124,7 +124,7 @@ function delete() {
             file_name="$(resolve_file ${line})"
             eval $(echo mv $(echo \"${file_name}\") ${dest})
         done < "${tmp_file}"
-        printf "%s\n" "move "${dest}"" > "${last_action}"
+        printf "%s\n" "mv "${dest}"" > "${last_action}"
     fi
     trap finish_ EXIT
 }
@@ -132,13 +132,12 @@ function delete() {
 function rep() {
     >"${tmp_file}"
     file=($(< "${last_action}"))
-    action=${file[1]} dest=${file[2]}
+    local action=${file[1]} 
+    local dest=${file[2]}
     if [[ -d "${dest}" ]] ; then
         while read line; do
             file_name="$(resolve_file ${line})"
-            echo $file_name
-            [[ ${action} == "move" ]] && cmd="mv"
-            [[ ${action} == "copy" ]] && cmd="cp"
+            (( ${cmds_[(I)${action}]} )) && cmd="${action}"
             eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
         done < ${tmp_file}
     fi
@@ -171,8 +170,8 @@ case "${opt}" in
     "C-slash")  rotate 180 ;;
     "C-less")   rotate -90 ;;
     "C-d")      delete ;;
-    "v")        proc move ;;
-    "C-c")      proc copy ;;
+    "v")        proc mv ;;
+    "C-c")      proc cp ;;
     "C-r")      rename ;;
     "r")        rep ;;
     "c")        copy_name ;;
