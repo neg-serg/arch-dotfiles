@@ -52,7 +52,8 @@ readonly rofi_cmd=(rofi -dmenu
                     -location "${location_}"
                     -padding "${padding_}"
                     -width "${width_}"
-                    -matching fuzzy
+                    -matching glob
+                    -levenshtein-sort
                    )
 
 function finish_(){
@@ -102,7 +103,7 @@ function proc() {
     if [[ -d "${dest}" ]]; then
         while read line; do
             file_name="$(resolve_file ${line})"
-            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
+            eval $(echo ${cmd} \"${file_name}\" ${dest})
         done < "${tmp_file}"
         _FASD_DATA="${z_data_file}" fasd -RA "${dest}"
         printf "%s\n" "${cmd_w} "${dest}"" > "${last_action}"
