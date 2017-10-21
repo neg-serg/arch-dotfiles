@@ -232,7 +232,7 @@ function flac2mp3(){
             --tl "${album}" \
             --ty "${year}" \
             --tn "${tracknumber}" \
-            --tg "${genre}" - "${f%.flac}.mp3"
+            --tg "${genre}" - "${infile%.flac}.mp3"
     done
 }
 
