@@ -5,7 +5,7 @@ windowmanager="${1}"
 [[ ${windowmanager} ]] || source ${XDG_CONFIG_HOME}/.windowmanager
 export windowmanager
 
-~/bin/wl rand
+~/bin/wl rand &
 
 [[ -f "${HOME}/.Xresources" ]] && \
     xrdb -load "${HOME}/.Xresources"
