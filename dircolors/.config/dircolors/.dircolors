@@ -53,6 +53,7 @@ RESET 0 # reset to "normal" color
 .cpio             01;38;5;61
 .dz               01;38;5;61
 .gz               01;38;5;61
+.alp              01;38;5;61
 .lha              01;38;5;61
 .lrz              01;38;5;61
 .lz               01;38;5;61
