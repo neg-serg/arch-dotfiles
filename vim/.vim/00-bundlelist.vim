@@ -1,6 +1,10 @@
 let g:nvim_deoplete=1
 let g:intellij_complete=1
 let g:want_airline=0
+let g:ale_enabled=0
+let g:arpeggio_enabled=0
+let g:vim_signify_enabled=0
+let g:use_polyglot=1
 
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
@@ -55,7 +59,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
     call dein#add('lyokha/vim-xkbswitch.git')
     "disable argpeggio because of bad compatibility with cyr
-    if has("ololo")
+    if g:arpeggio_enabled == 1
         "mappings for simultaneously pressed keys
         call dein#add('kana/vim-arpeggio.git')
     endif
@@ -140,6 +144,8 @@ if dein#load_state("/home/neg/.vim/repos")
     if executable(resolve(expand("git")))
         "Git stuff. Needed for powerline etc
         call dein#add('tpope/vim-fugitive.git') 
+        "github bindings for fugitive
+        call dein#add('tpope/vim-rhubarb')
         "Git dashboard in vim
         call dein#add('junegunn/vim-github-dashboard.git')
         "github issues autocomp
@@ -150,12 +156,11 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('junegunn/gv.vim', { 'on_cmd' : 'GV'}) 
         "diff directories easyer with vim
         call dein#add('vim-scripts/DirDiff.vim.git') 
-        if has("ololo")
+        if g:vim_signify_enabled == 1
             "maybe better alternative to gitgutter
             call dein#add('mhinz/vim-signify')
         else
             "show last git changes
-            " call dein#add('airblade/vim-gitgutter.git', { 'on_cmd' : 'GitGutterEnable'})
             call dein#add('airblade/vim-gitgutter.git')
         endif
         "vimagit like magit from emacs inter. mode
@@ -224,7 +229,7 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('justinmk/vim-gtfo')
     "rename for files even with spaces in filename
     call dein#add('ReekenX/vim-rename2.git')
-    if g:nvim_deoplete
+    if g:nvim_deoplete == 1
         call dein#add('zchee/deoplete-zsh')
     endif
     if has("loled")
@@ -245,6 +250,8 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('haya14busa/vim-asterisk')
     "better neovim terminal-based mode
     call dein#add('Shougo/deol.nvim')
+    "try to add some custom hooks with it
+    call dein#add('ahw/vim-hooks')
     "--[ Docs ]------------------------------------------------------------------------------
     "view and search rfc
     call dein#add('mhinz/vim-rfc')
@@ -261,8 +268,13 @@ if dein#load_state("/home/neg/.vim/repos")
     "provide async build via tmux
     call dein#add('tpope/vim-dispatch.git')
     if has("nvim")
-        "neomake as linter
-        call dein#add('neomake/neomake', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
+        if g:ale_enabled == 1
+            "ale as linter
+            call dein#add('w0rp/ale', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
+        else
+            "neomake as linter
+            call dein#add('neomake/neomake', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
+        endif
     else         
         "syntax checker
         call dein#add('scrooloose/syntastic', {'on_event': 'WinEnter', 'loadconf' : 1, 'merged' : 0})
@@ -522,40 +534,45 @@ if dein#load_state("/home/neg/.vim/repos")
     "mathjax support for markdown preview
     call dein#add('iamcco/mathjax-support-for-mkdp',{ 'on_ft' : 'markdown'})
     "---------------[ Misc syntax ]----------------------------------------------------------
-    " "syntax hi for tmux
-    call dein#add('vimez/vim-tmux', {'on_ft': ['tmux']})
-    "syntax hi for json format
-    call dein#add('elzr/vim-json', {'on_ft': ['json']})
-    "syntax hi for toml format
-    call dein#add('cespare/vim-toml', {'on_ft': ['toml']})
-    "Mathematica syntax and omnicomp
-    call dein#add('rsmenon/vim-mathematica.git', {'on_ft': ['mathematica']})
-    "js highlighting
-    call dein#add('jelera/vim-javascript-syntax.git', {'on_ft': ['javascript']})
-    "simple js indenter
-    call dein#add('jiangmiao/simple-javascript-indenter', {'on_ft': ['javascript']})
-    "syntax, indent, and filetype plugin files for git
-    call dein#add('tpope/vim-git') 
-    "dockerfile hi
-    call dein#add('ekalinin/Dockerfile.vim')
-    " region syntax highlighting
-    call dein#add('blindFS/vim-regionsyntax', {'on_ft': ['vimwiki', 'markdown', 'tex', 'html']})
-    "better css syntax hi
-    call dein#add('JulesWang/css.vim', {'on_ft': ['css']})
-    "basic moonscript support
-    call dein#add('leafo/moonscript-vim', {'on_ft': ['moonscript']})
-    "basic puppet support
-    call dein#add('rodjek/vim-puppet', {'on_ft': ['puppet']})
-    "nginx runtime files
-    call dein#add('fatih/vim-nginx', {'on_ft': ['nginx']})
-    "syntax file for irc logs
-    call dein#add('trapd00r/irc.vim')
-    "pretty markdown-like look
-    call dein#add('junegunn/vim-journal')
-    "sxhkd config syntax
-    call dein#add('baskerville/vim-sxhkdrc', {'on_ft': ['sxhkdrc']})
-    "qml syntax file
-    call dein#add('peterhoeg/vim-qml', {'on_ft': ['qml']})
+    if g:use_polyglot == 1
+        "all-in-one vim syntax plugin
+        call dein#add('sheerun/vim-polyglot')
+    else
+        "syntax hi for tmux
+        call dein#add('vimez/vim-tmux', {'on_ft': ['tmux']})
+        "syntax hi for json format
+        call dein#add('elzr/vim-json', {'on_ft': ['json']})
+        "syntax hi for toml format
+        call dein#add('cespare/vim-toml', {'on_ft': ['toml']})
+        "Mathematica syntax and omnicomp
+        call dein#add('rsmenon/vim-mathematica.git', {'on_ft': ['mathematica']})
+        "js highlighting
+        call dein#add('jelera/vim-javascript-syntax.git', {'on_ft': ['javascript']})
+        "simple js indenter
+        call dein#add('jiangmiao/simple-javascript-indenter', {'on_ft': ['javascript']})
+        "syntax, indent, and filetype plugin files for git
+        call dein#add('tpope/vim-git') 
+        "dockerfile hi
+        call dein#add('ekalinin/Dockerfile.vim')
+        " region syntax highlighting
+        call dein#add('blindFS/vim-regionsyntax', {'on_ft': ['vimwiki', 'markdown', 'tex', 'html']})
+        "better css syntax hi
+        call dein#add('JulesWang/css.vim', {'on_ft': ['css']})
+        "basic moonscript support
+        call dein#add('leafo/moonscript-vim', {'on_ft': ['moonscript']})
+        "basic puppet support
+        call dein#add('rodjek/vim-puppet', {'on_ft': ['puppet']})
+        "nginx runtime files
+        call dein#add('fatih/vim-nginx', {'on_ft': ['nginx']})
+        "syntax file for irc logs
+        call dein#add('trapd00r/irc.vim')
+        "pretty markdown-like look
+        call dein#add('junegunn/vim-journal')
+        "sxhkd config syntax
+        call dein#add('baskerville/vim-sxhkdrc', {'on_ft': ['sxhkdrc']})
+        "qml syntax file
+        call dein#add('peterhoeg/vim-qml', {'on_ft': ['qml']})
+    endif
     if !has("nvim")
         "10x faster clighter highlighter replacement
         call dein#add('bbchung/clighter8')
