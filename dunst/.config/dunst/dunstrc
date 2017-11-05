@@ -115,7 +115,7 @@
     format = "<b>  %s</b>\n%b"
 
 [Pushbullet]
-    summary = "*Motorola MotoG3*"
+    summary = "*Iphone7*"
     format = "<b> %s</b>\n%b"
     urgency = low
 
