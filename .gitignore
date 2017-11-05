@@ -352,3 +352,13 @@ offlineimap/.offlineimap/Repository-Gmail-Local
 offlineimap/.offlineimap/Repository-Gmail-Remote
 vim/.vim/cache_vimdiff
 vim/.vim/state_vimdiff.vim
+zsh/.zsh/.zcompdump
+offlineimap/.offlineimap/mbnames/LocalStatus-sqlite/[Gmail].All
+offlineimap/.offlineimap/mbnames/LocalStatus-sqlite/[Gmail].All Mail
+mutt/.mutt/mailboxes
+offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Sent Mail
+offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Drafts
+offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Drafts
+offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Important
+offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Important
+offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Sent Mail
