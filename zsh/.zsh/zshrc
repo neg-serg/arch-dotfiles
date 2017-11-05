@@ -38,5 +38,3 @@ local _zsh_files=(
 for i in ${_zsh_files[@]}; do
     [[ -f ${_zsh_home}/${i} ]] && source ${_zsh_home}/${i}
 done
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
