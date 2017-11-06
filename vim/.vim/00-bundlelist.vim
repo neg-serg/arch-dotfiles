@@ -76,7 +76,7 @@ if dein#load_state("/home/neg/.vim/repos")
     let s:fzf_use=1
     if (s:fzf_use) 
         " fast fuzzy finder
-        call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
+        call dein#add('junegunn/fzf', { 'build': './install --bin', 'merged': 0 }) 
         "fzf vim bindings
         call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
     else
