@@ -362,3 +362,4 @@ offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Drafts
 offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Important
 offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Important
 offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Sent Mail
+.tmux/plugins
