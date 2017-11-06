@@ -1,10 +1,10 @@
-let g:nvim_deoplete=1
-let g:intellij_complete=1
-let g:want_airline=0
-let g:ale_enabled=0
-let g:arpeggio_enabled=0
-let g:vim_signify_enabled=0
-let g:use_polyglot=1
+let g:nvim_deoplete = 1
+let g:intellij_complete = 1
+let g:want_airline = 0
+let g:ale_enabled = 1
+let g:arpeggio_enabled = 0
+let g:vim_signify_enabled = 0
+let g:use_polyglot = 1
 
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
