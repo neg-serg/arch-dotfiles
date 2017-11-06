@@ -13,6 +13,10 @@ fun! Mks(path)
     exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
 endfun
 
+autocmd FileType nerdtree :call GetFt()
+" autoclose nerdtree if it is the only open buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 " Return to last edit position (You want this!) *N*
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
