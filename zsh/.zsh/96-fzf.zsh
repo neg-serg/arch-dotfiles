@@ -7,6 +7,12 @@ __fzfcmd() {
     echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
 }
 
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=16"
+export FZF_TMUX=1
+
 # CTRL-R - Paste the selected command from history into the command line
 fzf-history-widget() {
   local selected num
