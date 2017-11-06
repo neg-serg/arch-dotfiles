@@ -1,7 +1,6 @@
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ misc plugins settings                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:gitgutter_realtime       = 0          " github.com/airblade/vim-gitgutter/issues/106
 let g:EclimCompletionMethod    = 'omnifunc' "To provide ycm autocompletion
 let g:livepreview_previewer    = 'zathura'
 let g:eregex_default_enable    = 0
@@ -15,6 +14,24 @@ endif
 if has("python3")
     let g:powerline_pycmd = "py3"
 endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - airblade/vim-gitgutter                                                   │ 
+" │ https://github.com/airblade/vim-gitgutter                                         │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:gitgutter_realtime       = 0       " github.com/airblade/vim-gitgutter/issues/106
+" GitGutter styling to use · instead of +/-
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - w0rp/ale                                                                 │ 
+" │ https://github.com/w0rp/ale                                                       │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - kana/vim-arpeggio.git                                                    │ 
 " │ https://github.com/kana/vim-arpeggio.git                                          │ 
