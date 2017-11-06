@@ -18,3 +18,6 @@
 [submodule "@tmux/.tmux/plugins/tpm"]
 	path = @tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "@rogue_emacs"]
+	path = @rogue_emacs
+	url = https://github.com/lepisma/rogue
