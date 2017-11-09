@@ -18,12 +18,14 @@ endif
 " │ plugin - airblade/vim-gitgutter                                                   │ 
 " │ https://github.com/airblade/vim-gitgutter                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:gitgutter_realtime       = 0       " github.com/airblade/vim-gitgutter/issues/106
+let g:gitgutter_realtime = 1 " github.com/airblade/vim-gitgutter/issues/106
+let g:gitgutter_async = 1
 " GitGutter styling to use · instead of +/-
 let g:gitgutter_sign_added = '∙'
 let g:gitgutter_sign_modified = '∙'
 let g:gitgutter_sign_removed = '∙'
 let g:gitgutter_sign_modified_removed = '∙'
+highlight SignColumn ctermbg=4
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - w0rp/ale                                                                 │ 
 " │ https://github.com/w0rp/ale                                                       │ 
