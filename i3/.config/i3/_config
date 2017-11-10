@@ -1,3 +1,24 @@
+#---------------------------------------
+# ░▀█▀░▀▀█░░░█░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀ #
+# ░░█░░░▀▄░▄▀░░█░░░█░█░█░█░█▀▀░░█░░█░█ #
+# ░▀▀▀░▀▀░░▀░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀ #
+#---------------------------------------
+
+# ░█▄█░▀█▀░█▀▀░█▀▀
+# ░█░█░░█░░▀▀█░█░░
+# ░▀░▀░▀▀▀░▀▀▀░▀▀▀
+set shmlog on
+set workspace_layout tabbed
+
+set $mod Mod4
+set $alt Mod1
+floating_modifier $mod
+set $soft_restart killall -SIGUSR1 i3status
+
+#---------------------------
+# ░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀ #
+# ░█░░░█░█░█░░░█░█░█▀▄░▀▀█ #
+# ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀ #
 set_from_resource $background background
 set_from_resource $foreground foreground
 
@@ -14,69 +35,60 @@ set_from_resource $BORDERU    color0
 
 set_from_resource $black    color0
 
-set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
-set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
-set $sclient [class="^(Steam|steam|explorer.exe)$"]
-set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)$"]
-
-set shmlog on
-set workspace_layout tabbed
-
-set $mod Mod4
-set $alt Mod1
-floating_modifier $mod
-
-set $myfont PragmataPro for Powerline 10
-set $zerofont PragmataPro for Powerline 0
-font pango: $zerofont
-
-focus_follows_mouse no
-focus_on_window_activation smart
-focus_follows_mouse no
-
-mouse_warping none # warp the mouse to the middle of the window when changing to a different screen
-popup_during_fullscreen smart
-
-# Disable titlebar
-new_window pixel 2
-new_float pixel 3
-
-show_marks no
-
-set $soft_restart killall -SIGUSR1 i3status
-
-#--[ Colorscheme ]----------------------------------------------------
 client.focused 		  	$black  $BORDERF $FOCUS    $BORDERF
 client.focused_inactive	$black  $UNFOCUS $UNFOCUS  $UNFOCUS
 client.unfocused		$black  $BORDERU $UNFOCUS  $BORDERU
 client.urgent			$black  $FOCUS   $FOCUS    $FOCUS
 client.background		$black           
+#---------------------------------------------------------------
+# ░█░█░█▄█░░░░░█▀▀░█░░░█▀█░█▀▀░█▀▀░░░░░█▀▀░█▀▄░█▀█░█░█░█▀█░█▀▀ #
+# ░█▄█░█░█░░░░░█░░░█░░░█▀█░▀▀█░▀▀█░░░░░█░█░█▀▄░█░█░█░█░█▀▀░▀▀█ #
+# ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀▀▀ #
+set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
+set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
+set $sclient [class="^(Steam|steam|explorer.exe)$"]
+set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)$"]
 
-#--[ Gaps ]--------------------------------
+#-----------------
+# ░█▀▀░█▀█░█▀█░▀█▀
+# ░█▀▀░█░█░█░█░░█░
+# ░▀░░░▀▀▀░▀░▀░░▀░
+set $myfont PragmataPro for Powerline 10
+set $zerofont PragmataPro for Powerline 0
+font pango: $zerofont
+
+#---------------------------------------------
+# ░█▄█░█▀█░█░█░█▀▀░█▀▀░░░█░█▀▀░█▀█░█▀▀░█░█░█▀▀
+# ░█░█░█░█░█░█░▀▀█░█▀▀░▄▀░░█▀▀░█░█░█░░░█░█░▀▀█
+# ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+focus_follows_mouse no
+focus_on_window_activation smart
+focus_follows_mouse no
+mouse_warping none # warp the mouse to the middle of the window when changing to a different screen
+
+#-----------------
+# ░█░█░▀█▀░█▀█░█▀▀
+# ░█▄█░░█░░█░█░▀▀█
+# ░▀░▀░▀▀▀░▀░▀░▀▀▀
+popup_during_fullscreen smart
+new_window pixel 2
+new_float pixel 3
+show_marks no
+
+#-----------------
+# ░█▀▀░█▀█░█▀█░█▀▀
+# ░█░█░█▀█░█▀▀░▀▀█
+# ░▀▀▀░▀░▀░▀░░░▀▀▀
 smart_gaps on
 smart_borders on
 gaps inner 4
 gaps outer 8
 hide_edge_borders both
-#------------------------------------------
-set $exit mode "default"
-bindsym $alt+e mode ""
-bindsym $mod+r mode ""
-bindsym $mod+Shift+w mode ""
-#------------------------------------------
-bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
-bindsym $mod+Shift+o exec ~/dev/src/1st_level/hud-menu/hud-menu.py
-bindsym $mod+Shift+BackSpace mode " "
-mode " " {
-    bindsym $mod+Shift+BackSpace mode "default"
-}
-#------------------------------------------
-bindsym --release Print exec ~/bin/scripts/screenshot
-bindsym --release Shift+Print ~/bin/scripts/screenshot current
-bindsym $mod+Control+{w,a,s,d} move {up,left,down,right}
-bindsym $mod+Control+g exec ~/.config/i3/i3_switch_workspace
-#------------------------------------------
 
+#-------------
+# ░█░█░█▄█░█▀▀
+# ░█▄█░█░█░▀▀█
+# ░▀░▀░▀░▀░▀▀▀
 set {$term,$ws1}   α:term
 set {$web,$ws2}   β:web
 set {$doc,$ws3}   γ:doc
@@ -93,18 +105,10 @@ set {$spotify,ws13}  ν:spotify
 set {$sxiv}  ξ: [pic]
 set {$graph}  ο: [graph]
 
-bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
-bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
-bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
-bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
-bindsym $mod+Shift+e exec  ~/.config/i3/ns.py toggle weechat
-bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
-bindsym $mod+Control+Shift+R exec python3 ~/.config/i3/ns.py geom_restore
-
-bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
-
-bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
-
+#---------------------------------
+# ░█░█░█▄█░░░░░█▀▄░█░█░█░░░█▀▀░█▀▀
+# ░█▄█░█░█░░░░░█▀▄░█░█░█░░░█▀▀░▀▀█
+# ░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀
 for_window [window_type="dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_type="menu"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_type="utility"] floating enable, move absolute position 180 20, resize set 1556 620, focus
@@ -164,6 +168,45 @@ for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] flo
 for_window [title="^webcam$"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
+
+for_window [class="^(telegram-desktop|skypeforlinux|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
+for_window [class="mpd-pad2"]    move scratchpad, move absolute position 400 400, resize set 1200 600
+for_window [instance="mutt"]     move scratchpad, move absolute position 293 0,   resize set 1250 700
+for_window [class="ranger"]      move scratchpad, move absolute position 170 18,  resize set 1132 760
+for_window [class="teardrop"]    move scratchpad, move absolute position 39  4,   resize set 1844 704
+for_window [class="youtube-get"] move scratchpad, move absolute position 247 13,  resize set 1339 866
+for_window [class="_weechat_"]   move scratchpad, move absolute position 112 33,  resize set 1736 1091
+
+#---------------------------------------------
+# ░█░█░█▀▀░█░█░█▀▄░▀█▀░█▀█░█▀▄░▀█▀░█▀█░█▀▀░█▀▀
+# ░█▀▄░█▀▀░░█░░█▀▄░░█░░█░█░█░█░░█░░█░█░█░█░▀▀█
+# ░▀░▀░▀▀▀░░▀░░▀▀░░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀
+set $exit mode "default"
+bindsym $alt+e mode ""
+bindsym $mod+r mode ""
+bindsym $mod+Shift+w mode ""
+#----------------------------------------------
+bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
+bindsym $mod+Shift+o exec ~/dev/src/1st_level/hud-menu/hud-menu.py
+bindsym $mod+Shift+BackSpace mode " "
+mode " " {
+    bindsym $mod+Shift+BackSpace mode "default"
+}
+#----------------------------------------------
+bindsym --release Print exec ~/bin/scripts/screenshot
+bindsym --release Shift+Print ~/bin/scripts/screenshot current
+bindsym $mod+Control+{w,a,s,d} move {up,left,down,right}
+bindsym $mod+Control+g exec ~/.config/i3/i3_switch_workspace
+#----------------------------------------------
+bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
+bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
+bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
+bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
+bindsym $mod+Shift+e exec  ~/.config/i3/ns.py toggle weechat
+bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
+bindsym $mod+Control+Shift+R exec python3 ~/.config/i3/ns.py geom_restore
+bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
+bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
 
 mode "" {
     #-------------------------------------------------------
@@ -261,14 +304,6 @@ mode "gaps-inner" {
 
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
-
-for_window [class="^(telegram-desktop|skypeforlinux|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
-for_window [class="mpd-pad2"]    move scratchpad, move absolute position 400 400, resize set 1200 600
-for_window [instance="mutt"]     move scratchpad, move absolute position 293 0,   resize set 1250 700
-for_window [class="ranger"]      move scratchpad, move absolute position 170 18,  resize set 1132 760
-for_window [class="teardrop"]    move scratchpad, move absolute position 39  4,   resize set 1844 704
-for_window [class="youtube-get"] move scratchpad, move absolute position 247 13,  resize set 1339 866
-for_window [class="_weechat_"]   move scratchpad, move absolute position 112 33,  resize set 1736 1091
 
 exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
