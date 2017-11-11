@@ -363,3 +363,10 @@ offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Importan
 offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Important
 offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Sent Mail
 .tmux/plugins
+@tmux/.tmux/plugins/tmux-fingers/
+@tmux/.tmux/plugins/tmux-fpp/
+@tmux/.tmux/plugins/tmux-resurrect/
+@tmux/.tmux/plugins/tmux-sensible/
+@tmux/.tmux/plugins/tmux-sessionist/
+@tmux/.tmux/plugins/tmux-yank/
+@tmux/.tmux/plugins/tmux-copycat/
