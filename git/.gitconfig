@@ -70,6 +70,8 @@
 [mergetool]
     prompt = false
     tool = vimdiff
+; [mergetool "vimdiff"]
+;     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [credential]
     helper = cache --timeout=28800
 [interactive]
