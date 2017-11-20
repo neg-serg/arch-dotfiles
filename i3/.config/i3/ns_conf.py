@@ -84,6 +84,7 @@ class ns_settings(object):
                     'TelegramDesktop',
                     'Telegram-desktop',
                     'telegram-desktop',
+                    'Skype',
                     'skypeforlinux',
                     'Skype Preview',
                     'ViberPC',
