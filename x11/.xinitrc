@@ -26,5 +26,6 @@ eval $(gpg-agent --daemon)
 (${XDG_CONFIG_HOME}/xinit/run/network_applet &)
 (${XDG_CONFIG_HOME}/xinit/run/clipboard_daemon &)
 (${SCRIPT_HOME}/dw clean &)
+(${SCRIPT_HOME}/web_startpage &)
 
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
