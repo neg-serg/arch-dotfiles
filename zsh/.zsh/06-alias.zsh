@@ -483,4 +483,8 @@ function pacnews() {
 alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
 
 # upload to imgur with modified zmwangx/imgur
-alias img="imgur-upload $@"
+if [[ ${USE_IMGUR_QT} ]]; then
+    alias img="imgur-upload $@"
+else
+    alias img="imgur-screenshot $@"
+fi
