@@ -17,8 +17,8 @@ rofi.kb-mode-next:                  Shift+Right,Control+Tab
 rofi.kb-mode-previous:              Shift+Left,Control+Shift+Tab
 rofi.kb-row-left:                   Control+Page_Up
 rofi.kb-row-right:                  Control+Page_Down
-rofi.kb-row-up:                     Up,Control+p,Shift+Tab
-rofi.kb-row-down:                   Down,Control+n
+rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k
+rofi.kb-row-down:                    Down,Control+n,Alt+j
 rofi.kb-row-tab:                    Tab
 rofi.kb-page-prev:                  Page_Up
 rofi.kb-page-next:                  Page_Down

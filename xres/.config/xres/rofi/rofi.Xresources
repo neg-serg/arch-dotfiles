@@ -20,25 +20,6 @@ rofi.markup-rows:                   false
 rofi.fullscreen:                    false
 rofi.fake-transparency:             false
 rofi.lazy-filter-limit:             1000
+rofi.theme:                         /home/neg/.config/xres/rofi/neg.rasi
 
-#include </home/neg/.config/xres/rofi/colors.Xresources>
 #include </home/neg/.config/xres/rofi/keys.Xresources>
-
-rofi.color-normal:                   #4b4536, #F8FCFF, #4b4536, #729d5d, #F8FCFF
-rofi.color-urgent:                   #4b4536, #d6b48d, #22231D, #d6b48d, #F8FCFF
-rofi.color-active:                   #4b4536, #E8EBEC, #4b4536, #E8EBEC, #4b4536
-rofi.color-window:                   #4b4536, #729d5d, #405834
-rofi.bw:                             7
-rofi.location:                       0
-rofi.padding:                        5
-rofi.yoffset:                        0
-rofi.xoffset:                        0
-rofi.fixed-num-lines:                true
-rofi.terminal:                       rofi-sensible-terminal
-rofi.ssh-client:                     ssh
-rofi.parse-hosts:                    true
-rofi.separator-style:                none
-rofi.scrollbar-width:                0
-rofi.kb-row-up:                      Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k
-rofi.kb-row-down:                    Down,Control+n,Alt+j
-rofi.theme:                          /home/neg/.config/xres/rofi/side.rasi
