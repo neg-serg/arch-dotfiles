@@ -46,7 +46,7 @@ tray-maxsize = 16
 tray-background = ${colors.background}
 
 font-0 = Iosevka Term Heavy:weight=bold:size=12;2
-font-1 = PragmataPro for Powerline:weight=bold:size=12;2
+font-1 = PragmataPro for Powerline:weight=bold:size=12;3
 
 [module/i3]
 type = internal/i3
