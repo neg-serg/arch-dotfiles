@@ -24,8 +24,6 @@ function resolve_file2 {
     fi
 }
 
-source ${XDG_CONFIG_HOME}/sxiv/exec/rofi_config
-
 opt="$1";
 
 readonly tmpfs="/tmp"
@@ -38,20 +36,14 @@ readonly tmp_imgur="${tmpfs}/sxiv_imgur.$$"
 readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
 readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
 
-readonly location_=2
-readonly padding_=2
-readonly bw_=2
+readonly width_x11_=$(xrandr -q |awk '/Screen/{print $8}')
+readonly width_="$[${width_x11_}-70]"
+readonly lines_=12
 
 readonly rofi_cmd=(rofi -dmenu 
-                    -yoffset "${yoffst_}"
                     -opacity "${opacity_}"
-                    -lines "${lines_}"
-                    -font "${font_}"
-                    "${color_}"
-                    -bw "${bw_}"
-                    -location "${location_}"
-                    -padding "${padding_}"
-                    -width "${width_}"
+                    -theme-str "'#window { width:${width_}; y-offset: 20; location: north; anchor: north; }'"
+                    -theme-str "'#listview { lines:${lines_}; }'"
                     -matching glob
                     -levenshtein-sort
                    )
