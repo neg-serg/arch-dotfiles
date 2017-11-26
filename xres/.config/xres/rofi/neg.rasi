@@ -4,14 +4,15 @@
    highlight:        bold #00ACB0;
    urgentcolor:      #AB1E87;
 
-   blackwidget:      #1C2029;
+   blackwidget:      #000000;
    blackentry:       #0E1014;
 
    fgwhite:          #cfcfcf;
    blackdarkest:     #040909;
-   blackselect:      #004142;
+   blackselect:      #073742;
    darkgray:         #00ACB0;
    scrollbarcolor:   #00ACB0;
+
    font: "Iosevka Term Medium 15";
    background-color: @blackdarkest;
 }
@@ -34,8 +35,8 @@
 }
 
 #textbox {
-   text-color: @darkgray;
-   background-color:@blackwidget;
+   text-color:       @darkgray;
+   background-color: @blackwidget;
 }
 
 #listview {
@@ -124,9 +125,10 @@
 }                    
                      
 #prompt {            
-   padding:           2px 2px;
-   background-color:  @maincolor;
-   text-color:        @blackwidget;
+   spacing:           0px;
+   padding:           4px 4px;
+   background-color:  @blackwidget;
+   text-color:        @maincolor;
 }                    
                      
 #entry {             
