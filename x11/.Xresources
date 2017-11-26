@@ -6,8 +6,6 @@
 #include </home/neg/.config/xres/alsamixer>
 #include </home/neg/.config/xres/emacs>
 #include </home/neg/.config/xres/xrenoise>
-#include </home/neg/.config/xres/urxvt>
-#include </home/neg/.config/xres/urxvt-xtermcompat>
 #include </home/neg/.config/xres/xterm>
 #include </home/neg/.config/xres/yeahconsole>
 #include </home/neg/.config/xres/xmessage>
