@@ -1,5 +1,5 @@
 __fzf_use_tmux__() {
-    [[ -n "$TMUX_PANE" ]] && [[ "${FZF_TMUX:-0}" != 0 ]] && [[ ${LINES:-40} -gt 15 ]]
+    [[ -n "${TMUX_PANE}" ]] && [[ "${FZF_TMUX:-0}" != 0 ]] && [[ ${LINES:-40} -gt 15 ]]
 }
 
 __fzfcmd() {
@@ -7,23 +7,24 @@ __fzfcmd() {
     echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
 }
 
-
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "\!{.git,node_modules}/*"'
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=16"
 export FZF_TMUX=1
+
+export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "\!{.git,node_modules}/*"'
 
 # CTRL-R - Paste the selected command from history into the command line
 fzf-history-widget() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
   selected=( $(fc -l 1 |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tac -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(q)LBUFFER} +m" $(__fzfcmd)) )
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} ${FZF_DEFAULT_OPTS} --tac -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort ${FZF_CTRL_R_OPTS} --query=${(q)LBUFFER} +m" $(__fzfcmd)) )
   local ret=$?
-  if [ -n "$selected" ]; then
-    num=$selected[1]
-    if [ -n "$num" ]; then
-      zle vi-fetch-history -n $num
+  if [ -n "${selected}" ]; then
+    num=${selected}[1]
+    if [ -n "${num}" ]; then
+      zle vi-fetch-history -n ${num}
     fi
   fi
   zle redisplay
@@ -95,31 +96,18 @@ function ftpane () {
 }
 
 function pl(){
-    local args
     [[ -e "$1" ]] && arg_="$1"
-    [[ -e "$2" ]] && pref_="$1"
-    [[ -z "${arg_}" ]] && arg_="${HOME}/vid/"
-    find_result="$(find "${arg_}"|${BIN_HOME}/sk-tmux -d 40% -q "${pref_}" --)"
-    xsel <<< ${find_result}
+    [[ -z "${arg_}" ]] && arg_="${XDG_VIDEOS_DIR}/"
+    pushd ${arg_}
+    run_command=(sk-tmux -c "'rg --files --hidden --follow -g "\!{.git,node_modules}/*"'" -d 40% --)
+    find_result="$(eval ${run_command[@]})"
+    xsel <<< "${find_result}"
     if [[ ! -z ${find_result} ]]; then
         vid_fancy_print "${find_result}"
         mpv "${find_result}"
     fi
+    popd
 }
-
-function pl2(){
-    local args
-    [[ -e "$1" ]] && arg_="$1"
-    [[ -e "$2" ]] && pref_="$1"
-    [[ -z "${arg_}" ]] && arg_="${HOME}/vid/"
-    find_result="$(find "${arg_}"|=fzf-tmux -d 40% -q "${pref_}" --)"
-    xsel <<< ${find_result}
-    if [[ ! -z ${find_result} ]]; then
-        vid_fancy_print "${find_result}"
-        mpv --input-ipc-server=~/tmp/mpv.socket "${find_result}"
-    fi
-}
-
 
 function fmpc() {
     local song_position
