@@ -11,6 +11,7 @@ class cycle_settings(object):
                     'Tor Browser',
                     'Chromium',
                     'Vivaldi-stable',
+                    'Yandex-browser-beta',
                 },
                 'prog':"firefox",
                 'priority':'Firefox',
