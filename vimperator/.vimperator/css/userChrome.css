@@ -1,146 +1,234 @@
+/*@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");*/
+
+/*#appmenu-toolbar-button{*/
+/*    display: none !important;*/
+/*}*/
+
+/*.tabbrowser-tab[fadein]:not([pinned]){*/
+/*    min-width: 0px !important;*/
+/*    max-width: 2000px !important;*/
+/*}*/
+
+/*#urlbar .autocomplete-history-dropmarker{*/
+/*    display: none !important;*/
+/*}*/
+
+/*#BMB_viewBookmarksToolbar, #BMB_viewBookmarksToolbar+menuseparator,*/
+/*#BMB_bookmarksShowAll, #BMB_bookmarksShowAll+menuseparator,*/
+/*#BMB_bookmarkThisPage,*/
+/*#BMB_subscribeToPageMenuitem,*/
+/*#BMB_subscribeToPageMenupopup, #BMB_subscribeToPageMenupopup+menuseparator,*/
+/*#BMB_bookmarksToolbar, #BMB_bookmarksToolbar+menuseparator,*/
+/*#BMB_bookmarksPopup menuseparator[builder="end"],*/
+/*#BMB_unsortedBookmarks{*/
+/*    display:none !important;*/
+/*}*/
+
+/*#tabbrowser-tabs {*/
+/*    background: #080808 !important;*/
+/*    border: none !important;*/
+/*    padding-left: 0px !important;*/
+/*    padding-right: 0px !important;*/
+/*    padding-bottom: 0px !important;*/
+/*    border-bottom: 0px solid #bdbdbd !important;*/
+/*}*/
+
+/*.tabbrowser-tab {*/
+/*    border: 0px solid #808080 !important;*/
+/*    border-left: 1px solid #808080 !important;*/
+/*    border-right: 1px solid #808080 !important;*/
+/*    border-radius: 0px !important;*/
+/*    padding-left: 0px !important;*/
+/*    padding-right: 0px !important;*/
+/*    background: #080808 !important;*/
+/*    margin-bottom: 0px !important;*/
+/*    margin: 0px !important;*/
+/*    box-shadow: 0px 0px 0px rgba(0,0,0,0.07) !important;*/
+/*}*/
+
+
+/*.tabbrowser-tab[selected=true], .tabbrowser-tab[selected=true]:hover {*/
+/*    box-shadow: inset 0px 0px 0px rgba(0,0,0,0.12) !important;*/
+/*    background: #080808 !important;*/
+/*}#urlbar > #urlbar-icons > #star-button*/
+/*{*/
+/*display: none !important;*/
+/*}#urlbar > #urlbar-icons > #star-button*/
+/*{*/
+/*display: none !important;*/
+/*}#content browser { margin-right:-14px!important; overflow-y:scroll; overflow-x:hidden;}*/
+/*.tab-icon-image {*/
+/*                visibility: hidden!important;*/
+/*margin-left: -8px;*/
+/*}*/
+/*.tabbrowser-tab {*/
+/*height: 15px !important;*/
+/*min-height: 15px !important;*/
+/*max-height: 15px !important;*/
+/*}*/
+/*.tab-image-right, .tab-image-left, .tab-image-middle {*/
+/*min-height: 15px !important;*/
+/*max-height: 15px !important;*/
+/*}*/
+/*.tab-close-button > .toolbarbutton-icon {*/
+/*                display: none!important;*/
+/*}*/
+/*.tabbrowser-arrowscrollbox > .scrollbutton-up,*/
+/*.tabbrowser-arrowscrollbox .scrollbutton-down,*/
+/*.tabbrowser-arrowscrollbox .scrollbutton-down-box,*/
+/*.tabbrowser-tabs .tabs-alltabs-box,*/
+/*.tabbrowser-tabs .tabs-alltabs-box-animate,*/
+/*.tabbrowser-tabs .tabs-alltabs-button {*/
+/*height: 15px !important;*/
+/*margin: 1px !important;*/
+/*}*/
+/*#urlbar .autocomplete-history-dropmarker { display:none!important; }*/
+/*#urlbar-go-button { display:none!important; }#urlbar-reload-button { display: none !important; }#urlbar-stop-button { display: none !important; }*/
+
+/*.autocomplete-history-dropmarker { display: none !important; }#go-button { display:none !important; }.tabbrowser-arrowscrollbox > .tabs-newtab-button {*/
+/*                display: none;*/
+/*}*/
+/*#tabbrowser-tabs ~ #alltabs-button { display:none #important; }*/
+/*tabbrowser toolbarbutton[class^="scrollbutton"],*/
+/*#tab-throbber, #identity-box, #TabsToolbar toolbarbutton[class^="scrollbutton"]*/
+/*{*/
+/*    display: none !important;*/
+/*}#urlbar {*/
+/*max-height: 15px;*/
+/*background: none!important;*/
+/*-moz-appearance: none!important;*/
+/*}*/
+/*#urlbar-container { background-color: #333;!important; max-height: 15px!important; }*/
+/*#main-window { height: 15px;}*/
+/*#back-button .toolbarbutton-icon,*/
+/*#forward-button .toolbarbutton-icon,*/
+/*#reload-button .toolbarbutton-icon,*/
+/*#urlbar-reload-button .toolbarbutton-icon,*/
+/*#stop-button .toolbarbutton-icon,*/
+/*#urlbar-stop-button .toolbarbutton-icon,*/
+/*#tabbrowser-tabs tab .tab-close-button .toolbarbutton-icon,*/
+/*#new-tab-button .toolbarbutton-icon,*/
+/*/* BUTTONS */*/
+/*#back-button .toolbarbutton-icon,*/
+/*#forward-button .toolbarbutton-icon,*/
+/*#reload-button .toolbarbutton-icon,*/
+/*#urlbar-reload-button .toolbarbutton-icon,*/
+/*#stop-button .toolbarbutton-icon,*/
+/*#urlbar-stop-button .toolbarbutton-icon,*/
+/*#tabbrowser-tabs tab .tab-close-button .toolbarbutton-icon,*/
+/*#new-tab-button .toolbarbutton-icon,*/
+/*#appmenu-button .button-icon*/
+/*{*/
+/*    list-style-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAAALCAYAAADLA1tMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5xJREFUeNrsVk1IG0EU3s3mx1RXY2qxaa0ULFakUogUESUnPaS0Wlo1oifbQ0AUDx704EGIeBAkUXOzEq0/kHpose2h2IbexUKLFA8VokIPKaghrfmpyfa9dELHcTai0FsXNpPZ+d43b9773tsVFUUR/l+CoM38EUWRXZPg1sCdgjuJDzJBI9gT61kukeyFNgrBJ8n/NC9waii+FGWr9vzUdcKb8VWifBVpG8RpVByXent7rywtLSX6+voKeAB8juuII5sIKk5qAZs/OzvrWVxc3Jufn38zPT39hASGjr5mYWEh0NTUVEDxSTgHuy+Ei5tMWP9IJ5W9enp6isDX+OTk5H3CfcKGR64dGhq6UVtbu7OxsXFzYmIizCPH57iOOMRzHNE0NzcXwsE/GAyGYgjE4MrKyrWDgwOvTqezQTAeMwFMra+vO9rb27/bbDYZ5rq6urpch8OxOzMzc0dFDZlsl2VJhuD1eiM4ms1mNySlGLlZGzYQksvlulVZWbm5trZ2fXR0dCuL7JO4jjjEox1NDGuXW1pa3oI0S6uqql5Fo9Ejv9+/Bwp6HYlElnNyclrZQLjd7tDY2JjZ6XRuw9zY3d39rbOz81IgEIhwykWPGLgNsEd6JHO9mnrC4bDParW6MRDE5m/t0nXf1dWV19jYGIHM3B4fH9+Exwm25jj9RN/f319RXV39aXV1Vfb5fD8yzjY0NBQBZxAcGITDvxgYGNhFc1BKUVtb2zYc0gzzGFXLAsmWEaQc7ujowDKJwv1LpRzKyIHEP+4piN0CXiuMRxTvBeD7CXxmUOjLUCj0zGKxPIV5Lqwdps+FP9SbQyJGcciGhZUbg03jEYd4tOPI0zA3N/fe4/E8pDKlnZqaegAOvSNZPLY/9IRCOCSWYz7wHoGUr3J4aUWYAIdqMbGKoHiNBJOHZQx7f4W5QnwWeM0SyyAGkTLV19cHQe4VWWoPy6gCcYhHO04ZJROJxHOTyfQIDn8XlHARxnuyLLfGYrFlBq+x2+0y9IQg9IRSVAKWSU1Nzfbw8DDrR4qoFRUQJ0qIk3mC108IJjkyMhLc3993CRyAwPmWwAAZscsTqfKwOrJuzNLRUZc6aIxOVADgD3HEOeEVqcyl5Q4dvph+a5SXl8uojJKSEr3KHnqw+0yUIPBKmcGIRCEKrUhRpe6572cGe9r7nQ5G5j0unvM7QiL4835HsJhjnLwekfU6C/Ys17/6uj3LuX4LMACwT+lvQQrZSgAAAABJRU5ErkJggg==")!important;*/
+/*}*/
+/*    #back-button .toolbarbutton-icon*/
+/*    {*/
+/*        -moz-image-region:rect(0, 11px, 11px, 0)!important;*/
+/*    }*/
+/*    #forward-button .toolbarbutton-icon*/
+/*    {*/
+/*        -moz-image-region:rect(0, 22px, 11px, 11px)!important;*/
+/*    }*/
+/*#nav-bar {*/
+/*        background-image: none !important;*/
+/*            background-color: #333!important;*/
+/*            border: none !important;*/
+/*            padding: 0 !important;*/
+/*                                                max-height: 15px!important;*/
+/*            border-top: 1px solid #333333!important;*/
+/*                                                padding-top: 1.45px!important;*/
+/*                                                padding-right: 2px!important;*/
+/*}*/
+
+/*    /*change the ugly throbber*/*/
+/*    .tab-throbber[progress] {*/
+/*            list-style-image: url("chrome://browser/skin/places/searching_16.png")!important;*/
+/*}*/ 
+
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-#appmenu-toolbar-button{
-    display: none !important;
-}
-
-.tabbrowser-tab[fadein]:not([pinned]){
-    min-width: 0px !important;
-    max-width: 2000px !important;
-}
-
-#urlbar .autocomplete-history-dropmarker{
-    display: none !important;
-}
-
-#BMB_viewBookmarksToolbar, #BMB_viewBookmarksToolbar+menuseparator,
-#BMB_bookmarksShowAll, #BMB_bookmarksShowAll+menuseparator,
-#BMB_bookmarkThisPage,
-#BMB_subscribeToPageMenuitem,
-#BMB_subscribeToPageMenupopup, #BMB_subscribeToPageMenupopup+menuseparator,
-#BMB_bookmarksToolbar, #BMB_bookmarksToolbar+menuseparator,
-#BMB_bookmarksPopup menuseparator[builder="end"],
-#BMB_unsortedBookmarks{
-    display:none !important;
-}
-
-#tabbrowser-tabs {
-    background: #080808 !important;
-    border: none !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    padding-bottom: 0px !important;
-    border-bottom: 0px solid #bdbdbd !important;
-}
-
-.tabbrowser-tab {
-    border: 0px solid #808080 !important;
-    border-left: 1px solid #808080 !important;
-    border-right: 1px solid #808080 !important;
-    border-radius: 0px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    background: #080808 !important;
-    margin-bottom: 0px !important;
-    margin: 0px !important;
-    box-shadow: 0px 0px 0px rgba(0,0,0,0.07) !important;
-}
+/* Tridactyl minimal CSS
+ *
+ * Contributors: aplaice, Oliver Blanthorn, Colin Caine
+ *
+ * Move this file to %appdata%/Mozilla/Firefox/[your-profile]/chrome/userChrome.css 
+ * Currently, it reduces the amount of padding around the UI, removes the tab bar
+ * and autohides the navigation bar. If you want to drag the window around press
+ * "alt" and then use the menu bar to move it, but you're better off pressing 
+ * the Windows key + an arrow key to move the window where you want it.
+ *
+ * If you're not on Windows, you can find your profile folder on
+ * about:support 
+ *
+ * Borrowed from https://www.reddit.com/r/FirefoxCSS/comments/73359a/my_firefox_57_setup/?utm_content=title&utm_medium=browse&utm_source=reddit&utm_name=FirefoxCSS
+ *
+ * This file is a work in progress.
+ *
+ * Any information on where to find documentation on valid properties we can edit here would be appreciated.
+ *
+ */
 
 
-.tabbrowser-tab[selected=true], .tabbrowser-tab[selected=true]:hover {
-    box-shadow: inset 0px 0px 0px rgba(0,0,0,0.12) !important;
-    background: #080808 !important;
-}#urlbar > #urlbar-icons > #star-button
-{
-display: none !important;
-}#urlbar > #urlbar-icons > #star-button
-{
-display: none !important;
-}#content browser { margin-right:-14px!important; overflow-y:scroll; overflow-x:hidden;}
-.tab-icon-image {
-                visibility: hidden!important;
-margin-left: -8px;
-}
-.tabbrowser-tab {
-height: 15px !important;
-min-height: 15px !important;
-max-height: 15px !important;
-}
-.tab-image-right, .tab-image-left, .tab-image-middle {
-min-height: 15px !important;
-max-height: 15px !important;
-}
-.tab-close-button > .toolbarbutton-icon {
-                display: none!important;
-}
-.tabbrowser-arrowscrollbox > .scrollbutton-up,
-.tabbrowser-arrowscrollbox .scrollbutton-down,
-.tabbrowser-arrowscrollbox .scrollbutton-down-box,
-.tabbrowser-tabs .tabs-alltabs-box,
-.tabbrowser-tabs .tabs-alltabs-box-animate,
-.tabbrowser-tabs .tabs-alltabs-button {
-height: 15px !important;
-margin: 1px !important;
-}
-#urlbar .autocomplete-history-dropmarker { display:none!important; }
-#urlbar-go-button { display:none!important; }#urlbar-reload-button { display: none !important; }#urlbar-stop-button { display: none !important; }
+/* auto-hide the tab and navigation bar in a similar way to fullscreen mode */
 
-.autocomplete-history-dropmarker { display: none !important; }#go-button { display:none !important; }.tabbrowser-arrowscrollbox > .tabs-newtab-button {
-                display: none;
-}
-#tabbrowser-tabs ~ #alltabs-button { display:none #important; }
-tabbrowser toolbarbutton[class^="scrollbutton"],
-#tab-throbber, #identity-box, #TabsToolbar toolbarbutton[class^="scrollbutton"]
-{
-    display: none !important;
-}#urlbar {
-max-height: 15px;
-background: none!important;
--moz-appearance: none!important;
-}
-#urlbar-container { background-color: #333;!important; max-height: 15px!important; }
-#main-window { height: 15px;}
-#back-button .toolbarbutton-icon,
-#forward-button .toolbarbutton-icon,
-#reload-button .toolbarbutton-icon,
-#urlbar-reload-button .toolbarbutton-icon,
-#stop-button .toolbarbutton-icon,
-#urlbar-stop-button .toolbarbutton-icon,
-#tabbrowser-tabs tab .tab-close-button .toolbarbutton-icon,
-#new-tab-button .toolbarbutton-icon,
-/* BUTTONS */
-#back-button .toolbarbutton-icon,
-#forward-button .toolbarbutton-icon,
-#reload-button .toolbarbutton-icon,
-#urlbar-reload-button .toolbarbutton-icon,
-#stop-button .toolbarbutton-icon,
-#urlbar-stop-button .toolbarbutton-icon,
-#tabbrowser-tabs tab .tab-close-button .toolbarbutton-icon,
-#new-tab-button .toolbarbutton-icon,
-#appmenu-button .button-icon
-{
-    list-style-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAAALCAYAAADLA1tMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA5xJREFUeNrsVk1IG0EU3s3mx1RXY2qxaa0ULFakUogUESUnPaS0Wlo1oifbQ0AUDx704EGIeBAkUXOzEq0/kHpose2h2IbexUKLFA8VokIPKaghrfmpyfa9dELHcTai0FsXNpPZ+d43b9773tsVFUUR/l+CoM38EUWRXZPg1sCdgjuJDzJBI9gT61kukeyFNgrBJ8n/NC9waii+FGWr9vzUdcKb8VWifBVpG8RpVByXent7rywtLSX6+voKeAB8juuII5sIKk5qAZs/OzvrWVxc3Jufn38zPT39hASGjr5mYWEh0NTUVEDxSTgHuy+Ei5tMWP9IJ5W9enp6isDX+OTk5H3CfcKGR64dGhq6UVtbu7OxsXFzYmIizCPH57iOOMRzHNE0NzcXwsE/GAyGYgjE4MrKyrWDgwOvTqezQTAeMwFMra+vO9rb27/bbDYZ5rq6urpch8OxOzMzc0dFDZlsl2VJhuD1eiM4ms1mNySlGLlZGzYQksvlulVZWbm5trZ2fXR0dCuL7JO4jjjEox1NDGuXW1pa3oI0S6uqql5Fo9Ejv9+/Bwp6HYlElnNyclrZQLjd7tDY2JjZ6XRuw9zY3d39rbOz81IgEIhwykWPGLgNsEd6JHO9mnrC4bDParW6MRDE5m/t0nXf1dWV19jYGIHM3B4fH9+Exwm25jj9RN/f319RXV39aXV1Vfb5fD8yzjY0NBQBZxAcGITDvxgYGNhFc1BKUVtb2zYc0gzzGFXLAsmWEaQc7ujowDKJwv1LpRzKyIHEP+4piN0CXiuMRxTvBeD7CXxmUOjLUCj0zGKxPIV5Lqwdps+FP9SbQyJGcciGhZUbg03jEYd4tOPI0zA3N/fe4/E8pDKlnZqaegAOvSNZPLY/9IRCOCSWYz7wHoGUr3J4aUWYAIdqMbGKoHiNBJOHZQx7f4W5QnwWeM0SyyAGkTLV19cHQe4VWWoPy6gCcYhHO04ZJROJxHOTyfQIDn8XlHARxnuyLLfGYrFlBq+x2+0y9IQg9IRSVAKWSU1Nzfbw8DDrR4qoFRUQJ0qIk3mC108IJjkyMhLc3993CRyAwPmWwAAZscsTqfKwOrJuzNLRUZc6aIxOVADgD3HEOeEVqcyl5Q4dvph+a5SXl8uojJKSEr3KHnqw+0yUIPBKmcGIRCEKrUhRpe6572cGe9r7nQ5G5j0unvM7QiL4835HsJhjnLwekfU6C/Ys17/6uj3LuX4LMACwT+lvQQrZSgAAAABJRU5ErkJggg==")!important;
-}
-    #back-button .toolbarbutton-icon
-    {
-        -moz-image-region:rect(0, 11px, 11px, 0)!important;
-    }
-    #forward-button .toolbarbutton-icon
-    {
-        -moz-image-region:rect(0, 22px, 11px, 11px)!important;
-    }
-#nav-bar {
-        background-image: none !important;
-            background-color: #333!important;
-            border: none !important;
-            padding: 0 !important;
-                                                max-height: 15px!important;
-            border-top: 1px solid #333333!important;
-                                                padding-top: 1.45px!important;
-                                                padding-right: 2px!important;
+/* User config */
+#navigator-toolbox {
+    /* The height of the area at the top of the screen that causes the nav-bar to be shown
+    If zero, you can still focus with <C-l> or F6.
+     */
+    --tridactyl-auto-show-zone: 10px;
 }
 
-    /*change the ugly throbber*/
-    .tab-throbber[progress] {
-            list-style-image: url("chrome://browser/skin/places/searching_16.png")!important;
+/* Hide grey container box */
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) { 
+    max-height: 0;
+    min-height: calc(0px); /* I have no idea why just using 0 or 0px does not work... */
+}
+
+/* Auto hide tab bar */
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) #TabsToolbar { 
+    visibility: collapse;
+}
+
+/* Auto hide nav bar */
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) #nav-bar {
+    max-height: 0;
+    min-height: 0!important;
+    /* Use margin-bottom to allow trigger zones that are larger than the nav-bar */
+    margin-bottom: calc(-1 * var(--tridactyl-auto-show-zone));
+    opacity: 0;
 } 
+
+/* Avoid transparent background for menubar if nav-toolbox not focussed */
+#navigator-toolbox:not(:hover):not(:focus-within) #toolbar-menubar > * {
+    /* Colour matches the grey background of the default firefox theme. Can't see what variable it uses */
+    background-color: rgb(232, 232, 231);
+}
+
+
+/* Make top bar more compact */
+
+/* Make nav-bar thinner */
+#nav-bar{
+    padding-top: 1px !important;
+    padding-bottom: 0 !important;
+}
+
+/* We need more padding when maximised (maybe just on Windows?) */
+#main-window[sizemode="maximized"] #nav-bar{
+    padding-top: 7px !important;
+}
+
+/* Hide URL notifications that aren't particularly useful and cover up the command line
+ * TODO: move it above the command line / bring functionality into status line like Vimperator */
+statuspanel[type="overLink"]{display: none !important;}
+
+/* Partial removal of black bottom 1px line shown in fullscreen mode */
+#navigator-toolbox::after { display: none !important; }
+
+/* Kill tab bar */
+#TabsToolbar { visibility: collapse; }
+
+/* Remove window decorations (Close, Minimize, Fullscreen) */
+#titlebar { display: none !important; }
+#TabsToolbar .titlebar-placeholder { display: none !important; }
