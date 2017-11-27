@@ -365,9 +365,6 @@ filelist.priority.low.unfocused            $priority_fg           on $flist_bg.u
 filelist.priority.low.focused              $priority_fg           on $flist_bg.f
 filelist.priority.high.unfocused           $priority_hl           on $flist_bg.uf
 filelist.priority.high.focused             $priority_hl           on $flist_bg.f
-filelist.priority.shun.unfocused           dark blue              on $flist_bg.uf
-filelist.priority.shun.focused             dark blue              on $flist_bg.f
-
 
 $plist_bg = black
 peerlist                                      default              on $plist_bg
@@ -375,8 +372,6 @@ peerlist.focused                              default              on $plist_bg
 peerlist.header                               dark gray,underline on $plist_bg
 
 $name_fg = dark gray
-peerlist.name.header                          $name_fg,underline on $plist_bg
-peerlist.name.unfocused                       $name_fg           on $plist_bg
 
 $ip_fg = dark gray
 peerlist.ip.header                            $ip_fg,underline on $plist_bg
