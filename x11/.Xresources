@@ -15,5 +15,4 @@
 #include </home/neg/.config/xres/fonts>
 #include </home/neg/.config/xres/colors/wim.Xresources>
 #include </home/neg/.config/xres/colors/solarized>
-#include </home/neg/.config/xres/rofi/rofi.Xresources>
 #include </home/neg/.config/xres/st_colors>
