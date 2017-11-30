@@ -1,1 +1,1 @@
-/home/neg/.vimrc
+/home/neg/.dotfiles/vim/.vimrc
