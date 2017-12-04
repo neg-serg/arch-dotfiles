@@ -1,72 +1,36 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator
-
-
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty it self.
 env:
-  # TERM env customization.
-  #
-  # If this property is not set, alacritty will set it to xterm-256color.
-  #
-  # Note that some xterm terminfo databases don't declare support for italics.
-  # You can verify this by checking for the presence of `smso` and `sitm` in
-  # `infocmp xterm-256color`.
   TERM: xterm-256color
 
-# Window dimensions in character columns and lines
-# (changes require restart)
 dimensions:
   columns: 80
   lines: 24
 
-# Adds this many blank pixels of padding around the window
-# Units are physical pixels; this is not DPI aware.
-# (change requires restart)
 padding:
-  x: 20
-  y: 20
+  x: 0
+  y: 0
 
-# The FreeType rasterizer needs to know the device DPI for best results
-# (changes require restart)
 dpi:
   x: 96.0
   y: 96.0
 
-# Display tabs using this many cells (changes require restart)
-tabspaces: 8
+tabspaces: 4
 
-# When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
-# Font configuration (changes require restart)
 font:
-  # The normal (roman) font face to use.
   normal:
-    family: "PragmataPro for Powerline"
+    family: "Iosevka Term Medium"
     style: Regular
-    # family: monospace # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
-    # style: Regular
 
-  # The bold font face
   bold:
-    family: "PragmataPro for Powerline"
+    family: "Iosevka Term Medium"
     style: Bold
-    # family: monospace # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
-    # style: Bold
 
-  # The italic font face
   italic:
-    family: "PragmataPro for Powerline"
+    family: "Iosevka Term Medium"
     style: Italic
-    # family: monospace # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
-    # style: Italic
 
-  # Point size of the font
-  size: 10.0
+  size: 17.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -91,43 +55,37 @@ render_timer: false
 
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
+custom_cursor_colors: true
 
-# Colors (Tomorrow Night Bright)
 colors:
-  # Default colors
   primary:
-    background: '0x1D1C27'
-    foreground: '0xC8D1E3'
+    background: '0x000000'
+    foreground: '0x617287'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '0x2B2A3B'
     cursor: '0xC8D1E3'
 
-  # Normal colors
   normal:
-    black:   '0x686B82'
-    red:     '0xFF3E57'
-    green:   '0x00FA8E'
-    yellow:  '0xE5D781'
-    blue:    '0x18A2FF'
-    magenta: '0xCE63EC'
-    cyan:    '0x47E3DD'
-    white:   '0xC8D1E3'
+    black:   '0x020202'
+    red:     '0x8A2F58'
+    green:   '0x287373'
+    yellow:  '0x914E89'
+    blue:    '0x395573'
+    magenta: '0x5E468C'
+    cyan:    '0x899CA1'
+    white:   '0x5E5E5E'
 
-  # Bright colors
   bright:
-    black:   '0x2B2A3B'
-    red:     '0xFF3E57'
-    green:   '0x00FA8E'
-    yellow:  '0xE5D781'
-    blue:    '0x18A2FF'
-    magenta: '0xCE63EC'
-    cyan:    '0x47E3DD'
-    white:   '0xEDEFF2'
+    black:   '0x5E5E5E'
+    red:     '0xCF4F88'
+    green:   '0x53A6A6'
+    yellow:  '0xBF85CC'
+    blue:    '0x4779B3'
+    magenta: '0x7F62B3'
+    cyan:    '0x47959E'
+    white:   '0xC0C0C0'
 
-  # Dim colors (Optional)
   dim:
 ￼   black:   '0x333333'
 ￼   red:     '0xf2777a'
@@ -138,14 +96,6 @@ colors:
 ￼   cyan:    '0x66cccc'
 ￼   white:   '0xdddddd'
 
-# Visual Bell
-#
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
-#
 # Possible values for `animation`
 # `Ease`
 # `EaseOut`
@@ -157,9 +107,8 @@ colors:
 # `EaseOutExpo`
 # `EaseOutCirc`
 # `Linear`
-#
 # To completely disable the visual bell, set its duration to 0.
-#
+
 visual_bell:
   animation: EaseOutExpo
   duration: 0
@@ -281,11 +230,7 @@ selection:
 
 hide_cursor_when_typing: false
 
-# Shell
-#
-# You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
-# Entries in shell.args are passed unmodified as arguments to the shell.
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+ program: /bin/zsh
+ # args:
+ #   - --login
