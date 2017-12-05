@@ -127,8 +127,8 @@ class ns_settings(object):
             },
             'mutt': {
                 'instance' : { 'mutt' },
-                'geom' : "1250x700+293+0",
-                'prog' : "st -f \'PragmataPro for Powerline:size=12\' -c mutt -e mutt",
+                'geom' : "1835x1114+52+0",
+                'prog' : "st -f \'Iosevka Term Medium:size=17\' -c mutt -e mutt",
             },
             'ranger': {
                 'class' : { 'ranger' },
