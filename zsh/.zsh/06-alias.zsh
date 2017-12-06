@@ -488,3 +488,5 @@ if [[ ${USE_IMGUR_QT} ]]; then
 else
     alias img="imgur-screenshot $@"
 fi
+
+alias yt4k=4kvideodownloader
