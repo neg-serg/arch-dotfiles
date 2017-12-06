@@ -40,7 +40,7 @@ class named_scratchpad(SingletonMixin):
     def __init__(self) -> None:
         self.group_list=[]
         self.fullscreen_list=[]
-        [self.group_list.append(group) for group in Conf]
+        [self.group_list.append(tag) for tag in Conf]
         self.prev_id=0
 
         self.i3 = i3ipc.Connection()
@@ -50,45 +50,45 @@ class named_scratchpad(SingletonMixin):
         self.i3.on('window::new', self.mark_group)
         self.i3.on('window::close', self.cleanup_mark)
 
-    def make_mark(self, group : str) -> str:
-        output=(group) + str(str(uuid.uuid4().fields[-1]))
+    def make_mark(self, tag: str) -> str:
+        output=(tag) + str(str(uuid.uuid4().fields[-1]))
         return 'mark {}'.format(output)
 
-    def focus(self, group : str) -> None:
-        for j,i in enumerate(marked[group]):
-            marked[group][j].command('move container to workspace current')
+    def focus(self, tag: str) -> None:
+        for index,i in enumerate(marked[tag]):
+            marked[tag][index].command('move container to workspace current')
 
-    def toggle(self, group : str) -> None:
-        if marked[group] == [] and "prog" in Conf[group]:
-            i3.command("exec {}".format(Conf[group]["prog"]))
+    def toggle(self, tag : str) -> None:
+        if marked[tag] == [] and "prog" in Conf[tag]:
+            i3.command("exec {}".format(Conf[tag]["prog"]))
 
         # We need to hide scratchpad it is visible, regardless it focused or not
         focused = i3.get_tree().find_focused()
 
-        if self.visible(group) > 0:
-            self.unfocus(group)
+        if self.visible(tag) > 0:
+            self.unfocus(tag)
             return
 
-        for i in marked[group]:
+        for i in marked[tag]:
             if focused.id == i.id:
-                self.unfocus(group); return
+                self.unfocus(tag); return
 
         if focused.fullscreen_mode:
             focused.command('fullscreen toggle')
             self.fullscreen_list.append(focused)
 
-        self.focus(group)
+        self.focus(tag)
 
-    def run_prog(self, group : str, app : str) -> None:
-        if "prog_dict" in Conf[group] and app in Conf[group]["prog_dict"]:
-            class_list=[win.window_class for win in marked[group]]
-            target_class_list=Conf[group]["prog_dict"][app]["includes"]
+    def run_prog(self, tag: str, app : str) -> None:
+        if "prog_dict" in Conf[tag] and app in Conf[tag]["prog_dict"]:
+            class_list=[win.window_class for win in marked[tag]]
+            target_class_list=Conf[tag]["prog_dict"][app]["includes"]
             target_class_list_set=set(target_class_list)
             interlist=[val for val in class_list if val in target_class_list_set]
             if not len(interlist):
-                i3.command("exec {}".format(Conf[group]["prog_dict"][app]["prog"]))
+                i3.command("exec {}".format(Conf[tag]["prog_dict"][app]["prog"]))
             else:
-                def focus_subgroup(group : str):
+                def focus_subgroup(tag: str):
                     focused=i3.get_tree().find_focused()
 
                     if focused.fullscreen_mode:
@@ -98,46 +98,46 @@ class named_scratchpad(SingletonMixin):
                     if focused.window_class in target_class_list_set:
                         return
 
-                    self.focus(group)
+                    self.focus(tag)
 
                     visible_windows = find_visible_windows(get_windows_on_ws())
                     for w in visible_windows:
-                        for i in marked[group]:
+                        for i in marked[tag]:
                             if w.id == i.id:
                                 i3.command('[con_id=%s] focus' % w.id)
 
-                    for j,i in enumerate(marked[group]):
+                    for index,i in enumerate(marked[tag]):
                         if not focused.window_class in target_class_list_set:
-                            if marked[group][j].window_class not in target_class_list_set:
+                            if marked[tag][index].window_class not in target_class_list_set:
                                 self.next_win()
                         else:
                             break
-                focus_subgroup(group)
+                focus_subgroup(tag)
         else:
-            self.toggle(group)
+            self.toggle(tag)
 
     def restore_fullscreens(self) -> None:
         [i.command('fullscreen toggle') for i in self.fullscreen_list]
         self.fullscreen_list=[]
 
-    def unfocus(self, group : str) -> None:
-        for j,i in enumerate(marked[group]):
-            marked[group][j].command('move scratchpad')
+    def unfocus(self, tag: str) -> None:
+        for index,i in enumerate(marked[tag]):
+            marked[tag][index].command('move scratchpad')
         self.restore_fullscreens()
 
-    def visible(self, group : str):
+    def visible(self, tag: str):
         visible_windows = find_visible_windows(get_windows_on_ws())
         vmarked = 0
         for w in visible_windows:
-            for i in marked[group]:
+            for i in marked[tag]:
                 vmarked+=(w.id == i.id)
         return vmarked
 
     def get_current_group(self, focused) -> str:
-        for group in Conf:
-            for i in marked[group]:
+        for tag in Conf:
+            for i in marked[tag]:
                 if focused.id == i.id:
-                    return group
+                    return tag
 
     def apply_to_current_group(self, func : Callable) -> bool:
         curr_group=self.get_current_group(i3.get_tree().find_focused())
@@ -149,14 +149,14 @@ class named_scratchpad(SingletonMixin):
     def next_win(self) -> None:
         focused_=i3.get_tree().find_focused()
 
-        def next_win_(group : str) -> None:
-            self.focus(group)
-            for number,win in enumerate(marked[group]):
+        def next_win_(tag: str) -> None:
+            self.focus(tag)
+            for number,win in enumerate(marked[tag]):
                 if focused_.id != win.id:
-                    marked[group][number].command('move container to workspace current')
-                    marked[group].insert(len(marked[group]), marked[group].pop(number))
+                    marked[tag][number].command('move container to workspace current')
+                    marked[tag].insert(len(marked[tag]), marked[tag].pop(number))
                     win.command('move scratchpad')
-            self.focus(group)
+            self.focus(tag)
 
         self.apply_to_current_group(next_win_)
 
@@ -167,18 +167,18 @@ class named_scratchpad(SingletonMixin):
             i3.command('[con_id=__focused__] scratchpad show')
 
     def geom_restore_all(self) -> None:
-        for group in Conf:
-            geom_restore(group)
+        for tag in Conf:
+            geom_restore(tag)
 
-    def geom_restore(self, group : str) -> None:
-        for j,win in enumerate(marked[group]):
+    def geom_restore(self, tag: str) -> None:
+        for j,win in enumerate(marked[tag]):
             # delete previous mark
-            del marked[group][j]
+            del marked[tag][j]
 
             # then make a new mark and move scratchpad
-            win_cmd=self.make_mark(group)+', move scratchpad,'+conf_.get_geom(group)
+            win_cmd=self.make_mark(tag)+', move scratchpad,'+conf_.get_geom(tag)
             win.command(win_cmd)
-            marked[group].append(win)
+            marked[tag].append(win)
 
     def geom_restore_current(self) -> None:
         groupwins=self.apply_to_current_group(self.geom_restore)
@@ -203,19 +203,19 @@ class named_scratchpad(SingletonMixin):
 
     def mark_group(self, i3, event) -> None:
         def scratch_move() -> None:
-            con_cmd=self.make_mark(group)+', move scratchpad,'+conf_.get_geom(group)
+            con_cmd=self.make_mark(tag)+', move scratchpad,'+conf_.get_geom(tag)
             con.command(con_cmd)
-            marked[group].append(con)
+            marked[tag].append(con)
 
         def check_by(attr : str) -> bool:
-            if attr in Conf[group]:
-                return getattr(con, 'window_'+attr) in Conf[group][attr]
+            if attr in Conf[tag]:
+                return getattr(con, 'window_'+attr) in Conf[tag][attr]
             else:
                 return False
 
         con=event.container
 
-        for group in Conf:
+        for tag in Conf:
             for attr in ["class", "instance"]:
                 if check_by(attr):
                     scratch_move()
@@ -226,18 +226,18 @@ class named_scratchpad(SingletonMixin):
             if hide:
                 hide_cmd=', [con_id=__focused__] scratchpad show'
 
-            con_cmd=self.make_mark(group)+', move scratchpad,'+conf_.get_geom(group)+hide_cmd
+            con_cmd=self.make_mark(tag)+', move scratchpad,'+conf_.get_geom(tag)+hide_cmd
             con.command(con_cmd)
-            marked[group].append(con)
+            marked[tag].append(con)
 
         def check_by(attr : str) -> bool:
-            if attr in Conf[group]:
-                return getattr(con, 'window_'+attr) in Conf[group][attr]
+            if attr in Conf[tag]:
+                return getattr(con, 'window_'+attr) in Conf[tag][attr]
             else:
                 return False
 
         window_list = i3.get_tree().leaves()
-        for group in Conf:
+        for tag in Conf:
             for con in window_list:
                 for attr in ["class", "instance"]:
                     if check_by(attr):
