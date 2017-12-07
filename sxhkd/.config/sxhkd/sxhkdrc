@@ -10,8 +10,6 @@ XF86Audio{Lower,Raise}Volume
 	~/bin/scripts/vol_ {-1,+1}
 super + control + XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
-    #dash -c "pactl set-sink-mute $(SCRIPT_OUTPUT=1 ~/bin/pls -sink | head -1) 0 ; \
-    #         pactl set-sink-volume $(SCRIPT_OUTPUT=1 ~/bin/pls -sink | head -1) +5%"
 super + 8
     mpc -q volume 0 || amixer -q set Master 0% mute
 super + shift + 8
