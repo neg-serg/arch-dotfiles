@@ -1,4 +1,5 @@
 input-ipc-server=/tmp/mpvsocket
+no-border
 fullscreen=yes
   
 ao=pulse
