@@ -7,12 +7,11 @@
 # ░█▄█░▀█▀░█▀▀░█▀▀
 # ░█░█░░█░░▀▀█░█░░
 # ░▀░▀░▀▀▀░▀▀▀░▀▀▀
-set shmlog on
-set workspace_layout tabbed
+workspace_layout tabbed
+floating_modifier $mod
 
 set $mod Mod4
 set $alt Mod1
-floating_modifier $mod
 set $soft_restart killall -SIGUSR1 i3status
 
 #---------------------------
@@ -33,28 +32,14 @@ set_from_resource $UNFOCUS    color204
 set_from_resource $BORDERF    color205
 set_from_resource $BORDERU    color0
 
-set_from_resource $black    color0
-
-client.focused 		  	$black  $BORDERF $FOCUS    $BORDERF
-client.focused_inactive	$black  $UNFOCUS $UNFOCUS  $UNFOCUS
-client.unfocused		$black  $BORDERU $UNFOCUS  $BORDERU
-client.urgent			$black  $FOCUS   $FOCUS    $FOCUS
-client.background		$black           
-#---------------------------------------------------------------
-# ░█░█░█▄█░░░░░█▀▀░█░░░█▀█░█▀▀░█▀▀░░░░░█▀▀░█▀▄░█▀█░█░█░█▀█░█▀▀ #
-# ░█▄█░█░█░░░░░█░░░█░░░█▀█░▀▀█░▀▀█░░░░░█░█░█▀▄░█░█░█░█░█▀▀░▀▀█ #
-# ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀▀▀ #
-set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
-set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
-set $sclient [class="^(Steam|steam|explorer.exe)$"]
-set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)$"]
+set_from_resource $black      color0
 
 #-----------------
 # ░█▀▀░█▀█░█▀█░▀█▀
 # ░█▀▀░█░█░█░█░░█░
 # ░▀░░░▀▀▀░▀░▀░░▀░
 set $myfont PragmataPro for Powerline 10
-set $zerofont PragmataPro for Powerline 0
+set $zerofont PragmataPro for Powerline 10
 font pango: $zerofont
 
 #---------------------------------------------
@@ -64,7 +49,8 @@ font pango: $zerofont
 focus_follows_mouse no
 focus_on_window_activation smart
 focus_follows_mouse no
-mouse_warping none # warp the mouse to the middle of the window when changing to a different screen
+# warp the mouse to the middle of the window when changing to a different screen
+mouse_warping none
 
 #-----------------
 # ░█░█░▀█▀░█▀█░█▀▀
@@ -89,21 +75,21 @@ hide_edge_borders both
 # ░█░█░█▄█░█▀▀
 # ░█▄█░█░█░▀▀█
 # ░▀░▀░▀░▀░▀▀▀
-set {$term,$ws1}   α:term
-set {$web,$ws2}   β:web
-set {$doc,$ws3}   γ:doc
-set {$dev,$ws4}   δ:dev
-set {$media,$ws5}   ε:media
-set {$gimp,$ws6}  ζ:gimp
-set {$admin,$ws7}  η:admin
-set {$ide,$ws8}   θ:ide
-set {$steam,$ws9}   ι:steam
-set {$torrent,$ws10}  κ:torrent
-set {$vm,$ws11} λ:vm
-set {$wine,$ws12} μ:wine
-set {$spotify,ws13}  ν:spotify
-set {$sxiv}  ξ: [pic]
-set {$graph}  ο: [graph]
+set ${term,ws1}   α:term
+set ${web,ws2}   β:web
+set ${doc,ws3}   γ:doc
+set ${dev,ws4}   δ:dev
+set ${media,ws5}   ε:media
+set ${gimp,ws6}  ζ:gimp
+set ${admin,ws7}  η:admin
+set ${ide,ws8}   θ:ide
+set ${steam,ws9}   ι:steam
+set ${torrent,ws10}  κ:torrent
+set ${vm,ws11} λ:vm
+set ${wine,ws12} μ:wine
+set ${spotify,ws13}  ν:spotify
+set $sxiv  ξ: [pic]
+set $graph  ο: [graph]
 
 #---------------------------------
 # ░█░█░█▄█░░░░░█▀▄░█░█░█░░░█▀▀░█▀▀
@@ -114,7 +100,7 @@ for_window [window_type="menu"] floating enable, move absolute position 180 20, 
 for_window [window_type="utility"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_type="toolbar"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
-for_window $browsers  move container to workspace $web, workspace $web, focus
+for_window [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]  move container to workspace $web, workspace $web, focus
 for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
 for_window [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] floating enable, move container to workspace $dev, workspace $dev, focus
 for_window [class="cool-retro-term"] floating enable
@@ -142,7 +128,6 @@ for_window [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]  move container to wor
 for_window [class="rdesktop" instance="rdesktop"] floating enable
 for_window [class="spotify"] move container to workspace $spotify
 for_window [class="Sxiv"]  move container to workspace $sxiv, workspace $sxiv, focus
-for_window [class="Sxiv$"] move scratchpad, move position 25 32, resize set 1833 1102, focus
 for_window [class="^(Tilda|Guake)$"] floating enable
 for_window [class="^(Vuze|Ktorrent)$"] move container to workspace $torrent
 for_window [class="^(Xmessage|XFontSel|XCalc|Xfce)$"] floating enable
@@ -159,13 +144,14 @@ for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floatin
 for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
 for_window [instance="wicd"] floating enable
 for_window [instance="^(wim|nwim)$"] move container to workspace $dev, workspace $dev, focus
-for_window $sclient move container to workspace $steam, workspace $steam, focus
-for_window $steam_games move container to workspace $steam, workspace $steam, fullscreen enable, focus
-for_window $steam_all mark steam_all, move container to workspace $steam, workspace $steam, focus
+for_window [class="^(Steam|steam|explorer.exe)$"] move container to workspace $steam, workspace $steam, focus
+for_window [class="^(dota2|darkest.bin.x86_64)$"] move container to workspace $steam, workspace $steam, fullscreen enable, focus
+for_window [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)$"] mark steam_all, move container to workspace $steam, workspace $steam, focus
 for_window [title="^Compress.*"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
 for_window [title="^webcam$"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
+for_window [class="wpg"] floating enable, move absolute position 1210 626, resize set 700 500, focus
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
@@ -305,8 +291,7 @@ mode "gaps-inner" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-exec_always polybar -c ~/.config/polybar/main {tiny,main}
-
+exec --no-startu-id polybar -c ~/.config/polybar/main {tiny,main}
 exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/{disable-standby-fs,nsd,circled,flastd}.py
 
 # vim:filetype=i3
