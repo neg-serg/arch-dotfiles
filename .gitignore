@@ -372,3 +372,4 @@ offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Sent Mail
 @tmux/.tmux/plugins/tmux-copycat/
 cache.db
 cache.db.lock
+watch_later
