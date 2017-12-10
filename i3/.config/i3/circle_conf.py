@@ -13,8 +13,8 @@ class cycle_settings(object):
                     'Vivaldi-stable',
                     'Yandex-browser-beta',
                 },
-                'prog':"waterfox",
-                'priority':'Waterfox',
+                'prog':"firefox",
+                'priority':'Firefox',
             },
             'vid':{
                 'classes': {
