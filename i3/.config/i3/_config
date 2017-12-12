@@ -34,7 +34,7 @@ set_from_resource $BORDERU    color0
 
 set_from_resource $black      color0
 
-client.focused                         $black  $BORDERF $FOCUS    $BORDERF
+client.focused                 $black  $BORDERF $FOCUS    $BORDERF
 client.focused_inactive        $black  $UNFOCUS $UNFOCUS  $UNFOCUS
 client.unfocused               $black  $BORDERU $UNFOCUS  $BORDERU
 client.urgent                  $black  $FOCUS   $FOCUS    $FOCUS
@@ -51,9 +51,8 @@ set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)
 # ░█▀▀░█▀█░█▀█░▀█▀
 # ░█▀▀░█░█░█░█░░█░
 # ░▀░░░▀▀▀░▀░▀░░▀░
-set $myfont PragmataPro for Powerline 10
-set $zerofont PragmataPro for Powerline 10
-font pango: $zerofont
+set $myfont Iosevka Term Heavy 10
+font pango: $myfont
 
 #---------------------------------------------
 # ░█▄█░█▀█░█░█░█▀▀░█▀▀░░░█░█▀▀░█▀█░█▀▀░█░█░█▀▀
@@ -168,7 +167,7 @@ for_window [class="wpg"] floating enable, move absolute position 1210 626, resiz
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
-for_window [class="^(telegram-desktop|skypeforlinux|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
+for_window [class="^(telegram-desktop|Skype|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
 for_window [class="mpd-pad2"]    move scratchpad, move absolute position 400 400, resize set 1200 600
 for_window [instance="mutt"]     move scratchpad, move absolute position 293 0,   resize set 1250 700
 for_window [class="ranger"]      move scratchpad, move absolute position 170 18,  resize set 1132 760
