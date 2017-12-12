@@ -11,6 +11,7 @@ path_dirs=(
     /opt/android-sdk/platform-tools
     /mnt/home/.local/bin
     /opt/cuda/bin
+    /opt/go/bin
 )
 
 whence ruby >/dev/null && \
