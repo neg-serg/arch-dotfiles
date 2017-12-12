@@ -82,10 +82,8 @@ class ns_settings(object):
             'im' : {
                 'class' : {
                     'TelegramDesktop',
-                    'Telegram-desktop',
-                    'telegram-desktop',
+                    'skype',
                     'Skype',
-                    'skypeforlinux',
                     'Skype Preview',
                     'ViberPC',
                     'finch',
@@ -97,15 +95,14 @@ class ns_settings(object):
                         "prog": "telegram-desktop",
                         "includes": {
                             'TelegramDesktop',
-                            'Telegram-desktop',
-                            'telegram-desktop'
                         },
                     },
                     "skype" : {
                         "prog": "skypeforlinux",
                         "includes": {
-                            'skypeforlinux',
-                            'Skype Preview'
+                            'skype',
+                            'Skype',
+                            'Skype Preview',
                         },
                     }
                 }
