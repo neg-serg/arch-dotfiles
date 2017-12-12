@@ -373,3 +373,5 @@ offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Sent Mail
 cache.db
 cache.db.lock
 watch_later
+cgdb/.cgdb/logs/
+cgdb/.cgdb/readline_history.txt
