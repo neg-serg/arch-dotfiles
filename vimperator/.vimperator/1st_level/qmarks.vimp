@@ -13,3 +13,4 @@ silent qmark v https://vk.com/feed
 silent qmark V https://www.reddit.com/r/vim/
 silent qmark p https://www.reddit.com/r/vimplugins/
 silent qmark y https://youtube.com/
+silent qmark k https://www.reddit.com/r/MechanicalKeyboards/
