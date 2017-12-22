@@ -1,16 +1,9 @@
-# [Created by task 2.5.0 12/19/2015 22:06:31]
-# Taskwarrior program configuration file.
-# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
-# 'man task-sync' or 'man taskrc'
-
-# Use the command 'task show' to see all defaults and overrides
 data.location=~/.task
 
 color=on
 search.case.sensitive=off
 
 include /usr/share/doc/task/rc/dark-blue-256.theme
-#include /usr/share/doc/task/rc/dark-violets-256.theme
 
 taskd.server=freecinc.com:53589
 taskd.key=\/home\/neg\/.task\/freecinc_f54840ad.key.pem
