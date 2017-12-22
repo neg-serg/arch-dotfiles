@@ -303,8 +303,8 @@ mode "gaps-inner" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-exec_always pgrep polybar || polybar -c ~/.config/polybar/main tiny
-exec_always pgrep polybar || polybar -c ~/.config/polybar/main main
+exec_always [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main tiny
+exec_always [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main main
 exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/{disable-standby-fs,nsd,circled,flastd}.py
 
 # vim:filetype=i3
