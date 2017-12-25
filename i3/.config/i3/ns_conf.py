@@ -65,44 +65,48 @@ class ns_settings(object):
         return {'width': int(resolution[0]), 'height': int(resolution[1])}
 
     def __parse_geom(self, group):
-
-        resolution_default={'width':1920, 'height':1200}
+        rd={'width':1920, 'height':1200} # resolution_default
+        cr=self.current_resolution
 
         geom=re.split(r'[x+]', self.settings[group]["geom"])
-        converted_geom=[]
+        cg=[] # converted_geom
 
-        converted_geom.append(int(int(geom[0])*self.current_resolution['width'] / resolution_default['width']))
-        converted_geom.append(int(int(geom[1])*self.current_resolution['height'] / resolution_default['height']))
-        converted_geom.append(int(int(geom[2])*self.current_resolution['width'] / resolution_default['width']))
-        converted_geom.append(int(int(geom[3])*self.current_resolution['height'] / resolution_default['height']))
+        cg.append(int(int(geom[0])*cr['width']  / rd['width']))
+        cg.append(int(int(geom[1])*cr['height'] / rd['height']))
+        cg.append(int(int(geom[2])*cr['width']  / rd['width']))
+        cg.append(int(int(geom[3])*cr['height'] / rd['height']))
 
-        return "move absolute position {2} {3}, resize set {0} {1}".format(*converted_geom)
+        return "move absolute position {2} {3}, resize set {0} {1}".format(*cg)
 
     def __init__(self):
-        self.telegram = {
+        self.telegram = frozenset({
             'TelegramDesktop',
             'Telegram-desktop',
             'telegram-desktop'
-        }
+        })
 
-        self.skype = {
+        self.skype = frozenset({
             'skype',
             'Skype',
             'Skype Preview',
-        }
+        })
 
         self.settings = {
             'im' : {
-                'class' : frozenset(self.skype) | frozenset(self.telegram) | frozenset({ 'ViberPC', 'finch', 'VK' }),
+                'class' : self.skype | self.telegram | frozenset({
+                    'ViberPC',
+                    'finch',
+                    'VK'
+                }),
                 'geom' : "528x1029+1372+127",
                 'prog_dict': {
                     "tel" : {
                         "prog": "telegram-desktop",
-                        "includes": frozenset(self.telegram),
+                        "includes": self.telegram,
                     },
                     "skype" : {
                         "prog": "skypeforlinux",
-                        "includes": frozenset(self.skype),
+                        "includes": self.skype,
                     }
                 }
             },
