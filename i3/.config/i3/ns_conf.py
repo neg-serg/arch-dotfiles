@@ -93,30 +93,16 @@ class ns_settings(object):
 
         self.settings = {
             'im' : {
-                'class' : {
-                    frozenset(
-                        self.skype &
-                        self.telegram &
-                            {
-                                'ViberPC',
-                                'finch',
-                                'VK'
-                            }
-                    )
-                },
+                'class' : frozenset(self.skype) | frozenset(self.telegram) | frozenset({ 'ViberPC', 'finch', 'VK' }),
                 'geom' : "528x1029+1372+127",
                 'prog_dict': {
                     "tel" : {
                         "prog": "telegram-desktop",
-                        "includes": {
-                            frozenset(self.telegram),
-                        },
+                        "includes": frozenset(self.telegram),
                     },
                     "skype" : {
                         "prog": "skypeforlinux",
-                        "includes": {
-                            frozenset(self.skype),
-                        },
+                        "includes": frozenset(self.skype),
                     }
                 }
             },
