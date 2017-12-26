@@ -37,6 +37,8 @@ if dein#load_state("/home/neg/.vim/repos")
         if g:intellij_complete == 1
             call dein#add('vhakulinen/neovim-intellij-complete')
         endif
+        " language client protocol support
+        call dein#add('autozimu/LanguageClient-neovim')
     else
         call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
     endif
