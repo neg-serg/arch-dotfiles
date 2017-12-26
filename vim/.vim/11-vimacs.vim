@@ -193,3 +193,41 @@ call s:map('n', '<m-t>', '<plug>SwapSwapWithR_WORD')
 
 let &cpoptions = s:savecpo
 unlet s:savecpo
+
+" Get the current cursor position on the edit line. This differs from
+" getcmdpos in that it counts chars intead of bytes and starts counting at 0.
+function! s:getcur()
+  return strchars((getcmdline() . " ")[:getcmdpos() - 1]) - 1
+endfunction
+
+" Get mapping to delete from cursor to position. Argument x is the position to
+" delete to. Argument y represents the current cursor position (note that this
+" _must_ be in sync with the real cursor position).
+function! s:delete_to(x, y)
+  let cmd = ""
+  let s = getcmdline()
+  let y = a:y
+  if y < a:x
+    let s:yankbuf = strcharpart(s, y, a:x - y)
+    while y < a:x
+      let cmd .= "\<del>"
+      let y += 1
+    endwhile
+  else
+    let s:yankbuf = strcharpart(s, a:x, y - a:x)
+    while a:x < y
+      let cmd .= "\b"
+      let y -= 1
+    endwhile
+  endif
+  return cmd
+endfunction
+
+" get mapping to delete to end of line
+function! s:delete_line()
+  return s:delete_to(strchars(getcmdline()), s:getcur())
+endfunction
+
+
+" delete to end of line
+cnoremap <expr> <c-k> <sid>delete_line()
