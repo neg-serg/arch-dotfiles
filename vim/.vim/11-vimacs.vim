@@ -38,11 +38,8 @@ cnoremap <c-n> <down>
 cnoremap <M-d> <S-Right><C-w>
 cnoremap <C-y> <C-r><C-o>"
 cnoremap <M-f> <S-Right>
-cnoremap <C-k> <C-f>d$<C-c><End>
 
 inoremap <silent> <C-k><C-k> <C-r>=<SID>KillLine()<CR>
-" Thanks to Benji Fisher for helping me with getting <C-k> to work!
-" inoremap <M-0><C-k> <C-o>d0
 inoremap <M-z> <C-o>dt
 
 function! <SID>KillLine()
@@ -54,16 +51,6 @@ function! <SID>KillLine()
     return "\<C-o>d$"
   endif
 endfunction
-
-" don't bother with the following workarounds if `:set noesckeys` is enabled
-" if &esckeys
-"     for key in [ 'ñ','Ñ','ô','Ô','÷','ò','Ò','é','ï','Ï','î','Î','ì','Ì','ð','Ð',
-"                \ 'ù','Ù','è','È','ê','Ê','ã','ö','Ö','í','Í','õ','Õ','×','å','Å',
-"                \ 'É','á','Á','ó','Ó','ä','Ä','æ','Æ','ç','Ç','ë','Ë','ú','Ú','ø',
-"                \ 'Ø','Ã','â', 'Â' ]
-"         exe 'imap '.key.' <nop>'
-"     endfor
-" endif
 
 function! <SID>ttext(mode) range
    let last_search = histget('search', -1)
@@ -203,8 +190,6 @@ endfunction
 
 call s:map('x', '<m-t>', '<plug>SwapSwapOperands')
 call s:map('n', '<m-t>', '<plug>SwapSwapWithR_WORD')
-"call s:map('n', '<leader>X', '<plug>SwapSwapWithL_WORD')
-"call s:map('x', '<leader>cx', '<plug>SwapSwapPivotOperands')
 
 let &cpoptions = s:savecpo
 unlet s:savecpo
