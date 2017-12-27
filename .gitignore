@@ -375,3 +375,6 @@ cache.db.lock
 watch_later
 cgdb/.cgdb/logs/
 cgdb/.cgdb/readline_history.txt
+vim/.vim/cache_gvim
+vim/.vim/state_gvim.vim
+w3m/.w3m/history
