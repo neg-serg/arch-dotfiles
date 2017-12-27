@@ -27,16 +27,10 @@ if dein#load_state("/home/neg/.vim/repos")
           \ 'on_event' : 'InsertEnter',
           \ 'loadconf' : 1,
           \ })
-        if executable(resolve(expand("clang")))
-            call dein#add('tweekmonster/deoplete-clang2')
-        endif
         "include completion framework for neocomplete/deoplete
         call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
         "bettter completions with deoplete
         call dein#add('Shougo/echodoc.vim')
-        if g:intellij_complete == 1
-            call dein#add('vhakulinen/neovim-intellij-complete')
-        endif
         " language client protocol support
         call dein#add('autozimu/LanguageClient-neovim')
     else
@@ -105,8 +99,8 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('thinca/vim-qfreplace.git')
     "--[ Edit ]-------------------------------------------------------------------------------
     "universal formatter
-    call dein#add('https://github.com/sbdchd/neoformat')
-    "Snippets with ycm compatibility
+    call dein#add('sbdchd/neoformat')
+    ""Snippets with ycm compatibility
     call dein#add('SirVer/ultisnips.git') 
     "for tabularizing
     call dein#add('godlygeek/tabular.git', { 'on_cmd' : 'Tabularize'}) 
@@ -471,10 +465,6 @@ if dein#load_state("/home/neg/.vim/repos")
     endif
     " improved Lua 5.3 syntax and indentation support for Vim
     call dein#add('tbastos/vim-lua', {'on_ft' : 'lua'})
-    "lua support
-    call dein#add('WolfgangMehner/lua-support', {'on_ft' : 'lua'})
-    "lua completion from spacevim
-    call dein#add('SpaceVim/vim-luacomplete', {'on_ft' : 'lua', 'if' : has('lua')})
     "----------------[  DBMS  ]--------------------------------------------------------------
     "Oracle DB IDE
     call dein#add('talek/vorax4')
