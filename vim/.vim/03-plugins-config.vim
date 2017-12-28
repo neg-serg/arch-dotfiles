@@ -9,31 +9,63 @@ let g:colorizer_startup        = 0
 let g:monster#completion#rcodetools#backend = "async_rct_complete"
 let g:livepreview_previewer = 'zathura'
 if has("nvim")
-    let g:deoplete#enable_at_startup = 1 " Use deoplete.
+    let g:deoplete#enable_at_startup = 1 
 endif
 if has("python3")
     let g:powerline_pycmd = "py3"
+endif
+
+let g:racer_experimental_completer = 1
+let g:racer_cmd = $HOME.'/.cargo/bin/racer'
+augroup layer_lang_rust
+    au FileType rust nmap <buffer><silent> gd <Plug>(rust-def)
+    au FileType rust nmap <buffer><silent> gs <Plug>(rust-def-split)
+    au FileType rust nmap <buffer><silent> gx <Plug>(rust-def-vertical)
+    au FileType rust nmap <buffer><silent> <leader>gd <Plug>(rust-doc)
+augroup END
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - autozimu/LanguageClient-neovim                                           │ 
+" │ https://github.com/autozimu/LanguageClient-neovim                                 │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('LanguageClient-neovim')
+    let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ 'javascript': ['javascript-typescript-stdio'],
+        \ 'javascript.jsx': ['javascript-typescript-stdio'],
+        \ 'cpp': ['/usr/local/bin/cquery', '--language-server'],
+        \ 'haskell': ['hie', '--lsp']
+        \ }
+    let g:LanguageClient_loadSettings = 1
+    " Use an absolute configuration path if you want system-wide settings
+    let g:LanguageClient_settingsPath = '/home/neg/.config/nvim/settings.json'
+    nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+    nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - airblade/vim-gitgutter                                                   │ 
 " │ https://github.com/airblade/vim-gitgutter                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:gitgutter_realtime = 1 " github.com/airblade/vim-gitgutter/issues/106
-let g:gitgutter_async = 1
-" GitGutter styling to use · instead of +/-
-let g:gitgutter_sign_added = '∙'
-let g:gitgutter_sign_modified = '∙'
-let g:gitgutter_sign_removed = '∙'
-let g:gitgutter_sign_modified_removed = '∙'
-highlight SignColumn ctermbg=4
+if dein#tap('vim-gitgutter')
+    let g:gitgutter_realtime = 1 " github.com/airblade/vim-gitgutter/issues/106
+    let g:gitgutter_async = 1
+    " GitGutter styling to use · instead of +/-
+    let g:gitgutter_sign_added = '∙'
+    let g:gitgutter_sign_modified = '∙'
+    let g:gitgutter_sign_removed = '∙'
+    let g:gitgutter_sign_modified_removed = '∙'
+    highlight SignColumn ctermbg=4
+endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - w0rp/ale                                                                 │ 
 " │ https://github.com/w0rp/ale                                                       │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
+if dein#tap('ale')
+    let g:ale_sign_warning = '▲'
+    let g:ale_sign_error = '✗'
+    highlight link ALEWarningSign String
+    highlight link ALEErrorSign Title
+endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - kana/vim-arpeggio.git                                                    │ 
 " │ https://github.com/kana/vim-arpeggio.git                                          │ 
@@ -627,87 +659,85 @@ if dein#tap('delimitMate')
     imap <Esc>OF <Plug>delimitMateEnd
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - Raimondi/delimitMate.git                                                 │
-" │ https://github.com/Raimondi/delimitMate.git                                       │
+" │ plugin - Shougo/vimfiler.vim                                                      │
+" │ https://github.com/Shougo/vimfiler.vim                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vimfiler.vim')
     let g:vimfiler_as_default_explorer = 1
-"     let g:vimfiler_restore_alternate_file = 1
-"     let g:vimfiler_tree_indentation = 1
-"     let g:vimfiler_tree_leaf_icon = ''
-"     let g:vimfiler_tree_opened_icon = '▼'
-"     let g:vimfiler_tree_closed_icon = '▷'
-"     let g:vimfiler_file_icon = ''
-"     let g:vimfiler_readonly_file_icon = '*'
-"     let g:vimfiler_marked_file_icon = '√'
-"     let g:vimfiler_direction = 'rightbelow'
-"     let g:vimfiler_ignore_pattern = [
-"         \ '^\.git$',
-"         \ '^\.DS_Store$',
-"         \ '^\.init\.vim-rplugin\~$',
-"         \ '^\.netrwhist$',
-"         \ '\.class$'
-"         \]
+    let g:vimfiler_restore_alternate_file = 1
+    let g:vimfiler_tree_indentation = 1
+    let g:vimfiler_tree_leaf_icon = ''
+    let g:vimfiler_tree_opened_icon = '▼'
+    let g:vimfiler_tree_closed_icon = '▷'
+    let g:vimfiler_file_icon = ''
+    let g:vimfiler_readonly_file_icon = '*'
+    let g:vimfiler_marked_file_icon = '√'
+    let g:vimfiler_direction = 'rightbelow'
+    let g:vimfiler_ignore_pattern = [
+        \ '^\.git$',
+        \ '^\.DS_Store$',
+        \ '^\.init\.vim-rplugin\~$',
+        \ '^\.netrwhist$',
+        \ '\.class$'
+        \]
 
-"     let g:vimfiler_quick_look_command = 'gloobus-preview'
+    let g:vimfiler_quick_look_command = 'gloobus-preview'
 
-"     function! s:setcolum() abort
-"         return 'filetypeicon:gitstatus'
-"     endfunction
+    function! s:setcolum() abort
+        return 'filetypeicon:gitstatus'
+    endfunction
 
-"     call vimfiler#custom#profile('default', 'context', {
-"         \ 'explorer' : 1,
-"         \ 'winwidth' : 15,
-"         \ 'winminwidth' : 30,
-"         \ 'toggle' : 1,
-"         \ 'auto_expand': 1,
-"         \ 'direction' : g:vimfiler_direction,
-"         \ 'explorer_columns' : s:setcolum(),
-"         \ 'parent': 0,
-"         \ 'status' : 1,
-"         \ 'safe' : 0,
-"         \ 'split' : 1,
-"         \ 'hidden': 1,
-"         \ 'no_quit' : 1,
-"         \ 'force_hide' : 0,
-"         \ })
+    call vimfiler#custom#profile('default', 'context', {
+        \ 'explorer' : 1,
+        \ 'winwidth' : 15,
+        \ 'winminwidth' : 30,
+        \ 'toggle' : 1,
+        \ 'auto_expand': 1,
+        \ 'direction' : g:vimfiler_direction,
+        \ 'explorer_columns' : s:setcolum(),
+        \ 'parent': 0,
+        \ 'status' : 1,
+        \ 'safe' : 0,
+        \ 'split' : 1,
+        \ 'hidden': 1,
+        \ 'no_quit' : 1,
+        \ 'force_hide' : 0,
+        \ })
 
-"     augroup vfinit
-"     au!
-"     autocmd FileType vimfiler call s:vimfilerinit()
-"     autocmd BufEnter * if (!has('vim_starting') && winnr('$') == 1 && &filetype ==# 'vimfiler') |
-"             \ q | endif
-"     augroup END
-"     function! s:vimfilerinit()
-"     setl nonumber
-"     setl norelativenumber
+    augroup vfinit
+    au!
+    autocmd FileType vimfiler call s:vimfilerinit()
+    augroup END
+    function! s:vimfilerinit()
+        setl nonumber
+        setl norelativenumber
 
-"     silent! nunmap <buffer> <Space>
-"     silent! nunmap <buffer> <C-l>
-"     silent! nunmap <buffer> <C-j>
-"     silent! nunmap <buffer> E
-"     silent! nunmap <buffer> gr
-"     silent! nunmap <buffer> gf
-"     silent! nunmap <buffer> -
-"     silent! nunmap <buffer> s
+        silent! nunmap <buffer> <Space>
+        silent! nunmap <buffer> <C-l>
+        silent! nunmap <buffer> <C-j>
+        silent! nunmap <buffer> E
+        silent! nunmap <buffer> gr
+        silent! nunmap <buffer> gf
+        silent! nunmap <buffer> -
+        silent! nunmap <buffer> s
 
-"     nnoremap <silent><buffer> gr  :<C-u>Denite grep:<C-R>=<SID>selected()<CR> -buffer-name=grep<CR>
-"     nnoremap <silent><buffer> gf  :<C-u>Denite file_rec:<C-R>=<SID>selected()<CR><CR>
-"     nnoremap <silent><buffer> gd  :<C-u>call <SID>change_vim_current_dir()<CR>
-"     nnoremap <silent><buffer><expr> sg  vimfiler#do_action('vsplit')
-"     nnoremap <silent><buffer><expr> sv  vimfiler#do_action('split')
-"     nnoremap <silent><buffer><expr> st  vimfiler#do_action('tabswitch')
-"     nmap <buffer> gx      <Plug>(vimfiler_execute_vimfiler_associated)
-"     nmap <buffer> '       <Plug>(vimfiler_toggle_mark_current_line)
-"     nmap <buffer> v       <Plug>(vimfiler_quick_look)
-"     nmap <buffer> p       <Plug>(vimfiler_preview_file)
-"     nmap <buffer> V       <Plug>(vimfiler_clear_mark_all_lines)
-"     nmap <buffer> i       <Plug>(vimfiler_switch_to_history_directory)
-"     nmap <buffer> <Tab>   <Plug>(vimfiler_switch_to_other_window)
-"     nmap <buffer> <C-r>   <Plug>(vimfiler_redraw_screen)
-"     nmap <buffer> <Left>  <Plug>(vimfiler_smart_h)
-"     nmap <buffer> <Right> <Plug>(vimfiler_smart_l)
-"     endf
+        nnoremap <silent><buffer> gr  :<C-u>Denite grep:<C-R>=<SID>selected()<CR> -buffer-name=grep<CR>
+        nnoremap <silent><buffer> gf  :<C-u>Denite file_rec:<C-R>=<SID>selected()<CR><CR>
+        nnoremap <silent><buffer> gd  :<C-u>call <SID>change_vim_current_dir()<CR>
+        nnoremap <silent><buffer><expr> sg  vimfiler#do_action('vsplit')
+        nnoremap <silent><buffer><expr> sv  vimfiler#do_action('split')
+        nnoremap <silent><buffer><expr> st  vimfiler#do_action('tabswitch')
+        nmap <buffer> gx      <Plug>(vimfiler_execute_vimfiler_associated)
+        nmap <buffer> '       <Plug>(vimfiler_toggle_mark_current_line)
+        nmap <buffer> v       <Plug>(vimfiler_quick_look)
+        nmap <buffer> p       <Plug>(vimfiler_preview_file)
+        nmap <buffer> V       <Plug>(vimfiler_clear_mark_all_lines)
+        nmap <buffer> i       <Plug>(vimfiler_switch_to_history_directory)
+        nmap <buffer> <Tab>   <Plug>(vimfiler_switch_to_other_window)
+        nmap <buffer> <C-r>   <Plug>(vimfiler_redraw_screen)
+        nmap <buffer> <Left>  <Plug>(vimfiler_smart_h)
+        nmap <buffer> <Right> <Plug>(vimfiler_smart_l)
+    endfunction
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - benmills/vimux                                                           │
@@ -1299,11 +1329,7 @@ endif
 " │ https://github.com/Shougo/denite.nvim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('denite.nvim')
-    " Change file_rec command.
-    call denite#custom#var('file_rec', 'command',
-                \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
     " For ripgrep
-    " Note: It is slower than ag
     call denite#custom#var('file_rec', 'command',
                 \ ['rg', '--files'])
 
@@ -1353,119 +1379,115 @@ if dein#tap('denite.nvim')
     call denite#custom#option('default', 'prompt', '>>')
 
     nnoremap <silent><Leader>. :Denite file_mru<CR>
+    let s:denite_options = {
+        \ 'default' : {
+        \ 'winheight' : 15,
+        \ 'mode' : 'insert',
+        \ 'quit' : 'true',
+        \ 'highlight_matched_char' : 'MoreMsg',
+        \ 'highlight_matched_range' : 'MoreMsg',
+        \ 'direction': 'rightbelow',
+        \ 'statusline' : 0,
+        \ 'prompt' : '➭',
+        \ }}
+
+    function! s:profile(opts) abort
+    for fname in keys(a:opts)
+        for dopt in keys(a:opts[fname])
+        call denite#custom#option(fname, dopt, a:opts[fname][dopt])
+        endfor
+    endfor
+    endfunction
+
+    call s:profile(s:denite_options)
+
+    " buffer source
+    call denite#custom#var(
+        \ 'buffer',
+        \ 'date_format', '%m-%d-%Y %H:%M:%S')
+
+    " denite command
+    if executable('rg')
+        " For ripgrep
+        " Note: It is slower than ag
+        call denite#custom#var('file_rec', 'command',
+                    \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
+                    \ )
+    endif
+
+    if executable('rg')
+    " Ripgrep command on grep source
+    call denite#custom#var('grep', 'command', ['rg'])
+    call denite#custom#var('grep', 'default_opts',
+            \ ['--vimgrep', '--no-heading'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+    endif
+
+    " enable unite menu compatibility
+    call denite#custom#var('menu', 'unite_source_menu_compatibility', 1)
+
+    " KEY MAPPINGS
+    let s:insert_mode_mappings = [
+        \  ['jk', '<denite:enter_mode:normal>', 'noremap'],
+        \  ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
+        \  ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
+        \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
+        \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
+        \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
+        \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
+        \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
+        \  ['<C-Y>', '<denite:redraw>', 'noremap'],
+        \ ]
+
+    let s:normal_mode_mappings = [
+        \   ["'", '<denite:toggle_select_down>', 'noremap'],
+        \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
+        \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
+        \   ['gg', '<denite:move_to_first_line>', 'noremap'],
+        \   ['st', '<denite:do_action:tabopen>', 'noremap'],
+        \   ['sg', '<denite:do_action:vsplit>', 'noremap'],
+        \   ['sv', '<denite:do_action:split>', 'noremap'],
+        \   ['q', '<denite:quit>', 'noremap'],
+        \   ['r', '<denite:redraw>', 'noremap'],
+        \ ]
+
+    for s:m in s:insert_mode_mappings
+    call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
+    endfor
+    for s:m in s:normal_mode_mappings
+    call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
+    endfor
+
+    unlet s:m s:insert_mode_mappings s:normal_mode_mappings
 endif
 
-" let s:denite_options = {
-"       \ 'default' : {
-"       \ 'winheight' : 15,
-"       \ 'mode' : 'insert',
-"       \ 'quit' : 'true',
-"       \ 'highlight_matched_char' : 'MoreMsg',
-"       \ 'highlight_matched_range' : 'MoreMsg',
-"       \ 'direction': 'rightbelow',
-"       \ 'statusline' : 0,
-"       \ 'prompt' : '➭',
-"       \ }}
-
-" function! s:profile(opts) abort
-"   for fname in keys(a:opts)
-"     for dopt in keys(a:opts[fname])
-"       call denite#custom#option(fname, dopt, a:opts[fname][dopt])
-"     endfor
-"   endfor
-" endfunction
-
-" call s:profile(s:denite_options)
-
-" " buffer source
-" call denite#custom#var(
-"       \ 'buffer',
-"       \ 'date_format', '%m-%d-%Y %H:%M:%S')
-
-" " denite command
-" if executable('rg')
-"     " For ripgrep
-"     " Note: It is slower than ag
-"     call denite#custom#var('file_rec', 'command',
-"                 \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
-"                 \ )
-" endif
-
-" if executable('rg')
-"   " Ripgrep command on grep source
-"   call denite#custom#var('grep', 'command', ['rg'])
-"   call denite#custom#var('grep', 'default_opts',
-"         \ ['--vimgrep', '--no-heading'])
-"   call denite#custom#var('grep', 'recursive_opts', [])
-"   call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-"   call denite#custom#var('grep', 'separator', ['--'])
-"   call denite#custom#var('grep', 'final_opts', [])
-" endif
-
-" " enable unite menu compatibility
-" call denite#custom#var('menu', 'unite_source_menu_compatibility', 1)
-
-" " KEY MAPPINGS
-" let s:insert_mode_mappings = [
-"       \  ['jk', '<denite:enter_mode:normal>', 'noremap'],
-"       \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
-"       \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
-"       \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
-"       \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
-"       \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
-"       \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
-"       \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
-"       \  ['<C-Y>', '<denite:redraw>', 'noremap'],
-"       \ ]
-
-" let s:normal_mode_mappings = [
-"       \   ["'", '<denite:toggle_select_down>', 'noremap'],
-"       \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
-"       \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
-"       \   ['gg', '<denite:move_to_first_line>', 'noremap'],
-"       \   ['st', '<denite:do_action:tabopen>', 'noremap'],
-"       \   ['sg', '<denite:do_action:vsplit>', 'noremap'],
-"       \   ['sv', '<denite:do_action:split>', 'noremap'],
-"       \   ['q', '<denite:quit>', 'noremap'],
-"       \   ['r', '<denite:redraw>', 'noremap'],
-"       \ ]
-
-" for s:m in s:insert_mode_mappings
-"   call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
-" endfor
-" for s:m in s:normal_mode_mappings
-"   call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
-" endfor
-
-" unlet s:m s:insert_mode_mappings s:normal_mode_mappings
-
-" let g:projectionist_heuristics = {
-"       \   '*': {
-"       \     '*.c': {
-"       \       'alternate': '{}.h',
-"       \       'type': 'source'
-"       \     },
-"       \     '*.h': {
-"       \       'alternate': '{}.c',
-"       \       'type': 'header'
-"       \     },
-"       \
-"       \     '*.js': {
-"       \       'alternate': '{dirname}/__tests__/{basename}-test.js',
-"       \       'type': 'source'
-"       \     },
-"       \     '**/__tests__/*-test.js': {
-"       \       'alternate': '{dirname}/{basename}.js',
-"       \       'type': 'test'
-"       \     }
-"       \   }
-"       \ }
-
-let g:racer_experimental_completer = 1
-let g:racer_cmd = $HOME.'/.cargo/bin/racer'
-augroup spacevim_layer_lang_rust
-    au FileType rust nmap <buffer><silent> gd <Plug>(rust-def)
-    au FileType rust nmap <buffer><silent> gs <Plug>(rust-def-split)
-    au FileType rust nmap <buffer><silent> gx <Plug>(rust-def-vertical)
-    au FileType rust nmap <buffer><silent> <leader>gd <Plug>(rust-doc)
-augroup END
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - tpope/vim-projectionist                                                  │ 
+" │ https://github.com/tpope/vim-projectionist                                        │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('vim-projectionist')
+    let g:projectionist_heuristics = {
+        \   '*': {
+        \     '*.c': {
+        \       'alternate': '{}.h',
+        \       'type': 'source'
+        \     },
+        \     '*.h': {
+        \       'alternate': '{}.c',
+        \       'type': 'header'
+        \     },
+        \
+        \     '*.js': {
+        \       'alternate': '{dirname}/__tests__/{basename}-test.js',
+        \       'type': 'source'
+        \     },
+        \     '**/__tests__/*-test.js': {
+        \       'alternate': '{dirname}/{basename}.js',
+        \       'type': 'test'
+        \     }
+        \   }
+        \ }
+endif
