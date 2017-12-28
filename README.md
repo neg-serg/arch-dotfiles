@@ -4,9 +4,13 @@
 ░▀▀░░▀▀▀░░▀░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
 ```
 
-*my dotfiles.* {style="text-align:center"}
+<p align="center">
+*my dotfiles.*
+</p>
 
+<p align="center">
 Includes: {style="text-align:center"}
+</p>
 
 - ***alacritty*** :: nice cross-platform terminal emulator, but I am using suckless
   terminal for now.
