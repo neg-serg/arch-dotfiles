@@ -4,15 +4,19 @@
 ░▀▀░░▀▀▀░░▀░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
 ```
 
+<h1>
 <p align="center">
-*my dotfiles.*
+***:: My dotfiles ::***
 </p>
+</h1>
 
+<h1>
 <p align="center">
-Includes: {style="text-align:center"}
+**:: Includes ::**
 </p>
+</h1>
 
-- ***alacritty*** :: nice cross-platform terminal emulator, but I am using suckless
+- ***alacritty***               :: nice cross-platform terminal emulator, but I am using suckless
   terminal for now.
 - ***bash***                    :: I don't use bash widely, anyway I have some basic config.
 - ***cgdb***                    :: better gdb tui. Probably not better then gdb-dashboard, but it's useful anyway.
