@@ -786,6 +786,7 @@ _zsh_highlight_highlighter_main_paint()
 		*.au)                style=ftype-au ;;
 		*.aac)               style=ftype-aac ;;
 		*.ape)               style=ftype-ape ;;
+		*.aiff)              style=ftype-aiff ;;
 		*.flac)              style=ftype-flac ;;
 		*.alac)              style=ftype-alac ;;
 		*.st5)               style=ftype-st5 ;;
@@ -800,6 +801,7 @@ _zsh_highlight_highlighter_main_paint()
 		*.json)              style=ftype-json ;;
 		*.toml)              style=ftype-toml ;;
 		*.ini)               style=ftype-ini ;;
+		*.nix)               style=ftype-nix ;;
 		*.conf)              style=ftype-conf ;;
 		*.cfg)               style=ftype-cfg ;;
 		*.yaml)              style=ftype-yaml ;;
@@ -846,6 +848,7 @@ _zsh_highlight_highlighter_main_paint()
 		*.csh)               style=ftype-csh ;;
 		*.bash_history)      style=ftype-bash_history ;;
 		*.bash)              style=ftype-bash ;;
+		*.rasi)              style=ftype-rasi ;;
 		*.vimrc)             style=ftype-vimrc ;;
 		*.vimp)              style=ftype-vimp ;;
 		*.viminfo)           style=ftype-viminfo ;;
@@ -980,6 +983,7 @@ _zsh_highlight_highlighter_main_paint()
 		*.djvu)              style=ftype-djvu ;;
 		*.djv)               style=ftype-djv ;;
 		*.chm)               style=ftype-chm ;;
+		*.added)             style=ftype-added ;;
 		*.tmp)               style=ftype-tmp ;;
 		*.temp)              style=ftype-temp ;;
 		*.swp)               style=ftype-swp ;;
@@ -992,6 +996,7 @@ _zsh_highlight_highlighter_main_paint()
 		*.cache)             style=ftype-cache ;;
 		*.blg)               style=ftype-blg ;;
 		*.bbl)               style=ftype-bbl ;;
+		*.bck)               style=ftype-bck ;;
 		*.bak)               style=ftype-bak ;;
 		*.aux)               style=ftype-aux ;;
 		*.ico)               style=ftype-ico ;;
@@ -1070,6 +1075,7 @@ _zsh_highlight_highlighter_main_paint()
 		*.lz)                style=ftype-lz ;;
 		*.lrz)               style=ftype-lrz ;;
 		*.lha)               style=ftype-lha ;;
+		*.alp)               style=ftype-alp ;;
 		*.gz)                style=ftype-gz ;;
 		*.dz)                style=ftype-dz ;;
 		*.cpio)              style=ftype-cpio ;;
