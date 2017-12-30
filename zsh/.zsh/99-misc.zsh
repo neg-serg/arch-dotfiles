@@ -3,21 +3,21 @@ function arc-fix(){
     find -type f -exec sed -i 's/5294E2/00465F/g' {} \;
 }
 
-function chrome_history(){
-    export CONF_COLS=$[ COLUMNS/2 ]
-    export CONF_SEP='{::}'
+function firefox_bookmarks(){
+    _zwrap "10 days history"
+    limit="10 days"
+    places=$(find ${HOME}/.mozilla/ -name "places.sqlite" | head -1)
+    sql="SELECT url FROM moz_places, moz_historyvisits \
+    WHERE moz_places.id = moz_historyvisits.place_id \
+    and visit_date > strftime('%s','now','-$limit')*1000000 \
+    ORDER by visit_date;"
+    sqlite3 ${places} ${sql}
 
-    cp -f ${XDG_CONFIG_HOME}/chromium/Default/History /tmp/h
-
-    sqlite3 -separator $CONF_SEP /tmp/h 'select title, url from urls order by last_visit_time desc' \
-        | ruby -ne '
-    cols = ENV["CONF_COLS"].to_i
-    title, url = $_.split(ENV["CONF_SEP"])
-    puts "\x1b[33m#{title.ljust(cols)}\x1b[0m #{url}"' \
-        | fzf --ansi --multi --no-hscroll --tiebreak=index \
-        | grep --color=never -o 'https\?://.*'
-
-    unset CONF_COLS CONF_SEP
+    _zwrap "All history"
+    sqlite3 ~/.mozilla/firefox/*/places.sqlite "
+    select moz_places.url, moz_bookmarks.title from moz_places, moz_bookmarks
+    where moz_bookmarks.fk = moz_places.id and moz_bookmarks.type = 1
+    and length(moz_bookmarks.title) > 0 order by moz_bookmarks.dateAdded"
 }
 
 function allip(){
