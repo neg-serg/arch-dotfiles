@@ -109,3 +109,20 @@ function fun::fonts(){
     alias metp='toilet --metal -f pagga -t'
     alias 3d='figlet -f 3d'
 }
+
+function connections_num() { 
+    echo :: consnumber :: 
+    netstat -nat \
+    | awk '{print $6}' \
+    | sort \
+    | uniq -c \
+    | sort -rn
+    echo :: consip ::
+    netstat -ntu \
+    | tail -n +3 \
+    | awk '{print $5}' \
+    | cut -d:f -f1 \
+    | sort \
+    | uniq -c \
+    | sort -n 
+}
