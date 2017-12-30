@@ -14,7 +14,8 @@ function compton_run(){
 
 case "${1}" in
     "twice") 
-        killall compton && compton_run
+        killall compton 
+        compton_run
     ;;
     *)
         if pidof compton > /dev/null; then
