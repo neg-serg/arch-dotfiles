@@ -20,166 +20,6 @@ function chrome_history(){
     unset CONF_COLS CONF_SEP
 }
 
-
-function firefox_history(){
-    (($# == 1)) || { echo "Usage: ${FUNCNAME} path/to/places.sqlite"; exit 1; }
-
-# http://unfocusedbrain.com/site/2010/03/09/dumping-firefoxs-places-sqlite/
-sqlite3 "$@" <<-EOF
-    SELECT datetime(moz_historyvisits.visit_date/1000000, 'unixepoch'), moz_places.url, moz_places.title, moz_places.visit_count
-    FROM moz_places, moz_historyvisits
-    WHERE moz_places.id = moz_historyvisits.place_id
-    ORDER BY moz_historyvisits.visit_date DESC;
-EOF
-}
-
-
-rodir() { sudo mount --bind "$@" && sudo mount -o remount,ro,bind "$@" }
-
-# unrpm: unpack an rpm into a build dir
-# 
-# Copyright 2007 Aron Griffis <agriffis@n01se.net>
-# Released under the GNU General Public License v2
-
-unrpm() {
-    declare cmd=${0##*/}
-    declare dum version
-    read dum version dum <<<'$Revision: 4036 $'
-
-    case $cmd in
-        unrpm_|rpmbuild) true ;;
-        *) die "unrpm: I don't know how to be $cmd" ;;
-    esac
-
-    $cmd "$@"
-    exit $?
-}
-
-unrpm_() {
-    declare args usage
-    read -d '' usage <<EOT
-usage: unrpm pkg-1.0.src.rpm...
-
-        -f   --force          Unpack into an existing dir
-        -l   --list           List contents rather than unpack
-        -p   --prep           Prep sources after unpack
-        -v   --verbose        Be louder
-
-             --help           Show this help message
-             --version        Show version information
-EOT
-
-    # Use /usr/bin/getopt which supports GNU-style long options
-    declare opt_force=false
-    declare opt_list=false
-    declare opt_prep=false
-    declare opt_verbose=false
-    args=$(getopt -n "$0" \
-    -o flpv --long force,help,list,prep,verbose,version -- "$@") || exit
-    eval set -- "$args"
-    while true; do
-        case $1 in
-            -f|--force) opt_force=true ; shift ;;
-            -l|--list) opt_list=true ; shift ;;
-            -p|--prep) opt_prep=true ; shift ;;
-            -v|--verbose) opt_verbose=true ; shift ;;
-            --help) echo_unrpm_ "$usage"; exit 0 ;;
-            --version) echo_unrpm_ "$cmd $version"; exit 0 ;;
-            --) shift; break ;;
-            *) die "failed to process cmdline args" ;;
-        esac
-    done
-
-    if [[ -z $1 ]]; then
-        die "missing argument, try --help"
-    elif [[ ! -r $1 ]]; then
-        die "can't read: $1"
-    fi
-
-    set -e
-
-    declare dirs rpm repo v
-    $opt_verbose && v=v ||:
-    for rpm in "$@"; do
-        repo=$(rpm -qp --qf '%{N}-%{V}-%{R}' "$rpm")
-        dirs=( "$repo/"{BUILD,RPMS,SOURCES,SPECS,SRPMS} )
-
-        if $opt_list; then
-            rpm2cpio $rpm | cpio --quiet -it$v | \
-            sed "s|^[./]*/*|$repo/SOURCES/|;/\\.spec/s/SOURCES/SPECS/"
-            continue
-        fi
-
-        if $opt_force; then
-            mkdir -p$v "${dirs[@]}"
-        else
-            mkdir ${v:+-v} $repo "${dirs[@]}"
-        fi
-
-        rm -f$v $repo/SOURCES/* $repo/SPECS/*
-        rpm2cpio $rpm | ( cd $repo/SOURCES; cpio --quiet -imd$v; )
-        mv ${v:+-v} $repo/SOURCES/*.spec $repo/SPECS
-
-        if $opt_prep; then
-            rpmbuild -bp $repo/SPECS/*.spec
-        fi
-    done
-}
-
-echo_unrpm_() {
-    printf '%s\n' "$*"
-}
-
-die() {
-    declare status=1
-    if [[ $1 == ?* && $1 != *[!0-9]* ]]; then
-        status=$1
-        shift
-    fi
-    echo_unrpm_ "$cmd: ${*:-error}" >&2
-    exit $status
-}
-
-rpmbuild() {
-    declare x topdir
-    for x; do
-        if [[ $x == *.spec ]]; then
-            topdir=$(cd $(dirname $x)/..; pwd)
-            break
-        elif [[ $1 == -t* ]]; then
-            case $x in
-                *.tar.gz|*.tar.bz2) topdir=${x%.*.*}; break ;;
-                *.tgz|*.tbz2)       topdir=${x%.*};   break ;;
-            esac
-        fi
-    done
-
-    set -e
-
-    declare cmd status=0
-
-    # it sucks when rpmbuild bombs because of missing dirs
-    [[ -z $topdir ]] || topdir=$(readlink -f $topdir)
-    [[ -z $topdir ]] || mkdir -p "$topdir/"{SPECS,SOURCES,BUILD,RPMS,SRPMS}
-
-    # can't use simple "wrapped $0" because we might have been called as unrpm
-    cmd=( 
-        "$(wrapped "$(dirname "$(type -P "$0")")"/rpmbuild)"
-        ${topdir:+--define="_topdir $topdir"}
-        "$@"
-    )
-    printf "%q " "${cmd[@]}"; echo_unrpm_
-
-    # log rpmbuild output
-    [[ -z $topdir ]] || exec 3>&1 4>&2 1> >(tee $topdir/rpmbuild-$$.out) 2>&1
-    "${cmd[@]}" || status=$?
-    [[ -z $topdir ]] || exec 1>&3- 2>&4-
-
-    set +e
-
-    return $status
-}
-
 function allip(){
     netstat -lantp \
   | grep ESTABLISHED \
@@ -187,7 +27,6 @@ function allip(){
   | awk -F: '{print }' \
   | sort -u
 }
-
 
 function flac2alac() {
     for infile in "$@"; do
@@ -258,15 +97,6 @@ tmux-neww-in-cwd() {
     tmux neww "cd '$DIR'; $SHELL"
 }
 
-function print_hooks() {
-    print -C 1 ":::pwd_functions:" ${chpwd_functions}
-    print -C 1 ":::periodic_functions:" ${periodic_functions}
-    print -C 1 ":::precmd_functions:" ${precmd_functions}
-    print -C 1 ":::preexec_functions:" ${preexec_functions}
-    print -C 1 ":::zshaddhistory_functions:" ${zshaddhistory_functions}
-    print -C 1 ":::zshexit_functions:" ${zshexit_functions}
-}
-
 function fun::fonts(){
     alias 2023='toilet -f future'
     alias gaym='toilet --gay -f mono9 -t'
@@ -278,25 +108,4 @@ function fun::fonts(){
     alias mett='toilet --metal -f term -t'
     alias metp='toilet --metal -f pagga -t'
     alias 3d='figlet -f 3d'
-}
-
-function sh_lsof(){
-    pushd
-    cd /proc
-    for a in * ; do
-        test "${a}" -gt 0 2> /dev/null
-        [[ ! $? = 0 ]] && continue
-        pid_="${a}"
-        name="$(readlink ${a}/exe)"
-        [[ -z "${name}" ]] && continue
-        name="$(basename ${name})"
-        (   cd ${a}/fd
-            for b in * ; do
-                link="$(readlink ${b})"
-                [[ -z "${link}" ]] && continue
-                printf "${pid_}\t${name}\t${link}\n"
-            done
-        )
-    done
-    popd
 }
