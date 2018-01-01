@@ -417,6 +417,8 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ Lisp-like ]---------------------------------------------------------------------------
     "better clojure support
     call dein#add('guns/vim-clojure-static')
+    "clojure async nvim-only dev environment
+    call dein#add('clojure-vim/acid.nvim')
     "common lisp dev environment
     call dein#add('l04m33/vlime', {'on_ft' : 'lisp', 'rtp': 'vim'})
     "--[ Misc Langs ]--------------------------------------------------------------------------
