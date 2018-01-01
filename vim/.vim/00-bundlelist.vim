@@ -75,6 +75,8 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('junegunn/fzf', { 'build': './install --bin', 'merged': 0 }) 
         "fzf vim bindings
         call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+        "fzf-finder for vim options
+        call dein#add('teto/nvim-palette', { 'do': ':UpdateRemotePlugins'})
     else
         "replacement for fzf
         call dein#add('lotabout/skim.vim')
