@@ -12,6 +12,7 @@ class cycle_settings(object):
                     'Chromium',
                     'Vivaldi-stable',
                     'Yandex-browser-beta',
+                    'Luakit',
                 },
                 'prog':"firefox",
                 'priority':'Firefox',
