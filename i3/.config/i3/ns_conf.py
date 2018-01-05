@@ -152,6 +152,13 @@ class ns_settings(object):
                 'geom' : "1844x704+39+4",
                 'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=18\' -e ~/bin/scripts/teardrop"
             },
+            'volcontrol': {
+                'class' : {
+                    'Pavucontrol'
+                },
+                'geom' : "895x314+1023+824",
+                'prog' : "pavucontrol"
+            },
             'console': {
                 'class' : {
                     'youtube-get'
