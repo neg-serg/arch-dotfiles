@@ -77,9 +77,9 @@ show_marks no
 # ░█▀▀░█▀█░█▀█░█▀▀
 # ░█░█░█▀█░█▀▀░▀▀█
 # ░▀▀▀░▀░▀░▀░░░▀▀▀
-smart_gaps on
-smart_borders on
-gaps inner 4
+# smart_gaps on
+# smart_borders on
+gaps inner 16
 gaps outer 8
 hide_edge_borders both
 
@@ -197,6 +197,7 @@ bindsym $mod+Control+{w,a,s,d} move {up,left,down,right}
 bindsym $mod+Control+g exec ~/.config/i3/i3_switch_workspace
 #----------------------------------------------
 bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
+bindsym $mod+Shift+p exec python3 ~/.config/i3/ns.py toggle volcontrol
 bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
 bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
 bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
@@ -303,8 +304,7 @@ mode "gaps-inner" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-exec_always [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main tiny
-exec_always [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main main
+exec --no-startup-id [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main {tiny,main}
 exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/{disable-standby-fs,nsd,circled,flastd}.py
 
 # vim:filetype=i3
