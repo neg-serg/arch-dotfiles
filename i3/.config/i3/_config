@@ -77,8 +77,8 @@ show_marks no
 # ░█▀▀░█▀█░█▀█░█▀▀
 # ░█░█░█▀█░█▀▀░▀▀█
 # ░▀▀▀░▀░▀░▀░░░▀▀▀
-# smart_gaps on
-# smart_borders on
+smart_gaps on
+smart_borders on
 gaps inner 16
 gaps outer 8
 hide_edge_borders both
@@ -304,7 +304,7 @@ mode "gaps-inner" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-exec --no-startup-id [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main {tiny,main}
+exec --no-startup-id [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main main
 exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/{disable-standby-fs,nsd,circled,flastd}.py
 
 # vim:filetype=i3
