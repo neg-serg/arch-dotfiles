@@ -9,16 +9,18 @@ black = ${xrdb:color0}
 blue = ${xrdb:color4}
 green = ${xrdb:color2}
 background = #bb020209
-topbar_border = #cc1f3b4f
-bracket_border = ${self.green}
+
 border = #1f3b4f
 urgent = #9633A7
 
 [bar/main]
+monitor=HDMI2
 bottom=true
-wm-restack = i3
 
-height=22
+border-top-size = 2
+border-top-color = ${xrdb:color17}
+
+height = 24
 spacing = 0
 width = 100%
 enable-ipc = true
@@ -29,8 +31,8 @@ padding-right = 0 # offset from -x
 module-margin-right = 0; looks nice
 module-margin-left  = 0
 
-modules-left = date i3 xkeyboard network mail
-modules-center = 
+modules-left = date i3 xkeyboard network checkvpn mail
+modules-center =
 modules-right = mpd 
 
 background = ${colors.background}
@@ -38,22 +40,41 @@ foreground = ${colors.white}
 
 underline-size = 1
 
+font-0 = Iosevka Term Heavy:weight=bold:size=12;3
+font-1 = PragmataPro for Powerline:weight=bold:size=12;4
+
+#font-0 = Iosevka Term Heavy:weight=bold:size=12;2
+#font-1 = PragmataPro for Powerline:weight=bold:size=12;3
+
 tray-detached = false
 tray-position = right
 tray-offset-x = 1
 tray-padding = 1
 tray-maxsize = 16
-tray-background = ${colors.background}
+tray-background = #000000
 
-font-0 = Iosevka Term Heavy:weight=bold:size=12;2
-font-1 = PragmataPro for Powerline:weight=bold:size=12;3
+; Compositing operators
+; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+[c]
+l = "%{F#287373}[ "
+r = "%{F#287373} ]"
+ls = "%{F#287373}["
+rs = "%{F#287373}]"
 
 [module/i3]
 type = internal/i3
 format-underline = ${colors.border}
 index-sort = true
 fuzzy-match = true
-format = %{F#287373}[%{F#fff}%{F#47959E}<label-mode> %{F#fff}<label-state>%{F#287373} ]
+format-prefix = ${c.ls}
+format-suffix = ${c.r}
+format = %{F#fff}%{F#47959E}<label-mode> %{F#fff}<label-state>
 
 label-focused-font = 4
 label-unfocused-font = 4
@@ -71,51 +92,15 @@ label-urgent-foreground = ${colors.urgent}
 label-visible-foreground = ${colors.white}
 label-visible-padding = 1
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-label = %{F${colors.white}  %percentage% %{F-}
-label-underline = ${colors.white}
-
-format-label = internal/cpu
-format = <label>
-
-ramp-coreload-0 = ▁
-ramp-coreload-1 = ▂
-ramp-coreload-2 = ▃
-ramp-coreload-3 = ▄
-ramp-coreload-4 = ▅
-ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
-ramp-coreload-7 = █
-ramp-coreload-underline = ${colors.white}
-
 [module/date]
 type = internal/date
-date = %{F#287373}[ %{F#fff}%H:%M%{F#287373} ]
+format-prefix = ${c.l}
+format-suffix = ${c.r}
+date = %{F#fff}%H:%M%
 interval = 5
 format-underline = ${colors.border}
 format-foreground = ${colors.white}
 format-padding = 0
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-background = #783e57
-format-underline = #a45476
-format-padding = 2
-label = ": %gb_used%"
-
-[module/pacman]
-type = custom/script
-exec = ~/bin/pkg
-exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
-format-background = #783e57
-format-underline = #a45476
-format-padding = 2
-interval = 60
-click-left = urxvt -name "updates" --geometry 94x50 -e zsh -c "$HOME/bin/upg"
-click-right = urxvt -name "updates" --geometry 100x70 -e zsh -c "$HOME/bin/listupg"
 
 [module/checkvpn]
 type = custom/script
@@ -126,69 +111,16 @@ label = " vpn"
 format-background = #783e57
 format-underline = #a45476
 
-[module/volume]
-type = internal/volume
-format-volume = <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-label-muted =  sound muted
-label-muted-foreground = ${colors.gray}
-
-bar-volume-width = 18
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.gray}
-bar-volume-foreground-5 = ${colors.white}
-bar-volume-gradient = false
-bar-volume-indicator-font = 4
-bar-volume-indicator-foreground = ${colors.white}
-bar-volume-fill = 
-bar-volume-empty = 
-bar-volume-fill-font = 4
-bar-volume-empty-font = 4
-bar-volume-empty-foreground = ${colors.gray}
-bar-volume-indicator = >
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 65
-
-format = [<label>]
-format-underline = ${colors.border}
-format-warn = <label-warn>
-format-warn-underline = ${colors.red}
-
-format-padding      = 0
-format-warn-padidng = 0
-
-label =  %temperature%
-label-warn =  %temperature%
-
-; Compositing operators
-; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
-compositing-background = over
-compositing-foreground = over
-compositing-overline = over
-compositing-underline = over
-compositing-border = over
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = #55
-
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
  
 format-underline = ${colors.border}
-format-prefix =
+format-prefix = ${c.l}
 format-prefix-foreground = ${colors.white}
+format-suffix = ${c.r}
  
-label-layout = %{F#287373}[ %{F#fff}input: %layout%%{F#287373} ]%{F#fff}
+label-layout = %{F#fff}input: %layout%
 label-indicator-padding = 0
 label-indicator-background = ${colors.blue}
 label-indicator-underline = ${colors.blue}
@@ -204,135 +136,19 @@ type = custom/script
 exec = USE_POLYBAR=1 ~/bin/mon/network_speed.sh
 tail = true
 label = %output:0:128:...%
-format = %{F#287373}[ %{F#fff}<label>%{F#287373}]%{F#fff}
+format-prefix = ${c.l}
+format-suffix = ${c.rs}
+format = %{F#fff}<label>
 format-underline = ${colors.border}
 interval = 0
-
-[module/polybarnetwork]
-type = internal/network
-interface = wlp2s0
-
-interval = 3.0
-udspeed-minwidth = 5
-accumulate-stats = true
-format-connected = <label-connected>
-format-disconnected = <label-disconnected>
-format-packetloss = <animation-packetloss> <label-connected>
-label-connected =  %essid% %downspeed:9%
-label-connected-foreground = ${colors.background}
-label-connected-background = ${colors.xcolor2}
-label-connected-underline = ${colors.xcolor2}
-label-connected-overline = ${colors.xcolor2}
-label-connected-padding = 2
-label-disconnected = not connected
-label-disconnected-foreground = ${colors.background}
-label-disconnected-background = ${colors.xcolor2}
-label-disconnected-underline = ${colors.xcolor2}
-label-disconnected-overline = ${colors.xcolor2}
-label-disconnected-padding = 2
-ramp-signal-0-background = ${colors.xcolor3}
-ramp-signal-1-background = ${colors.xcolor3}
-ramp-signal-2-background = ${colors.xcolor3}
-ramp-signal-3-background = ${colors.xcolor3}
-ramp-signal-4-background = ${colors.xcolor3}
-ramp-signal-5-background = ${colors.xcolor3}
-ramp-signal-0-foreground = ${colors.foreground}
-ramp-signal-2-foreground = ${colors.foreground}
-ramp-signal-3-foreground = ${colors.foreground}
-ramp-signal-4-foreground = ${colors.foreground}
-ramp-signal-5-foreground = ${colors.foreground}
-ramp-signal-1-foreground = ${colors.foreground}
-ramp-signal-0-underline = ${colors.xcolor3}
-ramp-signal-1-underline = ${colors.xcolor3}
-ramp-signal-2-underline = ${colors.xcolor3}
-ramp-signal-3-underline = ${colors.xcolor3}
-ramp-signal-4-underline = ${colors.xcolor3}
-ramp-signal-5-underline = ${colors.xcolor3}
-ramp-signal-0-overline = ${colors.xcolor3}
-ramp-signal-1-overline = ${colors.xcolor3}
-ramp-signal-2-overline = ${colors.xcolor3}
-ramp-signal-3-overline = ${colors.xcolor3}
-ramp-signal-4-overline = ${colors.xcolor3}
-ramp-signal-5-overline = ${colors.xcolor3}
-
-ramp-signal-0 = 😱
-ramp-signal-1 = 😠
-ramp-signal-2 = 😒
-ramp-signal-3 = 😊
-ramp-signal-4 = 😃
-ramp-signal-5 = 😈
-
-animation-packetloss-0 = ⚠
-animation-packetloss-0-foreground = ${colors.foreground}
-animation-packetloss-1 = 📶
-animation-packetloss-1-foreground = ${colors.foreground}
-animation-packetloss-framerate = 500
 
 [module/mail]
 type = custom/script
 exec = ~/bin/mon/mail_count
-format = %{F#287373}[ %{F#fff}<label>%{F#287373} ]%{F#fff}
+format-prefix = ${c.l}
+format-suffix = ${c.r}
+format = %{F#fff}<label>
 format-underline = ${colors.border}
 interval = 180
-
-[bar/tiny]
-margin-top = 0
-margin-bottom = 0
-
-bottom=true
-
-width = 100%
-height = 1
-
-padding-left  = 0
-padding-right = 0
-module-margin-right = 0
-module-margin-left  = 0
-
-modules-left = hack
-modules-center = hack
-modules-right = hack
-
-border-top = 2
-border-bottom = 0
-border-left = 0
-border-right = 0
-border-color = ${colors.topbar_border}
-background = ${colors.background}
-foreground = #00000000
-underline-size = 0
-underline-color = ${colors.blue}
-
-font-0 = fixed
-
-[module/hack]
-type = custom/text
-content = -----------------
-
-[bar/systray]
-# As small as possible, polybar will resize it when items get added
-width = 1
-
-# Whatever fits your needs
-height = 40
-
-# Bottom left to imitate gnome-shells systray
-bottom = true
-
-# REQUIRED for us to be able to move the window
-override-redirect = true
-
-modules-left = placeholder
-
-tray-position = left
-tray-maxsize = 16
-tray-padding = 8
-tray-transparent = false
-tray-background = #282C34
-
-[module/placeholder]
-# Just a dummy module as polybar always requires at least one amodule
-type = custom/script
-width = 2
 
 ; vim:ft=dosini
