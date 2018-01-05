@@ -3,15 +3,9 @@ margin-top = 0
 margin-bottom = 0
 
 [colors]
-white = ${xrdb:color15}
-gray = ${xrdb:color8}
-black = ${xrdb:color0}
-blue = ${xrdb:color4}
-green = ${xrdb:color2}
-background = #bb020209
-
-border = #1f3b4f
-urgent = #9633A7
+background = "#bb020209"
+border = "#1f3b4f"
+urgent = "#9633A7"
 
 [bar/main]
 monitor=HDMI2
@@ -28,7 +22,7 @@ enable-ipc = true
 padding-left  = 0 # offset from x
 padding-right = 0 # offset from -x
 
-module-margin-right = 0; looks nice
+module-margin-right = 0 # looks nice
 module-margin-left  = 0
 
 modules-left = date i3 xkeyboard network checkvpn mail
@@ -36,7 +30,7 @@ modules-center =
 modules-right = mpd 
 
 background = ${colors.background}
-foreground = ${colors.white}
+foreground = "#fff"
 
 underline-size = 1
 
@@ -51,7 +45,7 @@ tray-position = right
 tray-offset-x = 1
 tray-padding = 1
 tray-maxsize = 16
-tray-background = #000000
+tray-background = "#000000"
 
 ; Compositing operators
 ; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
@@ -61,12 +55,6 @@ compositing-overline = over
 compositing-underline = over
 compositing-border = over
 
-[c]
-l = "%{F#287373}[ "
-r = "%{F#287373} ]"
-ls = "%{F#287373}["
-rs = "%{F#287373}]"
-
 [module/i3]
 type = internal/i3
 format-underline = ${colors.border}
@@ -74,32 +62,27 @@ index-sort = true
 fuzzy-match = true
 format-prefix = ${c.ls}
 format-suffix = ${c.r}
-format = %{F#fff}%{F#47959E}<label-mode> %{F#fff}<label-state>
+format = %{F#47959E}<label-mode> %{F#fff}<label-state>
 
 label-focused-font = 4
 label-unfocused-font = 4
 label-urgent-font = 4
 label-visible-font = 4 
-
 label-unfocused=
-label-unfocused-padding = 1
-label-unfocused-underlinde = ${colors.white}
 
 label-urgent = 
 label-urgent-padding = 1
+label-visible-padding = 1
 label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.urgent}
-label-visible-foreground = ${colors.white}
-label-visible-padding = 1
 
 [module/date]
 type = internal/date
 format-prefix = ${c.l}
 format-suffix = ${c.r}
-date = %{F#fff}%H:%M%
+date = %H:%M%
 interval = 5
 format-underline = ${colors.border}
-format-foreground = ${colors.white}
 format-padding = 0
 
 [module/checkvpn]
@@ -108,8 +91,7 @@ format-padding = 2
 exec = pgrep openvpn
 interval = 5
 label = " vpn"
-format-background = #783e57
-format-underline = #a45476
+format-underline = "#a45476"
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -117,13 +99,12 @@ blacklist-0 = num lock
  
 format-underline = ${colors.border}
 format-prefix = ${c.l}
-format-prefix-foreground = ${colors.white}
 format-suffix = ${c.r}
  
-label-layout = %{F#fff}input: %layout%
+label-layout = input: %layout%
 label-indicator-padding = 0
-label-indicator-background = ${colors.blue}
-label-indicator-underline = ${colors.blue}
+label-indicator-background = ${colors.background}
+label-indicator-underline = ${colors.background}
 
 [module/mpd]
 type = custom/script
@@ -138,7 +119,7 @@ tail = true
 label = %output:0:128:...%
 format-prefix = ${c.l}
 format-suffix = ${c.rs}
-format = %{F#fff}<label>
+format = <label>
 format-underline = ${colors.border}
 interval = 0
 
@@ -147,8 +128,19 @@ type = custom/script
 exec = ~/bin/mon/mail_count
 format-prefix = ${c.l}
 format-suffix = ${c.r}
-format = %{F#fff}<label>
+format = <label>
 format-underline = ${colors.border}
 interval = 180
+
+[c]
+l = "%{F#287373}[ %{F#fff}"
+r = "%{F#287373} ]"
+ls = "%{F#287373}[%{F#fff}"
+rs = "%{F#287373}]"
+
+l1 = "%{F#fff} "
+r1 = "%{F#287373} |"
+ls1 = "%{F#fff}"
+rs1 = "%{F#287373}|"
 
 ; vim:ft=dosini
