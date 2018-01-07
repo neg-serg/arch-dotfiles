@@ -1,3 +1,8 @@
+export vim_server_name="VIM"
+export nvim_server_name="NVIM"
+export nwim_sock_path="${HOME}/1st_level/nvim.socket"
+export NVIM_LISTEN_ADDRESS="${HOME}/1st_level/nvim.socket"
+
 readonly to_normal="<C-\><C-N>:call<SPACE>foreground()<CR>"
 
 function wim_run(){

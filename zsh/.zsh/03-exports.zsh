@@ -12,15 +12,14 @@ path_dirs=(
     /mnt/home/.local/bin
     /opt/cuda/bin
     /opt/go/bin
+    # Add RVM to PATH for scripting
+    ${HOME}/.rvm/bin
 )
 
 whence ruby >/dev/null && \
     path_dirs+=$($(whence ruby) -e 'puts Gem.user_dir')/bin
 
 export PATH=${(j_:_)path_dirs}
-
-# Add RVM to PATH for scripting
-export PATH="${PATH}:${HOME}/.rvm/bin"
 
 local perl_lib_path_="$(readlink -f "${HOME}/dev/perl5/lib/perl5")"
 if [[ -d "${perl_lib_path_}" ]]; then
@@ -39,27 +38,24 @@ export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 for q in nvim vim vi; 
     { [[ -n ${commands}[(I)${q}] ]] \
     && export EDITOR=${q}; break }
-if which nvr > /dev/null; then
-    export VISUAL="nvr"
+if which nvimpager >/dev/null; then
+    export PAGER="nvimpager"
+    export VISUAL="${PAGER}"
+elif hash slit > /dev/null; then
+    export PAGER="slit"
 else
     for q in nvim vim vi; 
         { [[ -n ${commands}[(I)${q}] ]] \
         && export VISUAL=${q}; break }
 fi
+alias less=${PAGER}
+alias zless=${PAGER}
 
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export BROWSER="firefox"
-export GIMP2_DIRECTORY="${XDG_CONFIG_HOME}/gimp-2.8"
-export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
 
 export VAGRANT_HOME="/mnt/home/vagrant"
 export PERLBREW_ROOT=${HOME}/.perl5
-
-if hash slit > /dev/null; then
-    export PAGER="slit"
-    alias less=${PAGER}
-    alias zless=${PAGER}
-fi
 
 export LESSCHARSET=UTF-8
 export LESS_TERMCAP_mb="$(tput bold; tput setaf 2)" # begin blinking
@@ -92,16 +88,6 @@ export COLORTERM="yes"
 export LS_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 
-# dirstack handling
-DIRSTACKSIZE=${DIRSTACKSIZE:-20}
-DIRSTACKFILE=${HOME}/.zsh/.99-zdirs
-
-if [[ -f ${DIRSTACKFILE} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
-    dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-    # "cd -" won't work after login by just setting $OLDPWD, so
-    [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
-fi
-
 export MPV_HOME="${HOME}/.config/mpv"
 export MANWIDTH=${MANWIDTH:-80}
 export GOPATH=/opt/go
@@ -128,14 +114,7 @@ export SKIM_DEFAULT_OPTIONS="${SKIM_DEFAULT_OPTS} --color=16"
 
 export PULSE_LATENCY_MSEC=60
 
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
-
 export STEAM_RUNTIME=1
-
-export QEMU_AUDIO_DRV=pa
-export QEMU_PA_SOURCE=input
-local audio_card_="alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo"
-export QEMU_PA_SINK="${audio_card_}"
 
 export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"
@@ -143,11 +122,6 @@ export SXHKD_SHELL="zsh"
 export VIDEO_PLAYER_="mpv"
 
 export AUTOPAIR_INHIBIT_INIT=1
-
-export vim_server_name="VIM"
-export nvim_server_name="NVIM"
-export nwim_sock_path="${HOME}/1st_level/nvim.socket"
-export NVIM_LISTEN_ADDRESS="${HOME}/1st_level/nvim.socket"
 
 (){
     local _home="/mnt/home"
