@@ -10,11 +10,13 @@
 #                               -
 #--------------------------------
 
-export ZDOTDIR="${HOME}/.zsh" && local _zsh_home="${ZDOTDIR}"
+export ZDOTDIR="${HOME}/.zsh" 
+local _zsh_home="${ZDOTDIR}"
 
 local _zsh_files=(
     00-common.zsh
     01-init.zsh
+    02-zsh-async.zsh
     03-exports.zsh
     04-powerline_prompt.zsh
     05-functions.zsh
