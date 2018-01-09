@@ -155,7 +155,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:color253=s:rgb(s:color253_hex)
         let s:color255=s:rgb(s:color255_hex)
         let s:color200=s:rgb(s:color200_hex)
-        let s:colorcursor==s:rgb(s:colorcursor_hex)
+        let s:colorcursor=s:rgb(s:colorcursor_hex)
     endif
 elseif $TERM == "linux"
     let s:venv="cterm"
