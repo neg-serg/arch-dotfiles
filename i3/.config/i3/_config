@@ -18,27 +18,17 @@ set $soft_restart killall -SIGUSR1 i3status
 # ░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀ #
 # ░█░░░█░█░█░░░█░█░█▀▄░▀▀█ #
 # ░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀ #
-set_from_resource $background background
-set_from_resource $foreground foreground
-
-set_from_resource $color54    color54
-set_from_resource $color56    color56
-set_from_resource $color200   color200
-set_from_resource $color204   color204
-set_from_resource $color205   color205
-
-set_from_resource $FOCUS      color204
-set_from_resource $UNFOCUS    color204
-set_from_resource $BORDERF    color205
-set_from_resource $BORDERU    color0
-
-set_from_resource $black      color0
-
-client.focused                 $black  $BORDERF $FOCUS    $BORDERF
-client.focused_inactive        $black  $UNFOCUS $UNFOCUS  $UNFOCUS
-client.unfocused               $black  $BORDERU $UNFOCUS  $BORDERU
-client.urgent                  $black  $FOCUS   $FOCUS    $FOCUS
-client.background              $black
+# 1 :: border
+# 2 :: background active
+# 3 :: foreground inactive
+# 4 :: background inactive
+# 5 :: indicator
+client.focused                 #222233  #000000  #ddddee  #112211 #073642
+client.focused_inactive        #000000  #000000  #005fff  #000000 #222233
+client.unfocused               #000000  #000000  #315c70  #000000 #222233
+client.urgent                  #000000  #2E2457  #4C407C  #D3135C #D3135C
+client.placeholder             #000000  #0c0c0c  #ffffff  #000000 #0c0c0c
+client.background              #000000
 #---------------------------------------------------------------
 # ░█░█░█▄█░░░░░█▀▀░█░░░█▀█░█▀▀░█▀▀░░░░░█▀▀░█▀▄░█▀█░█░█░█▀█░█▀▀ #
 # ░█▄█░█░█░░░░░█░░░█░░░█▀█░▀▀█░▀▀█░░░░░█░█░█▀▄░█░█░█░█░█▀▀░▀▀█ #
