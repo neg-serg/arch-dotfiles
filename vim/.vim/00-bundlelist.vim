@@ -1,4 +1,4 @@
-let g:nvim_deoplete = 1
+let g:nvim_deoplete = 0
 let g:nvim_youcompleteme = 0
 let g:nvim_completion_manager = 1
 let g:intellij_complete = 1
