@@ -41,7 +41,7 @@ set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)
 # ░█▀▀░█▀█░█▀█░▀█▀
 # ░█▀▀░█░█░█░█░░█░
 # ░▀░░░▀▀▀░▀░▀░░▀░
-set $myfont Iosevka Term Heavy 10
+set $myfont Iosevka Term Heavy 7
 font pango: $myfont
 
 #---------------------------------------------
