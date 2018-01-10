@@ -13,9 +13,10 @@ class cycle_settings(object):
                     'Vivaldi-stable',
                     'Yandex-browser-beta',
                     'Luakit',
+                    'Conkeror',
                 },
-                'prog':"firefox",
-                'priority':'Firefox',
+                'prog':"conkeror",
+                'priority':'Conkeror',
             },
             'vid':{
                 'classes': {
