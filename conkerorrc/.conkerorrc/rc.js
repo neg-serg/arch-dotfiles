@@ -22,23 +22,32 @@ require("content-policy.js");
 hint_digits="12345";
 hints_minibuffer_annotation_mode(true);
 
-// view source in your editor.
-view_source_use_external_editor = true;
+// Some settings
+session_auto_save_auto_load = "prompt";
 
-// add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
+url_remoting_fn = load_url_in_new_buffer;
+clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
+
+xkcd_add_title = true;
+read_buffer_show_icons = true;
+view_source_use_external_editor = true;  // view source in your editor.
+
+//set the temp dir location.  the idea is this can be on /tmpfs in ram.
+//This will not take effect until after the first restart.
+user_pref("browser.cache.disk.parent_directory","/tmp/sketch/conkeror");
+
+// set_user_agent("Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.17) Gecko/20110428 Fedora/3.6.17-1.fc14 Firefox/3.6.17");
+// don't set the user agent, let conk add Firefox to the string itself
+session_pref("general.useragent.compatMode.firefox",true);
+
+////enable if full screen video stops working
+//session_pref("full-screen-api.enabled", true);
+
 add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true);
-// add_hook("mode_line_hook", mode_line_adder(downloads_status_widget));
-// add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
+add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
 
 // fix crisp edges
 register_user_stylesheet(make_css_data_uri(["* { image-rendering: -moz-crisp-edges; }"]));
-read_buffer_show_icons = true;
-
-// Some settings
-session_auto_save_auto_load = "prompt";
-url_remoting_fn = load_url_in_new_buffer;
-view_source_use_external_editor = true;
-xkcd_add_title = true;
 read_buffer_show_icons = true;
 
 // Delayed session load
@@ -92,40 +101,23 @@ add_hook("select_buffer_hook", content_delay_do_initial_load);
 //browser_prevent_automatic_form_focus_mode(true);
 google_search_bind_number_shortcuts();
 
-// Webjump oneliners
-define_webjump("codesearch", "http://codesearch.debian.net/search?q=%s");
-define_webjump("cpan", "https://metacpan.org/search?q=%s&lucky=1");
-define_webjump("leo", "http://dict.leo.org/?lp=ende&lang=de&searchLoc=0&cmpType=relaxed&relink=on&sectHdr=off&spellToler=std&search=%s");
-define_webjump("identica", "http://identi.ca/%s");
-define_webjump("imdb", "http://imdb.com/find?q=%s");
-define_webjump("kol", "http://kol.coldfront.net/thekolwiki/index.php/%s");
-define_webjump("oh", "https://www.openhub.net/p?query=%s");
-define_webjump("ixquick", "http://ixquick.com/do/metasearch.pl?query=%s");
-define_webjump("trans", "http://translate.google.com/translate_t#auto|en|%s");
-define_webjump("twitter", "https://twitter.com/%s");
-define_webjump("urban", "http://www.urbandictionary.com/define.php?term=%s");
-define_webjump("wolframalpha", "http://www.wolframalpha.com/input/?i=%s");
-define_webjump("youtube", "http://www.youtube.com/results?search_query=%s&search=Search");
+// // Webjump oneliners
+// define_webjump("codesearch", "http://codesearch.debian.net/search?q=%s");
+// define_webjump("leo", "http://dict.leo.org/?lp=ende&lang=de&searchLoc=0&cmpType=relaxed&relink=on&sectHdr=off&spellToler=std&search=%s");
+// define_webjump("identica", "http://identi.ca/%s");
+// define_webjump("imdb", "http://imdb.com/find?q=%s");
+// define_webjump("kol", "http://kol.coldfront.net/thekolwiki/index.php/%s");
+// define_webjump("oh", "https://www.openhub.net/p?query=%s");
+// define_webjump("ixquick", "http://ixquick.com/do/metasearch.pl?query=%s");
+// define_webjump("trans", "http://translate.google.com/translate_t#auto|en|%s");
+// define_webjump("twitter", "https://twitter.com/%s");
+// define_webjump("urban", "http://www.urbandictionary.com/define.php?term=%s");
+// define_webjump("wolframalpha", "http://www.wolframalpha.com/input/?i=%s");
+// define_webjump("youtube", "http://www.youtube.com/results?search_query=%s&search=Search");
 
-// CVE
-define_webjump("cve", "https://cve.mitre.org/cgi-bin/cvename.cgi?name=%s");
-
-// // Multiple Webjumps
-// define_gitweb_summary_webjump("gitweb-ko", "http://git.kernel.org");
-// define_gitweb_summary_webjump("gitweb-cz", "http://repo.or.cz/w");
-
-// // Personalized Webjumps
-// define_scuttle_webjumps("abe", "https://noone.org/semanticscuttle/");
-// define_delicious_webjumps("xtaran");
+// // CVE
+// define_webjump("cve", "https://cve.mitre.org/cgi-bin/cvename.cgi?name=%s");
 
 // Additional key bindings
 define_key(content_buffer_normal_keymap, "t", "find-url-new-buffer");
-// From http://jjfoerch.com/git/conkerorrc/commands.js
-interactive("delete", null,
-    function (I) {
-        var elem = yield read_browser_object(I);
-        elem.parentNode.removeChild(elem);
-    },
-    $browser_object = browser_object_dom_node);
-
-define_key(content_buffer_normal_keymap, "d", "delete");
+define_key(content_buffer_normal_keymap, "d", "delete-window");
