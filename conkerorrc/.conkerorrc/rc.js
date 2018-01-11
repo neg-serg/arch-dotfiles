@@ -7,6 +7,9 @@ require("clicks-in-new-buffer.js");
 require("block-content-focus-change.js");
 require("content-policy.js");
 
+default_minibuffer_auto_complete_delay = 100;
+window_extra_argument_max_delay = 10;
+
 // session / user preferences
 // browser.download.manager.closeWhenDone applies to built-in d/l window
 //session_pref("browser.download.manager.closeWhenDone",true);
@@ -20,15 +23,22 @@ session_pref("layout.spellcheckDefault",1);
 //session_pref('network.proxy.ssl_port',8118);
 //session_pref("network.proxy.type",1);
 
-session_pref("spellchecker.dictionary","en-CA");
-session_pref("xpinstall.whitelist.required",false);
+user_pref('webgl.prefer-native-gl', true);
+user_pref('layers.acceleration.force-enabled', true);
+user_pref('webgl.force-enabled', true);
+user_pref('webgl.msaa-force', true);
+user_pref('gfx.filter.nearest.force-enabled', true);
+user_pref('stagefright.force-enabled', true); // H264
+
+user_pref("extensions.checkCompatibility", false);
+user_pref("xpinstall.whitelist.required", false);
+user_pref("xpinstall.signatures.required", false);
 user_pref("devtools.debugger.remote-enabled",true);
 // user_pref("media.autoplay.enabled",false); // setting this breaks many videos
 
+session_auto_save_auto_load_fn = session_auto_save_load_window_current;
 session_auto_save_auto_load = "prompt";
 session_save_buffer_access_order = true;
-session_auto_save_auto_load_fn = session_auto_save_load_window_current;
-session_pref("xpinstall.whitelist.required", false);
 minibuffer_auto_complete_default = true;
 
 url_remoting_fn = load_url_in_new_buffer;
@@ -46,3 +56,16 @@ session_pref("full-screen-api.enabled", true);
 google_search_bind_number_shortcuts();
 
 session_pref("font.minimum-size.zh-CN", 18);
+
+function my_zoom_set (buffer) { browser_zoom_set(buffer, false, 110); }
+add_hook('create_buffer_late_hook', my_zoom_set);
+
+external_content_handlers.set("application/pdf", "zathura");
+
+// // require("block-content-focus-change");
+require("ublt-buffer");
+// require("ublt-launchers");
+require("ublt-appearance");
+// require("ublt-capture");
+// require("ublt-download");
+// require("from-other");
