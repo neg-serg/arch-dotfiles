@@ -2,24 +2,34 @@
 homepage = "localhost:31831";
 
 require("favicon");
-require("new-tabs.js");
-tab_bar_show_icon = true;
-
-require("github");
-require("gmail");
-require("reddit");
-require("youtube");
-
-require("page-modes/google-search-results.js");
-
 require("session.js");
 require("clicks-in-new-buffer.js");
 require("block-content-focus-change.js");
 require("content-policy.js");
 
-session_auto_save_auto_load = true;
+// session / user preferences
+// browser.download.manager.closeWhenDone applies to built-in d/l window
+//session_pref("browser.download.manager.closeWhenDone",true);
+// line below causes YouTube audio to continue after leaving page
+session_pref("general.useragent.compatMode.firefox",true);
+session_pref("layout.spellcheckDefault",1);
+
+//session_pref("network.proxy.http","127.0.0.1");
+//session_pref("network.proxy.http_port",8118);
+//session_pref('network.proxy.ssl', "127.0.0.1");
+//session_pref('network.proxy.ssl_port',8118);
+//session_pref("network.proxy.type",1);
+
+session_pref("spellchecker.dictionary","en-CA");
+session_pref("xpinstall.whitelist.required",false);
+user_pref("devtools.debugger.remote-enabled",true);
+// user_pref("media.autoplay.enabled",false); // setting this breaks many videos
+
+session_auto_save_auto_load = "prompt";
 session_save_buffer_access_order = true;
 session_auto_save_auto_load_fn = session_auto_save_load_window_current;
+session_pref("xpinstall.whitelist.required", false);
+minibuffer_auto_complete_default = true;
 
 url_remoting_fn = load_url_in_new_buffer;
 url_completion_use_history = true;
@@ -34,3 +44,5 @@ session_pref("full-screen-api.enabled", true);
 
 // browser_prevent_automatic_form_focus_mode(true);
 google_search_bind_number_shortcuts();
+
+session_pref("font.minimum-size.zh-CN", 18);
