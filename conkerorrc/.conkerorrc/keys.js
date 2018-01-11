@@ -1,7 +1,9 @@
 require ("global-overlay-keymap.js");
+define_key_alias("C-i", "tab");
+define_key_alias("C-I", "S-tab");
 define_key_alias("C-m", "return");
 
-define_key(content_buffer_normal_keymap, "o", "find-url-from-history");
+define_key(content_buffer_normal_keymap, "o", "find-url");
 define_key(content_buffer_normal_keymap, "t", "find-url-new-buffer");
 define_key(content_buffer_normal_keymap, "d", "kill-current-buffer");
 
@@ -15,3 +17,5 @@ define_key(content_buffer_normal_keymap, "j", "cmd_scrollLineDown");
 define_key(content_buffer_normal_keymap, "k", "cmd_scrollLineUp");
 
 define_key(default_global_keymap, "U", "revive-buffer");
+
+define_key(default_global_keymap, "Z Z", "quit");
