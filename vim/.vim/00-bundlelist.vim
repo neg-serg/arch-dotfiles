@@ -1,6 +1,6 @@
-let g:nvim_deoplete = 0
+let g:nvim_deoplete = 1
 let g:nvim_youcompleteme = 0
-let g:nvim_completion_manager = 1
+let g:nvim_completion_manager = 0
 let g:intellij_complete = 1
 let g:want_airline = 0
 let g:ale_enabled = 1
@@ -33,8 +33,6 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
         "bettter completions with deoplete
         call dein#add('Shougo/echodoc.vim')
-        " language client protocol support
-        call dein#add('autozimu/LanguageClient-neovim')
     elseif g:nvim_youcompleteme == 1
         call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
     elseif g:nvim_completion_manager == 1
@@ -256,8 +254,6 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('Shougo/deol.nvim')
     "try to add some custom hooks with it
     call dein#add('ahw/vim-hooks')
-    "integration with languagetool
-    call dein#add('fmoralesc/nlanguagetool.nvim')
     "--[ Docs ]------------------------------------------------------------------------------
     "view and search rfc
     call dein#add('mhinz/vim-rfc')
