@@ -51,4 +51,3 @@ interactive("revive-buffer",
             I.window.minibuffer.message("No killed buffer urls");
         }
     });
-
