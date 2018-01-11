@@ -9,7 +9,7 @@ register_user_stylesheet(
             "@namespace url(\"http://www.w3.org/1999/xhtml\");\n" +
             "span.__conkeror_hint {\n"+
             "  font-size: 12pt !important;\n"+
-            "  font-family: Iosevka Term Heavy !important;\n"+
+            "  font-family: Iosevka Term !important;\n"+
             "  line-height: 12pt !important;\n"+
             "}"));
 
@@ -32,4 +32,6 @@ register_user_stylesheet(
             "-moz-appearance:none;" +
         " border-top: 4px;}"));
 
-#minibuffer-prompt { color: red; }
+register_user_stylesheet(
+    "data:text/css," +
+    escape("#minibuffer-prompt { color: cyan; }"));
