@@ -30,4 +30,6 @@ register_user_stylesheet(
             " background-color:black;" +
             " color: #ddddff;" +
             "-moz-appearance:none;" +
-            " border-top: 4px;}"));
+        " border-top: 4px;}"));
+
+#minibuffer-prompt { color: red; }

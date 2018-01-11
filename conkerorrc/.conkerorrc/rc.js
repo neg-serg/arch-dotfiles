@@ -29,11 +29,12 @@ user_pref('webgl.force-enabled', true);
 user_pref('webgl.msaa-force', true);
 user_pref('gfx.filter.nearest.force-enabled', true);
 user_pref('stagefright.force-enabled', true); // H264
+user_pref('layers.acceleration.draw-fps', false);
 
 user_pref("extensions.checkCompatibility", false);
 user_pref("xpinstall.whitelist.required", false);
 user_pref("xpinstall.signatures.required", false);
-user_pref("devtools.debugger.remote-enabled",true);
+user_pref("devtools.debugger.remote-enabled",false);
 // user_pref("media.autoplay.enabled",false); // setting this breaks many videos
 
 session_auto_save_auto_load_fn = session_auto_save_load_window_current;
@@ -51,10 +52,6 @@ view_source_use_external_editor = true;  // view source in your editor.
 
 // enable if full screen video stops working
 session_pref("full-screen-api.enabled", true);
-
-// browser_prevent_automatic_form_focus_mode(true);
-google_search_bind_number_shortcuts();
-
 session_pref("font.minimum-size.zh-CN", 18);
 
 function my_zoom_set (buffer) { browser_zoom_set(buffer, false, 110); }
