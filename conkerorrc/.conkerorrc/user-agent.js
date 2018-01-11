@@ -8,7 +8,7 @@ var user_agents = {
         "Mobile/8A293 Safari/6531.22.7",
     "linux-chromium": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36" +
         "(KHTML, like Gecko) Chrome/41.0.2228.0 Safari/4E423F",
-    "linux-firefox": "Mozilla/5.0 (X11; Linux x86_64; rv:52.9) Gecko/20100101 Goanna/3.4 Firefox/52.9 PaleMoon/27.6.2",
+    "linux-palemoon": "Mozilla/5.0 (X11; Linux x86_64; rv:52.9) Gecko/20100101 Goanna/3.4 Firefox/52.9 PaleMoon/27.6.2",
     "linux-yabrowser" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 YaBrowser/17.10.1.1202 (beta) Yowser/2.5 Safari/537.36"
 };
 
@@ -22,4 +22,4 @@ interactive("user-agent",
                 set_user_agent(user_agents[ua]);
             });
 
-set_user_agent(user_agents["linux-firefox"]);
+set_user_agent(user_agents["linux-palemoon"]);
