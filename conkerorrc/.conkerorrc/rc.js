@@ -4,7 +4,7 @@ require("favicon");
 require("session.js");
 require("clicks-in-new-buffer.js");
 require("content-policy.js");
-// require("block-content-focus-change.js");
+require("block-content-focus-change.js");
 
 default_minibuffer_auto_complete_delay = 100;
 window_extra_argument_max_delay = 10;
