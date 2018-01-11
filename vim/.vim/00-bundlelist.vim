@@ -258,10 +258,6 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('ahw/vim-hooks')
     "integration with languagetool
     call dein#add('fmoralesc/nlanguagetool.nvim')
-    "vifm-test
-    call dein#add('vifm/neovim-vifm')
-    "vim rclone interface
-    call dein#add('ipod825/vim-netranger')
     "--[ Docs ]------------------------------------------------------------------------------
     "view and search rfc
     call dein#add('mhinz/vim-rfc')
