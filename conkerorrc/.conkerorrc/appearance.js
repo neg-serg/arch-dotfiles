@@ -1,5 +1,3 @@
-// fix crisp edges
-register_user_stylesheet(make_css_data_uri(["* { image-rendering: -moz-crisp-edges; }"]));
 read_buffer_show_icons = true;
 
 hint_background_color = '#2b768d';
@@ -24,13 +22,12 @@ register_user_stylesheet(
                 " background-color: #222288 !important;" +
             "}"));
 
-// minibuffer colours
 register_user_stylesheet(
     "data:text/css," +
     escape (
         "@namespace XUL_NS;\n" +
             " #minibuffer, .mode-line {" +
             " background-color:black;" +
-            " color:white;" +
+            " color: #ddddff;" +
             "-moz-appearance:none;" +
-            " border-top: 0px;}"));
+            " border-top: 4px;}"));
