@@ -14,6 +14,8 @@ define_key(content_buffer_normal_keymap, "g T", "buffer-previous");
 define_key(content_buffer_normal_keymap, "G", "cmd_scrollBottom");
 define_key(content_buffer_normal_keymap, "g g", "scroll-top-left");
 
+define_key(content_buffer_normal_keymap, "C-[", "unfocus");
+
 undefine_key(content_buffer_normal_keymap, "C-n");
 undefine_key(content_buffer_normal_keymap, "C-p");
 define_key(content_buffer_normal_keymap, "j", "cmd_scrollLineDown");
