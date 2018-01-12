@@ -113,15 +113,17 @@ format-underline = ${colors.border}
 interval = 0.05
 
 [module/network]
-type = custom/script
-exec = USE_POLYBAR=1 ~/bin/mon/network_speed.sh
-tail = true
-label = %output:0:128:...%
-format-prefix = ${c.l}
-format-suffix = ${c.rs}
-format = <label>
-format-underline = ${colors.border}
-interval = 0
+type = internal/network
+interface = enp6s0
+; Seconds to sleep between updates
+; Default: 1
+interval = 1.0
+;ping-interval = 3
+accumulate-stats = false
+label-connected = net: %downspeed%/%upspeed%
+format-connected-prefix = ${c.l}
+format-connected-suffix = ${c.r}
+format-connected-underline = ${colors.border}
 
 [module/mail]
 type = custom/script
