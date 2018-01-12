@@ -63,18 +63,39 @@ fuzzy-match = true
 format-prefix = ${c.ls}
 format-suffix = ${c.r}
 format = %{F#47959E}<label-mode> %{F#fff}<label-state>
-
 label-focused-font = 4
 label-unfocused-font = 4
 label-urgent-font = 4
 label-visible-font = 4 
 label-unfocused=
-
 label-urgent = 
 label-urgent-padding = 1
 label-visible-padding = 1
 label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.urgent}
+
+[module/mpd]
+type = internal/mpd
+interval = 1
+format-online = <label-song> <label-time>
+format-playing = ${self.format-online}
+format-playing-prefix = ${c.lmpd}
+format-playing-suffix = ${c.r}
+format-paused-prefix = ${c.ls}
+format-paused-suffix = ${c.rs}
+format-paused = ||
+format-stopped = 
+format-offline = no mpd
+label-song = %artist% - %title%
+label-time = %elapsed%/%total%
+# icon-prev = ⏮
+# icon-next = ⏭
+# icon-seekb = ⏪
+# icon-seekf = ⏩
+# icon-random = 🔀
+# icon-repeat = 🔁
+# icon-repeatone = 🔂
+# icon-consume = ✀
 
 [module/date]
 type = internal/date
@@ -106,17 +127,9 @@ label-indicator-padding = 0
 label-indicator-background = ${colors.background}
 label-indicator-underline = ${colors.background}
 
-[module/mpd]
-type = custom/script
-exec = ~/bin/mon/mpd.lua
-format-underline = ${colors.border}
-interval = 0.05
-
 [module/network]
 type = internal/network
 interface = enp6s0
-; Seconds to sleep between updates
-; Default: 1
 interval = 1.0
 ;ping-interval = 3
 accumulate-stats = false
@@ -139,6 +152,7 @@ l = "%{F#287373}[ %{F#fff}"
 r = "%{F#287373} ]"
 ls = "%{F#287373}[%{F#fff}"
 rs = "%{F#287373}]"
+lmpd  = "%{F#287373}[%{F#fff}>>%{F#287373}][ %{F#fff}"
 
 l1 = "%{F#fff} "
 r1 = "%{F#287373} |"
