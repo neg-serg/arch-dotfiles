@@ -30,7 +30,7 @@ modules-center =
 modules-right = mpd 
 
 background = ${colors.background}
-foreground = "#fff"
+foreground = "#ccc"
 
 underline-size = 1
 
@@ -62,7 +62,7 @@ index-sort = true
 fuzzy-match = true
 format-prefix = ${c.ls}
 format-suffix = ${c.r}
-format = %{F#47959E}<label-mode> %{F#fff}<label-state>
+format = %{F#47959E}<label-mode> %{F#ccc}<label-state>
 label-focused-font = 4
 label-unfocused-font = 4
 label-urgent-font = 4
@@ -148,15 +148,15 @@ format-underline = ${colors.border}
 interval = 180
 
 [c]
-l = "%{F#287373}[ %{F#fff}"
+l = "%{F#287373}[ %{F#ccc}"
 r = "%{F#287373} ]"
-ls = "%{F#287373}[%{F#fff}"
+ls = "%{F#287373}[%{F#ccc}"
 rs = "%{F#287373}]"
-lmpd  = "%{F#287373}[%{F#fff}>>%{F#287373}][ %{F#fff}"
+lmpd  = "%{F#287373}[%{F#ccc}>>%{F#287373}][ %{F#ccc}"
 
-l1 = "%{F#fff} "
+l1 = "%{F#ccc} "
 r1 = "%{F#287373} |"
-ls1 = "%{F#fff}"
+ls1 = "%{F#ccc}"
 rs1 = "%{F#287373}|"
 
 ; vim:ft=dosini
