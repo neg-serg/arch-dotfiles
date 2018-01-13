@@ -33,7 +33,7 @@ client.background              #000000
 # ░█░█░█▄█░░░░░█▀▀░█░░░█▀█░█▀▀░█▀▀░░░░░█▀▀░█▀▄░█▀█░█░█░█▀█░█▀▀ #
 # ░█▄█░█░█░░░░░█░░░█░░░█▀█░▀▀█░▀▀█░░░░░█░█░█▀▄░█░█░█░█░█▀▀░▀▀█ #
 # ░▀░▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░░░▀▀▀ #
-set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
+set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Waterfox|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
 set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
 set $sclient [class="^(Steam|steam|explorer.exe)$"]
 set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam|explorer.exe)$"]
