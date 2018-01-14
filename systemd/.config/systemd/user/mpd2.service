@@ -3,7 +3,7 @@ Description=Music Player Daemon
 After=network.target sound.target pulseaudio.socket
 
 [Service]
-ExecStart=/usr/bin/mpd --no-daemon /home/neg/.mpd.conf
+ExecStart=/usr/bin/mpd --no-daemon %h/.mpd.conf
 Restart=on-failure
 RestartSec=30
 
