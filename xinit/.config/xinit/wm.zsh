@@ -3,6 +3,12 @@
 source ~/.zsh/03-helpers.zsh
 source ~/.zsh/03-exports.zsh
 
+unset TMUX
+
+windowmanager="${1}"
+[[ ${windowmanager} ]] || source ${XDG_CONFIG_HOME}/.windowmanager
+export windowmanager
+
 function notion_run(){
     "${SCRIPT_HOME}/panels"
     source "${XDG_CONFIG_HOME}/xinit/hotkeys.zsh"
@@ -49,9 +55,12 @@ function pantheon_run(){
 
 function i3_run(){
     (${BIN_HOME}/term) &
-    source "${XDG_CONFIG_HOME}/xinit/hotkeys.zsh"
-    [[ ! ${WITHLOGS} -eq "" ]] && exec i3 -V >> "${HOME}/tmp/i3log-$(date +'%F-%k-%M-%S')" 2>&1
-    exec i3 2>&1
+    zsh "${XDG_CONFIG_HOME}/xinit/hotkeys.zsh"
+    if [[ ! ${WITHLOGS} -eq "" ]]; then
+        exec i3 -V >> "${HOME}/tmp/i3log-$(date +'%F-%k-%M-%S')" 2>&1
+    else
+        exec i3 2>&1
+    fi
 }
 
 function fallback_run(){
