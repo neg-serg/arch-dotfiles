@@ -1,0 +1,12 @@
+[Unit]
+Description=Gpasted client
+After=sockets.target
+
+[Service]
+Type=simple
+Restart=always
+Environment=DISPLAY=:0
+ExecStart=/usr/sbin/gpaste-client daemon
+
+[Install]
+WantedBy=default.target
