@@ -3,10 +3,11 @@ Description=Gpasted client
 After=sockets.target
 
 [Service]
-Type=simple
-Restart=always
+Type=forking
 Environment=DISPLAY=:0
 ExecStart=/usr/sbin/gpaste-client daemon
+Restart=on-failure
+RestartSec=30
 
 [Install]
 WantedBy=default.target
