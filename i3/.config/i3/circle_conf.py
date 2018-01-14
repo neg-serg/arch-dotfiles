@@ -14,9 +14,10 @@ class cycle_settings(object):
                     'Yandex-browser-beta',
                     'Luakit',
                     'Conkeror',
+                    'Qutebrowser'
                 },
-                'prog':"conkeror",
-                'priority':'Conkeror',
+                'prog':"waterfox",
+                'priority':'Waterfox',
             },
             'vid':{
                 'classes': {
