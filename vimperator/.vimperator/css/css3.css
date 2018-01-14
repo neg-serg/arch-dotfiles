@@ -120,5 +120,5 @@ body select * {
 pre:not(:empty), code:not(:empty) , cite:not(:empty), pre:not(:empty) *,
 code:not(:empty) *, cite:not(:empty)
 * {
-  background-image:url(data:image/gif;base64,R0lGODlhBAAEAIAAABERESIiIiH5BAAAAAAALAAAAAAEAAQAAAIGTACXaHkFADs=)!important;
-  color: #bcc8dc!important;}
+  background-image:url(data:image/gif;base64,R0lGODlhBAAEAIAAABERESIiIiH5BAAAAAAALAAAAAAEAAQAAAIGTACXaHkFADs=) !important;
+  color: #bcc8dc !important;}
