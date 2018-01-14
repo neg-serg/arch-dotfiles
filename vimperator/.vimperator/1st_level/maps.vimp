@@ -14,6 +14,8 @@ EOF
 
 map <C-O> <NOP>
 map <C-\> <NOP>
+map <C-w> <NOP>
+map <C-t> <NOP>
 
 noremap # gt
 noremap E gT
