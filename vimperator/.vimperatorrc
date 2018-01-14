@@ -3,7 +3,7 @@ set gui=none
 colorscheme vimpwhite
 
 set defsearch=google
-set suggestengines=dc
+set suggestengines=google
 
 set hintchars=12345
 set hintmatching=fuzzy
