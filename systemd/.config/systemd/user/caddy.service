@@ -1,0 +1,11 @@
+[Unit]
+Description=Startpage with caddy
+
+[Service]
+Type=simple
+Restart=always
+Environment=DISPLAY=:0
+ExecStart=/usr/sbin/caddy -conf %h/.config/startpage/server/Caddyfile
+
+[Install]
+WantedBy=default.target
