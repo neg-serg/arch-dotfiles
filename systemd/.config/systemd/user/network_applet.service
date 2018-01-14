@@ -1,0 +1,12 @@
+[Unit]
+Description=Network manager applet
+After=sockets.target
+
+[Service]
+Type=simple
+Restart=always
+Environment=DISPLAY=:0
+ExecStart=/usr/sbin/nm-applet
+
+[Install]
+WantedBy=default.target
