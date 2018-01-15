@@ -26,7 +26,7 @@
     dmenu                 = /usr/bin/rofi -p dunst:
     browser               = /usr/bin/firefox -new-tab
     icon_position         = left
-    icon_path             = /home/neg/.icons/custom_dunst:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/devices
+    icon_path             = ~/.icons/custom_dunst:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/devices
     max_icon_size         = 200
     title                 = Dunst
     class                 = Dunst
