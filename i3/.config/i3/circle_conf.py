@@ -57,7 +57,7 @@ class cycle_settings(object):
                 'prog':"~/bin/term",
             },
             'wim':{
-                'classes': { '' },
+                'classes': { 'nwim', 'wim' },
                 'instances': { 'nwim', 'wim' },
                 'prog':"~/bin/nwim",
             },
