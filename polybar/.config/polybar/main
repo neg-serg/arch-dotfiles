@@ -27,7 +27,7 @@ module-margin-left  = 0
 
 modules-left = date i3 xkeyboard network checkvpn mail
 modules-center =
-modules-right = mpd 
+modules-right = mpd volume
 
 background = ${colors.background}
 foreground = "#ccc"
@@ -96,6 +96,11 @@ label-time = %elapsed%/%total%
 # icon-repeat = 🔁
 # icon-repeatone = 🔂
 # icon-consume = ✀
+
+[module/volume]
+type = custom/script
+interval = 0
+exec = /home/neg/bin/mon/vol.lua
 
 [module/date]
 type = internal/date
