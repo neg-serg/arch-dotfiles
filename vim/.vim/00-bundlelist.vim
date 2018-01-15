@@ -299,8 +299,6 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('derekwyatt/vim-fswitch.git')
     "easy testing for various langs
     call dein#add('janko-m/vim-test.git')
-    "mark strings with errors
-    call dein#add('mh21/errormarker.vim')
     "--[ Scala ]-----------------------------------------------------------------------------
     "scala vim autocompletion
     call dein#add('ensime/ensime-vim')
