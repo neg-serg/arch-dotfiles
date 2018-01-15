@@ -369,3 +369,18 @@ function load_rvm(){
     # Load RVM into a shell session *as a function*
     [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
 }
+
+function sprunge() {
+    if [[ -t 0 ]]; then
+      if [[ "$*" ]]; then
+        if [[ -f "$*" ]]; then
+          cat "$*"
+        else
+          echo "$*"
+        fi | curl -F 'sprunge=<-' http://sprunge.us
+      fi
+    else
+      curl -F 'sprunge=<-' http://sprunge.us
+    fi
+}
+
