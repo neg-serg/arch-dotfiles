@@ -13,13 +13,17 @@ function compton_run(){
 }
 
 case "${1}" in
-    "twice") 
+    "r"*) 
+        compton_run
+    ;;
+    "k"*) 
         killall compton 
         compton_run
     ;;
     *)
-        if pidof compton > /dev/null; then
+        if pidof compton; then
             killall compton 
+            compton_run
         else
             compton_run
         fi
