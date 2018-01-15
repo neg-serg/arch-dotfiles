@@ -48,15 +48,6 @@ if has('vim_starting') && has('reltime')
     augroup END
 endif
 
-if has('vim_starting')
-    filetype off
-    set nocompatible
-    if !has('nvim')
-        set runtimepath+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
-    endif
-    set runtimepath+=~/.fzf
-endif
-
 if has('nvim')
     let g:python_interpreter='python2'
         let &runtimepath = expand('~/.vim/') . ','
@@ -65,7 +56,6 @@ if has('nvim')
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     let $COLORTERM='truecolor'
-    source ~/.vim/01-nvim_terminal_fix.vim
     "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
     "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
     " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
@@ -80,18 +70,4 @@ if (!isdirectory(expand('$HOME/.vim/repos/github.com/Shougo/dein.vim')))
 endif
 
 set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim/
-
 source ~/.vim/00-bundlelist.vim
-
-if (&t_Co > 2 || has('gui_running'))
-    syntax on
-endif
-filetype plugin indent on
-
-source ~/.vim/00-functions.vim
-source ~/.vim/01-settings.vim
-source ~/.vim/02-keymaps.vim
-source ~/.vim/03-plugins-config.vim
-source ~/.vim/04-autocmds.vim
-source ~/.vim/11-vimacs.vim
-source ~/.vim/21-langmap.vim
