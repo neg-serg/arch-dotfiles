@@ -17,9 +17,9 @@ if !1 | finish | endif
 
 if 1
     fun! ProfileStart()
-        let profile_file = '/tmp/vim.'.getpid().'.profile.txt'
-        echom "Profiling into" profile_file
-        exec 'profile start '.profile_file
+        let l:profile_file = '/tmp/vim.'.getpid().'.profile.txt'
+        echom 'Profiling into' l:profile_file
+        exec 'profile start '.l:profile_file
         profile! file **
         profile  func *
     endfun
@@ -43,11 +43,8 @@ if has('vim_starting') && has('reltime')
         autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
                     \ | redraw
                     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
-        if !has('nvim')
-            autocmd! VimEnter * let g:vim_is_started="on"
-        else
-            autocmd! VimEnter * let g:nvim_is_started="on" | let $NVIM_LISTEN_ADDRESS="/home/neg/1st_level/nvim.socket"
-        endif
+        let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket'
+        autocmd! VimEnter * let g:nvim_is_started="on"
     augroup END
 endif
 
@@ -63,7 +60,7 @@ endif
 if has('nvim')
     let g:python_interpreter='python2'
         let &runtimepath = expand('~/.vim/') . ','
-        \ . expand('~/.vim/after/') . ',' . &rtp
+        \ . expand('~/.vim/after/') . ',' . &runtimepath
     runtime! plugin/python_setup.vim
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
