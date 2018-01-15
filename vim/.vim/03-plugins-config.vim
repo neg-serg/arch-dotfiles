@@ -434,6 +434,10 @@ if dein#tap('deopete')
     inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
     set isfname-==
+
+    " deoplete tab-complete
+    inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
+    inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<Tab>"
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Valloric/YouCompleteMe.git                                               │

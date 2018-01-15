@@ -4,7 +4,6 @@ augroup vimrc
     autocmd!
     au BufRead *.session let g:session = expand('%:p:h') | so % | bd #
     au VimLeave * if exists('g:session') | call Mks(g:session) | endif
-    au BufEnter * call MySetupTitleString()
 augroup end
 au StdinReadPost * set buftype=nofile
 au BufReadCmd file:///* exe "bd!|edit ".substitute(expand("<afile>"),"file:/*","","")
