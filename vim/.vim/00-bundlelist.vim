@@ -9,13 +9,13 @@ let g:vim_signify_enabled = 0
 let g:use_polyglot = 1
 
 "--[ Main ]------------------------------------------------------------------------------
-if dein#load_state("/home/neg/.vim/repos")
+if dein#load_state('/home/neg/.vim/repos')
     call dein#begin(expand('~/.vim'))
-    if !has("nvim")
+    if !has('nvim')
         "best vim autocomplete engine for now
         call dein#add('powerline/powerline')
     endif
-    if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
+    if !(&runtimepath =~? 'site-packages/powerline/bindings/vim') || has('nvim')
         if g:want_airline == 1
             call dein#add('vim-airline/vim-airline', { 'merged' : 0, 'loadconf' : 1})
             call dein#add('vim-airline/vim-airline-themes', { 'merged' : 0})
@@ -64,7 +64,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "powerful vim spell-checking with LangTool
     call dein#add('rhysd/vim-grammarous')
     "--[ Search ]-----------------------------------------------------------------------------
-    if executable(resolve(expand("rg")))
+    if executable(resolve(expand('rg')))
         call dein#add('jremmen/vim-ripgrep')
     endif
     "interactive vim-grep
@@ -97,6 +97,8 @@ if dein#load_state("/home/neg/.vim/repos")
     " call dein#add('chrisbra/unicode.vim', { 'on_cmd' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] })
     "highlight colors in terminal
     call dein#add('sunaku/vim-hicterm')
+    "indent tabs visually with |-es too slow
+    call dein#add('nathanaelkane/vim-indent-guides')
     "visual replace for multiple files
     call dein#add('thinca/vim-qfreplace.git')
     "--[ Edit ]-------------------------------------------------------------------------------
@@ -139,7 +141,7 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('c9s/vimomni.vim')
     endif
     "--[ dcvs ]------------------------------------------------------------------------------
-    if executable(resolve(expand("git")))
+    if executable(resolve(expand('git')))
         "Git stuff. Needed for powerline etc
         call dein#add('tpope/vim-fugitive.git') 
         "github bindings for fugitive
@@ -165,7 +167,7 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('jreybert/vimagit')
     endif
     "----------------------------------------------------------------------------------------
-    if executable(resolve(expand("tmux")))
+    if executable(resolve(expand('tmux')))
         "tmux basics
         call dein#add('tpope/vim-tbone.git')
         "exec commands in tmux
@@ -213,13 +215,13 @@ if dein#load_state("/home/neg/.vim/repos")
     "funny vim hardmode plugin
     call dein#add('wikitopian/hardmode')
     " There is no need in fixkey for nvim because of it's default behaviour
-    if !has("nvim")
+    if !has('nvim')
         "fixes key codes for console Vim
         call dein#add('drmikehenry/vim-fixkey')
     endif
     "Transparent work with gpg-encrypted files
     call dein#add('jamessan/vim-gnupg.git')
-    if executable(resolve(expand("task")))
+    if executable(resolve(expand('task')))
         "add taskwarrior vim plug wrapper
         call dein#add('blindFS/vim-taskwarrior')
     endif
@@ -232,7 +234,7 @@ if dein#load_state("/home/neg/.vim/repos")
     if g:nvim_deoplete == 1
         call dein#add('zchee/deoplete-zsh')
     endif
-    if has("loled")
+    if has('loled')
         "underline word under cursor
         call dein#add('itchyny/vim-cursorword')
     endif
@@ -267,7 +269,7 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('chrisbra/vim-diff-enhanced.git')
     "provide async build via tmux
     call dein#add('tpope/vim-dispatch.git')
-    if has("nvim")
+    if has('nvim')
         if g:ale_enabled == 1
             "ale as linter
             call dein#add('w0rp/ale', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
@@ -279,11 +281,11 @@ if dein#load_state("/home/neg/.vim/repos")
         "syntax checker
         call dein#add('scrooloose/syntastic', {'on_event': 'WinEnter', 'loadconf' : 1, 'merged' : 0})
     endif
-    if executable(resolve(expand("rc")))
+    if executable(resolve(expand('rc')))
         "rtags plugin for vim
         call dein#add('lyuts/vim-rtags.git')
     endif
-    if executable(resolve(expand("lldb")))
+    if executable(resolve(expand('lldb')))
         "lldb bindings to neovim
         call dein#add('critiqjo/lldb.nvim')
     endif
@@ -313,25 +315,25 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('fs111/pydoc.vim', { 'on_ft' : 'python'})
     "gf for python
     call dein#add('mkomitee/vim-gf-python.git', { 'on_ft' : 'python'})
-    if nvim_deoplete
+    if g:nvim_deoplete == 1
         call dein#add('zchee/deoplete-jedi', { 'on_ft' : 'python'})
     endif
     "--[ R ]----------------------------------------------------------------------------------
-    if has("nvim")
+    if has('nvim')
         "nvim R support
         call dein#add('jalvesaq/Nvim-R')
     endif
     "--[ Mono ]-------------------------------------------------------------------------------
-    if executable("mono")
+    if executable('mono')
         "omnisharp completion
         call dein#add('nosami/Omnisharp.git')
     endif
     "--[ Go ]---------------------------------------------------------------------------------
-    if executable(resolve(expand("gotags")))
+    if executable(resolve(expand('gotags')))
         "tags for go
         call dein#add('jstemmer/gotags.git')
     endif
-    if executable(resolve(expand("go")))
+    if executable(resolve(expand('go')))
         if g:nvim_deoplete == 1
             call dein#add('zchee/deoplete-go', {'on_ft' : 'go', 'build': 'make'})
         else
@@ -344,7 +346,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "golang syntax highlight
     call dein#add('jnwhiteh/vim-golang.git')
     "--[ Rust ]-------------------------------------------------------------------------------
-    if executable(resolve(expand("rustc")))
+    if executable(resolve(expand('rustc')))
         "racer support
         call dein#add('racer-rust/vim-racer', {'on_ft' : 'rust'})
         "detection of rust files
@@ -357,15 +359,15 @@ if dein#load_state("/home/neg/.vim/repos")
         endif
     endif
     "--[ Elixir ]-----------------------------------------------------------------------------
-    if executable(resolve(expand("elixir")))
+    if executable(resolve(expand('elixir')))
         " deoplete support via alchemist-server
         if g:nvim_deoplete == 1
             call dein#add('slashmili/alchemist.vim', { 'on_ft' : 'elixir'})
         endif
     endif
     "--[ Nim ]---------------------------------------------------------------------------------
-    if has("nvim") && has("use_nim")
-        if executable(resolve(expand("nim"))) && executable(resolve(expand("nimble"))) 
+    if has('nvim') && has('use_nim')
+        if executable(resolve(expand('nim'))) && executable(resolve(expand('nimble'))) 
             "nim support for vim and advanced support for neovim
             call dein#add('baabelfish/nvim-nim')
             "syntax file for nim
@@ -373,14 +375,14 @@ if dein#load_state("/home/neg/.vim/repos")
         endif
     endif
     "--[ Haskell ]-----------------------------------------------------------------------------
-    if executable(resolve(expand("ghci")))
+    if executable(resolve(expand('ghci')))
         "autocomplete for hs using ghc-mod
         call dein#add('ujihisa/neco-ghc', { 'on_ft' : 'haskell'})
         "ghc-mod integration
         call dein#add('eagletmt/ghcmod-vim.git', { 'on_ft' : 'haskell'})
         "type-related features
         call dein#add('bitc/vim-hdevtools', { 'on_ft' : 'haskell'})
-        if has("nvim")
+        if has('nvim')
             call dein#add('neovimhaskell/haskell-vim', { 'on_ft' : 'haskell'})
         else
             "better haskell syntax hi with better indenting
@@ -388,9 +390,9 @@ if dein#load_state("/home/neg/.vim/repos")
         endif
     endif
     "--[ Ruby ]--------------------------------------------------------------------------------
-    if has("ruby")
-        if executable(resolve(expand("ruby")))
-            if has("nvim")
+    if has('ruby')
+        if executable(resolve(expand('ruby')))
+            if has('nvim')
                 "alternative ruby autocompletion
                 call dein#add('osyo-manga/vim-monster')
                 if g:nvim_deoplete == 1
@@ -410,7 +412,7 @@ if dein#load_state("/home/neg/.vim/repos")
             call dein#add('tpope/vim-bundler')
             "provides database access to many dbms
             call dein#add('vim-scripts/dbext.vim')
-            if has("loled")
+            if has('loled')
                 "plugin to run ruby tests
                 call dein#add('skalnik/vim-vroom')
             endif
@@ -424,7 +426,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "common lisp dev environment
     call dein#add('l04m33/vlime', {'on_ft' : 'lisp', 'rtp': 'vim'})
     "--[ Misc Langs ]--------------------------------------------------------------------------
-    if executable(resolve(expand("php")))
+    if executable(resolve(expand('php')))
         if g:nvim_deoplete == 1
             call dein#add('php-vim/phpcd.vim', { 'on_ft' : 'php', 'build' : 'composer install'})
         else
@@ -475,7 +477,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "----------------[  Tags  ]--------------------------------------------------------------
     "autogen ctags
     call dein#add('szw/vim-tags')
-    if executable(resolve(expand("gtags")))
+    if executable(resolve(expand('gtags')))
         "Gtags v0.64
         call dein#add('yuki777/gtags.vim.git')
         "autogenerate gtags to cscope db
@@ -490,7 +492,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ LaTeX ]-----------------------------------------------------------------------------
     "LaTeX-Box replacement
     call dein#add('lervag/vimtex', {'on_ft': ['tex']})
-    if has("nvim")
+    if has('nvim')
         call dein#add('donRaphaco/neotex', {'on_ft': ['tex']})
     else
         "add latex live preview
@@ -569,13 +571,13 @@ if dein#load_state("/home/neg/.vim/repos")
         "qml syntax file
         call dein#add('peterhoeg/vim-qml', {'on_ft': ['qml']})
     endif
-    if !has("nvim")
+    if !has('nvim')
         "10x faster clighter highlighter replacement
         call dein#add('bbchung/clighter8')
     else
         call dein#add('arakashic/chromatica.nvim')
     endif
-    if has("nvim")
+    if has('nvim')
         "gotham colorscheme for nvim
         call dein#add('whatyouhide/vim-gotham')
         "hybrid colorscheme
