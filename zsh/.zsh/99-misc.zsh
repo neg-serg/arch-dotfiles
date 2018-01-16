@@ -126,3 +126,8 @@ function connections_num() {
     | uniq -c \
     | sort -n 
 }
+
++strip_trailing_workspaces(){  sed ${1:+-i} 's/\s\+$//' "$@" }
++show_coredumps() { locate -b '^core\.?[0-9]*$' --regex | xargs file | fgrep ELF | awk '{print $1}' | sed 's,:$,,'}
+teapot_xterm(){ curl http://www.dim13.org/tek/teapot.tek }
+
