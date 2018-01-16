@@ -97,8 +97,6 @@ if dein#load_state("/home/neg/.vim/repos")
     " call dein#add('chrisbra/unicode.vim', { 'on_cmd' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] })
     "highlight colors in terminal
     call dein#add('sunaku/vim-hicterm')
-    "indent tabs visually with |-es too slow
-    call dein#add('nathanaelkane/vim-indent-guides')
     "visual replace for multiple files
     call dein#add('thinca/vim-qfreplace.git')
     "--[ Edit ]-------------------------------------------------------------------------------
