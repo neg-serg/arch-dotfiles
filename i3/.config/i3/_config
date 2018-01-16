@@ -175,7 +175,6 @@ bindsym $mod+r mode ""
 bindsym $mod+Shift+w mode ""
 #----------------------------------------------
 bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
-bindsym $mod+Shift+o exec ~/dev/src/1st_level/hud-menu/hud-menu.py
 bindsym $mod+Shift+BackSpace mode " "
 mode " " {
     bindsym $mod+Shift+BackSpace mode "default"

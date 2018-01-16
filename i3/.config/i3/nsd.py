@@ -58,6 +58,11 @@ class named_scratchpad(SingletonMixin):
         for index,i in enumerate(marked[tag]):
             marked[tag][index].command('move container to workspace current')
 
+    def unfocus(self, tag: str) -> None:
+        for index,i in enumerate(marked[tag]):
+            marked[tag][index].command('move scratchpad')
+        self.restore_fullscreens()
+
     def toggle(self, tag : str) -> None:
         if marked[tag] == [] and "prog" in Conf[tag]:
             i3.command("exec {}".format(Conf[tag]["prog"]))
@@ -119,11 +124,6 @@ class named_scratchpad(SingletonMixin):
     def restore_fullscreens(self) -> None:
         [i.command('fullscreen toggle') for i in self.fullscreen_list]
         self.fullscreen_list=[]
-
-    def unfocus(self, tag: str) -> None:
-        for index,i in enumerate(marked[tag]):
-            marked[tag][index].command('move scratchpad')
-        self.restore_fullscreens()
 
     def visible(self, tag: str):
         visible_windows = find_visible_windows(get_windows_on_ws())
