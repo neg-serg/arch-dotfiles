@@ -1,0 +1,11 @@
+[Unit]
+Description=X11 Settings service
+After=sockets.target
+
+[Service]
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=%h/.config/xinit/start_xinit.zsh
+
+[Install]
+WantedBy=default.target
