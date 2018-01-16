@@ -15,15 +15,15 @@ GIT_PROMPT_ORDER=(
 declare -A GIT_PROMPT_SYMBOLS
 lhs="[" rhs="]"
 GIT_PROMPT_SYMBOLS=(
-	"prefix" "%{$fg[blue]%}${lhs}%f"
+	"prefix" "%F{4}${lhs}%f"
 	"branch" "%F{7}"
-	"behind" "%F{216}%{←%G%}"
-	"ahead" "%F{216}%{→%G%}"
+	"behind" "%F{25}%{←%G%}"
+	"ahead" "%F{25}%{→%G%}"
 	"separator" "%F{206}|%f"
 	"staged" "%F{117}%{♦%G%}"
 	"changed" "%F{226}%{◊%G%}"
 	"conflicts" "%F{9}%{≠%G%}"
-	"untracked" "%F{214}%{…%G%}"
+	"untracked" "%F{1}%{…%G%}"
 	"clean" "%F{10}%B%{✓%G%}%b"
 	"suffix" "%F{4}${rhs}%f%{$reset_color%}"
 )
