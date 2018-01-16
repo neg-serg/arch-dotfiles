@@ -180,7 +180,7 @@ function lastfm_scrobbler_toggle(){
             systemctl --user start mpdscribble.service
         fi
         builtin printf "$(_zpref) $(_zfwrap "$(any mpdscribble | awk  '{print substr($0, index($0,$11))}'|
-            sed "s|${HOME}|%F{2}~|;s|/|%F{4}&%F{7}|g")")\n"
+            sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
     else
         if [[ "$(systemctl --user status mpdas.service|grep -o "${is_run}")" != "" ]]; then
             systemctl --user stop mpdas.service
@@ -190,7 +190,7 @@ function lastfm_scrobbler_toggle(){
             systemctl --user start mpdas.service
         fi
         builtin printf "$(_zpref) $(_zfwrap "$(any mpdas | awk  '{print substr($0, index($0,$11))}'|
-            sed "s|${HOME}|%F{2}~|;s|/|%F{4}&%F{7}|g")")\n"
+            sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
     fi
     unset is_run use_mpdscribble
 }
