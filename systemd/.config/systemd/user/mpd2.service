@@ -1,6 +1,6 @@
 [Unit]
 Description=Music Player Daemon
-After=network.target sound.target pulseaudio.socket
+After=network.target sound.target
 
 [Service]
 ExecStart=/usr/bin/mpd --no-daemon %h/.mpd.conf
