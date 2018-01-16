@@ -59,7 +59,7 @@ case ${UID} in
     ;;
 *)
     SPROMPT="%{${fg[white]}%}Correct: %{${fg[blue]}%}%R%{${reset_color}%} %{${fg[white]}%}-> %{${fg[cyan]}%}%r%{${fg[white]}%} [nyae]? %{${reset_color}%}"
-    DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
+    DARK_BLUE="%{$fg_bold[blue]%}"
     _neg_user_pretok="${DARK_BLUE}[${NOCOLOR}"
     function precmd(){ 
         export PS1="${_neg_user_pretok}%40<..<$(${ZSH}/neg-prompt)" 

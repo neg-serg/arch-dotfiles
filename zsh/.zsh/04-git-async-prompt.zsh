@@ -24,7 +24,7 @@ GIT_PROMPT_SYMBOLS=(
 	"conflicts" "%F{9}%{≠%G%}"
 	"untracked" "%F{214}%{…%G%}"
 	"clean" "%F{10}%B%{✓%G%}%b"
-	"suffix" "%F{4}]%f"
+	"suffix" "%F{4}]%f%{$reset_color%}"
 )
 
 declare -A GIT_STATUS_MAP
