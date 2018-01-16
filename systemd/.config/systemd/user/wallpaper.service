@@ -1,0 +1,12 @@
+[Unit]
+Description=Script to set wallpaper
+After=sockets.target
+
+[Service]
+Type=simple
+Restart=never
+Environment=DISPLAY=:0
+ExecStart=%h/bin/wl rand
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Downloads cleaner and handler
+After=sockets.target
+
+[Service]
+Type=simple
+Restart=on-failure
+Environment=DISPLAY=:0
+ExecStart=%h/bin/scripts/dw cleaner
+
+[Install]
+WantedBy=default.target
