@@ -5,9 +5,7 @@ function chpwd() {
     if [ -x ${BIN_HOME}/Z ]; then
         [ "${PWD}" -ef "${HOME}" ] || Z -a "${PWD}"
     fi
-    if [[ ${_zsh_oldprompt_is_sourced} == "true" ]]; then
-        export PS1="${_neg_user_pretok}%40<..<$(${ZSH}/neg-prompt)"
-    fi
+    setup_prompt
 }
 
 function zc(){

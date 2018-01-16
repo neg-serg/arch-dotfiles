@@ -2,14 +2,12 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 
-autoload colors && colors
-
 local red_color="%{"$'\033[03;31m'"%}"
 local green_color="%{"$'\033[03;32m'"%}"
-local white_color="%{$fg[white]%}"
-local bold_white_color="%{$fg_bold[white]%}"
-local dark_blue_color="%{$fg[blue]%}"
-local bold_dark_blue_color="%{$fg_bold[blue]%}"
+local white_color="%F{7}"
+local bold_white_color="%B%F{7}"
+local dark_blue_color="%F{4}"
+local bold_dark_blue_color="%B%F{4}"
 local blue_color="%{"$'\033[00;38;5;61m'"%}"
 local black_color="%{"$'\033[00m'"%}"
 
