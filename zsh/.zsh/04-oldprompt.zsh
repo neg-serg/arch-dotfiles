@@ -59,25 +59,18 @@ case ${UID} in
     ;;
 *)
     SPROMPT="%{${fg[white]}%}Correct: %{${fg[blue]}%}%R%{${reset_color}%} %{${fg[white]}%}-> %{${fg[cyan]}%}%r%{${fg[white]}%} [nyae]? %{${reset_color}%}"
-    DARK_BLUE="%{$fg_bold[blue]%}"
-    _neg_user_pretok="${DARK_BLUE}[${NOCOLOR}"
+    DARK_BLUE="%{$fg[blue]%}"
+    DARK_BLUE_BOLD="%{$fg_bold[blue]%}"
+    lhs="[" rhs="]" # lhs="❬" rhs="❭" # lhs="❲" rhs="❳"
+    prompt_end=" %{$fg[white]%}>>%{$reset_color%} "
+    _neg_user_pretok="${DARK_BLUE}${lhs}%{$reset_color%}"
     function precmd(){ 
-        export PS1="${_neg_user_pretok}%40<..<$(${ZSH}/neg-prompt)" 
+        export PS1="${_neg_user_pretok}%40<..<$(lhs="${lhs}" rhs="${rhs}" prompt_end="${prompt_end}" ${ZSH}/neg-prompt)" 
     }
     PS2="%{$fg[magenta]%}» %{$reset_color%}"
     # selection prompt used within a select loop.
     PS3='?# '
     # the execution trace prompt (setopt xtrace). default: '+%N:%i
     PS4='+%N:%i:%_> '
-    function vi_mode_prompt_info() { [[ "${RPS1}" == "" && "${RPROMPT}" == "" ]] && RPS1='${_lambda}$(vi_mode_prompt_info)' }
-
-    # if mode indicator wasn't setup by theme, define default
-    [[ "${mode_ind}" == "" ]] && mode_ind="%{$fg[blue]%}[%{$fg[white]%}<<%{$fg[blue]%}]%{$reset_color%}"
-
-    function vi_mode_prompt_info() {
-        echo "${${KEYMAP/vicmd/${mode_ind}}/(main|viins)/}"
-    }
-    # define right prompt, if it wasn't defined by a theme
-    [[ "${RPS1}" == "" && "${RPROMPT}" == "" ]] && RPS1='$(nice_exit_code)${_lambda}$(vi_mode_prompt_info)'
     ;;
 esac

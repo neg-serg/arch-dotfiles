@@ -6,14 +6,15 @@ autoload colors && colors
 
 local red_color="%{"$'\033[03;31m'"%}"
 local green_color="%{"$'\033[03;32m'"%}"
-local white_color="%{$fg_bold[white]%}"
-local dark_blue_color="%{$fg_bold[blue]%}"
+local white_color="%{$fg[white]%}"
+local bold_white_color="%{$fg_bold[white]%}"
+local dark_blue_color="%{$fg[blue]%}"
+local bold_dark_blue_color="%{$fg_bold[blue]%}"
 local blue_color="%{"$'\033[00;38;5;61m'"%}"
-local purple_color="%{"$'\033[00;38;5;91m'"%}"
 local black_color="%{"$'\033[00m'"%}"
 
-[[ ${UID} -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_pretoken="${dark_blue_color}[%{$reset_color%}%"
-[[ ${UID} -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_token="${dark_blue_color}] ${white_color}>>%{$reset_color%} "
+[[ ${UID} -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_pretoken="${dark_blue_color}${lhs}%{$reset_color%}%"
+[[ ${UID} -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_token="${dark_blue_color}${rhs}${prompt_end}"
 [[ ${UID} -eq 0 ]] && _neg_promptcolor=${red_color} && _neg_user_token="# "
 
 setopt sh_word_split

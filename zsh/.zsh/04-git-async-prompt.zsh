@@ -13,8 +13,9 @@ GIT_PROMPT_ORDER=(
 )
 
 declare -A GIT_PROMPT_SYMBOLS
+lhs="[" rhs="]"
 GIT_PROMPT_SYMBOLS=(
-	"prefix" "%{$fg_bold[blue]%}[%f"
+	"prefix" "%{$fg[blue]%}${lhs}%f"
 	"branch" "%F{7}"
 	"behind" "%F{216}%{←%G%}"
 	"ahead" "%F{216}%{→%G%}"
@@ -24,7 +25,7 @@ GIT_PROMPT_SYMBOLS=(
 	"conflicts" "%F{9}%{≠%G%}"
 	"untracked" "%F{214}%{…%G%}"
 	"clean" "%F{10}%B%{✓%G%}%b"
-	"suffix" "%F{4}]%f%{$reset_color%}"
+	"suffix" "%F{4}${rhs}%f%{$reset_color%}"
 )
 
 declare -A GIT_STATUS_MAP
