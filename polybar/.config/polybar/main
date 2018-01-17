@@ -3,8 +3,9 @@ margin-top = 0
 margin-bottom = 0
 
 [colors]
-background = "#bb020209"
-border = "#1f3b4f"
+background= "#bb020209"
+border = ${xrdb:color32}
+border_top = ${xrdb:color32}
 urgent = "#9633A7"
 
 [bar/main]
@@ -12,7 +13,7 @@ monitor=HDMI2
 bottom=true
 
 border-top-size = 2
-border-top-color = ${xrdb:color17}
+border-top-color = ${colors.border_top}
 
 height = 24
 spacing = 0
@@ -32,7 +33,7 @@ modules-right = mpd volume
 background = ${colors.background}
 foreground = "#ccc"
 
-underline-size = 1
+underline-size = 2
 
 font-0 = Iosevka Term Heavy:weight=bold:size=12;3
 font-1 = PragmataPro for Powerline:weight=bold:size=12;4
@@ -45,8 +46,6 @@ tray-padding = 1
 tray-maxsize = 16
 tray-background = "#000000"
 
-; Compositing operators
-; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
 compositing-background = over
 compositing-foreground = over
 compositing-overline = over
@@ -55,7 +54,6 @@ compositing-border = over
 
 [module/i3]
 type = internal/i3
-format-underline = ${colors.border}
 index-sort = true
 fuzzy-match = true
 format-prefix=${c.ls}
@@ -77,23 +75,22 @@ type = internal/mpd
 interval = 1
 format-online = <label-song> <label-time>
 format-playing = ${self.format-online}
-format-playing-prefix = ${c.lmpd}
+format-playing-prefix = ${self.lmpd}
 format-playing-suffix = ${c.rs}
 format-paused-prefix = ${c.ls}
 format-paused-suffix = ${c.rs}
 format-paused = ||
 format-stopped = 
 format-offline = no mpd
-label-song = %artist% - %title%
-label-time = %elapsed%/%total%
-# icon-prev = ⏮
-# icon-next = ⏭
-# icon-seekb = ⏪
-# icon-seekf = ⏩
-# icon-random = 🔀
-# icon-repeat = 🔁
-# icon-repeatone = 🔂
-# icon-consume = ✀
+label-song = %artist% ― %title%
+label-time = %elapsed%%{F#395573}/%{F#ccc}%total%
+icon-random = 🔀
+icon-repeat = 🔁
+icon-repeatone = 🔂
+icon-consume = ✀
+lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
+lmpd1="%{F#395573}⟬⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
+lmpd2="%{F#395573}⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 
 [module/volume]
 type = custom/script
@@ -106,7 +103,6 @@ format-prefix=${c.l}
 format-suffix=${c.delim}
 date = %H:%M%
 interval = 5
-format-underline = ${colors.border}
 format-padding = 0
 
 [module/checkvpn]
@@ -115,17 +111,15 @@ format-padding = 2
 exec = pgrep openvpn
 interval = 5
 label = " vpn"
-format-underline = "#a45476"
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
  
-format-underline = ${colors.border}
 format-prefix = ${c.l}
 format-suffix = ${c.delim}
  
-label-layout = input: %layout%
+label-layout = input:%layout%
 label-indicator-padding = 0
 label-indicator-background = ${colors.background}
 label-indicator-underline = ${colors.background}
@@ -135,10 +129,9 @@ type = internal/network
 interface = enp6s0
 interval = 1.0
 accumulate-stats = false
-label-connected = net: %downspeed%/%upspeed%
+label-connected = net:%downspeed%%{F#395573}/%{F#ccc}%upspeed%
 format-connected-prefix=${c.l}
 format-connected-suffix=${c.rs}
-format-connected-underline = ${colors.border}
 
 [module/mail]
 type = custom/script
@@ -146,7 +139,6 @@ exec = ~/bin/mon/mail_count
 format-prefix = ${c.deliml}
 format-suffix = ${c.r}
 format = <label>
-format-underline = ${colors.border}
 interval = 180
 
 [c]
@@ -154,9 +146,6 @@ l="%{O5}"
 r="%{O5}"
 ls=
 rs=
-lmpd="%{F#395573}⟬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
-lmpd1="%{F#395573}⟬⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
-lmpd2="%{F#395573}⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 
 lspec="%{F#395573}⟬ %{F#ccc}"
 rspec="%{F#395573}⟭ %{F#ccc}"
