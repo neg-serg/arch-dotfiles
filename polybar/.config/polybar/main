@@ -119,7 +119,7 @@ blacklist-0 = num lock
 format-prefix = ${c.l}
 format-suffix = ${c.delim}
  
-label-layout = input:%layout%
+label-layout = input:%{O5}%layout%
 label-indicator-padding = 0
 label-indicator-background = ${colors.background}
 label-indicator-underline = ${colors.background}
@@ -129,7 +129,7 @@ type = internal/network
 interface = enp6s0
 interval = 1.0
 accumulate-stats = false
-label-connected = net:%downspeed%%{F#395573}/%{F#ccc}%upspeed%
+label-connected = net:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%
 format-connected-prefix=${c.l}
 format-connected-suffix=${c.rs}
 
