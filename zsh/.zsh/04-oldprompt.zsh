@@ -5,7 +5,8 @@ PS4='+%N:%i:%_> '
 function setup_prompt(){ 
     # lhs="%F{25}⟬%F{4}<" rhs="⧔" # lhs="❬" rhs="❭" # lhs="❲" rhs="❳" 「｢ ⦔
     # lhs="❬" rhs="❭" # lhs="❲" rhs="❳"
-    lhs="%F{25}⟬%F{4}<" rhs=""
+    # lhs="%F{25}⟬%F{4}<" rhs=""
+    lhs="%F{4}⟬" rhs=""
     SPROMPT="%F{7}Correct: %F{4}%R%f %F{7}-> %F{2}%r%F{7} [nyae]? %f"
     DARK_BLUE="%F{4}"
     DARK_BLUE_BOLD="%B%F{4}"

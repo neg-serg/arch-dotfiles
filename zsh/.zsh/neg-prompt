@@ -2,18 +2,8 @@
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 
-local red_color="%{"$'\033[03;31m'"%}"
-local green_color="%{"$'\033[03;32m'"%}"
-local white_color="%F{7}"
-local bold_white_color="%B%F{7}"
-local dark_blue_color="%F{4}"
-local bold_dark_blue_color="%B%F{4}"
-local blue_color="%{"$'\033[00;38;5;61m'"%}"
-local black_color="%{"$'\033[00m'"%}"
-
-[[ ${UID} -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_pretoken="${dark_blue_color}${lhs}%{$reset_color%}%"
-[[ ${UID} -ne 0 ]] && _neg_promptcolor=${green_color} && _neg_user_token="${dark_blue_color}${rhs}${prompt_end}"
-[[ ${UID} -eq 0 ]] && _neg_promptcolor=${red_color} && _neg_user_token="# "
+[[ ${UID} -ne 0 ]] && _neg_promptcolor="%F{2}" && _neg_user_pretoken="%F{4}${lhs}%f"
+[[ ${UID} -ne 0 ]] && _neg_promptcolor="%F{2}" && _neg_user_token="%F{4}${rhs}${prompt_end}"
 
 setopt sh_word_split
 local _neg_dyn_pwd=""
@@ -37,7 +27,7 @@ for i in {$_neg_start_of_loop..$_neg_end_of_loop}; do
         _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
     else
         _neg_to_be_added=${_neg_split_path[i]}
-        _neg_to_be_added=${_neg_to_be_added}"${blue_color}/${white_color}"
+        _neg_to_be_added=${_neg_to_be_added}"%F{4}/%F{7}"
         # _neg_to_be_added=$_neg_to_be_added[1,1]'/'
         _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
     fi
@@ -46,5 +36,5 @@ unsetopt sh_word_split
 IFS=${_neg_saveIFS}
 [[ ${_neg_full_path/${HOME}/\~} != ${_neg_full_path} ]] && _neg_dyn_pwd=${_neg_dyn_pwd/\/~/~}
 # remove the slash in front of ${HOME}
-_neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}${black_color}$_neg_user_token%b%k%f"
+_neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
 builtin print ${_neg_prompt}
