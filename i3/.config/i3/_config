@@ -77,21 +77,21 @@ hide_edge_borders both
 # ░█░█░█▄█░█▀▀
 # ░█▄█░█░█░▀▀█
 # ░▀░▀░▀░▀░▀▀▀
-set ${term,ws1}   α:term
-set ${web,ws2}   β:web
-set ${doc,ws3}   γ:doc
-set ${dev,ws4}   δ:dev
-set ${media,ws5}   ε:media
-set ${gimp,ws6}  ζ:gimp
-set ${admin,ws7}  η:admin
-set ${ide,ws8}   θ:ide
-set ${steam,ws9}   ι:steam
-set ${torrent,ws10}  κ:torrent
-set ${vm,ws11} λ:vm
-set ${wine,ws12} μ:wine
-set ${spotify,ws13}  ν:spotify
-set $sxiv  ξ: [pic]
-set $graph  ο: [graph]
+set ${term,ws1} " α:term"
+set ${web,ws2} " β:web"
+set ${doc,ws3} " γ:doc"
+set ${dev,ws4} " δ:dev"
+set ${media,ws5} " ε:media"
+set ${gimp,ws6} "ζ:gimp"
+set ${admin,ws7} "η:admin"
+set ${ide,ws8} " θ:ide"
+set ${steam,ws9} " ι:steam"
+set ${torrent,ws10} " κ:torrent"
+set ${vm,ws11} "λ:vm"
+set ${wine,ws12} "μ:wine"
+set ${spotify,ws13} " ν:spotify"
+set $sxiv " ξ: [pic]"
+set $graph " ο: [graph]"
 
 #---------------------------------
 # ░█░█░█▄█░░░░░█▀▄░█░█░█░░░█▀▀░█▀▀
