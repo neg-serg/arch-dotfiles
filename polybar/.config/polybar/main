@@ -25,7 +25,7 @@ padding-right = 0 # offset from -x
 module-margin-right = 0 # looks nice
 module-margin-left  = 0
 
-modules-left = date i3 xkeyboard network checkvpn mail
+modules-left = LL date i3 xkeyboard network checkvpn mail RR
 modules-center =
 modules-right = mpd volume
 
@@ -36,9 +36,7 @@ underline-size = 1
 
 font-0 = Iosevka Term Heavy:weight=bold:size=12;3
 font-1 = PragmataPro for Powerline:weight=bold:size=12;4
-
-#font-0 = Iosevka Term Heavy:weight=bold:size=12;2
-#font-1 = PragmataPro for Powerline:weight=bold:size=12;3
+font-2 = Code2000:weight=bold:size=17;4
 
 tray-detached = false
 tray-position = right
@@ -60,9 +58,9 @@ type = internal/i3
 format-underline = ${colors.border}
 index-sort = true
 fuzzy-match = true
-format-prefix = ${c.ls}
-format-suffix = ${c.r}
-format = %{F#47959E}<label-mode> %{F#ccc}<label-state>
+format-prefix=${c.ls}
+format-suffix=${c.delim}
+format = %{O-2}%{F#47959E}<label-mode>%{F#ccc}<label-state>
 label-focused-font = 4
 label-unfocused-font = 4
 label-urgent-font = 4
@@ -80,7 +78,7 @@ interval = 1
 format-online = <label-song> <label-time>
 format-playing = ${self.format-online}
 format-playing-prefix = ${c.lmpd}
-format-playing-suffix = ${c.r}
+format-playing-suffix = ${c.rs}
 format-paused-prefix = ${c.ls}
 format-paused-suffix = ${c.rs}
 format-paused = ||
@@ -104,8 +102,8 @@ exec = /home/neg/bin/mon/vol.lua
 
 [module/date]
 type = internal/date
-format-prefix = ${c.l}
-format-suffix = ${c.r}
+format-prefix=${c.l}
+format-suffix=${c.delim}
 date = %H:%M%
 interval = 5
 format-underline = ${colors.border}
@@ -125,7 +123,7 @@ blacklist-0 = num lock
  
 format-underline = ${colors.border}
 format-prefix = ${c.l}
-format-suffix = ${c.r}
+format-suffix = ${c.delim}
  
 label-layout = input: %layout%
 label-indicator-padding = 0
@@ -136,32 +134,41 @@ label-indicator-underline = ${colors.background}
 type = internal/network
 interface = enp6s0
 interval = 1.0
-;ping-interval = 3
 accumulate-stats = false
 label-connected = net: %downspeed%/%upspeed%
-format-connected-prefix = ${c.l}
-format-connected-suffix = ${c.r}
+format-connected-prefix=${c.l}
+format-connected-suffix=${c.rs}
 format-connected-underline = ${colors.border}
 
 [module/mail]
 type = custom/script
 exec = ~/bin/mon/mail_count
-format-prefix = ${c.l}
+format-prefix = ${c.deliml}
 format-suffix = ${c.r}
 format = <label>
 format-underline = ${colors.border}
 interval = 180
 
 [c]
-l = "%{F#287373}[ %{F#ccc}"
-r = "%{F#287373} ]"
-ls = "%{F#287373}[%{F#ccc}"
-rs = "%{F#287373}]"
-lmpd  = "%{F#287373}[%{F#ccc}>>%{F#287373}][ %{F#ccc}"
+l="%{O5}"
+r="%{O5}"
+ls=
+rs=
+lmpd="%{F#395573}⟬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
+lmpd1="%{F#395573}⟬⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
+lmpd2="%{F#395573}⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 
-l1 = "%{F#ccc} "
-r1 = "%{F#287373} |"
-ls1 = "%{F#ccc}"
-rs1 = "%{F#287373}|"
+lspec="%{F#395573}⟬ %{F#ccc}"
+rspec="%{F#395573}⟭ %{F#ccc}"
+delim="%{F#005f87}%{O5}∣%{F#ccc}"
+deliml="%{F#005f87}%{O5}∣%{F#ccc}%{O5}"
+
+[module/LL]
+type=custom/text
+content="%{F#395573}⟬%{F#ccc}"
+
+[module/RR]
+type=custom/text
+content="%{F#395573}⟭%{F#ccc}"
 
 ; vim:ft=dosini
