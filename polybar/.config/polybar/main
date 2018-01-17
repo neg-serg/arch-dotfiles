@@ -169,6 +169,6 @@ content="%{F#395573}⟬%{F#ccc}"
 
 [module/RR]
 type=custom/text
-content="%{F#395573}⟭%{F#ccc}"
+content="%{O5}%{F#395573}⟭%{F#ccc}"
 
 ; vim:ft=dosini
