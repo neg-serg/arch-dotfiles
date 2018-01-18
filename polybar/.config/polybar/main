@@ -96,6 +96,7 @@ lmpd2="%{F#395573}⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 type = custom/script
 interval = 0
 exec = /home/neg/bin/mon/vol.lua
+exec-if = mpc idle
 
 [module/date]
 type = internal/date
