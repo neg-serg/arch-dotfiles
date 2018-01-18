@@ -1,19 +1,19 @@
 let s:dark       = '#121212'
 let s:light      = '#c2c2cf'
-let s:linenr_bg  = '#020204'
+let s:linenr_bg  = 'NONE'
 let s:comment    = '#7a7c7d'
 let s:clinenr_fg = '#a5a6a8'
 let s:red        = '#b33939'
 let s:yellow     = '#808021'
 let s:green      = '#218058'
-let s:blue       = '#2d5c76'
+let s:blue       = '#005f87'
 let s:error      = '#ff0000'
 let s:more_dark  = '#080812'
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 
-let s:p.normal.left     = [ [ s:light, s:more_dark ],   [ s:comment, s:dark ] ]
-let s:p.normal.right    = [ [ s:light, s:more_dark ],   [ s:comment, s:dark ] ]
+let s:p.normal.left     = [ [ s:light, s:blue ],   [ s:comment, s:dark ] ]
+let s:p.normal.right    = [ [ s:light, s:blue ],   [ s:comment, s:dark ] ]
 let s:p.inactive.right  = [ [ s:comment, s:linenr_bg ], [ s:comment, s:linenr_bg ] ]
 let s:p.inactive.left   = [ [ s:comment, s:linenr_bg ], [ s:comment, s:linenr_bg ] ]
 let s:p.insert.left     = [ [ s:light, s:green ],       [ s:comment, s:dark ] ]
