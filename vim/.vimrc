@@ -10,7 +10,7 @@
 scriptencoding utf-8
 set noexrc
 set secure
-set shell=/bin/sh
+set shell=/bin/dash
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif

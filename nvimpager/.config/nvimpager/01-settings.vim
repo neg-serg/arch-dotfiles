@@ -20,11 +20,11 @@ set isfname+={
 set isfname+=}
 
 if exists('$TMUX')
-    let g:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
-    if g:not_tmuxed_vim =~ "FALSE"
+    let g:not_tmuxed_vim = system(expand('~/bin/scripts/not_tmuxed_wim'))
+    if g:not_tmuxed_vim =~ 'FALSE'
         set t_ut=
         if !exists('$ST_TERM')
-            autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            autocmd VimEnter * silent !echo -ne '\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\'
             autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
             autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
             let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
@@ -32,10 +32,10 @@ if exists('$TMUX')
             autocmd VimLeave * silent !tmux set status on;
                 \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
         else
-            if !has("nvim")
-                autocmd VimEnter * silent !echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
-                let &t_SI = "\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\"
-                let &t_EI = "\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\"
+            if !has('nvim')
+                autocmd VimEnter * silent !echo -ne '\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\'
+                let &t_SI = '\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\'
+                let &t_EI = '\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\'
             endif
             autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
             autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
@@ -67,11 +67,9 @@ if has('user_commands')
     command! -nargs=0 Sw :SudoWrite
     command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
-    "command! -nargs=0 curf let @+=expand("%:p")
 endif
 "----------------------------------------------------------------------------
 set keywordprg=:help
-let $PATH = $PATH . ':' . expand("~/bin/go/bin")
 
 set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
@@ -82,7 +80,7 @@ set noshowmode                              " no show the mode ("-- INSERT --") 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
 set autoread
-if executable(resolve(expand("par")))
+if executable(resolve(expand('par')))
     set formatprg="par -140"  " use par as formatter
 else
     set formatprg="fmt -140"  " use fmt as formatter
@@ -144,7 +142,7 @@ set completeopt=menu,menuone,longest
 "probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
-set nu                          " Line numbers on
+set number                      " Line numbers on
 set noshowmatch                 " Show matching brackets/parenthesis
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
@@ -236,39 +234,39 @@ endtry
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
-set autoindent          " on new lines, match indent of previous line
-" set smartindent       " smart auto indenting
-set copyindent          " copy the previous indentation on autoindenting
-set cindent             " smart indenting for c-like code
-set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
-set laststatus=2        " requied by PowerLine/Airline
+set autoindent                     " on new lines, match indent of previous line
+set nosmartindent                  " disable smart auto indenting
+set copyindent                     " copy the previous indentation on autoindenting
+set cindent                        " smart indenting for c-like code
+set cinoptions=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
+set laststatus=2                   " requied by PowerLine/Airline
 
-set nocursorline        " highlight current line is too slow
-set backup              " backuping is good
+set nocursorline                   " highlight current line is too slow
+set backup                         " backuping is good
 
 set backupdir=~/trash
 set directory=~/trash
-set undofile            " So is persistent undo ...
-set undolevels=1000     " Maximum number of changes that can be undone
-set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
-set cpoptions=a         " :read with a filename set the alternate filename for window
-set cpoptions+=A        " -- : write --
-set cpoptions+=c        " search -> end of any match at the cursor pos but not start of the next line
-set cpoptions+=e        " :@r adds CR and nonlinewise
-set cpoptions+=F        " :write set name for current buffer if no
-set cpoptions+=s        " set buf opts before it created
-set cpoptions+=B        " a backslash has no special meaning in mappings
-set cpoptions+=d        " make ./ in tags relative to tags file in current dir
-set cpoptions+=$        " no line redisplay -> put a '$' at the end
+set undofile                       " So is persistent undo ...
+set undolevels=1000                " Maximum number of changes that can be undone
+set undoreload=10000               " Maximum number lines to save for undo on a buffer reload
+set cpoptions=a                    " :read with a filename set the alternate filename for window
+set cpoptions+=A                   " -- : write --
+set cpoptions+=c                   " search -> end of any match at the cursor pos but not start of the next line
+set cpoptions+=e                   " :@r adds CR and nonlinewise
+set cpoptions+=F                   " :write set name for current buffer if no
+set cpoptions+=s                   " set buf opts before it created
+set cpoptions+=B                   " a backslash has no special meaning in mappings
+set cpoptions+=d                   " make ./ in tags relative to tags file in current dir
+set cpoptions+=$                   " no line redisplay -> put a '$' at the end
 
-set maxfuncdepth=100    " Maximum depth of function calls for user functions
-set maxmemtot=2000000   " Maximum amount of memory in Kbyte to use for all buffers together.
-set maxmapdepth=1000    " Maximum number of times a mapping is done
-                        " without resulting in a character to be used.
-set maxmem=8188370      " Maximum amount of memory (in Kbyte) to use for one buffer
-set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
+set maxfuncdepth=100               " Maximum depth of function calls for user functions
+set maxmemtot=2000000              " Maximum amount of memory in Kbyte to use for all buffers together.
+set maxmapdepth=1000               " Maximum number of times a mapping is done
+                                   " without resulting in a character to be used.
+set maxmem=8188370                 " Maximum amount of memory (in Kbyte) to use for one buffer
+set maxmempattern=1000             " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
-set nomodeline                        " disable modelines
-set iminsert=0          " write latin1 characters first
-set imsearch=0          " search with latin1 characters first
-set cmdheight=1         " standard cmdline height
+set nomodeline                     " disable modelines
+set iminsert=0                     " write latin1 characters first
+set imsearch=0                     " search with latin1 characters first
+set cmdheight=1                    " standard cmdline height

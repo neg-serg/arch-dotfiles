@@ -547,23 +547,23 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('tagbar')
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
-	let g:tagbar_type_markdown = {
+    let g:tagbar_type_markdown = {
         \ 'ctagstype' : 'markdown',
         \ 'kinds' : [
             \ 'h:Heading_L1',
             \ 'i:Heading_L2',
             \ 'k:Heading_L3'
         \ ]
-	\ }
-	let g:tagbar_type_css = {
+    \ }
+    let g:tagbar_type_css = {
         \ 'ctagstype' : 'Css',
         \ 'kinds' : [
             \ 'c:classes',
             \ 's:selectors',
             \ 'i:identities'
         \ ]
-	\ }
-	let g:tagbar_type_ruby = {
+    \ }
+    let g:tagbar_type_ruby = {
         \ 'kinds' : [
             \ 'm:modules',
             \ 'c:classes',
@@ -572,7 +572,7 @@ if dein#tap('tagbar')
             \ 'f:methods',
             \ 'F:singleton methods'
         \ ]
-	\ }
+    \ }
     let g:tagbar_width = 30
     let g:tagbar_left = 0
     let g:tagbar_sort = 0
@@ -1025,123 +1025,6 @@ if dein#tap('onedark')
     \}
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - itchyny/lightline.vim                                                    │
-" │ https://github.com/itchyny/lightline.vim                                          │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('lightline.vim')
-    let g:lightline = {
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'fugitive', 'filename', 'modified' ],
-        \             [ 'ctrlpmark'] ],
-        \   'right': [ [ 'syntastic', 'lineinfo' ],
-        \              [ 'percent' ],
-        \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-        \ },
-        \ 'component_function': {
-        \   'fugitive': 'LightlineFugitive',
-        \   'ctrlpmark': 'CtrlPMark',
-        \   'filename': 'LightlineFilename',
-        \   'mode': 'LightlineMode',
-        \   'fileformat': 'LightlineFileformat',
-        \   'filetype': 'LightlineFiletype',
-        \   'fileencoding': 'LightlineFileencoding'
-        \ },
-        \ 'component_expand': {
-        \   'syntastic': 'SyntasticStatuslineFlag',
-        \ },
-        \ 'component_visible_condition': {
-        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-        \ },
-        \ 'component_type': {
-        \   'syntastic': 'error',
-        \ },
-        \ 'colorscheme': 'breezy',
-        \ 'separator': { 'left': '▒', 'right': '▒' },
-        \ 'subseparator': { 'left': '┆', 'right': '┆' }
-    \ }
-
-    function! LightlineModified()
-        return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-    endfunction
-
-    function! LightlineReadonly()
-        return &ft !~? 'help' && &readonly ? 'RO' : ''
-    endfunction
-
-    function! LightlineFugitive()
-        try
-            if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
-                let mark = ''  " edit here for cool mark
-                let branch = fugitive#head()
-                return branch !=# '' ? mark.branch : ''
-            endif
-        catch
-        endtry
-        return ''
-    endfunction
-
-    function! LightlineFilename()
-    let fname = expand('%:t')
-    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-            \ fname == '__Tagbar__' ? g:lightline.fname :
-            \ fname =~ '__Gundo\|NERD_tree' ? '' :
-            \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-            \ &ft == 'unite' ? unite#get_status_string() :
-            \ &ft == 'vimshell' ? vimshell#get_status_string() :
-            \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-            \ ('' != fname ? fname : '[No Name]') .
-            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-    endfunction
-
-    function! LightlineFileformat()
-        return winwidth(0) > 70 ? &fileformat : ''
-    endfunction
-
-    function! LightlineFiletype()
-        return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-    endfunction
-
-    function! LightlineFileencoding()
-        return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-    endfunction
-
-    function! LightlineMode()
-    let fname = expand('%:t')
-    return fname == '__Tagbar__' ? 'Tagbar' :
-            \ fname == 'ControlP' ? 'CtrlP' :
-            \ fname == '__Gundo__' ? 'Gundo' :
-            \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-            \ fname =~ 'NERD_tree' ? 'NERDTree' :
-            \ &ft == 'unite' ? 'Unite' :
-            \ &ft == 'vimfiler' ? 'VimFiler' :
-            \ &ft == 'vimshell' ? 'VimShell' :
-            \ winwidth(0) > 60 ? lightline#mode() : ''
-    endfunction
-
-    augroup LightLineColorscheme
-        autocmd!
-        autocmd ColorScheme * call s:lightline_update()
-    augroup END
-    function! s:lightline_update()
-        if !exists('g:loaded_lightline')
-            return
-        endif
-        try
-            if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|dracula'
-                let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
-                            \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
-                call lightline#init()
-                call lightline#colorscheme()
-                call lightline#update()
-            endif
-        catch
-        endtry
-    endfunction
-
-endif
-
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - mhinz/vim-startify                                                       │
 " │ https://github.com/mhinz/vim-startify                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -1497,4 +1380,133 @@ if dein#tap('vim-projectionist')
         \     }
         \   }
         \ }
+endif
+
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - itchyny/lightline.vim                                                    │
+" │ https://github.com/itchyny/lightline.vim                                          │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('lightline.vim')
+    let g:lightline = {
+        \ 'active': {
+        \   'left':  [ [ 'mode', 'paste' ],
+        \              [ 'fugitive', 'filename', 'modified' ]
+        \            ],
+        \   'right': [ [ 'syntastic', 'lineinfo' ],
+        \              [ 'percent' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+        \ },
+        \ 'component_function': {
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'mode': 'LightlineMode',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding'
+        \ },
+        \ 'component_expand': {
+        \   'syntastic': 'SyntasticStatuslineFlag',
+        \ },
+        \ 'component_visible_condition': {
+        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+        \ },
+        \ 'component_type': {
+        \   'syntastic': 'error',
+        \ },
+        \ 'colorscheme': 'breezy',
+        \ 'separator': { 'left': '▒', 'right': '▒' },
+        \ 'subseparator': { 'left': '┆', 'right': '┆' }
+    \ }
+
+    let g:lightline.mode_map = {
+            \ 'n' : 'N',
+            \ 'i' : 'INSERT',
+            \ 'R' : 'REPLACE',
+            \ 'v' : 'VISUAL',
+            \ 'V' : 'V-LINE',
+            \ "\<C-v>": 'V-BLOCK',
+            \ 'c' : 'COMMAND',
+            \ 's' : 'SELECT',
+            \ 'S' : 'S-LINE',
+            \ "\<C-s>": 'S-BLOCK',
+            \ 't': 'TERMINAL',
+    \ }
+
+    function! LightlineModified()
+        return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    endfunction
+
+    function! LightlineReadonly()
+        return &ft !~? 'help' && &readonly ? 'RO' : ''
+    endfunction
+
+    function! LightlineFugitive()
+        try
+            if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+                let mark = ''  " edit here for cool mark
+                let branch = fugitive#head()
+                return branch !=# '' ? mark.branch : ''
+            endif
+        catch
+        endtry
+        return ''
+    endfunction
+
+    function! LightlineFilename()
+    let fname = expand('%:t')
+    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+            \ fname == '__Tagbar__' ? g:lightline.fname :
+            \ fname =~ '__Gundo\|NERD_tree' ? '' :
+            \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+            \ &ft == 'unite' ? unite#get_status_string() :
+            \ &ft == 'vimshell' ? vimshell#get_status_string() :
+            \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+            \ ('' != fname ? fname : '[No Name]') .
+            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+    endfunction
+
+    function! LightlineFileformat()
+        return winwidth(0) > 70 ? &fileformat : ''
+    endfunction
+
+    function! LightlineFiletype()
+        return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    endfunction
+
+    function! LightlineFileencoding()
+        return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    endfunction
+
+    function! LightlineMode()
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+            \ fname == 'ControlP' ? 'CtrlP' :
+            \ fname == '__Gundo__' ? 'Gundo' :
+            \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+            \ fname =~ 'NERD_tree' ? 'NERDTree' :
+            \ &ft == 'unite' ? 'Unite' :
+            \ &ft == 'vimfiler' ? 'VimFiler' :
+            \ &ft == 'vimshell' ? 'VimShell' :
+            \ winwidth(0) > 60 ? lightline#mode() : ''
+    endfunction
+
+    augroup LightLineColorscheme
+        autocmd!
+        autocmd ColorScheme * call s:lightline_update()
+    augroup END
+    function! s:lightline_update()
+        if !exists('g:loaded_lightline')
+            return
+        endif
+        try
+            if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|dracula'
+                let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
+                            \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
+                call lightline#init()
+                call lightline#colorscheme()
+                call lightline#update()
+            endif
+        catch
+        endtry
+    endfunction
 endif
