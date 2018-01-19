@@ -240,6 +240,10 @@ if dein#load_state('/home/neg/.vim/repos')
     call dein#add('Shougo/deol.nvim')
     "try to add some custom hooks with it
     call dein#add('ahw/vim-hooks')
+    " An efficient alternative to the standard matchparen plugin
+    call dein#add('itchyny/vim-parenmatch')
+    " Google calendar in vim
+    call dein#add('itchyny/calendar.vim')
     "--[ Docs ]------------------------------------------------------------------------------
     "view and search rfc
     call dein#add('mhinz/vim-rfc')
@@ -575,6 +579,10 @@ if dein#load_state('/home/neg/.vim/repos')
         call dein#add('icymind/NeoSolarized')
         "dark and cold colorscheme
         call dein#add('arcticicestudio/nord-vim')
+        "colorscheme and syntax file
+        call dein#add('itchyny/landscape.vim')
+        "better close buffer
+        call dein#add('itchyny/vim-closebuffer')
     endif
     "base16 colorschemes pack
     call dein#add('chriskempson/base16-vim')
