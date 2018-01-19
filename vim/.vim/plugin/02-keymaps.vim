@@ -56,9 +56,6 @@ nnoremap q4 :q<cr>
 
 map <silent><space>l :set rnu!<cr>
 
-" like firefox tabs
-nnoremap <silent> <A-w> :Bclose<CR>
-
 " Toggle hlsearch for current results, start highlight
 nnoremap <leader><leader> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 

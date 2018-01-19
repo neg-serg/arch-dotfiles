@@ -23,6 +23,8 @@ augroup layer_lang_rust
     au FileType rust nmap <buffer><silent> gx <Plug>(rust-def-vertical)
     au FileType rust nmap <buffer><silent> <leader>gd <Plug>(rust-doc)
 augroup END
+" like firefox tabs
+nnoremap <silent> <A-w> :<C-u>call closebuffer#close()<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - autozimu/LanguageClient-neovim                                           │ 
 " │ https://github.com/autozimu/LanguageClient-neovim                                 │ 
@@ -1381,7 +1383,6 @@ if dein#tap('vim-projectionist')
         \   }
         \ }
 endif
-
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - itchyny/lightline.vim                                                    │
 " │ https://github.com/itchyny/lightline.vim                                          │
@@ -1408,7 +1409,7 @@ if dein#tap('lightline.vim')
         \   'syntastic': 'SyntasticStatuslineFlag',
         \ },
         \ 'component_visible_condition': {
-        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
         \ },
         \ 'component_type': {
         \   'syntastic': 'error',
@@ -1439,7 +1440,8 @@ if dein#tap('lightline.vim')
         \ 'line': '%l',
         \ 'column': '%c',
         \ 'close': '%999X X ',
-        \ 'winnr': '%{winnr()}' }
+        \ 'winnr': '%{winnr()}'
+    \ }
 
     let g:lightline.mode_map = {
         \ 'n' : 'N',
