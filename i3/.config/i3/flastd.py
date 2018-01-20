@@ -25,7 +25,7 @@ from script_i3_general import *
 
 max_win_history_ = 10
 
-class FocusWatcher(SingletonMixin):
+class flast(SingletonMixin):
     def __init__(self):
         self.window_list = i3.get_tree().leaves()
         self.prev_time = 0
@@ -80,7 +80,7 @@ class FocusWatcher(SingletonMixin):
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 nice alt-tab 1.0')
 
-    fw = FocusWatcher.instance()
+    fw = flast.instance()
     fw.daemon_name='flastd-i3'
 
     daemon_manager = daemon_manager.instance()
