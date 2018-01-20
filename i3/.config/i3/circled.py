@@ -52,7 +52,7 @@ class cycle_window(SingletonMixin):
         self.i3.on("window::focus", self.save_current_win)
         self.i3.on("window::fullscreen_mode", self.handle_fullscreen)
 
-        self.current_win=i3.get_tree().find_focused()
+        self.current_win=self.i3.get_tree().find_focused()
 
     def go_next(self, tag):
         def tag_conf():
@@ -85,11 +85,11 @@ class cycle_window(SingletonMixin):
 
         def run_prog():
             prog=tag_conf()["prog"]
-            i3.command('exec {}'.format(prog))
+            self.i3.command('exec {}'.format(prog))
 
         def go_next_(inc_counter=True,fullscreen_handler=True):
             if fullscreen_handler:
-                fullscreened=i3.get_tree().find_fullscreen()
+                fullscreened=self.i3.get_tree().find_fullscreen()
                 for win in fullscreened:
                     if cur_win_in_current_class_set() and cur_win().id == win.id:
                         self.interactive=False
@@ -105,7 +105,7 @@ class cycle_window(SingletonMixin):
                 for id in self.restorable:
                     if id == now_focused:
                         self.interactive=False
-                        i3.command('[con_id=%s] fullscreen enable' % now_focused)
+                        self.i3.command('[con_id=%s] fullscreen enable' % now_focused)
 
             self.interactive=True
 
@@ -136,7 +136,7 @@ class cycle_window(SingletonMixin):
 
                     for target_,item in enumerate(self.tagged[tag]):
                         if class_eq_priority():
-                            fullscreened=i3.get_tree().find_fullscreen()
+                            fullscreened=self.i3.get_tree().find_fullscreen()
                             for win in fullscreened:
                                 tag_classes_set=set(glob_settings[tag]["classes"])
                                 if win.window_class in tag_classes_set and win.window_class != glob_settings[tag]["priority"]:
@@ -177,7 +177,7 @@ class cycle_window(SingletonMixin):
         self.redis_update_count(tag)
 
     def invalidate_tags_info(self):
-        wlist = i3.get_tree().leaves()
+        wlist = self.i3.get_tree().leaves()
         self.tagged={}
 
         for tag in glob_settings:
