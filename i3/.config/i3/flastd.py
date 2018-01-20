@@ -79,7 +79,7 @@ class flast(SingletonMixin):
 
 if __name__ == '__main__':
     fw = flast.instance()
-    fw.daemon_name='flastd-i3'
+    fw.daemon_name='flast'
 
     daemon_manager = daemon_manager.instance()
     daemon_manager.add_daemon(fw.daemon_name)

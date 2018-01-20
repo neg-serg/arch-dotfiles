@@ -22,7 +22,7 @@ Options:
 from docopt import docopt
 import os.path
 
-name_="ns_scratchd"
+name_="ns"
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name_+'.fifo'))
 
 if __name__ == '__main__':

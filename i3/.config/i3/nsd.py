@@ -272,7 +272,7 @@ class named_scratchpad(SingletonMixin):
 
 if __name__ == '__main__':
     ns = named_scratchpad.instance()
-    ns.daemon_name = 'ns_scratchd'
+    ns.daemon_name = 'ns'
 
     daemon_manager = daemon_manager.instance()
     daemon_manager.add_daemon(ns.daemon_name)

@@ -16,7 +16,7 @@ Options:
 from docopt import docopt
 import os.path
 
-name='flastd-i3'
+name='flast'
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name+'.fifo'))
 
 if __name__ == '__main__':
