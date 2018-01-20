@@ -3,13 +3,13 @@ margin-top = 0
 margin-bottom = 0
 
 [colors]
-background= "#bb020209"
+background= "#ee020209"
 border = ${xrdb:color32}
 border_top = ${xrdb:color32}
 urgent = "#9633A7"
 
 [bar/main]
-monitor=HDMI2
+#monitor=HDMI2
 bottom=true
 
 border-top-size = 2
