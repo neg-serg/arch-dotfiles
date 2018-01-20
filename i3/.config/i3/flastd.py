@@ -16,7 +16,6 @@ import i3ipc
 import os
 
 from threading import Thread
-from docopt import docopt
 from queue import Queue
 import time
 
@@ -78,8 +77,6 @@ class flast(SingletonMixin):
             self.alt_tab(0)
 
 if __name__ == '__main__':
-    argv = docopt(__doc__, version='i3 nice alt-tab 1.0')
-
     fw = flast.instance()
     fw.daemon_name='flastd-i3'
 
