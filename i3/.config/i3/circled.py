@@ -17,13 +17,10 @@ import errno
 import os
 import time
 
-from queue import Queue
 from sys import exit
 from docopt import docopt
 from circle_conf import *
 from singleton_mixin import *
-from script_i3_general import *
-from threading import Thread
 
 import redis
 
@@ -31,7 +28,7 @@ redis_db_=redis.StrictRedis(host='localhost', port=6379, db=0)
 
 glob_settings=cycle_settings().settings
 
-class cycle_window(SingletonMixin):
+class circle(SingletonMixin):
     def __init__(self):
         self.tagged={}
         self.counters={}
@@ -234,23 +231,3 @@ class cycle_window(SingletonMixin):
             if not con.fullscreen_mode:
                 if con.id in self.restorable:
                     self.restorable.remove(con.id)
-
-if __name__ == '__main__':
-    argv = docopt(__doc__, version='i3 Window Tag Circle 0.5')
-
-    cw = cycle_window.instance()
-    cw.daemon_name = 'circled'
-
-    daemon_manager = daemon_manager.instance()
-    daemon_manager.add_daemon(cw.daemon_name)
-
-    def cleanup_all_daemons():
-        daemon = daemon_manager.daemons[cw.daemon_name]
-        if os.path.exists(daemon.fifo_):
-            os.remove(daemon.fifo_)
-
-    import atexit
-    atexit.register(cleanup_all_daemons)
-
-    mainloop = Thread(target=daemon_manager.daemons[cw.daemon_name].mainloop, args=(cw,)).start()
-    cw.i3.main()
