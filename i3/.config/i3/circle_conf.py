@@ -29,7 +29,7 @@ class cycle_settings(object):
             },
             'steam':{
                 'classes': {
-                    'wine',
+                    'Wine',
                     'dota2',
                     'darkest.bin.x86_64',
                     'Steam',
