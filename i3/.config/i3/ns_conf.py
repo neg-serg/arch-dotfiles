@@ -66,7 +66,7 @@ class ns_settings(object):
 
     def __parse_geom(self, group):
         rd={'width':1920, 'height':1200} # resolution_default
-        cr=self.current_resolution
+        cr=self.current_resolution       # current resolution
 
         geom=re.split(r'[x+]', self.settings[group]["geom"])
         cg=[] # converted_geom
