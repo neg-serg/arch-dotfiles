@@ -185,16 +185,16 @@ bindsym --release Shift+Print ~/bin/scripts/screenshot current
 bindsym $mod+Control+{w,a,s,d} move {up,left,down,right}
 bindsym $mod+Control+g exec ~/.config/i3/i3_switch_workspace
 #----------------------------------------------
-bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
-bindsym $mod+Shift+p exec python3 ~/.config/i3/ns.py toggle volcontrol
-bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
-bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
-bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
+bindsym $mod+f [con_mark="ncmpcpp"] exec ~/.config/i3/ns.py toggle ncmpcpp
+bindsym $mod+Shift+p exec ~/.config/i3/ns.py toggle volcontrol
+bindsym $mod+d exec ~/.config/i3/ns.py toggle teardrop
+bindsym $mod+Shift+d exec ~/.config/i3/ns.py toggle console
+bindsym $mod+e exec ~/.config/i3/ns.py toggle im
 bindsym $mod+Shift+e exec  ~/.config/i3/ns.py toggle weechat
-bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
-bindsym $mod+Control+Shift+R exec python3 ~/.config/i3/ns.py geom_restore
+bindsym $mod+3 exec ~/.config/i3/ns.py next
+bindsym $mod+Control+Shift+R exec ~/.config/i3/ns.py geom_restore
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
-bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
+bindsym $mod+s exec ~/.config/i3/ns.py hide_current
 
 mode "" {
     #-------------------------------------------------------
@@ -211,12 +211,12 @@ mode "" {
     bindsym Shift+k mode "default", exec ~/bin/scripts/toggle_keynav
     bindsym Control+t mode "default", exec tor-browser-en
 	bindsym Shift+d floating toggle; $exit
-	bindsym Shift+l exec ~/bin/scripts/lock/lock.sh && sleep 1s; $exit
+	bindsym Shift+l exec ~/bin/scripts/lock/lock.sh && sleep 0.5s; $exit
 	bindsym Shift+v exec ~/bin/qemu/vm_menu; $exit
     #-------------------------------------------------------
-    bindsym {$mod,$alt,}+s exec python3 ~/.config/i3/ns.py run im skype, mode "default"
-    bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py run im tel, mode "default"
-    bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
+    bindsym {$mod,$alt,}+s exec ~/.config/i3/ns.py run im skype, mode "default"
+    bindsym {$mod+t,$alt+t,t} exec ~/.config/i3/ns.py run im tel, mode "default"
+    bindsym m exec ~/.config/i3/ns.py toggle mutt, mode "default"
     bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"
     #-------------------------------------------------------
     bindsym {Return,Escape,Control+C,Control+G} $exit
@@ -235,14 +235,15 @@ bindsym $mod+{w,b,o} exec ~/.config/i3/circle.py next {web,vid,doc}
 bindsym $mod+Control+q kill
 bindsym $alt+g exec rofi -show
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
-bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
+bindsym $mod+a exec ~/.config/i3/i3-attach.py
 bindsym $mod+q fullscreen toggle
 bindsym $mod+grave exec ~/.config/i3/focus-next-visible.py
+bindsym $mod+Shift+grave exec ~/.config/i3/focus-next-visible.py reverse
 bindsym $mod+Control+grave exec ~/.config/i3/i3-cmd.py
 bindsym $mod+Shift+slash workspace back_and_forth
 #-------------------------------------------------------
-bindsym $alt+Tab exec python3 ~/.config/i3/flast.py switch
-bindsym $mod+slash exec python3 ~/.config/i3/flast.py switch
+bindsym $alt+Tab exec ~/.config/i3/flast.py switch
+bindsym $mod+slash exec ~/.config/i3/flast.py switch
 #-------------------------------------------------------
 # resize window (you can also use the mouse for that)
 mode "" {
@@ -294,6 +295,6 @@ mode "gaps-inner" {
 }
 
 exec --no-startup-id [[ $(pgrep polybar|wc -l) == 2 ]] || polybar -c ~/.config/polybar/main main
-exec --no-startup-id python3 ${XDG_CONFIG_HOME}/i3/{disable-standby-fs,nsd,circled,flastd}.py
+exec --no-startup-id ${XDG_CONFIG_HOME}/i3/{disable-standby-fs,nsd,circled,flastd}.py
 
 # vim:filetype=i3
