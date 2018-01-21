@@ -1,6 +1,6 @@
 set verbose=0
 set gui=none
-colorscheme vimpwhite
+colorscheme neg
 
 set defsearch=google
 set suggestengines=google
