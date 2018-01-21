@@ -23,7 +23,7 @@ from docopt import docopt
 from threading import Thread
 import importlib
 
-from script_i3_general import *
+from i3gen import *
 
 import i3ipc
 
@@ -61,6 +61,8 @@ if __name__ == '__main__':
         'flast': { "instance": None, "manager": None, }
     }
 
+    threads=[]
+
     for mod in ScriptDaemonsMap.keys():
         currm=ScriptDaemonsMap[mod]
         currm["instance"]=getattr(importlib.import_module("%s" % mod + "d"), mod).instance()
@@ -75,9 +77,12 @@ if __name__ == '__main__':
         import atexit
         atexit.register(cleanup)
 
-        Thread(target=currm["manager"].daemons[mod].mainloop, args=(currm["instance"], mod, )).start()
+        th=Thread(target=currm["manager"].daemons[mod].mainloop, args=(currm["instance"], mod, ))
+        th.start()
+        threads.append(th)
 
     for mod in ScriptDaemonsMap:
         # you should bypass method itself, no return value
         th=Thread(target=ScriptDaemonsMap[mod]["instance"].i3.main)
         th.start()
+        threads.append(th)
