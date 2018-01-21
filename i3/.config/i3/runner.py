@@ -68,9 +68,9 @@ if __name__ == '__main__':
         currm["manager"].add_daemon(mod)
 
         def cleanup():
-            daemon = dm.daemons[mod]
-            if os.path.exists(daemon.fifo_):
-                os.remove(daemon.fifo_)
+            d = currm["manager"].daemons[mod]
+            if os.path.exists(d.fifos[mod]):
+                os.remove(d.fifos[mod])
 
         import atexit
         atexit.register(cleanup)
