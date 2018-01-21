@@ -5,7 +5,7 @@ from sys import exit
 from subprocess import check_output
 from singleton_mixin import *
 from threading import Thread
-from queue import Queue
+import collections
 
 class daemon_manager(SingletonMixin):
     def __init__(self):
@@ -19,7 +19,7 @@ class daemon_manager(SingletonMixin):
 
 class daemon_i3(SingletonMixin):
     def __init__(self):
-        self.q = Queue()
+        self.q = collections.deque()
         self.fifos={}
 
     def bind_fifo(self, name):
@@ -44,12 +44,11 @@ class daemon_i3(SingletonMixin):
 
     def worker(self):
         while True:
-            if self.q.empty():
+            if self.q:
                 exit()
             i = self.q.get()
-            self.q.task_done()
 
     def mainloop(self, singleton, name):
         while True:
-            self.q.put(self.fifo_listner(singleton, name))
+            self.q.append(self.fifo_listner(singleton, name))
             Thread(target=self.worker).start()
