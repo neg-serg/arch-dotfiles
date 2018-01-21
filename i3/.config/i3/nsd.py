@@ -14,16 +14,16 @@ import os
 
 from typing import Callable, List
 
-conf_=ns_settings()
-Conf=conf_.settings
-marked={i:[] for i in Conf}
-
 class ns(SingletonMixin):
     def __init__(self) -> None:
         self.group_list=[]
         self.fullscreen_list=[]
-        [self.group_list.append(tag) for tag in Conf]
         self.prev_id=0
+        self.cfg_module=ns_settings()
+        self.cfg=self.cfg_module.settings
+        self.marked={i:[] for i in self.cfg}
+
+        [self.group_list.append(tag) for tag in self.cfg]
 
         self.i3 = i3ipc.Connection()
 
@@ -37,12 +37,12 @@ class ns(SingletonMixin):
         return 'mark {}'.format(output)
 
     def focus(self, tag: str) -> None:
-        for index,i in enumerate(marked[tag]):
-            marked[tag][index].command('move container to workspace current')
+        for index,i in enumerate(self.marked[tag]):
+            self.marked[tag][index].command('move container to workspace current')
 
     def unfocus(self, tag: str) -> None:
-        for index,i in enumerate(marked[tag]):
-            marked[tag][index].command('move scratchpad')
+        for index,i in enumerate(self.marked[tag]):
+            self.marked[tag][index].command('move scratchpad')
         self.restore_fullscreens()
 
     def find_visible_windows(self, windows_on_workspace):
@@ -68,8 +68,8 @@ class ns(SingletonMixin):
         )
 
     def toggle(self, tag : str) -> None:
-        if marked[tag] == [] and "prog" in Conf[tag]:
-            self.i3.command("exec {}".format(Conf[tag]["prog"]))
+        if self.marked[tag] == [] and "prog" in self.cfg[tag]:
+            self.i3.command("exec {}".format(self.cfg[tag]["prog"]))
 
         # We need to hide scratchpad it is visible, regardless it focused or not
         focused = self.i3.get_tree().find_focused()
@@ -78,7 +78,7 @@ class ns(SingletonMixin):
             self.unfocus(tag)
             return
 
-        for i in marked[tag]:
+        for i in self.marked[tag]:
             if focused.id == i.id:
                 self.unfocus(tag); return
 
@@ -89,13 +89,13 @@ class ns(SingletonMixin):
         self.focus(tag)
 
     def run_prog(self, tag: str, app : str) -> None:
-        if "prog_dict" in Conf[tag] and app in Conf[tag]["prog_dict"]:
-            class_list=[win.window_class for win in marked[tag]]
-            target_class_list=Conf[tag]["prog_dict"][app]["includes"]
+        if "prog_dict" in self.cfg[tag] and app in self.cfg[tag]["prog_dict"]:
+            class_list=[win.window_class for win in self.marked[tag]]
+            target_class_list=self.cfg[tag]["prog_dict"][app]["includes"]
             target_class_list_set=set(target_class_list)
             interlist=[val for val in class_list if val in target_class_list_set]
             if not len(interlist):
-                self.i3.command("exec {}".format(Conf[tag]["prog_dict"][app]["prog"]))
+                self.i3.command("exec {}".format(self.cfg[tag]["prog_dict"][app]["prog"]))
             else:
                 def focus_subgroup(tag: str):
                     focused=self.i3.get_tree().find_focused()
@@ -111,13 +111,13 @@ class ns(SingletonMixin):
 
                     visible_windows = self.find_visible_windows(self.get_windows_on_ws())
                     for w in visible_windows:
-                        for i in marked[tag]:
+                        for i in self.marked[tag]:
                             if w.id == i.id:
                                 self.i3.command('[con_id=%s] focus' % w.id)
 
-                    for index,i in enumerate(marked[tag]):
+                    for index,i in enumerate(self.marked[tag]):
                         if not focused.window_class in target_class_list_set:
-                            if marked[tag][index].window_class not in target_class_list_set:
+                            if self.marked[tag][index].window_class not in target_class_list_set:
                                 self.next_win()
                         else:
                             break
@@ -133,13 +133,13 @@ class ns(SingletonMixin):
         visible_windows = self.find_visible_windows(self.get_windows_on_ws())
         vmarked = 0
         for w in visible_windows:
-            for i in marked[tag]:
+            for i in self.marked[tag]:
                 vmarked+=(w.id == i.id)
         return vmarked
 
     def get_current_group(self, focused) -> str:
-        for tag in Conf:
-            for i in marked[tag]:
+        for tag in self.cfg:
+            for i in self.marked[tag]:
                 if focused.id == i.id:
                     return tag
 
@@ -155,10 +155,10 @@ class ns(SingletonMixin):
 
         def next_win_(tag: str) -> None:
             self.focus(tag)
-            for number,win in enumerate(marked[tag]):
+            for number,win in enumerate(self.marked[tag]):
                 if focused_.id != win.id:
-                    marked[tag][number].command('move container to workspace current')
-                    marked[tag].insert(len(marked[tag]), marked[tag].pop(number))
+                    self.marked[tag][number].command('move container to workspace current')
+                    self.marked[tag].insert(len(self.marked[tag]), self.marked[tag].pop(number))
                     win.command('move scratchpad')
             self.focus(tag)
 
@@ -171,18 +171,18 @@ class ns(SingletonMixin):
             self.i3.command('[con_id=__focused__] scratchpad show')
 
     def geom_restore_all(self) -> None:
-        for tag in Conf:
+        for tag in self.cfg:
             geom_restore(tag)
 
     def geom_restore(self, tag: str) -> None:
-        for j,win in enumerate(marked[tag]):
+        for j,win in enumerate(self.marked[tag]):
             # delete previous mark
-            del marked[tag][j]
+            del self.marked[tag][j]
 
             # then make a new mark and move scratchpad
-            win_cmd=self.make_mark(tag)+', move scratchpad,'+conf_.get_geom(tag)
+            win_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)
             win.command(win_cmd)
-            marked[tag].append(win)
+            self.marked[tag].append(win)
 
     def geom_restore_current(self) -> None:
         groupwins=self.apply_to_current_group(self.geom_restore)
@@ -207,19 +207,19 @@ class ns(SingletonMixin):
 
     def mark_group(self, i3, event) -> None:
         def scratch_move() -> None:
-            con_cmd=self.make_mark(tag)+', move scratchpad,'+conf_.get_geom(tag)
+            con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)
             con.command(con_cmd)
-            marked[tag].append(con)
+            self.marked[tag].append(con)
 
         def check_by(attr : str) -> bool:
-            if attr in Conf[tag]:
-                return getattr(con, 'window_'+attr) in Conf[tag][attr]
+            if attr in self.cfg[tag]:
+                return getattr(con, 'window_'+attr) in self.cfg[tag][attr]
             else:
                 return False
 
         con=event.container
 
-        for tag in Conf:
+        for tag in self.cfg:
             for attr in ["class", "instance"]:
                 if check_by(attr):
                     scratch_move()
@@ -230,25 +230,25 @@ class ns(SingletonMixin):
             if hide:
                 hide_cmd=', [con_id=__focused__] scratchpad show'
 
-            con_cmd=self.make_mark(tag)+', move scratchpad,'+conf_.get_geom(tag)+hide_cmd
+            con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)+hide_cmd
             con.command(con_cmd)
-            marked[tag].append(con)
+            self.marked[tag].append(con)
 
         def check_by(attr : str) -> bool:
-            if attr in Conf[tag]:
-                return getattr(con, 'window_'+attr) in Conf[tag][attr]
+            if attr in self.cfg[tag]:
+                return getattr(con, 'window_'+attr) in self.cfg[tag][attr]
             else:
                 return False
 
         window_list = self.i3.get_tree().leaves()
-        for tag in Conf:
+        for tag in self.cfg:
             for con in window_list:
                 for attr in ["class", "instance"]:
                     if check_by(attr):
                         scratch_move()
 
     def cleanup_mark(self, i3, event) -> None:
-        for tag in Conf:
-            for j,win in enumerate(marked[tag]):
+        for tag in self.cfg:
+            for j,win in enumerate(self.marked[tag]):
                 if win.id == event.container.id:
-                    del marked[tag][j]
+                    del self.marked[tag][j]

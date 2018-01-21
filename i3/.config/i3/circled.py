@@ -9,12 +9,7 @@ from sys import exit
 from circle_conf import *
 from singleton_mixin import *
 from i3gen import *
-
 import redis
-
-redis_db_=redis.StrictRedis(host='localhost', port=6379, db=0)
-
-glob_settings=cycle_settings().settings
 
 class circle(SingletonMixin):
     def __init__(self):
@@ -24,7 +19,10 @@ class circle(SingletonMixin):
         self.interactive=True
         self.repeats=0
 
-        for i in glob_settings:
+        self.redis_db=redis.StrictRedis(host='localhost', port=6379, db=0)
+        self.cfg=cycle_settings().settings
+
+        for i in self.cfg:
             self.tagged[i]=list({})
             self.counters[i]=0
 
@@ -41,13 +39,13 @@ class circle(SingletonMixin):
 
     def go_next(self, tag):
         def tag_conf():
-            return glob_settings[tag]
+            return self.cfg[tag]
 
         def cur_win():
             return self.current_win
 
         def cur_win_in_current_class_set():
-            tag_classes_set=set(glob_settings[tag]["classes"])
+            tag_classes_set=set(self.cfg[tag]["classes"])
             return cur_win().window_class in tag_classes_set
 
         def current_class_in_priority():
@@ -123,8 +121,8 @@ class circle(SingletonMixin):
                         if class_eq_priority():
                             fullscreened=self.i3.get_tree().find_fullscreen()
                             for win in fullscreened:
-                                tag_classes_set=set(glob_settings[tag]["classes"])
-                                if win.window_class in tag_classes_set and win.window_class != glob_settings[tag]["priority"]:
+                                tag_classes_set=set(self.cfg[tag]["classes"])
+                                if win.window_class in tag_classes_set and win.window_class != self.cfg[tag]["priority"]:
                                     self.interactive=False
                                     win.command('fullscreen disable')
                             go_next_(inc_counter=False)
@@ -149,15 +147,15 @@ class circle(SingletonMixin):
     def redis_update_count(self, tag):
         if tag in self.tagged and type(self.tagged[tag]) == list:
             tag_count_dict={tag: len(self.tagged[tag])}
-            redis_db_.hmset('count_dict', tag_count_dict)
+            self.redis_db.hmset('count_dict', tag_count_dict)
         else:
-            redis_db_.hmset('count_dict', {tag:0})
+            self.redis_db.hmset('count_dict', {tag:0})
 
     def find_acceptable_windows_by_class(self, tag, wlist):
         for con in wlist:
-            if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+            if ("classes" in self.cfg[tag]) and (con.window_class in self.cfg[tag]["classes"]):
                 self.tagged[tag].append({ 'win':con, 'focused':False })
-            elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+            elif ("instances" in self.cfg[tag]) and (con.window_instance in self.cfg[tag]["instances"]):
                 self.tagged[tag].append({ 'win':con, 'focused':False })
         self.redis_update_count(tag)
 
@@ -165,10 +163,10 @@ class circle(SingletonMixin):
         wlist = self.i3.get_tree().leaves()
         self.tagged={}
 
-        for tag in glob_settings:
+        for tag in self.cfg:
             self.tagged[tag]=list({})
 
-        for tag in glob_settings:
+        for tag in self.cfg:
             self.find_acceptable_windows_by_class(tag, wlist)
 
     def add_acceptable(self, i3, event):
@@ -177,11 +175,11 @@ class circle(SingletonMixin):
             self.redis_update_count(tag)
 
         con = event.container
-        for tag in glob_settings:
+        for tag in self.cfg:
             try:
-                if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+                if ("classes" in self.cfg[tag]) and (con.window_class in self.cfg[tag]["classes"]):
                     add_tagged_win()
-                elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+                elif ("instances" in self.cfg[tag]) and (con.window_instance in self.cfg[tag]["instances"]):
                     add_tagged_win()
             except KeyError:
                 self.invalidate_tags_info()
@@ -195,11 +193,11 @@ class circle(SingletonMixin):
             del self.tagged[tag]
 
         con = event.container
-        for tag in glob_settings:
+        for tag in self.cfg:
             try:
-                if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+                if ("classes" in self.cfg[tag]) and (con.window_class in self.cfg[tag]["classes"]):
                     del_tagged_win()
-                elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+                elif ("instances" in self.cfg[tag]) and (con.window_instance in self.cfg[tag]["instances"]):
                     del_tagged_win()
                 self.redis_update_count(tag)
             except KeyError:
@@ -219,28 +217,3 @@ class circle(SingletonMixin):
             if not con.fullscreen_mode:
                 if con.id in self.restorable:
                     self.restorable.remove(con.id)
-
-###
-## @brief Get the next selected window, cycling through if the current window is
-## a match and there are mutliple
-##
-## @param current ID of the currently focued window
-## @param selected Array of (int) ids for selected window(s)
-##
-## @return
-#def cycle_selected(current, selected):
-#    #if the choice is a window type that has multiple values, then pick the next
-#    #from the current, in order of id
-#    if current in selected:
-#        selected.sort();
-#        pos = list.index(selected, current);
-#        ii = (pos + 1)%len(selected)
-#    else:
-#        ii = 0
-
-#    if __debug__:
-#        print (current,selected)
-
-#    return selected[ii]
-
-#    p1 = Popen([I3MSG, '[con_id="%i"] focus'%jumpid])
