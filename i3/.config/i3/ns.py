@@ -42,8 +42,11 @@ if __name__ == '__main__':
             with open(fifo_,"w") as fp:
                 if not (argv["<name>"] is None):
                     if not (argv["<prog>"] is None):
+                        fp.flush()
                         fp.write(i+" "+argv["<name>"]+" "+argv["<prog>"]+"\n")
                     else:
+                        fp.flush()
                         fp.write(i+" "+argv["<name>"]+"\n")
                 else:
+                    fp.flush()
                     fp.write(i+"\n")

@@ -26,4 +26,5 @@ if __name__ == '__main__':
         for i in argv:
             if argv[i] and i in set(possible_commands):
                 with open(fifo_,"w") as fp:
+                    fp.flush()
                     fp.write(i+" "+argv["<name>"]+"\n")
