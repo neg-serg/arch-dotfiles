@@ -1414,7 +1414,7 @@ if dein#tap('lightline.vim')
         \ 'component_type': {
         \   'syntastic': 'error',
         \ },
-        \ 'colorscheme': 'breezy',
+        \ 'colorscheme': 'neg',
         \ 'separator': { 'left': '▒', 'right': '▒' },
         \ 'subseparator': { 'left': '∣', 'right': '∣' }
     \ }

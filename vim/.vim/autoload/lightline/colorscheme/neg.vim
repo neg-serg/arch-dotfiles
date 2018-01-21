@@ -29,4 +29,4 @@ let s:p.tabline.right   = [ [ s:light, s:blue ],        [ s:comment, s:dark ] ]
 let s:p.normal.error    = [ [ s:error, s:linenr_bg ] ]
 let s:p.normal.warning  = [ [ s:light, s:linenr_bg ] ]
 
-let g:lightline#colorscheme#breezy#palette = lightline#colorscheme#fill(s:p)
+let g:lightline#colorscheme#neg#palette = lightline#colorscheme#fill(s:p)
