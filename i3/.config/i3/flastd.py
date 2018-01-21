@@ -1,17 +1,4 @@
 #!/usr/bin/env python3
-
-"""
-
-Focus last focused window.
-
-Usage:
-    flastd.py
-
-Options:
-    -h, --help  show this help message and exit
-
-"""
-
 import i3ipc
 import os
 

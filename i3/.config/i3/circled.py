@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-
-""" i3 window tag circle
-Usage:
-    circle.py
-
-Created by :: Neg
-email :: <serg.zorg@gmail.com>
-github :: https://github.com/neg-serg?tab=repositories
-year :: 2017
-
-"""
-
 import i3ipc
 import re
 import errno
@@ -18,7 +6,6 @@ import os
 import time
 
 from sys import exit
-from docopt import docopt
 from circle_conf import *
 from singleton_mixin import *
 from i3gen import *
