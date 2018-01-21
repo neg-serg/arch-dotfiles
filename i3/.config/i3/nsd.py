@@ -35,7 +35,7 @@ conf_=ns_settings()
 Conf=conf_.settings
 marked={i:[] for i in Conf}
 
-class named_scratchpad(SingletonMixin):
+class ns(SingletonMixin):
     def __init__(self) -> None:
         self.group_list=[]
         self.fullscreen_list=[]
@@ -271,19 +271,19 @@ class named_scratchpad(SingletonMixin):
                     del marked[tag][j]
 
 if __name__ == '__main__':
-    ns = named_scratchpad.instance()
-    ns.daemon_name = 'ns'
+    nsd = ns.instance()
+    nsd.daemon_name = 'ns'
 
     daemon_manager = daemon_manager.instance()
-    daemon_manager.add_daemon(ns.daemon_name)
+    daemon_manager.add_daemon(nsd.daemon_name)
 
     def cleanup_all_daemons():
-        daemon = daemon_manager.daemons[ns.daemon_name]
+        daemon = daemon_manager.daemons[nsd.daemon_name]
         if os.path.exists(daemon.fifo_):
             os.remove(daemon.fifo_)
 
     import atexit
     atexit.register(cleanup_all_daemons)
 
-    mainloop = Thread(target=daemon_manager.daemons[ns.daemon_name].mainloop, args=(ns, ns.daemon_name, )).start()
-    ns.i3.main()
+    mainloop = Thread(target=daemon_manager.daemons[nsd.daemon_name].mainloop, args=(nsd, nsd.daemon_name, )).start()
+    nsd.i3.main()
