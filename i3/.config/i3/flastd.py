@@ -70,10 +70,31 @@ class flast(SingletonMixin):
         if len(self.window_list) > max_win_history_:
             del self.window_list[max_win_history_:]
 
+    def find_visible_windows(self, windows_on_workspace):
+        visible_windows = []
+        for w in windows_on_workspace:
+            try:
+                xprop = check_output(['xprop', '-id', str(w.window)]).decode()
+            except FileNotFoundError:
+                raise SystemExit("The `xprop` utility is not found!"
+                                " Please install it and retry.")
+            if '_NET_WM_STATE_HIDDEN' not in xprop:
+                visible_windows.append(w)
+        return visible_windows
+
+    def get_windows_on_ws(self):
+        return filter(
+            lambda x: x.window,
+            self.i3.get_tree()
+            .find_focused()
+            .workspace()
+            .descendents()
+        )
+
     def go_back_if_nothing(self, i3, event):
         con=event.container
         focused_=i3.get_tree().find_focused()
-        if not len(find_visible_windows(get_windows_on_ws())) \
+        if not len(self.find_visible_windows(self.get_windows_on_ws())) \
         and "[pic]" in focused_.workspace().name:
             self.alt_tab(0)
 
