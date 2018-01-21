@@ -285,5 +285,5 @@ if __name__ == '__main__':
     import atexit
     atexit.register(cleanup_all_daemons)
 
-    mainloop = Thread(target=daemon_manager.daemons[ns.daemon_name].mainloop, args=(ns,)).start()
+    mainloop = Thread(target=daemon_manager.daemons[ns.daemon_name].mainloop, args=(ns, ns.daemon_name, )).start()
     ns.i3.main()

@@ -113,5 +113,5 @@ if __name__ == '__main__':
     import atexit
     atexit.register(cleanup_all_daemons)
 
-    mainloop=Thread(target=daemon_manager.daemons[fw.daemon_name].mainloop, args=(fw,)).start()
+    mainloop=Thread(target=daemon_manager.daemons[fw.daemon_name].mainloop, args=(fw, fw.daemon_name, )).start()
     fw.i3.main()

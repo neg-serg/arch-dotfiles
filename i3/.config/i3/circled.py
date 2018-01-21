@@ -233,6 +233,31 @@ class circle(SingletonMixin):
                 if con.id in self.restorable:
                     self.restorable.remove(con.id)
 
+###
+## @brief Get the next selected window, cycling through if the current window is
+## a match and there are mutliple
+##
+## @param current ID of the currently focued window
+## @param selected Array of (int) ids for selected window(s)
+##
+## @return
+#def cycle_selected(current, selected):
+#    #if the choice is a window type that has multiple values, then pick the next
+#    #from the current, in order of id
+#    if current in selected:
+#        selected.sort();
+#        pos = list.index(selected, current);
+#        ii = (pos + 1)%len(selected)
+#    else:
+#        ii = 0
+
+#    if __debug__:
+#        print (current,selected)
+
+#    return selected[ii]
+
+#    p1 = Popen([I3MSG, '[con_id="%i"] focus'%jumpid])
+
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Window Tag Circle 0.5')
 
@@ -250,5 +275,5 @@ if __name__ == '__main__':
     import atexit
     atexit.register(cleanup_all_daemons)
 
-    mainloop = Thread(target=daemon_manager.daemons[cw.daemon_name].mainloop, args=(cw,)).start()
+    mainloop = Thread(target=daemon_manager.daemons[cw.daemon_name].mainloop, args=(cw, cw.daemon_name,)).start()
     cw.i3.main()

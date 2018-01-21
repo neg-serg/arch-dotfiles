@@ -5,7 +5,6 @@ from sys import exit
 from subprocess import check_output
 from singleton_mixin import *
 from threading import Thread
-
 from queue import Queue
 
 class daemon_manager(SingletonMixin):
@@ -21,21 +20,20 @@ class daemon_manager(SingletonMixin):
 class daemon_i3(SingletonMixin):
     def __init__(self):
         self.q = Queue()
-        self.fifo_=""
+        self.fifos={}
 
     def bind_fifo(self, name):
-        self.fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name+'.fifo'))
-        if os.path.exists(self.fifo_):
-            os.remove(self.fifo_)
-
+        self.fifos[name]=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name+'.fifo'))
+        if os.path.exists(self.fifos[name]):
+            os.remove(self.fifos[name])
         try:
-            os.mkfifo(self.fifo_)
+            os.mkfifo(self.fifos[name])
         except OSError as oe:
             if oe.errno != errno.EEXIST:
                 raise
 
-    def fifo_listner(self, singleton):
-        with open(self.fifo_) as fifo:
+    def fifo_listner(self, singleton, name):
+        with open(self.fifos[name]) as fifo:
             while True:
                 data = fifo.read()
                 if len(data) == 0:
@@ -51,7 +49,7 @@ class daemon_i3(SingletonMixin):
             i = self.q.get()
             self.q.task_done()
 
-    def mainloop(self, singleton):
+    def mainloop(self, singleton, name):
         while True:
-            self.q.put(self.fifo_listner(singleton))
+            self.q.put(self.fifo_listner(singleton, name))
             Thread(target=self.worker).start()
