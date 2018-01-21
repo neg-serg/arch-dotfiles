@@ -97,21 +97,3 @@ class flast(SingletonMixin):
         if not len(self.find_visible_windows(self.get_windows_on_ws())) \
         and "[pic]" in focused_.workspace().name:
             self.alt_tab(0)
-
-if __name__ == '__main__':
-    fw = flast.instance()
-    fw.daemon_name='flast'
-
-    daemon_manager = daemon_manager.instance()
-    daemon_manager.add_daemon(fw.daemon_name)
-
-    def cleanup_all_daemons():
-        daemon = daemon_manager.daemons[fw.daemon_name]
-        if os.path.exists(daemon.fifo_):
-            os.remove(daemon.fifo_)
-
-    import atexit
-    atexit.register(cleanup_all_daemons)
-
-    mainloop=Thread(target=daemon_manager.daemons[fw.daemon_name].mainloop, args=(fw, fw.daemon_name, )).start()
-    fw.i3.main()

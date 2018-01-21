@@ -257,23 +257,3 @@ class circle(SingletonMixin):
 #    return selected[ii]
 
 #    p1 = Popen([I3MSG, '[con_id="%i"] focus'%jumpid])
-
-if __name__ == '__main__':
-    argv = docopt(__doc__, version='i3 Window Tag Circle 0.5')
-
-    cw = circle.instance()
-    cw.daemon_name = 'circle'
-
-    daemon_manager = daemon_manager.instance()
-    daemon_manager.add_daemon(cw.daemon_name)
-
-    def cleanup_all_daemons():
-        daemon = daemon_manager.daemons[cw.daemon_name]
-        if os.path.exists(daemon.fifo_):
-            os.remove(daemon.fifo_)
-
-    import atexit
-    atexit.register(cleanup_all_daemons)
-
-    mainloop = Thread(target=daemon_manager.daemons[cw.daemon_name].mainloop, args=(cw, cw.daemon_name,)).start()
-    cw.i3.main()

@@ -269,21 +269,3 @@ class ns(SingletonMixin):
             for j,win in enumerate(marked[tag]):
                 if win.id == event.container.id:
                     del marked[tag][j]
-
-if __name__ == '__main__':
-    nsd = ns.instance()
-    nsd.daemon_name = 'ns'
-
-    daemon_manager = daemon_manager.instance()
-    daemon_manager.add_daemon(nsd.daemon_name)
-
-    def cleanup_all_daemons():
-        daemon = daemon_manager.daemons[nsd.daemon_name]
-        if os.path.exists(daemon.fifo_):
-            os.remove(daemon.fifo_)
-
-    import atexit
-    atexit.register(cleanup_all_daemons)
-
-    mainloop = Thread(target=daemon_manager.daemons[nsd.daemon_name].mainloop, args=(nsd, nsd.daemon_name, )).start()
-    nsd.i3.main()
