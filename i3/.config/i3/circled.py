@@ -21,7 +21,7 @@ from sys import exit
 from docopt import docopt
 from circle_conf import *
 from singleton_mixin import *
-from script_i3_general import *
+from i3gen import *
 
 import redis
 

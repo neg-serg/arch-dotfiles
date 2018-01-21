@@ -21,7 +21,7 @@ import i3ipc
 from ns_conf import *
 
 from singleton_mixin import *
-from script_i3_general import *
+from i3gen import *
 from threading import Thread
 
 import uuid

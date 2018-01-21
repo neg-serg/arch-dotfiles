@@ -20,7 +20,7 @@ from queue import Queue
 import time
 
 from singleton_mixin import *
-from script_i3_general import *
+from i3gen import *
 
 max_win_history_ = 10
 
