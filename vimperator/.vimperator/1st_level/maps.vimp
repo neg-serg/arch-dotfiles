@@ -16,6 +16,7 @@ map <C-O> <NOP>
 map <C-\> <NOP>
 map <C-w> <NOP>
 map <C-t> <NOP>
+map <C-i> <NOP>
 
 noremap # gt
 noremap E gT
