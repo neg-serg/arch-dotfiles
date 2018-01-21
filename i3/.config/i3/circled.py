@@ -21,6 +21,7 @@ from sys import exit
 from docopt import docopt
 from circle_conf import *
 from singleton_mixin import *
+from script_i3_general import *
 
 import redis
 
@@ -231,3 +232,23 @@ class circle(SingletonMixin):
             if not con.fullscreen_mode:
                 if con.id in self.restorable:
                     self.restorable.remove(con.id)
+
+if __name__ == '__main__':
+    argv = docopt(__doc__, version='i3 Window Tag Circle 0.5')
+
+    cw = circle.instance()
+    cw.daemon_name = 'circle'
+
+    daemon_manager = daemon_manager.instance()
+    daemon_manager.add_daemon(cw.daemon_name)
+
+    def cleanup_all_daemons():
+        daemon = daemon_manager.daemons[cw.daemon_name]
+        if os.path.exists(daemon.fifo_):
+            os.remove(daemon.fifo_)
+
+    import atexit
+    atexit.register(cleanup_all_daemons)
+
+    mainloop = Thread(target=daemon_manager.daemons[cw.daemon_name].mainloop, args=(cw,)).start()
+    cw.i3.main()
