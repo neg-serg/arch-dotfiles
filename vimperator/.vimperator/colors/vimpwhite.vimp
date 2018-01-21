@@ -302,6 +302,7 @@ hi Normal <<EOM
     font-weight: Normal;
     font-family: PragmataPro for Powerline;
     font-size: 12pt;
+    opacity: 0.9;
 EOM
 
 hi Null <<EOM
