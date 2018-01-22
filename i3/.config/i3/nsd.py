@@ -34,7 +34,8 @@ class ns(SingletonMixin):
         self.i3.on('window::close', self.cleanup_mark)
 
     def make_mark(self, tag: str) -> str:
-        output=(tag) + str(str(uuid.uuid4().fields[-1]))
+        uuid_str = str(str(uuid.uuid4().fields[-1]))
+        output = "%(tag)s-%(uuid_str)s" % {"tag":tag, "uuid_str":uuid_str}
         return 'mark {}'.format(output)
 
     def focus(self, tag: str) -> None:
@@ -181,7 +182,10 @@ class ns(SingletonMixin):
             del self.marked[tag][j]
 
             # then make a new mark and move scratchpad
-            win_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)
+            win_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
+                "make_mark": self.make_mark(tag),
+                "get_geom": self.cfg_module.get_geom(tag)
+            }
             win.command(win_cmd)
             self.marked[tag].append(win)
 
@@ -220,7 +224,10 @@ class ns(SingletonMixin):
             for factor in self.factors:
                 if self.match(con, factor, tag):
                     # scratch_move
-                    con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)
+                    con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
+                        "make_mark": self.make_mark(tag),
+                        "get_geom": self.cfg_module.get_geom(tag)
+                    }
                     con.command(con_cmd)
                     self.marked[tag].append(con)
 
@@ -233,8 +240,13 @@ class ns(SingletonMixin):
                         # scratch move
                         hide_cmd=''
                         if hide:
-                            hide_cmd=', [con_id=__focused__] scratchpad show'
-                        con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)+hide_cmd
+                            hide_cmd='[con_id=__focused__] scratchpad show'
+                        con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s, %(hide_cmd)s" % \
+                            {
+                                "make_mark": self.make_mark(tag),
+                                "get_geom": self.cfg_module.get_geom(tag),
+                                "hide_cmd": hide_cmd
+                            }
                         con.command(con_cmd)
                         self.marked[tag].append(con)
 
