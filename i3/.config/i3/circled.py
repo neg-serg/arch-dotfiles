@@ -16,6 +16,7 @@ class circle(SingletonMixin):
         self.tagged={}
         self.counters={}
         self.restorable=[]
+        self.factors=["classes", "instances"]
         self.interactive=True
         self.repeats=0
 
@@ -153,10 +154,11 @@ class circle(SingletonMixin):
 
     def find_acceptable_windows_by_class(self, tag, wlist):
         for con in wlist:
-            if ("classes" in self.cfg[tag]) and (con.window_class in self.cfg[tag]["classes"]):
-                self.tagged[tag].append({ 'win':con, 'focused':False })
-            elif ("instances" in self.cfg[tag]) and (con.window_instance in self.cfg[tag]["instances"]):
-                self.tagged[tag].append({ 'win':con, 'focused':False })
+            for factor in self.factors:
+                if con.window_class in self.cfg.get(tag,{}).get(factor, {}):
+                    self.tagged[tag].append({ 'win':con, 'focused':False })
+                    break
+                pass
         self.redis_update_count(tag)
 
     def invalidate_tags_info(self):
@@ -176,14 +178,14 @@ class circle(SingletonMixin):
 
         con = event.container
         for tag in self.cfg:
-            try:
-                if ("classes" in self.cfg[tag]) and (con.window_class in self.cfg[tag]["classes"]):
-                    add_tagged_win()
-                elif ("instances" in self.cfg[tag]) and (con.window_instance in self.cfg[tag]["instances"]):
-                    add_tagged_win()
-            except KeyError:
-                self.invalidate_tags_info()
-                self.add_acceptable(i3, event)
+                for factor in self.factors:
+                    if con.window_class in self.cfg.get(tag,{}).get((factor),{}):
+                        try:
+                            add_tagged_win()
+                        except KeyError:
+                            self.invalidate_tags_info()
+                            self.add_acceptable(i3, event)
+                        break
 
     def del_acceptable(self, i3, event):
         def del_tagged_win():
@@ -194,15 +196,15 @@ class circle(SingletonMixin):
 
         con = event.container
         for tag in self.cfg:
-            try:
-                if ("classes" in self.cfg[tag]) and (con.window_class in self.cfg[tag]["classes"]):
-                    del_tagged_win()
-                elif ("instances" in self.cfg[tag]) and (con.window_instance in self.cfg[tag]["instances"]):
-                    del_tagged_win()
+                for factor in self.factors:
+                    if con.window_class in self.cfg.get(tag,{}).get((factor),{}):
+                        try:
+                            del_tagged_win()
+                        except KeyError:
+                            self.invalidate_tags_info()
+                            self.del_acceptable(i3, event)
+                        break
                 self.redis_update_count(tag)
-            except KeyError:
-                self.invalidate_tags_info()
-                self.del_acceptable(i3, event)
 
     def save_current_win(self, i3, event):
         con=event.container
