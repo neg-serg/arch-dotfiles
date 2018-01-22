@@ -58,12 +58,12 @@ if __name__ == '__main__':
         input_cmds=[k for k,v in argv.items() if v]
 
         fstcmd=list(set(valid_cmds) & set(input_cmds))[0]
-        with open(script[1]['fifo'],"w") as fp:
-            fp.flush()
-            cmd=""
-            cmd+=fstcmd
-            for param in ['<name>', '<prog>']:
-                if argv[param]:
-                    cmd+=" " + argv[param]
-            cmd+='\n'
-            fp.write(cmd)
+        fp=os.open(script[1]['fifo'], os.O_WRONLY | os.O_NONBLOCK)
+        cmd=""
+        cmd+=fstcmd
+        for param in ['<name>', '<prog>']:
+            if argv[param]:
+                cmd+=" " + argv[param]
+        cmd+='\n'
+        os.write(fp, str.encode(cmd))
+        os.close(fp)
