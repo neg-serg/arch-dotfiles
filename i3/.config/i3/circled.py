@@ -172,34 +172,28 @@ class circle(SingletonMixin):
             self.find_acceptable_windows_by_class(tag, wlist)
 
     def add_acceptable(self, i3, event):
-        def add_tagged_win():
-            self.tagged[tag].append({'win':con,'focused':con.focused})
-            self.redis_update_count(tag)
-
         con = event.container
         for tag in self.cfg:
                 for factor in self.factors:
                     if con.window_class in self.cfg.get(tag,{}).get((factor),{}):
                         try:
-                            add_tagged_win()
+                            self.tagged[tag].append({'win':con,'focused':con.focused})
+                            self.redis_update_count(tag)
                         except KeyError:
                             self.invalidate_tags_info()
                             self.add_acceptable(i3, event)
                         break
 
     def del_acceptable(self, i3, event):
-        def del_tagged_win():
-            if 'win' in self.tagged[tag]:
-                if self.tagged[tag]['win'].id in self.restorable:
-                    self.restorable.remove(self.tagged[tag]['win'].id)
-            del self.tagged[tag]
-
         con = event.container
         for tag in self.cfg:
                 for factor in self.factors:
                     if con.window_class in self.cfg.get(tag,{}).get((factor),{}):
                         try:
-                            del_tagged_win()
+                            if 'win' in self.tagged[tag]:
+                                if self.tagged[tag]['win'].id in self.restorable:
+                                    self.restorable.remove(self.tagged[tag]['win'].id)
+                            del self.tagged[tag]
                         except KeyError:
                             self.invalidate_tags_info()
                             self.del_acceptable(i3, event)
