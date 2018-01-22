@@ -29,10 +29,7 @@ class flast(SingletonMixin):
         switch_ = {
             "switch": self.alt_tab,
         }
-        if len(args) == 2:
-            switch_[args[0]](args[1])
-        elif len(args) == 1:
-            switch_[args[0]]()
+        switch_[args[0]](*args[1:])
 
     def alt_tab(self, timer=0.05):
         self.curr_time = time.time()

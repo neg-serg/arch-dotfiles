@@ -140,10 +140,7 @@ class circle(SingletonMixin):
         switch_ = {
             "next": self.go_next,
         }
-        if len(args) == 2:
-            switch_[args[0]](args[1])
-        elif len(args) == 1:
-            switch_[args[0]]()
+        switch_[args[0]](*args[1:])
 
     def redis_update_count(self, tag):
         if tag in self.tagged and type(self.tagged[tag]) == list:

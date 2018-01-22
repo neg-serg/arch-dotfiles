@@ -197,13 +197,7 @@ class ns(SingletonMixin):
             "geom_restore": self.geom_restore_current,
             "run": self.run_prog,
         }
-
-        if len(args) == 3:
-            switch_[args[0]](args[1], args[2])
-        if len(args) == 2:
-            switch_[args[0]](args[1])
-        elif len(args) == 1:
-            switch_[args[0]]()
+        switch_[args[0]](*args[1:])
 
     def mark_group(self, i3, event) -> None:
         def scratch_move() -> None:
