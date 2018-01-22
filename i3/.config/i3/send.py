@@ -30,18 +30,9 @@ from docopt import docopt
 import os.path
 
 conf={
-    'circle': {
-        'cmds': ["next","info"],
-        'fifo': "",
-    },
-    'ns': {
-        'cmds': [ "show", "hide", "toggle", "next", "hide_current", "run", "geom_restore" ],
-        'fifo': "",
-    },
-    'flast': {
-        'cmds': [ "switch" ],
-        'fifo': ""
-    }
+    'circle': { 'cmds': {"next", "info"}, },
+    'ns': { 'cmds': { "show", "hide", "toggle", "next", "hide_current", "run", "geom_restore" }, },
+    'flast': { 'cmds': { "switch" }, }
 }
 
 if __name__ == '__main__':
@@ -55,9 +46,10 @@ if __name__ == '__main__':
     script[1]['fifo'] = os.path.realpath(os.path.expandvars('$HOME/tmp/'+script[0]+'.fifo'))
     if os.path.exists(script[1]['fifo']):
         valid_cmds=script[1]['cmds']
-        input_cmds=[k for k,v in argv.items() if v]
+        input_cmds=set([k for k,v in argv.items() if v])
 
-        fstcmd=list(set(valid_cmds) & set(input_cmds))[0]
+        for fstcmd in valid_cmds & input_cmds:
+            break
         fp=os.open(script[1]['fifo'], os.O_WRONLY | os.O_NONBLOCK)
         cmd=""
         cmd+=fstcmd
