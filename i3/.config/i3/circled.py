@@ -16,7 +16,7 @@ class circle(SingletonMixin):
         self.tagged={}
         self.counters={}
         self.restorable=[]
-        self.factors=["classes", "instances"]
+        self.factors=["classes", "instances", "class_r"]
         self.interactive=True
         self.repeats=0
 
@@ -152,11 +152,25 @@ class circle(SingletonMixin):
         else:
             self.redis_db.hmset('count_dict', {tag:0})
 
-    def find_acceptable_windows_by_class(self, tag, wlist):
-        for con in wlist:
+    def match(self, win, factor, tag):
+        if factor == "classes":
+            return win.window_class in self.cfg.get(tag,{}).get(factor, {})
+        elif factor == "instances":
+            return win.window_instance in self.cfg.get(tag,{}).get(factor, {})
+        elif factor == "class_r":
+            regexes=self.cfg.get(tag,{}).get(factor, {})
+            for reg in regexes:
+                cls_by_regex=self.i3.get_tree().find_classed(reg)
+                if cls_by_regex:
+                    for class_regex in cls_by_regex:
+                        if win.window_class == class_regex.window_class:
+                            return True
+
+    def find_acceptable_windows(self, tag, wlist):
+        for win in wlist:
             for factor in self.factors:
-                if con.window_class in self.cfg.get(tag,{}).get(factor, {}):
-                    self.tagged[tag].append({ 'win':con, 'focused':False })
+                if self.match(win, factor, tag):
+                    self.tagged[tag].append({ 'win':win, 'focused':False })
                     break
                 pass
         self.redis_update_count(tag)
@@ -169,7 +183,7 @@ class circle(SingletonMixin):
             self.tagged[tag]=list({})
 
         for tag in self.cfg:
-            self.find_acceptable_windows_by_class(tag, wlist)
+            self.find_acceptable_windows(tag, wlist)
 
     def add_acceptable(self, i3, event):
         con = event.container
@@ -188,7 +202,7 @@ class circle(SingletonMixin):
         con = event.container
         for tag in self.cfg:
                 for factor in self.factors:
-                    if con.window_class in self.cfg.get(tag,{}).get((factor),{}):
+                    if self.match(con, factor, tag):
                         try:
                             if 'win' in self.tagged[tag]:
                                 if self.tagged[tag]['win'].id in self.restorable:

@@ -56,7 +56,7 @@ class cycle_settings(object):
                 'instances': { 'MainTerminal' },
                 'prog':"~/bin/term",
             },
-            'wim':{
+            'nwim':{
                 'classes': { 'nwim', 'wim' },
                 'instances': { 'nwim', 'wim' },
                 'prog':"~/bin/nwim",
@@ -74,10 +74,11 @@ class cycle_settings(object):
                 'prog':"~/bin/scripts/jetbrains.sh idea",
             },
             'jetbrains-clion':{
-                'classes': {
+                'class_r': {
                     '^jetbrains-jetbrains-idea.*',
                     '^jetbrains-clion.*',
                     '^jetbrains-andrond-studio.*',
+                    "sun-awt-X11-XFramePeer"
                 },
                 'prog':"~/bin/scripts/jetbrains.sh clion",
             },

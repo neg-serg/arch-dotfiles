@@ -231,7 +231,8 @@ mode "" {
 }
 
 bindsym $m4+F1 exec ~/.config/i3/send.py circle next jetbrains-idea
-bindsym $m4+{x,1} exec ~/.config/i3/send.py circle next {term,wim}
+bindsym $m4+{x,1} exec ~/.config/i3/send.py circle next {term,nwim}
+bindsym $m4+$S+2 exec ~/.config/i3/send.py circle next jetbrains-clion
 bindsym $m4+$S+1 exec ~/.config/i3/send.py circle next emacs
 bindsym $m4+$c+{v,e} exec ~/.config/i3/send.py circle next {vm,steam}
 bindsym $m4+{w,b,o} exec ~/.config/i3/send.py circle next {web,vid,doc}
