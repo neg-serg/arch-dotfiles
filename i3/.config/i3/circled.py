@@ -16,7 +16,7 @@ class circle(SingletonMixin):
         self.tagged={}
         self.counters={}
         self.restorable=[]
-        self.factors=["classes", "instances", "class_r"]
+        self.factors=["class", "instance", "class_r"]
         self.interactive=True
         self.repeats=0
 
@@ -46,7 +46,7 @@ class circle(SingletonMixin):
             return self.current_win
 
         def cur_win_in_current_class_set():
-            tag_classes_set=set(self.cfg[tag]["classes"])
+            tag_classes_set=set(self.cfg[tag]["class"])
             return cur_win().window_class in tag_classes_set
 
         def current_class_in_priority():
@@ -122,7 +122,7 @@ class circle(SingletonMixin):
                         if class_eq_priority():
                             fullscreened=self.i3.get_tree().find_fullscreen()
                             for win in fullscreened:
-                                tag_classes_set=set(self.cfg[tag]["classes"])
+                                tag_classes_set=set(self.cfg[tag]["class"])
                                 if win.window_class in tag_classes_set and win.window_class != self.cfg[tag]["priority"]:
                                     self.interactive=False
                                     win.command('fullscreen disable')
@@ -150,9 +150,9 @@ class circle(SingletonMixin):
             self.redis_db.hmset('count_dict', {tag:0})
 
     def match(self, win, factor, tag):
-        if factor == "classes":
+        if factor == "class":
             return win.window_class in self.cfg.get(tag,{}).get(factor, {})
-        elif factor == "instances":
+        elif factor == "instance":
             return win.window_instance in self.cfg.get(tag,{}).get(factor, {})
         elif factor == "class_r":
             regexes=self.cfg.get(tag,{}).get(factor, {})

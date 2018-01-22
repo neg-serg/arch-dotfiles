@@ -5,7 +5,7 @@ class cycle_settings(object):
     def __init__(self):
         self.settings = {
             'web' : {
-                'classes' : {
+                'class' : {
                     'Firefox',
                     'Waterfox',
                     'Tor Browser',
@@ -20,7 +20,7 @@ class cycle_settings(object):
                 'priority':'Waterfox',
             },
             'vid':{
-                'classes': {
+                'class': {
                     'mpv',
                     'mplayer',
                     'mplayer2',
@@ -28,7 +28,7 @@ class cycle_settings(object):
                 },
             },
             'steam':{
-                'classes': {
+                'class': {
                     'Wine',
                     'dota2',
                     'darkest.bin.x86_64',
@@ -39,12 +39,12 @@ class cycle_settings(object):
                 'prog':"steam",
             },
             'doc':{
-                'classes': {
+                'class': {
                     'Zathura',
                 },
             },
             'vm':{
-                'classes': {
+                'class': {
                     'VirtualBox',
                     'vmware',
                     'qemu-system-x86_64',
@@ -52,21 +52,21 @@ class cycle_settings(object):
                 },
             },
             'term':{
-                'classes': { 'MainTerminal' },
-                'instances': { 'MainTerminal' },
+                'class': { 'MainTerminal' },
+                'instance': { 'MainTerminal' },
                 'prog':"~/bin/term",
             },
             'nwim':{
-                'classes': { 'nwim', 'wim' },
-                'instances': { 'nwim', 'wim' },
+                'class': { 'nwim', 'wim' },
+                'instance': { 'nwim', 'wim' },
                 'prog':"~/bin/nwim",
             },
             'emacs':{
-                'classes': { 'Emacs' },
+                'class': { 'Emacs' },
                 'prog':"emacs",
             },
             'jetbrains-idea':{
-                'classes': {
+                'class': {
                     'jetbrains-idea',
                     'clion',
                     'andrond-studio',
