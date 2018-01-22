@@ -18,6 +18,7 @@ class ns(SingletonMixin):
     def __init__(self) -> None:
         self.group_list=[]
         self.fullscreen_list=[]
+        self.factors=["class", "instance", "class_r"]
         self.prev_id=0
         self.cfg_module=ns_settings()
         self.cfg=self.cfg_module.settings
@@ -199,47 +200,43 @@ class ns(SingletonMixin):
         }
         switch_[args[0]](*args[1:])
 
+    def match(self, win, factor, tag):
+        if factor == "class":
+            return win.window_class in self.cfg.get(tag,{}).get(factor, {})
+        elif factor == "instance":
+            return win.window_instance in self.cfg.get(tag,{}).get(factor, {})
+        elif factor == "class_r":
+            regexes=self.cfg.get(tag,{}).get(factor, {})
+            for reg in regexes:
+                cls_by_regex=self.i3.get_tree().find_classed(reg)
+                if cls_by_regex:
+                    for class_regex in cls_by_regex:
+                        if win.window_class == class_regex.window_class:
+                            return True
+
     def mark_group(self, i3, event) -> None:
-        def scratch_move() -> None:
-            con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)
-            con.command(con_cmd)
-            self.marked[tag].append(con)
-
-        def check_by(attr : str) -> bool:
-            if attr in self.cfg[tag]:
-                return getattr(con, 'window_'+attr) in self.cfg[tag][attr]
-            else:
-                return False
-
         con=event.container
-
         for tag in self.cfg:
-            for attr in ["class", "instance"]:
-                if check_by(attr):
-                    scratch_move()
+            for factor in self.factors:
+                if self.match(con, factor, tag):
+                    # scratch_move
+                    con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)
+                    con.command(con_cmd)
+                    self.marked[tag].append(con)
 
     def mark_all(self, hide : bool=True) -> None:
-        def scratch_move():
-            hide_cmd=''
-            if hide:
-                hide_cmd=', [con_id=__focused__] scratchpad show'
-
-            con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)+hide_cmd
-            con.command(con_cmd)
-            self.marked[tag].append(con)
-
-        def check_by(attr : str) -> bool:
-            if attr in self.cfg[tag]:
-                return getattr(con, 'window_'+attr) in self.cfg[tag][attr]
-            else:
-                return False
-
         window_list = self.i3.get_tree().leaves()
         for tag in self.cfg:
             for con in window_list:
-                for attr in ["class", "instance"]:
-                    if check_by(attr):
-                        scratch_move()
+                for factor in self.factors:
+                    if self.match(con, factor, tag):
+                        # scratch move
+                        hide_cmd=''
+                        if hide:
+                            hide_cmd=', [con_id=__focused__] scratchpad show'
+                        con_cmd=self.make_mark(tag)+', move scratchpad,'+self.cfg_module.get_geom(tag)+hide_cmd
+                        con.command(con_cmd)
+                        self.marked[tag].append(con)
 
     def cleanup_mark(self, i3, event) -> None:
         for tag in self.cfg:
