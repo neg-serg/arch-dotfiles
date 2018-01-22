@@ -19,6 +19,7 @@ class circle(SingletonMixin):
         self.factors=["class", "instance", "class_r"]
         self.interactive=True
         self.repeats=0
+        self.winlist=[]
 
         self.redis_db=redis.StrictRedis(host='localhost', port=6379, db=0)
         self.cfg=cycle_settings().settings
@@ -157,7 +158,7 @@ class circle(SingletonMixin):
         elif factor == "class_r":
             regexes=self.cfg.get(tag,{}).get(factor, {})
             for reg in regexes:
-                cls_by_regex=self.i3.get_tree().find_classed(reg)
+                cls_by_regex=self.winlist.find_classed(reg)
                 if cls_by_regex:
                     for class_regex in cls_by_regex:
                         if win.window_class == class_regex.window_class:
@@ -167,13 +168,14 @@ class circle(SingletonMixin):
         for win in wlist:
             for factor in self.factors:
                 if self.match(win, factor, tag):
-                    self.tagged[tag].append({ 'win':win, 'focused':False })
+                    self.tagged[tag].append({'win':win, 'focused':False})
                     break
                 pass
         self.redis_update_count(tag)
 
     def invalidate_tags_info(self):
-        wlist = self.i3.get_tree().leaves()
+        self.winlist=self.i3.get_tree()
+        wlist = self.winlist.leaves()
         self.tagged={}
 
         for tag in self.cfg:
