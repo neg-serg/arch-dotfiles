@@ -45,7 +45,8 @@ readonly rofi_cmd=(rofi -dmenu
                     -theme-str "'#window { width:${width_}; y-offset: 20; location: north; anchor: north; }'"
                     -theme-str "'#listview { lines:${lines_}; }'"
                     -matching glob
-                    -levenshtein-sort
+                    -no-only-match
+                    -custom
                    )
 
 function finish_(){
