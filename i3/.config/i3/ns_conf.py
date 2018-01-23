@@ -93,11 +93,12 @@ class ns_settings(object):
 
         self.settings = {
             'im' : {
-                'class' : self.skype | self.telegram | frozenset({
+                'class' : self.skype | frozenset({
                     'ViberPC',
                     'finch',
                     'VK'
                 }),
+                "class_r": {"[Tt]elegram.*"},
                 'geom' : "528x1029+1372+127",
                 'prog_dict': {
                     "tel" : {
