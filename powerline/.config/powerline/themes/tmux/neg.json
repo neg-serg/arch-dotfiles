@@ -1,36 +1,28 @@
 {
-	"dividers": {
-		"left": {
+    "dividers": {
+        "left": {
             "hard": " ",
             "soft": " "
-		},
-		"right": {
+        },
+        "right": {
             "hard": " ",
             "soft": " "
-		}
-	},
-	
-	"segment_data": {
-		"time": {
-			"before": ""
-		}
-	},
-	"segments": {
+        }
+    },
+    
+    "segment_data": {
+        "time": {
+            "before": ""
+        }
+    },
+    "segments": {
         "left": [
         ],
-		"right": [
-			{
-				"function": "powerline.segments.common.sys.system_load",
-				"priority": 50
-			},
-			{
-				"function": "powerline.segments.common.time.date",
-				"name": "time",
-				"args": {
-					"format": "%H:%M",
-					"istime": true
-				}
-			}
-		]
-	}
+        "right": [
+            {
+                "function": "powerline.segments.common.sys.system_load",
+                "priority": 50
+            }
+        ]
+    }
 }
