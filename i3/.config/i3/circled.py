@@ -170,7 +170,6 @@ class circle(SingletonMixin):
                 if self.match(win, factor, tag):
                     self.tagged[tag].append({'win':win, 'focused':False})
                     break
-                pass
         self.redis_update_count(tag)
 
     def invalidate_tags_info(self):

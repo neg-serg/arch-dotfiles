@@ -230,6 +230,7 @@ class ns(SingletonMixin):
                     }
                     con.command(con_cmd)
                     self.marked[tag].append(con)
+                    break
 
     def mark_all(self, hide : bool=True) -> None:
         window_list = self.i3.get_tree().leaves()
@@ -249,6 +250,7 @@ class ns(SingletonMixin):
                             }
                         con.command(con_cmd)
                         self.marked[tag].append(con)
+                        break
 
     def cleanup_mark(self, i3, event) -> None:
         for tag in self.cfg:
