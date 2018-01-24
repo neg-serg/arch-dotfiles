@@ -7,8 +7,6 @@ let g:impact_transbg=1
 let g:enable_cursorline=0
 let g:enable_cursorcolumn=0
 
-let s:nvim_colorscheme = "mirodark"
-
 if v:version >= 704
     " The new Vim regex engine is currently slooooow as hell which makes syntax
     " highlighting slow, which introduces typing latency.
@@ -23,10 +21,6 @@ set regexpengine=1
 
 set conceallevel=2
 set concealcursor=i
-
-if (has('win16') || has('win32') || has('win64'))
-    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-endif
 
 if has('filterpipe')
     set noshelltemp
@@ -55,45 +49,8 @@ execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/i
 set isfname+={
 set isfname+=}
 
-if !has("gui_running") && !has("nvim")
-    set ttymouse=urxvt                 " more accurate mouse tracking
-    set t_Co=256                       " I use 256-color terminals
-    set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
-
-    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
-        colorscheme wim
-    elseif &term =~ 'linux'
-        colorscheme darkblue
-        set t_Co=8 " I use 7-color term in $term = linux
-    else
-        colorscheme jellybeans
-    endif
-
-    " enable ctrl interpreting for vim
-    silent !stty -ixon > /dev/null 2>/dev/null
-    silent !stty start undef > /dev/null 2>/dev/null
-    silent !stty stop undef > /dev/null 2>/dev/null
-
-    set ttyfast                        " more redrawing characters sent to terminal
-
-    " set synmaxcol=256                " improve hi performance
-    set showmode                       " show what key had been pressed
-    syntax sync minlines=256
-    set lazyredraw                     " no redraw in macros : it's doesn't set by default for tmux
-
-    if &term =~ "xterm"
-      let &t_SI = "\<Esc>]12;lightgreen\x7"
-      let &t_EI = "\<Esc>]12;white\x7"
-    endif
-
-    if &term =~ "st-256color"
-      let &t_SI = "\e\e]4;258;rgb:32/4c/80\a\e\\"
-      let &t_EI = "\e\e]4;258;rgb:b0/d0/f0\a\e\\"
-    endif
-else
-    set background=dark
-    exe "colorscheme ".s:nvim_colorscheme
-endif
+set background=dark
+colorscheme neg
 
 if !has("gui_running") && exists('$TMUX')
     let g:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))

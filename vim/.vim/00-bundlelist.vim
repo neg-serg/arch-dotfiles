@@ -7,7 +7,7 @@ let g:vim_signify_enabled     = 0
 let g:use_polyglot            = 1
 
 "--[ Main ]------------------------------------------------------------------------------
-if dein#load_state('/home/neg/.vim/repos')
+if dein#load_state(expand('~/.vim/repos'))
     call dein#begin(expand('~/.vim'))
     if g:nvim_deoplete
         "dark-powered completion engine
@@ -17,10 +17,10 @@ if dein#load_state('/home/neg/.vim/repos')
           \ })
         "include completion framework for neocomplete/deoplete
         call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
-        "bettter completions with deoplete
+        "better completions with deoplete
         call dein#add('Shougo/echodoc.vim')
     elseif g:nvim_youcompleteme
-        call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
+        call dein#add('Valloric/YouCompleteMe') 
     elseif g:nvim_completion_manager
         call dein#add('roxma/nvim-completion-manager')
     endif
@@ -62,7 +62,7 @@ if dein#load_state('/home/neg/.vim/repos')
     let s:fzf_use=1
     if (s:fzf_use) 
         " fast fuzzy finder
-        call dein#add('junegunn/fzf', { 'build': './install --bin', 'merged': 0 }) 
+        call dein#add('junegunn/fzf') 
         "fzf vim bindings
         call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
         "fzf-finder for vim options
@@ -598,9 +598,10 @@ if dein#load_state('/home/neg/.vim/repos')
     call dein#add('chase/vim-ansible-yaml', {'on_ft': ['yaml']})
     "logstash configuration files
     call dein#add('robbles/logstash.vim', {'on_ft': ['logstash']})
+
+    call dein#end()
+    call dein#save_state()
 endif
-call dein#end()
-call dein#save_state()
 if dein#check_install()
     call dein#install()
 endif
