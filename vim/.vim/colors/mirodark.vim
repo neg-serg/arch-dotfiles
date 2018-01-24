@@ -7,8 +7,8 @@
 
 let g:mirodark_enable_higher_contrast_mode=1
 
-if !has("gui_running") && (!has('termguicolors') || (has('termguicolors') && !&termguicolors)) && empty($NVIM_TUI_ENABLE_TRUE_COLOR) &&
-            \ (&t_Co == 256 && !exists("g:mirodark_disable_color_approximation"))
+if !has('gui_running') && (!has('termguicolors') || (has('termguicolors') && !&termguicolors)) && empty($NVIM_TUI_ENABLE_TRUE_COLOR) &&
+            \ (&t_Co == 256 && !exists('g:mirodark_disable_color_approximation'))
     fun! s:rgb_color(x, y, z)
         return 16 + (a:x * 36) + (a:y * 6) + a:z
     endfun
@@ -18,16 +18,16 @@ if !has("gui_running") && (!has('termguicolors') || (has('termguicolors') && !&t
     endfun
 
     fun! s:rgb(rgb)
-        let l:r = ("0x" . strpart(a:rgb, 0, 2)) + 0
-        let l:g = ("0x" . strpart(a:rgb, 2, 2)) + 0
-        let l:b = ("0x" . strpart(a:rgb, 4, 2)) + 0
+        let l:r = ('0x' . strpart(a:rgb, 0, 2)) + 0
+        let l:g = ('0x' . strpart(a:rgb, 2, 2)) + 0
+        let l:b = ('0x' . strpart(a:rgb, 4, 2)) + 0
         return s:color(l:r, l:g, l:b)
     endfun
 endif
 
 set background=dark
 hi clear
-if exists("syntax on")
+if exists('syntax on')
     syntax reset
 endif
 
@@ -75,7 +75,7 @@ if has('gui_running') || (has('termguicolors') && &termguicolors) || !empty($NVI
     let s:color255_hex='eeeeee'    " (color 255)
     let s:color200_hex='0C1014'    " (color 200)
     let s:colorcursor_hex='375BC1' " (color cursor)
-    let s:colorsearch_hex='255360' " (search highlight color)
+    let s:colorsearch_hex='005FAF' " (search highlight color)
 
     if has('gui_running') || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
         let s:venv='gui' " vim environment (term, cterm, gui)
@@ -316,7 +316,7 @@ call s:HI(     'DiffDelete', s:color162, s:color127, '' )
 call s:HI(          'Error', s:color162, s:color127, '' )
 
 call s:HI(          'Pmenu', s:color253, s:color234, 'reverse' )
-call s:HI(       'PmenuSel', s:color255, s:color200, 'reverse' )
+call s:HI(       'PmenuSel', s:colorsearch, s:color200, 'reverse' )
 call s:HI(      'PmenuSbar', s:dblk, 'NONE', '' )
 call s:HI(     'PmenuThumb', s:dgrn, 'NONE', '' )
 
