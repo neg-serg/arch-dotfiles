@@ -13,13 +13,13 @@ import errno
 import os
 
 from typing import Callable, List
+from timeit import default_timer as timer
 
 class ns(SingletonMixin):
     def __init__(self) -> None:
         self.group_list=[]
         self.fullscreen_list=[]
         self.factors=["class", "instance", "class_r"]
-        self.prev_id=0
         self.cfg_module=ns_settings()
         self.cfg=self.cfg_module.settings
         self.marked={i:[] for i in self.cfg}
@@ -39,17 +39,27 @@ class ns(SingletonMixin):
         return 'mark {}'.format(output)
 
     def focus(self, tag: str) -> None:
-        for index,i in enumerate(self.marked[tag]):
-            self.marked[tag][index].command('move container to workspace current')
+        [
+            win.command('move container to workspace current')
+            for _,win in enumerate(self.marked[tag])
+        ]
 
     def unfocus(self, tag: str) -> None:
-        for index,i in enumerate(self.marked[tag]):
-            self.marked[tag][index].command('move scratchpad')
+        [
+            win.command('move scratchpad')
+            for _,win in enumerate(self.marked[tag])
+        ]
         self.restore_fullscreens()
 
-    def find_visible_windows(self, windows_on_workspace):
+    def find_visible_windows(self):
+        def get_windows_on_ws():
+            return filter(
+                lambda x: x.window,
+                self.i3.get_tree().find_focused().workspace().descendents()
+            )
         visible_windows = []
-        for w in windows_on_workspace:
+        wswins=get_windows_on_ws()
+        for w in wswins:
             try:
                 xprop = check_output(['xprop', '-id', str(w.window)]).decode()
             except FileNotFoundError:
@@ -57,17 +67,7 @@ class ns(SingletonMixin):
                                 " Please install it and retry.")
             if '_NET_WM_STATE_HIDDEN' not in xprop:
                 visible_windows.append(w)
-
         return visible_windows
-
-    def get_windows_on_ws(self):
-        return filter(
-            lambda x: x.window,
-            self.i3.get_tree()
-            .find_focused()
-            .workspace()
-            .descendents()
-        )
 
     def toggle(self, tag : str) -> None:
         if self.marked[tag] == [] and "prog" in self.cfg[tag]:
@@ -111,7 +111,7 @@ class ns(SingletonMixin):
 
                     self.focus(tag)
 
-                    visible_windows = self.find_visible_windows(self.get_windows_on_ws())
+                    visible_windows = self.find_visible_windows()
                     for w in visible_windows:
                         for i in self.marked[tag]:
                             if w.id == i.id:
@@ -132,7 +132,7 @@ class ns(SingletonMixin):
         self.fullscreen_list=[]
 
     def visible(self, tag: str):
-        visible_windows = self.find_visible_windows(self.get_windows_on_ws())
+        visible_windows = self.find_visible_windows()
         vmarked = 0
         for w in visible_windows:
             for i in self.marked[tag]:
@@ -169,7 +169,6 @@ class ns(SingletonMixin):
     def hide_current(self) -> None:
         groupwins=self.apply_to_current_group(self.unfocus)
         if not groupwins:
-            self.prev_id=self.i3.get_tree().find_focused().id
             self.i3.command('[con_id=__focused__] scratchpad show')
 
     def geom_restore_all(self) -> None:
