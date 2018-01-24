@@ -163,14 +163,14 @@ color "stash@{"             magenta default
 color "commit "             green   default
 color "parent "             blue    default
 color "tree "               blue    default
-color "author "             green   default
+color "author "             white   default
 color "committer "          magenta default
 color "    Signed-off-by"   yellow  default
 color "    Acked-by"        yellow  default
 color "    Tested-by"       yellow  default
 color "    Reviewed-by"     yellow  default
-color default               default default normal
-color cursor                white   18
+color default               default default
+color cursor                24      default
 color title-blur            black   blue
 color title-focus           black   blue
 color status                green   default
@@ -178,7 +178,7 @@ color delimiter             magenta default
 color date                  blue    default
 color mode                  cyan    default
 color id                    magenta default
-color overflow              red default
+color overflow              red     default
 color header                yellow  default
 color section               cyan    default
 color directory             yellow  default
@@ -186,8 +186,8 @@ color file                  default default
 color grep.file             blue    default
 color file-size             default default
 color line-number           cyan    default
-color title-blur            white   blue
-color title-focus           white   blue    bold
+color title-blur            white   black
+color title-focus           white   black bold
 color main-commit           default default
 color main-tag              magenta default bold
 color main-local-tag        magenta default
@@ -219,7 +219,6 @@ set git-colors = \
     branch.local=main-ref \
     branch.plain=main-ref \
     branch.remote=main-remote \
-    \
     diff.meta=diff-header \
     diff.meta=diff-index \
     diff.meta=diff-oldmode \
@@ -227,11 +226,9 @@ set git-colors = \
     diff.frag=diff-chunk \
     diff.old=diff-del \
     diff.new=diff-add \
-    \
     grep.filename=grep.file \
     grep.linenumber=grep.line-number \
     grep.separator=grep.delimiter \
-    \
     status.branch=status.header \
     status.added=stat-staged \
     status.updated=stat-staged \
