@@ -17,22 +17,6 @@
     unset cope_path_
 }
 
-alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
-alias pstree="pstree -U "$@" | sed '
-	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
-	s/[{}]/\x1B[31m&\x1B[0m/g
-	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
-alias pscpu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
-alias psmem='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
-
-alias '?=bc -l <<<'
-alias stderred="LD_PRELOAD=${BIN_HOME}/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
-
-# If noglob (for zsh) is not available, just make it a noop
-if ! type noglob >/dev/null 2>&1; then
-    alias noglob=''
-fi
-
 local noglob_list=( \
     fc find {,s,l}ftp history locate rake rsync scp \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
@@ -52,16 +36,10 @@ local sudo_commands=(
   link load cancel set-environment unset-environment
   edit)
 
-local nocorrect_commands=(
-    ebuild gist heroku hpodder man mkdir mv mysql sudo
-)
+local nocorrect_commands=(ebuild gist heroku hpodder man mkdir mv mysql sudo) 
 
 for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
 for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
-
-alias sc-enable-now="sc-enable --now"
-alias sc-disable-now="sc-disable --now"
-alias sc-mask-now="sc-mask --now"
 
 for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
 for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
@@ -70,19 +48,7 @@ for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}";
 for i in ${sys_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
-alias fevil='find . -regextype posix-extended -regex'
-
-alias cdu='cdu -idh'
-
-if [[ $UID != 0 ]]; then
-    if [ -f "${HOME}/.ssh/config" ]; then
-        for host in $( perl -ne 'print "$1\n" if /\A[Hh]ost\s+(.+)$/' ${HOME}/.ssh/config);
-            alias ${host}="ssh ${host} '$@'";
-    fi
-fi
-
 alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-
 if [[ ! -x "${BIN_HOME}/l" ]]; then
     if  [[ -x "${BIN_HOME}/lsp" ]]; then
         alias l="lsp"
@@ -93,22 +59,11 @@ if [[ ! -x "${BIN_HOME}/l" ]]; then
         fi
     fi
 fi
-alias l.='ls -d .*'
 alias l='l -g'
-alias spf="ls -Sshr ./*(.)"
 
 alias primusrun="vblank_mode=0 primusrun"
 
 alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
-
-alias mk="mkdir -p"
-
-function eat(){ 
-    for i; do 
-        vid_fancy_print "${i}"
-        ${VIDEO_PLAYER_} --input-ipc-server=$(readlink -f -- ${HOME}/tmp/${VIDEO_PLAYER_}.socket) "${i}"
-    done 
-}
 
 function mp(){ 
     for i; do vid_fancy_print "${i}"; done
@@ -116,7 +71,6 @@ function mp(){
 }
 
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
-alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 
 alias mpclove="mpc sendmessage mpdas love"
 alias mpcunlove="mpc sendmessage mpdas unlove"
@@ -126,21 +80,17 @@ alias grep="grep --color=auto"
 
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
-#--[ Mount ]----------------------------------------------------------
-alias u="umount"
-# Taken from https://github.com/blacpythoz/.dots
-nmount() { (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2=$4="";1') | column -t; }
-alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
-alias mnt='sudo mount'
-alias ym="${SCRIPT_HOME}/yandex.mount > /dev/null"
-
 alias s="sudo"
 alias x='xargs'
 alias e="open"
-alias rd="rmdir"
 
-alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
-alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
+alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
+alias pstree="pstree -U "$@" | sed '
+	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
+	s/[{}]/\x1B[31m&\x1B[0m/g
+	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
+
+alias '?=bc -l <<<'
 
 alias ple='perl -wlne' # use perl like awk/sed
 # Perl grep, because 'grep -P' is terrible. Lets you work with pipes or files.
@@ -149,6 +99,8 @@ prep() { perl -nle 'print if /'"$1"'/;' $2 }
 
 alias {z,m}mv="noglob zmv -Wn"
 alias mv="mv -i"
+alias mk="mkdir -p"
+alias rd="rmdir"
 
 alias tree="tree --dirsfirst -C"
 alias acpi="acpi -V"
@@ -157,11 +109,9 @@ alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magi
 
 if inpath git; then
     alias gs='git status --short -b'
-    alias gt='git tag|sort --reverse'
     alias gp='git push'
     alias gdd='git diff'
     alias gc='git commit'
-    alias gl='git l|head -20'
 
     # http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
     intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
@@ -175,22 +125,16 @@ if inpath git; then
     function git_confclicts() {
         # list all conflicted files
         alias gkl='git ls-files --unmerged | cut -f2 | uniq'
-
         # add changes from all conflicted files
         alias gka='git add $(gkl)'
-
         # edit conflicted files
         alias gke='vim +"set hlsearch" +"/^[<=>]\{7\}/\( \|$\)" $(gkl)'
-
         # use local version of the given files
         alias gko='git checkout --$(test -f .git/MERGE_HEAD && echo ours || echo theirs) --'
-
         # use local version of all conflicted files
         alias gkO='gko $(gkl)'
-
         # use upstream version of the given files
         alias gkt='git checkout --$(test -f .git/MERGE_HEAD && echo theirs || echo ours) --'
-
         # use upstream version of all conflicted files
         alias gkT='gkt $(gkl)'
     }
@@ -201,23 +145,15 @@ fi
 for i in x q Q; eval alias :${i}=\' exit\'
 
 alias iostat='iostat -mtx'
-# alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
-# alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
-alias ytmp3='youtube-dl -x --audio-format ogg'
 _zsh_proxy=""
-function yt(){
-    ${_zsh_proxy} you-get "$@"
-}
+yt(){ ${_zsh_proxy} you-get "$@" }
 
 function yr(){
     wid=$(xdotool search --classname youtube-get)
     if [[ -z "${wid}" ]]; then
         st -c youtube-get ${SCRIPT_HOME}/yr "$@"
     else
-        source ${XDG_CONFIG_HOME}/.windowmanager
-        if [[ ${windowmanager} = "i3" ]]; then
-            i3-msg '[con_mark="console2"] scratchpad show'
-        fi
+        ${XDG_CONFIG_HOME}/i3/send.py ns toggle console
     fi
 }
 
@@ -226,8 +162,6 @@ alias {cat,hi}='ccat -G String="_default_" -G Plaintext="white" -G Punctuation="
 
 alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
-alias hist10='print -l ${(o)history%%*} | uniq -c | sort -nr | head -n 10' # top10 of the history
-alias hist='history'
 alias sniff='sudo ngrep -d "enp6s0" -t "^(GET|POST) " "tcp and port 80"'
 
 alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
@@ -236,7 +170,6 @@ alias objdump='objdump -M intel -d'
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal="task calendar"
-alias Cal="${SCRIPT_HOME}/dzen/time-date"
 
 if hash glances >/dev/null; then
     alias {{h,}top,lk}=glances
@@ -262,7 +195,6 @@ for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
 
 # URL Tools
 # Adds handy command line aliases useful for dealing with URLs
-#
 # Taken from:
 # http://ruslanspivak.com/2010/06/02/urlencode-and-urldecode-from-a-command-line/
 
@@ -365,10 +297,7 @@ inpath nmap && {
 
 inpath journalctl && {
     alias log='journalctl -f | ccze -A' #follow log
-    alias log0='journalctl -b -0 | ccze -A' #current log 
-    alias log1='journalctl -b -1 | ccze -A' #previous log
 } 
-alias log4="v \"${HOME}/tmp/notionerr\$(pidof notion)\""
 inpath iotop && {
     alias iotop='sudo iotop -oPa'
     alias diskact="sudo iotop -Po"
@@ -378,37 +307,15 @@ inpath nc && alias nyan='nc -v nyancat.dakko.us 23'
 
 alias vuze="vuze&>/dev/null&"
 
-(){
-    local dist_dir="/one/dist"
-    local jetbrain_products=(idea pycharm rubymine webstorm clion)
-    for i in ${jetbrain_products[@]}; do
-        jetbrains_path="${dist_dir}/${i}/bin/${i}.sh"
-        jetbrains_path_alter="/opt/${i}/bin/${i}.sh"
-        if readlink -fq ${jetbrains_path} > /dev/null; then
-            alias "$i=${jetbrains_path} > /dev/shm/${i}$$ &" 
-        fi
-        if readlink -fq ${jetbrains_path_alter} > /dev/null; then
-            alias "$i=${jetbrains_path_alter} > /dev/shm/${i}$$ &" 
-        fi
-    done
-}
-
 alias vim=nvim
 
 alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias zinc="zinc -nailed"
-alias py="bpython"
-alias ya="${SCRIPT_HOME}/pkgsearch"
-alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
 alias twitch="livestreamer -p ${VIDEO_PLAYER_} twitch.tv/$1 high"
 alias vol="${SCRIPT_HOME}/vol_"
-alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias recordmydesktop="recordmydesktop --no-frame"
 alias up="rtv -s unixporn"
-#--[ xcape ]---------------
-alias xescape='xcape -e "Control_L=Escape" -t 500'
-alias capsesc="xcape -e 'Caps_Lock=Escape'"
 #--[ Fun ]-----------------
 alias taco='curl -L git.io/taco'
 alias starwars='telnet towel.blinkenlights.nl'
@@ -420,49 +327,9 @@ alias gdb8="gdb -x ${XDG_CONFIG_HOME}/gdb/gdbinit8.gdb"
 alias gdbv="gdb -x ${XDG_CONFIG_HOME}/gdb/voltron.gdb"
 alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
 
-function ju(){
-    if [[ $(any jupyter|wc -l) == 0  ]]; then
-        jupyter notebook --ip=127.0.0.1 &
-        sleep 1s && {
-            [[ ${windowmanager} == "notion" ]] && \
-                notionflux -e "app.byclass('', 'Firefox')"
-        } &
-    fi
-}
-
 clojure(){ drip -cp /usr/share/clojure/clojure.jar clojure.main }
 
-function g() {
-    if [[ $# > 0 ]]; then
-        git $@
-    else
-        git status --short ./*
-    fi
-}
-
-function d(){
-    case "$1" in
-        clean)   docker volume ls -qf dangling=true | xargs -r docker volume rm  -v ;;
-        craft)   docker run -t -i -d -p 0.0.0.0:25565:25565 -v /var/run/docker.sock:/var/run/docker.sock --name dockercraft gaetan/dockercraft ;;
-        check*)  bash <(curl -s https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh) ;;
-        mysqld)  docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=1 --name mysql mariadb ;;
-        mysql)   docker run -it --rm --link mysql:mysql mariadb sh -c 'exec mysql -h$MYSQL_PORT_3306_TCP_ADDR -P$MYSQL_PORT_3306_TCP_PORT -uroot $@' ;;
-        pg*)     docker run -d -p 5432:5432 --name postgres postgres ;;
-        psql)    docker run -it --rm --link postgres:postgres postgres psql -h postgres -U postgres $@ ;;
-        rbt*)    docker run -d --hostname rabbitmq --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management ;;
-    esac
-}
-alias dpa="docker ps -a"
-
-mysql_create() { echo "CREATE USER '$1'@'%' IDENTIFIED BY '$2'; CREATE DATABASE $1 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci; GRANT ALL ON $1.* TO '$1'@'%'; FLUSH PRIVILEGES;" }
-mysql_drop() { echo "DROP DATABASE $1; DROP USER '$1'@'%'; FLUSH PRIVILEGES;" }
-psql_create() { echo "CREATE DATABASE $1" }
-psql_drop() { echo "DROP DATABASE $1" }
-
 alias -s Dockerfile="docker build - < "
-alias ocr='docker run --rm -v `pwd`:/home/docker jbarlow83/ocrmypdf --skip-text'
-alias -s tex='docker run -i -t --rm -v `pwd`:/build docker-registry.eccenca.com/eccenca-latex:v1.4.0 rubber --inplace --maxerr -1 --short --force --warn all --pdf'
-alias htcnet='sshfs root@192.168.0.107:/storage/emulated/0 /media/phone/ -p 22'
 
 # Aliases for functions
 (){
@@ -470,15 +337,8 @@ alias htcnet='sshfs root@192.168.0.107:/storage/emulated/0 /media/phone/ -p 22'
     alias mkeep="${SCRIPT_HOME}/mpd/mkeep"
 }
 
-alias gcd='cd $(git rev-parse --show-toplevel 2> /dev/null || builtin print ".")'
-
-function yaourt() {
-    pacaur "$@"
-}
-
-function pacnews() {
-    sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//'
-}
+yaourt() { pacaur "$@" }
+pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
 
 alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
 
