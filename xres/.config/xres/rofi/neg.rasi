@@ -102,35 +102,35 @@
    background-color:  @blackwidget;
    handle-color:      @darkgray;
    handle-width:      2px;
-}                    
-                     
-#sidebar {           
+}
+
+#sidebar {
    background-color:  @blackwidget;
-}                    
-                     
-#button {            
+}
+
+#button {
    background-color:  @blackwidget;
    text-color:        @darkgray;
-}                    
-                     
-                     
-#button.selected {   
+}
+
+
+#button.selected {
     text-color:        @maincolor;
-}                    
-                     
-#inputbar {          
+}
+
+#inputbar {
    background-color:  @blackdarkest;
    spacing:           0px;
-}                    
-                     
-#prompt {            
+}
+
+#prompt {
    spacing:           0px;
    padding:           4px 4px;
    background-color:  @blackwidget;
    text-color:        @maincolor;
-}                    
-                     
-#entry {             
+}
+
+#entry {
    padding:           6px 10px;
    background-color:  @blackwidget;
    text-color:        @fgwhite;
