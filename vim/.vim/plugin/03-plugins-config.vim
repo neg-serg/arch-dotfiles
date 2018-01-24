@@ -8,9 +8,6 @@ let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:monster#completion#rcodetools#backend = "async_rct_complete"
 let g:livepreview_previewer = 'zathura'
-if has("nvim")
-    let g:deoplete#enable_at_startup = 1 
-endif
 if has("python3")
     let g:powerline_pycmd = "py3"
 endif
@@ -350,7 +347,10 @@ endif
 " │ plugin - Shougo/deoplete.nvim                                                     │
 " │ https://github.com/Shougo/deoplete.nvim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('deopete')
+if dein#tap('deoplete.nvim')
+    if has("nvim")
+        let g:deoplete#enable_at_startup = 1 
+    endif
     let g:deoplete#ignore_sources = {}
     let g:deoplete#omni#input_patterns = {}
     let g:deoplete#omni_patterns = {}
@@ -367,12 +367,18 @@ if dein#tap('deopete')
     let g:deoplete#enable_camel_case=1
     let g:deoplete#max_list=500
     let g:deoplete#max_menu_width=8
-    let g:deoplete#sources._ = ['buffer', 'tag']
-    call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 
     let g:deoplete#sources#clang#libclang_path ="/usr/lib/libclang.so"
     let g:deoplete#sources#clang#clang_header="/usr/lib/clang/4.0.1"
     let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
+
+    " call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+    " call deoplete#custom#source('go', 'mark', '')
+    " call deoplete#custom#source('go', 'rank', 9999)
+    " call deoplete#custom#source('ternjs', 'mark', 'tern')
+    " call deoplete#custom#source('ternjs', 'rank', 9999)
+    " call deoplete#custom#source('clang2', 'mark', '')
+    " call deoplete#custom#source('racer', 'mark', '')
 
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
     function! s:my_cr_function() abort
@@ -385,18 +391,6 @@ if dein#tap('deopete')
                 \'[^. \t0-9]\::\w*',
                 \]
     let g:deoplete#omni#input_patterns.jsp = ['[^. \t0-9]\.\w*']
-    if g:spacevim_enable_javacomplete2_py
-        let g:deoplete#ignore_sources.java = ['omni']
-        call deoplete#custom#set('javacomplete2', 'mark', '')
-    else
-        let g:deoplete#ignore_sources.java = ['javacomplete2']
-        call deoplete#custom#set('omni', 'mark', '')
-    endif
-
-    " go
-    let g:deoplete#ignore_sources.go = ['omni']
-    call deoplete#custom#set('go', 'mark', '')
-    call deoplete#custom#set('go', 'rank', 9999)
 
     " perl
     let g:deoplete#omni#input_patterns.perl = [
@@ -405,43 +399,19 @@ if dein#tap('deopete')
                 \'[^. \t0-9]\::\w*',
                 \]
 
-    " javascript
-    "let g:deoplete#omni#input_patterns.javascript = get(g:deoplete#omni#input_patterns, 'javascript', ['[^. \t0-9]\.\w*'])
-    let g:deoplete#ignore_sources.javascript = ['omni']
-    call deoplete#custom#set('ternjs', 'mark', 'tern')
-    call deoplete#custom#set('ternjs', 'rank', 9999)
-
-    " php
-    let g:deoplete#omni#input_patterns.php = [
-                \'[^. \t0-9]\.\w*',
-                \'[^. \t0-9]\->\w*',
-                \'[^. \t0-9]\::\w*',
-                \]
-    let g:deoplete#ignore_sources.php = ['phpcd', 'around', 'member']
-
-    " gitcommit
-    let g:deoplete#omni#input_patterns.gitcommit = 'gitcommit', [
-                \'[ ]#[ 0-9a-zA-Z]*',
-                \]
-
-    " lua
-    let g:deoplete#omni_patterns.lua = 'lua', '.'
-
-    " c c++
-    call deoplete#custom#set('clang2', 'mark', '')
-    let g:deoplete#ignore_sources.c = 'c', ['omni']
-
-    " rust
-    let g:deoplete#ignore_sources.rust = 'rust', ['omni']
-    call deoplete#custom#set('racer', 'mark', '')
-
-    let g:deoplete#ignore_sources._ = get(g:deoplete#ignore_sources, '_', ['around'])
     inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
     set isfname-==
 
     " deoplete tab-complete
-    inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
+    inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ deoplete#mappings#manual_complete()
+    function! s:check_back_space() abort "{{{
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction"}}}
     inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<Tab>"
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
