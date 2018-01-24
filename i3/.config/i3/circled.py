@@ -97,7 +97,7 @@ class circle(SingletonMixin):
         def go_to_not_repeat():
             inc_c()
             self.repeats+=1
-            if self.repeats < 16:
+            if self.repeats < 8:
                 self.go_next(tag)
             else:
                 self.repeats=0
@@ -115,7 +115,7 @@ class circle(SingletonMixin):
                 target_=self.counters[tag] % len(self.tagged[tag])
 
                 if is_priority_attr() and not current_class_in_priority():
-                    if len([ i for i in self.tagged[tag] if i['win'].window_class == tag_conf()["priority"] ]) == 0:
+                    if not len([ i for i in self.tagged[tag] if i['win'].window_class == tag_conf()["priority"] ]):
                         run_prog()
                         return
 
