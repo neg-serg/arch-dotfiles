@@ -164,8 +164,6 @@ if dein#load_state('/home/neg/.vim/repos')
         call dein#add('epeli/slimux')
         "better tmux support(focuslist for example)
         call dein#add('wincent/terminus') 
-        "add fakeclip to clip via tmux if no x11
-        call dein#add('cazador481/fakeclip.neovim')
     endif
     "--[ Misc ]------------------------------------------------------------------------------
     "prevent to much ru-en layout switching with c-s
