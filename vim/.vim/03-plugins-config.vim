@@ -60,8 +60,16 @@ endif
 " │ https://github.com/w0rp/ale                                                       │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('ale')
-    let g:ale_sign_warning = '▲'
-    let g:ale_sign_error = '✗'
+    " '⚡' '😱' '✗' '➽'
+    " ⚑ ⚐ ♒ ⛢ ❕ ❗
+    " ✖ ➤
+    let g:ale_sign_warning = '➤ '
+    let g:ale_sign_error = '✖'
+
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
     highlight link ALEWarningSign String
     highlight link ALEErrorSign Title
 endif
@@ -203,44 +211,6 @@ if dein#tap('vim-xkbswitch')
     let g:XkbSwitchIMappings = ['ru']
     let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
     let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - scrooloose/syntastic.git                                                 │
-" │ https://github.com/scrooloose/syntastic.git                                       │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('syntastic')
-    " '⚡' '😱' '✗' '➽'
-    " ⚑ ⚐ ♒ ⛢ ❕ ❗
-    " ✖ ➤
-    let g:syntastic_error_symbol='✖'
-    let g:syntastic_warning_symbol='➤'
-    let g:syntastic_style_error_symbol  = '⚡'
-    let g:syntastic_style_warning_symbol  = '⚡'
-    let g:syntastic_python_pylint_exe = "pylint2"
-    let g:syntastic_mode_map = { 'mode': 'active',
-        \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['python'] }
-
-    let g:syntastic_cpp_compiler_options = ' -std=c++11'
-    let g:syntastic_tex_checkers = ['lacheck']
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_python_checkers = ['flake8']
-    let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
-
-    let g:syntastic_c_compiler_options = "-std=gnu11
-        \  -Wall -Wextra -Wshadow -Wpointer-arith
-        \  -Wcast-align -Wwrite-strings -Wmissing-prototypes
-        \  -Wmissing-declarations -Wredundant-decls -Wnested-externs
-        \  -Winline -Wno-long-long -Wuninitialized -Wconversion
-        \  -Wstrict-prototypes -pedantic"
-    let g:syntastic_stl_format = '[=> ln:%F (%t)]'
-    let g:syntastic_aggregate_errors=1
-    let g:syntastic_enable_signs=1
-    let g:syntastic_auto_loc_list=2
-    let g:syntastic_always_populate_loc_list=1
-    let g:syntastic_c_no_include_search = 1
-    let g:syntastic_c_auto_refresh_includes = 1
-    let g:syntastic_c_check_header = 1
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Shougo/deoplete.nvim                                                     │
@@ -725,8 +695,6 @@ if dein#tap('vim-go')
     let g:go_highlight_operators = 1
     let g:go_highlight_build_constraints = 1
     let g:go_fmt_command = 'goimports'
-    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
     let g:go_snippet_engine = 'UltiSnips'
     augroup Go
         au!
@@ -799,7 +767,7 @@ if dein#tap('lightline.vim')
         \   'left':  [ [ 'mode', 'paste' ],
         \              [ 'fugitive', 'filename', 'modified' ]
         \            ],
-        \   'right': [ [ 'syntastic', 'lineinfo' ],
+        \   'right': [ [ 'lineinfo' ],
         \              [ 'percent' ],
         \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
         \ },
@@ -811,14 +779,8 @@ if dein#tap('lightline.vim')
         \   'filetype': 'LightlineFiletype',
         \   'fileencoding': 'LightlineFileencoding'
         \ },
-        \ 'component_expand': {
-        \   'syntastic': 'SyntasticStatuslineFlag',
-        \ },
         \ 'component_visible_condition': {
         \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
-        \ },
-        \ 'component_type': {
-        \   'syntastic': 'error',
         \ },
         \ 'colorscheme': 'neg',
         \ 'separator': { 'left': '▒', 'right': '▒' },

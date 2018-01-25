@@ -1,8 +1,6 @@
 let s:nvim_deoplete           = 1
-let s:nvim_youcompleteme      = 0
 let s:nvim_completion_manager = 0
-let s:ale_enabled             = 1
-let s:vim_signify_enabled     = 0
+
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state(expand('~/.vim/repos'))
     call dein#begin(expand('~/.vim'))
@@ -16,8 +14,6 @@ if dein#load_state(expand('~/.vim/repos'))
         call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
         "better completions with deoplete
         call dein#add('Shougo/echodoc.vim')
-    elseif s:nvim_youcompleteme
-        call dein#add('Valloric/YouCompleteMe') 
     elseif s:nvim_completion_manager
         call dein#add('roxma/nvim-completion-manager')
     endif
@@ -50,16 +46,16 @@ if dein#load_state(expand('~/.vim/repos'))
     "yet another interactive grepper
     call dein#add('mhinz/vim-grepper')
     " fast fuzzy finder
-    call dein#add('junegunn/fzf') 
+    call dein#add('junegunn/fzf')
     "fzf vim bindings
     call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
     "fzf-finder for vim options
     call dein#add('teto/nvim-palette', { 'do': ':UpdateRemotePlugins'})
     "file/buffer explorer
-    call dein#add('sjbach/lusty.git') 
+    call dein#add('sjbach/lusty.git')
     "--[ Rice ]-------------------------------------------------------------------------------
     "rainbow parentheses
-    call dein#add('luochen1990/rainbow') 
+    call dein#add('luochen1990/rainbow')
     "css and colors colorizer
     call dein#add('chrisbra/colorizer')
     "highlight colors in terminal
@@ -70,13 +66,13 @@ if dein#load_state(expand('~/.vim/repos'))
     "universal formatter
     call dein#add('sbdchd/neoformat')
     ""Snippets with ycm compatibility
-    call dein#add('SirVer/ultisnips.git') 
+    call dein#add('SirVer/ultisnips.git')
     "for tabularizing
-    call dein#add('godlygeek/tabular.git', { 'on_cmd' : 'Tabularize'}) 
+    call dein#add('godlygeek/tabular.git', { 'on_cmd' : 'Tabularize'})
     "Extended and fast Join for vim
-    call dein#add('chrisbra/Join.git') 
+    call dein#add('chrisbra/Join.git')
     "good mappings and toggles
-    call dein#add('tpope/vim-unimpaired.git') 
+    call dein#add('tpope/vim-unimpaired.git')
     "dot for everything
     call dein#add('tpope/vim-repeat')
     "undo tree
@@ -105,7 +101,7 @@ if dein#load_state(expand('~/.vim/repos'))
     "--[ dcvs ]------------------------------------------------------------------------------
     if executable(resolve(expand('git')))
         "Git stuff. Needed for powerline etc
-        call dein#add('tpope/vim-fugitive.git') 
+        call dein#add('tpope/vim-fugitive.git')
         "github bindings for fugitive
         call dein#add('tpope/vim-rhubarb')
         "Git dashboard in vim
@@ -113,18 +109,13 @@ if dein#load_state(expand('~/.vim/repos'))
         "github issues autocomp
         call dein#add('jaxbot/github-issues.vim.git')
         "to handle branches/merge conflicts
-        call dein#add('idanarye/vim-merginal.git') 
+        call dein#add('idanarye/vim-merginal.git')
         "yet another git commit browser
-        call dein#add('junegunn/gv.vim', { 'on_cmd' : 'GV'}) 
+        call dein#add('junegunn/gv.vim', { 'on_cmd' : 'GV'})
         "diff directories easyer with vim
-        call dein#add('vim-scripts/DirDiff.vim.git') 
-        if s:vim_signify_enabled
-            "maybe better alternative to gitgutter
-            call dein#add('mhinz/vim-signify')
-        else
-            "show last git changes
-            call dein#add('airblade/vim-gitgutter.git')
-        endif
+        call dein#add('vim-scripts/DirDiff.vim.git')
+        "maybe better alternative to gitgutter
+        call dein#add('mhinz/vim-signify')
         "vimagit like magit from emacs inter. mode
         call dein#add('jreybert/vimagit')
     endif
@@ -140,8 +131,6 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('powerman/vim-plugin-ruscmd')
     " vim nice swapit
     call dein#add('mjbrownie/swapit')
-    " I cannot use vimfiler without unite
-    call dein#add('Shougo/unite.vim')
     " Vim file manager
     call dein#add('Shougo/vimfiler.vim')
     " try to autodelect filetype
@@ -164,8 +153,6 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('kana/vim-gf-diff.git')
     "vim-gf-user extension: jump Vim script function
     call dein#add('mattn/gf-user-vimfn.git')
-    "embeded vim for athame
-    call dein#add('ardagnir/vimbed')
     "funny vim hardmode plugin
     call dein#add('wikitopian/hardmode')
     " There is no need in fixkey for nvim because of it's default behaviour
@@ -179,8 +166,6 @@ if dein#load_state(expand('~/.vim/repos'))
         "add taskwarrior vim plug wrapper
         call dein#add('blindFS/vim-taskwarrior')
     endif
-    "distraction free vim writing
-    call dein#add('junegunn/goyo.vim')
     "to term of fm
     call dein#add('justinmk/vim-gtfo')
     "rename for files even with spaces in filename
@@ -216,7 +201,7 @@ if dein#load_state(expand('~/.vim/repos'))
     "integrated reference viewer man/perldoc etc
     call dein#add('thinca/vim-ref.git')
     "dasht integration
-    call dein#add('sunaku/vim-dasht') 
+    call dein#add('sunaku/vim-dasht')
     "--[ Dev ]-------------------------------------------------------------------------------
     call dein#add('majutsushi/tagbar')
     "patience diff
@@ -224,16 +209,8 @@ if dein#load_state(expand('~/.vim/repos'))
     "provide async build via tmux
     call dein#add('tpope/vim-dispatch.git')
     if has('nvim')
-        if s:ale_enabled
-            "ale as linter
-            call dein#add('w0rp/ale', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
-        else
-            "neomake as linter
-            call dein#add('neomake/neomake', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
-        endif
-    else         
-        "syntax checker
-        call dein#add('scrooloose/syntastic', {'on_event': 'WinEnter', 'loadconf' : 1, 'merged' : 0})
+        "ale as linter
+        call dein#add('w0rp/ale', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
     endif
     if executable(resolve(expand('rc')))
         "rtags plugin for vim
@@ -321,7 +298,7 @@ if dein#load_state(expand('~/.vim/repos'))
     endif
     "--[ Nim ]---------------------------------------------------------------------------------
     if has('nvim') && has('use_nim')
-        if executable(resolve(expand('nim'))) && executable(resolve(expand('nimble'))) 
+        if executable(resolve(expand('nim'))) && executable(resolve(expand('nimble')))
             "nim support for vim and advanced support for neovim
             call dein#add('baabelfish/nvim-nim')
             "syntax file for nim
@@ -425,7 +402,7 @@ if dein#load_state(expand('~/.vim/repos'))
         "Gtags v0.64
         call dein#add('yuki777/gtags.vim.git')
         "autogenerate gtags to cscope db
-        call dein#add('bbchung/gasynctags.git') 
+        call dein#add('bbchung/gasynctags.git')
         " my gtags-cscope fork
         call dein#add('https://github.com/neg-serg/gtags-cscope-vim')
         if s:nvim_deoplete
@@ -460,7 +437,7 @@ if dein#load_state(expand('~/.vim/repos'))
     "all-in-one vim syntax plugin
     call dein#add('sheerun/vim-polyglot')
     "syntax, indent, and filetype plugin files for git
-    call dein#add('tpope/vim-git') 
+    call dein#add('tpope/vim-git')
     " region syntax highlighting
     call dein#add('blindFS/vim-regionsyntax', {'on_ft': ['vimwiki', 'markdown', 'tex', 'html']})
     "basic moonscript support
