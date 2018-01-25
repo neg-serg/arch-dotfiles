@@ -170,7 +170,7 @@ color "    Acked-by"        yellow  default
 color "    Tested-by"       yellow  default
 color "    Reviewed-by"     yellow  default
 color default               default default
-color cursor                24      default
+color cursor                white   205
 color title-blur            black   blue
 color title-focus           black   blue
 color status                green   default
@@ -210,7 +210,7 @@ color palette-3             green   default
 color palette-4             default default
 color palette-5             white   default
 color palette-6             red default
-color graph-commit          blue    default
+color graph-commit          18  default
 
 #--[ Mappings for colors read from git configuration. ]--
 #--[ Set to "no" to disable. ]---------------------------
