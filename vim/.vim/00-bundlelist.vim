@@ -21,8 +21,6 @@ if dein#load_state(expand('~/.vim/repos'))
     elseif s:nvim_completion_manager
         call dein#add('roxma/nvim-completion-manager')
     endif
-    "startup screen, welcome back
-    call dein#add('mhinz/vim-startify')
     "run a bunch of text
     call dein#add('thinca/vim-quickrun')
     "add neomru source
@@ -51,18 +49,12 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('dyng/ctrlsf.vim')
     "yet another interactive grepper
     call dein#add('mhinz/vim-grepper')
-    let s:fzf_use=0
-    if (s:fzf_use) 
-        " fast fuzzy finder
-        call dein#add('junegunn/fzf') 
-        "fzf vim bindings
-        call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-        "fzf-finder for vim options
-        call dein#add('teto/nvim-palette', { 'do': ':UpdateRemotePlugins'})
-    else
-        "replacement for fzf
-        call dein#add('lotabout/skim.vim')
-    endif
+    " fast fuzzy finder
+    call dein#add('junegunn/fzf') 
+    "fzf vim bindings
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+    "fzf-finder for vim options
+    call dein#add('teto/nvim-palette', { 'do': ':UpdateRemotePlugins'})
     "file/buffer explorer
     call dein#add('sjbach/lusty.git') 
     "--[ Rice ]-------------------------------------------------------------------------------
@@ -70,11 +62,8 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('luochen1990/rainbow') 
     "css and colors colorizer
     call dein#add('chrisbra/colorizer')
-    " call dein#add('chrisbra/unicode.vim', { 'on_cmd' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] })
     "highlight colors in terminal
     call dein#add('sunaku/vim-hicterm')
-    "indent tabs visually with |-es too slow
-    call dein#add('nathanaelkane/vim-indent-guides')
     "visual replace for multiple files
     call dein#add('thinca/vim-qfreplace.git')
     "--[ Edit ]-------------------------------------------------------------------------------
@@ -112,9 +101,6 @@ if dein#load_state(expand('~/.vim/repos'))
     if s:nvim_deoplete
         "modern vim autocomplete
         call dein#add('Shougo/neco-vim')
-    else
-        "autocompletion for VimL
-        call dein#add('c9s/vimomni.vim')
     endif
     "--[ dcvs ]------------------------------------------------------------------------------
     if executable(resolve(expand('git')))
@@ -146,14 +132,8 @@ if dein#load_state(expand('~/.vim/repos'))
     if executable(resolve(expand('tmux')))
         "tmux basics
         call dein#add('tpope/vim-tbone.git')
-        "exec commands in tmux
-        call dein#add('benmills/vimux.git')
         "easy jump between windows
         call dein#add('christoomey/vim-tmux-navigator')
-        "better interaction with tmux
-        call dein#add('epeli/slimux')
-        "better tmux support(focuslist for example)
-        call dein#add('wincent/terminus') 
     endif
     "--[ Misc ]------------------------------------------------------------------------------
     "prevent to much ru-en layout switching with c-s
