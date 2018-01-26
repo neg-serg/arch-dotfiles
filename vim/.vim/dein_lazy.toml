@@ -1,0 +1,209 @@
+#--[ Main ]--------------------------------------------------------------------------
+[[plugins]]
+repo = 'Shougo/deoplete.nvim' # dark-powered completion engine
+on_i = 1
+[[plugins]]
+repo = 'Shougo/neoinclude.vim' # include completion framework for neocomplete/deoplete
+on_i = 1
+[[plugins]]
+repo = 'Shougo/echodoc.vim' # better completions with deoplete
+on_i = 1
+# --[ Edit ]-------------------------------------------------------------------------------
+[[plugins]]
+repo = 'simnalamburt/vim-mundo' # undo tree
+on_cmd = 'MundoToggle'
+# --[ Web ]-------------------------------------------------------------------------------
+[[plugins]]
+repo = 'rstacruz/sparkup.git' # write html code faster
+on_ft = ['html']
+[[plugins]]
+repo = 'tpope/vim-markdown' # markdown vim mode
+on_ft = ['markdown']
+[[plugins]]
+repo = 'marijnh/tern_for_vim' # tern for vim
+on_ft = ['javascript']
+build = 'npm install'
+[[plugins]]
+repo = 'carlitux/deoplete-ternjs' # deoplete tern support
+on_ft = ['javascript']
+depends = 'deoplete'
+[[plugins]]
+repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
+on_ft = ['javascript']
+[[plugins]]
+repo = 'joker1007/vim-markdown-quote-syntax' # highlight through quote syntax
+on_ft = ['markdown']
+[[plugins]]
+repo = 'mzlogin/vim-markdown-toc' # plugin to autogenerate table of contents for markdown
+on_ft = ['markdown']
+[[plugins]]
+repo = 'iamcco/markdown-preview.vim' # markdown preview
+on_ft = ['markdown']
+[[plugins]]
+repo = 'iamcco/mathjax-support-for-mkdp' # mathjax support for markdown preview
+on_ft = ['markdown']
+# --[ Python ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'vim-scripts/IndentConsistencyCop.git' # autochecks for indent
+on_ft = ['python']
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent.git' # python autoindent pep8 compatible
+on_ft = ['python']
+[[plugins]]
+repo = 'fs111/pydoc.vim' # pydoc integration
+on_ft = ['python']
+[[plugins]]
+repo = 'mkomitee/vim-gf-python.git' # gf for python
+on_ft = ['python']
+[[plugins]]
+repo = 'zchee/deoplete-jedi' # jedi bindings for deoplete
+on_ft = ['python']
+depends = 'deoplete'
+# --[ Scala ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'ensime/ensime-vim' # scala vim autocompletion
+on_ft = ['scala']
+[[plugins]]
+repo = 'derekwyatt/vim-scala' # various initial scala support for vim
+on_ft = ['scala']
+[[plugins]]
+repo = 'derekwyatt/vim-sbt' # basic SBT support for vim
+on_ft = ['scala']
+# --[ LaTeX ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'donRaphaco/neotex'
+on_ft = ['tex']
+# --[ Misc syntax ]-----------------------------------------------------------------------
+[[plugins]]
+repo = 'blindFS/vim-regionsyntax' #  region syntax highlighting
+on_ft = ['vimwiki', 'markdown', 'tex', 'html']
+[[plugins]]
+repo = 'leafo/moonscript-vim' # basic moonscript support
+on_ft = ['moonscript']
+[[plugins]]
+repo = 'baskerville/vim-sxhkdrc' # sxhkd config syntax
+on_ft = ['sxhkdrc']
+# --[ Rust ]-------------------------------------------------------------------------------
+[[plugins]]
+repo = 'racer-rust/vim-racer' # racer support
+on_ft = ['rust']
+[[plugins]]
+repo = 'rust-lang/rust.vim' # detection of rust files
+on_ft = ['rust']
+merged = 1
+[[plugins]]
+repo = 'jtdowney/vimux-cargo' # rust-cargo bindings
+[[plugins]]
+repo = 'sebastianmarkow/deoplete-rust' #  deoplete support via racer
+on_ft = ['rust']
+depends = 'deoplete'
+# --[ Elixir ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'slashmili/alchemist.vim' #  deoplete support via alchemist-server
+on_ft = 'elixir'
+depends = 'deoplete'
+# --[ Nim ]---------------------------------------------------------------------------------
+[[plugins]]
+repo = 'baabelfish/nvim-nim' # nim support for vim and advanced support for neovim
+[[plugins]]
+repo = 'zah/nim.vim' # syntax file for nim
+on_ft = ['nim']
+# --[ Haskell ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'ujihisa/neco-ghc' # autocomplete for hs using ghc-mod
+on_ft = ['haskell']
+[[plugins]]
+repo = 'eagletmt/ghcmod-vim.git' # ghc-mod integration
+on_ft = ['haskell']
+[[plugins]]
+repo = 'bitc/vim-hdevtools' # type-related features
+on_ft = ['haskell']
+[[plugins]]
+repo = 'neovimhaskell/haskell-vim' # neovim haskell support
+on_ft = ['haskell']
+# --[ Ruby ]--------------------------------------------------------------------------------
+[[plugins]]
+repo = 'osyo-manga/vim-monster' # alternative ruby autocompletion
+on_ft = ['ruby']
+[[plugins]]
+repo = 'tpope/vim-rails.git' # rails plugin from Tim Pope
+on_ft = ['ruby']
+[[plugins]]
+repo = 'tpope/vim-rake.git' # ruby rake support
+on_ft = ['ruby']
+[[plugins]]
+repo = 'tpope/vim-rbenv.git' # ruby rbenv support
+on_ft = ['ruby']
+# --[ Lisp-like ]---------------------------------------------------------------------------
+[[plugins]]
+repo = 'guns/vim-clojure-static' # better clojure support
+on_ft = 'clojure'
+[[plugins]]
+repo = 'clojure-vim/acid.nvim' # clojure async nvim-only dev environment
+on_ft = 'clojure'
+# --[ Misc Langs ]--------------------------------------------------------------------------
+[[plugins]]
+repo = 'php-vim/phpcd.vim' # php autocomplete
+on_ft = ['php']
+build = 'composer install'
+[[plugins]]
+repo = 'StanAngeloff/php.vim' # modern php syntax file
+on_ft = ['php']
+[[plugins]]
+repo = '2072/PHP-Indenting-for-VIm' # indenting plugin for php
+on_ft = ['php']
+[[plugins]]
+repo = 'rafi/vim-phpspec' # tiny php-spec wrapper
+on_ft = ['php']
+[[plugins]]
+repo = 'joonty/vdebug' #  Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.
+on_cmd = ['VdebugStart']
+[[plugins]]
+repo = 'othree/html5.vim' #  html5 autocomplete and synta
+on_ft = ['html', 'htmldjango']
+[[plugins]]
+repo = 'SpaceVim/vim-swig' # swig syntax highlighting
+[[plugins]]
+repo = 'WolfgangMehner/perl-support' # perl support
+on_ft = ['perl']
+[[plugins]]
+repo = 'c9s/perlomni.vim' # perl omnicomplete
+on_ft = ['perl']
+[[plugins]]
+repo = 'mattn/emmet-vim' # expanding abbreviations similar to emmet
+on_cmd = ['EmmetInstall']
+[[plugins]]
+repo = 'vim-perl/vim-perl' # perl support
+on_ft = ['perl']
+[[plugins]]
+repo = 'sbl/scvim.git' # vim plugin for supercollider
+on_ft = ['supercollider']
+[[plugins]]
+repo = 'oscarh/vimerl' # vim erlang support
+on_ft = ['erlang']
+[[plugins]]
+repo = 'kballard/vim-swift' # tiny swift support
+on_ft = ['swift']
+[[plugins]]
+repo = 'rhysd/vim-crystal' # crystal language support
+on_ft = ['crystal']
+[[plugins]]
+repo = 'ocaml/merlin' # ocaml support
+on_ft = 'ocaml'
+rtp = 'vim/merlin'
+[[plugins]] # swift autocomplete deoplete support
+repo = 'mitsuse/autocomplete-swift'
+on_ft = 'swift'
+depends = 'deoplete'
+# --[ Go ]---------------------------------------------------------------------------------
+[[plugins]]
+repo = 'jstemmer/gotags.git' # tags for go
+on_ft = ['go']
+[[plugins]]
+repo = 'zchee/deoplete-go' # go autocomplete
+on_ft = ['go']
+depends = 'deoplete'
+build = 'make'
+[[plugins]]
+repo = 'jnwhiteh/vim-golang.git' # golang syntax highlight
+on_ft = ['go']
