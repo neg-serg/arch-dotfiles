@@ -1,28 +1,4 @@
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ misc plugins settings                                                             │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:EclimCompletionMethod    = 'omnifunc' "To provide ycm autocompletion
-let g:livepreview_previewer    = 'zathura'
-let g:eregex_default_enable    = 0
-let g:mta_use_matchparen_group = 0
-let g:colorizer_startup        = 0
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-let g:livepreview_previewer = 'zathura'
-if has("python3")
-    let g:powerline_pycmd = "py3"
-endif
-
-let g:racer_experimental_completer = 1
-let g:racer_cmd = $HOME.'/.cargo/bin/racer'
-augroup layer_lang_rust
-    au FileType rust nmap <buffer><silent> gd <Plug>(rust-def)
-    au FileType rust nmap <buffer><silent> gs <Plug>(rust-def-split)
-    au FileType rust nmap <buffer><silent> gx <Plug>(rust-def-vertical)
-    au FileType rust nmap <buffer><silent> <leader>gd <Plug>(rust-doc)
-augroup END
-" like firefox tabs
-nnoremap <silent> <A-w> :<C-u>call closebuffer#close()<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - autozimu/LanguageClient-neovim                                           │ 
 " │ https://github.com/autozimu/LanguageClient-neovim                                 │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -60,9 +36,7 @@ endif
 " │ https://github.com/w0rp/ale                                                       │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('ale')
-    " '⚡' '😱' '✗' '➽'
-    " ⚑ ⚐ ♒ ⛢ ❕ ❗
-    " ✖ ➤
+    " ⚡😱✗➽⚑⚐♒⛢❕❗✖➤
     let g:ale_sign_warning = '➤ '
     let g:ale_sign_error = '✖'
 
@@ -150,29 +124,6 @@ if dein#tap('fzf.vim')
     function! s:escape(path)
         return substitute(a:path, ' ', '\\ ', 'g')
     endfunction
-
-    function! AgHandler(line)
-        let parts = split(a:line, ':')
-        let [fn, lno] = parts[0 : 1]
-        execute 'e '. s:escape(fn)
-        execute lno
-        normal! zz
-    endfunction
-
-    command! -nargs=+ Fag call fzf#run({
-                \ 'source': 'ag "<args>"',
-                \ 'sink': function('AgHandler'),
-                \ 'options': '+m',
-                \ 'tmux_height': '60%'
-                \ })
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - sjl/gundo.vim.git                                                        │ 
-" │ https://github.com/sjl/gundo.vim.git                                              │ 
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('gundo.vim')
-    let g:gundo_playback_delay = 240
-    nnoremap <Leader>u :GundoToggle<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - SirVer/ultisnips.git                                                     │
@@ -334,31 +285,15 @@ if dein#tap('Join')
     vmap J :Join<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - klen/python-mode.git                                                     │
-" │ https://github.com/klen/python-mode.git                                           │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('python-mode')
-    nmap <silent><Leader>n :PymodeLint<CR>
-    let g:pymode_breakpoint_bind      = '<Leader>B'
-    let g:pymode_lint                 = 1
-    let g:pymode_lint_on_write        = 0
-    let g:pymode_lint_checkers        = ['pylint', 'pep8', 'mccabe', 'pep257']
-    let g:pymode_lint_ignore          = ''
-    let g:pymode_virtualenv           = 0
-    let g:pymode_rope                 = 1
-    let g:pymode_rope_completion      = 0
-    let g:pymode_rope_complete_on_dot = 1
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - gregsexton/gitv.git                                                      │
 " │ https://github.com/gregsexton/gitv.git                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('gitv')
-    let g:Gitv_OpenHorizontal = 'auto'
+    let g:Gitv_OpenHorizontal      = 'auto'
     let g:Gitv_OpenPreviewOnLaunch = 1
-    let g:Gitv_WipeAllOnClose = 1
-    let g:Gitv_DoNotMapCtrlKey = 1
-    let g:Gitv_CommitStep = 1024
+    let g:Gitv_WipeAllOnClose      = 1
+    let g:Gitv_DoNotMapCtrlKey     = 1
+    let g:Gitv_CommitStep          = 1024
     nnoremap <silent> <leader>gv :Gitv --all<CR>
     nnoremap <silent> <leader>gV :Gitv! --all<CR>
     vnoremap <silent> <leader>gV :Gitv! --all<CR>
@@ -369,8 +304,8 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('ListToggle')
     let g:lt_height = 10
-    let g:lt_location_list_toggle_map = '[Quickfix]<Space>'
-    let g:lt_quickfix_list_toggle_map = '[Quickfix]S-q'
+    let g:lt_location_list_toggle_map = '[Quickfix]S-q'
+    let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Raimondi/delimitMate.git                                                 │
@@ -514,6 +449,7 @@ if dein#tap('eregex.vim')
     " NOTE: We're using %S here instead of %s; the capital S version comes from the
     " eregex.vim plugin and uses Perl-style regular expressions.
     vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
+    let g:eregex_default_enable    = 0
     " Toggles '/' to mean eregex search or normal Vim search
     nnoremap <leader>/ :call eregex#toggle()<CR>
 endif
@@ -571,35 +507,6 @@ if dein#tap('tabular')
     vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - dag/vim2hs                                                               │ 
-" │ git@github.com:dag/vim2hs                                                         │ 
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vim2hs') 
-    let g:haskell_conceal_enumerations = 1
-    let g:haskell_quasi                = 1
-    let g:haskell_interpolation        = 1
-    let g:haskell_regex                = 1
-    let g:haskell_jmacro               = 1
-    let g:haskell_shqq                 = 1
-    let g:haskell_sql                  = 1
-    let g:haskell_json                 = 1
-    let g:haskell_xml                  = 1
-    let g:haskell_hsp                  = 1
-    let g:haskell_multiline_strings    = 1
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - vim-ruby                                                                 │ 
-" │ https://github.com/kana/vim-ruby/vim-ruby.git                                     │ 
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if !has("nvim")
-    if dein#tap('vim-ruby')
-        autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-        autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-        autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-        autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-    endif
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - luochen1990/rainbow                                                      │
 " │ https://github.com/luochen1990/rainbow.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -633,8 +540,8 @@ endif
 " │ https://github.com/rstacruz/sparkup                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('sparkup')
-    let g:sparkupMapsNormal     = 0 "default = 0
-    let g:sparkupMaps           = 1 "default = 1
+    let g:sparkupMapsNormal     = 0       "default = 0
+    let g:sparkupMaps           = 0       "default = 1
     let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -662,23 +569,6 @@ if dein#tap('onedark')
         \ "special_grey": { "gui": "#2D3B42", "cterm": "238", "cterm16": "15" },
         \ "vertsplit": { "gui": "#202A2F", "cterm": "59", "cterm16": "15" }
     \}
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - neomake/neomake                                                          │
-" │ https://github.com/neomake/neomake                                                │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('neomake')
-    " 1 open list and move cursor 2 open list without move cursor
-    let g:neomake_open_list = 2
-    let g:neomake_verbose = 0
-    let g:neomake_error_sign = {
-        \ 'text': '✖',
-        \ 'texthl': 'error',
-        \ }
-    let g:neomake_warning_sign = {
-        \ 'text': '➤',
-        \ 'texthl': 'todo',
-        \ }
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - fatih/vim-go.git                                                         │
@@ -727,31 +617,18 @@ if dein#tap('vim-markdown')
     endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - tpope/vim-projectionist                                                  │ 
-" │ https://github.com/tpope/vim-projectionist                                        │ 
+" │ plugin - Yggdroot/indentLine                                                      │
+" │ https://github.com/Yggdroot/indentLine                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vim-projectionist')
-    let g:projectionist_heuristics = {
-        \   '*': {
-        \     '*.c': {
-        \       'alternate': '{}.h',
-        \       'type': 'source'
-        \     },
-        \     '*.h': {
-        \       'alternate': '{}.c',
-        \       'type': 'header'
-        \     },
-        \
-        \     '*.js': {
-        \       'alternate': '{dirname}/__tests__/{basename}-test.js',
-        \       'type': 'source'
-        \     },
-        \     '**/__tests__/*-test.js': {
-        \       'alternate': '{dirname}/{basename}.js',
-        \       'type': 'test'
-        \     }
-        \   }
-        \ }
+if dein#tap('indentLine')
+    let g:indentLine_enabled                    = 1
+    let g:indentLine_setColors                  = 1
+    let g:indentLine_color_term                 = 239
+    let g:indentLine_char                       = '┆'
+    " none X terminal
+    let g:indentLine_bgcolor_gui                = '#040404'
+    let g:indentLine_concealcursor              = 'inc'
+    let g:indentLine_conceallevel               = 2
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - itchyny/lightline.vim                                                    │
