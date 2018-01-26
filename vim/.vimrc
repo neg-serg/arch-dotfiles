@@ -37,16 +37,11 @@ if 1
     let g:loaded_zipPlugin       = 1 " Don't use archive-related plugins
 endif
 
-if has('vim_starting') && has('reltime')
-    let g:startuptime = reltime()
-    augroup vimrc-startuptime
-        autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
-                    \ | redraw
-                    \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
-        let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket'
-        autocmd! VimEnter * let g:nvim_is_started="on"
-    augroup END
-endif
+let g:startuptime = reltime()
+    autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
+                \ | redraw
+                \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+    let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket' | let g:nvim_is_started="on"
 
 if has('nvim')
     let g:python_interpreter='python2'
@@ -72,6 +67,7 @@ set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim/
 if dein#load_state(expand('~/.vim/repos'))
     call dein#begin(expand('~/.vim'))
     call dein#load_toml('~/.vim/dein.toml', {'lazy' : 0})
+    call dein#load_toml('~/.vim/dein_lazy.toml', {'lazy' : 1})
     call dein#end()
     call dein#save_state()
 endif
