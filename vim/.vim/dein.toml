@@ -7,14 +7,13 @@ repo = 'Shougo/neomru.vim' # add neomru source
 repo = 'itchyny/lightline.vim' # lightline statusline
 [[plugins]]
 repo = 'maximbaz/lightline-ale' # lightline ale mod
+[[plugins]]
+repo = 'sheerun/vim-polyglot' #  language pack collection
 # --[ Edit ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'sbdchd/neoformat' # universal formatter
 [[plugins]]
 repo = 'SirVer/ultisnips.git' # Snippets with ycm compatibility
-[[plugins]]
-repo = 'godlygeek/tabular.git' # for tabularizing
-on_cmd = 'Tabularize'
 [[plugins]]
 repo = 'chrisbra/Join.git' # Extended and fast Join for vim
 [[plugins]]
@@ -69,9 +68,6 @@ merged = 0
 [[plugins]]
 repo = 'junegunn/fzf.vim' #  fzf vim bindings
 depends = 'fzf'
-[[plugins]]
-repo = 'teto/nvim-palette' # fzf-finder for vim options
-do = ':UpdateRemotePlugins'
 [[plugins]]
 repo = 'sjbach/lusty.git' # file/buffer explorer
 # ----------------------------------------------------------------------------------------
@@ -191,8 +187,6 @@ repo = 'Shougo/vimfiler.vim' #  Vim file manager
 [[plugins]]
 repo = 's3rvac/AutoFenc' #  try to autodelect filetype
 [[plugins]]
-repo = 'sheerun/vim-polyglot' #  language pack collection
-[[plugins]]
 repo = 'wellle/targets.vim' # better text objects
 [[plugins]]
 repo = 'vim-scripts/Improved-AnsiEsc' # text to esc-seqs in vim
@@ -219,9 +213,6 @@ repo = 'justinmk/vim-gtfo' # to term of fm
 [[plugins]]
 repo = 'ReekenX/vim-rename2.git' # rename for files even with spaces in filename
 [[plugins]]
-repo = 'zchee/deoplete-zsh' # zsh autocompletion
-depends = 'deoplete'
-[[plugins]]
 repo = 'haya14busa/incsearch.vim' # highlight all patterns, not only current
 merged = 0
 [[plugins]]
@@ -232,9 +223,6 @@ repo = 'Yggdroot/indentLine' # indentlines
 [[plugins]]
 repo = 'tpope/vim-scriptease' # better interaction with viml
 [[plugins]]
-repo = 'ntpeters/vim-better-whitespace' # find whitespaces with ease
-on_cmd = 'StripWhitespace'
-[[plugins]]
 repo = 'haya14busa/vim-asterisk' # better asterisk commands
 [[plugins]]
 repo = 'Shougo/deol.nvim' # better neovim terminal-based mode
@@ -244,9 +232,3 @@ repo = 'ahw/vim-hooks' # try to add some custom hooks with it
 repo = 'itchyny/vim-parenmatch' #  An efficient alternative to the standard matchparen plugin
 [[plugins]]
 repo = 'itchyny/calendar.vim' #  Google calendar in vim
-# --[ R ]----------------------------------------------------------------------------------
-[[plugins]]
-repo = 'jalvesaq/Nvim-R' # nvim R support
-# --[ Mono ]-------------------------------------------------------------------------------
-[[plugins]]
-repo = 'nosami/Omnisharp.git' # omnisharp completion
