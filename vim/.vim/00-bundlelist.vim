@@ -6,31 +6,6 @@ if dein#load_state(expand('~/.vim/repos'))
     if executable(resolve(expand('rg')))
         call dein#add('jremmen/vim-ripgrep')
     endif
-    " fzf vim bindings
-    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-    "fzf-finder for vim options
-    call dein#add('teto/nvim-palette', { 'do': ':UpdateRemotePlugins'})
-    "file/buffer explorer
-    call dein#add('sjbach/lusty.git')
-    "--[ Edit ]-------------------------------------------------------------------------------
-    "universal formatter
-    call dein#add('sbdchd/neoformat')
-    ""Snippets with ycm compatibility
-    call dein#add('SirVer/ultisnips.git')
-    "for tabularizing
-    call dein#add('godlygeek/tabular.git', { 'on_cmd' : 'Tabularize'})
-    "Extended and fast Join for vim
-    call dein#add('chrisbra/Join.git')
-    "good mappings and toggles
-    call dein#add('tpope/vim-unimpaired.git')
-    "dot for everything
-    call dein#add('tpope/vim-repeat')
-    "undo tree
-    call dein#add('simnalamburt/vim-mundo', {'on_cmd': ['MundoToggle']})
-    "autopair ()[]{}
-    call dein#add('Raimondi/delimitMate')
-    "new commands to vim for (){}[]''""<>
-    call dein#add('tpope/vim-surround')
     "-----------------------------------------------------------------------------------------
     "modern vim autocomplete
     call dein#add('Shougo/neco-vim')

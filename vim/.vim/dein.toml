@@ -16,6 +16,27 @@ repo = 'Shougo/neomru.vim' # add neomru source
 repo = 'itchyny/lightline.vim' # lightline statusline
 [[plugins]]
 repo = 'maximbaz/lightline-ale' # lightline ale mod
+# --[ Edit ]-------------------------------------------------------------------------------
+[[plugins]]
+repo ='sbdchd/neoformat' # universal formatter
+[[plugins]]
+repo ='SirVer/ultisnips.git' # Snippets with ycm compatibility
+[[plugins]]
+repo = 'godlygeek/tabular.git' # for tabularizing 
+on_cmd = 'Tabularize'
+[[plugins]]
+repo ='chrisbra/Join.git' # Extended and fast Join for vim 
+[[plugins]]
+repo ='tpope/vim-unimpaired.git' # good mappings and toggles 
+[[plugins]]
+repo ='tpope/vim-repeat' # dot for everything 
+[[plugins]]
+repo = 'simnalamburt/vim-mundo' # undo tree
+on_cmd = 'MundoToggle'
+[[plugins]]
+repo = 'Raimondi/delimitMate' # autopair ([]{}
+[[plugins]]
+repo = 'tpope/vim-surround' # new commands to vim for ({}[]''# # <>
 #--[ Additions ]--------------------------------------------------------------------------
 [[plugins]]
 repo = 'kopischke/vim-fetch' # vim path/to/file.ext:12:3
@@ -55,6 +76,14 @@ repo = 'dyng/ctrlsf.vim' # interactive vim-grep
 repo = 'mhinz/vim-grepper' # yet another interactive grepper
 [[plugins]]
 repo = 'junegunn/fzf' # fast fuzzy finder
+[[plugins]]
+repo = 'junegunn/fzf.vim' #  fzf vim bindings
+depends = 'fzf'
+[[plugins]]
+repo = 'teto/nvim-palette' # fzf-finder for vim options
+do = ':UpdateRemotePlugins'
+[[plugins]]
+repo = 'sjbach/lusty.git' # file/buffer explorer
 # --[ Web ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'rstacruz/sparkup.git' # write html code faster
