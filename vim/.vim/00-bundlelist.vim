@@ -7,10 +7,7 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#load_toml('~/.vim/dein.toml', {'lazy' : 0})
     if s:nvim_deoplete
         "dark-powered completion engine
-        call dein#add('Shougo/deoplete.nvim', {
-          \ 'on_event' : 'InsertEnter',
-          \ 'loadconf' : 1,
-          \ })
+        call dein#add('Shougo/deoplete.nvim', { 'on_event' : 'InsertEnter', 'loadconf' : 1 })
         "include completion framework for neocomplete/deoplete
         call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
         "better completions with deoplete
@@ -18,45 +15,16 @@ if dein#load_state(expand('~/.vim/repos'))
     elseif s:nvim_completion_manager
         call dein#add('roxma/nvim-completion-manager')
     endif
-    "--[ Additions ]--------------------------------------------------------------------------
-    "vim path/to/file.ext:12:3
-    call dein#add('kopischke/vim-fetch')
-    "vim arg wrapper
-    call dein#add('FooSoft/vim-argwrap')
-    "toggle quickfix and location list <leader>l by def
-    call dein#add('Valloric/ListToggle.git')
-    "better alternate files switcher and more
-    call dein#add('tpope/vim-projectionist', { 'on_cmd' : ['A', 'AS', 'AV',
-        \ 'AT', 'AD', 'Cd', 'Lcd', 'ProjectDo']})
-    "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
-    call dein#add('lyokha/vim-xkbswitch.git')
-    "powerful vim spell-checking with LangTool
-    call dein#add('rhysd/vim-grammarous')
     "--[ Search ]-----------------------------------------------------------------------------
     if executable(resolve(expand('rg')))
         call dein#add('jremmen/vim-ripgrep')
     endif
-    "interactive vim-grep
-    call dein#add('dyng/ctrlsf.vim')
-    "yet another interactive grepper
-    call dein#add('mhinz/vim-grepper')
-    " fast fuzzy finder
-    call dein#add('junegunn/fzf')
-    "fzf vim bindings
+    " fzf vim bindings
     call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
     "fzf-finder for vim options
     call dein#add('teto/nvim-palette', { 'do': ':UpdateRemotePlugins'})
     "file/buffer explorer
     call dein#add('sjbach/lusty.git')
-    "--[ Rice ]-------------------------------------------------------------------------------
-    "rainbow parentheses
-    call dein#add('luochen1990/rainbow')
-    "css and colors colorizer
-    call dein#add('chrisbra/colorizer')
-    "highlight colors in terminal
-    call dein#add('sunaku/vim-hicterm')
-    "visual replace for multiple files
-    call dein#add('thinca/vim-qfreplace.git')
     "--[ Edit ]-------------------------------------------------------------------------------
     "universal formatter
     call dein#add('sbdchd/neoformat')
@@ -77,18 +45,6 @@ if dein#load_state(expand('~/.vim/repos'))
     "new commands to vim for (){}[]''""<>
     call dein#add('tpope/vim-surround')
     "-----------------------------------------------------------------------------------------
-    "stack trace parser
-    call dein#add('mattboehm/vim-unstack')
-    "jump for vim ids without tags
-    call dein#add('mhinz/vim-lookup')
-    "generate config for ycm
-    call dein#add('rdnetto/YCM-Generator')
-    "automake dir which didnt exists
-    call dein#add('mopp/autodirmake.vim.git')
-    "for SudoWrite, Locate, Find etc
-    call dein#add('tpope/vim-eunuch.git')
-    "for different case coersion
-    call dein#add('tpope/vim-abolish')
     if s:nvim_deoplete
         "modern vim autocomplete
         call dein#add('Shougo/neco-vim')
@@ -113,6 +69,8 @@ if dein#load_state(expand('~/.vim/repos'))
         call dein#add('airblade/vim-gitgutter.git')
         "vimagit like magit from emacs inter. mode
         call dein#add('jreybert/vimagit')
+        "gitk for vim
+        call dein#add('gregsexton/gitv')
     endif
     "----------------------------------------------------------------------------------------
     if executable(resolve(expand('tmux')))
@@ -203,10 +161,8 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('chrisbra/vim-diff-enhanced.git')
     "provide async build via tmux
     call dein#add('tpope/vim-dispatch.git')
-    if has('nvim')
-        "ale as linter
-        call dein#add('w0rp/ale', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
-    endif
+    "ale as linter
+    call dein#add('w0rp/ale', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
     if executable(resolve(expand('rc')))
         "rtags plugin for vim
         call dein#add('lyuts/vim-rtags.git')
