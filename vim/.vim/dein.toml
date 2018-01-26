@@ -84,39 +84,92 @@ repo = 'teto/nvim-palette' # fzf-finder for vim options
 do = ':UpdateRemotePlugins'
 [[plugins]]
 repo = 'sjbach/lusty.git' # file/buffer explorer
+# ----------------------------------------------------------------------------------------
+[[plugins]]
+repo = 'Shougo/neco-vim' # modern vim autocomplete
+# --[ Docs ]------------------------------------------------------------------------------
+[[plugins]]
+repo = 'mhinz/vim-rfc' # view and search rfc
+[[plugins]]
+repo = 'thinca/vim-ref.git' # integrated reference viewer man/perldoc etc
+# --[ Dev ]-------------------------------------------------------------------------------
+[[plugins]]
+repo = 'majutsushi/tagbar' # tag bar
+[[plugins]]
+repo = 'chrisbra/vim-diff-enhanced.git' # patience diff
+[[plugins]]
+repo = 'tpope/vim-dispatch.git' # provide async build via tmux
+[[plugins]]
+repo = 'w0rp/ale' # ale as linter
+[[plugins]]
+repo = 'tpope/vim-commentary.git' # try it instead of tcommentc
+[[plugins]]
+repo = 'tpope/vim-endwise' # to insert endif for if, end for begin and so on
+[[plugins]]
+repo = 'dbakker/vim-projectroot' # better rooter
+[[plugins]]
+repo = 'derekwyatt/vim-fswitch.git' # switching between companion source files (e.g. .h and .cpp
+[[plugins]]
+repo = 'janko-m/vim-test.git' # easy testing for various langs
 # --[ Web ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'rstacruz/sparkup.git' # write html code faster
-on_ft = 'html'
+on_ft = ['html']
 [[plugins]]
 repo = 'tpope/vim-markdown' # markdown vim mode
-on_ft = 'markdown'
+on_ft = ['markdown']
 [[plugins]]
 repo = 'marijnh/tern_for_vim' # tern for vim
-on_ft = 'javascript'
+on_ft = ['javascript']
 build = 'npm install'
 [[plugins]]
 repo = 'carlitux/deoplete-ternjs' # deoplete tern support
-on_ft = 'javascript'
+on_ft = ['javascript']
 [[plugins]]
 repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
-on_ft = 'javascript'
+on_ft = ['javascript']
 [[plugins]]
 repo = 'joker1007/vim-markdown-quote-syntax' # highlight through quote syntax
-on_ft = 'markdown'
+on_ft = ['markdown']
 [[plugins]]
 repo = 'mzlogin/vim-markdown-toc' # plugin to autogenerate table of contents for markdown
-on_ft = 'markdown'
+on_ft = ['markdown']
 [[plugins]]
 repo = 'iamcco/markdown-preview.vim' # markdown preview
-on_ft = 'markdown'
+on_ft = ['markdown']
 [[plugins]]
 repo = 'iamcco/mathjax-support-for-mkdp' # mathjax support for markdown preview
-on_ft = 'markdown'
+on_ft = ['markdown']
+# --[ Python ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'vim-scripts/IndentConsistencyCop.git' # autochecks for indent
+on_ft = ['python']
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent.git' # python autoindent pep8 compatible
+on_ft = ['python']
+[[plugins]]
+repo = 'fs111/pydoc.vim' # pydoc integration
+on_ft = ['python']
+[[plugins]]
+repo = 'mkomitee/vim-gf-python.git' # gf for python
+on_ft = ['python']
+[[plugins]]
+repo = 'zchee/deoplete-jedi' # jedi bindings for deoplete
+on_ft = ['python']
+# --[ Scala ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'ensime/ensime-vim' # scala vim autocompletion
+on_ft = ['scala']
+[[plugins]]
+repo = 'derekwyatt/vim-scala' # various initial scala support for vim
+on_ft = ['scala']
+[[plugins]]
+repo = 'derekwyatt/vim-sbt' # basic SBT support for vim
+on_ft = ['scala']
 # --[ LaTeX ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'donRaphaco/neotex'
-on_ft = 'tex'
+on_ft = ['tex']
 # ---------------[ Misc syntax ]----------------------------------------------------------
 [[plugins]]
 repo = 'sheerun/vim-polyglot' # all-in-one vim syntax plugin
@@ -127,10 +180,10 @@ repo = 'blindFS/vim-regionsyntax' #  region syntax highlighting
 on_ft = ['vimwiki', 'markdown', 'tex', 'html']
 [[plugins]]
 repo = 'leafo/moonscript-vim' # basic moonscript support
-on_ft = 'moonscript'
+on_ft = ['moonscript']
 [[plugins]]
 repo = 'baskerville/vim-sxhkdrc' # sxhkd config syntax
-on_ft = 'sxhkdrc'
+on_ft = ['sxhkdrc']
 [[plugins]]
 repo = 'arakashic/chromatica.nvim' # semantic highlight
 [[plugins]]

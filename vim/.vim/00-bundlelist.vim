@@ -1,4 +1,3 @@
-"--[ Main ]------------------------------------------------------------------------------
 if dein#load_state(expand('~/.vim/repos'))
     call dein#begin(expand('~/.vim'))
     call dein#load_toml('~/.vim/dein.toml', {'lazy' : 0})
@@ -6,9 +5,6 @@ if dein#load_state(expand('~/.vim/repos'))
     if executable(resolve(expand('rg')))
         call dein#add('jremmen/vim-ripgrep')
     endif
-    "-----------------------------------------------------------------------------------------
-    "modern vim autocomplete
-    call dein#add('Shougo/neco-vim')
     "--[ dcvs ]------------------------------------------------------------------------------
     if executable(resolve(expand('git')))
         "Git stuff. Needed for powerline etc
@@ -105,59 +101,6 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('itchyny/vim-parenmatch')
     " Google calendar in vim
     call dein#add('itchyny/calendar.vim')
-    "--[ Docs ]------------------------------------------------------------------------------
-    "view and search rfc
-    call dein#add('mhinz/vim-rfc')
-    "prints doc in echo area
-    call dein#add('Shougo/echodoc.vim')
-    "integrated reference viewer man/perldoc etc
-    call dein#add('thinca/vim-ref.git')
-    "dasht integration
-    call dein#add('sunaku/vim-dasht')
-    "--[ Dev ]-------------------------------------------------------------------------------
-    call dein#add('majutsushi/tagbar')
-    "patience diff
-    call dein#add('chrisbra/vim-diff-enhanced.git')
-    "provide async build via tmux
-    call dein#add('tpope/vim-dispatch.git')
-    "ale as linter
-    call dein#add('w0rp/ale', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
-    if executable(resolve(expand('rc')))
-        "rtags plugin for vim
-        call dein#add('lyuts/vim-rtags.git')
-    endif
-    if executable(resolve(expand('lldb')))
-        "lldb bindings to neovim
-        call dein#add('critiqjo/lldb.nvim')
-    endif
-    "try it instead of tcommentc
-    call dein#add('tpope/vim-commentary.git')
-    "to insert endif for if, end for begin and so on
-    call dein#add('tpope/vim-endwise')
-    "better rooter
-    call dein#add('dbakker/vim-projectroot')
-    "switching between companion source files (e.g. .h and .cpp)
-    call dein#add('derekwyatt/vim-fswitch.git')
-    "easy testing for various langs
-    call dein#add('janko-m/vim-test.git')
-    "--[ Scala ]-----------------------------------------------------------------------------
-    "scala vim autocompletion
-    call dein#add('ensime/ensime-vim')
-    "various initial scala support for vim
-    call dein#add('derekwyatt/vim-scala')
-    "basic SBT support for vim
-    call dein#add('derekwyatt/vim-sbt')
-    "--[ Python ]-----------------------------------------------------------------------------
-    "autochecks for indent
-    call dein#add('vim-scripts/IndentConsistencyCop.git', { 'on_ft' : 'python'})
-    "python autoindent pep8 compatible
-    call dein#add('hynek/vim-python-pep8-indent.git', { 'on_ft' : 'python'})
-    "pydoc integration
-    call dein#add('fs111/pydoc.vim', { 'on_ft' : 'python'})
-    "gf for python
-    call dein#add('mkomitee/vim-gf-python.git', { 'on_ft' : 'python'})
-    "jedi bindings for deoplete
-    call dein#add('zchee/deoplete-jedi', { 'on_ft' : 'python'})
     "--[ R ]----------------------------------------------------------------------------------
     "nvim R support
     call dein#add('jalvesaq/Nvim-R')
