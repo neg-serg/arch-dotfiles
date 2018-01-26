@@ -241,10 +241,6 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#sources#clang#clang_header="/usr/lib/clang/4.0.1"
     let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
 
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function() abort
-        return deoplete#close_popup() . "\<CR>"
-    endfunction
     " java && jsp
     let g:deoplete#omni#input_patterns.java = [
                 \'[^. \t0-9]\.\w*',

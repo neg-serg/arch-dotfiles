@@ -4,6 +4,7 @@ let s:nvim_completion_manager = 0
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state(expand('~/.vim/repos'))
     call dein#begin(expand('~/.vim'))
+    call dein#load_toml('~/.vim/dein.toml', {'lazy' : 0})
     if s:nvim_deoplete
         "dark-powered completion engine
         call dein#add('Shougo/deoplete.nvim', {
@@ -17,12 +18,6 @@ if dein#load_state(expand('~/.vim/repos'))
     elseif s:nvim_completion_manager
         call dein#add('roxma/nvim-completion-manager')
     endif
-    "run a bunch of text
-    call dein#add('thinca/vim-quickrun')
-    "add neomru source
-    call dein#add('Shougo/neomru.vim')
-    "lightline statusline
-    call dein#add('itchyny/lightline.vim')
     "--[ Additions ]--------------------------------------------------------------------------
     "vim path/to/file.ext:12:3
     call dein#add('kopischke/vim-fetch')
@@ -114,8 +109,8 @@ if dein#load_state(expand('~/.vim/repos'))
         call dein#add('junegunn/gv.vim', { 'on_cmd' : 'GV'})
         "diff directories easyer with vim
         call dein#add('vim-scripts/DirDiff.vim.git')
-        "maybe better alternative to gitgutter
-        call dein#add('mhinz/vim-signify')
+        "show last git changes
+        call dein#add('airblade/vim-gitgutter.git')
         "vimagit like magit from emacs inter. mode
         call dein#add('jreybert/vimagit')
     endif
@@ -325,9 +320,6 @@ if dein#load_state(expand('~/.vim/repos'))
         if executable(resolve(expand('ruby')))
             "alternative ruby autocompletion
             call dein#add('osyo-manga/vim-monster')
-            if s:nvim_deoplete
-                call dein#add('zchee/deoplete-go')
-            endif
             "rails plugin from Tim Pope
             call dein#add('tpope/vim-rails.git')
             "ruby rake support
@@ -344,6 +336,12 @@ if dein#load_state(expand('~/.vim/repos'))
             endif
         endif
     endif
+    "--[ Go ]----------------------------------------------------------------------------------
+    if has('go')
+        if s:nvim_deoplete
+            call dein#add('zchee/deoplete-go')
+        endif
+    endif
     "--[ Lisp-like ]---------------------------------------------------------------------------
     "better clojure support
     call dein#add('guns/vim-clojure-static')
@@ -355,9 +353,6 @@ if dein#load_state(expand('~/.vim/repos'))
     if executable(resolve(expand('php')))
         if s:nvim_deoplete
             call dein#add('php-vim/phpcd.vim', { 'on_ft' : 'php', 'build' : 'composer install'})
-        else
-            "better than default phpcomplete.vim
-            call dein#add('shawncplus/phpcomplete.vim.git')
         endif
         "modern php syntax file
         call dein#add('StanAngeloff/php.vim', { 'on_ft' : 'php'})
@@ -462,6 +457,8 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('NLKNguyen/papercolor-theme')
     "solarized with better neovim support
     call dein#add('icymind/NeoSolarized')
+    "totem theme
+    call dein#add('rigaspapas/totem-theme')
     "dark and cold colorscheme
     call dein#add('arcticicestudio/nord-vim')
     "colorscheme and syntax file

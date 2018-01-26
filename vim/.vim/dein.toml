@@ -1,0 +1,11 @@
+[[plugins]]
+# run a bunch of text
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+# add neomru source
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+# lightline statusline
+repo = 'itchyny/lightline.vim'
