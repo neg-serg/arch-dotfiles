@@ -1,3 +1,13 @@
+#--[ Main ]--------------------------------------------------------------------------
+[[plugins]]
+repo = 'Shougo/deoplete.nvim' # dark-powered completion engine
+on_i = 1
+[[plugins]]
+repo = 'Shougo/neoinclude.vim' # include completion framework for neocomplete/deoplete
+on_i = 1
+[[plugins]]
+repo = 'Shougo/echodoc.vim' # better completions with deoplete
+on_i = 1
 [[plugins]]
 repo = 'thinca/vim-quickrun' # run a bunch of text
 [[plugins]]
@@ -45,3 +55,84 @@ repo = 'dyng/ctrlsf.vim' # interactive vim-grep
 repo = 'mhinz/vim-grepper' # yet another interactive grepper
 [[plugins]]
 repo = 'junegunn/fzf' # fast fuzzy finder
+# --[ Web ]-------------------------------------------------------------------------------
+[[plugins]]
+repo = 'rstacruz/sparkup.git' # write html code faster
+on_ft = 'html'
+[[plugins]]
+repo = 'tpope/vim-markdown' # markdown vim mode
+on_ft = 'markdown'
+[[plugins]]
+repo = 'marijnh/tern_for_vim' # tern for vim
+on_ft = 'javascript'
+build = 'npm install'
+[[plugins]]
+repo = 'carlitux/deoplete-ternjs' # deoplete tern support
+on_ft = 'javascript'
+[[plugins]]
+repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
+on_ft = 'javascript'
+[[plugins]]
+repo = 'joker1007/vim-markdown-quote-syntax' # highlight through quote syntax
+on_ft = 'markdown'
+[[plugins]]
+repo = 'mzlogin/vim-markdown-toc' # plugin to autogenerate table of contents for markdown
+on_ft = 'markdown'
+[[plugins]]
+repo = 'iamcco/markdown-preview.vim' # markdown preview
+on_ft = 'markdown'
+[[plugins]]
+repo = 'iamcco/mathjax-support-for-mkdp' # mathjax support for markdown preview
+on_ft = 'markdown'
+# --[ LaTeX ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'donRaphaco/neotex'
+on_ft = 'tex'
+# ---------------[ Misc syntax ]----------------------------------------------------------
+[[plugins]]
+repo = 'sheerun/vim-polyglot' # all-in-one vim syntax plugin
+[[plugins]]
+repo = 'tpope/vim-git' # syntax, indent, and filetype plugin files for git
+[[plugins]]
+repo = 'blindFS/vim-regionsyntax' #  region syntax highlighting
+on_ft = ['vimwiki', 'markdown', 'tex', 'html']
+[[plugins]]
+repo = 'leafo/moonscript-vim' # basic moonscript support
+on_ft = 'moonscript'
+[[plugins]]
+repo = 'baskerville/vim-sxhkdrc' # sxhkd config syntax
+on_ft = 'sxhkdrc'
+[[plugins]]
+repo = 'arakashic/chromatica.nvim' # semantic highlight
+[[plugins]]
+repo = 'whatyouhide/vim-gotham' # gotham colorscheme for nvim
+[[plugins]]
+repo = 'w0ng/vim-hybrid' # hybrid colorscheme
+[[plugins]]
+repo = 'nanotech/jellybeans.vim' # jellybeands colorscheme
+[[plugins]]
+repo = 'joshdick/onedark.vim' # onedark colorscheme
+[[plugins]]
+repo = 'KeitaNakamura/neodark.vim' # neodark colorscheme
+[[plugins]]
+repo = 'MaxSt/FlatColor' # FlatColor colorscheme
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme' # great bright colorscheme
+[[plugins]]
+repo = 'icymind/NeoSolarized' # solarized with better neovim support
+[[plugins]]
+repo = 'rigaspapas/totem-theme' # totem theme
+[[plugins]]
+repo = 'arcticicestudio/nord-vim'  # dark and cold colorscheme
+[[plugins]]
+repo = 'itchyny/landscape.vim' # colorscheme and syntax file
+[[plugins]]
+repo = 'itchyny/vim-closebuffer' # better close buffer
+[[plugins]]
+repo = 'chriskempson/base16-vim' # base16 colorschemes pack
+[[plugins]]
+repo = 'morhetz/gruvbox' # gruvbox colorscheme
+[[plugins]]
+repo = 'tyrannicaltoucan/vim-deep-space' # deepspace colorscheme
+[[plugins]]
+repo = 'ryanoasis/vim-devicons.git' # fancy icons for fonts

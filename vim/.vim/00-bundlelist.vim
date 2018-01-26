@@ -1,20 +1,7 @@
-let s:nvim_deoplete           = 1
-let s:nvim_completion_manager = 0
-
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state(expand('~/.vim/repos'))
     call dein#begin(expand('~/.vim'))
     call dein#load_toml('~/.vim/dein.toml', {'lazy' : 0})
-    if s:nvim_deoplete
-        "dark-powered completion engine
-        call dein#add('Shougo/deoplete.nvim', { 'on_event' : 'InsertEnter', 'loadconf' : 1 })
-        "include completion framework for neocomplete/deoplete
-        call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
-        "better completions with deoplete
-        call dein#add('Shougo/echodoc.vim')
-    elseif s:nvim_completion_manager
-        call dein#add('roxma/nvim-completion-manager')
-    endif
     "--[ Search ]-----------------------------------------------------------------------------
     if executable(resolve(expand('rg')))
         call dein#add('jremmen/vim-ripgrep')
@@ -45,10 +32,8 @@ if dein#load_state(expand('~/.vim/repos'))
     "new commands to vim for (){}[]''""<>
     call dein#add('tpope/vim-surround')
     "-----------------------------------------------------------------------------------------
-    if s:nvim_deoplete
-        "modern vim autocomplete
-        call dein#add('Shougo/neco-vim')
-    endif
+    "modern vim autocomplete
+    call dein#add('Shougo/neco-vim')
     "--[ dcvs ]------------------------------------------------------------------------------
     if executable(resolve(expand('git')))
         "Git stuff. Needed for powerline etc
@@ -123,9 +108,8 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('justinmk/vim-gtfo')
     "rename for files even with spaces in filename
     call dein#add('ReekenX/vim-rename2.git')
-    if s:nvim_deoplete
-        call dein#add('zchee/deoplete-zsh')
-    endif
+    "zsh autocompletion
+    call dein#add('zchee/deoplete-zsh')
     "highlight all patterns, not only current
     call dein#add('haya14busa/incsearch.vim', {'merged' : 0})
     "fuzzy incsearch
@@ -197,14 +181,11 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('fs111/pydoc.vim', { 'on_ft' : 'python'})
     "gf for python
     call dein#add('mkomitee/vim-gf-python.git', { 'on_ft' : 'python'})
-    if s:nvim_deoplete
-        call dein#add('zchee/deoplete-jedi', { 'on_ft' : 'python'})
-    endif
+    "jedi bindings for deoplete
+    call dein#add('zchee/deoplete-jedi', { 'on_ft' : 'python'})
     "--[ R ]----------------------------------------------------------------------------------
-    if has('nvim')
-        "nvim R support
-        call dein#add('jalvesaq/Nvim-R')
-    endif
+    "nvim R support
+    call dein#add('jalvesaq/Nvim-R')
     "--[ Mono ]-------------------------------------------------------------------------------
     if executable('mono')
         "omnisharp completion
@@ -216,14 +197,7 @@ if dein#load_state(expand('~/.vim/repos'))
         call dein#add('jstemmer/gotags.git')
     endif
     if executable(resolve(expand('go')))
-        if s:nvim_deoplete
-            call dein#add('zchee/deoplete-go', {'on_ft' : 'go', 'build': 'make'})
-        else
-            "omnicomplete for go
-            call dein#add('Blackrush/vim-gocode.git')
-            "golang support
-            call dein#add('fatih/vim-go.git', { 'on_ft' : 'go', 'loadconf_before' : 1})
-        endif
+        call dein#add('zchee/deoplete-go', {'on_ft' : 'go', 'build': 'make'})
     endif
     "golang syntax highlight
     call dein#add('jnwhiteh/vim-golang.git')
@@ -235,17 +209,13 @@ if dein#load_state(expand('~/.vim/repos'))
         call dein#add('rust-lang/rust.vim', {'on_ft' : 'rust', 'merged' : 1})
         "rust-cargo bindings
         call dein#add('jtdowney/vimux-cargo')
-        if s:nvim_deoplete
-            " deoplete support via racer
-            call dein#add('sebastianmarkow/deoplete-rust', {'on_ft' : 'rust'})
-        endif
+        " deoplete support via racer
+        call dein#add('sebastianmarkow/deoplete-rust', {'on_ft' : 'rust'})
     endif
     "--[ Elixir ]-----------------------------------------------------------------------------
     if executable(resolve(expand('elixir')))
         " deoplete support via alchemist-server
-        if s:nvim_deoplete
-            call dein#add('slashmili/alchemist.vim', { 'on_ft' : 'elixir'})
-        endif
+        call dein#add('slashmili/alchemist.vim', { 'on_ft' : 'elixir'})
     endif
     "--[ Nim ]---------------------------------------------------------------------------------
     if has('nvim') && has('use_nim')
@@ -264,12 +234,8 @@ if dein#load_state(expand('~/.vim/repos'))
         call dein#add('eagletmt/ghcmod-vim.git', { 'on_ft' : 'haskell'})
         "type-related features
         call dein#add('bitc/vim-hdevtools', { 'on_ft' : 'haskell'})
-        if has('nvim')
-            call dein#add('neovimhaskell/haskell-vim', { 'on_ft' : 'haskell'})
-        else
-            "better haskell syntax hi with better indenting
-            call dein#add('neg-serg/vim2hs', { 'on_ft' : 'haskell'})
-        endif
+        "neovim haskell support
+        call dein#add('neovimhaskell/haskell-vim', { 'on_ft' : 'haskell'})
     endif
     "--[ Ruby ]--------------------------------------------------------------------------------
     if has('ruby')
@@ -294,9 +260,7 @@ if dein#load_state(expand('~/.vim/repos'))
     endif
     "--[ Go ]----------------------------------------------------------------------------------
     if has('go')
-        if s:nvim_deoplete
-            call dein#add('zchee/deoplete-go')
-        endif
+        call dein#add('zchee/deoplete-go')
     endif
     "--[ Lisp-like ]---------------------------------------------------------------------------
     "better clojure support
@@ -307,9 +271,8 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('l04m33/vlime', {'on_ft' : 'lisp', 'rtp': 'vim'})
     "--[ Misc Langs ]--------------------------------------------------------------------------
     if executable(resolve(expand('php')))
-        if s:nvim_deoplete
-            call dein#add('php-vim/phpcd.vim', { 'on_ft' : 'php', 'build' : 'composer install'})
-        endif
+        "php autocomplete
+        call dein#add('php-vim/phpcd.vim', { 'on_ft' : 'php', 'build' : 'composer install'})
         "modern php syntax file
         call dein#add('StanAngeloff/php.vim', { 'on_ft' : 'php'})
         "indenting plugin for php
@@ -341,11 +304,8 @@ if dein#load_state(expand('~/.vim/repos'))
     call dein#add('rhysd/vim-crystal', {'on_ft' : 'crystal'})
     "ocaml support
     call dein#add('ocaml/merlin', {'on_ft' : 'ocaml', 'rtp' : 'vim/merlin'})
-    "swift autocomplete
-    if s:nvim_deoplete
-        "deoplete support
-        call dein#add('mitsuse/autocomplete-swift')
-    endif
+    "swift autocomplete deoplete support
+    call dein#add('mitsuse/autocomplete-swift')
     "----------------[  Tags  ]--------------------------------------------------------------
     "autogen ctags
     call dein#add('szw/vim-tags')
@@ -356,80 +316,9 @@ if dein#load_state(expand('~/.vim/repos'))
         call dein#add('bbchung/gasynctags.git')
         " my gtags-cscope fork
         call dein#add('https://github.com/neg-serg/gtags-cscope-vim')
-        if s:nvim_deoplete
-                " deoplete support
-                call dein#add('ozelentok/deoplete-gtags')
-            endif
+        " deoplete support
+        call dein#add('ozelentok/deoplete-gtags')
     endif
-    "--[ LaTeX ]-----------------------------------------------------------------------------
-    call dein#add('donRaphaco/neotex', {'on_ft': ['tex']})
-    "--[ Web ]-------------------------------------------------------------------------------
-    "write html code faster
-    call dein#add('rstacruz/sparkup.git', {'on_ft': ['html']})
-    "markdown vim mode
-    call dein#add('tpope/vim-markdown', {'on_ft': ['markdown']})
-    "tern for vim
-    call dein#add('marijnh/tern_for_vim', { 'on_ft' : ['javascript'],
-        \ 'build' : 'npm install',
-        \ })
-    "deoplete tern support
-    call dein#add('carlitux/deoplete-ternjs', { 'on_ft' : ['javascript']})
-    "neoformat formatter ;)
-    call dein#add('maksimr/vim-jsbeautify', { 'on_ft' : ['javascript']})
-    "highlight through quote syntax
-    call dein#add('joker1007/vim-markdown-quote-syntax', { 'on_ft' : 'markdown'})
-    "plugin to autogenerate table of contents for markdown
-    call dein#add('mzlogin/vim-markdown-toc',{ 'on_ft' : 'markdown'})
-    "markdown preview
-    call dein#add('iamcco/markdown-preview.vim',{ 'on_ft' : 'markdown'})
-    "mathjax support for markdown preview
-    call dein#add('iamcco/mathjax-support-for-mkdp',{ 'on_ft' : 'markdown'})
-    "---------------[ Misc syntax ]----------------------------------------------------------
-    "all-in-one vim syntax plugin
-    call dein#add('sheerun/vim-polyglot')
-    "syntax, indent, and filetype plugin files for git
-    call dein#add('tpope/vim-git')
-    " region syntax highlighting
-    call dein#add('blindFS/vim-regionsyntax', {'on_ft': ['vimwiki', 'markdown', 'tex', 'html']})
-    "basic moonscript support
-    call dein#add('leafo/moonscript-vim', {'on_ft': ['moonscript']})
-    "sxhkd config syntax
-    call dein#add('baskerville/vim-sxhkdrc', {'on_ft': ['sxhkdrc']})
-    "semantic highlight
-    call dein#add('arakashic/chromatica.nvim')
-    "gotham colorscheme for nvim
-    call dein#add('whatyouhide/vim-gotham')
-    "hybrid colorscheme
-    call dein#add('w0ng/vim-hybrid')
-    "jellybeands colorscheme
-    call dein#add('nanotech/jellybeans.vim')
-    "onedark colorscheme
-    call dein#add('joshdick/onedark.vim')
-    "neodark colorscheme
-    call dein#add('KeitaNakamura/neodark.vim')
-    "FlatColor colorscheme
-    call dein#add('MaxSt/FlatColor')
-    "great bright colorscheme
-    call dein#add('NLKNguyen/papercolor-theme')
-    "solarized with better neovim support
-    call dein#add('icymind/NeoSolarized')
-    "totem theme
-    call dein#add('rigaspapas/totem-theme')
-    "dark and cold colorscheme
-    call dein#add('arcticicestudio/nord-vim')
-    "colorscheme and syntax file
-    call dein#add('itchyny/landscape.vim')
-    "better close buffer
-    call dein#add('itchyny/vim-closebuffer')
-    "base16 colorschemes pack
-    call dein#add('chriskempson/base16-vim')
-    "gruvbox colorscheme
-    call dein#add('morhetz/gruvbox')
-    "deepspace colorscheme
-    call dein#add('tyrannicaltoucan/vim-deep-space')
-    "fancy icons for fonts
-    call dein#add('ryanoasis/vim-devicons.git')
-
     call dein#end()
     call dein#save_state()
 endif
