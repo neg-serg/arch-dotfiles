@@ -68,8 +68,6 @@ if (!isdirectory(expand('$HOME/.vim/repos/github.com/Shougo/dein.vim')))
     call system(expand('git clone https://github.com/Shougo/dein.vim $HOME/.vim/repos/github.com/Shougo/dein.vim'))
 endif
 
-set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim/
-
 source ~/.vim/00-bundlelist.vim
 source ~/.vim/02-keymaps.vim
 source ~/.vim/03-plugins-config.vim
