@@ -1,11 +1,47 @@
 [[plugins]]
-# run a bunch of text
-repo = 'thinca/vim-quickrun'
-
+repo = 'thinca/vim-quickrun' # run a bunch of text
 [[plugins]]
-# add neomru source
-repo = 'Shougo/neomru.vim'
-
+repo = 'Shougo/neomru.vim' # add neomru source
 [[plugins]]
-# lightline statusline
-repo = 'itchyny/lightline.vim'
+repo = 'itchyny/lightline.vim' # lightline statusline
+[[plugins]]
+repo = 'maximbaz/lightline-ale' # lightline ale mod
+#--[ Additions ]--------------------------------------------------------------------------
+[[plugins]]
+repo = 'kopischke/vim-fetch' # vim path/to/file.ext:12:3
+[[plugins]]
+repo = 'FooSoft/vim-argwrap' # vim arg wrapper
+[[plugins]]
+repo = 'Valloric/ListToggle.git' # toggle quickfix and location list <leader>l by def
+[[plugins]]
+repo = 'lyokha/vim-xkbswitch.git' # Autoswitch on <esc> with libxkb needs xkb-switch-git to run
+[[plugins]]
+repo = 'rhysd/vim-grammarous' # powerful vim spell-checking with LangTool
+# --[ Rice ]-------------------------------------------------------------------------------
+[[plugins]]
+repo = 'luochen1990/rainbow' # rainbow parentheses
+[[plugins]]
+repo = 'chrisbra/colorizer' # css and colors colorizer
+[[plugins]]
+repo = 'sunaku/vim-hicterm' # highlight colors in terminal
+[[plugins]]
+repo = 'thinca/vim-qfreplace.git' # visual replace for multiple files
+[[plugins]]
+repo = 'mattboehm/vim-unstack' # stack trace parser
+[[plugins]]
+repo = 'mhinz/vim-lookup' # jump for vim ids without tags
+[[plugins]]
+repo = 'rdnetto/YCM-Generator' # generate config for ycm
+[[plugins]]
+repo = 'mopp/autodirmake.vim.git' # automake dir which didnt exists
+[[plugins]]
+repo = 'tpope/vim-eunuch.git' # for SudoWrite, Locate, Find etc
+[[plugins]]
+repo = 'tpope/vim-abolish' # for different case coersion
+#--[ Search ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'dyng/ctrlsf.vim' # interactive vim-grep
+[[plugins]]
+repo = 'mhinz/vim-grepper' # yet another interactive grepper
+[[plugins]]
+repo = 'junegunn/fzf' # fast fuzzy finder
