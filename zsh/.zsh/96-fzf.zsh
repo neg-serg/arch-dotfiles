@@ -7,13 +7,13 @@ __fzfcmd() {
     echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
 }
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "\!{.git,node_modules}/*"'
+export SKIM_DEFAULT_OPTIONS="${SKIM_DEFAULT_OPTS} --color=16 --ansi --tabstop=4 "
+export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g'
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=16"
 export FZF_TMUX=1
-
-export SKIM_DEFAULT_OPTIONS="${SKIM_DEFAULT_OPTS} --color=16"
-export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "\!{.git,node_modules}/*"'
 
 # CTRL-R - Paste the selected command from history into the command line
 fzf-history-widget() {
@@ -106,7 +106,7 @@ function pl(){
         --hidden
         --follow
     )
-    run_command=(sk-tmux -c \'${rg_cmd[@]}\' -d 40% --)
+    run_command=(sk-tmux -c \'${rg_cmd[@]}\' -d 40% -- ${SKIM_DEFAULT_OPTIONS})
     find_result="$(eval ${run_command[@]})"
     xsel <<< "${find_result}"
     if [[ ! -z ${find_result} ]]; then
