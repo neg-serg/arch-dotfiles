@@ -93,8 +93,8 @@ set ${torrent,ws10} " κ:torrent"
 set ${vm,ws11} "λ:vm"
 set ${wine,ws12} "μ:wine"
 set ${spotify,ws13} " ν:spotify"
-set $sxiv " ξ: [pic]"
-set $graph " ο: [graph]"
+set ${sxiv,ws14} " ξ: [pic]"
+set ${graph,ws15} " ο: [graph]"
 
 #---------------------------------
 # ░█░█░█▄█░░░░░█▀▄░█░█░█░░░█▀▀░█▀▀
@@ -133,31 +133,24 @@ for_window [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]  move container to wor
 for_window [class="rdesktop" instance="rdesktop"] floating enable
 for_window [class="spotify"] move container to workspace $spotify
 for_window [class="Sxiv"]  move container to workspace $sxiv, workspace $sxiv, focus
-for_window [class="^(Tilda|Guake)$"] floating enable
 for_window [class="^(Vuze|Ktorrent)$"] move container to workspace $torrent
-for_window [class="^(Xmessage|XFontSel|XCalc|Xfce)$"] floating enable
+for_window [class="^(Tilda|Guake|Xmessage|XFontSel|XCalc|Xfce)$"] floating enable
 for_window [class="^(XRebirth|UE4Editor)$"] floating enable, move container to workspace $wine, workspace $wine, focus
 for_window [class="yakuake"] floating enable
-for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"] floating enable
-for_window [instance="^(gcalctool|galculator)$"] floating enable
-for_window [instance="gparted"] move container to workspace $admin
-for_window [instance="_logs_"] move container to workspace $admin
-for_window [instance="recoll"] move container to workspace $admin
-for_window [instance="^(remmina|htop_term|glances_term|gnome-disks)$"] move container to workspace $admin
+for_window [instance="^(gcalctool|galculator|console|gdb|mixer|htop|gcolor2|gpick)$"] floating enable
+for_window [instance="^(gparted|_logs_|recoll|remmina|htop_term|glances_term|gnome-disks)$"] move container to workspace $admin
 for_window [instance="^(subl3|sublime_text)$"] move container to workspace $dev, workspace $dev, focus
 for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floating enable
-for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
-for_window [instance="wicd"] floating enable
+for_window [instance="^(Update|gnome-keyring|file-progress|wicd)$"] floating enable
 for_window [instance="^(wim|nwim)$"] move container to workspace $dev, workspace $dev, focus
 for_window $sclient move container to workspace $steam, workspace $steam, focus
 for_window $steam_games move container to workspace $steam, workspace $steam, fullscreen enable, focus
 for_window $steam_all mark steam_all, move container to workspace $steam, workspace $steam, focus
 for_window [title="^Compress.*"] floating enable
-for_window [title="Preferences$"] floating enable
+for_window [title="^(Preferences)$"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
-for_window [title="^webcam$"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
+for_window [title="webcam"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
 for_window [class="wpg"] floating enable, move absolute position 1210 626, resize set 700 500, focus
-for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
 for_window [class="^(telegram-desktop|Skype|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
@@ -207,8 +200,6 @@ mode "" {
     bindsym a mode "default", [window_type=dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
     bindsym {i,o,$S+O} mode "default", exec ~/bin/pls -{output,sink,vol}
-    bindsym q mode "default", exec ~/bin/mpd_sel.sh
-    bindsym $S+k mode "default", exec ~/bin/scripts/toggle_keynav
     bindsym $c+t mode "default", exec tor-browser-en
 	bindsym $S+d floating toggle; $exit
 	bindsym $S+l exec ~/bin/scripts/lock/lock.sh && sleep 0.5s; $exit
@@ -227,21 +218,19 @@ mode "" {
     bindsym {Return,Escape,$c+C,$c+G} $exit
 }
 
-bindsym $m4+F1 exec ~/.config/i3/send.py circle next jetbrains-idea
 bindsym $m4+{x,1} exec ~/.config/i3/send.py circle next {term,nwim}
-bindsym $m4+$S+2 exec ~/.config/i3/send.py circle next jetbrains-clion
-bindsym $m4+$S+1 exec ~/.config/i3/send.py circle next emacs
+bindsym $m4+F{1,2} exec ~/.config/i3/send.py circle next jetbrains-{idea,clion}
+bindsym $m4+F3 exec ~/.config/i3/send.py circle next emacs
 bindsym $m4+$c+{v,e} exec ~/.config/i3/send.py circle next {vm,steam}
 bindsym $m4+{w,b,o} exec ~/.config/i3/send.py circle next {web,vid,doc}
-bindsym $m4+$c+q kill
 bindsym $alt+g exec rofi -show
 bindsym $m4+m exec ~/bin/scripts/rofi_xprop $(pfw)
-bindsym $m4+a exec ~/.config/i3/i3-attach.py
 bindsym $m4+q fullscreen toggle
 bindsym $m4+grave exec ~/.config/i3/focus-next-visible.py
 bindsym $m4+$S+grave exec ~/.config/i3/focus-next-visible.py reverse
 bindsym $m4+$c+grave exec ~/.config/i3/i3-cmd.py
-bindsym $m4+$S+slash workspace back_and_forth
+
+bindsym $m4+$c+q kill
 #-------------------------------------------------------
 bindsym $alt+Tab exec ~/.config/i3/send.py flast switch
 bindsym $m4+slash exec ~/.config/i3/send.py flast switch
