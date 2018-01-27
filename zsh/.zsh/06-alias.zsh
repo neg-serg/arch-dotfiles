@@ -78,7 +78,7 @@ alias mpcunlove="mpc sendmessage mpdas unlove"
 alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
 alias grep="grep --color=auto"
 
-alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
+alias mutt="dtach -A ${HOME}/.mutt/mutt.session neomutt"
 
 alias s="sudo"
 alias x='xargs'
