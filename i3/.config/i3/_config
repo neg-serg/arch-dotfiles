@@ -168,7 +168,7 @@ for_window [class="_weechat_"]   move scratchpad, move absolute position 112 33,
 set $exit mode "default"
 bindsym $alt+e mode ""
 bindsym $m4+r mode ""
-bindsym $m4+$S+w mode ""
+bindsym $m4+minus mode ""
 #----------------------------------------------
 bindsym $m4+$c+c exec ~/bin/scripts/pikz_review
 bindsym $m4+$S+$c+BackSpace mode " "
@@ -237,19 +237,17 @@ bindsym $m4+slash exec ~/.config/i3/send.py flast switch
 #-------------------------------------------------------
 # resize window (you can also use the mouse for that)
 mode "" {
-    bindsym {h,$S+h} resize {shrink,grow} left 4
-    bindsym {j,$S+j} resize {shrink,grow} down 4
-    bindsym {k,$S+k} resize {shrink,grow} up 4
-    bindsym {l,$S+l} resize {shrink,grow} right 4
+    bindsym {$S+h,h} resize {shrink,grow} left 4
+    bindsym {$S+j,j} resize {shrink,grow} down 4
+    bindsym {$S+k,k} resize {shrink,grow} up 4
+    bindsym {$S+l,l} resize {shrink,grow} right 4
     #-------------------------------------------------------
     bindsym {semicolon,$S+colon} resize {shrink,grow} right 4
     bindsym {Return,Escape,$c+C,$c+G} $exit
 }
 
 mode "" {
-    bindsym $S+{p,c} focus {parent,child}
-	bindsym {grave,t,s,h,v} layout {default,tabbed,stacking,splith,splitv}; $exit
-    bindsym $S+{h,v} split {h,v}; $exit
+	bindsym {grave,t,s,minus,backslash} layout {default,tabbed,stacking,splith,splitv}; $exit
 	bindsym {j,k,h,l} split {vertical,vertical,horizontal,horizontal}; $exit
     #-------------------------------------------------------
 	bindsym $c+{a,3} layout toggle all
