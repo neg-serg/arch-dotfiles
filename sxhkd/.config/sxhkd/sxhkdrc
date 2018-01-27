@@ -19,7 +19,7 @@ super + shift + 8
 super + U
     eject -T
 super + c
-    clip
+    ~/bin/clip
 super + u
     udiskie-umount -a
 super + M
