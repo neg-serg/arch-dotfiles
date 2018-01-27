@@ -137,7 +137,7 @@ class ns_settings(object):
                     'mutt'
                 },
                 'geom' : "1835x1114+52+0",
-                'prog' : "st -f \'Iosevka Term Medium:size=17\' -c mutt -e mutt",
+                'prog' : "st -f \'Iosevka Term Medium:size=17\' -c mutt -e neomutt",
             },
             'ranger': {
                 'class' : {
