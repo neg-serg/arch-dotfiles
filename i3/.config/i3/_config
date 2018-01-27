@@ -178,9 +178,10 @@ bindsym $m4+r mode ""
 bindsym $m4+$S+w mode ""
 #----------------------------------------------
 bindsym $m4+$c+c exec ~/bin/scripts/pikz_review
-bindsym $m4+$S+BackSpace mode " "
+bindsym $m4+$S+$c+BackSpace mode " "
 mode " " {
     bindsym $m4+$S+BackSpace mode "default"
+    bindsym $m4+$c+$S+BackSpace mode "default"
 }
 #----------------------------------------------
 bindsym --release Print exec ~/bin/scripts/screenshot
@@ -201,14 +202,10 @@ bindsym $m4+s exec ~/.config/i3/send.py ns hide_current
 
 mode "" {
     #-------------------------------------------------------
-    bindsym c mode ""
-    bindsym $m4+$S+space mode "default", floating toggle
-    bindsym $m4+space mode "default", focus mode_toggle
+    bindsym $S+$C+c mode ""
     bindsym e mode "default", [urgent=latest] focus
-    bindsym $c+R mode "default", [class=Cr3] focus
     bindsym a mode "default", [window_type=dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
-    bindsym d mode "default", exec ~/bin/scripts/dzen-dict
     bindsym {i,o,$S+O} mode "default", exec ~/bin/pls -{output,sink,vol}
     bindsym q mode "default", exec ~/bin/mpd_sel.sh
     bindsym $S+k mode "default", exec ~/bin/scripts/toggle_keynav
