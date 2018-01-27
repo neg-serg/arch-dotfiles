@@ -109,18 +109,9 @@ _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
     fi
 }
 
-export SKIM_DEFAULT_COMMAND='ag -l -g ""'
-export SKIM_DEFAULT_OPTIONS="${SKIM_DEFAULT_OPTS} --color=16"
-
 export PULSE_LATENCY_MSEC=60
-
 export STEAM_RUNTIME=1
-
-export SXHKD_FIFO="/tmp/sxhkd_fifo"
-export SXHKD_SHELL="zsh"
-
 export VIDEO_PLAYER_="mpv"
-
 export AUTOPAIR_INHIBIT_INIT=1
 
 (){
