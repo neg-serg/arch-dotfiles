@@ -15,7 +15,6 @@ if dein#tap('LanguageClient-neovim')
     let g:LanguageClient_settingsPath = '/home/neg/.config/nvim/settings.json'
     nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
     nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-    nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - airblade/vim-gitgutter                                                   │ 
@@ -102,19 +101,6 @@ if dein#tap('fzf.vim')
     imap <c-x><c-f> <Plug>(fzf-complete-path)
     imap <c-x><c-l> <Plug>(fzf-complete-line)
 
-    let g:fzf_colors =
-    \ { 'fg':      ['fg', 'Normal'],
-    \ 'bg':      ['bg', 'Normal'],
-    \ 'hl':      ['fg', 'Comment'],
-    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-    \ 'hl+':     ['fg', 'Statement'],
-    \ 'info':    ['fg', 'PreProc'],
-    \ 'prompt':  ['fg', 'Conditional'],
-    \ 'pointer': ['fg', 'Exception'],
-    \ 'marker':  ['fg', 'Keyword'],
-    \ 'spinner': ['fg', 'Label'],
-    \ 'header':  ['fg', 'Comment'] }
     nnoremap <silent> <Leader>. :call fzf#run({
                 \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
                 \ 'options': '--tiebreak=index --multi --reverse --margin 15%,0',
@@ -171,22 +157,22 @@ if dein#tap('deoplete.nvim')
     if has("nvim")
         let g:deoplete#enable_at_startup = 1 
     endif
-    let g:deoplete#ignore_sources = {}
+    let g:deoplete#ignore_sources      = {}
     let g:deoplete#omni#input_patterns = {}
-    let g:deoplete#omni_patterns = {}
+    let g:deoplete#omni_patterns       = {}
 
-    let g:deoplete#enable_at_startup=1
-    let g:deoplete#enable_ignore_case = 1
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#enable_camel_case = 1
+    let g:deoplete#enable_at_startup     = 1
+    let g:deoplete#enable_ignore_case    = 1
+    let g:deoplete#enable_smart_case     = 1
+    let g:deoplete#enable_camel_case     = 1
     let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#max_abbr_width = 0
-    let g:deoplete#max_menu_width = 0
+    let g:deoplete#max_abbr_width        = 0
+    let g:deoplete#max_menu_width        = 0
 
-    let g:deoplete#complete_method="complete"
-    let g:deoplete#enable_camel_case=1
-    let g:deoplete#max_list=500
-    let g:deoplete#max_menu_width=8
+    let g:deoplete#complete_method   = "complete"
+    let g:deoplete#enable_camel_case = 1
+    let g:deoplete#max_list          = 500
+    let g:deoplete#max_menu_width    = 8
 
     let g:deoplete#sources#clang#libclang_path ="/usr/lib/libclang.so"
     let g:deoplete#sources#clang#clang_header="/usr/lib/clang/4.0.1"
@@ -312,9 +298,9 @@ endif
 " │ https://github.com/Raimondi/delimitMate.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('delimitMate')
-    let g:delimitMate_expand_space = 1
-    let g:delimitMate_expand_cr    = 0
-    let g:delimitMate_smart_quotes = 1
+    let g:delimitMate_expand_space       = 1
+    let g:delimitMate_expand_cr          = 0
+    let g:delimitMate_smart_quotes       = 1
     let g:delimitMate_balance_matchpairs = 1
     imap <Esc>OH <Plug>delimitMateHome
     imap <Esc>OF <Plug>delimitMateEnd
@@ -324,17 +310,17 @@ endif
 " │ https://github.com/Shougo/vimfiler.vim                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vimfiler.vim')
-    let g:vimfiler_as_default_explorer = 1
+    let g:vimfiler_as_default_explorer    = 1
     let g:vimfiler_restore_alternate_file = 1
-    let g:vimfiler_tree_indentation = 1
-    let g:vimfiler_tree_leaf_icon = ''
-    let g:vimfiler_tree_opened_icon = '▼'
-    let g:vimfiler_tree_closed_icon = '▷'
-    let g:vimfiler_file_icon = ''
-    let g:vimfiler_readonly_file_icon = '*'
-    let g:vimfiler_marked_file_icon = '√'
-    let g:vimfiler_direction = 'rightbelow'
-    let g:vimfiler_ignore_pattern = [
+    let g:vimfiler_tree_indentation       = 1
+    let g:vimfiler_tree_leaf_icon         = ''
+    let g:vimfiler_tree_opened_icon       = '▼'
+    let g:vimfiler_tree_closed_icon       = '▷'
+    let g:vimfiler_file_icon              = ''
+    let g:vimfiler_readonly_file_icon     = '*'
+    let g:vimfiler_marked_file_icon       = '√'
+    let g:vimfiler_direction              = 'rightbelow'
+    let g:vimfiler_ignore_pattern         = [
         \ '^\.git$',
         \ '^\.DS_Store$',
         \ '^\.init\.vim-rplugin\~$',
@@ -381,46 +367,15 @@ if dein#tap('vimfiler.vim')
         silent! nunmap <buffer> gf
         silent! nunmap <buffer> -
         silent! nunmap <buffer> s
-
-        nnoremap <silent><buffer> gd  :<C-u>call <SID>change_vim_current_dir()<CR>
-        nnoremap <silent><buffer><expr> sg  vimfiler#do_action('vsplit')
-        nnoremap <silent><buffer><expr> sv  vimfiler#do_action('split')
-        nnoremap <silent><buffer><expr> st  vimfiler#do_action('tabswitch')
-        nmap <buffer> gx      <Plug>(vimfiler_execute_vimfiler_associated)
-        nmap <buffer> '       <Plug>(vimfiler_toggle_mark_current_line)
-        nmap <buffer> v       <Plug>(vimfiler_quick_look)
-        nmap <buffer> p       <Plug>(vimfiler_preview_file)
-        nmap <buffer> V       <Plug>(vimfiler_clear_mark_all_lines)
-        nmap <buffer> i       <Plug>(vimfiler_switch_to_history_directory)
-        nmap <buffer> <Tab>   <Plug>(vimfiler_switch_to_other_window)
-        nmap <buffer> <C-r>   <Plug>(vimfiler_redraw_screen)
-        nmap <buffer> <Left>  <Plug>(vimfiler_smart_h)
-        nmap <buffer> <Right> <Plug>(vimfiler_smart_l)
     endfunction
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-fugitive.git                                                   │
 " │ https://github.com/tpope/vim-fugitive.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vim-fugitive')
-    nnoremap <Space>gs :Gstatus<CR>
-    nnoremap <Space>gw :Gwrite<CR>
-    nnoremap <Space>go :Gread<CR>
-    nnoremap <Space>gR :Gremove<CR>
-    nnoremap <Space>gm :Gmove<Space>
-    nnoremap <Space>gc :Gcommit<CR>
-    nnoremap <Space>gd :Gdiff<CR>
-    nnoremap <Space>gb :Gblame<CR>
-    nnoremap <Space>gB :Gbrowse<CR>
-    nnoremap <Space>gp :Git! push<CR>
-    nnoremap <Space>gP :Git! pull<CR>
-    nnoremap <Space>gi :Git!<Space>
-    nnoremap <Space>ge :Gedit<CR>
-    nnoremap <Space>gE :Gedit<Space>
-    nnoremap <Space>gt :!tig<CR>:redraw!<CR>
-    nnoremap <Space>gS :exe "silent !shipit"<CR>:redraw!<CR>
-    nnoremap <Space>ggc :silent! Ggrep -i<Space>
-endif
+" if dein#tap('vim-fugitive')
+"     " ...............
+" endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - dbakker/vim-projectroot.git                                              │
 " │ https://github.com/dbakker/vim-projectroot.git                                    │
@@ -473,12 +428,12 @@ if dein#tap('jedi-vim')
     let g:jedi#completions_enabled = 1
     let g:jedi#usages_command = "<leader>z"
     function! s:jedi_settings()
-        nnoremap <buffer><Leader>jr :<C-u>call jedi#rename()<CR>
-        nnoremap <buffer><Leader>jg :<C-u>call jedi#goto_assignments()<CR>
-        nnoremap <buffer><Leader>jd :<C-u>call jedi#goto_definitions()<CR>
+        nnoremap <buffer><Space>r :<C-u>call jedi#rename()<CR>
+        nnoremap <buffer><Space>g :<C-u>call jedi#goto_assignments()<CR>
+        nnoremap <buffer><Space>d :<C-u>call jedi#goto_definitions()<CR>
         nnoremap <buffer>K :<C-u>call jedi#show_documentation()<CR>
-        nnoremap <buffer><Leader>ju :<C-u>call jedi#usages()<CR>
-        nnoremap <buffer><Leader>ji :<C-u>Pyimport<Space>
+        nnoremap <buffer><Space>u :<C-u>call jedi#usages()<CR>
+        nnoremap <buffer><Space>i :<C-u>Pyimport<Space>
         setlocal omnifunc=jedi#completions
         command! -nargs=0 JediRename call jedi#rename()
     endfunction
@@ -511,7 +466,6 @@ endif
 " │ https://github.com/luochen1990/rainbow.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('rainbow')
-    "0 if you want to enable it later via :RainbowToggle
     let g:rainbow_active = 1 
     let g:rainbow_conf = {
         \   'guifgs': ['#005F87', '#005F5F', '#2B768D', '#395573'],
@@ -575,13 +529,13 @@ endif
 " │ https://github.com/fatih/vim-go.git                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vim-go')
-    let g:go_highlight_functions = 1
-    let g:go_highlight_methods = 1
-    let g:go_highlight_structs = 1
-    let g:go_highlight_operators = 1
+    let g:go_highlight_functions         = 1
+    let g:go_highlight_methods           = 1
+    let g:go_highlight_structs           = 1
+    let g:go_highlight_operators         = 1
     let g:go_highlight_build_constraints = 1
-    let g:go_fmt_command = 'goimports'
-    let g:go_snippet_engine = 'UltiSnips'
+    let g:go_fmt_command                 = 'goimports'
+    let g:go_snippet_engine              = 'UltiSnips'
     augroup Go
         au!
         au FileType go nmap <Buffer><silent><Leader>s <Plug>(go-implements)
@@ -600,11 +554,11 @@ endif
 " │ https://github.com/tpope/vim-markdown                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vim-markdown')
-    let g:markdown_minlines = 100
-    let g:markdown_syntax_conceal = 0
-    let g:markdown_enable_mappings = 0
+    let g:markdown_minlines                           = 100
+    let g:markdown_syntax_conceal                     = 0
+    let g:markdown_enable_mappings                    = 0
     let g:markdown_enable_insert_mode_leader_mappings = 0
-    let g:markdown_enable_spell_checking = 0
+    let g:markdown_enable_spell_checking              = 0
     let g:markdown_quote_syntax_filetypes = {
                 \ "vim" : {
                 \   "start" : "\\%(vim\\|viml\\)",
