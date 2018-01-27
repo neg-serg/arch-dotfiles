@@ -12,6 +12,7 @@ export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=16"
 export FZF_TMUX=1
 
+export SKIM_DEFAULT_OPTIONS="${SKIM_DEFAULT_OPTS} --color=16"
 export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "\!{.git,node_modules}/*"'
 
 # CTRL-R - Paste the selected command from history into the command line
