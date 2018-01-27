@@ -12,5 +12,4 @@ let $COLORTERM='truecolor'
 set termguicolors
 
 set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim/
-source ~/.vim/00-bundlelist.vim
 source ~/.config/nvimpager/01-settings.vim
