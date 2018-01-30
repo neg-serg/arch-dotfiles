@@ -1,17 +1,3 @@
-" Add Mapping `C-c' copy or stop loading
-javascript <<EOF
-mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text or stop loading',
-  function(){
-    var sel = window.content.window.getSelection().toString();
-    if (sel){
-      copyToClipboard(sel,true);
-    } else {
-      BrowserStop();
-    }
-  }
-);
-EOF
-
 map <C-O> <NOP>
 map <C-\> <NOP>
 map <C-w> <NOP>
@@ -46,7 +32,6 @@ noremap ! :set gui=navigation <Enter>
 noremap % :set gui=none <Enter>
 
 map  U :undo<Space>
-map <F4> gn
 
 imap  <C-y> <S-Ins>
 map  <C-y> <S-Ins>
@@ -70,49 +55,18 @@ let g:hints_for_embedded_mode = "e"
 
 " walk-input
 let g:walk_input_map_forward = '<C-,>'
-let g:walk_input_map_backward = '<C-.> <C-S-,>'
+let g:walk_input_map_backward = '<C-.>'
 
 nmap <silent> ,, :noh<CR>
-imap <C-y> <S-Ins>
-cmap <C-y> <S-Ins>
-vmap <C-y> <S-Ins>
-
-map <C-p> <Up>
-imap <C-p> <Up>
-map <C-n> <Down>
-imap <C-n> <Down>
-map <C-b> <Left>
-map <C-f> <Right>
-
 map <silent> B :bmarks<CR>
 
 map <silent> <F4> :set complete=lS<CR>
 map <silent> <F5> :set complete=bookmark<CR>
 nmap ,d :downloads<CR>
 
-imap <c-a> <home>
-cmap <c-a> <home>
-imap <a-f> <C-Right>
-cmap <a-f> <C-Right>
-imap <a-b> <C-Left>
-cmap <a-b> <C-Left>
-imap <c-e> <end>
-cmap <c-e> <end>
-imap <c-f> <Right>
-imap <c-b> <Left>
-
 map <silent> <C-s>i  :silent set defsearch=ix<CR>
 map <silent> <C-s>s  :silent set defsearch=searx<CR>
 map <silent> <C-s>g  :silent set defsearch=google<CR>
-
-imap <a-d> <C-S-Right><Del>
-cmap <a-d> <C-S-Right><Del>
-imap <A-и> <C-Left>
-imap <A-а> <C-Right>
-imap <A-в> <C-S-Right><Del>
-cmap <A-и> <C-Left>
-cmap <A-а> <C-Right>
-cmap <A-в> <C-S-Right><Del>
 
 map I_<C-w> I_<C-BS>
 map <silent> s :sidebar<Space>
