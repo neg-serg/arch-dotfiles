@@ -84,10 +84,6 @@ if dein#tap('fzf.vim')
     nnoremap ed :Buffers<CR>
     " This is the default extra key bindings
     let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-
-    " Default fzf layout
-    " - down / up / left / right
-    " - window (nvim only)
     let g:fzf_layout = { 'down': '~20%' }
 
     " For Commits and BCommits to customize the options used by 'git log':
@@ -651,15 +647,12 @@ if dein#tap('lightline.vim')
         \ "\<C-s>": 'S-BLOCK',
         \ 't': 'TERMINAL',
     \ }
-
     function! LightlineModified()
         return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
     endfunction
-
     function! LightlineReadonly()
         return &ft !~? 'help' && &readonly ? 'RO' : ''
     endfunction
-
     function! LightlineFugitive()
         try
             if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
@@ -671,7 +664,6 @@ if dein#tap('lightline.vim')
         endtry
         return ''
     endfunction
-
     function! LightlineFilename()
     let fname = expand('%:t')
     return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
@@ -684,19 +676,15 @@ if dein#tap('lightline.vim')
             \ ('' != fname ? fname : '[No Name]') .
             \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
     endfunction
-
     function! LightlineFileformat()
         return winwidth(0) > 70 ? &fileformat : ''
     endfunction
-
     function! LightlineFiletype()
         return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
     endfunction
-
     function! LightlineFileencoding()
         return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
     endfunction
-
     function! LightlineMode()
     let fname = expand('%:t')
     return fname == '__Tagbar__' ? 'Tagbar' :
@@ -709,7 +697,6 @@ if dein#tap('lightline.vim')
             \ &ft == 'vimshell' ? 'VimShell' :
             \ winwidth(0) > 60 ? lightline#mode() : ''
     endfunction
-
     augroup LightLineColorscheme
         autocmd!
         autocmd ColorScheme * call s:lightline_update()
