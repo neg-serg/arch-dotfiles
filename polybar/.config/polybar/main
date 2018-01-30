@@ -15,7 +15,7 @@ bottom=true
 border-top-size = 2
 border-top-color = ${colors.border_top}
 
-height = 24
+height = 32
 spacing = 0
 width = 100%
 enable-ipc = true
@@ -35,9 +35,9 @@ foreground = "#ccc"
 
 underline-size = 2
 
-font-0 = Iosevka Term Heavy:weight=bold:size=12;3
-font-1 = PragmataPro for Powerline:weight=bold:size=12;4
-font-2 = Code2000:weight=bold:size=17;4
+font-0 = Iosevka Term Heavy:weight=bold:size=15;1
+font-1 = PragmataPro for Powerline:weight=bold:size=15;2
+font-2 = Code2000:weight=bold:size=18;3
 
 tray-detached = false
 tray-position = right
