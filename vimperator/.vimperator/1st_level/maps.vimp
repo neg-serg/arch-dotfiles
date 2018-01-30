@@ -10,15 +10,7 @@ noremap E gT
 map  gr gT
 
 map <C-S-w> <NOP>
-nmap <C-S-w> <NOP>
-vmap <C-S-w> <NOP>
-imap <C-S-w> <NOP>
-cmap <C-S-w> <NOP>
 map <C-q> <NOP>
-nmap <C-q> <NOP>
-vmap <C-q> <NOP>
-imap <C-q> <NOP>
-cmap <C-q> <NOP>
 map <F1> <NOP>
 map q <NOP>
 
@@ -74,45 +66,45 @@ map <silent> S :sbclose<CR>
 map gq :noscript popup<cr>
 
 " " Russian language keyboard mappings (UTF-8)
-map <silent> щ  :silent !xkb-switch -s us &<CR>o
-map <silent> е  :silent !xkb-switch -s us &<CR>t
-map <silent> пш :silent !xkb-switch -s us &<CR>gi
-map <silent> а  :silent !xkb-switch -s us &<CR>f
-map <silent> А  :silent !xkb-switch -s us &<CR>F
-map <silent> ж  :silent !xkb-switch -s us &<CR>;
-map <silent> Ж  :silent !xkb-switch -s us &<CR>:
-nmap <silent> . :silent !xkb-switch -s us &<CR>/
+nmap <silent> щ  :silent !xkb-switch -s us &<CR>o
+nmap <silent> е  :silent !xkb-switch -s us &<CR>t
+nmap <silent> пш :silent !xkb-switch -s us &<CR>gi
+nmap <silent> а  :silent !xkb-switch -s us &<CR>f
+nmap <silent> А  :silent !xkb-switch -s us &<CR>F
+nmap <silent> ж  :silent !xkb-switch -s us &<CR>;
+nmap <silent> Ж  :silent !xkb-switch -s us &<CR>:
+nnmap <silent> . :silent !xkb-switch -s us &<CR>/
 
 nmap хх [[
 nmap ъъ ]]
 
-map ё `
-map э '
-map й q
-map ц w
-map к r
-map н y
-map г u
-map ш i
-map з p
-map ф a
-map ы s
-map в d
-map п g
-map П G
-map р h
-map о j
-map л k
-map д l
-map я z
-map с c
-map ь m
-map б ,
-map ю .
-map Ё ~
+nmap ё `
+nmap э '
+nmap й q
+nmap ц w
+nmap к r
+nmap н y
+nmap г u
+nmap ш i
+nmap з p
+nmap ф a
+nmap ы s
+nmap в d
+nmap п g
+nmap П G
+nmap р h
+nmap о j
+nmap л k
+nmap д l
+nmap я z
+nmap с c
+nmap ь m
+nmap б ,
+nmap ю .
+nmap Ё ~
 
-map gr gT
-map пк gT
-map пе gt
+nmap gr gT
+nmap пк gT
+nmap пе gt
 
 ignorekeys clear
