@@ -106,7 +106,7 @@ for_window [window_type="utility"] floating enable, move absolute position 180 2
 for_window [window_type="toolbar"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
 for_window $browsers  move container to workspace $web, workspace $web, focus
-for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
+for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky|zazu)$"] floating enable
 for_window [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] floating enable, move container to workspace $dev, workspace $dev, focus
 for_window [class="cool-retro-term"] floating enable
 for_window [class="Cr3" instance="cr3"] move container to workspace $doc
