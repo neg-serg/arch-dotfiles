@@ -422,15 +422,3 @@ hi StatusLine <<EOM
     border-left: 1px solid #1F3B4F !important;
     border-right: 1px solid #1F3B4F !important;
 EOM
-
-"ime-controller
-"style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
-
-" hi -append Normal  background: rgba(0,0,0,.90);
-" hi -append ModeMsg background: rgba(0,0,0,.90);
-
-" style -name parsonas chrome://* <<EOM
-"     #main-window { background-repeat: repeat-y !important;}
-"     #browser-bottombox { background-image: none !important; }
-"     #liberator-multiline-output, #liberator-completions { background: transparent !important; }
-" EOM
