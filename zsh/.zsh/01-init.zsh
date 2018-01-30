@@ -2,7 +2,7 @@ function start_agent {
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+    /usr/bin/ssh-add > /dev/null;
 }
 
 function ssh_agent_start_(){
@@ -20,14 +20,6 @@ function ssh_agent_start_(){
 }
 
 ssh_agent_start_
-
-# Execute code that does not affect the current session in the background.
-{
-    # Compile the completion dump to increase startup speed.
-    zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-    [[ "$zcompdump" -nt "${zcompdump}.zwc" || ! -s "${zcompdump}.zwc" ]] && \
-        zcompile "$zcompdump"
-} &!
 
 # autoload wrapper - use this one instead of autoload directly
 # We need to define this function as early as this, because autoloading
@@ -140,15 +132,7 @@ zrcautoload history-search-end
 zrcautoload zargs
 zrcautoload grep2awk
 zrcautoload split-shell-arguments
-
-# completion system
-if zrcautoload compinit ; then
-    compinit || print 'Notice: no compinit available :('
-else
-    print 'Notice: no compinit available :('
-    function zstyle { }
-    function compdef { }
-fi
+zrcautoload compinit && compinit
 
 zrcautoload zed # use ZLE editor to edit a file or function
 

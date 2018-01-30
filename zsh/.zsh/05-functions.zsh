@@ -9,16 +9,16 @@ function chpwd() {
 }
 
 function zc(){
-    local cache="${ZSH}/compdef"
-    autoload -U compinit zrecompile
-    compinit -d "${cache}/zcomp-${HOST}"
+    autoload -U zrecompile
+    local zcompdumpfile="${HOME}/.zsh/zcomp-${HOST}"
+    compinit -d ${compdumpfile}
     for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
-        zcompile ${z}; 
+        zrecompile -p ${z}; 
         echo $(_zpref) $(_zfwrap "${z}"); 
+        rm -fv "${z}.zwc.old"
     done
-    for f in ${HOME}/.zsh/.zshrc "${cache}/zcomp-${HOST}"; do
-        zrecompile -p ${f} && command rm -f ${f}.zwc.old
-    done
+    for f in ${ZSH}/zshrc ${zcompdumpfile};
+        zrecompile -p "${f}" && command rm -f "${f}.zwc.old"
     source ${HOME}/.zshrc
 }
 
