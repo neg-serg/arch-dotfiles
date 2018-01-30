@@ -1,45 +1,30 @@
 "--[ General ]---------------
 set! accessibility.tabfocus=1
 set! xpinstall.signatures.required=false
-
 "--[ UI ]---------------------
 set! ui.key.generalAccessKey=0
 set! ui.caretWidth=2
 set! ui.caretBlinkTime=9000
-
 "--[ Session ]--------------------------
-set! extensions.sessionmanager.startup=2
-set! extensions.sessionmanager.resume_session="backup.session"
 set! browser.sessionstore.max_tabs_undo=100
-
 "--[ Browser ]--------------
 set! browser.tabs.onTop=true
 set! browser.tabs.closeWindowWithLastTab=false
-set! browser.tabs.closeWindowWithLastTab=false
-
 "--[ Privacy ]----------------------------
 set! privacy.donottrackheader.enabled=true
 set! privacy.donottrackheader.value=1
-
 set! browser.shell.checkDefaultBrowser=false
-
 set! security.dialog_enable_delay=0
-
 set! browser.fullscreen.animate=false
-set! devtools.theme="dark"
-
 "--[ Ghostery ]-----------------------
-set! extensions.ghostery.tutorial=true
-
+set! extensions.ghostery.tutorial=false
 set! extensions.ghostery.showBubble=false
 set! extensions.ghostery.showBugCount=false
 set! extensions.ghostery.showClick2Play=false
 set! extensions.ghostery.showClick2PlayButton=false
 set! extensions.ghostery.toolbarButton=false
-
 set! extensions.ghostery.updateNotification=false
 set! extensions.ghostery.autoUpdateBugs=true
-
 set! extensions.ghostery.cookieProtect=true
 set! extensions.ghostery.enableCleanup=true
 set! extensions.ghostery.blockFrame=true
@@ -47,20 +32,3 @@ set! extensions.ghostery.blockImage=true
 set! extensions.ghostery.blockObject=true
 set! extensions.ghostery.preventRedirect=false
 set! extensions.ghostery.blockingMode=0
-
-"--[ Check Compatibility ]-------------------
-set! extensions.checkCompatibility.4.0=false
-set! extensions.checkCompatibility.4.0b=false
-set! extensions.checkCompatibility.4.1b=false
-set! extensions.checkCompatibility.4.2a=false
-set! extensions.checkCompatibility.4.2b=false
-set! extensions.checkCompatibility.5.0=false
-set! extensions.checkCompatibility.5.1=false
-set! extensions.checkCompatibility.6.0=false
-set! extensions.checkCompatibility.6.1=false
-set! extensions.checkCompatibility.7.0=false
-set! extensions.checkCompatibility.7.1=false
-set! extensions.checkCompatibility.8.0=false
-set! extensions.checkCompatibility.8.1=false
-set! extensions.checkCompatibility.9.0a=false
-set! extensions.checkCompatibility.9.1=false
