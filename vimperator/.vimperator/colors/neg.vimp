@@ -1,7 +1,7 @@
 hi Bell <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt; 
+    font-size: 14pt; 
     border: none; 
     background-color: black;
 EOM
@@ -9,20 +9,20 @@ EOM
 hi Boolean <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     color: #001742;
 EOM
 
 hi CmdLine>*  <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi CmdLine <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     background: black;
     color: #CCCCCC;
 EOM
@@ -30,7 +30,7 @@ EOM
 hi CmdOutput <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     black-space: pre;
 EOM
 
@@ -39,7 +39,7 @@ hi CompDesc <<EOM
     width: 500px;
     max-width: 2000px;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     color: #666;
 EOM
 
@@ -52,7 +52,7 @@ EOM
 hi CompIcon <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     width: 16px;
     min-width: 16px;
     display: inline-block;
@@ -62,7 +62,7 @@ EOM
 hi CompIcon>img <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     max-width: 16px;
     max-height: 16px;
     vertical-align: middle;
@@ -71,7 +71,7 @@ EOM
 hi CompItem>* <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     padding: -8px -8px;
     max-height: 16px;
 EOM
@@ -79,7 +79,7 @@ EOM
 hi CompItem  <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     padding: -8px -8px;
     max-height: 16px;
 EOM
@@ -87,7 +87,7 @@ EOM
 hi CompItem[selected] <<EOM
     color: #001742;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     background: #184253;
     box-shadow: 0px 0px 1px #002625;
 EOM
@@ -95,7 +95,7 @@ EOM
 hi CompMsg  <<EOM
     font-style:color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     italic;
     margin-left: 16px;
 EOM
@@ -106,13 +106,13 @@ hi CompResult <<EOM
     max-width: 500px;
     overflow: hidden;
     font-family: "Iosevka Term" ;
-    font-size: 12pt !important;
+    font-size: 14pt !important;
 EOM
 
 hi CompTitle>* <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     padding: 1px 0.5ex;
 EOM
 
@@ -120,7 +120,7 @@ hi CompTitle <<EOM
     color: #CCCCCC;
     -moz-appearance: statusbar;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     font-weight: bold;
     text-indent: 5px;
     height: 20px;
@@ -129,25 +129,25 @@ EOM
 hi ContentSeparator <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     border-top: 1px dotted #ccc;
 EOM
 
 hi Disabled <<EOM
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     color: #001742;
 EOM
 
 hi Enabled <<EOM
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     color: #1C793D;
 EOM
 
 hi ErrorMsg <<EOM
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     color: #008888;
     background: black;
     font-weight: bold;
@@ -155,7 +155,7 @@ EOM
 
 hi WarningMsg <<EOM
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     color: #008888;
     background: black;
     font-weight: bold;
@@ -163,7 +163,7 @@ EOM
 
 hi Filter <<EOM
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     border-radius: 2px;
     background: #101010;
     border: 1px #004240;
@@ -174,7 +174,7 @@ EOM
 hi FrameIndicator <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     background-color: #001742;
     opacity: 0.5;
     z-index: 999;
@@ -188,7 +188,7 @@ EOM
 hi Function <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi HintActive <<EOM
@@ -213,14 +213,14 @@ EOM
 
 hi HintImage <<EOM
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     opacity: .8;
 EOM
 
 hi Indicator <<EOM
     color: #557C90;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi InfoMsg <<EOM
@@ -228,27 +228,27 @@ hi InfoMsg <<EOM
     background: black ;
     font-weight: Normal;
     font-family: Iosevka Term;
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi InfoMsg <<EOM
     color: #cccccc;
     background: black;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Key  <<EOM
     color: #CCCCCC;
     font-weight: bold;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Keyword <<EOM
     color: #001742;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi LineNr <<EOM
@@ -256,7 +256,7 @@ hi LineNr <<EOM
     background: black;
     font-weight: Normal;
     font-family: Iosevka Term;
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Message <<EOM
@@ -267,7 +267,7 @@ hi Message <<EOM
     text-indent: -2em;
     display: block;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi ModeMsg <<EOM
@@ -275,7 +275,7 @@ hi ModeMsg <<EOM
     border-radius: 1px;
     padding: 0px 5px;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     font-weight: bold;
 EOM
 
@@ -284,7 +284,7 @@ hi MoreMsg <<EOM
     background: black ;
     font-weight: Normal;
     font-family: Iosevka Term;
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi NonText <<EOM
@@ -293,7 +293,7 @@ hi NonText <<EOM
     min-height: 16px;
     padding-left: 2px;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Normal <<EOM
@@ -301,34 +301,34 @@ hi Normal <<EOM
     background: black ;
     font-weight: Normal;
     font-family: Iosevka Term;
-    font-size: 12pt;
+    font-size: 14pt;
     opacity: 0.9;
 EOM
 
 hi Null <<EOM
     color: #2774FB;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Number <<EOM
     color: #2774FB;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Object <<EOM
     color: #CCCCCC;
     color: maroon;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Preview <<EOM
     color: #CCCCCC;
     color: gray;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi PromptText <<EOM
@@ -337,7 +337,7 @@ hi PromptText <<EOM
     border-radius: 1px;
     padding: 4px 4px;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     font-weight: bold;
 EOM
 
@@ -346,7 +346,7 @@ hi Prompt <<EOM
     background-position: center;
     background-repeat: no-repeat;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Question  <<EOM
@@ -354,13 +354,13 @@ hi Question  <<EOM
     background: black;
     font-weight: bold;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi String  <<EOM
     color: #CCCCCC;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi TabNumber <<EOM
@@ -369,13 +369,13 @@ hi TabNumber <<EOM
     margin: 0px;
     padding-right: .3ex;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Tag <<EOM
     color: #557C90;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi Tag:not(:empty) <<EOM
@@ -383,7 +383,7 @@ hi Tag:not(:empty) <<EOM
     background-color: #E6F2FC;
     border-radius: 2px;
     padding: 1px 2px;
-    font-size: 12pt;
+    font-size: 14pt;
     font-family: "Iosevka Term";
 EOM
 
@@ -391,7 +391,7 @@ hi Title <<EOM
     color: #cccccc;
     background: black;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi URL <<EOM
@@ -399,7 +399,7 @@ hi URL <<EOM
     text-decoration: none;
     color: #666666;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 hi URL:hover <<EOM
@@ -407,13 +407,13 @@ hi URL:hover <<EOM
     text-decoration: underline;
     cursor: pointer;
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
 EOM
 
 "-- It should be at the end --------------------
 hi StatusLine <<EOM
     font-family: "Iosevka Term";
-    font-size: 12pt;
+    font-size: 14pt;
     font-weight: bold;
     background: black;
     color: #CCCCCC;
