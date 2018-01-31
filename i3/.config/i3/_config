@@ -170,7 +170,7 @@ bindsym $alt+e mode ""
 bindsym $m4+r mode ""
 bindsym $m4+minus mode ""
 #----------------------------------------------
-bindsym $m4+$c+c exec ~/bin/scripts/pikz_review
+bindsym $m4+$c+c exec ~/.config/i3/send.py circle next sxiv
 bindsym $m4+$S+$c+BackSpace mode " "
 mode " " {
     bindsym $m4+$S+BackSpace mode "default"
