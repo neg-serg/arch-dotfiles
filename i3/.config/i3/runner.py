@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-
-
-""" i3 window tag circle
+""" i3 listner script
 Usage:
     runner.py
 
