@@ -12,6 +12,9 @@ import re
 import errno
 import os
 
+import shlex
+import subprocess
+
 from typing import Callable, List
 from timeit import default_timer as timer
 
@@ -71,7 +74,8 @@ class ns(SingletonMixin):
 
     def toggle(self, tag : str) -> None:
         if self.marked[tag] == [] and "prog" in self.cfg[tag]:
-            self.i3.command("exec {}".format(self.cfg[tag]["prog"]))
+            prog_str=self.cfg[tag]["prog"]
+            subprocess.Popen(shlex.split(prog_str), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
 
         # We need to hide scratchpad it is visible, regardless it focused or not
         focused = self.i3.get_tree().find_focused()
@@ -97,7 +101,8 @@ class ns(SingletonMixin):
             target_class_list_set=set(target_class_list)
             interlist=[val for val in class_list if val in target_class_list_set]
             if not len(interlist):
-                self.i3.command("exec {}".format(self.cfg[tag]["prog_dict"][app]["prog"]))
+                prog_str=self.cfg[tag]["prog_dict"][app]["prog"]
+                subprocess.Popen(shlex.split(prog_str), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
             else:
                 def focus_subgroup(tag: str):
                     focused=self.i3.get_tree().find_focused()
