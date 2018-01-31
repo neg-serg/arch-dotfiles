@@ -11,7 +11,6 @@ from singleton_mixin import *
 from i3gen import *
 import redis
 import shlex
-import subprocess
 
 class circle(SingletonMixin):
     def __init__(self):
@@ -72,7 +71,7 @@ class circle(SingletonMixin):
 
         def run_prog():
             prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), tag_conf()["prog"])
-            subprocess.Popen(shlex.split(prog_str, posix=True), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            self.i3.command('exec {}'.format(prog_str))
 
         def go_next_(inc_counter=True,fullscreen_handler=True):
             if fullscreen_handler:
