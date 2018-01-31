@@ -73,7 +73,7 @@ nmap <silent> а  :silent !xkb-switch -s us &<CR>f
 nmap <silent> А  :silent !xkb-switch -s us &<CR>F
 nmap <silent> ж  :silent !xkb-switch -s us &<CR>;
 nmap <silent> Ж  :silent !xkb-switch -s us &<CR>:
-nnmap <silent> . :silent !xkb-switch -s us &<CR>/
+nmap <silent> . :silent !xkb-switch -s us &<CR>/
 
 nmap хх [[
 nmap ъъ ]]
