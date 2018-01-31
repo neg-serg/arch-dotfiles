@@ -75,7 +75,7 @@ class ns(SingletonMixin):
     def toggle(self, tag : str) -> None:
         if self.marked[tag] == [] and "prog" in self.cfg[tag]:
             prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
-            subprocess.Popen(shlex.split(prog_str, posix=True), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+            subprocess.Popen(shlex.split(prog_str, posix=True), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         # We need to hide scratchpad it is visible, regardless it focused or not
         focused = self.i3.get_tree().find_focused()
@@ -102,7 +102,7 @@ class ns(SingletonMixin):
             interlist=[val for val in class_list if val in target_class_list_set]
             if not len(interlist):
                 prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog_dict"][app]["prog"])
-                subprocess.Popen(shlex.split(prog_str, posix=True), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+                subprocess.Popen(shlex.split(prog_str, posix=True), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             else:
                 def focus_subgroup(tag: str):
                     focused=self.i3.get_tree().find_focused()
