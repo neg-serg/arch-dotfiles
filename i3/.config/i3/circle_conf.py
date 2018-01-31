@@ -61,7 +61,7 @@ class cycle_settings(object):
                 'class': { 'jetbrains-idea', 'clion', 'andrond-studio', },
                 'prog':"~/bin/scripts/jetbrains.sh idea",
             },
-            'jetbrains-clion':{
+            'jetbrains-clion': {
                 'class_r': {
                     '^jetbrains-jetbrains-idea.*',
                     '^jetbrains-clion.*',
@@ -70,7 +70,7 @@ class cycle_settings(object):
                 },
                 'prog':"~/bin/scripts/jetbrains.sh clion",
             },
-            'sxiv':{
+            'sxiv': {
                 'class': {
                     'Sxiv',
                 },
