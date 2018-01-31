@@ -28,28 +28,20 @@ class cycle_settings(object):
                 },
             },
             'steam':{
-                'class': {
+                'class_r': {
                     'Wine',
                     'dota2',
                     'darkest.bin.x86_64',
-                    'Steam',
-                    'steam',
-                    'explorer.exe',
+                    '[sS]team',
+                    '.*.exe',
                 },
                 'prog':"steam",
             },
             'doc':{
-                'class': {
-                    'Zathura',
-                },
+                'class': { 'Zathura', },
             },
             'vm':{
-                'class': {
-                    'VirtualBox',
-                    'vmware',
-                    'qemu-system-x86_64',
-                    "Qemu-system-x86_64",
-                },
+                'class_r': { 'VirtualBox', 'vmware', '[Qq]emu-.*', },
             },
             'term':{
                 'class': { 'MainTerminal' },
@@ -66,11 +58,7 @@ class cycle_settings(object):
                 'prog':"emacs",
             },
             'jetbrains-idea':{
-                'class': {
-                    'jetbrains-idea',
-                    'clion',
-                    'andrond-studio',
-                },
+                'class': { 'jetbrains-idea', 'clion', 'andrond-studio', },
                 'prog':"~/bin/scripts/jetbrains.sh idea",
             },
             'jetbrains-clion':{
@@ -81,5 +69,11 @@ class cycle_settings(object):
                     "sun-awt-X11-XFramePeer"
                 },
                 'prog':"~/bin/scripts/jetbrains.sh clion",
+            },
+            'sxiv':{
+                'class': {
+                    'Sxiv',
+                },
+                'prog':"st -e zsh -c 'find ~/{dw,tmp/shots}/ -type d -print0|xargs -0 ~/bin/sx'",
             },
         }
