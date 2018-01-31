@@ -16,7 +16,6 @@ from threading import Thread, Event
 import importlib
 import logging
 import inotify.adapters
-import gevent.event
 from i3gen import *
 import atexit
 
@@ -91,7 +90,7 @@ class Listner():
             th.setDaemon(True)
             th.start()
 
-        if self.ev.wait():
+        if self.ev.wait(1000):
             raise RestartMe
 
 class RestartMe(Exception):
