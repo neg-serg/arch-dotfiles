@@ -130,7 +130,7 @@ class ns_settings(object):
                     '_weechat_'
                 },
                 'geom' : "1736x1091+112+33",
-                'prog': 'st -c _weechat_ -f \'Terminus Re33:size=14:style=Bold\' zsh -c \'tmux -S ~/1st_level/weechat.socket new weechat\''
+                'prog': 'st -c _weechat_ -f "Iosevka Term Medium:size=14" zsh -c "tmux -S ~/1st_level/weechat.socket new weechat"'
             },
             'mutt': {
                 'instance' : {
@@ -151,7 +151,7 @@ class ns_settings(object):
                     'teardrop'
                 },
                 'geom' : "1844x704+39+4",
-                'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=18\' -e ~/bin/scripts/teardrop"
+                'prog' : 'st -c teardrop -f "PragmataPro for Powerline:size=18" -e ~/bin/scripts/teardrop'
             },
             'volcontrol': {
                 'class' : {
