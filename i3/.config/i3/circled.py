@@ -71,8 +71,8 @@ class circle(SingletonMixin):
             return self.tagged[tag][target_]
 
         def run_prog():
-            prog_str=tag_conf()["prog"]
-            subprocess.Popen(shlex.split(prog_str), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+            prog_str=re.sub("^~", os.path.realpath(os.path.expandvars("$HOME")), tag_conf()["prog"])
+            subprocess.Popen(shlex.split(prog_str, posix=True), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
 
         def go_next_(inc_counter=True,fullscreen_handler=True):
             if fullscreen_handler:
