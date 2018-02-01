@@ -19,8 +19,6 @@ set shellcmdflag='-c'
 set titlestring="[-= vimperator =-]"
 set history=9000
 
-command nonblock -description "disable addblock edge for current page" emenu Tools.Adblock Edge.Disable on this page only
-command! -nargs=* gg open google <args>
 command! morehints :set hinttags="//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s' or @class='lk cs' or @class='msc' or @class='ll'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //tr[@class='rr' or @class='ur']/td[position()=5]"
 
 source ~/.vimperator/1st_level/styles.vimp
