@@ -52,7 +52,7 @@ alias less=${PAGER}
 alias zless=${PAGER}
 
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
-export BROWSER="firefox"
+export BROWSER="waterfox"
 
 export VAGRANT_HOME="/mnt/home/vagrant"
 export PERLBREW_ROOT=${HOME}/.perl5
