@@ -7,9 +7,9 @@ class SingletonMixin(object):
     __singleton_instance = None
 
     @classmethod
-    def instance(class_):
-        if not class_.__singleton_instance:
-            with class_.__singleton_lock:
-                if not class_.__singleton_instance:
-                    class_.__singleton_instance = class_()
-        return class_.__singleton_instance
+    def instance(cls):
+        if not cls.__singleton_instance:
+            with cls.__singleton_lock:
+                if not cls.__singleton_instance:
+                    cls.__singleton_instance = cls()
+        return cls.__singleton_instance
