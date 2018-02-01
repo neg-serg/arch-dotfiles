@@ -32,7 +32,7 @@ super + control + r ; { c, d, i, r }
         xcalib -gc 1.08 -co 97 ~/.config/color_profiles/x230.icm
     }
 alt + grave
-    rofi -pid ~/tmp/rofi_runner.pid -show run -location 6 -lines 2 -columns 4 -matching fuzzy -case-sensitive=false -tokenize 
+    rofi -pid ~/tmp/rofi_runner.pid -show run -lines 2 -columns 4 -case-sensitive=false
 super + shift + {5,6}
     ~/bin/wl {set,rand}
 # vim: set ft=sxhkdrc:
