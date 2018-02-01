@@ -195,7 +195,7 @@ bindsym $m4+s exec ~/.config/i3/send.py ns hide_current
 
 mode "" {
     #-------------------------------------------------------
-    bindsym $S+$C+c mode ""
+    bindsym c mode "pass "
     bindsym e mode "default", [urgent=latest] focus
     bindsym a mode "default", [window_type=dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
@@ -213,7 +213,7 @@ mode "" {
     bindsym {Return,Escape,$c+C,$c+G} $exit
 }
 
-mode "" {
+mode "pass " {
     bindsym {c,p} exec ~/bin/scripts/lpwd {,type}, $exit
     bindsym {Return,Escape,$c+C,$c+G} $exit
 }
