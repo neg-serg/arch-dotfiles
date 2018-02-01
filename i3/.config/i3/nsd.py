@@ -96,8 +96,7 @@ class ns(SingletonMixin):
     def run_prog(self, tag: str, app : str) -> None:
         if "prog_dict" in self.cfg[tag] and app in self.cfg[tag]["prog_dict"]:
             class_list=[win.window_class for win in self.marked[tag]]
-            target_class_list=self.cfg[tag]["prog_dict"][app]["includes"]
-            target_class_list_set=set(target_class_list)
+            target_class_list_set=set(self.cfg[tag]["prog_dict"][app]["includes"])
             interlist=[val for val in class_list if val in target_class_list_set]
             if not len(interlist):
                 prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog_dict"][app]["prog"])
