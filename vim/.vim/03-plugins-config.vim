@@ -424,12 +424,12 @@ if dein#tap('jedi-vim')
     let g:jedi#completions_enabled = 1
     let g:jedi#usages_command = "<leader>z"
     function! s:jedi_settings()
-        nnoremap <buffer><Space>r :<C-u>call jedi#rename()<CR>
-        nnoremap <buffer><Space>g :<C-u>call jedi#goto_assignments()<CR>
-        nnoremap <buffer><Space>d :<C-u>call jedi#goto_definitions()<CR>
+        nnoremap <buffer><leader>r :<C-u>call jedi#rename()<CR>
+        nnoremap <buffer><leader>g :<C-u>call jedi#goto_assignments()<CR>
+        nnoremap <buffer><leader>d :<C-u>call jedi#goto_definitions()<CR>
         nnoremap <buffer>K :<C-u>call jedi#show_documentation()<CR>
-        nnoremap <buffer><Space>u :<C-u>call jedi#usages()<CR>
-        nnoremap <buffer><Space>i :<C-u>Pyimport<Space>
+        nnoremap <buffer><leader>u :<C-u>call jedi#usages()<CR>
+        nnoremap <buffer><leader>i :<C-u>Pyimport<leader>
         setlocal omnifunc=jedi#completions
         command! -nargs=0 JediRename call jedi#rename()
     endfunction
