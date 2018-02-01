@@ -149,9 +149,6 @@ on_ft = ['ruby']
 [[plugins]]
 repo = 'guns/vim-clojure-static' # better clojure support
 on_ft = 'clojure'
-[[plugins]]
-repo = 'clojure-vim/acid.nvim' # clojure async nvim-only dev environment
-on_ft = 'clojure'
 # --[ Misc Langs ]--------------------------------------------------------------------------
 [[plugins]]
 repo = 'php-vim/phpcd.vim' # php autocomplete
@@ -174,9 +171,6 @@ repo = 'othree/html5.vim' #  html5 autocomplete and synta
 on_ft = ['html', 'htmldjango']
 [[plugins]]
 repo = 'SpaceVim/vim-swig' # swig syntax highlighting
-[[plugins]]
-repo = 'WolfgangMehner/perl-support' # perl support
-on_ft = ['perl']
 [[plugins]]
 repo = 'c9s/perlomni.vim' # perl omnicomplete
 on_ft = ['perl']
