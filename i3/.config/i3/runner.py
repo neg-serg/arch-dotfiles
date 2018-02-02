@@ -14,15 +14,14 @@ import os
 from threading import Thread, Event
 import importlib
 import inotify.adapters
-from i3gen import *
 import atexit
 import subprocess
 import shlex
+from i3gen import *
 
 class Listner():
     def __init__(self):
         self.ev = Event()
-        self.modules = set()
         self.__daemons_default_state={
             'circle': { "instance": None, "manager": None, },
             'ns': { "instance": None, "manager": None, },
@@ -49,20 +48,19 @@ class Listner():
     def run_inotify(self):
         for mod in self.daemons_map.keys():
             inotify_thread=Thread(target=self.watch, args=(self.xdg_config_path+'/i3', mod + '_conf.py', ))
-            inotify_thread.setDaemon(False)
+            inotify_thread.setDaemon(True)
             inotify_thread.start()
 
     def load_modules(self):
         for mod in self.daemons_map.keys():
             currm=self.daemons_map[mod]
             i3mod=importlib.import_module("%s" % mod + "d")
-            self.modules.add(i3mod)
             currm["instance"]=getattr(i3mod, mod).instance()
             currm["manager"]=daemon_manager.instance()
             currm["manager"].add_daemon(mod)
 
             th=Thread(target=currm["manager"].daemons[mod].mainloop, args=(currm["instance"], mod, ))
-            th.setDaemon(False)
+            th.setDaemon(True)
             th.start()
 
     def return_to_i3main(self):
@@ -80,19 +78,25 @@ class Listner():
                     os.remove(fifo)
         atexit.register(cleanup_everything)
 
+    def reload_thread(self):
+        def reload_thread_payload():
+            while True:
+                if self.ev.wait():
+                    self.ev.clear()
+                    for mod in self.daemons_map.keys():
+                        subprocess.Popen(
+                            shlex.split(self.xdg_config_path + "/i3/send.py " + mod + " reload")
+                        )
+        th=Thread(target=reload_thread_payload)
+        th.setDaemon(True)
+        th.start()
+
     def main(self):
         self.cleanup()
         self.load_modules()
         self.run_inotify()
+        self.reload_thread()
         self.return_to_i3main()
-
-        while True:
-            if self.ev.wait():
-                self.ev.clear()
-                for mod in self.daemons_map.keys():
-                    subprocess.Popen(
-                        shlex.split(self.xdg_config_path + "/i3/send.py " + mod + " reload")
-                    )
 
 if __name__ == '__main__':
     listner = Listner()
