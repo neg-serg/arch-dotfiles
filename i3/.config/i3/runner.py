@@ -14,7 +14,6 @@ import i3ipc
 import os
 from threading import Thread, Event
 import importlib
-import logging
 import inotify.adapters
 from i3gen import *
 import atexit
@@ -22,19 +21,15 @@ import atexit
 class Listner():
     def __init__(self):
         self.ev = Event()
+        self.modules = set()
+        self.__daemons_default_state={
+            'circle': { "instance": None, "manager": None, },
+            'ns': { "instance": None, "manager": None, },
+            'flast': { "instance": None, "manager": None, }
+        }
+        self.daemons_map=self.__daemons_default_state
 
-    def configure_logging(self):
-        log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        logger = logging.getLogger(__name__)
-        logger.setLevel(logging.DEBUG)
-        ch = logging.StreamHandler()
-        formatter = logging.Formatter(log_format)
-        ch.setFormatter(formatter)
-        logger.addHandler(ch)
-
-        return logger
-
-    def watch(self, watch_dir, file_path, logger, watched_inotify_event="IN_MODIFY"):
+    def watch(self, watch_dir, file_path, watched_inotify_event="IN_MODIFY"):
         watch_dir=watch_dir.encode()
         i=inotify.adapters.Inotify()
         i.add_watch(watch_dir)
@@ -44,39 +39,24 @@ class Listner():
                 if event is not None:
                     (header, type_names, watch_path, filename) = event
                     if filename.decode('utf-8') == file_path and watched_inotify_event in type_names:
-                        logger.info("WD=(%d) MASK=(%d) COOKIE=(%d) LEN=(%d) MASK->NAMES=%s "
-                                    "WATCH-PATH=[%s] FILENAME=[%s]",
-                                    header.wd, header.mask, header.cookie, header.len, type_names,
-                                    watch_path.decode('utf-8'), filename.decode('utf-8'))
                         self.ev.set()
-                        i.remove_watch(watch_dir)
-                        break
         finally:
             i.remove_watch(watch_dir)
 
-    def main(self):
-        def cleanup():
-            d = currm["manager"].daemons[mod]
-            if os.path.exists(d.fifos[mod]):
-                os.remove(d.fifos[mod])
-        atexit.register(cleanup)
-
-        ScriptDaemonsMap={
-            'circle': { "instance": None, "manager": None, },
-            'ns': { "instance": None, "manager": None, },
-            'flast': { "instance": None, "manager": None, }
-        }
-
+    def run_inotify(self):
         user_name=os.environ.get("USER", "neg")
         xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
-        for mod in ScriptDaemonsMap.keys():
-            inotify_thread=Thread(target=self.watch, args=(xdg_config_path+'/i3', mod + '_conf.py', self.configure_logging(), ))
+        for mod in self.daemons_map.keys():
+            inotify_thread=Thread(target=self.watch, args=(xdg_config_path+'/i3', mod + '_conf.py', ))
             inotify_thread.setDaemon(False)
             inotify_thread.start()
 
-        for mod in ScriptDaemonsMap.keys():
-            currm=ScriptDaemonsMap[mod]
-            currm["instance"]=getattr(importlib.import_module("%s" % mod + "d"), mod).instance()
+    def load_modules(self):
+        for mod in self.daemons_map.keys():
+            currm=self.daemons_map[mod]
+            i3mod=importlib.import_module("%s" % mod + "d")
+            self.modules.add(i3mod)
+            currm["instance"]=getattr(i3mod, mod).instance()
             currm["manager"]=daemon_manager.instance()
             currm["manager"].add_daemon(mod)
 
@@ -84,23 +64,35 @@ class Listner():
             th.setDaemon(True)
             th.start()
 
+    def return_to_i3main(self):
         # you should bypass method itself, no return value
-        for mod in ScriptDaemonsMap:
-            th=Thread(target=ScriptDaemonsMap[mod]["instance"].i3.main)
+        for mod in self.daemons_map:
+            th=Thread(target=self.daemons_map[mod]["instance"].i3.main)
             th.setDaemon(True)
             th.start()
 
-        if self.ev.wait(1000):
-            raise RestartMe
+    def cleanup(self):
+        def cleanup_():
+            d = currm["manager"].daemons[mod]
+            if os.path.exists(d.fifos[mod]):
+                os.remove(d.fifos[mod])
+        atexit.register(cleanup)
 
-class RestartMe(Exception):
-    pass
+    def main(self):
+        self.load_modules()
+        self.run_inotify()
+        self.return_to_i3main()
+
+        while True:
+            if self.ev.wait(timeout=8.0):
+                print("Begin reload")
+                self.ev.clear()
+                importlib.invalidate_caches()
+                for m in self.modules:
+                    importlib.reload(m)
+                    print("module :: {} :: reloaded".format(m))
+                    # m.reload_config()
 
 if __name__ == '__main__':
-    while True:
-        listner = Listner()
-        try:
-            print("STARTED")
-            listner.main()
-        except RestartMe:
-            del listner
+    listner = Listner()
+    listner.main()
