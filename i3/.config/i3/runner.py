@@ -73,13 +73,15 @@ class Listner():
             th.start()
 
     def cleanup(self):
-        def cleanup_():
-            d = currm["manager"].daemons[mod]
-            if os.path.exists(d.fifos[mod]):
-                os.remove(d.fifos[mod])
-        atexit.register(cleanup)
+        def cleanup_everything():
+            for mod in self.daemons_map.keys():
+                fifo=self.daemons_map[mod]["manager"].daemons[mod].fifos[mod]
+                if os.path.exists(fifo):
+                    os.remove(fifo)
+        atexit.register(cleanup_everything)
 
     def main(self):
+        self.cleanup()
         self.load_modules()
         self.run_inotify()
         self.return_to_i3main()
