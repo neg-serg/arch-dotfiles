@@ -16,7 +16,17 @@ class cycle_settings(object):
                     'Conkeror',
                     'Qutebrowser'
                 },
-                'prog':"waterfox",
+                'prog': "waterfox",
+                'prog_dict': {
+                    "main" : {
+                        "prog": "waterfox",
+                        "includes": {'Firefox', 'Waterfox'},
+                    },
+                    "tor" : {
+                        "prog": "tor-browser-en",
+                        "includes": {'Tor Browser'},
+                    },
+                },
                 'priority':'Waterfox',
             },
             'vid':{
