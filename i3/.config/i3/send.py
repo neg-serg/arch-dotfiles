@@ -1,7 +1,8 @@
-#!/usr/bin/env python3 
+#!/usr/bin/env python3
 """ i3 generic sender
 
 Usage:
+  send.py circle reload
   send.py circle next <name>
   send.py circle info <name>
   send.py ns show <name>
@@ -9,9 +10,11 @@ Usage:
   send.py ns toggle <name>
   send.py ns run <name> <prog>
   send.py ns next
+  send.py ns reload
   send.py ns geom_restore
   send.py ns hide_current
   send.py flast switch
+  send.py flast reload
   send.py (-h | --help)
   send.py --version
 
@@ -30,9 +33,31 @@ from docopt import docopt
 import os.path
 
 conf={
-    'circle': { 'cmds': {"next", "info"}, },
-    'ns': { 'cmds': { "show", "hide", "toggle", "next", "hide_current", "run", "geom_restore" }, },
-    'flast': { 'cmds': { "switch" }, }
+    'circle': {
+        'cmds': {
+            "next",
+            "reload",
+            "info"
+        },
+    },
+    'ns': {
+        'cmds': {
+            "show",
+            "hide",
+            "toggle",
+            "next",
+            "hide_current",
+            "run",
+            "geom_restore",
+            "reload"
+        },
+    },
+    'flast': {
+        'cmds': {
+            "switch",
+            "reload",
+        },
+    }
 }
 
 if __name__ == '__main__':
@@ -52,7 +77,8 @@ if __name__ == '__main__':
             break
         fp=os.open(script[1]['fifo'], os.O_WRONLY | os.O_NONBLOCK)
         cmd=""
-        cmd+=fstcmd
+        if fstcmd is not None:
+            cmd+=fstcmd
         for param in ['<name>', '<prog>']:
             if argv[param]:
                 cmd+=" " + argv[param]

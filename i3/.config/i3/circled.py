@@ -4,11 +4,12 @@ import re
 import errno
 import os
 import time
+import importlib
 
 from sys import exit
-from circle_conf import *
 from singleton_mixin import *
 from i3gen import *
+import circle_conf
 import redis
 import shlex
 
@@ -23,7 +24,7 @@ class circle(SingletonMixin):
         self.winlist=[]
 
         self.redis_db=redis.StrictRedis(host='localhost', port=6379, db=0)
-        self.cfg=cycle_settings().settings
+        self.cfg=circle_conf.cycle_settings().settings
 
         for i in self.cfg:
             self.tagged[i]=list({})
@@ -39,6 +40,12 @@ class circle(SingletonMixin):
         self.i3.on("window::fullscreen_mode", self.handle_fullscreen)
 
         self.current_win=self.i3.get_tree().find_focused()
+
+    def reload_config(self):
+        print("start circled config reload")
+        importlib.reload(circle_conf)
+        self.__init__()
+        print("end circled config reload")
 
     def go_next(self, tag):
         def tag_conf():
@@ -141,6 +148,7 @@ class circle(SingletonMixin):
     def switch(self, args):
         switch_ = {
             "next": self.go_next,
+            "reload": self.reload_config,
         }
         switch_[args[0]](*args[1:])
 

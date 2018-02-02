@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 import i3ipc
 
-from ns_conf import *
-
 from singleton_mixin import *
 from i3gen import *
 from threading import Thread
 
+import importlib
+import ns_conf
 import uuid
 import re
 import errno
@@ -22,7 +22,7 @@ class ns(SingletonMixin):
         self.group_list=[]
         self.fullscreen_list=[]
         self.factors=["class", "instance", "class_r"]
-        self.cfg_module=ns_settings()
+        self.cfg_module=ns_conf.ns_settings()
         self.cfg=self.cfg_module.settings
         self.marked={i:[] for i in self.cfg}
 
@@ -34,6 +34,12 @@ class ns(SingletonMixin):
 
         self.i3.on('window::new', self.mark_group)
         self.i3.on('window::close', self.cleanup_mark)
+
+    def reload_config(self):
+        print("start nsd config reload")
+        importlib.reload(ns_conf)
+        self.__init__()
+        print("end nsd config reload")
 
     def make_mark(self, tag: str) -> str:
         uuid_str = str(str(uuid.uuid4().fields[-1]))
@@ -203,6 +209,7 @@ class ns(SingletonMixin):
             "hide_current": self.hide_current,
             "geom_restore": self.geom_restore_current,
             "run": self.run_prog,
+            "reload": self.reload_config,
         }
         switch_[args[0]](*args[1:])
 

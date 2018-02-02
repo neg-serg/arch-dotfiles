@@ -25,9 +25,15 @@ class flast(SingletonMixin):
         if wmii_like_goback:
             self.i3.on('window::close', self.go_back_if_nothing)
 
+    def reload_config(self):
+        print("start flastd config reload")
+        self.__init__()
+        print("end flastd config reload")
+
     def switch(self, args):
         switch_ = {
             "switch": self.alt_tab,
+            "reload": self.reload_config,
         }
         switch_[args[0]](*args[1:])
 
