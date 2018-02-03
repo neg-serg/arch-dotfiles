@@ -75,7 +75,7 @@ class circle(SingletonMixin):
                 fullscreened=self.i3.get_tree().find_fullscreen()
                 for win in fullscreened:
                     if cur_win_in_current_class_set() and self.current_win.id == win.id:
-                        self.interactive=False
+                        self.need_handle_fullscreen=False
                         win.command('fullscreen disable')
 
             target_i()['win'].command('focus')
@@ -87,10 +87,10 @@ class circle(SingletonMixin):
                 now_focused=target_i()['win'].id
                 for id in self.restorable:
                     if id == now_focused:
-                        self.interactive=False
+                        self.need_handle_fullscreen=False
                         self.i3.command('[con_id=%s] fullscreen enable' % now_focused)
 
-            self.interactive=True
+            self.need_handle_fullscreen=True
 
         def go_to_not_repeat():
             inc_c()
@@ -113,7 +113,7 @@ class circle(SingletonMixin):
                 target_=self.counters[tag] % len(self.tagged[tag])
 
                 if ("priority" in self.cfg[tag]) and not current_class_in_priority():
-                    if not len([ i for i in self.tagged[tag] if i['win'].window_class == self.cfg[tag]["priority"]]):
+                    if not len([ win for win in self.tagged[tag] if win['win'].window_class == self.cfg[tag]["priority"]]):
                         run_prog()
                         return
 
@@ -185,31 +185,31 @@ class circle(SingletonMixin):
     def add_wins(self, i3, event):
         win = event.container
         for tag in self.cfg:
-                for factor in self.factors:
-                    if win.window_class in self.cfg.get(tag,{}).get((factor),{}):
-                        try:
-                            self.tagged[tag].append({'win': win, 'focused': win.focused})
-                            self.redis_update_count(tag)
-                        except KeyError:
-                            self.tag_windows()
-                            self.add_wins(i3, event)
-                        break
+            for factor in self.factors:
+                if win.window_class in self.cfg.get(tag,{}).get((factor),{}):
+                    try:
+                        self.tagged[tag].append({'win': win, 'focused': win.focused})
+                        self.redis_update_count(tag)
+                    except KeyError:
+                        self.tag_windows()
+                        self.add_wins(i3, event)
+                    break
 
     def del_wins(self, i3, event):
         win = event.container
         for tag in self.cfg:
-                for factor in self.factors:
-                    if self.match(win, factor, tag):
-                        try:
-                            if 'win' in self.tagged[tag]:
-                                if self.tagged[tag]['win'].id in self.restorable:
-                                    self.restorable.remove(self.tagged[tag]['win'].id)
-                            del self.tagged[tag]
-                        except KeyError:
-                            self.tag_windows()
-                            self.del_wins(i3, event)
-                        break
-                self.redis_update_count(tag)
+            for factor in self.factors:
+                if self.match(win, factor, tag):
+                    try:
+                        if 'win' in self.tagged[tag]:
+                            if self.tagged[tag]['win'].id in self.restorable:
+                                self.restorable.remove(self.tagged[tag]['win'].id)
+                        del self.tagged[tag]
+                    except KeyError:
+                        self.tag_windows()
+                        self.del_wins(i3, event)
+                    break
+            self.redis_update_count(tag)
 
     def set_curr_win(self, i3, event):
         win=event.container
@@ -217,10 +217,12 @@ class circle(SingletonMixin):
 
     def handle_fullscreen(self, i3, event):
         win=event.container
-        if self.interactive:
+        if self.need_handle_fullscreen:
             if win.fullscreen_mode:
                 if win.id not in self.restorable:
                     self.restorable.append(win.id)
+                    return
             if not win.fullscreen_mode:
                 if win.id in self.restorable:
                     self.restorable.remove(win.id)
+                    return
