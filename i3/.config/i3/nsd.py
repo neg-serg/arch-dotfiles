@@ -36,10 +36,13 @@ class ns(SingletonMixin):
         self.i3.on('window::close', self.cleanup_mark)
 
     def reload_config(self):
-        print("start nsd config reload")
-        importlib.reload(ns_conf)
-        self.__init__()
-        print("end nsd config reload")
+        prev_conf=self.cfg
+        try:
+            importlib.reload(ns_conf)
+            self.__init__()
+        except:
+            self.cfg=prev_conf
+            self.__init__()
 
     def make_mark(self, tag: str) -> str:
         uuid_str = str(str(uuid.uuid4().fields[-1]))

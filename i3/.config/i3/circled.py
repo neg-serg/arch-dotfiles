@@ -42,10 +42,13 @@ class circle(SingletonMixin):
         self.current_win=self.i3.get_tree().find_focused()
 
     def reload_config(self):
-        print("start circled config reload")
-        importlib.reload(circle_conf)
-        self.__init__()
-        print("end circled config reload")
+        prev_conf=self.cfg
+        try:
+            importlib.reload(circle_conf)
+            self.__init__()
+        except:
+            self.cfg=prev_conf
+            self.__init__()
 
     def go_next(self, tag):
         def tag_conf():
