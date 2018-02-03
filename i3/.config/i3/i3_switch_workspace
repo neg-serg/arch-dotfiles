@@ -8,10 +8,5 @@ function gen_workspaces() {
         sort -n
 }
 
-ws=$( (echo empty; gen_workspaces)  | rofi -dmenu -p "Select workspace:")
-
-if [[ "empty" = "${ws}" ]]; then
-    "${XDG_CONFIG_HOME}/i3/i3_empty_workspace.sh"
-elif [ -n "${ws}" ]; then
-    i3-msg workspace "${ws}"
-fi
+ws=$( (echo empty; gen_workspaces)  | rofi -columns 8 -lines 2 -dmenu -p "Select workspace:")
+[[ -n "${ws}" ]] && i3-msg workspace "${ws}"
