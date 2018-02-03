@@ -31,12 +31,11 @@ class circle(SingletonMixin):
             self.counters[i]=0
 
         self.i3 = i3ipc.Connection()
+        self.tag_windows()
 
-        self.invalidate_tags_info()
-
-        self.i3.on('window::new', self.add_acceptable)
-        self.i3.on('window::close', self.del_acceptable)
-        self.i3.on("window::focus", self.save_current_win)
+        self.i3.on('window::new', self.add_wins)
+        self.i3.on('window::close', self.del_wins)
+        self.i3.on("window::focus", self.set_curr_win)
         self.i3.on("window::fullscreen_mode", self.handle_fullscreen)
 
         self.current_win=self.i3.get_tree().find_focused()
@@ -51,27 +50,15 @@ class circle(SingletonMixin):
             self.__init__()
 
     def go_next(self, tag):
-        def tag_conf():
-            return self.cfg[tag]
-
-        def cur_win():
-            return self.current_win
-
         def cur_win_in_current_class_set():
             tag_classes_set=set(self.cfg[tag]["class"])
-            return cur_win().window_class in tag_classes_set
+            return self.current_win.window_class in tag_classes_set
 
         def current_class_in_priority():
             if not cur_win_in_current_class_set():
-                return cur_win() == tag_conf()["priority"]
+                return self.current_win == self.cfg[tag]["priority"]
             else:
                 return True
-
-        def is_priority_attr():
-            return "priority" in tag_conf()
-
-        def class_eq_priority():
-            return item['win'].window_class == tag_conf()["priority"]
 
         def inc_c():
             self.counters[tag]+=1
@@ -80,14 +67,14 @@ class circle(SingletonMixin):
             return self.tagged[tag][target_]
 
         def run_prog():
-            prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), tag_conf()["prog"])
+            prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
             self.i3.command('exec {}'.format(prog_str))
 
         def go_next_(inc_counter=True,fullscreen_handler=True):
             if fullscreen_handler:
                 fullscreened=self.i3.get_tree().find_fullscreen()
                 for win in fullscreened:
-                    if cur_win_in_current_class_set() and cur_win().id == win.id:
+                    if cur_win_in_current_class_set() and self.current_win.id == win.id:
                         self.interactive=False
                         win.command('fullscreen disable')
 
@@ -115,7 +102,7 @@ class circle(SingletonMixin):
 
         try:
             if len(self.tagged[tag]) == 0:
-                if "prog" in tag_conf():
+                if "prog" in self.cfg[tag]:
                     run_prog()
                 else:
                     return
@@ -125,13 +112,13 @@ class circle(SingletonMixin):
             else:
                 target_=self.counters[tag] % len(self.tagged[tag])
 
-                if is_priority_attr() and not current_class_in_priority():
-                    if not len([ i for i in self.tagged[tag] if i['win'].window_class == tag_conf()["priority"] ]):
+                if ("priority" in self.cfg[tag]) and not current_class_in_priority():
+                    if not len([ i for i in self.tagged[tag] if i['win'].window_class == self.cfg[tag]["priority"]]):
                         run_prog()
                         return
 
                     for target_,item in enumerate(self.tagged[tag]):
-                        if class_eq_priority():
+                        if item['win'].window_class == self.cfg[tag]["priority"]:
                             fullscreened=self.i3.get_tree().find_fullscreen()
                             for win in fullscreened:
                                 tag_classes_set=set(self.cfg[tag]["class"])
@@ -145,7 +132,7 @@ class circle(SingletonMixin):
                 else:
                     go_next_()
         except KeyError:
-            self.invalidate_tags_info()
+            self.tag_windows()
             self.go_next(tag)
 
     def switch(self, args):
@@ -184,7 +171,7 @@ class circle(SingletonMixin):
                     break
         self.redis_update_count(tag)
 
-    def invalidate_tags_info(self):
+    def tag_windows(self):
         self.winlist=self.i3.get_tree()
         wlist = self.winlist.leaves()
         self.tagged={}
@@ -195,45 +182,45 @@ class circle(SingletonMixin):
         for tag in self.cfg:
             self.find_acceptable_windows(tag, wlist)
 
-    def add_acceptable(self, i3, event):
-        con = event.container
+    def add_wins(self, i3, event):
+        win = event.container
         for tag in self.cfg:
                 for factor in self.factors:
-                    if con.window_class in self.cfg.get(tag,{}).get((factor),{}):
+                    if win.window_class in self.cfg.get(tag,{}).get((factor),{}):
                         try:
-                            self.tagged[tag].append({'win':con,'focused':con.focused})
+                            self.tagged[tag].append({'win': win, 'focused': win.focused})
                             self.redis_update_count(tag)
                         except KeyError:
-                            self.invalidate_tags_info()
-                            self.add_acceptable(i3, event)
+                            self.tag_windows()
+                            self.add_wins(i3, event)
                         break
 
-    def del_acceptable(self, i3, event):
-        con = event.container
+    def del_wins(self, i3, event):
+        win = event.container
         for tag in self.cfg:
                 for factor in self.factors:
-                    if self.match(con, factor, tag):
+                    if self.match(win, factor, tag):
                         try:
                             if 'win' in self.tagged[tag]:
                                 if self.tagged[tag]['win'].id in self.restorable:
                                     self.restorable.remove(self.tagged[tag]['win'].id)
                             del self.tagged[tag]
                         except KeyError:
-                            self.invalidate_tags_info()
-                            self.del_acceptable(i3, event)
+                            self.tag_windows()
+                            self.del_wins(i3, event)
                         break
                 self.redis_update_count(tag)
 
-    def save_current_win(self, i3, event):
-        con=event.container
-        self.current_win=con
+    def set_curr_win(self, i3, event):
+        win=event.container
+        self.current_win=win
 
     def handle_fullscreen(self, i3, event):
-        con=event.container
+        win=event.container
         if self.interactive:
-            if con.fullscreen_mode:
-                if con.id not in self.restorable:
-                    self.restorable.append(con.id)
-            if not con.fullscreen_mode:
-                if con.id in self.restorable:
-                    self.restorable.remove(con.id)
+            if win.fullscreen_mode:
+                if win.id not in self.restorable:
+                    self.restorable.append(win.id)
+            if not win.fullscreen_mode:
+                if win.id in self.restorable:
+                    self.restorable.remove(win.id)
