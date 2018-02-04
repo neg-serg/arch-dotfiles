@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import i3ipc
 import os
-import time
 from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
@@ -14,8 +13,7 @@ class flast(SingletonMixin):
     def __init__(self):
         self.i3 = i3ipc.Connection()
         self.window_list = self.i3.get_tree().leaves()
-        self.prev_time = 0
-        self.curr_time = 0
+        self.wset = set()
 
         self.i3 = i3ipc.Connection()
         wmii_like_goback=True
@@ -34,18 +32,18 @@ class flast(SingletonMixin):
         }
         switch_[args[0]](*args[1:])
 
-    def alt_tab(self, timer=0.05):
-        self.curr_time = time.time()
-        windows = set(w.id for w in self.i3.get_tree().leaves())
-        for wid in self.window_list[1:]:
-            if wid not in windows:
-                self.window_list.remove(wid)
-            else:
-                if self.curr_time - self.prev_time > timer:
+    def alt_tab(self):
+        alt_tab_lock = Lock()
+        self.wset = set(w.id for w in self.i3.get_tree().leaves())
+        try:
+            alt_tab_lock.acquire(blocking=True, timeout=0.02)
+            for wid in self.window_list[1:]:
+                if wid not in self.wset:
+                    self.window_list.remove(wid)
+                else:
                     self.i3.command('[con_id=%s] focus' % wid)
-                    self.prev_time = self.curr_time
-                    self.curr_time = time.time()
-                break
+        finally:
+            alt_tab_lock.release()
 
     def on_window_focus(self, i3, event):
         wid = event.container.id
@@ -70,8 +68,6 @@ class flast(SingletonMixin):
         return visible_windows
 
     def go_back_if_nothing(self, i3, event):
-        con=event.container
-        focused_=i3.get_tree().find_focused()
-        if not len(self.find_visible_windows()) \
-        and "[pic]" in focused_.workspace().name:
+        focused=self.i3.get_tree().find_focused()
+        if not len(self.find_visible_windows()) and "[pic]" in focused.workspace().name:
             self.alt_tab(0)
