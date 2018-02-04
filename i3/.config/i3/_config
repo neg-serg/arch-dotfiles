@@ -283,6 +283,6 @@ mode "gaps-inner" {
 }
 
 exec --no-startup-id [[ $(pgrep polybar|wc -l) == 1 ]] || polybar -c ~/.config/polybar/main main
-exec_always --no-startup-id ${XDG_CONFIG_HOME}/i3/runner.py
+exec_always nohup ${XDG_CONFIG_HOME}/i3/runner.py > /dev/null 2>1&
 
 # vim:filetype=i3
