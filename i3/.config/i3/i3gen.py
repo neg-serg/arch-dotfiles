@@ -1,25 +1,21 @@
-import i3ipc
 import os
-
-from sys import exit
-from subprocess import check_output
 from singleton_mixin import *
 from threading import Thread
-import collections
+from collections import deque
 
 class daemon_manager(SingletonMixin):
     def __init__(self):
         self.daemons={}
 
     def add_daemon(self, name):
-        daemon_=daemon_i3.instance()
-        if daemon_ not in self.daemons.keys():
-            self.daemons[name]=daemon_
+        d=daemon_i3.instance()
+        if d not in self.daemons.keys():
+            self.daemons[name]=d
             self.daemons[name].bind_fifo(name)
 
 class daemon_i3(SingletonMixin):
     def __init__(self):
-        self.q = collections.deque()
+        self.d = deque()
         self.fifos={}
 
     def bind_fifo(self, name):
@@ -36,7 +32,7 @@ class daemon_i3(SingletonMixin):
         with open(self.fifos[name]) as fifo:
             while True:
                 data = fifo.read()
-                if len(data) == 0:
+                if not len(data):
                     break
                 eval_str=data.split('\n', 1)[0]
                 args=list(filter(lambda x: x != '', eval_str.split(' ')))
@@ -44,11 +40,11 @@ class daemon_i3(SingletonMixin):
 
     def worker(self):
         while True:
-            if self.q:
-                exit()
-            i = self.q.get()
+            if self.d:
+                raise SystemExit()
+            self.d.get()
 
     def mainloop(self, singleton, name):
         while True:
-            self.q.append(self.fifo_listner(singleton, name))
+            self.d.append(self.fifo_listner(singleton, name))
             Thread(target=self.worker).start()
