@@ -1,39 +1,27 @@
 #!/usr/bin/env python3
 import i3ipc
-
-from singleton_mixin import *
-from i3gen import *
-from threading import Thread
-
 import importlib
 import ns_conf
 import uuid
 import re
-import errno
 import os
-
 import shlex
-
+from singleton_mixin import *
+from i3gen import *
 from typing import Callable, List
-from timeit import default_timer as timer
 
 class ns(SingletonMixin):
     def __init__(self) -> None:
-        self.group_list=[]
         self.fullscreen_list=[]
         self.factors=["class", "instance", "class_r"]
         self.cfg_module=ns_conf.ns_settings()
         self.cfg=self.cfg_module.settings
-        self.marked={i:[] for i in self.cfg}
-
-        [self.group_list.append(tag) for tag in self.cfg]
-
+        self.marked={l:[] for l in self.cfg}
         self.i3 = i3ipc.Connection()
+        self.mark_all_tags(hide=True)
 
-        self.mark_all(hide=True)
-
-        self.i3.on('window::new', self.mark_group)
-        self.i3.on('window::close', self.cleanup_mark)
+        self.i3.on('window::new', self.mark_tag)
+        self.i3.on('window::close', self.unmark_tag)
 
     def reload_config(self):
         prev_conf=self.cfg
@@ -44,10 +32,9 @@ class ns(SingletonMixin):
             self.cfg=prev_conf
             self.__init__()
 
-    def make_mark(self, tag: str) -> str:
+    def make_mark_str(self, tag: str) -> str:
         uuid_str = str(str(uuid.uuid4().fields[-1]))
-        output = "%(tag)s-%(uuid_str)s" % {"tag":tag, "uuid_str":uuid_str}
-        return 'mark {}'.format(output)
+        return 'mark {}'.format("%(tag)s-%(uuid_str)s" % {"tag":tag, "uuid_str":uuid_str})
 
     def focus(self, tag: str) -> None:
         [
@@ -81,20 +68,21 @@ class ns(SingletonMixin):
         return visible_windows
 
     def toggle(self, tag : str) -> None:
-        if self.marked[tag] == [] and "prog" in self.cfg[tag]:
+        if not len(self.marked[tag]) and "prog" in self.cfg[tag]:
             prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
             self.i3.command('exec {}'.format(prog_str))
-
-        # We need to hide scratchpad it is visible, regardless it focused or not
-        focused = self.i3.get_tree().find_focused()
 
         if self.visible(tag) > 0:
             self.unfocus(tag)
             return
 
+        # We need to hide scratchpad it is visible, regardless it focused or not
+        focused = self.i3.get_tree().find_focused()
+
         for i in self.marked[tag]:
             if focused.id == i.id:
-                self.unfocus(tag); return
+                self.unfocus(tag)
+                return
 
         if focused.fullscreen_mode:
             focused.command('fullscreen toggle')
@@ -111,7 +99,7 @@ class ns(SingletonMixin):
                 prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog_dict"][app]["prog"])
                 self.i3.command('exec {}'.format(prog_str))
             else:
-                def focus_subgroup(tag: str):
+                def focus_sub_tag(tag: str):
                     focused=self.i3.get_tree().find_focused()
 
                     if focused.fullscreen_mode:
@@ -135,12 +123,12 @@ class ns(SingletonMixin):
                                 self.next_win()
                         else:
                             break
-                focus_subgroup(tag)
+                focus_sub_tag(tag)
         else:
             self.toggle(tag)
 
     def restore_fullscreens(self) -> None:
-        [i.command('fullscreen toggle') for i in self.fullscreen_list]
+        [win.command('fullscreen toggle') for win in self.fullscreen_list]
         self.fullscreen_list=[]
 
     def visible(self, tag: str):
@@ -151,41 +139,36 @@ class ns(SingletonMixin):
                 vmarked+=(w.id == i.id)
         return vmarked
 
-    def get_current_group(self, focused) -> str:
+    def get_current_tag(self, focused) -> str:
         for tag in self.cfg:
             for i in self.marked[tag]:
                 if focused.id == i.id:
                     return tag
 
-    def apply_to_current_group(self, func : Callable) -> bool:
-        curr_group=self.get_current_group(self.i3.get_tree().find_focused())
-        curr_group_exits=(curr_group != None)
-        if curr_group_exits:
-            func(curr_group)
-        return curr_group_exits
+    def apply_to_current_tag(self, func : Callable) -> bool:
+        curr_tag=self.get_current_tag(self.i3.get_tree().find_focused())
+        curr_tag_exits=(curr_tag != None)
+        if curr_tag_exits:
+            func(curr_tag)
+        return curr_tag_exits
 
     def next_win(self) -> None:
-        focused_=self.i3.get_tree().find_focused()
+        focused_win=self.i3.get_tree().find_focused()
 
         def next_win_(tag: str) -> None:
             self.focus(tag)
             for number,win in enumerate(self.marked[tag]):
-                if focused_.id != win.id:
+                if focused_win.id != win.id:
                     self.marked[tag][number].command('move container to workspace current')
                     self.marked[tag].insert(len(self.marked[tag]), self.marked[tag].pop(number))
                     win.command('move scratchpad')
             self.focus(tag)
 
-        self.apply_to_current_group(next_win_)
+        self.apply_to_current_tag(next_win_)
 
     def hide_current(self) -> None:
-        groupwins=self.apply_to_current_group(self.unfocus)
-        if not groupwins:
+        if not self.apply_to_current_tag(self.unfocus):
             self.i3.command('[con_id=__focused__] scratchpad show')
-
-    def geom_restore_all(self) -> None:
-        for tag in self.cfg:
-            geom_restore(tag)
 
     def geom_restore(self, tag: str) -> None:
         for j,win in enumerate(self.marked[tag]):
@@ -194,14 +177,14 @@ class ns(SingletonMixin):
 
             # then make a new mark and move scratchpad
             win_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
-                "make_mark": self.make_mark(tag),
+                "make_mark": self.make_mark_str(tag),
                 "get_geom": self.cfg_module.get_geom(tag)
             }
             win.command(win_cmd)
             self.marked[tag].append(win)
 
     def geom_restore_current(self) -> None:
-        groupwins=self.apply_to_current_group(self.geom_restore)
+        self.apply_to_current_tag(self.geom_restore)
 
     def switch(self, args : List) -> None:
         switch_ = {
@@ -230,21 +213,27 @@ class ns(SingletonMixin):
                         if win.window_class == class_regex.window_class:
                             return True
 
-    def mark_group(self, i3, event) -> None:
+    def mark_tag(self, i3, event) -> None:
         con=event.container
         for tag in self.cfg:
             for factor in self.factors:
                 if self.match(con, factor, tag):
                     # scratch_move
                     con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
-                        "make_mark": self.make_mark(tag),
+                        "make_mark": self.make_mark_str(tag),
                         "get_geom": self.cfg_module.get_geom(tag)
                     }
                     con.command(con_cmd)
                     self.marked[tag].append(con)
                     break
 
-    def mark_all(self, hide : bool=True) -> None:
+    def unmark_tag(self, i3, event) -> None:
+        for tag in self.cfg:
+            for _,win in enumerate(self.marked[tag]):
+                if win.id == event.container.id:
+                    del self.marked[tag][_]
+
+    def mark_all_tags(self, hide : bool=True) -> None:
         window_list = self.i3.get_tree().leaves()
         for tag in self.cfg:
             for con in window_list:
@@ -256,16 +245,10 @@ class ns(SingletonMixin):
                             hide_cmd='[con_id=__focused__] scratchpad show'
                         con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s, %(hide_cmd)s" % \
                             {
-                                "make_mark": self.make_mark(tag),
+                                "make_mark": self.make_mark_str(tag),
                                 "get_geom": self.cfg_module.get_geom(tag),
                                 "hide_cmd": hide_cmd
                             }
                         con.command(con_cmd)
                         self.marked[tag].append(con)
                         break
-
-    def cleanup_mark(self, i3, event) -> None:
-        for tag in self.cfg:
-            for j,win in enumerate(self.marked[tag]):
-                if win.id == event.container.id:
-                    del self.marked[tag][j]
