@@ -26,9 +26,9 @@ class circle(SingletonMixin):
         self.redis_db=redis.StrictRedis(host='localhost', port=6379, db=0)
         self.cfg=circle_conf.cycle_settings().settings
 
-        for i in self.cfg:
-            self.tagged[i]=list({})
-            self.counters[i]=0
+        for tag in self.cfg:
+            self.tagged[tag]=[]
+            self.counters[tag]=0
 
         self.i3 = i3ipc.Connection()
         self.tag_windows()
@@ -51,8 +51,7 @@ class circle(SingletonMixin):
 
     def go_next(self, tag):
         def cur_win_in_current_class_set():
-            tag_classes_set=set(self.cfg[tag]["class"])
-            return self.current_win.window_class in tag_classes_set
+            return self.current_win.window_class in set(self.cfg[tag]["class"])
 
         def current_class_in_priority():
             if not cur_win_in_current_class_set():
@@ -70,7 +69,7 @@ class circle(SingletonMixin):
             prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
             self.i3.command('exec {}'.format(prog_str))
 
-        def go_next_(inc_counter=True,fullscreen_handler=True):
+        def focus_next(inc_counter=True,fullscreen_handler=True):
             if fullscreen_handler:
                 fullscreened=self.i3.get_tree().find_fullscreen()
                 for win in fullscreened:
@@ -78,13 +77,12 @@ class circle(SingletonMixin):
                         self.need_handle_fullscreen=False
                         win.command('fullscreen disable')
 
-            target_i()['win'].command('focus')
-            target_i()['focused']=True
+            target_i().command('focus')
             if inc_counter:
                 inc_c()
 
             if fullscreen_handler:
-                now_focused=target_i()['win'].id
+                now_focused=target_i().id
                 for id in self.restorable:
                     if id == now_focused:
                         self.need_handle_fullscreen=False
@@ -92,7 +90,7 @@ class circle(SingletonMixin):
 
             self.need_handle_fullscreen=True
 
-        def go_to_not_repeat():
+        def find_priority_win():
             inc_c()
             self.repeats+=1
             if self.repeats < 8:
@@ -108,29 +106,28 @@ class circle(SingletonMixin):
                     return
             elif len(self.tagged[tag]) <= 1:
                 target_=0
-                go_next_(fullscreen_handler=False)
+                focus_next(fullscreen_handler=False)
             else:
                 target_=self.counters[tag] % len(self.tagged[tag])
 
                 if ("priority" in self.cfg[tag]) and not current_class_in_priority():
-                    if not len([ win for win in self.tagged[tag] if win['win'].window_class == self.cfg[tag]["priority"]]):
+                    if not len([ win for win in self.tagged[tag] if win.window_class == self.cfg[tag]["priority"]]):
                         run_prog()
                         return
 
                     for target_,item in enumerate(self.tagged[tag]):
-                        if item['win'].window_class == self.cfg[tag]["priority"]:
+                        if item.window_class == self.cfg[tag]["priority"]:
                             fullscreened=self.i3.get_tree().find_fullscreen()
                             for win in fullscreened:
-                                tag_classes_set=set(self.cfg[tag]["class"])
-                                if win.window_class in tag_classes_set and win.window_class != self.cfg[tag]["priority"]:
+                                if win.window_class in set(self.cfg[tag]["class"]) and win.window_class != self.cfg[tag]["priority"]:
                                     self.interactive=False
                                     win.command('fullscreen disable')
-                            go_next_(inc_counter=False)
+                            focus_next(inc_counter=False)
                             return
-                elif self.current_win.id == target_i()['win'].id:
-                    go_to_not_repeat()
+                elif self.current_win.id == target_i().id:
+                    find_priority_win()
                 else:
-                    go_next_()
+                    focus_next()
         except KeyError:
             self.tag_windows()
             self.go_next(tag)
@@ -167,7 +164,7 @@ class circle(SingletonMixin):
         for win in wlist:
             for factor in self.factors:
                 if self.match(win, factor, tag):
-                    self.tagged[tag].append({'win':win, 'focused':False})
+                    self.tagged[tag].append(win)
                     break
         self.redis_update_count(tag)
 
@@ -177,7 +174,7 @@ class circle(SingletonMixin):
         self.tagged={}
 
         for tag in self.cfg:
-            self.tagged[tag]=list({})
+            self.tagged[tag]=[]
 
         for tag in self.cfg:
             self.find_acceptable_windows(tag, wlist)
@@ -188,7 +185,7 @@ class circle(SingletonMixin):
             for factor in self.factors:
                 if win.window_class in self.cfg.get(tag,{}).get((factor),{}):
                     try:
-                        self.tagged[tag].append({'win': win, 'focused': win.focused})
+                        self.tagged[tag].append(win)
                         self.redis_update_count(tag)
                     except KeyError:
                         self.tag_windows()
@@ -201,9 +198,10 @@ class circle(SingletonMixin):
             for factor in self.factors:
                 if self.match(win, factor, tag):
                     try:
-                        if 'win' in self.tagged[tag]:
-                            if self.tagged[tag]['win'].id in self.restorable:
-                                self.restorable.remove(self.tagged[tag]['win'].id)
+                        if self.tagged[tag] is not None:
+                            for win in self.tagged[tag]:
+                                if win.id in self.restorable:
+                                    self.restorable.remove(win.id)
                         del self.tagged[tag]
                     except KeyError:
                         self.tag_windows()
