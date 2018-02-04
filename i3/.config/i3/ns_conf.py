@@ -7,10 +7,9 @@ import itertools
 class ns_settings(object):
     def init_i3_win_cmds(self, hide=True, dprefix_="for_window "):
         def ch_(list, ch):
+            ret=''
             if len(list) > 1:
                 ret=ch
-            else:
-                ret=''
             return ret
 
         def parse_attr_(attr):
@@ -19,24 +18,19 @@ class ns_settings(object):
             if len(attrib_list)>1:
                 ret+='('
             for iter,item in enumerate(attrib_list):
+                ret+=item
                 if iter+1 < len(attrib_list):
-                    ret+=item+'|'
-                else:
-                    ret+=item
+                    ret+='|'
             if len(attrib_list) > 1:
                 ret+=')$'
             ret+='"] '
 
             return ret
 
-        def mv_scratch():
-            return "move scratchpad, "
-
         def hide_cmd():
+            ret = ""
             if hide:
                 ret = ", [con_id=__focused__] scratchpad show"
-            else:
-                ret = ""
             return ret
 
         def ret_info(key):
@@ -44,7 +38,7 @@ class ns_settings(object):
                 lst=[item for item in self.settings[tag][key] if item != '']
                 if lst != []:
                     pref=dprefix_+"[" + '{}="'.format(attr) + ch_(self.settings[tag][attr],'^')
-                    for_win_cmd=pref + parse_attr_(key) + mv_scratch() + self.get_geom(tag) + hide_cmd()
+                    for_win_cmd=pref + parse_attr_(key) + "move scratchpad, " + self.get_geom(tag) + hide_cmd()
                     return for_win_cmd
             return ''
 
@@ -56,6 +50,7 @@ class ns_settings(object):
 
         self.cmd_list=filter(lambda str: str!='', cmd_list)
 
+    # nsd need this function
     def get_geom(self, tag):
         return self.parsed_geom[tag]
 
