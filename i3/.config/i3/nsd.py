@@ -6,6 +6,7 @@ import uuid
 import re
 import os
 import shlex
+from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
 from typing import Callable, List
