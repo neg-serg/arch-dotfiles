@@ -6,6 +6,7 @@ import uuid
 import re
 import os
 import shlex
+import xpybutil.ewmh as ewmh
 from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
@@ -51,19 +52,13 @@ class ns(SingletonMixin):
         self.restore_fullscreens()
 
     def find_visible_windows(self):
-        def get_windows_on_ws():
-            return filter(
-                lambda x: x.window,
-                self.i3.get_tree().find_focused().workspace().descendents()
-            )
         visible_windows = []
-        wswins=get_windows_on_ws()
+        wswins=filter(
+            lambda win: win.window,
+            self.i3.get_tree().find_focused().workspace().descendents()
+        )
         for w in wswins:
-            try:
-                xprop = check_output(['xprop', '-id', str(w.window)]).decode()
-            except FileNotFoundError:
-                raise SystemExit("The `xprop` utility is not found!"
-                                " Please install it and retry.")
+            xprop = check_output(['xprop', '-id', str(w.window)]).decode()
             if '_NET_WM_STATE_HIDDEN' not in xprop:
                 visible_windows.append(w)
         return visible_windows
