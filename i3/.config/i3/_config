@@ -282,8 +282,8 @@ mode "gaps-inner" {
     bindsym {Return,Escape,$c+C,$c+G} $exit
 }
 
+exec_always ${XDG_CONFIG_HOME}/i3/runner.py > /dev/null
 exec ~/bin/term
-exec --no-startup-id [[ $(pgrep polybar|wc -l) == 1 ]] || polybar -c ${XDG_CONFIG_HOME}/polybar/main main
-exec_always nohup ${XDG_CONFIG_HOME}/i3/runner.py > /dev/null 2>1&
+exec_always pkill polybar; pkill polybar; [[ $(pgrep polybar|wc -l) -le 1  ]] && polybar -c $XDG_CONFIG_HOME/polybar/main main
 
 # vim:filetype=i3
