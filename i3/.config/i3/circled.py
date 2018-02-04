@@ -17,7 +17,7 @@ class circle(SingletonMixin):
     def __init__(self):
         self.tagged={}
         self.counters={}
-        self.restorable=[]
+        self.restore_fullscreen=[]
         self.factors=["class", "instance", "class_r"]
         self.interactive=True
         self.repeats=0
@@ -83,7 +83,7 @@ class circle(SingletonMixin):
 
             if fullscreen_handler:
                 now_focused=target_i().id
-                for id in self.restorable:
+                for id in self.restore_fullscreen:
                     if id == now_focused:
                         self.need_handle_fullscreen=False
                         self.i3.command('[con_id=%s] fullscreen enable' % now_focused)
@@ -200,8 +200,8 @@ class circle(SingletonMixin):
                     try:
                         if self.tagged[tag] is not None:
                             for win in self.tagged[tag]:
-                                if win.id in self.restorable:
-                                    self.restorable.remove(win.id)
+                                if win.id in self.restore_fullscreen:
+                                    self.restore_fullscreen.remove(win.id)
                         del self.tagged[tag]
                     except KeyError:
                         self.tag_windows()
@@ -217,10 +217,10 @@ class circle(SingletonMixin):
         win=event.container
         if self.need_handle_fullscreen:
             if win.fullscreen_mode:
-                if win.id not in self.restorable:
-                    self.restorable.append(win.id)
+                if win.id not in self.restore_fullscreen:
+                    self.restore_fullscreen.append(win.id)
                     return
             if not win.fullscreen_mode:
-                if win.id in self.restorable:
-                    self.restorable.remove(win.id)
+                if win.id in self.restore_fullscreen:
+                    self.restore_fullscreen.remove(win.id)
                     return
