@@ -26,7 +26,7 @@ padding-right = 0 # offset from -x
 module-margin-right = 0 # looks nice
 module-margin-left  = 0
 
-modules-left = LL date i3 xkeyboard network checkvpn mail RR
+modules-left = LL date ewmh xkeyboard network checkvpn mail RR
 modules-center =
 modules-right = mpd volume
 
@@ -52,23 +52,17 @@ compositing-overline = over
 compositing-underline = over
 compositing-border = over
 
-[module/i3]
-type = internal/i3
-index-sort = true
-fuzzy-match = true
+[module/ewmh]
+type = internal/xworkspaces
+label-active = %name%
+label-empty = 
+label-urgent = 
+label-occupied = 
+enable-click = false
+enable-scroll = false
 format-prefix=${c.ls}
 format-suffix=${c.delim}
-format = %{O-2}%{F#47959E}<label-mode>%{F#ccc}<label-state>
-label-focused-font = 4
-label-unfocused-font = 4
-label-urgent-font = 4
-label-visible-font = 4 
-label-unfocused=
-label-urgent = 
-label-urgent-padding = 1
-label-visible-padding = 1
-label-urgent-background = ${colors.background}
-label-urgent-foreground = ${colors.urgent}
+format = %{O5}%{F#47959E}%{F#ccc}<label-state>
 
 [module/mpd]
 type = internal/mpd
