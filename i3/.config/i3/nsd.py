@@ -6,7 +6,7 @@ import uuid
 import re
 import os
 import shlex
-import subprocess
+from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
 from typing import Callable, List
@@ -60,7 +60,7 @@ class ns(SingletonMixin):
         wswins=get_windows_on_ws()
         for w in wswins:
             try:
-                xprop = subprocess.check_output(['xprop', '-id', str(w.window)]).decode()
+                xprop = check_output(['xprop', '-id', str(w.window)]).decode()
             except FileNotFoundError:
                 raise SystemExit("The `xprop` utility is not found!"
                                 " Please install it and retry.")

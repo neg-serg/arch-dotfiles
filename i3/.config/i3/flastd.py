@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 import i3ipc
 import os
-
-from threading import Thread
-from queue import Queue
 import time
-
+from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
+from threading import Thread
+from queue import Queue
 
 max_win_history_ = 10
 
