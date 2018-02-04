@@ -4,21 +4,15 @@ import os
 from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
-from threading import Thread
-from queue import Queue
-
-max_win_history_ = 10
 
 class flast(SingletonMixin):
     def __init__(self):
         self.i3 = i3ipc.Connection()
-        self.window_list = self.i3.get_tree().leaves()
+        self.window_list = []
         self.wset = set()
-
-        self.i3 = i3ipc.Connection()
-        wmii_like_goback=True
-
         self.i3.on('window::focus', self.on_window_focus)
+        self.max_win_history = 10
+        wmii_like_goback=True
         if wmii_like_goback:
             self.i3.on('window::close', self.go_back_if_nothing)
 
@@ -52,8 +46,8 @@ class flast(SingletonMixin):
             self.window_list.remove(wid)
 
         self.window_list.insert(0, wid)
-        if len(self.window_list) > max_win_history_:
-            del self.window_list[max_win_history_:]
+        if len(self.window_list) > self.max_win_history:
+            del self.window_list[self.max_win_history:]
 
     def find_visible_windows(self):
         visible_windows = []
