@@ -1,17 +1,13 @@
 #!/usr/bin/env python3
 import i3ipc
 import re
-import errno
 import os
-import time
 import importlib
-
-from sys import exit
-from singleton_mixin import *
-from i3gen import *
 import circle_conf
 import redis
 import shlex
+from singleton_mixin import *
+from i3gen import *
 
 class circle(SingletonMixin):
     def __init__(self):
