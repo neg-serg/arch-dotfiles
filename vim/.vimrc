@@ -38,10 +38,12 @@ if 1
 endif
 
 let g:startuptime = reltime()
-    autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
-                \ | redraw
-                \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
+    \ | redraw
+    \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+if exists('$TMUX')
     let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket' | let g:nvim_is_started='on'
+endif
 
 if has('nvim')
     let g:python_interpreter='python2'
