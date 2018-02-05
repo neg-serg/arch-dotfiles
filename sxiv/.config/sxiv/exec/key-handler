@@ -44,7 +44,8 @@ readonly rofi_cmd=(rofi -dmenu
                     -opacity "${opacity_}"
                     -theme-str "'#window { width:${width_}; y-offset: 20; location: north; anchor: north; }'"
                     -theme-str "'#listview { lines:${lines_}; }'"
-                    -matching glob
+                    -sort
+                    -matching fuzzy
                     -no-plugins
                     -no-only-match
                     -custom
