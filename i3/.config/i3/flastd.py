@@ -9,11 +9,9 @@ class flast(SingletonMixin):
     def __init__(self):
         self.i3 = i3ipc.Connection()
         self.window_list = self.i3.get_tree().leaves()
-        self.i3.on('window::focus', self.on_window_focus)
         self.max_win_history = 64
-        wmii_like_goback=True
-        if wmii_like_goback:
-            self.i3.on('window::close', self.go_back_if_nothing)
+        self.i3.on('window::focus', self.on_window_focus)
+        self.i3.on('window::close', self.go_back_if_nothing)
 
     def reload_config(self):
         self.__init__()
@@ -26,12 +24,12 @@ class flast(SingletonMixin):
         switch_[args[0]](*args[1:])
 
     def alt_tab(self):
-        wset = set(w.id for w in self.i3.get_tree().leaves())
         for wid in self.window_list[1:]:
-            if wid not in wset:
+            if wid not in set(w.id for w in self.i3.get_tree().leaves()):
                 self.window_list.remove(wid)
             else:
                 self.i3.command('[con_id=%s] focus' % wid)
+                return
 
     def on_window_focus(self, i3, event):
         wid = event.container.id
@@ -43,13 +41,15 @@ class flast(SingletonMixin):
         if len(self.window_list) > self.max_win_history:
             del self.window_list[self.max_win_history:]
 
-    def find_visible_windows(self):
-        visible_windows = []
-        wswins=filter(
+    def get_windows_on_ws(self):
+        return filter(
             lambda win: win.window,
             self.i3.get_tree().find_focused().workspace().descendents()
         )
-        for w in wswins:
+
+    def find_visible_windows(self):
+        visible_windows = []
+        for w in self.get_windows_on_ws():
             xprop = check_output(['xprop', '-id', str(w.window)]).decode()
             if '_NET_WM_STATE_HIDDEN' not in xprop:
                 visible_windows.append(w)
