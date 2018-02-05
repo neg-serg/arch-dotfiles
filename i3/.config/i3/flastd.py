@@ -8,10 +8,9 @@ from i3gen import *
 class flast(SingletonMixin):
     def __init__(self):
         self.i3 = i3ipc.Connection()
-        self.window_list = []
-        self.wset = set()
+        self.window_list = self.i3.get_tree().leaves()
         self.i3.on('window::focus', self.on_window_focus)
-        self.max_win_history = 10
+        self.max_win_history = 64
         wmii_like_goback=True
         if wmii_like_goback:
             self.i3.on('window::close', self.go_back_if_nothing)
@@ -27,17 +26,12 @@ class flast(SingletonMixin):
         switch_[args[0]](*args[1:])
 
     def alt_tab(self):
-        alt_tab_lock = Lock()
-        self.wset = set(w.id for w in self.i3.get_tree().leaves())
-        try:
-            alt_tab_lock.acquire(blocking=True, timeout=0.02)
-            for wid in self.window_list[1:]:
-                if wid not in self.wset:
-                    self.window_list.remove(wid)
-                else:
-                    self.i3.command('[con_id=%s] focus' % wid)
-        finally:
-            alt_tab_lock.release()
+        wset = set(w.id for w in self.i3.get_tree().leaves())
+        for wid in self.window_list[1:]:
+            if wid not in wset:
+                self.window_list.remove(wid)
+            else:
+                self.i3.command('[con_id=%s] focus' % wid)
 
     def on_window_focus(self, i3, event):
         wid = event.container.id
@@ -62,6 +56,6 @@ class flast(SingletonMixin):
         return visible_windows
 
     def go_back_if_nothing(self, i3, event):
-        focused=self.i3.get_tree().find_focused()
+        focused=i3.get_tree().find_focused()
         if not len(self.find_visible_windows()) and "[pic]" in focused.workspace().name:
             self.alt_tab(0)
