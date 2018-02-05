@@ -43,6 +43,8 @@ autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 if exists('$TMUX')
     let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket' | let g:nvim_is_started='on'
+else
+    let g:nvim_is_started='off'
 endif
 
 if has('nvim')
