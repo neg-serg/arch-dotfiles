@@ -1,4 +1,4 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/pypy3
 import i3ipc
 import os
 from subprocess import check_output
@@ -58,4 +58,4 @@ class flast(SingletonMixin):
     def go_back_if_nothing(self, i3, event):
         focused=i3.get_tree().find_focused()
         if not len(self.find_visible_windows()) and "pic" in focused.workspace().name:
-            self.alt_tab(0)
+            self.alt_tab()
