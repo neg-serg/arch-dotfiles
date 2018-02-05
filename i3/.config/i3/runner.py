@@ -70,7 +70,7 @@ class Listner():
             th.setDaemon(False)
             th.start()
 
-    def cleanup(self):
+    def cleanup_on_exit(self):
         def cleanup_everything():
             for mod in self.daemons_map.keys():
                 fifo=self.daemons_map[mod]["manager"].daemons[mod].fifos[mod]
@@ -92,7 +92,7 @@ class Listner():
         th.start()
 
     def main(self):
-        self.cleanup()
+        self.cleanup_on_exit()
         self.load_modules()
         self.run_inotify()
         self.reload_thread()
