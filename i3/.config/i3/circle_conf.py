@@ -84,6 +84,6 @@ class cycle_settings(object):
                 'class': {
                     'Sxiv',
                 },
-                'prog':"st zsh -c 'find ~/(dw|tmp)/ -type d -print0 |xargs -0 ~/bin/sx' &",
+                'prog':"st zsh -c 'find ~/dw/ ~/tmp/shots/ -maxdepth 1 -type d -print0 |xargs -0 ~/bin/sx' &",
             },
         }
