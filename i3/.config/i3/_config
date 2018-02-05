@@ -283,6 +283,7 @@ mode "gaps-inner" {
 }
 
 exec_always ${XDG_CONFIG_HOME}/i3/runner.py > /dev/null
+exec_always ${XDG_CONFIG_HOME}/i3/info_echo.py > /dev/null
 exec ~/bin/term
 exec_always pkill polybar; pkill polybar; [[ $(pgrep polybar|wc -l) -le 1  ]] && polybar -c $XDG_CONFIG_HOME/polybar/main main
 
