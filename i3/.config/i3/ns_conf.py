@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/env pypy3
 import re
 import subprocess
 import itertools

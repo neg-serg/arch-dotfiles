@@ -1,4 +1,4 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/pypy3
 import i3ipc
 import importlib
 import ns_conf

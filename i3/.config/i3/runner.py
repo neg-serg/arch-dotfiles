@@ -1,4 +1,4 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/pypy3
 """ i3 listner script
 Usage:
     runner.py

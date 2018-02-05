@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/pypy3 -O
 class cycle_settings(object):
     settings={}
 
@@ -84,6 +84,6 @@ class cycle_settings(object):
                 'class': {
                     'Sxiv',
                 },
-                'prog':"st zsh -c 'find ~/(dw|tmp)/ -type d -print0 |xargs -0 ~/bin/sx'",
+                'prog':"st zsh -c 'find ~/(dw|tmp)/ -type d -print0 |xargs -0 ~/bin/sx' &",
             },
         }

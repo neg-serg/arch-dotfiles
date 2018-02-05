@@ -1,4 +1,4 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/python3
 """ i3 generic sender
 
 Usage:
