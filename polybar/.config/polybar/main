@@ -26,7 +26,7 @@ padding-right = 0 # offset from -x
 module-margin-right = 0 # looks nice
 module-margin-left  = 0
 
-modules-left = LL date ewmh xkeyboard network checkvpn mail RR
+modules-left = LL date ws xkeyboard network checkvpn mail RR
 modules-center =
 modules-right = mpd volume
 
@@ -52,17 +52,15 @@ compositing-overline = over
 compositing-underline = over
 compositing-border = over
 
-[module/ewmh]
-type = internal/xworkspaces
-label-active = %name%
-label-empty = 
-label-urgent = 
-label-occupied = 
-enable-click = false
-enable-scroll = false
+[module/ws]
+type = custom/script
+interval = 0
+exec = echo get | nc 0.0.0.0  5555
+exec-if = echo idle | nc 0.0.0.0 5555
 format-prefix=${c.ls}
 format-suffix=${c.delim}
-format = %{O5}%{F#47959E}%{F#ccc}<label-state>
+format = <label>
+tail = false
 
 [module/mpd]
 type = internal/mpd
@@ -88,7 +86,7 @@ lmpd2="%{F#395573}⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 [module/volume]
 type = custom/script
 interval = 0
-exec = /home/neg/bin/mon/vol.lua
+exec = ~/bin/mon/vol.lua
 exec-if = mpc idle
 
 [module/date]
