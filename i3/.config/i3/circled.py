@@ -1,11 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env pypy3
 import i3ipc
 import re
 import os
 import importlib
 import circle_conf
 import redis
-import shlex
 from singleton_mixin import *
 from i3gen import *
 

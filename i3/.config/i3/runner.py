@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env pypy3
 """ i3 listner script
 Usage:
     runner.py
@@ -32,7 +32,7 @@ class Listner():
         self.xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
 
     def watch(self, watch_dir, file_path, watched_inotify_event="IN_MODIFY"):
-        watch_dir=watch_dir.encode()
+        watch_dir=watch_dir
         i=inotify.adapters.Inotify()
         i.add_watch(watch_dir)
 
@@ -40,7 +40,7 @@ class Listner():
             for event in i.event_gen():
                 if event is not None:
                     (header, type_names, watch_path, filename) = event
-                    if filename.decode('utf-8') == file_path and watched_inotify_event in type_names:
+                    if filename == file_path and watched_inotify_event in type_names:
                         self.ev.set()
         finally:
             i.remove_watch(watch_dir)

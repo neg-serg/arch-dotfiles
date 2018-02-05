@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env pypy3
 import i3ipc
 import importlib
 import ns_conf
@@ -6,7 +6,6 @@ import uuid
 import re
 import os
 import shlex
-import xpybutil.ewmh as ewmh
 from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
