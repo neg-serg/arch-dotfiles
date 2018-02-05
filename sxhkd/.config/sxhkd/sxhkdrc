@@ -1,9 +1,9 @@
 super + apostrophe
-    ~/bin/scripts/wm_restart
+    i3-msg restart
 XF86AudioMute
     pactl set-sink-mute 1 toggle
 super + quotedbl
-    ~/bin/scripts/wm_restart soft
+    i3-msg reload
 XF86Audio{Prev,Next,Play,Stop}
     mpc -q {prev,next,toggle,stop}
 XF86Audio{Lower,Raise}Volume
