@@ -1,4 +1,3 @@
-#!/usr/bin/pypy3
 import i3ipc
 import re
 import os

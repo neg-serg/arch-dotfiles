@@ -1,4 +1,4 @@
-#!/usr/bin/pypy3
+#!/usr/bin/python3
 """ i3 listner script
 Usage:
     runner.py
@@ -32,9 +32,8 @@ class Listner():
         self.xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
 
     def watch(self, watch_dir, file_path, watched_inotify_event="IN_MODIFY"):
-        watch_dir=watch_dir
         i=inotify.adapters.Inotify()
-        i.add_watch(watch_dir)
+        i.add_watch(watch_dir.encode())
 
         try:
             for event in i.event_gen():
