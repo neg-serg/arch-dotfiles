@@ -1,4 +1,3 @@
-#!/usr/bin/pypy3 -O
 class cycle_settings(object):
     settings={}
 

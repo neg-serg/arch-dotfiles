@@ -1,4 +1,3 @@
-#!/usr/bin/env pypy3
 import re
 import subprocess
 import itertools
