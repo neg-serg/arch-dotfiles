@@ -200,7 +200,7 @@ mode "" {
     bindsym a mode "default", [window_type=dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
     bindsym {i,o,$S+O} mode "default", exec ~/bin/pls -{output,sink,vol}
-    bindsym $c+t mode "default", exec tor-browser-en
+    bindsym $c+t mode "default", exec ~/.config/i3/send.py circle run web tor
 	bindsym $S+d floating toggle; $exit
 	bindsym $S+l exec ~/bin/scripts/lock/lock.sh && sleep 0.5s; $exit
 	bindsym $S+v exec ~/bin/qemu/vm_menu; $exit
