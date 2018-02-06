@@ -57,8 +57,8 @@ class circle(SingletonMixin):
         def inc_c():
             self.counters[tag]+=1
 
-        def target_i():
-            return self.tagged[tag][target_]
+        def twin():
+            return self.tagged[tag][index]
 
         def run_prog():
             prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
@@ -72,12 +72,12 @@ class circle(SingletonMixin):
                         self.need_handle_fullscreen=False
                         win.command('fullscreen disable')
 
-            target_i().command('focus')
+            twin().command('focus')
             if inc_counter:
                 inc_c()
 
             if fullscreen_handler:
-                now_focused=target_i().id
+                now_focused=twin().id
                 for id in self.restore_fullscreen:
                     if id == now_focused:
                         self.need_handle_fullscreen=False
@@ -100,17 +100,17 @@ class circle(SingletonMixin):
                 else:
                     return
             elif len(self.tagged[tag]) <= 1:
-                target_=0
+                index=0
                 focus_next(fullscreen_handler=False)
             else:
-                target_=self.counters[tag] % len(self.tagged[tag])
+                index=self.counters[tag] % len(self.tagged[tag])
 
                 if ("priority" in self.cfg[tag]) and not current_class_in_priority():
                     if not len([ win for win in self.tagged[tag] if win.window_class == self.cfg[tag]["priority"]]):
                         run_prog()
                         return
 
-                    for target_,item in enumerate(self.tagged[tag]):
+                    for index,item in enumerate(self.tagged[tag]):
                         if item.window_class == self.cfg[tag]["priority"]:
                             fullscreened=self.i3.get_tree().find_fullscreen()
                             for win in fullscreened:
@@ -119,7 +119,7 @@ class circle(SingletonMixin):
                                     win.command('fullscreen disable')
                             focus_next(inc_counter=False)
                             return
-                elif self.current_win.id == target_i().id:
+                elif self.current_win.id == twin().id:
                     find_priority_win()
                 else:
                     focus_next()
