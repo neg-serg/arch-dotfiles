@@ -16,6 +16,8 @@ class circle(SingletonMixin):
         self.interactive=True
         self.repeats=0
         self.winlist=[]
+        self.subtag_info={}
+        self.need_handle_fullscreen=True
 
         self.redis_db=redis.StrictRedis(host='localhost', port=6379, db=0)
         self.cfg=circle_conf.cycle_settings().settings
@@ -43,7 +45,7 @@ class circle(SingletonMixin):
             self.cfg=prev_conf
             self.__init__()
 
-    def go_next(self, tag):
+    def go_next(self, tag, subtag=None):
         def cur_win_in_current_class_set():
             return self.current_win.window_class in set(self.cfg[tag]["class"])
 
@@ -56,14 +58,29 @@ class circle(SingletonMixin):
         def inc_c():
             self.counters[tag]+=1
 
-        def target_i():
-            return self.tagged[tag][target_]
+        def twin(with_subtag=False):
+            if not with_subtag:
+                return self.tagged[tag][idx]
+            else:
+                subtag_win_classes=self.subtag_info.get("includes",{})
+                for subidx,win in enumerate(self.tagged[tag]):
+                    if win.window_class in subtag_win_classes:
+                        return self.tagged[tag][subidx]
 
-        def run_prog():
-            prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
+        def run_prog(subtag=None):
+            if subtag is None:
+                prog_str=re.sub(
+                    "~", os.path.realpath(os.path.expandvars("$HOME")),
+                    self.cfg[tag].get("prog",{})
+                )
+            else:
+                prog_str=re.sub(
+                    "~", os.path.realpath(os.path.expandvars("$HOME")),
+                    self.cfg[tag].get("prog_dict",{}).get(subtag,{}).get("prog",{})
+                )
             self.i3.command('exec {}'.format(prog_str))
 
-        def focus_next(inc_counter=True,fullscreen_handler=True):
+        def focus_next(inc_counter=True, fullscreen_handler=True, subtag=None):
             if fullscreen_handler:
                 fullscreened=self.i3.get_tree().find_fullscreen()
                 for win in fullscreened:
@@ -71,12 +88,13 @@ class circle(SingletonMixin):
                         self.need_handle_fullscreen=False
                         win.command('fullscreen disable')
 
-            target_i().command('focus')
+            twin(subtag is not None).command('focus')
+
             if inc_counter:
                 inc_c()
 
             if fullscreen_handler:
-                now_focused=target_i().id
+                now_focused=twin().id
                 for id in self.restore_fullscreen:
                     if id == now_focused:
                         self.need_handle_fullscreen=False
@@ -91,37 +109,41 @@ class circle(SingletonMixin):
                 self.go_next(tag)
             else:
                 self.repeats=0
-
         try:
-            if len(self.tagged[tag]) == 0:
-                if "prog" in self.cfg[tag]:
+            if subtag is None:
+                if len(self.tagged[tag]) == 0:
                     run_prog()
+                elif len(self.tagged[tag]) <= 1:
+                    idx=0
+                    focus_next(fullscreen_handler=False)
                 else:
-                    return
-            elif len(self.tagged[tag]) <= 1:
-                target_=0
-                focus_next(fullscreen_handler=False)
-            else:
-                target_=self.counters[tag] % len(self.tagged[tag])
+                    idx=self.counters[tag] % len(self.tagged[tag])
 
-                if ("priority" in self.cfg[tag]) and not current_class_in_priority():
-                    if not len([ win for win in self.tagged[tag] if win.window_class == self.cfg[tag]["priority"]]):
-                        run_prog()
-                        return
-
-                    for target_,item in enumerate(self.tagged[tag]):
-                        if item.window_class == self.cfg[tag]["priority"]:
-                            fullscreened=self.i3.get_tree().find_fullscreen()
-                            for win in fullscreened:
-                                if win.window_class in set(self.cfg[tag]["class"]) and win.window_class != self.cfg[tag]["priority"]:
-                                    self.interactive=False
-                                    win.command('fullscreen disable')
-                            focus_next(inc_counter=False)
+                    if ("priority" in self.cfg[tag]) and not current_class_in_priority():
+                        if not len([ win for win in self.tagged[tag] if win.window_class == self.cfg[tag]["priority"]]):
+                            run_prog()
                             return
-                elif self.current_win.id == target_i().id:
-                    find_priority_win()
+
+                        for idx,item in enumerate(self.tagged[tag]):
+                            if item.window_class == self.cfg[tag]["priority"]:
+                                fullscreened=self.i3.get_tree().find_fullscreen()
+                                for win in fullscreened:
+                                    if win.window_class in set(self.cfg[tag]["class"]) and win.window_class != self.cfg[tag]["priority"]:
+                                        self.interactive=False
+                                        win.command('fullscreen disable')
+                                focus_next(inc_counter=False)
+                                return
+                    elif self.current_win.id == twin().id:
+                        find_priority_win()
+                    else:
+                        focus_next()
+            else:
+                self.subtag_info=self.cfg[tag].get("prog_dict",{}).get(subtag,{})
+                if not len(self.subtag_info.get("includes",{}) & {w.window_class for w in self.tagged[tag]}):
+                    run_prog(subtag)
                 else:
-                    focus_next()
+                    idx=0
+                    focus_next(fullscreen_handler=False, subtag=subtag)
         except KeyError:
             self.tag_windows()
             self.go_next(tag)
@@ -129,6 +151,7 @@ class circle(SingletonMixin):
     def switch(self, args):
         switch_ = {
             "next": self.go_next,
+            "run": self.go_next,
             "reload": self.reload_config,
         }
         switch_[args[0]](*args[1:])

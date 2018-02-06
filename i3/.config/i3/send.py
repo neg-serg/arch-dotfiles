@@ -5,6 +5,7 @@ Usage:
   send.py circle reload
   send.py circle next <name>
   send.py circle info <name>
+  send.py circle run <name> <subtag>
   send.py ns show <name>
   send.py ns hide <name>
   send.py ns toggle <name>
@@ -37,7 +38,8 @@ conf={
         'cmds': {
             "next",
             "reload",
-            "info"
+            "info",
+            "run"
         },
     },
     'ns': {
@@ -49,7 +51,7 @@ conf={
             "hide_current",
             "run",
             "geom_restore",
-            "reload"
+            "reload",
         },
     },
     'flast': {
@@ -79,7 +81,7 @@ if __name__ == '__main__':
         cmd=""
         if fstcmd is not None:
             cmd+=fstcmd
-        for param in ['<name>', '<prog>']:
+        for param in ['<name>', '<prog>', '<subtag>']:
             if argv[param]:
                 cmd+=" " + argv[param]
         cmd+='\n'
