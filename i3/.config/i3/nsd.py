@@ -66,7 +66,6 @@ class ns(SingletonMixin):
                 win.command('move scratchpad')
             else:
                 win.command('move container to workspace current')
-        self.restore_fullscreens()
 
     def find_visible_windows(self):
         visible_windows = []
