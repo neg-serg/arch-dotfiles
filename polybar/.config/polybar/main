@@ -52,6 +52,53 @@ compositing-overline = over
 compositing-underline = over
 compositing-border = over
 
+[bar/main_bottombar]
+#monitor=HDMI2
+bottom=true
+
+border-top-size = 2
+border-top-color = ${colors.border_top}
+border-bottom-size = 2
+border-bottom-color = ${colors.border_top}
+
+height = 30
+spacing = 0
+width = 100%
+enable-ipc = true
+
+padding-left  = 0 # offset from x
+padding-right = 0 # offset from -x
+
+module-margin-right = 0 # looks nice
+module-margin-left  = 0
+
+modules-left = LL date ws xkeyboard network checkvpn mail RR
+modules-center =
+modules-right = mpd volume
+
+background = ${colors.background}
+foreground = "#ccc"
+
+underline-size = 2
+
+font-0 = Iosevka Term Heavy:weight=bold:size=15;2
+font-1 = PragmataPro for Powerline:weight=bold:size=15;3
+font-2 = Code2000:weight=bold:size=18;4
+
+tray-detached = false
+tray-position = right
+tray-offset-x = 1
+tray-padding = 1
+tray-maxsize = 16
+tray-background = "#000000"
+
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+
 [module/ws]
 type = custom/script
 interval = 0
