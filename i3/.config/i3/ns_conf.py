@@ -159,7 +159,14 @@ class ns_settings(object):
                 },
                 'geom': "1339x866+247+13",
                 'prog' : "/bin/true",
-            }
+            },
+            'webcam': {
+                'instance' : {
+                    'webcam'
+                },
+                'geom': "1234x771+667+363",
+                'prog' : "~/bin/webcam",
+            },
         }
 
         self.cmd_list=[]
