@@ -49,6 +49,13 @@ class ns(SingletonMixin):
         ]
         self.restore_fullscreens()
 
+    def unfocus_all_but_current(self, tag: str) -> None:
+        focused = self.i3.get_tree().find_focused()
+        for _,win in enumerate(self.marked[tag]):
+            if win.id != focused.id:
+                win.command('move scratchpad')
+        self.restore_fullscreens()
+
     def find_visible_windows(self):
         visible_windows = []
         wswins=filter(
@@ -155,13 +162,13 @@ class ns(SingletonMixin):
 
         def next_win_(tag: str) -> None:
             self.focus(tag)
-            for number,win in enumerate(self.marked[tag]):
+            for idx,win in enumerate(self.marked[tag]):
                 if focused_win.id != win.id:
-                    self.marked[tag][number].command('move container to workspace current')
-                    self.marked[tag].insert(len(self.marked[tag]), self.marked[tag].pop(number))
+                    self.marked[tag][idx].command('move container to workspace current')
+                    self.marked[tag].insert(len(self.marked[tag]), self.marked[tag].pop(idx))
                     win.command('move scratchpad')
             self.focus(tag)
-
+            # self.unfocus_all_but_current(tag)
         self.apply_to_current_tag(next_win_)
 
     def hide_current(self) -> None:
@@ -187,7 +194,7 @@ class ns(SingletonMixin):
     def switch(self, args : List) -> None:
         switch_ = {
             "show": self.focus,
-            "hide": self.unfocus,
+            "hide": self.unfocus_all_but_current,
             "next": self.next_win,
             "toggle": self.toggle,
             "hide_current": self.hide_current,
@@ -216,14 +223,16 @@ class ns(SingletonMixin):
         for tag in self.cfg:
             for factor in self.factors:
                 if self.match(con, factor, tag):
-                    # scratch_move
-                    con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
-                        "make_mark": self.make_mark_str(tag),
-                        "get_geom": self.cfg_module.get_geom(tag)
-                    }
-                    con.command(con_cmd)
-                    self.marked[tag].append(con)
-                    break
+                    xprop = check_output(['xprop', '-id', str(con.window)]).decode()
+                    if '_NET_WM_WINDOW_TYPE_DIALOG' not in xprop and '_NET_WM_STATE_MODAL' not in xprop :
+                        # scratch_move
+                        con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
+                            "make_mark": self.make_mark_str(tag),
+                            "get_geom": self.cfg_module.get_geom(tag)
+                        }
+                        con.command(con_cmd)
+                        self.marked[tag].append(con)
+                        break
 
     def unmark_tag(self, i3, event) -> None:
         for tag in self.cfg:
@@ -237,16 +246,18 @@ class ns(SingletonMixin):
             for con in window_list:
                 for factor in self.factors:
                     if self.match(con, factor, tag):
-                        # scratch move
-                        hide_cmd=''
-                        if hide:
-                            hide_cmd='[con_id=__focused__] scratchpad show'
-                        con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s, %(hide_cmd)s" % \
-                            {
-                                "make_mark": self.make_mark_str(tag),
-                                "get_geom": self.cfg_module.get_geom(tag),
-                                "hide_cmd": hide_cmd
-                            }
-                        con.command(con_cmd)
-                        self.marked[tag].append(con)
-                        break
+                        xprop = check_output(['xprop', '-id', str(con.window)]).decode()
+                        if '_NET_WM_WINDOW_TYPE_DIALOG' not in xprop and '_NET_WM_STATE_MODAL' not in xprop :
+                            # scratch move
+                            hide_cmd=''
+                            if hide:
+                                hide_cmd='[con_id=__focused__] scratchpad show'
+                            con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s, %(hide_cmd)s" % \
+                                {
+                                    "make_mark": self.make_mark_str(tag),
+                                    "get_geom": self.cfg_module.get_geom(tag),
+                                    "hide_cmd": hide_cmd
+                                }
+                            con.command(con_cmd)
+                            self.marked[tag].append(con)
+                            break
