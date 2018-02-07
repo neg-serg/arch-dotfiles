@@ -42,11 +42,11 @@ class cycle_settings(object):
             },
             'steam':{
                 'class_r': {
-                    'Wine',
-                    'dota2',
-                    'darkest.bin.x86_64',
-                    '[sS]team',
-                    '.*.exe',
+                    '^Wine$',
+                    '^dota2$',
+                    '^darkest.bin.x86_64$',
+                    '^[sS]team$',
+                    '.*.exe$',
                 },
                 'prog':"steam",
             },
