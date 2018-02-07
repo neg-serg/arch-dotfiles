@@ -84,40 +84,44 @@ class ns(SingletonMixin):
 
         self.focus(tag)
 
-    def run_prog(self, tag: str, app : str) -> None:
-        if "prog_dict" in self.cfg[tag] and app in self.cfg[tag]["prog_dict"]:
+    def focus_sub_tag(self, tag: str, subtag_classes_set):
+        focused=self.i3.get_tree().find_focused()
+
+        if focused.fullscreen_mode:
+            focused.command('fullscreen toggle')
+            self.fullscreen_list.append(focused)
+
+        if focused.window_class in subtag_classes_set:
+            return
+
+        self.focus(tag)
+
+        visible_windows = self.find_visible_windows()
+        for w in visible_windows:
+            for i in self.marked[tag]:
+                if w.id == i.id:
+                    self.i3.command('[con_id=%s] focus' % w.id)
+
+        for idx,i in enumerate(self.marked[tag]):
+            if not focused.window_class in subtag_classes_set:
+                if self.marked[tag][idx].window_class not in subtag_classes_set:
+                    self.next_win()
+            else:
+                break
+
+    def run_subtag(self, tag: str, app : str) -> None:
+        if app in self.cfg[tag].get("prog_dict",{}):
             class_list=[win.window_class for win in self.marked[tag]]
-            target_class_list_set=set(self.cfg[tag]["prog_dict"][app]["includes"])
-            interlist=[val for val in class_list if val in target_class_list_set]
-            if not len(interlist):
-                prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog_dict"][app]["prog"])
+            subtag_classes_set=set(self.cfg[tag].get("prog_dict",{}).get(app,{}).get("includes",{}))
+            subtag_classes_matched=[w for w in class_list if w in subtag_classes_set]
+            if not len(subtag_classes_matched):
+                prog_str=re.sub(
+                    "~", os.path.realpath(os.path.expandvars("$HOME")),
+                    self.cfg[tag].get("prog_dict",{}).get(app,{}).get("prog",{})
+                )
                 self.i3.command('exec {}'.format(prog_str))
             else:
-                def focus_sub_tag(tag: str):
-                    focused=self.i3.get_tree().find_focused()
-
-                    if focused.fullscreen_mode:
-                        focused.command('fullscreen toggle')
-                        self.fullscreen_list.append(focused)
-
-                    if focused.window_class in target_class_list_set:
-                        return
-
-                    self.focus(tag)
-
-                    visible_windows = self.find_visible_windows()
-                    for w in visible_windows:
-                        for i in self.marked[tag]:
-                            if w.id == i.id:
-                                self.i3.command('[con_id=%s] focus' % w.id)
-
-                    for index,i in enumerate(self.marked[tag]):
-                        if not focused.window_class in target_class_list_set:
-                            if self.marked[tag][index].window_class not in target_class_list_set:
-                                self.next_win()
-                        else:
-                            break
-                focus_sub_tag(tag)
+                self.focus_sub_tag(tag, subtag_classes_set)
         else:
             self.toggle(tag)
 
@@ -188,7 +192,7 @@ class ns(SingletonMixin):
             "toggle": self.toggle,
             "hide_current": self.hide_current,
             "geom_restore": self.geom_restore_current,
-            "run": self.run_prog,
+            "run": self.run_subtag,
             "reload": self.reload_config,
         }
         switch_[args[0]](*args[1:])
