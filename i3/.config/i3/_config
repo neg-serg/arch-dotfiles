@@ -144,7 +144,6 @@ for_window $steam_all mark steam_all, move container to workspace $steam, worksp
 for_window [title="^Compress.*"] floating enable
 for_window [title="^(Preferences)$"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
-for_window [title="webcam"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
 for_window [class="wpg"] floating enable, move absolute position 1210 626, resize set 700 500, focus
 
 for_window [class="^(telegram-desktop|Skype|Skype Preview|Telegram-desktop|ViberPC|TelegramDesktop|finch|VK)$"] move scratchpad, move absolute position 1372 127, resize set 528 1029
@@ -154,6 +153,7 @@ for_window [class="ranger"]      move scratchpad, move absolute position 170 18,
 for_window [class="teardrop"]    move scratchpad, move absolute position 39  4,   resize set 1844 704
 for_window [class="youtube-get"] move scratchpad, move absolute position 247 13,  resize set 1339 866
 for_window [class="_weechat_"]   move scratchpad, move absolute position 112 33,  resize set 1736 1091
+for_window [instance="webcam"]   move container to workspace current, floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
 
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_type="dialog"] floating disable, floating enable, move absolute position 180 20, resize set 1556 620, focus
@@ -198,7 +198,6 @@ mode "" {
     bindsym c mode "pass "
     bindsym e mode "default", [urgent=latest] focus
     bindsym a mode "default", [window_type=dialog] scratchpad show
-    bindsym w mode "default", exec ~/bin/webcam
     bindsym {i,o,$S+O} mode "default", exec ~/bin/pls -{output,sink,vol}
     bindsym $c+t mode "default", exec ~/.config/i3/send.py circle run web tor
     bindsym $c+y mode "default", exec ~/.config/i3/send.py circle run web yandex
@@ -209,6 +208,7 @@ mode "" {
     bindsym {$m4,$alt,}+s exec ~/.config/i3/send.py ns run im skype, mode "default"
     bindsym {$m4+t,$alt+t,t} exec ~/.config/i3/send.py ns run im tel, mode "default"
     bindsym m exec ~/.config/i3/send.py ns toggle mutt, mode "default"
+    bindsym w exec ~/.config/i3/send.py ns toggle webcam, mode "default"
     bindsym $S+r exec ~/.config/i3/send.py ns toggle ranger, mode "default"
     #-------------------------------------------------------
     bindsym {Return,Escape,$c+C,$c+G} $exit
@@ -286,6 +286,8 @@ mode "gaps-inner" {
 exec_always ${XDG_CONFIG_HOME}/i3/runner.py > /dev/null
 exec_always ${XDG_CONFIG_HOME}/i3/info_echo.py > /dev/null
 exec ~/bin/term
-exec_always pkill polybar; pkill polybar; [[ $(pgrep polybar|wc -l) -le 1  ]] && polybar -c $XDG_CONFIG_HOME/polybar/main main
+exec_always pkill -f 'mpc idle'
+exec_always pkill polybar
+exec_always [[ $(pgrep polybar|wc -l) -le 1  ]] && polybar -c $XDG_CONFIG_HOME/polybar/main main && sleep 0.5 && mpc volume +1
 
 # vim:filetype=i3
