@@ -90,10 +90,18 @@ class Listner():
                 if self.i3_config_event.wait():
                     self.i3_config_event.clear()
                     with open(self.xdg_config_path + "/i3/config", "w") as fp:
-                        subprocess.Popen(
+                        p=subprocess.Popen(
                             shlex.split("ppi3 " + self.xdg_config_path + "/i3/_config"),
                             stdout=fp
                         )
+                        (output, err) = p.communicate()
+                        p_status = p.wait()
+                    check_config = subprocess.run(['i3', '-C'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    if len(check_config):
+                        subprocess.Popen(
+                            shlex.split("notify-send '{}'".format(check_config.encode('utf-8')))
+                        )
+                    check_config=""
         th=Thread(target=reload_thread_payload)
         th.setDaemon(True)
         th.start()
