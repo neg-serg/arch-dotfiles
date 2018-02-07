@@ -25,6 +25,10 @@ class cycle_settings(object):
                         "prog": "tor-browser-en",
                         "includes": {'Tor Browser'},
                     },
+                    "yandex" : {
+                        "prog": "yandex-browser-beta",
+                        "includes": {'Yandex-browser-beta'},
+                    },
                 },
                 'priority':'Waterfox',
             },
