@@ -98,7 +98,6 @@ compositing-overline = over
 compositing-underline = over
 compositing-border = over
 
-
 [module/ws]
 type = custom/script
 interval = 0
@@ -134,7 +133,7 @@ lmpd2="%{F#395573}⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 type = custom/script
 interval = 0
 exec = ~/bin/mon/vol.lua
-exec-if = mpc idle
+exec-if = mpc idle > /dev/null
 
 [module/date]
 type = internal/date
