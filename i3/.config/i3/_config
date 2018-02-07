@@ -224,7 +224,7 @@ bindsym $m4+F{1,2} exec ~/.config/i3/send.py circle next jetbrains-{idea,clion}
 bindsym $m4+F3 exec ~/.config/i3/send.py circle next emacs
 bindsym $m4+$c+{v,e} exec ~/.config/i3/send.py circle next {vm,steam}
 bindsym $m4+{w,b,o} exec ~/.config/i3/send.py circle next {web,vid,doc}
-bindsym $alt+g exec rofi -show
+bindsym $alt+g exec rofi -sort -matching fuzzy -show window
 bindsym $m4+m exec ~/bin/scripts/rofi_xprop $(pfw)
 bindsym $m4+q fullscreen toggle
 bindsym $m4+grave exec ~/.config/i3/focus-next-visible.py
