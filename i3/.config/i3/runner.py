@@ -21,7 +21,8 @@ from i3gen import *
 
 class Listner():
     def __init__(self):
-        self.ev = Event()
+        self.i3_module_event = Event()
+        self.i3_config_event = Event()
         self.__daemons_default_state={
             'circle': { "instance": None, "manager": None, },
             'ns': { "instance": None, "manager": None, },
@@ -31,7 +32,7 @@ class Listner():
         user_name=os.environ.get("USER", "neg")
         self.xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
 
-    def watch(self, watch_dir, file_path, watched_inotify_event="IN_MODIFY"):
+    def watch(self, watch_dir, file_path, ev, watched_inotify_event="IN_MODIFY"):
         watch_dir=watch_dir.encode()
         i=inotify.adapters.Inotify()
         i.add_watch(watch_dir.decode())
@@ -41,15 +42,20 @@ class Listner():
                 if event is not None:
                     (header, type_names, watch_path, filename) = event
                     if filename == file_path and watched_inotify_event in type_names:
-                        self.ev.set()
+                        ev.set()
         finally:
             i.remove_watch(watch_dir)
 
-    def run_inotify(self):
+    def i3_module_inotify(self):
         for mod in self.daemons_map.keys():
-            inotify_thread=Thread(target=self.watch, args=(self.xdg_config_path+'/i3', mod + '_conf.py', ))
+            inotify_thread=Thread(target=self.watch, args=(self.xdg_config_path+'/i3', mod + '_conf.py', self.i3_module_event))
             inotify_thread.setDaemon(True)
             inotify_thread.start()
+
+    def i3_config_inotify(self):
+        inotify_thread=Thread(target=self.watch, args=(self.xdg_config_path+'/i3', '_config', self.i3_config_event))
+        inotify_thread.setDaemon(True)
+        inotify_thread.start()
 
     def load_modules(self):
         for mod in self.daemons_map.keys():
@@ -78,11 +84,25 @@ class Listner():
                     os.remove(fifo)
         atexit.register(cleanup_everything)
 
-    def reload_thread(self):
+    def i3_config_reload_thread(self):
         def reload_thread_payload():
             while True:
-                if self.ev.wait():
-                    self.ev.clear()
+                if self.i3_config_event.wait():
+                    self.i3_config_event.clear()
+                    with open(self.xdg_config_path + "/i3/config", "w") as fp:
+                        subprocess.Popen(
+                            shlex.split("ppi3 " + self.xdg_config_path + "/i3/_config"),
+                            stdout=fp
+                        )
+        th=Thread(target=reload_thread_payload)
+        th.setDaemon(True)
+        th.start()
+
+    def i3_module_reload_thread(self):
+        def reload_thread_payload():
+            while True:
+                if self.i3_module_event.wait():
+                    self.i3_module_event.clear()
                     for mod in self.daemons_map.keys():
                         subprocess.Popen(
                             shlex.split(self.xdg_config_path + "/i3/send.py " + mod + " reload")
@@ -94,8 +114,10 @@ class Listner():
     def main(self):
         self.cleanup_on_exit()
         self.load_modules()
-        self.run_inotify()
-        self.reload_thread()
+        self.i3_module_inotify()
+        self.i3_module_reload_thread()
+        self.i3_config_inotify()
+        self.i3_config_reload_thread()
         self.return_to_i3main()
 
 if __name__ == '__main__':
