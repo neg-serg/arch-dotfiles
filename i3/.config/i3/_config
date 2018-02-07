@@ -289,5 +289,4 @@ exec ~/bin/term
 exec_always pkill -f 'mpc idle'
 exec_always pkill polybar
 exec_always [[ $(pgrep polybar|wc -l) -le 1  ]] && polybar -c $XDG_CONFIG_HOME/polybar/main main && sleep 0.2 && mpc volume \+1 && mpc volume \-1
-
 # vim:filetype=i3
