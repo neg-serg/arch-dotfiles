@@ -37,13 +37,14 @@ class ns(SingletonMixin):
         uuid_str = str(str(uuid.uuid4().fields[-1]))
         return 'mark {}'.format("%(tag)s-%(uuid_str)s" % {"tag":tag, "uuid_str":uuid_str})
 
-    def focus(self, tag: str) -> None:
+    def focus(self, tag: str, hide=True) -> None:
         if not len(self.transients):
             [
                 win.command('move container to workspace current')
                 for _,win in enumerate(self.marked[tag])
             ]
-            self.unfocus_all_but_current(tag)
+            if hide:
+                self.unfocus_all_but_current(tag)
         else:
             try:
                 self.transients[0].command('focus')
@@ -112,20 +113,18 @@ class ns(SingletonMixin):
         if focused.window_class in subtag_classes_set:
             return
 
-        self.focus(tag)
+        self.focus(tag, hide=True)
 
         visible_windows = self.find_visible_windows()
         for w in visible_windows:
             for i in self.marked[tag]:
-                if w.id == i.id:
+                if w.window_class in subtag_classes_set and w.id == i.id:
                     self.i3.command('[con_id=%s] focus' % w.id)
 
         for idx,i in enumerate(self.marked[tag]):
+            focused=self.i3.get_tree().find_focused()
             if not focused.window_class in subtag_classes_set:
-                if self.marked[tag][idx].window_class not in subtag_classes_set:
-                    self.next_win()
-            else:
-                break
+                self.next_win()
 
     def run_subtag(self, tag: str, app : str) -> None:
         if app in self.cfg[tag].get("prog_dict",{}):
@@ -168,17 +167,17 @@ class ns(SingletonMixin):
             func(curr_tag)
         return curr_tag_exits
 
-    def next_win(self) -> None:
-        focused_win=self.i3.get_tree().find_focused()
-
+    def next_win(self, hide=True) -> None:
         def next_win_(tag: str) -> None:
-            self.focus(tag)
+            self.focus(tag, Hide)
             for idx,win in enumerate(self.marked[tag]):
                 if focused_win.id != win.id:
                     self.marked[tag][idx].command('move container to workspace current')
                     self.marked[tag].insert(len(self.marked[tag]), self.marked[tag].pop(idx))
                     win.command('move scratchpad')
-            self.focus(tag)
+            self.focus(tag, Hide)
+        Hide=hide
+        focused_win=self.i3.get_tree().find_focused()
         self.apply_to_current_tag(next_win_)
 
     def hide_current(self) -> None:
@@ -251,8 +250,7 @@ class ns(SingletonMixin):
             for _,win in enumerate(self.marked[tag]):
                 if win.id == event.container.id:
                     del self.marked[tag][_]
-                    if win.id == self.i3.get_tree().find_focused():
-                        self.focus(tag)
+                    self.focus(tag)
                     for tr in self.transients:
                         if tr.id == win.id:
                             self.transients.remove(tr)
