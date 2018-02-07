@@ -208,6 +208,7 @@ class circle(SingletonMixin):
                         self.tag_windows()
                         self.add_wins(i3, event)
                     break
+        self.winlist=self.i3.get_tree()
 
     def del_wins(self, i3, event):
         win = event.container
@@ -225,6 +226,7 @@ class circle(SingletonMixin):
                         self.del_wins(i3, event)
                     break
             self.redis_update_count(tag)
+        self.winlist=self.i3.get_tree()
 
     def set_curr_win(self, i3, event):
         win=event.container
