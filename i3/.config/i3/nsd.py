@@ -19,6 +19,7 @@ class ns(SingletonMixin):
         self.marked={l:[] for l in self.cfg}
         self.i3 = i3ipc.Connection()
         self.mark_all_tags(hide=True)
+        self.transients=[]
 
         self.i3.on('window::new', self.mark_tag)
         self.i3.on('window::close', self.unmark_tag)
@@ -37,10 +38,18 @@ class ns(SingletonMixin):
         return 'mark {}'.format("%(tag)s-%(uuid_str)s" % {"tag":tag, "uuid_str":uuid_str})
 
     def focus(self, tag: str) -> None:
-        [
-            win.command('move container to workspace current')
-            for _,win in enumerate(self.marked[tag])
-        ]
+        if not len(self.transients):
+            [
+                win.command('move container to workspace current')
+                for _,win in enumerate(self.marked[tag])
+            ]
+            self.unfocus_all_but_current(tag)
+        else:
+            try:
+                self.transients[0].command('focus')
+                del self.transients[0]
+            except:
+                pass
 
     def unfocus(self, tag: str) -> None:
         [
@@ -54,6 +63,8 @@ class ns(SingletonMixin):
         for _,win in enumerate(self.marked[tag]):
             if win.id != focused.id:
                 win.command('move scratchpad')
+            else:
+                win.command('move container to workspace current')
         self.restore_fullscreens()
 
     def find_visible_windows(self):
@@ -168,7 +179,6 @@ class ns(SingletonMixin):
                     self.marked[tag].insert(len(self.marked[tag]), self.marked[tag].pop(idx))
                     win.command('move scratchpad')
             self.focus(tag)
-            # self.unfocus_all_but_current(tag)
         self.apply_to_current_tag(next_win_)
 
     def hide_current(self) -> None:
@@ -224,7 +234,7 @@ class ns(SingletonMixin):
             for factor in self.factors:
                 if self.match(con, factor, tag):
                     xprop = check_output(['xprop', '-id', str(con.window)]).decode()
-                    if '_NET_WM_WINDOW_TYPE_DIALOG' not in xprop and '_NET_WM_STATE_MODAL' not in xprop :
+                    if not ('_NET_WM_WINDOW_TYPE_DIALOG' in xprop or '_NET_WM_STATE_MODAL' in xprop):
                         # scratch_move
                         con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
                             "make_mark": self.make_mark_str(tag),
@@ -233,12 +243,20 @@ class ns(SingletonMixin):
                         con.command(con_cmd)
                         self.marked[tag].append(con)
                         break
+                    else:
+                        self.transients.append(con)
 
     def unmark_tag(self, i3, event) -> None:
         for tag in self.cfg:
             for _,win in enumerate(self.marked[tag]):
                 if win.id == event.container.id:
                     del self.marked[tag][_]
+                    if win.id == self.i3.get_tree().find_focused():
+                        self.focus(tag)
+                    for tr in self.transients:
+                        if tr.id == win.id:
+                            self.transients.remove(tr)
+                    break
 
     def mark_all_tags(self, hide : bool=True) -> None:
         window_list = self.i3.get_tree().leaves()
@@ -247,7 +265,7 @@ class ns(SingletonMixin):
                 for factor in self.factors:
                     if self.match(con, factor, tag):
                         xprop = check_output(['xprop', '-id', str(con.window)]).decode()
-                        if '_NET_WM_WINDOW_TYPE_DIALOG' not in xprop and '_NET_WM_STATE_MODAL' not in xprop :
+                        if not('_NET_WM_WINDOW_TYPE_DIALOG' in xprop or '_NET_WM_STATE_MODAL' in xprop):
                             # scratch move
                             hide_cmd=''
                             if hide:
@@ -261,3 +279,5 @@ class ns(SingletonMixin):
                             con.command(con_cmd)
                             self.marked[tag].append(con)
                             break
+                        else:
+                            self.transients.append(con)
