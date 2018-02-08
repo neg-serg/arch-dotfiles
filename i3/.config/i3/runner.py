@@ -23,14 +23,10 @@ class Listner():
     def __init__(self):
         self.i3_module_event = Event()
         self.i3_config_event = Event()
-        self.__daemons_default_state={
-            'circle': { "instance": None, "manager": None, },
-            'ns': { "instance": None, "manager": None, },
-            'flast': { "instance": None, "manager": None, }
-        }
-        self.daemons_map=self.__daemons_default_state
+        self.daemons_map={'circle': {}, 'ns': {}, 'flast': {}}
         user_name=os.environ.get("USER", "neg")
-        self.xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
+        xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
+        self.i3_path=xdg_config_path+"i3/"
 
     def watch(self, watch_dir, file_path, ev, watched_inotify_event="IN_MODIFY"):
         watch_dir=watch_dir.encode()
@@ -48,14 +44,10 @@ class Listner():
 
     def i3_module_inotify(self):
         for mod in self.daemons_map.keys():
-            inotify_thread=Thread(target=self.watch, args=(self.xdg_config_path+'/i3', mod + '_conf.py', self.i3_module_event))
-            inotify_thread.setDaemon(True)
-            inotify_thread.start()
+            Thread(target=self.watch, args=(self.i3_path, mod + '_conf.py', self.i3_module_event), daemon=True).start()
 
     def i3_config_inotify(self):
-        inotify_thread=Thread(target=self.watch, args=(self.xdg_config_path+'/i3', '_config', self.i3_config_event))
-        inotify_thread.setDaemon(True)
-        inotify_thread.start()
+        Thread(target=self.watch, args=(self.i3_path, '_config', self.i3_config_event), daemon=True).start()
 
     def load_modules(self):
         for mod in self.daemons_map.keys():
@@ -64,17 +56,12 @@ class Listner():
             currm["instance"]=getattr(i3mod, mod).instance()
             currm["manager"]=daemon_manager.instance()
             currm["manager"].add_daemon(mod)
-
-            th=Thread(target=currm["manager"].daemons[mod].mainloop, args=(currm["instance"], mod, ))
-            th.setDaemon(True)
-            th.start()
+            Thread(target=currm["manager"].daemons[mod].mainloop, args=(currm["instance"], mod, ), daemon=True).start()
 
     def return_to_i3main(self):
         # you should bypass method itself, no return value
         for mod in self.daemons_map:
-            th=Thread(target=self.daemons_map[mod]["instance"].i3.main)
-            th.setDaemon(False)
-            th.start()
+            Thread(target=self.daemons_map[mod]["instance"].i3.main, daemon=False).start()
 
     def cleanup_on_exit(self):
         def cleanup_everything():
@@ -89,9 +76,9 @@ class Listner():
             while True:
                 if self.i3_config_event.wait():
                     self.i3_config_event.clear()
-                    with open(self.xdg_config_path + "/i3/config", "w") as fp:
+                    with open(self.i3_path + "/config", "w") as fp:
                         p=subprocess.Popen(
-                            shlex.split("ppi3 " + self.xdg_config_path + "/i3/_config"),
+                            shlex.split("ppi3 " + self.i3_path + "_config"),
                             stdout=fp
                         )
                         (output, err) = p.communicate()
@@ -102,9 +89,7 @@ class Listner():
                             shlex.split("notify-send '{}'".format(check_config.encode('utf-8')))
                         )
                     check_config=""
-        th=Thread(target=reload_thread_payload)
-        th.setDaemon(True)
-        th.start()
+        Thread(target=reload_thread_payload, daemon=True).start()
 
     def i3_module_reload_thread(self):
         def reload_thread_payload():
@@ -113,11 +98,9 @@ class Listner():
                     self.i3_module_event.clear()
                     for mod in self.daemons_map.keys():
                         subprocess.Popen(
-                            shlex.split(self.xdg_config_path + "/i3/send.py " + mod + " reload")
+                            shlex.split(self.i3_path + "send.py " + mod + " reload")
                         )
-        th=Thread(target=reload_thread_payload)
-        th.setDaemon(True)
-        th.start()
+        Thread(target=reload_thread_payload, daemon=True).start()
 
     def main(self):
         self.cleanup_on_exit()
