@@ -44,6 +44,7 @@ class cycle_settings(object):
                 'class_r': {
                     '^Wine$',
                     '^dota2$',
+                    'hyper64',
                     '^darkest.bin.x86_64$',
                     '^[sS]team$',
                     '.*.exe$',
