@@ -23,7 +23,7 @@ class Listner():
     def __init__(self):
         self.i3_module_event = Event()
         self.i3_config_event = Event()
-        self.daemons_map={'circle': {}, 'ns': {}, 'flast': {}}
+        self.mods={'circle': {}, 'ns': {}, 'flast': {}}
         user_name=os.environ.get("USER", "neg")
         xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
         self.i3_path=xdg_config_path+"/i3/"
@@ -43,30 +43,30 @@ class Listner():
             i.remove_watch(watch_dir)
 
     def i3_module_inotify(self):
-        for mod in self.daemons_map.keys():
+        for mod in self.mods.keys():
             Thread(target=self.watch, args=(self.i3_path, mod + '_conf.py', self.i3_module_event), daemon=True).start()
 
     def i3_config_inotify(self):
         Thread(target=self.watch, args=(self.i3_path, '_config', self.i3_config_event), daemon=True).start()
 
     def load_modules(self):
-        for mod in self.daemons_map.keys():
-            currm=self.daemons_map[mod]
+        for mod in self.mods.keys():
+            cm=self.mods[mod]
             i3mod=importlib.import_module("%s" % mod + "d")
-            currm["instance"]=getattr(i3mod, mod).instance()
-            currm["manager"]=daemon_manager.instance()
-            currm["manager"].add_daemon(mod)
-            Thread(target=currm["manager"].daemons[mod].mainloop, args=(currm["instance"], mod, ), daemon=True).start()
+            cm["instance"]=getattr(i3mod, mod).instance()
+            cm["manager"]=daemon_manager.instance()
+            cm["manager"].add_daemon(mod)
+            Thread(target=cm["manager"].daemons[mod].mainloop, args=(cm["instance"], mod,), daemon=True).start()
 
     def return_to_i3main(self):
         # you should bypass method itself, no return value
-        for mod in self.daemons_map:
-            Thread(target=self.daemons_map[mod]["instance"].i3.main, daemon=False).start()
+        for mod in self.mods:
+            Thread(target=self.mods[mod]["instance"].i3.main, daemon=False).start()
 
     def cleanup_on_exit(self):
         def cleanup_everything():
-            for mod in self.daemons_map.keys():
-                fifo=self.daemons_map[mod]["manager"].daemons[mod].fifos[mod]
+            for mod in self.mods.keys():
+                fifo=self.mods[mod]["manager"].daemons[mod].fifos[mod]
                 if os.path.exists(fifo):
                     os.remove(fifo)
         atexit.register(cleanup_everything)
@@ -96,7 +96,7 @@ class Listner():
             while True:
                 if self.i3_module_event.wait():
                     self.i3_module_event.clear()
-                    for mod in self.daemons_map.keys():
+                    for mod in self.mods.keys():
                         subprocess.Popen(
                             shlex.split(self.i3_path + "send.py " + mod + " reload")
                         )
