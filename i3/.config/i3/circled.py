@@ -3,7 +3,6 @@ import re
 import os
 import importlib
 import circle_conf
-import redis
 from singleton_mixin import *
 from i3gen import *
 
@@ -19,7 +18,6 @@ class circle(SingletonMixin):
         self.subtag_info={}
         self.need_handle_fullscreen=True
 
-        self.redis_db=redis.StrictRedis(host='localhost', port=6379, db=0)
         self.cfg=circle_conf.cycle_settings().settings
 
         for tag in self.cfg:
@@ -156,13 +154,6 @@ class circle(SingletonMixin):
         }
         switch_[args[0]](*args[1:])
 
-    def redis_update_count(self, tag):
-        if tag in self.tagged and type(self.tagged[tag]) == list:
-            tag_count_dict={tag: len(self.tagged[tag])}
-            self.redis_db.hmset('count_dict', tag_count_dict)
-        else:
-            self.redis_db.hmset('count_dict', {tag:0})
-
     def match(self, win, factor, tag):
         if factor == "class":
             return win.window_class in self.cfg.get(tag,{}).get(factor, {})
@@ -183,7 +174,6 @@ class circle(SingletonMixin):
                 if self.match(win, factor, tag):
                     self.tagged[tag].append(win)
                     break
-        self.redis_update_count(tag)
 
     def tag_windows(self):
         self.winlist=self.i3.get_tree()
@@ -203,7 +193,6 @@ class circle(SingletonMixin):
                 if win.window_class in self.cfg.get(tag,{}).get((factor),{}):
                     try:
                         self.tagged[tag].append(win)
-                        self.redis_update_count(tag)
                     except KeyError:
                         self.tag_windows()
                         self.add_wins(i3, event)
@@ -225,7 +214,6 @@ class circle(SingletonMixin):
                         self.tag_windows()
                         self.del_wins(i3, event)
                     break
-            self.redis_update_count(tag)
         self.winlist=self.i3.get_tree()
 
     def set_curr_win(self, i3, event):
