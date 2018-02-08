@@ -3,6 +3,7 @@ import re
 import os
 import importlib
 import circle_conf
+import toml
 from singleton_mixin import *
 from i3gen import *
 
@@ -18,7 +19,8 @@ class circle(SingletonMixin):
         self.subtag_info={}
         self.need_handle_fullscreen=True
 
-        self.cfg=circle_conf.cycle_settings().settings
+        self.cfg={}
+        self.load_config()
 
         for tag in self.cfg:
             self.tagged[tag]=[]
@@ -37,11 +39,21 @@ class circle(SingletonMixin):
     def reload_config(self):
         prev_conf=self.cfg
         try:
-            importlib.reload(circle_conf)
+            self.load_config()
             self.__init__()
         except:
+            print("config reload failed")
             self.cfg=prev_conf
             self.__init__()
+
+    def load_config(self, debug=False):
+        user_name=os.environ.get("USER", "neg")
+        xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
+        self.i3_path=xdg_config_path+"/i3/"
+        with open(self.i3_path + "/circle.cfg", "r") as fp:
+            if debug:
+                print(toml.load(fp))
+            self.cfg=toml.load(fp)
 
     def go_next(self, tag, subtag=None):
         def cur_win_in_current_class_set():
@@ -137,7 +149,7 @@ class circle(SingletonMixin):
                         focus_next()
             else:
                 self.subtag_info=self.cfg[tag].get("prog_dict",{}).get(subtag,{})
-                if not len(self.subtag_info.get("includes",{}) & {w.window_class for w in self.tagged[tag]}):
+                if not len(set(self.subtag_info.get("includes",{})) & {w.window_class for w in self.tagged[tag]}):
                     run_prog(subtag)
                 else:
                     idx=0

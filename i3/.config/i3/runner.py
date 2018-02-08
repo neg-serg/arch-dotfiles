@@ -17,6 +17,7 @@ import inotify.adapters
 import atexit
 import subprocess
 import shlex
+import toml
 from i3gen import *
 
 class Listner():
@@ -44,10 +45,19 @@ class Listner():
 
     def i3_module_inotify(self):
         for mod in self.mods.keys():
-            Thread(target=self.watch, args=(self.i3_path, mod + '_conf.py', self.i3_module_event), daemon=True).start()
+            Thread(target=self.watch, args=(self.i3_path, mod + '.cfg', self.i3_module_event), daemon=True).start()
 
     def i3_config_inotify(self):
         Thread(target=self.watch, args=(self.i3_path, '_config', self.i3_config_event), daemon=True).start()
+
+    def dump_configs(self):
+        for mod in self.mods.keys():
+            m=self.mods[mod]
+            try:
+                with open(self.i3_path + "/" + mod + ".cfg", "w") as fp:
+                    toml.dump(m["instance"].cfg, fp)
+            except:
+                pass
 
     def load_modules(self):
         for mod in self.mods.keys():

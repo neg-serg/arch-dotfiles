@@ -72,98 +72,89 @@ class ns_settings(object):
         return "move absolute position {2} {3}, resize set {0} {1}".format(*cg)
 
     def __init__(self):
-        self.telegram = frozenset({
-            'TelegramDesktop',
-            'Telegram-desktop',
-            'telegram-desktop'
-        })
-
-        self.skype = frozenset({
-            'skype',
-            'Skype',
-            'Skype Preview',
-        })
 
         self.settings = {
             'im' : {
-                'class' : self.skype | frozenset({
+                'class' : [
+                    'TelegramDesktop', 'Telegram-desktop', 'telegram-desktop',
+                    'skype', 'Skype', 'Skype Preview',
                     'ViberPC',
                     'finch',
                     'VK'
-                }),
-                "class_r": {"[Tt]elegram.*"},
+                ],
+                "class_r": ["[Tt]elegram.*"],
                 'geom' : "528x1029+1372+127",
                 'prog_dict': {
                     "tel" : {
                         "prog": "telegram-desktop",
-                        "includes": self.telegram,
+                        "includes": ['TelegramDesktop', 'Telegram-desktop', 'telegram-desktop'],
                     },
                     "skype" : {
                         "prog": "skypeforlinux",
-                        "includes": self.skype,
+                        "includes": ['skype', 'Skype', 'Skype Preview'],
                     }
                 }
             },
             'ncmpcpp': {
-                'class' : {
+                'class' : [
                     'mpd-pad2'
-                },
+                ],
                 'geom' : "1192x600+400+400",
                 'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
             },
             'ncmpcpp_fun': {
-                'class' : {
+                'class' : [
                     'cool-retro-term'
-                },
+                ],
                 'geom' : "1188x600+400+400",
                 'prog': 'cool-retro-term --program ncmpcpp'
             },
             'weechat': {
-                'class' : {
+                'class' : [
                     '_weechat_'
-                },
+                ],
                 'geom' : "1736x1091+112+33",
                 'prog': 'st -c _weechat_ -f "Iosevka Term Medium:size=14" zsh -c "tmux -S ~/1st_level/weechat.socket new weechat"'
             },
             'mutt': {
-                'instance' : {
+                'instance' : [
                     'mutt'
-                },
+                ],
                 'geom' : "1835x1114+52+0",
                 'prog' : "st -f \'Iosevka Term Medium:size=17\' -c mutt -e neomutt",
             },
             'ranger': {
-                'class' : {
+                'class' : [
                     'ranger'
-                },
+                ],
                 'geom' : "1132x760+170+18",
                 'prog' : "~/bin/scripts/run_ranger"
             },
             'teardrop': {
-                'class' : {
+                'class' : [
                     'teardrop'
-                },
+                ],
                 'geom' : "1844x704+39+4",
                 'prog' : 'st -c teardrop -f "PragmataPro for Powerline:size=18" -e ~/bin/scripts/teardrop'
             },
             'volcontrol': {
-                'class' : {
+                'class' : [
                     'Pavucontrol'
-                },
+                ],
                 'geom' : "895x314+1023+824",
                 'prog' : "pavucontrol"
             },
             'console': {
-                'class' : {
+                'class' : [
                     'youtube-get'
-                },
+                ],
                 'geom': "1339x866+247+13",
                 'prog' : "/bin/true",
             },
             'webcam': {
-                'instance' : {
+                'instance' : [
                     'webcam'
-                },
+                ],
                 'geom': "1234x771+667+363",
                 'prog' : "~/bin/webcam",
             },

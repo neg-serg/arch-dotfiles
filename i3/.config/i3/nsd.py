@@ -5,6 +5,7 @@ import uuid
 import re
 import os
 import shlex
+import toml
 from subprocess import check_output
 from singleton_mixin import *
 from i3gen import *
@@ -14,8 +15,9 @@ class ns(SingletonMixin):
     def __init__(self) -> None:
         self.fullscreen_list=[]
         self.factors=["class", "instance", "class_r"]
+        self.cfg={}
         self.cfg_module=ns_conf.ns_settings()
-        self.cfg=self.cfg_module.settings
+        self.load_config()
         self.marked={l:[] for l in self.cfg}
         self.i3 = i3ipc.Connection()
         self.mark_all_tags(hide=True)
@@ -27,11 +29,21 @@ class ns(SingletonMixin):
     def reload_config(self):
         prev_conf=self.cfg
         try:
-            importlib.reload(ns_conf)
+            self.load_config()
             self.__init__()
         except:
+            print("config reload failed")
             self.cfg=prev_conf
             self.__init__()
+
+    def load_config(self, debug=False):
+        user_name=os.environ.get("USER", "neg")
+        xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
+        self.i3_path=xdg_config_path+"/i3/"
+        with open(self.i3_path + "/ns.cfg", "r") as fp:
+            if debug:
+                print(toml.load(fp))
+            self.cfg=toml.load(fp)
 
     def make_mark_str(self, tag: str) -> str:
         uuid_str = str(str(uuid.uuid4().fields[-1]))
