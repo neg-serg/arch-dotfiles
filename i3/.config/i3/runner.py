@@ -26,7 +26,7 @@ class Listner():
         self.daemons_map={'circle': {}, 'ns': {}, 'flast': {}}
         user_name=os.environ.get("USER", "neg")
         xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
-        self.i3_path=xdg_config_path+"i3/"
+        self.i3_path=xdg_config_path+"/i3/"
 
     def watch(self, watch_dir, file_path, ev, watched_inotify_event="IN_MODIFY"):
         watch_dir=watch_dir.encode()
