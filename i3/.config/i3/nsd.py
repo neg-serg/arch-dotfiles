@@ -1,5 +1,4 @@
 import i3ipc
-import importlib
 import ns_conf
 import uuid
 import re

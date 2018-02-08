@@ -1,7 +1,6 @@
 import i3ipc
 import re
 import os
-import importlib
 import circle_conf
 import toml
 from singleton_mixin import *
