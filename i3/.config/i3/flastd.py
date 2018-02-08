@@ -56,5 +56,8 @@ class flast(SingletonMixin):
 
     def go_back_if_nothing(self, i3, event):
         focused=i3.get_tree().find_focused()
-        if not len(self.find_visible_windows()) and "pic" in focused.workspace().name:
-            self.alt_tab()
+        if not len(self.find_visible_windows()):
+            for ws in ["pic", "media"]:
+                if ws in focused.workspace().name:
+                    self.alt_tab()
+                    return
