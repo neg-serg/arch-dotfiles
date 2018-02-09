@@ -1,4 +1,4 @@
-#!/usr/bin/env pypy3
+#!/usr/bin/python3
 """ i3 listner script
 Usage:
     runner.py
@@ -32,13 +32,13 @@ class Listner():
     def watch(self, watch_dir, file_path, ev, watched_inotify_event="IN_MODIFY"):
         watch_dir=watch_dir.encode()
         i=inotify.adapters.Inotify()
-        i.add_watch(watch_dir.decode())
+        i.add_watch(watch_dir)
 
         try:
             for event in i.event_gen():
                 if event is not None:
                     (header, type_names, watch_path, filename) = event
-                    if filename == file_path and watched_inotify_event in type_names:
+                    if filename.decode() == file_path and watched_inotify_event in type_names:
                         ev.set()
         finally:
             i.remove_watch(watch_dir)

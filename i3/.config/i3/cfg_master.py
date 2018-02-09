@@ -2,14 +2,13 @@ import os
 import toml
 
 class CfgMaster():
-    def __init__():
-        self.cfg={}
-
     def reload_config(self):
+        mod=self.__class__.__name__
         prev_conf=self.cfg
         try:
-            self.load_config()
+            self.load_config(mod)
             self.__init__()
+            print("config_reloaded")
         except:
             print("config reload failed")
             self.cfg=prev_conf
