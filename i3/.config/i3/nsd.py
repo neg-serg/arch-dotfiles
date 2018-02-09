@@ -37,10 +37,7 @@ class ns(SingletonMixin):
 
     def load_config(self, debug=False, via_module=False):
         if not via_module:
-            user_name=os.environ.get("USER", "neg")
-            xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
-            self.i3_path=xdg_config_path+"/i3/"
-            with open(self.i3_path + "/ns.cfg", "r") as fp:
+            with open("ns.cfg", "r") as fp:
                 if debug:
                     print(toml.load(fp))
                 self.cfg=toml.load(fp)
