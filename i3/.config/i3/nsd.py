@@ -6,9 +6,9 @@ import shlex
 import toml
 import subprocess
 import geom
-from singleton_mixin import *
 from i3gen import *
 from typing import Callable, List
+from singleton_mixin import *
 
 class ns(SingletonMixin):
     def __init__(self) -> None:

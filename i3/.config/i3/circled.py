@@ -2,8 +2,8 @@ import i3ipc
 import re
 import os
 import toml
-from singleton_mixin import *
 from i3gen import *
+from singleton_mixin import *
 
 class circle(SingletonMixin):
     def __init__(self):
