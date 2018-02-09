@@ -1,7 +1,6 @@
 import i3ipc
 import re
 import os
-import circle_conf
 import toml
 from singleton_mixin import *
 from i3gen import *
@@ -19,7 +18,7 @@ class circle(SingletonMixin):
         self.need_handle_fullscreen=True
 
         self.cfg={}
-        self.load_config()
+        self.load_config("circle")
 
         for tag in self.cfg:
             self.tagged[tag]=[]
@@ -56,16 +55,13 @@ class circle(SingletonMixin):
                             if kk == "includes":
                                 self.cfg[i][j][k][kk]=set(self.cfg[i][j][k][kk])
 
-    def load_config(self, debug=False, via_module=False):
-        if not via_module:
-            user_name=os.environ.get("USER", "neg")
-            xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
-            self.i3_path=xdg_config_path+"/i3/"
-            with open(self.i3_path + "circle.cfg", "r") as fp:
-                self.cfg=toml.load(fp)
-            self.dict_converse()
-        else:
-            self.cfg=circle_conf.cfg().settings
+    def load_config(self, mod):
+        user_name=os.environ.get("USER", "neg")
+        xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
+        self.i3_path=xdg_config_path+"/i3/"
+        with open(self.i3_path + mod + ".cfg", "r") as fp:
+            self.cfg=toml.load(fp)
+        self.dict_converse()
 
     def go_next(self, tag, subtag=None):
         def cur_win_in_current_class_set():

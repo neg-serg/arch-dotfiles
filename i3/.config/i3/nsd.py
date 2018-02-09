@@ -1,11 +1,11 @@
 import i3ipc
-import ns_conf
 import uuid
 import re
 import os
 import shlex
 import toml
-from subprocess import check_output
+import subprocess
+import geom
 from singleton_mixin import *
 from i3gen import *
 from typing import Callable, List
@@ -15,8 +15,8 @@ class ns(SingletonMixin):
         self.fullscreen_list=[]
         self.factors=["class", "instance", "class_r"]
         self.cfg={}
-        self.cfg_module=ns_conf.cfg()
-        self.load_config()
+        self.load_config("ns")
+        self.nsgeom=geom.geom(self.cfg)
         self.marked={l:[] for l in self.cfg}
         self.i3 = i3ipc.Connection()
         self.mark_all_tags(hide=True)
@@ -46,16 +46,13 @@ class ns(SingletonMixin):
                             if kk == "includes":
                                 self.cfg[i][j][k][kk]=set(self.cfg[i][j][k][kk])
 
-    def load_config(self, debug=False, via_module=False):
-        if not via_module:
-            user_name=os.environ.get("USER", "neg")
-            xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
-            self.i3_path=xdg_config_path+"/i3/"
-            with open(self.i3_path + "ns.cfg", "r") as fp:
-                self.cfg=toml.load(fp)
-            self.dict_converse()
-        else:
-            self.cfg=ns_conf.cfg().settings
+    def load_config(self, mod):
+        user_name=os.environ.get("USER", "neg")
+        xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
+        self.i3_path=xdg_config_path+"/i3/"
+        with open(self.i3_path + mod + ".cfg", "r") as fp:
+            self.cfg=toml.load(fp)
+        self.dict_converse()
 
     def make_mark_str(self, tag: str) -> str:
         uuid_str = str(str(uuid.uuid4().fields[-1]))
@@ -98,7 +95,7 @@ class ns(SingletonMixin):
             self.i3.get_tree().find_focused().workspace().descendents()
         )
         for w in wswins:
-            xprop = check_output(['xprop', '-id', str(w.window)]).decode()
+            xprop = subprocess.check_output(['xprop', '-id', str(w.window)]).decode()
             if '_NET_WM_STATE_HIDDEN' not in xprop:
                 visible_windows.append(w)
         return visible_windows
@@ -215,7 +212,7 @@ class ns(SingletonMixin):
             # then make a new mark and move scratchpad
             win_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
                 "make_mark": self.make_mark_str(tag),
-                "get_geom": self.cfg_module.get_geom(tag)
+                "get_geom": self.nsgeom.get_geom(tag)
             }
             win.command(win_cmd)
             self.marked[tag].append(win)
@@ -255,12 +252,12 @@ class ns(SingletonMixin):
         for tag in self.cfg:
             for factor in self.factors:
                 if self.match(con, factor, tag):
-                    xprop = check_output(['xprop', '-id', str(con.window)]).decode()
+                    xprop = subprocess.check_output(['xprop', '-id', str(con.window)]).decode()
                     if not ('_NET_WM_WINDOW_TYPE_DIALOG' in xprop or '_NET_WM_STATE_MODAL' in xprop):
                         # scratch_move
                         con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s" % {
                             "make_mark": self.make_mark_str(tag),
-                            "get_geom": self.cfg_module.get_geom(tag)
+                            "get_geom": self.nsgeom.get_geom(tag)
                         }
                         con.command(con_cmd)
                         self.marked[tag].append(con)
@@ -285,7 +282,7 @@ class ns(SingletonMixin):
             for con in window_list:
                 for factor in self.factors:
                     if self.match(con, factor, tag):
-                        xprop = check_output(['xprop', '-id', str(con.window)]).decode()
+                        xprop = subprocess.check_output(['xprop', '-id', str(con.window)]).decode()
                         if not('_NET_WM_WINDOW_TYPE_DIALOG' in xprop or '_NET_WM_STATE_MODAL' in xprop):
                             # scratch move
                             hide_cmd=''
@@ -294,7 +291,7 @@ class ns(SingletonMixin):
                             con_cmd="%(make_mark)s, move scratchpad, %(get_geom)s, %(hide_cmd)s" % \
                                 {
                                     "make_mark": self.make_mark_str(tag),
-                                    "get_geom": self.cfg_module.get_geom(tag),
+                                    "get_geom": self.nsgeom.get_geom(tag),
                                     "hide_cmd": hide_cmd
                                 }
                             con.command(con_cmd)

@@ -1,8 +1,15 @@
 import re
 import subprocess
-import itertools
 
 class geom():
+    def __init__(self, settings):
+        self.cmd_list=[]
+        self.parsed_geom={}
+        self.current_resolution=self.__get_screen_resolution()
+        self.settings=settings
+        for tag in self.settings:
+            self.parsed_geom[tag] = self.__parse_geom(tag)
+
     def init_i3_win_cmds(self, hide=True, dprefix_="for_window "):
         def ch_(list, ch):
             ret=''
@@ -61,27 +68,12 @@ class geom():
         rd={'width':1920, 'height':1200} # resolution_default
         cr=self.current_resolution       # current resolution
 
-        geom=re.split(r'[x+]', self.settings[group]["geom"])
+        g=re.split(r'[x+]', self.settings[group]["geom"])
         cg=[] # converted_geom
 
-        cg.append(int(int(geom[0])*cr['width']  / rd['width']))
-        cg.append(int(int(geom[1])*cr['height'] / rd['height']))
-        cg.append(int(int(geom[2])*cr['width']  / rd['width']))
-        cg.append(int(int(geom[3])*cr['height'] / rd['height']))
+        cg.append(int(int(g[0])*cr['width']  / rd['width']))
+        cg.append(int(int(g[1])*cr['height'] / rd['height']))
+        cg.append(int(int(g[2])*cr['width']  / rd['width']))
+        cg.append(int(int(g[3])*cr['height'] / rd['height']))
 
         return "move absolute position {2} {3}, resize set {0} {1}".format(*cg)
-
-        self.cmd_list=[]
-        self.parsed_geom={}
-        self.current_resolution=self.__get_screen_resolution()
-        for tag in self.settings:
-            self.parsed_geom[tag] = self.__parse_geom(tag)
-
-if __name__ == "__main__":
-    def print_info():
-        conf=ns_settings()
-        conf.init_i3_win_cmds()
-        for ns_info in conf.cmd_list:
-            print(ns_info)
-
-    print_info()
