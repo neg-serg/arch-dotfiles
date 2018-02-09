@@ -45,12 +45,22 @@ class circle(SingletonMixin):
             self.cfg=prev_conf
             self.__init__()
 
+    def dict_converse(self):
+        for i in self.cfg:
+            for j in self.cfg[i]:
+                if j in {"class", "class_r", "instance"}:
+                    self.cfg[i][j]=set(self.cfg[i][j])
+                if j == "prog_dict":
+                    for k in self.cfg[i][j]:
+                        for kk in self.cfg[i][j][k]:
+                            if kk == "includes":
+                                self.cfg[i][j][k][kk]=set(self.cfg[i][j][k][kk])
+
     def load_config(self, debug=False, via_module=False):
         if not via_module:
             with open("circle.cfg", "r") as fp:
-                if debug:
-                    print(toml.load(fp))
                 self.cfg=toml.load(fp)
+            self.dict_converse()
         else:
             self.cfg=circle_conf.cfg().settings
 
