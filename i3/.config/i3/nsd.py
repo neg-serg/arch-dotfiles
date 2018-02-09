@@ -15,7 +15,7 @@ class ns(SingletonMixin):
         self.fullscreen_list=[]
         self.factors=["class", "instance", "class_r"]
         self.cfg={}
-        self.cfg_module=ns_conf.ns_settings()
+        self.cfg_module=ns_conf.cfg()
         self.load_config()
         self.marked={l:[] for l in self.cfg}
         self.i3 = i3ipc.Connection()
@@ -35,14 +35,17 @@ class ns(SingletonMixin):
             self.cfg=prev_conf
             self.__init__()
 
-    def load_config(self, debug=False):
-        user_name=os.environ.get("USER", "neg")
-        xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
-        self.i3_path=xdg_config_path+"/i3/"
-        with open(self.i3_path + "/ns.cfg", "r") as fp:
-            if debug:
-                print(toml.load(fp))
-            self.cfg=toml.load(fp)
+    def load_config(self, debug=False, via_module=False):
+        if not via_module:
+            user_name=os.environ.get("USER", "neg")
+            xdg_config_path=os.environ.get("XDG_CONFIG_HOME", "/home/" + user_name + "/.config/")
+            self.i3_path=xdg_config_path+"/i3/"
+            with open(self.i3_path + "/ns.cfg", "r") as fp:
+                if debug:
+                    print(toml.load(fp))
+                self.cfg=toml.load(fp)
+        else:
+            self.cfg=ns_conf.cfg().settings
 
     def make_mark_str(self, tag: str) -> str:
         uuid_str = str(str(uuid.uuid4().fields[-1]))

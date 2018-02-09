@@ -51,13 +51,13 @@ class Listner():
         Thread(target=self.watch, args=(self.i3_path, '_config', self.i3_config_event), daemon=True).start()
 
     def dump_configs(self):
-        for mod in self.mods.keys():
-            m=self.mods[mod]
-            try:
-                with open(self.i3_path + "/" + mod + ".cfg", "w") as fp:
+        try:
+            for mod in self.mods.keys():
+                m=self.mods[mod]
+                with open(self.i3_path + mod + ".cfg", "w") as fp:
                     toml.dump(m["instance"].cfg, fp)
-            except:
-                pass
+        except:
+            pass
 
     def load_modules(self):
         for mod in self.mods.keys():

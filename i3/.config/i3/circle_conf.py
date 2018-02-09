@@ -1,4 +1,4 @@
-class cycle_settings(object):
+class cfg():
     settings={}
 
     def __init__(self):
@@ -40,21 +40,14 @@ class cycle_settings(object):
                 ],
             },
             'steam':{
-                'class_r': [
-                    '^Wine$',
-                    '^dota2$',
-                    'hyper64',
-                    '^darkest.bin.x86_64$',
-                    '^[sS]team$',
-                    '.*.exe$',
-                ],
+                'class_r': [ '^Wine$', '^dota2$', 'hyper64', '^darkest.bin.x86_64$', '^[sS]team$', '.*.exe$' ],
                 'prog':"steam",
             },
             'doc':{
-                'class': [ 'Zathura', ],
+                'class': [ 'Zathura' ],
             },
             'vm':{
-                'class_r': [ 'VirtualBox', 'vmware', '[Qq]emu-.*', ],
+                'class_r': [ 'VirtualBox', 'vmware', '[Qq]emu-.*'],
             },
             'term':{
                 'class': [ 'MainTerminal' ],
@@ -71,7 +64,7 @@ class cycle_settings(object):
                 'prog':"emacs",
             },
             'jetbrains-idea':{
-                'class': [ 'jetbrains-idea', 'clion', 'andrond-studio', ],
+                'class': [ 'jetbrains-idea', 'clion', 'andrond-studio'],
                 'prog':"~/bin/scripts/jetbrains.sh idea",
             },
             'jetbrains-clion': {
@@ -84,9 +77,7 @@ class cycle_settings(object):
                 'prog':"~/bin/scripts/jetbrains.sh clion",
             },
             'sxiv': {
-                'class': [
-                    'Sxiv',
-                ],
+                'class': [ 'Sxiv' ],
                 'prog':"st zsh -c 'find ~/dw/ ~/tmp/shots/ -maxdepth 1 -type d -print0 |xargs -0 ~/bin/sx' &",
             },
         }

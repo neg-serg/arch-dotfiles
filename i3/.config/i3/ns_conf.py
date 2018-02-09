@@ -2,7 +2,7 @@ import re
 import subprocess
 import itertools
 
-class ns_settings(object):
+class cfg():
     def init_i3_win_cmds(self, hide=True, dprefix_="for_window "):
         def ch_(list, ch):
             ret=''
@@ -72,7 +72,6 @@ class ns_settings(object):
         return "move absolute position {2} {3}, resize set {0} {1}".format(*cg)
 
     def __init__(self):
-
         self.settings = {
             'im' : {
                 'class' : [
@@ -96,23 +95,17 @@ class ns_settings(object):
                 }
             },
             'ncmpcpp': {
-                'class' : [
-                    'mpd-pad2'
-                ],
+                'class' : [ 'mpd-pad2' ],
                 'geom' : "1192x600+400+400",
                 'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
             },
             'ncmpcpp_fun': {
-                'class' : [
-                    'cool-retro-term'
-                ],
+                'class' : [ 'cool-retro-term' ],
                 'geom' : "1188x600+400+400",
                 'prog': 'cool-retro-term --program ncmpcpp'
             },
             'weechat': {
-                'class' : [
-                    '_weechat_'
-                ],
+                'class' : [ '_weechat_' ],
                 'geom' : "1736x1091+112+33",
                 'prog': 'st -c _weechat_ -f "Iosevka Term Medium:size=14" zsh -c "tmux -S ~/1st_level/weechat.socket new weechat"'
             },
@@ -124,37 +117,27 @@ class ns_settings(object):
                 'prog' : "st -f \'Iosevka Term Medium:size=17\' -c mutt -e neomutt",
             },
             'ranger': {
-                'class' : [
-                    'ranger'
-                ],
+                'class' : [ 'ranger' ],
                 'geom' : "1132x760+170+18",
                 'prog' : "~/bin/scripts/run_ranger"
             },
             'teardrop': {
-                'class' : [
-                    'teardrop'
-                ],
+                'class' : [ 'teardrop' ],
                 'geom' : "1844x704+39+4",
                 'prog' : 'st -c teardrop -f "PragmataPro for Powerline:size=18" -e ~/bin/scripts/teardrop'
             },
             'volcontrol': {
-                'class' : [
-                    'Pavucontrol'
-                ],
+                'class' : [ 'Pavucontrol' ],
                 'geom' : "895x314+1023+824",
                 'prog' : "pavucontrol"
             },
             'console': {
-                'class' : [
-                    'youtube-get'
-                ],
+                'class' : [ 'youtube-get' ],
                 'geom': "1339x866+247+13",
                 'prog' : "/bin/true",
             },
             'webcam': {
-                'instance' : [
-                    'webcam'
-                ],
+                'instance' : [ 'webcam' ],
                 'geom': "1234x771+667+363",
                 'prog' : "~/bin/webcam",
             },
