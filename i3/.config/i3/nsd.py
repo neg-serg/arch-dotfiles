@@ -75,8 +75,11 @@ class ns(SingletonMixin, CfgMaster):
 
     def toggle(self, tag : str) -> None:
         if not len(self.marked[tag]) and "prog" in self.cfg[tag]:
-            prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
-            self.i3.command('exec {}'.format(prog_str))
+            try:
+                prog_str=re.sub("~", os.path.realpath(os.path.expandvars("$HOME")), self.cfg[tag]["prog"])
+                self.i3.command('exec {}'.format(prog_str))
+            except:
+                pass
 
         if self.visible(tag) > 0:
             self.unfocus(tag)
@@ -125,11 +128,14 @@ class ns(SingletonMixin, CfgMaster):
             subtag_classes_set=set(self.cfg[tag].get("prog_dict",{}).get(app,{}).get("includes",{}))
             subtag_classes_matched=[w for w in class_list if w in subtag_classes_set]
             if not len(subtag_classes_matched):
-                prog_str=re.sub(
-                    "~", os.path.realpath(os.path.expandvars("$HOME")),
-                    self.cfg[tag].get("prog_dict",{}).get(app,{}).get("prog",{})
-                )
-                self.i3.command('exec {}'.format(prog_str))
+                try:
+                    prog_str=re.sub(
+                        "~", os.path.realpath(os.path.expandvars("$HOME")),
+                        self.cfg[tag].get("prog_dict",{}).get(app,{}).get("prog",{})
+                    )
+                    self.i3.command('exec {}'.format(prog_str))
+                except:
+                    pass
             else:
                 self.focus_sub_tag(tag, subtag_classes_set)
         else:

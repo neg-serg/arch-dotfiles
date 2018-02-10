@@ -58,17 +58,21 @@ class circle(SingletonMixin, CfgMaster):
                         return self.tagged[tag][subidx]
 
         def run_prog(subtag=None):
-            if subtag is None:
-                prog_str=re.sub(
-                    "~", os.path.realpath(os.path.expandvars("$HOME")),
-                    self.cfg[tag].get("prog",{})
-                )
-            else:
-                prog_str=re.sub(
-                    "~", os.path.realpath(os.path.expandvars("$HOME")),
-                    self.cfg[tag].get("prog_dict",{}).get(subtag,{}).get("prog",{})
-                )
-            self.i3.command('exec {}'.format(prog_str))
+            try:
+                if subtag is None:
+                    prog_str=re.sub(
+                        "~", os.path.realpath(os.path.expandvars("$HOME")),
+                        self.cfg[tag].get("prog",{})
+                    )
+                else:
+                    prog_str=re.sub(
+                        "~", os.path.realpath(os.path.expandvars("$HOME")),
+                        self.cfg[tag].get("prog_dict",{}).get(subtag,{}).get("prog",{})
+                    )
+                if prog_str:
+                    self.i3.command('exec {}'.format(prog_str))
+            except:
+                pass
 
         def focus_next(inc_counter=True, fullscreen_handler=True, subtag=None):
             if fullscreen_handler:
