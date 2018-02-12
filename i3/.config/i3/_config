@@ -170,6 +170,9 @@ bindsym $alt+e mode ""
 bindsym $m4+r mode ""
 bindsym $m4+minus mode ""
 #----------------------------------------------
+bindsym $m4+h focus left
+bindsym $m4+l focus right
+#----------------------------------------------
 bindsym $m4+$c+c exec ~/.config/i3/send circle next sxiv
 bindsym $m4+$S+$c+BackSpace mode " "
 mode " " {
