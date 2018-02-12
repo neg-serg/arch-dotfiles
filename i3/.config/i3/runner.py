@@ -108,7 +108,7 @@ class Listner():
                     self.i3_module_event.clear()
                     for mod in self.mods.keys():
                         subprocess.Popen(
-                            shlex.split(self.i3_path + "send.py " + mod + " reload")
+                            shlex.split(self.i3_path + "send " + mod + " reload")
                         )
         Thread(target=reload_thread_payload, daemon=True).start()
 
