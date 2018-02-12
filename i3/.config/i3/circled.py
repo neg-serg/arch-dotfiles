@@ -148,7 +148,10 @@ class circle(SingletonMixin, CfgMaster):
             "run": self.go_next,
             "reload": self.reload_config,
         }
-        switch_[args[0]](*args[1:])
+        try:
+            switch_[args[0]](*args[1:])
+        except:
+            pass
 
     def match(self, win, factor, tag):
         if factor == "class":

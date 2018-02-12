@@ -20,7 +20,10 @@ class flast(SingletonMixin):
             "switch": self.alt_tab,
             "reload": self.reload_config,
         }
-        switch_[args[0]](*args[1:])
+        try:
+            switch_[args[0]](*args[1:])
+        except:
+            pass
 
     def alt_tab(self):
         for wid in self.window_list[1:]:
