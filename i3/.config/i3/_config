@@ -286,7 +286,7 @@ mode "gaps-inner" {
     bindsym {Return,Escape,$c+C,$c+G} $exit
 }
 
-exec_always ${XDG_CONFIG_HOME}/i3/runner.py 2>> ~/tmp/runner.log
+exec_always ${XDG_CONFIG_HOME}/i3/listner.py 1>> ~/tmp/runner.log
 exec_always ${XDG_CONFIG_HOME}/i3/info_echo.py 2>> ~/tmp/info_echo.log
 exec ~/bin/term
 exec_always pkill -f 'mpc idle'
