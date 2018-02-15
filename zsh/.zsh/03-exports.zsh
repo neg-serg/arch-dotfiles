@@ -12,6 +12,7 @@ path_dirs=(
     /mnt/home/.local/bin
     /opt/cuda/bin
     /opt/go/bin
+    /opt/intel/bin
     # Add RVM to PATH for scripting
     ${HOME}/.rvm/bin
 )

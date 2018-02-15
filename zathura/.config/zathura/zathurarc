@@ -3,12 +3,12 @@ set database sqlite
 unmap q
 unmap d 
 unmap <C-q>
-set font "PragmataPro for Powerline 12"
+set font "PragmataPro for Powerline 17"
 
-set default-bg "#191C21"
-set default-fg "#969896"
-set statusbar-bg "#060606"
-set statusbar-fg "#666666"
+set default-bg   "#020202"
+set default-fg   "#617287"
+set statusbar-bg "#020202"
+set statusbar-fg "#617287"
 
 set inputbar-bg "#1d1f21"
 set inputbar-fg "#9f9f9f"
@@ -42,9 +42,6 @@ set notification-error-fg "#eeeeee"
 set notification-warning-bg "#98a7b6"
 set notification-warning-fg "#000000"
 
-set statusbar-bg "#191C21"
-set statusbar-fg "#cccccc"
-
 map <C-[> abort
 map <C-с> abort
 map <F11> toggle_fullscreen
@@ -75,8 +72,8 @@ set recolor-keephue "false"
 map <A-w> set recolor "true"
 map <C-w> set recolor-keephue "false"
 map <C-e> set recolor-reverse-video "true"
-set recolor-lightcolor "#191C21"
-set recolor-darkcolor "#D3DAE3"
+set recolor-lightcolor "#020202"
+set recolor-darkcolor "#617287"
 
 set zoom-step 10
 map [normal] q zoom out
