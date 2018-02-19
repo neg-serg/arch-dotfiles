@@ -21,3 +21,6 @@
 [submodule "@rogue_emacs"]
 	path = @rogue_emacs
 	url = https://github.com/lepisma/rogue
+[submodule "i3/.config/i3"]
+	path = i3/.config/i3
+	url = https://github.com/neg-serg/negi3mods.git
