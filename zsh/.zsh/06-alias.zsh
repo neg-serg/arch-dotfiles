@@ -153,7 +153,7 @@ function yr(){
     if [[ -z "${wid}" ]]; then
         st -c youtube-get ${SCRIPT_HOME}/yr "$@"
     else
-        ${XDG_CONFIG_HOME}/i3/send.py ns toggle console
+        ${XDG_CONFIG_HOME}/i3/send ns toggle console
     fi
 }
 
