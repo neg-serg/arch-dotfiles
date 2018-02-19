@@ -24,3 +24,5 @@
 [submodule "i3/.config/i3"]
 	path = i3/.config/i3
 	url = https://github.com/neg-serg/negi3mods.git
+[submodule "77d2d32ed01b7ffd073ac1b5620871d111f77a1a i3/.config/i3 (heads/master)"]
+	url = git@github.com:neg-serg/negi3mods.git
