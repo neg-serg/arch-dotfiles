@@ -138,8 +138,6 @@ repo = 'arcticicestudio/nord-vim'  # dark and cold colorscheme
 [[plugins]]
 repo = 'itchyny/landscape.vim' # colorscheme and syntax file
 [[plugins]]
-repo = 'itchyny/vim-closebuffer' # better close buffer
-[[plugins]]
 repo = 'chriskempson/base16-vim' # base16 colorschemes pack
 [[plugins]]
 repo = 'morhetz/gruvbox' # gruvbox colorscheme
@@ -182,8 +180,6 @@ repo = 'christoomey/vim-tmux-navigator' # easy jump between windows
 repo = 'powerman/vim-plugin-ruscmd' # prevent to much ru-en layout switching with c-s
 [[plugins]]
 repo = 'mjbrownie/swapit' #  vim nice swapit
-[[plugins]]
-repo = 'Shougo/vimfiler.vim' #  Vim file manager
 [[plugins]]
 repo = 's3rvac/AutoFenc' #  try to autodelect filetype
 [[plugins]]
