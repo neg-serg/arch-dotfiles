@@ -135,4 +135,4 @@ nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>norma
 nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
 
 " like firefox tabs
-nnoremap <silent> <A-w> :<C-u>call closebuffer#close()<CR>
+nnoremap <silent> <A-w> :bd<CR>
