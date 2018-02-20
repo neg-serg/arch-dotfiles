@@ -1,0 +1,71 @@
+#!/bin/bash
+
+NETWORK_ICON_ETHER=''
+NETWORK_ICON_WLAN=''
+
+NETWORK_COLOR_URGENT='RRR'
+NETWORK_COLOR_CONNECTED='7E4'
+NETWORK_COLOR_CONNECTING='EB4'
+NETWORK_COLOR_DISCONNECTED='E44'
+
+NETWORK_UUID=`uuidgen`
+
+status_network(){
+	declare -A wlan
+	declare -A ether
+
+	cd /sys/class/net
+	for iface in *; do
+		while IFS=': ' read -r key value; do
+			case $key in
+				Type)
+					type=$value ;;
+				State)
+					read -r state _ <<< "$value"
+					if [[ "$state" != "unmanaged" ]]; then
+						case $type in
+							ether)
+								ether["$iface"]=$state ;;
+							wlan)
+								wlan["$iface"]=$state ;;
+						esac
+					fi ;;
+			esac
+		done < <(networkctl status $iface)
+	done
+
+	for iface in "${!ether[@]}"; do
+		state="${ether[$iface]}"
+		if [[ "$state" = "routable" ]]; then
+			markup $NETWORK_ICON_ETHER 'LAN' $NETWORK_COLOR_CONNECTED
+			return
+		fi
+	done
+
+	for iface in "${!wlan[@]}"; do
+		state="${wlan[$iface]}"
+		if [[ "$state" = "routable" ]]; then
+			ssid=`wpa_cli -i $iface status | awk -F= '/^ssid=/ {print $2}'`
+			markup $NETWORK_ICON_WLAN "$ssid" $NETWORK_COLOR_CONNECTED
+			return
+		elif [[ "$state" = "carrier" ]]; then
+			markup $NETWORK_ICON_WLAN 'Connecting' $NETWORK_COLOR_CONNECTING
+			return
+		fi
+	done
+
+	markup $NETWORK_ICON_ETHER 'Disconnected' $NETWORK_COLOR_URGENT
+
+	unset wlan ether
+}
+
+watch_network(){
+	# this is a bit spammy, might want to filter it
+	journalctl -fu systemd-networkd | while read -r event; do
+		status=`status_network`
+		if [[ -n "$status" && "$status" != "$network_last_status" ]]; then
+			popup "${status//#RRR/#$NETWORK_COLOR_DISCONNECTED}" $NETWORK_UUID
+			network_last_status=$status
+		fi
+	done
+}

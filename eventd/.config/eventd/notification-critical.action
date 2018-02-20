@@ -1,0 +1,8 @@
+[Action]
+Name=notification-critical
+
+[Notification]
+
+[NotificationBubble]
+Timeout=0
+BorderColour=#B7472A

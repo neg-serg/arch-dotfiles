@@ -1,0 +1,12 @@
+[Action]
+Name=notification-workspace
+
+[Notification]
+
+[NotificationBubble]
+Queue=top
+Timeout=1000
+MinWidth=1
+
+[NotificationText]
+Alignment=Center

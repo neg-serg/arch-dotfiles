@@ -1,0 +1,9 @@
+#!/bin/bash
+
+CLOCK_ICON=''
+CLOCK_FORMAT='%H:%M'
+
+status_clock(){
+	clock=`date +$CLOCK_FORMAT`
+	markup $CLOCK_ICON $clock
+}

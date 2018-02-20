@@ -1,0 +1,9 @@
+#!/bin/bash
+
+popup(){
+	# $1 = text
+	# $2 = uuid (optional)
+	# $3 = urgency (0-2, optional)
+	# $4 = event name (optional, defaults to 'generic')
+	eventc notification ${4:-generic} $2 -d title="'${1//\'/\\\"}'" -d urgency="byte ${3:-1}"
+}
