@@ -126,8 +126,6 @@ icon-repeat = 🔁
 icon-repeatone = 🔂
 icon-consume = ✀
 lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
-lmpd1="%{F#395573}⟬⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
-lmpd2="%{F#395573}⌬%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 
 [module/volume]
 type = custom/script
