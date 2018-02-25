@@ -10,18 +10,32 @@ function compton_run(){
         if ${with_hardcore_blur}; then
             compton -b --config "${compton_cfg}"  --vsync=none \
                     --blur-kern="${hardcore_blur}" \
-                    --backend="xrender" \
+                    --backend="glx" \
                     --paint-on-overlay \
+                    --glx-no-stencil \
+                    --glx-no-rebind-pixmap \
+                    --glx-swap-method=1 \
                 > /dev/null &
         else
             compton -b --config "${compton_cfg}"  --vsync=none \
                     --blur-kern="3x3box" \
-                    --backend="xrender" \
+                    --backend="glx" \
                     --paint-on-overlay \
+                    --glx-no-stencil \
+                    --glx-no-rebind-pixmap \
+                    --glx-swap-method=1 \
                 > /dev/null &
         fi
     else
-        compton -b --config "${compton_cfg}" --vsync="none" --blur-kern="3x3box"
+        compton -b --config "${compton_cfg}" \
+            --blur-kern="3x3box" \
+            --backend="glx" \
+            --glx-no-stencil \
+            --glx-no-rebind-pixmap \
+            --glx-swap-method=exchange \
+            --glx-use-copysubbuffermesa \
+            --sw-opti \
+            --vsync drm
     fi
 }
 
