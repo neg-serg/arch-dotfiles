@@ -24,7 +24,6 @@ local _zsh_files=(
     10-zle_functions.zsh
     11-open.zsh
     12-completion.zsh
-    12-vi_additions.zsh
     13-bindkeys.zsh
     60-functional.zsh
     70-games.zsh

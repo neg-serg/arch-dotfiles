@@ -29,7 +29,7 @@ function compton_run(){
     else
         compton -b --config "${compton_cfg}" \
             --blur-method=kawase \
-            --blur-strength=4 \
+            --blur-strength=2 \
             --backend="glx" \
             --glx-no-stencil \
             --glx-no-rebind-pixmap \
