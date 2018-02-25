@@ -28,7 +28,8 @@ function compton_run(){
         fi
     else
         compton -b --config "${compton_cfg}" \
-            --blur-kern="3x3box" \
+            --blur-method=kawase \
+            --blur-strength=4 \
             --backend="glx" \
             --glx-no-stencil \
             --glx-no-rebind-pixmap \
