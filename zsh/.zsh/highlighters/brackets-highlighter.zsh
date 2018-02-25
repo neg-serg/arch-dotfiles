@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2010-2011 zsh-syntax-highlighting contributors
+# Copyright (c) 2010-2017 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -63,16 +63,16 @@ _zsh_highlight_highlighter_brackets_paint()
         lastoflevel[$level]=$pos
         ;;
       [")]}"])
-        matchingpos=$lastoflevel[$level]
-        levelpos[$pos]=$((level--))
-	if _zsh_highlight_brackets_match $matchingpos $pos; then
-          matching[$matchingpos]=$pos
-          matching[$pos]=$matchingpos
+        if (( level > 0 )); then
+          matchingpos=$lastoflevel[$level]
+          levelpos[$pos]=$((level--))
+          if _zsh_highlight_brackets_match $matchingpos $pos; then
+            matching[$matchingpos]=$pos
+            matching[$pos]=$matchingpos
+          fi
+        else
+          levelpos[$pos]=-1
         fi
-        ;;
-      ['"'\'])
-        # Skip everything inside quotes
-	pos=$BUFFER[(ib:pos+1:)$char]
         ;;
     esac
   done
@@ -81,18 +81,17 @@ _zsh_highlight_highlighter_brackets_paint()
   for pos in ${(k)levelpos}; do
     if (( $+matching[$pos] )); then
       if (( bracket_color_size )); then
-        style=bracket-level-$(( (levelpos[$pos] - 1) % bracket_color_size + 1 ))
+        _zsh_highlight_add_highlight $((pos - 1)) $pos bracket-level-$(( (levelpos[$pos] - 1) % bracket_color_size + 1 ))
       fi
     else
-      style=bracket-error
+      _zsh_highlight_add_highlight $((pos - 1)) $pos bracket-error
     fi
-    _zsh_highlight_add_highlight $((pos - 1)) $pos $style
   done
 
   # If cursor is on a bracket, then highlight corresponding bracket, if any.
   if [[ $WIDGET != zle-line-finish ]]; then
     pos=$((CURSOR + 1))
-    if [[ -n $levelpos[$pos] ]] && [[ -n $matching[$pos] ]]; then
+    if (( $+levelpos[$pos] )) && (( $+matching[$pos] )); then
       local -i otherpos=$matching[$pos]
       _zsh_highlight_add_highlight $((otherpos - 1)) $otherpos cursor-matchingbracket
     fi

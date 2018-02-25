@@ -24,8 +24,30 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 # OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # -------------------------------------------------------------------------------------------------
+# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
+# vim: ft=zsh sw=2 ts=2 et
+# -------------------------------------------------------------------------------------------------
+
+# First of all, ensure predictable parsing.
+zsh_highlight__aliases=`builtin alias -Lm '[^+]*'`
+# In zsh <= 5.2, `alias -L` emits aliases that begin with a plus sign ('alias -- +foo=42')
+# them without a '--' guard, so they don't round trip.
+#
+# Hence, we exclude them from unaliasing:
+builtin unalias -m '[^+]*'
+
+# -------------------------------------------------------------------------------------------------
 # Core highlighting update system
 # -------------------------------------------------------------------------------------------------
+
+# Use workaround for bug in ZSH?
+# zsh-users/zsh@48cadf4 http://www.zsh.org/mla/workers//2017/msg00034.html
+autoload -U is-at-least
+if is-at-least 5.4; then
+  zsh_highlight__pat_static_bug=false
+else
+  zsh_highlight__pat_static_bug=true
+fi
 
 # Array declaring active highlighters names.
 typeset -ga ZSH_HIGHLIGHT_HIGHLIGHTERS
@@ -41,13 +63,32 @@ _zsh_highlight()
 
   # Remove all highlighting in isearch, so that only the underlining done by zsh itself remains.
   # For details see FAQ entry 'Why does syntax highlighting not work while searching history?'.
-  if [[ $WIDGET == zle-isearch-update ]] && ! (( $+ISEARCHMATCH_ACTIVE )); then
+  # This disables highlighting during isearch (for reasons explained in README.md) unless zsh is new enough
+  # and doesn't have the pattern matching bug
+  if [[ $WIDGET == zle-isearch-update ]] && { $zsh_highlight__pat_static_bug || ! (( $+ISEARCHMATCH_ACTIVE )) }; then
     region_highlight=()
     return $ret
   fi
 
+  # Before we 'emulate -L', save the user's options
+  local -A zsyh_user_options
+  if zmodload -e zsh/parameter; then
+    zsyh_user_options=("${(@kv)options}")
+  else
+    local canonical_options onoff option raw_options
+    raw_options=(${(f)"$(emulate -R zsh; set -o)"})
+    canonical_options=(${${${(M)raw_options:#*off}%% *}#no} ${${(M)raw_options:#*on}%% *})
+    for option in $canonical_options; do
+      [[ -o $option ]]
+      # This variable cannot be eliminated c.f. workers/42101.
+      onoff=${${=:-off on}[2-$?]}
+      zsyh_user_options+=($option $onoff)
+    done
+  fi
+  typeset -r zsyh_user_options
+
+  emulate -L zsh
   setopt localoptions warncreateglobal
-  setopt localoptions noksharrays
   local REPLY # don't leak $REPLY into global scope
 
   # Do not highlight if there are more than 300 chars in the buffer. It's most
@@ -87,7 +128,7 @@ _zsh_highlight()
         {
           "_zsh_highlight_highlighter_${highlighter}_paint"
         } always {
-          eval "${cache_place}=(\"\${region_highlight[@]}\")"
+          : ${(AP)cache_place::="${region_highlight[@]}"}
         }
 
         # Restore saved region_highlight
@@ -96,7 +137,7 @@ _zsh_highlight()
       fi
 
       # Use value form cache if any cached
-      eval "region_highlight+=(\"\${${cache_place}[@]}\")"
+      region_highlight+=("${(@P)cache_place}")
 
     done
 
@@ -114,8 +155,10 @@ _zsh_highlight()
         else
           min=$MARK max=$CURSOR
         fi
-        (( min = ${${BUFFER[1,$min]}[(I)$needle]} ))
-        (( max += ${${BUFFER:($max-1)}[(i)$needle]} - 1 ))
+        # CURSOR and MARK are 0 indexed between letters like region_highlight
+        # Do not include the newline in the highlight
+        (( min = ${BUFFER[(Ib:min:)$needle]} ))
+        (( max = ${BUFFER[(ib:max:)$needle]} - 1 ))
         _zsh_highlight_apply_zle_highlight region standout "$min" "$max"
       }
     fi
@@ -151,7 +194,11 @@ _zsh_highlight_apply_zle_highlight() {
   integer first="$3" second="$4"
 
   # read the relevant entry from zle_highlight
-  local region="${zle_highlight[(r)${entry}:*]}"
+  #
+  # ### In zsh≥5.0.8 we'd use ${(b)entry}, but we support older zsh's, so we don't
+  # ### add (b).  The only effect is on the failure mode for callers that violate
+  # ### the precondition.
+  local region="${zle_highlight[(r)${entry}:*]-}"
 
   if [[ -z "$region" ]]; then
     # entry not specified at all, use default value
@@ -258,7 +305,7 @@ _zsh_highlight_bind_widgets()
 
   local cur_widget
   for cur_widget in $widgets_to_bind; do
-    case $widgets[$cur_widget] in
+    case ${widgets[$cur_widget]:-""} in
 
       # Already rebound event: do nothing.
       user:_zsh_highlight_widget_*);;
@@ -285,12 +332,13 @@ _zsh_highlight_bind_widgets()
 
       # Incomplete or nonexistent widget: Bind to z-sy-h directly.
       *) 
-         if [[ $cur_widget == zle-* ]] && [[ -z $widgets[$cur_widget] ]]; then
+         if [[ $cur_widget == zle-* ]] && (( ! ${+widgets[$cur_widget]} )); then
            _zsh_highlight_widget_${cur_widget}() { :; _zsh_highlight }
            zle -N $cur_widget _zsh_highlight_widget_$cur_widget
          else
       # Default: unhandled case.
            print -r -- >&2 "zsh-syntax-highlighting: unhandled ZLE widget ${(qq)cur_widget}"
+           print -r -- >&2 "zsh-syntax-highlighting: (This is sometimes caused by doing \`bindkey <keys> ${(q-)cur_widget}\` without creating the ${(qq)cur_widget} widget with \`zle -N\` or \`zle -C\`.)"
          fi
     esac
   done
@@ -349,7 +397,7 @@ _zsh_highlight_bind_widgets || {
 
 # Resolve highlighters directory location.
 _zsh_highlight_load_highlighters "${ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR:-${${0:A}:h}/highlighters}" || {
-  print -r -- >&@ 'zsh-syntax-highlighting: failed loading highlighters, exiting.'
+  print -r -- >&2 'zsh-syntax-highlighting: failed loading highlighters, exiting.'
   return 1
 }
 
@@ -367,12 +415,15 @@ add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
 # Load zsh/parameter module if available
 zmodload zsh/parameter 2>/dev/null || true
 
-autoload -U is-at-least
-
 # Initialize the array of active highlighters if needed.
 [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && \
-    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern) || \
-    true
+    ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+
+# Restore the aliases we unned
+eval "$zsh_highlight__aliases"
+builtin unset zsh_highlight__aliases
+# Set $?.
+true
 
 ZSH_HIGHLIGHT_PATTERNS+=('[<>\|\\|$!&;/]'  fg=blue)
 ZSH_HIGHLIGHT_PATTERNS+=('~'               fg=2)

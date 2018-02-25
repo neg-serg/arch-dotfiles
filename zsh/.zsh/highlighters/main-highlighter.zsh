@@ -23,6 +23,8 @@ ZSH_HIGHLIGHT_STYLES+=(
     single-hyphen-option            fg=244
     double-hyphen-option            fg=244
     comment                         fg=221
+    arg0                            fg=green
+    rc-quote                        cyan
     # redirection                   none
     # commandseparator              none
 
@@ -60,12 +62,16 @@ _zsh_highlight_main_add_region_highlight() {
         command arg0
         precommand arg0
         hashed-command arg0
-        
         path_prefix path
         # The path separator fallback won't ever be used, due to the optimisation
         # in _zsh_highlight_main_highlighter_highlight_path_separators().
         path_pathseparator path
         path_prefix_pathseparator path_prefix
+
+        single-quoted-argument{-unclosed,}
+        double-quoted-argument{-unclosed,}
+        dollar-single-quoted-argument{-unclosed,}
+        back-quoted-argument{-unclosed,}
     )
     local needle=$1 value
     while [[ -n ${value::=$fallback_of[$needle]} ]]; do
@@ -80,9 +86,16 @@ _zsh_highlight_main_add_region_highlight() {
   (( start -= $#PREBUFFER ))
   (( end -= $#PREBUFFER ))
 
-  (( end < 0 )) && return # having end<0 would be a bug
+  (( start >= end )) && { print -r -- >&2 "zsh-syntax-highlighting: BUG: _zsh_highlight_main_add_region_highlight: start($start) >= end($end)"; return }
+  (( end <= 0 )) && return
   (( start < 0 )) && start=0 # having start<0 is normal with e.g. multiline strings
   _zsh_highlight_add_highlight $start $end "$@"
+}
+
+_zsh_highlight_main_add_many_region_highlights() {
+  for 1 2 3; do
+    _zsh_highlight_main_add_region_highlight $1 $2 $3
+  done
 }
 
 # Get the type of a command.
@@ -129,7 +142,8 @@ _zsh_highlight_main__type() {
     fi
   fi
   if ! (( $+REPLY )); then
-    REPLY="${$(LC_ALL=C builtin type -w -- $1 2>/dev/null)#*: }"
+    # Note that 'type -w' will run 'rehash' implicitly.
+    REPLY="${$(LC_ALL=C builtin type -w -- $1 2>/dev/null)##*: }"
   fi
   if (( $+_zsh_highlight_main__command_type_cache )); then
     _zsh_highlight_main__command_type_cache[(e)$1]=$REPLY
@@ -143,7 +157,8 @@ _zsh_highlight_main__is_redirection() {
   # - starts with an optional single-digit number;
   # - then, has a '<' or '>' character;
   # - is not a process substitution [<(...) or >(...)].
-  [[ $1 == (<0-9>|)(\<|\>)* ]] && [[ $1 != (\<|\>)$'\x28'* ]]
+  # - is not a numeric glob <->
+  [[ $1 == (<0-9>|)(\<|\>)* ]] && [[ $1 != (\<|\>)$'\x28'* ]] && [[ $1 != *'<'*'-'*'>'* ]]
 }
 
 # Resolve alias.
@@ -174,29 +189,9 @@ _zsh_highlight_main__stack_pop() {
 }
 
 # Main syntax highlighting function.
-_zsh_highlight_highlighter_main_paint() 
+_zsh_highlight_highlighter_main_paint()
 {
-  ## Before we even 'emulate -L', we must test a few options that would reset.
-  if [[ -o interactive_comments ]]; then
-    local interactive_comments= # set to empty
-  fi
-  if [[ -o ignore_braces ]] || eval '[[ -o ignore_close_braces ]] 2>/dev/null'; then
-    local right_brace_is_recognised_everywhere=false
-  else
-    local right_brace_is_recognised_everywhere=true
-  fi
-  if [[ -o path_dirs ]]; then
-    integer path_dirs_was_set=1
-  else
-    integer path_dirs_was_set=0
-  fi
-  if [[ -o multi_func_def ]]; then
-    integer multi_func_def=1
-  else
-    integer multi_func_def=0
-  fi
-  emulate -L zsh
-  setopt localoptions extendedglob bareglobqual
+  setopt localoptions extendedglob
 
   # At the PS3 prompt and in vared, highlight nothing.
   #
@@ -223,12 +218,19 @@ _zsh_highlight_highlighter_main_paint()
   # "Y" for curly
   # "D" for do/done
   # "$" for 'end' (matches 'foreach' always; also used with cshjunkiequotes in repeat/while)
+  # "?" for 'if'/'fi'; also checked by 'elif'/'else'
+  # ":" for 'then'
   local braces_stack
 
-  if (( path_dirs_was_set )); then
+  if [[ $zsyh_user_options[ignorebraces] == on || ${zsyh_user_options[ignoreclosebraces]:-off} == on ]]; then
+    local right_brace_is_recognised_everywhere=false
+  else
+    local right_brace_is_recognised_everywhere=true
+  fi
+
+  if [[ $zsyh_user_options[pathdirs] == on ]]; then
     options_to_set+=( PATH_DIRS )
   fi
-  unset path_dirs_was_set
 
   ZSH_HIGHLIGHT_TOKENS_COMMANDSEPARATOR=(
     '|' '||' ';' '&' '&&'
@@ -241,13 +243,7 @@ _zsh_highlight_highlighter_main_paint()
     'builtin' 'command' 'exec' 'nocorrect' 'noglob' 'sudo' 's'
     'pkexec' # immune to #121 because it's usually not passed --option flags
   )
-  ZSH_HIGHLIGHT_TOKENS_COMMANDSEPARATOR=(
-        '|' '||' ';' '&' '&&'
-        '|&'
-        '&!' '&|'
-        # ### 'case' syntax, but followed by a pattern, not by a command
-        ';;' ';&' ';|'
-    )
+
   # Tokens that, at (naively-determined) "command position", are followed by
   # a de jure command position.  All of these are reserved words.
   ZSH_HIGHLIGHT_TOKENS_CONTROL_FLOW=(
@@ -286,7 +282,7 @@ _zsh_highlight_highlighter_main_paint()
   # and :sudo_opt:.
   #
   # The tokens are always added with both leading and trailing colons to serve as
-  # word delimiters (an improvised array); [[ $x == *:foo:* ]] and x=${x//:foo:/} 
+  # word delimiters (an improvised array); [[ $x == *:foo:* ]] and x=${x//:foo:/}
   # will DTRT regardless of how many elements or repetitions $x has..
   #
   # Handling of redirections: upon seeing a redirection token, we must stall
@@ -308,8 +304,13 @@ _zsh_highlight_highlighter_main_paint()
   integer in_redirection
   # Processing buffer
   local proc_buf="$buf"
-  for arg in ${interactive_comments-${(z)buf}} \
-             ${interactive_comments+${(zZ+c+)buf}}; do
+  local -a args
+  if [[ $zsyh_user_options[interactivecomments] == on ]]; then
+    args=(${(zZ+c+)buf})
+  else
+    args=(${(z)buf})
+  fi
+  for arg in $args; do
     # Initialize $next_word.
     if (( in_redirection )); then
       (( --in_redirection ))
@@ -398,7 +399,7 @@ _zsh_highlight_highlighter_main_paint()
     # Handle the INTERACTIVE_COMMENTS option.
     #
     # We use the (Z+c+) flag so the entire comment is presented as one token in $arg.
-    if [[ -n ${interactive_comments+'set'} && $arg[1] == $histchars[3] ]]; then
+    if [[ $zsyh_user_options[interactivecomments] == on && $arg[1] == $histchars[3] ]]; then
       if [[ $this_word == *(':regular:'|':start:')* ]]; then
         style=comment
       else
@@ -406,13 +407,18 @@ _zsh_highlight_highlighter_main_paint()
       fi
       _zsh_highlight_main_add_region_highlight $start_pos $end_pos $style
       already_added=1
+      start_pos=$end_pos
       continue
     fi
 
     # Analyse the current word.
     if _zsh_highlight_main__is_redirection $arg ; then
-      # A '<' or '>', possibly followed by a digit
-      in_redirection=2
+      if (( in_redirection )); then
+        _zsh_highlight_main_add_region_highlight $start_pos $end_pos unknown-token
+        already_added=1
+      else
+        in_redirection=2
+      fi
     fi
 
     # Special-case the first word after 'sudo'.
@@ -449,7 +455,7 @@ _zsh_highlight_highlighter_main_paint()
    elif [[ $this_word == *':start:'* ]] && (( in_redirection == 0 )); then # $arg is the command word
      if [[ -n ${(M)ZSH_HIGHLIGHT_TOKENS_PRECOMMANDS:#"$arg"} ]]; then
       style=precommand
-     elif [[ "$arg" = "sudo" ]]; then
+     elif [[ "$arg" = "sudo" ]] && { _zsh_highlight_main__type sudo; [[ -n $REPLY && $REPLY != "none" ]] }; then
       style=precommand
       next_word=${next_word//:regular:/}
       next_word+=':sudo_opt:'
@@ -470,7 +476,7 @@ _zsh_highlight_highlighter_main_paint()
         local MATCH; integer MBEGIN MEND
         if [[ $res == none ]] && (( ${+parameters} )) &&
            [[ ${arg[1]} == \$ ]] && [[ ${arg:1} =~ ^([A-Za-z_][A-Za-z0-9_]*|[0-9]+)$ ]] &&
-           (( ${+parameters[${MATCH}]} ))
+           (( ${+parameters[(e)${MATCH}]} )) && [[ ${parameters[(e)$MATCH]} != *special* ]]
            then
           _zsh_highlight_main__type ${(P)MATCH}
           res=$REPLY
@@ -479,6 +485,8 @@ _zsh_highlight_highlighter_main_paint()
       case $res in
         reserved)       # reserved word
                         style=reserved-word
+                        #
+                        # Match braces.
                         case $arg in
                           ($'\x7b')
                             braces_stack='Y'"$braces_stack"
@@ -496,6 +504,29 @@ _zsh_highlight_highlighter_main_paint()
                           ('done')
                             _zsh_highlight_main__stack_pop 'D' style=reserved-word
                             ;;
+                          ('if')
+                            braces_stack=':?'"$braces_stack"
+                            ;;
+                          ('then')
+                            _zsh_highlight_main__stack_pop ':' style=reserved-word
+                            ;;
+                          ('elif')
+                            if [[ ${braces_stack[1]} == '?' ]]; then
+                              braces_stack=':'"$braces_stack"
+                            else
+                              style=unknown-token
+                            fi
+                            ;;
+                          ('else')
+                            if [[ ${braces_stack[1]} == '?' ]]; then
+                              :
+                            else
+                              style=unknown-token
+                            fi
+                            ;;
+                          ('fi')
+                            _zsh_highlight_main__stack_pop '?' ""
+                            ;;
                           ('foreach')
                             braces_stack='$'"$braces_stack"
                             ;;
@@ -507,7 +538,7 @@ _zsh_highlight_highlighter_main_paint()
         'suffix alias') style=suffix-alias;;
         alias)          () {
                           integer insane_alias
-                          case $arg in 
+                          case $arg in
                             # Issue #263: aliases with '=' on their LHS.
                             #
                             # There are three cases:
@@ -522,6 +553,7 @@ _zsh_highlight_highlighter_main_paint()
                           if (( insane_alias )); then
                             style=unknown-token
                           else
+                            # The common case.
                             style=alias
                             _zsh_highlight_main__resolve_alias $arg
                             local alias_target="$REPLY"
@@ -610,508 +642,484 @@ _zsh_highlight_highlighter_main_paint()
                    _zsh_highlight_main__stack_pop 'R' style=reserved-word
                  fi;;
         $'\x28\x29') # possibly a function definition
-                 if (( multi_func_def )) || false # TODO: or if the previous word was a command word
+                 if [[ $zsyh_user_options[multifuncdef] == on ]] || false # TODO: or if the previous word was a command word
                  then
                    next_word+=':start:'
                  fi
                  style=reserved-word
                  ;;
-        $'\x7d') # right brace
-                 #
-                 # Parsing rule: # {
-                 #
-                 #     Additionally, `tt(})' is recognized in any position if neither the
-                 #     tt(IGNORE_BRACES) option nor the tt(IGNORE_CLOSE_BRACES) option is set."""
-                 if $right_brace_is_recognised_everywhere; then
+#--[ Begining of ftype array ]------@@@@
+                *.old)               style=ftype-old ;;
+                *.in)                style=ftype-in ;;
+                *.am)                style=ftype-am ;;
+                *.pcap)              style=ftype-pcap ;;
+                *.dump)              style=ftype-dump ;;
+                *.dmp)               style=ftype-dmp ;;
+                *.cap)               style=ftype-cap ;;
+                *.old)               style=ftype-old ;;
+                *.in)                style=ftype-in ;;
+                *.am)                style=ftype-am ;;
+                *.tcc)               style=ftype-tcc ;;
+                *.sx)                style=ftype-sx ;;
+                *.S)                 style=ftype-S ;;
+                *.s)                 style=ftype-s ;;
+                *.hxx)               style=ftype-hxx ;;
+                *.hpp)               style=ftype-hpp ;;
+                *.hh)                style=ftype-hh ;;
+                *.H)                 style=ftype-H ;;
+                *.h++)               style=ftype-h++ ;;
+                *.h)                 style=ftype-h ;;
+                *.ftn)               style=ftype-ftn ;;
+                *.for)               style=ftype-for ;;
+                *.f)                 style=ftype-f ;;
+                *.el)                style=ftype-el ;;
+                *.clj)               style=ftype-clj ;;
+                *.scala)             style=ftype-scala ;;
+                *.pas)               style=ftype-pas ;;
+                *.swift)             style=ftype-swift ;;
+                *.rst)               style=ftype-rst ;;
+                *.rs)                style=ftype-rs ;;
+                *.ml)                style=ftype-ml ;;
+                *.ii)                style=ftype-ii ;;
+                *.go)                style=ftype-go ;;
+                *.erl)               style=ftype-erl ;;
+                *.cxx)               style=ftype-cxx ;;
+                *.cs)                style=ftype-cs ;;
+                *.cpp)               style=ftype-cpp ;;
+                *.cp)                style=ftype-cp ;;
+                *.cc)                style=ftype-cc ;;
+                *.C)                 style=ftype-C ;;
+                *.c++)               style=ftype-c++ ;;
+                *.c)                 style=ftype-c ;;
+                *.timer)             style=ftype-timer ;;
+                *.target)            style=ftype-target ;;
+                *.swap)              style=ftype-swap ;;
+                *.socket)            style=ftype-socket ;;
+                *.snapshot)          style=ftype-snapshot ;;
+                *.service)           style=ftype-service ;;
+                *.path)              style=ftype-path ;;
+                *.mount)             style=ftype-mount ;;
+                *.device)            style=ftype-device ;;
+                *.automount)         style=ftype-automount ;;
+                *.desktop)           style=ftype-desktop ;;
+                *.sms)               style=ftype-sms ;;
+                *.sav)               style=ftype-sav ;;
+                *.rom)               style=ftype-rom ;;
+                *.nes)               style=ftype-nes ;;
+                *.nds)               style=ftype-nds ;;
+                *.j64)               style=ftype-j64 ;;
+                *.ggl)               style=ftype-ggl ;;
+                *.gg)                style=ftype-gg ;;
+                *.gel)               style=ftype-gel ;;
+                *.gbc)               style=ftype-gbc ;;
+                *.gba)               style=ftype-gba ;;
+                *.gb)                style=ftype-gb ;;
+                *.cdi)               style=ftype-cdi ;;
+                *.atr)               style=ftype-atr ;;
+                *.a78)               style=ftype-a78 ;;
+                *.A64)               style=ftype-A64 ;;
+                *.a64)               style=ftype-a64 ;;
+                *.a52)               style=ftype-a52 ;;
+                *.a00)               style=ftype-a00 ;;
+                *.32x)               style=ftype-32x ;;
+                *.fm2)               style=ftype-fm2 ;;
+                *.adf)               style=ftype-adf ;;
+                *.ttf)               style=ftype-ttf ;;
+                *.pfb)               style=ftype-pfb ;;
+                *.pfa)               style=ftype-pfa ;;
+                *.pcf)               style=ftype-pcf ;;
+                *.otf)               style=ftype-otf ;;
+                *.gsf)               style=ftype-gsf ;;
+                *.fon)               style=ftype-fon ;;
+                *.dfont)             style=ftype-dfont ;;
+                *.bdf)               style=ftype-bdf ;;
+                *.srt)               style=ftype-srt ;;
+                *.ass)               style=ftype-ass ;;
+                *.ogx)               style=ftype-ogx ;;
+                *.axv)               style=ftype-axv ;;
+                *.anx)               style=ftype-anx ;;
+                *.wmv)               style=ftype-wmv ;;
+                *.webm)              style=ftype-webm ;;
+                *.VOB)               style=ftype-VOB ;;
+                *.vob)               style=ftype-vob ;;
+                *.ts)                style=ftype-ts ;;
+                *.sample)            style=ftype-sample ;;
+                *.rmvb)              style=ftype-rmvb ;;
+                *.rm)                style=ftype-rm ;;
+                *.qt)                style=ftype-qt ;;
+                *.ogv)               style=ftype-ogv ;;
+                *.ogm)               style=ftype-ogm ;;
+                *.nuv)               style=ftype-nuv ;;
+                *.mpg)               style=ftype-mpg ;;
+                *.mpeg)              style=ftype-mpeg ;;
+                *.mp4v)              style=ftype-mp4v ;;
+                *.mp4)               style=ftype-mp4 ;;
+                *.MOV)               style=ftype-MOV ;;
+                *.mov)               style=ftype-mov ;;
+                *.mkv)               style=ftype-mkv ;;
+                *.m4v)               style=ftype-m4v ;;
+                *.m2v)               style=ftype-m2v ;;
+                *.m2ts)              style=ftype-m2ts ;;
+                *.gl)                style=ftype-gl ;;
+                *.flv)               style=ftype-flv ;;
+                *.fli)               style=ftype-fli ;;
+                *.flc)               style=ftype-flc ;;
+                *.divx)              style=ftype-divx ;;
+                *.AVI)               style=ftype-AVI ;;
+                *.avi)               style=ftype-avi ;;
+                *.asf)               style=ftype-asf ;;
+                *.wvc)               style=ftype-wvc ;;
+                *.wv)                style=ftype-wv ;;
+                *.spl)               style=ftype-spl ;;
+                *.sid)               style=ftype-sid ;;
+                *.S3M)               style=ftype-S3M ;;
+                *.s3m)               style=ftype-s3m ;;
+                *.oga)               style=ftype-oga ;;
+                *.mod)               style=ftype-mod ;;
+                *.m4)                style=ftype-m4 ;;
+                *.fcm)               style=ftype-fcm ;;
+                *.dat)               style=ftype-dat ;;
+                *.xspf)              style=ftype-xspf ;;
+                *.pls)               style=ftype-pls ;;
+                *.m3u8)              style=ftype-m3u8 ;;
+                *.m3u)               style=ftype-m3u ;;
+                *.cue)               style=ftype-cue ;;
+                *.wma)               style=ftype-wma ;;
+                *.wav)               style=ftype-wav ;;
+                *.spx)               style=ftype-spx ;;
+                *.ra)                style=ftype-ra ;;
+                *.ogg)               style=ftype-ogg ;;
+                *.oga)               style=ftype-oga ;;
+                *.mpc)               style=ftype-mpc ;;
+                *.mp3)               style=ftype-mp3 ;;
+                *.mp2)               style=ftype-mp2 ;;
+                *.mka)               style=ftype-mka ;;
+                *.midi)              style=ftype-midi ;;
+                *.mid)               style=ftype-mid ;;
+                *.m4r)               style=ftype-m4r ;;
+                *.m4b)               style=ftype-m4b ;;
+                *.m4a)               style=ftype-m4a ;;
+                *.axa)               style=ftype-axa ;;
+                *.au)                style=ftype-au ;;
+                *.aac)               style=ftype-aac ;;
+                *.ape)               style=ftype-ape ;;
+                *.aiff)              style=ftype-aiff ;;
+                *.flac)              style=ftype-flac ;;
+                *.alac)              style=ftype-alac ;;
+                *.st5)               style=ftype-st5 ;;
+                *.sha1)              style=ftype-sha1 ;;
+                *.sfv)               style=ftype-sfv ;;
+                *.par)               style=ftype-par ;;
+                *.md5)               style=ftype-md5 ;;
+                *.gpg)               style=ftype-gpg ;;
+                *.ffp)               style=ftype-ffp ;;
+                *.yml)               style=ftype-yml ;;
+                *.yml)               style=ftype-yml ;;
+                *.json)              style=ftype-json ;;
+                *.toml)              style=ftype-toml ;;
+                *.ini)               style=ftype-ini ;;
+                *.nix)               style=ftype-nix ;;
+                *.conf)              style=ftype-conf ;;
+                *.cfg)               style=ftype-cfg ;;
+                *.yaml)              style=ftype-yaml ;;
+                *.qml)               style=ftype-qml ;;
+                *.xml)               style=ftype-xml ;;
+                *.ttl)               style=ftype-ttl ;;
+                *.torrent)           style=ftype-torrent ;;
+                *.textile)           style=ftype-textile ;;
+                *.aux)               style=ftype-aux ;;
+                *.rdf)               style=ftype-rdf ;;
+                *.rc)                style=ftype-rc ;;
+                *.owl)               style=ftype-owl ;;
+                *.nt)                style=ftype-nt ;;
+                *.nfo)               style=ftype-nfo ;;
+                *.n3)                style=ftype-n3 ;;
+                *.latex)             style=ftype-latex ;;
+                *.tex)               style=ftype-tex ;;
+                *.jidgo)             style=ftype-jidgo ;;
+                *.icls)              style=ftype-icls ;;
+                *.deny)              style=ftype-deny ;;
+                *.allow)             style=ftype-allow ;;
+                *.vcd)               style=ftype-vcd ;;
+                *.nrg)               style=ftype-nrg ;;
+                *.mdf)               style=ftype-mdf ;;
+                *.ISO)               style=ftype-ISO ;;
+                *.iso)               style=ftype-iso ;;
+                *.img)               style=ftype-img ;;
+                *.dmg)               style=ftype-dmg ;;
+                *.Xresources)        style=ftype-Xresources ;;
+                *.Xmodmap)           style=ftype-Xmodmap ;;
+                *.xinitrc)           style=ftype-xinitrc ;;
+                *.Xauthority)        style=ftype-Xauthority ;;
+                *.urlview)           style=ftype-urlview ;;
+                *.ttytterrc)         style=ftype-ttytterrc ;;
+                *.profile)           style=ftype-profile ;;
+                *.bash_profile)      style=ftype-bash_profile ;;
+                *.bash_logout)       style=ftype-bash_logout ;;
+                *.zsh)               style=ftype-zsh ;;
+                *.tcsh)              style=ftype-tcsh ;;
+                *.sh*)               style=ftype-sh* ;;
+                *.sh)                style=ftype-sh ;;
+                *.ksh)               style=ftype-ksh ;;
+                *.dash)              style=ftype-dash ;;
+                *.csh)               style=ftype-csh ;;
+                *.bash_history)      style=ftype-bash_history ;;
+                *.bash)              style=ftype-bash ;;
+                *.rasi)              style=ftype-rasi ;;
+                *.vimrc)             style=ftype-vimrc ;;
+                *.vimp)              style=ftype-vimp ;;
+                *.viminfo)           style=ftype-viminfo ;;
+                *.vim)               style=ftype-vim ;;
+                *.attheme)           style=ftype-attheme ;;
+                *.tdesktop-pallete)  style=ftype-tdesktop-pallete ;;
+                *.tdesktop-theme)    style=ftype-tdesktop-theme ;;
+                *.theme)             style=ftype-theme ;;
+                *.tfnt)              style=ftype-tfnt ;;
+                *.tfm)               style=ftype-tfm ;;
+                *.tdy)               style=ftype-tdy ;;
+                *.tk)                style=ftype-tk ;;
+                *.tcl)               style=ftype-tcl ;;
+                *.t)                 style=ftype-t ;;
+                *.sug)               style=ftype-sug ;;
+                *.sty)               style=ftype-sty ;;
+                *.signature)         style=ftype-signature ;;
+                *.sed)               style=ftype-sed ;;
+                *.ru)                style=ftype-ru ;;
+                *.rb)                style=ftype-rb ;;
+                *.irb)               style=ftype-irb ;;
+                *.erb)               style=ftype-erb ;;
+                *.rc)                style=ftype-rc ;;
+                *.py)                style=ftype-py ;;
+                *.pod)               style=ftype-pod ;;
+                *.pm)                style=ftype-pm ;;
+                *.PL)                style=ftype-PL ;;
+                *.pl)                style=ftype-pl ;;
+                *.pid)               style=ftype-pid ;;
+                *.php)               style=ftype-php ;;
+                *.pfa)               style=ftype-pfa ;;
+                *.pc)                style=ftype-pc ;;
+                *.diff)              style=ftype-diff ;;
+                *.patch)             style=ftype-patch ;;
+                *.pacnew)            style=ftype-pacnew ;;
+                *.offlineimaprc)     style=ftype-offlineimaprc ;;
+                *.nfo)               style=ftype-nfo ;;
+                *.netrc)             style=ftype-netrc ;;
+                *.muttrc)            style=ftype-muttrc ;;
+                *.mtx)               style=ftype-mtx ;;
+                *.msmtprc)           style=ftype-msmtprc ;;
+                *.mi)                style=ftype-mi ;;
+                *.mfasl)             style=ftype-mfasl ;;
+                *.mf)                style=ftype-mf ;;
+                *.map)               style=ftype-map ;;
+                *.lua)               style=ftype-lua ;;
+                *.log)               style=ftype-log ;;
+                *.lesshst)           style=ftype-lesshst ;;
+                *.lam)               style=ftype-lam ;;
+                *.scm)               style=ftype-scm ;;
+                *.lisp)              style=ftype-lisp ;;
+                *.jsp)               style=ftype-jsp ;;
+                *.jsm)               style=ftype-jsm ;;
+                *.js)                style=ftype-js ;;
+                *.e)                 style=ftype-e ;;
+                *.java)              style=ftype-java ;;
+                *.info)              style=ftype-info ;;
+                *.htoprc)            style=ftype-htoprc ;;
+                *.agda)              style=ftype-agda ;;
+                *.hs)                style=ftype-hs ;;
+                *.hgignore)          style=ftype-hgignore ;;
+                *.hgrc)              style=ftype-hgrc ;;
+                *.jhtm)              style=ftype-jhtm ;;
+                *.html)              style=ftype-html ;;
+                *.htm)               style=ftype-htm ;;
+                *.gitignore)         style=ftype-gitignore ;;
+                *.git)               style=ftype-git ;;
+                *.fonts)             style=ftype-fonts ;;
+                *.fehbg)             style=ftype-fehbg ;;
+                *.example)           style=ftype-example ;;
+                *.ex)                style=ftype-ex ;;
+                *.etx)               style=ftype-etx ;;
+                *.ps)                style=ftype-ps ;;
+                *.epsi)              style=ftype-epsi ;;
+                *.epsf)              style=ftype-epsf ;;
+                *.eps3)              style=ftype-eps3 ;;
+                *.eps2)              style=ftype-eps2 ;;
+                *.eps)               style=ftype-eps ;;
+                *.enc)               style=ftype-enc ;;
+                *.dir_colors)        style=ftype-dir_colors ;;
+                *.csv)               style=ftype-csv ;;
+                *.less)              style=ftype-less ;;
+                *.scss)              style=ftype-scss ;;
+                *.sass)              style=ftype-sass ;;
+                *.css)               style=ftype-css ;;
+                *.cs)                style=ftype-cs ;;
+                *.coffee)            style=ftype-coffee ;;
+                *.awk)               style=ftype-awk ;;
+                *.mutt)              style=ftype-mutt ;;
+                *.asoundrc)          style=ftype-asoundrc ;;
+                *.asm)               style=ftype-asm ;;
+                *.sqlite)            style=ftype-sqlite ;;
+                *.sql)               style=ftype-sql ;;
+                *.odb)               style=ftype-odb ;;
+                *.mdf)               style=ftype-mdf ;;
+                *.mdb)               style=ftype-mdb ;;
+                *.ldf)               style=ftype-ldf ;;
+                *.db)                style=ftype-db ;;
+                *.ods)               style=ftype-ods ;;
+                *.odp)               style=ftype-odp ;;
+                *.odb)               style=ftype-odb ;;
+                *.pptx)              style=ftype-pptx ;;
+                *.ppt)               style=ftype-ppt ;;
+                *.chrt)              style=ftype-chrt ;;
+                *.xlsx)              style=ftype-xlsx ;;
+                *.xlsm)              style=ftype-xlsm ;;
+                *.xls)               style=ftype-xls ;;
+                *.xla)               style=ftype-xla ;;
+                *.gnumeric)          style=ftype-gnumeric ;;
+                *.rtf)               style=ftype-rtf ;;
+                *.pages)             style=ftype-pages ;;
+                *.odt)               style=ftype-odt ;;
+                *.odm)               style=ftype-odm ;;
+                *.dotm)              style=ftype-dotm ;;
+                *.dot)               style=ftype-dot ;;
+                *.docx)              style=ftype-docx ;;
+                *.docm)              style=ftype-docm ;;
+                *.doc)               style=ftype-doc ;;
+                *.txt)               style=ftype-txt ;;
+                *.mfasl)             style=ftype-mfasl ;;
+                *.mkd)               style=ftype-mkd ;;
+                *.mf)                style=ftype-mf ;;
+                *.org)               style=ftype-org ;;
+                *.md)                style=ftype-md ;;
+                *.markdown)          style=ftype-markdown ;;
+                *.pdf)               style=ftype-pdf ;;
+                *.mobi)              style=ftype-mobi ;;
+                *.lit)               style=ftype-lit ;;
+                *.fb2)               style=ftype-fb2 ;;
+                *.epub)              style=ftype-epub ;;
+                *.dvi)               style=ftype-dvi ;;
+                *.djvu)              style=ftype-djvu ;;
+                *.djv)               style=ftype-djv ;;
+                *.chm)               style=ftype-chm ;;
+                *.added)             style=ftype-added ;;
+                *.tmp)               style=ftype-tmp ;;
+                *.temp)              style=ftype-temp ;;
+                *.swp)               style=ftype-swp ;;
+                *.pyc)               style=ftype-pyc ;;
+                *.part)              style=ftype-part ;;
+                *.o)                 style=ftype-o ;;
+                *.log)               style=ftype-log ;;
+                *.incomplete)        style=ftype-incomplete ;;
+                *.class)             style=ftype-class ;;
+                *.cache)             style=ftype-cache ;;
+                *.blg)               style=ftype-blg ;;
+                *.bbl)               style=ftype-bbl ;;
+                *.bck)               style=ftype-bck ;;
+                *.bak)               style=ftype-bak ;;
+                *.aux)               style=ftype-aux ;;
+                *.ico)               style=ftype-ico ;;
+                *.icns)              style=ftype-icns ;;
+                *.gif)               style=ftype-gif ;;
+                *.yuv)               style=ftype-yuv ;;
+                *.xwd)               style=ftype-xwd ;;
+                *.xcf)               style=ftype-xcf ;;
+                *.svgz)              style=ftype-svgz ;;
+                *.svg)               style=ftype-svg ;;
+                *.bpg)               style=ftype-bpg ;;
+                *.png)               style=ftype-png ;;
+                *.pcx)               style=ftype-pcx ;;
+                *.mng)               style=ftype-mng ;;
+                *.eps)               style=ftype-eps ;;
+                *.emf)               style=ftype-emf ;;
+                *.dl)                style=ftype-dl ;;
+                *.CR2)               style=ftype-CR2 ;;
+                *.cgm)               style=ftype-cgm ;;
+                *.tiff)              style=ftype-tiff ;;
+                *.tif)               style=ftype-tif ;;
+                *.xpm)               style=ftype-xpm ;;
+                *.xbm)               style=ftype-xbm ;;
+                *.tga)               style=ftype-tga ;;
+                *.psd)               style=ftype-psd ;;
+                *.ppm)               style=ftype-ppm ;;
+                *.pgm)               style=ftype-pgm ;;
+                *.pbm)               style=ftype-pbm ;;
+                *.bmp)               style=ftype-bmp ;;
+                *.JPG)               style=ftype-JPG ;;
+                *.jpg)               style=ftype-jpg ;;
+                *.jpeg)              style=ftype-jpeg ;;
+                *.vdi)               style=ftype-vdi ;;
+                *.vmdk)              style=ftype-vmdk ;;
+                *.qcow2)             style=ftype-qcow2 ;;
+                *.qcow)              style=ftype-qcow ;;
+                *.war)               style=ftype-war ;;
+                *.sar)               style=ftype-sar ;;
+                *.jar)               style=ftype-jar ;;
+                *.ear)               style=ftype-ear ;;
+                *.arj)               style=ftype-arj ;;
+                *.xpi)               style=ftype-xpi ;;
+                *.udeb)              style=ftype-udeb ;;
+                *.rpm)               style=ftype-rpm ;;
+                *.pkg)               style=ftype-pkg ;;
+                *.msi)               style=ftype-msi ;;
+                *.jad)               style=ftype-jad ;;
+                *.gem)               style=ftype-gem ;;
+                *.egg)               style=ftype-egg ;;
+                *.deb)               style=ftype-deb ;;
+                *.cab)               style=ftype-cab ;;
+                *.apk)               style=ftype-apk ;;
+                *.zoo)               style=ftype-zoo ;;
+                *.ZIP)               style=ftype-ZIP ;;
+                *.zip)               style=ftype-zip ;;
+                *.Z)                 style=ftype-Z ;;
+                *.Z)                 style=ftype-Z ;;
+                *.z)                 style=ftype-z ;;
+                *.z)                 style=ftype-z ;;
+                *.xz)                style=ftype-xz ;;
+                *.tzo)               style=ftype-tzo ;;
+                *.tz)                style=ftype-tz ;;
+                *.txz)               style=ftype-txz ;;
+                *.tlz)               style=ftype-tlz ;;
+                *.tgz)               style=ftype-tgz ;;
+                *.tbz2)              style=ftype-tbz2 ;;
+                *.tbz)               style=ftype-tbz ;;
+                *.taz)               style=ftype-taz ;;
+                *.tar)               style=ftype-tar ;;
+                *.t7z)               style=ftype-t7z ;;
+                *.rz)                style=ftype-rz ;;
+                *.rar)               style=ftype-rar ;;
+                *.lzma)              style=ftype-lzma ;;
+                *.lzh)               style=ftype-lzh ;;
+                *.lz4)               style=ftype-lz4 ;;
+                *.lz)                style=ftype-lz ;;
+                *.lrz)               style=ftype-lrz ;;
+                *.lha)               style=ftype-lha ;;
+                *.alp)               style=ftype-alp ;;
+                *.gz)                style=ftype-gz ;;
+                *.dz)                style=ftype-dz ;;
+                *.cpio)              style=ftype-cpio ;;
+                *.bz2)               style=ftype-bz2 ;;
+                *.bz)                style=ftype-bz ;;
+                *.arj)               style=ftype-arj ;;
+                *.arc)               style=ftype-arc ;;
+                *.alz)               style=ftype-alz ;;
+                *.ace)               style=ftype-ace ;;
+                *.7z)                style=ftype-7z ;;
+                *.cmd)               style=ftype-cmd ;;
+                *.bat)               style=ftype-bat ;;
+                *.bin)               style=ftype-bin ;;
+                *.btm)               style=ftype-btm ;;
+                *.com)               style=ftype-com ;;
+                *.exe)               style=ftype-exe ;;
+#--[ End of ftype array ]------@@@@
+        *)       if false; then
+                 elif [[ $arg = $'\x7d' ]] && $right_brace_is_recognised_everywhere; then
+                   # Parsing rule: }
+                   #
+                   #     Additionally, `tt(})' is recognized in any position if neither the
+                   #     tt(IGNORE_BRACES) option nor the tt(IGNORE_CLOSE_BRACES) option is set.
                    _zsh_highlight_main__stack_pop 'Y' style=reserved-word
                    if [[ $style == reserved-word ]]; then
                      next_word+=':always:'
                    fi
-                 else
-                   # Fall through to the catchall case at the end.
-                 fi
-                 ;|
-        #--[ Begining of ftype array ]------@@@@
-		*.old)               style=ftype-old ;;
-		*.in)                style=ftype-in ;;
-		*.am)                style=ftype-am ;;
-		*.pcap)              style=ftype-pcap ;;
-		*.dump)              style=ftype-dump ;;
-		*.dmp)               style=ftype-dmp ;;
-		*.cap)               style=ftype-cap ;;
-		*.old)               style=ftype-old ;;
-		*.in)                style=ftype-in ;;
-		*.am)                style=ftype-am ;;
-		*.tcc)               style=ftype-tcc ;;
-		*.sx)                style=ftype-sx ;;
-		*.S)                 style=ftype-S ;;
-		*.s)                 style=ftype-s ;;
-		*.hxx)               style=ftype-hxx ;;
-		*.hpp)               style=ftype-hpp ;;
-		*.hh)                style=ftype-hh ;;
-		*.H)                 style=ftype-H ;;
-		*.h++)               style=ftype-h++ ;;
-		*.h)                 style=ftype-h ;;
-		*.ftn)               style=ftype-ftn ;;
-		*.for)               style=ftype-for ;;
-		*.f)                 style=ftype-f ;;
-		*.el)                style=ftype-el ;;
-		*.clj)               style=ftype-clj ;;
-		*.scala)             style=ftype-scala ;;
-		*.pas)               style=ftype-pas ;;
-		*.swift)             style=ftype-swift ;;
-		*.rst)               style=ftype-rst ;;
-		*.rs)                style=ftype-rs ;;
-		*.ml)                style=ftype-ml ;;
-		*.ii)                style=ftype-ii ;;
-		*.go)                style=ftype-go ;;
-		*.erl)               style=ftype-erl ;;
-		*.cxx)               style=ftype-cxx ;;
-		*.cs)                style=ftype-cs ;;
-		*.cpp)               style=ftype-cpp ;;
-		*.cp)                style=ftype-cp ;;
-		*.cc)                style=ftype-cc ;;
-		*.C)                 style=ftype-C ;;
-		*.c++)               style=ftype-c++ ;;
-		*.c)                 style=ftype-c ;;
-		*.timer)             style=ftype-timer ;;
-		*.target)            style=ftype-target ;;
-		*.swap)              style=ftype-swap ;;
-		*.socket)            style=ftype-socket ;;
-		*.snapshot)          style=ftype-snapshot ;;
-		*.service)           style=ftype-service ;;
-		*.path)              style=ftype-path ;;
-		*.mount)             style=ftype-mount ;;
-		*.device)            style=ftype-device ;;
-		*.automount)         style=ftype-automount ;;
-		*.desktop)           style=ftype-desktop ;;
-		*.sms)               style=ftype-sms ;;
-		*.sav)               style=ftype-sav ;;
-		*.rom)               style=ftype-rom ;;
-		*.nes)               style=ftype-nes ;;
-		*.nds)               style=ftype-nds ;;
-		*.j64)               style=ftype-j64 ;;
-		*.ggl)               style=ftype-ggl ;;
-		*.gg)                style=ftype-gg ;;
-		*.gel)               style=ftype-gel ;;
-		*.gbc)               style=ftype-gbc ;;
-		*.gba)               style=ftype-gba ;;
-		*.gb)                style=ftype-gb ;;
-		*.cdi)               style=ftype-cdi ;;
-		*.atr)               style=ftype-atr ;;
-		*.a78)               style=ftype-a78 ;;
-		*.A64)               style=ftype-A64 ;;
-		*.a64)               style=ftype-a64 ;;
-		*.a52)               style=ftype-a52 ;;
-		*.a00)               style=ftype-a00 ;;
-		*.32x)               style=ftype-32x ;;
-		*.fm2)               style=ftype-fm2 ;;
-		*.adf)               style=ftype-adf ;;
-		*.ttf)               style=ftype-ttf ;;
-		*.pfb)               style=ftype-pfb ;;
-		*.pfa)               style=ftype-pfa ;;
-		*.pcf)               style=ftype-pcf ;;
-		*.otf)               style=ftype-otf ;;
-		*.gsf)               style=ftype-gsf ;;
-		*.fon)               style=ftype-fon ;;
-		*.dfont)             style=ftype-dfont ;;
-		*.bdf)               style=ftype-bdf ;;
-		*.srt)               style=ftype-srt ;;
-		*.ass)               style=ftype-ass ;;
-		*.ogx)               style=ftype-ogx ;;
-		*.axv)               style=ftype-axv ;;
-		*.anx)               style=ftype-anx ;;
-		*.wmv)               style=ftype-wmv ;;
-		*.webm)              style=ftype-webm ;;
-		*.VOB)               style=ftype-VOB ;;
-		*.vob)               style=ftype-vob ;;
-		*.ts)                style=ftype-ts ;;
-		*.sample)            style=ftype-sample ;;
-		*.rmvb)              style=ftype-rmvb ;;
-		*.rm)                style=ftype-rm ;;
-		*.qt)                style=ftype-qt ;;
-		*.ogv)               style=ftype-ogv ;;
-		*.ogm)               style=ftype-ogm ;;
-		*.nuv)               style=ftype-nuv ;;
-		*.mpg)               style=ftype-mpg ;;
-		*.mpeg)              style=ftype-mpeg ;;
-		*.mp4v)              style=ftype-mp4v ;;
-		*.mp4)               style=ftype-mp4 ;;
-		*.MOV)               style=ftype-MOV ;;
-		*.mov)               style=ftype-mov ;;
-		*.mkv)               style=ftype-mkv ;;
-		*.m4v)               style=ftype-m4v ;;
-		*.m2v)               style=ftype-m2v ;;
-		*.m2ts)              style=ftype-m2ts ;;
-		*.gl)                style=ftype-gl ;;
-		*.flv)               style=ftype-flv ;;
-		*.fli)               style=ftype-fli ;;
-		*.flc)               style=ftype-flc ;;
-		*.divx)              style=ftype-divx ;;
-		*.AVI)               style=ftype-AVI ;;
-		*.avi)               style=ftype-avi ;;
-		*.asf)               style=ftype-asf ;;
-		*.wvc)               style=ftype-wvc ;;
-		*.wv)                style=ftype-wv ;;
-		*.spl)               style=ftype-spl ;;
-		*.sid)               style=ftype-sid ;;
-		*.S3M)               style=ftype-S3M ;;
-		*.s3m)               style=ftype-s3m ;;
-		*.oga)               style=ftype-oga ;;
-		*.mod)               style=ftype-mod ;;
-		*.m4)                style=ftype-m4 ;;
-		*.fcm)               style=ftype-fcm ;;
-		*.dat)               style=ftype-dat ;;
-		*.xspf)              style=ftype-xspf ;;
-		*.pls)               style=ftype-pls ;;
-		*.m3u8)              style=ftype-m3u8 ;;
-		*.m3u)               style=ftype-m3u ;;
-		*.cue)               style=ftype-cue ;;
-		*.wma)               style=ftype-wma ;;
-		*.wav)               style=ftype-wav ;;
-		*.spx)               style=ftype-spx ;;
-		*.ra)                style=ftype-ra ;;
-		*.ogg)               style=ftype-ogg ;;
-		*.oga)               style=ftype-oga ;;
-		*.mpc)               style=ftype-mpc ;;
-		*.mp3)               style=ftype-mp3 ;;
-		*.mp2)               style=ftype-mp2 ;;
-		*.mka)               style=ftype-mka ;;
-		*.midi)              style=ftype-midi ;;
-		*.mid)               style=ftype-mid ;;
-		*.m4r)               style=ftype-m4r ;;
-		*.m4b)               style=ftype-m4b ;;
-		*.m4a)               style=ftype-m4a ;;
-		*.axa)               style=ftype-axa ;;
-		*.au)                style=ftype-au ;;
-		*.aac)               style=ftype-aac ;;
-		*.ape)               style=ftype-ape ;;
-		*.aiff)              style=ftype-aiff ;;
-		*.flac)              style=ftype-flac ;;
-		*.alac)              style=ftype-alac ;;
-		*.st5)               style=ftype-st5 ;;
-		*.sha1)              style=ftype-sha1 ;;
-		*.sfv)               style=ftype-sfv ;;
-		*.par)               style=ftype-par ;;
-		*.md5)               style=ftype-md5 ;;
-		*.gpg)               style=ftype-gpg ;;
-		*.ffp)               style=ftype-ffp ;;
-		*.yml)               style=ftype-yml ;;
-		*.yml)               style=ftype-yml ;;
-		*.json)              style=ftype-json ;;
-		*.toml)              style=ftype-toml ;;
-		*.ini)               style=ftype-ini ;;
-		*.nix)               style=ftype-nix ;;
-		*.conf)              style=ftype-conf ;;
-		*.cfg)               style=ftype-cfg ;;
-		*.yaml)              style=ftype-yaml ;;
-		*.qml)               style=ftype-qml ;;
-		*.xml)               style=ftype-xml ;;
-		*.ttl)               style=ftype-ttl ;;
-		*.torrent)           style=ftype-torrent ;;
-		*.textile)           style=ftype-textile ;;
-		*.aux)               style=ftype-aux ;;
-		*.rdf)               style=ftype-rdf ;;
-		*.rc)                style=ftype-rc ;;
-		*.owl)               style=ftype-owl ;;
-		*.nt)                style=ftype-nt ;;
-		*.nfo)               style=ftype-nfo ;;
-		*.n3)                style=ftype-n3 ;;
-		*.latex)             style=ftype-latex ;;
-		*.tex)               style=ftype-tex ;;
-		*.jidgo)             style=ftype-jidgo ;;
-		*.icls)              style=ftype-icls ;;
-		*.deny)              style=ftype-deny ;;
-		*.allow)             style=ftype-allow ;;
-		*.vcd)               style=ftype-vcd ;;
-		*.nrg)               style=ftype-nrg ;;
-		*.mdf)               style=ftype-mdf ;;
-		*.ISO)               style=ftype-ISO ;;
-		*.iso)               style=ftype-iso ;;
-		*.img)               style=ftype-img ;;
-		*.dmg)               style=ftype-dmg ;;
-		*.Xresources)        style=ftype-Xresources ;;
-		*.Xmodmap)           style=ftype-Xmodmap ;;
-		*.xinitrc)           style=ftype-xinitrc ;;
-		*.Xauthority)        style=ftype-Xauthority ;;
-		*.urlview)           style=ftype-urlview ;;
-		*.ttytterrc)         style=ftype-ttytterrc ;;
-		*.profile)           style=ftype-profile ;;
-		*.bash_profile)      style=ftype-bash_profile ;;
-		*.bash_logout)       style=ftype-bash_logout ;;
-		*.zsh)               style=ftype-zsh ;;
-		*.tcsh)              style=ftype-tcsh ;;
-		*.sh*)               style=ftype-sh* ;;
-		*.sh)                style=ftype-sh ;;
-		*.ksh)               style=ftype-ksh ;;
-		*.dash)              style=ftype-dash ;;
-		*.csh)               style=ftype-csh ;;
-		*.bash_history)      style=ftype-bash_history ;;
-		*.bash)              style=ftype-bash ;;
-		*.rasi)              style=ftype-rasi ;;
-		*.vimrc)             style=ftype-vimrc ;;
-		*.vimp)              style=ftype-vimp ;;
-		*.viminfo)           style=ftype-viminfo ;;
-		*.vim)               style=ftype-vim ;;
-		*.attheme)           style=ftype-attheme ;;
-		*.tdesktop-pallete)  style=ftype-tdesktop-pallete ;;
-		*.tdesktop-theme)    style=ftype-tdesktop-theme ;;
-		*.theme)             style=ftype-theme ;;
-		*.tfnt)              style=ftype-tfnt ;;
-		*.tfm)               style=ftype-tfm ;;
-		*.tdy)               style=ftype-tdy ;;
-		*.tk)                style=ftype-tk ;;
-		*.tcl)               style=ftype-tcl ;;
-		*.t)                 style=ftype-t ;;
-		*.sug)               style=ftype-sug ;;
-		*.sty)               style=ftype-sty ;;
-		*.signature)         style=ftype-signature ;;
-		*.sed)               style=ftype-sed ;;
-		*.ru)                style=ftype-ru ;;
-		*.rb)                style=ftype-rb ;;
-		*.irb)               style=ftype-irb ;;
-		*.erb)               style=ftype-erb ;;
-		*.rc)                style=ftype-rc ;;
-		*.py)                style=ftype-py ;;
-		*.pod)               style=ftype-pod ;;
-		*.pm)                style=ftype-pm ;;
-		*.PL)                style=ftype-PL ;;
-		*.pl)                style=ftype-pl ;;
-		*.pid)               style=ftype-pid ;;
-		*.php)               style=ftype-php ;;
-		*.pfa)               style=ftype-pfa ;;
-		*.pc)                style=ftype-pc ;;
-		*.diff)              style=ftype-diff ;;
-		*.patch)             style=ftype-patch ;;
-		*.pacnew)            style=ftype-pacnew ;;
-		*.offlineimaprc)     style=ftype-offlineimaprc ;;
-		*.nfo)               style=ftype-nfo ;;
-		*.netrc)             style=ftype-netrc ;;
-		*.muttrc)            style=ftype-muttrc ;;
-		*.mtx)               style=ftype-mtx ;;
-		*.msmtprc)           style=ftype-msmtprc ;;
-		*.mi)                style=ftype-mi ;;
-		*.mfasl)             style=ftype-mfasl ;;
-		*.mf)                style=ftype-mf ;;
-		*.map)               style=ftype-map ;;
-		*.lua)               style=ftype-lua ;;
-		*.log)               style=ftype-log ;;
-		*.lesshst)           style=ftype-lesshst ;;
-		*.lam)               style=ftype-lam ;;
-		*.scm)               style=ftype-scm ;;
-		*.lisp)              style=ftype-lisp ;;
-		*.jsp)               style=ftype-jsp ;;
-		*.jsm)               style=ftype-jsm ;;
-		*.js)                style=ftype-js ;;
-		*.e)                 style=ftype-e ;;
-		*.java)              style=ftype-java ;;
-		*.info)              style=ftype-info ;;
-		*.htoprc)            style=ftype-htoprc ;;
-		*.agda)              style=ftype-agda ;;
-		*.hs)                style=ftype-hs ;;
-		*.hgignore)          style=ftype-hgignore ;;
-		*.hgrc)              style=ftype-hgrc ;;
-		*.jhtm)              style=ftype-jhtm ;;
-		*.html)              style=ftype-html ;;
-		*.htm)               style=ftype-htm ;;
-		*.gitignore)         style=ftype-gitignore ;;
-		*.git)               style=ftype-git ;;
-		*.fonts)             style=ftype-fonts ;;
-		*.fehbg)             style=ftype-fehbg ;;
-		*.example)           style=ftype-example ;;
-		*.ex)                style=ftype-ex ;;
-		*.etx)               style=ftype-etx ;;
-		*.ps)                style=ftype-ps ;;
-		*.epsi)              style=ftype-epsi ;;
-		*.epsf)              style=ftype-epsf ;;
-		*.eps3)              style=ftype-eps3 ;;
-		*.eps2)              style=ftype-eps2 ;;
-		*.eps)               style=ftype-eps ;;
-		*.enc)               style=ftype-enc ;;
-		*.dir_colors)        style=ftype-dir_colors ;;
-		*.csv)               style=ftype-csv ;;
-		*.less)              style=ftype-less ;;
-		*.scss)              style=ftype-scss ;;
-		*.sass)              style=ftype-sass ;;
-		*.css)               style=ftype-css ;;
-		*.cs)                style=ftype-cs ;;
-		*.coffee)            style=ftype-coffee ;;
-		*.awk)               style=ftype-awk ;;
-		*.mutt)              style=ftype-mutt ;;
-		*.asoundrc)          style=ftype-asoundrc ;;
-		*.asm)               style=ftype-asm ;;
-		*.sqlite)            style=ftype-sqlite ;;
-		*.sql)               style=ftype-sql ;;
-		*.odb)               style=ftype-odb ;;
-		*.mdf)               style=ftype-mdf ;;
-		*.mdb)               style=ftype-mdb ;;
-		*.ldf)               style=ftype-ldf ;;
-		*.db)                style=ftype-db ;;
-		*.ods)               style=ftype-ods ;;
-		*.odp)               style=ftype-odp ;;
-		*.odb)               style=ftype-odb ;;
-		*.pptx)              style=ftype-pptx ;;
-		*.ppt)               style=ftype-ppt ;;
-		*.chrt)              style=ftype-chrt ;;
-		*.xlsx)              style=ftype-xlsx ;;
-		*.xlsm)              style=ftype-xlsm ;;
-		*.xls)               style=ftype-xls ;;
-		*.xla)               style=ftype-xla ;;
-		*.gnumeric)          style=ftype-gnumeric ;;
-		*.rtf)               style=ftype-rtf ;;
-		*.pages)             style=ftype-pages ;;
-		*.odt)               style=ftype-odt ;;
-		*.odm)               style=ftype-odm ;;
-		*.dotm)              style=ftype-dotm ;;
-		*.dot)               style=ftype-dot ;;
-		*.docx)              style=ftype-docx ;;
-		*.docm)              style=ftype-docm ;;
-		*.doc)               style=ftype-doc ;;
-		*.txt)               style=ftype-txt ;;
-		*.mfasl)             style=ftype-mfasl ;;
-		*.mkd)               style=ftype-mkd ;;
-		*.mf)                style=ftype-mf ;;
-		*.org)               style=ftype-org ;;
-		*.md)                style=ftype-md ;;
-		*.markdown)          style=ftype-markdown ;;
-		*.pdf)               style=ftype-pdf ;;
-		*.mobi)              style=ftype-mobi ;;
-		*.lit)               style=ftype-lit ;;
-		*.fb2)               style=ftype-fb2 ;;
-		*.epub)              style=ftype-epub ;;
-		*.dvi)               style=ftype-dvi ;;
-		*.djvu)              style=ftype-djvu ;;
-		*.djv)               style=ftype-djv ;;
-		*.chm)               style=ftype-chm ;;
-		*.added)             style=ftype-added ;;
-		*.tmp)               style=ftype-tmp ;;
-		*.temp)              style=ftype-temp ;;
-		*.swp)               style=ftype-swp ;;
-		*.pyc)               style=ftype-pyc ;;
-		*.part)              style=ftype-part ;;
-		*.o)                 style=ftype-o ;;
-		*.log)               style=ftype-log ;;
-		*.incomplete)        style=ftype-incomplete ;;
-		*.class)             style=ftype-class ;;
-		*.cache)             style=ftype-cache ;;
-		*.blg)               style=ftype-blg ;;
-		*.bbl)               style=ftype-bbl ;;
-		*.bck)               style=ftype-bck ;;
-		*.bak)               style=ftype-bak ;;
-		*.aux)               style=ftype-aux ;;
-		*.ico)               style=ftype-ico ;;
-		*.icns)              style=ftype-icns ;;
-		*.gif)               style=ftype-gif ;;
-		*.yuv)               style=ftype-yuv ;;
-		*.xwd)               style=ftype-xwd ;;
-		*.xcf)               style=ftype-xcf ;;
-		*.svgz)              style=ftype-svgz ;;
-		*.svg)               style=ftype-svg ;;
-		*.bpg)               style=ftype-bpg ;;
-		*.png)               style=ftype-png ;;
-		*.pcx)               style=ftype-pcx ;;
-		*.mng)               style=ftype-mng ;;
-		*.eps)               style=ftype-eps ;;
-		*.emf)               style=ftype-emf ;;
-		*.dl)                style=ftype-dl ;;
-		*.CR2)               style=ftype-CR2 ;;
-		*.cgm)               style=ftype-cgm ;;
-		*.tiff)              style=ftype-tiff ;;
-		*.tif)               style=ftype-tif ;;
-		*.xpm)               style=ftype-xpm ;;
-		*.xbm)               style=ftype-xbm ;;
-		*.tga)               style=ftype-tga ;;
-		*.psd)               style=ftype-psd ;;
-		*.ppm)               style=ftype-ppm ;;
-		*.pgm)               style=ftype-pgm ;;
-		*.pbm)               style=ftype-pbm ;;
-		*.bmp)               style=ftype-bmp ;;
-		*.JPG)               style=ftype-JPG ;;
-		*.jpg)               style=ftype-jpg ;;
-		*.jpeg)              style=ftype-jpeg ;;
-		*.vdi)               style=ftype-vdi ;;
-		*.vmdk)              style=ftype-vmdk ;;
-		*.qcow2)             style=ftype-qcow2 ;;
-		*.qcow)              style=ftype-qcow ;;
-		*.war)               style=ftype-war ;;
-		*.sar)               style=ftype-sar ;;
-		*.jar)               style=ftype-jar ;;
-		*.ear)               style=ftype-ear ;;
-		*.arj)               style=ftype-arj ;;
-		*.xpi)               style=ftype-xpi ;;
-		*.udeb)              style=ftype-udeb ;;
-		*.rpm)               style=ftype-rpm ;;
-		*.pkg)               style=ftype-pkg ;;
-		*.msi)               style=ftype-msi ;;
-		*.jad)               style=ftype-jad ;;
-		*.gem)               style=ftype-gem ;;
-		*.egg)               style=ftype-egg ;;
-		*.deb)               style=ftype-deb ;;
-		*.cab)               style=ftype-cab ;;
-		*.apk)               style=ftype-apk ;;
-		*.zoo)               style=ftype-zoo ;;
-		*.ZIP)               style=ftype-ZIP ;;
-		*.zip)               style=ftype-zip ;;
-		*.Z)                 style=ftype-Z ;;
-		*.Z)                 style=ftype-Z ;;
-		*.z)                 style=ftype-z ;;
-		*.z)                 style=ftype-z ;;
-		*.xz)                style=ftype-xz ;;
-		*.tzo)               style=ftype-tzo ;;
-		*.tz)                style=ftype-tz ;;
-		*.txz)               style=ftype-txz ;;
-		*.tlz)               style=ftype-tlz ;;
-		*.tgz)               style=ftype-tgz ;;
-		*.tbz2)              style=ftype-tbz2 ;;
-		*.tbz)               style=ftype-tbz ;;
-		*.taz)               style=ftype-taz ;;
-		*.tar)               style=ftype-tar ;;
-		*.t7z)               style=ftype-t7z ;;
-		*.rz)                style=ftype-rz ;;
-		*.rar)               style=ftype-rar ;;
-		*.lzma)              style=ftype-lzma ;;
-		*.lzh)               style=ftype-lzh ;;
-		*.lz4)               style=ftype-lz4 ;;
-		*.lz)                style=ftype-lz ;;
-		*.lrz)               style=ftype-lrz ;;
-		*.lha)               style=ftype-lha ;;
-		*.alp)               style=ftype-alp ;;
-		*.gz)                style=ftype-gz ;;
-		*.dz)                style=ftype-dz ;;
-		*.cpio)              style=ftype-cpio ;;
-		*.bz2)               style=ftype-bz2 ;;
-		*.bz)                style=ftype-bz ;;
-		*.arj)               style=ftype-arj ;;
-		*.arc)               style=ftype-arc ;;
-		*.alz)               style=ftype-alz ;;
-		*.ace)               style=ftype-ace ;;
-		*.7z)                style=ftype-7z ;;
-		*.cmd)               style=ftype-cmd ;;
-		*.bat)               style=ftype-bat ;;
-		*.bin)               style=ftype-bin ;;
-		*.btm)               style=ftype-btm ;;
-		*.com)               style=ftype-com ;;
-		*.exe)               style=ftype-exe ;;
-        #--[ End of ftype array ]-----------@@@@
-        '--'*)   style=double-hyphen-option;;
-        '-'*)    style=single-hyphen-option;;
-        "'"*)    style=single-quoted-argument;;
-        '"'*)    style=double-quoted-argument
-                 _zsh_highlight_main_add_region_highlight $start_pos $end_pos $style
-                 _zsh_highlight_main_highlighter_highlight_string
-                 already_added=1
-                 ;;
-        \$\'*)   style=dollar-quoted-argument
-                 _zsh_highlight_main_add_region_highlight $start_pos $end_pos $style
-                 _zsh_highlight_main_highlighter_highlight_dollar_string
-                 already_added=1
-                 ;;
-        '`'*)    style=back-quoted-argument;;
-        [*?]*|*[^\\][*?]*)
-                 $highlight_glob && style=globbing || style=default;;
-        *)       if false; then
-                 elif [[ $arg = $'\x7d' ]] && $right_brace_is_recognised_everywhere; then
-                   # was handled by the $'\x7d' case above
                  elif [[ $arg[0,1] = $histchars[0,1] ]] && (( $#arg[0,2] == 2 )); then
                    style=history-expansion
                  elif [[ -n ${(M)ZSH_HIGHLIGHT_TOKENS_COMMANDSEPARATOR:#"$arg"} ]]; then
@@ -1123,18 +1131,14 @@ _zsh_highlight_highlighter_main_paint()
                  elif (( in_redirection == 2 )); then
                    style=redirection
                  else
-                   if _zsh_highlight_main_highlighter_check_path; then
-                     style=$REPLY
-                   else
-                     style=default
-                   fi
+                   _zsh_highlight_main_highlighter_highlight_argument
+                   already_added=1
                  fi
                  ;;
       esac
     fi
     if ! (( already_added )); then
       _zsh_highlight_main_add_region_highlight $start_pos $end_pos $style
-      [[ $style == path || $style == path_prefix ]] && _zsh_highlight_main_highlighter_highlight_path_separators
     fi
     if [[ -n ${(M)ZSH_HIGHLIGHT_TOKENS_COMMANDSEPARATOR:#"$arg"} ]]; then
       if [[ $arg == ';' ]] && $in_array_assignment; then
@@ -1181,11 +1185,12 @@ _zsh_highlight_main_highlighter_check_assign()
 _zsh_highlight_main_highlighter_highlight_path_separators()
 {
   local pos style_pathsep
-  style_pathsep=${style}_pathseparator
-  [[ -z "$ZSH_HIGHLIGHT_STYLES[$style_pathsep]" || "$ZSH_HIGHLIGHT_STYLES[$style]" == "$ZSH_HIGHLIGHT_STYLES[$style_pathsep]" ]] && return 0
+  style_pathsep=$1_pathseparator
+  reply=()
+  [[ -z "$ZSH_HIGHLIGHT_STYLES[$style_pathsep]" || "$ZSH_HIGHLIGHT_STYLES[$1]" == "$ZSH_HIGHLIGHT_STYLES[$style_pathsep]" ]] && return 0
   for (( pos = start_pos; $pos <= end_pos; pos++ )) ; do
     if [[ $BUFFER[pos] == / ]]; then
-      _zsh_highlight_main_add_region_highlight $((pos - 1)) $pos $style_pathsep
+      reply+=($((pos - 1)) $pos $style_pathsep)
     fi
   done
 }
@@ -1196,16 +1201,33 @@ _zsh_highlight_main_highlighter_highlight_path_separators()
 _zsh_highlight_main_highlighter_check_path()
 {
   _zsh_highlight_main_highlighter_expand_path $arg;
-  local expanded_path="$REPLY"
+  local expanded_path="$REPLY" tmp_path
 
   REPLY=path
 
-  [[ -d $expanded_path ]] && return 0
+  # [[ -d $expanded_path ]] && return 0
+  [[ -z $expanded_path ]] && return 1
+  [[ -L $expanded_path ]] && return 0
+  [[ -e $expanded_path ]] && return 0
+
+  # Check if this is a blacklisted path
+  if [[ $expanded_path[1] == / ]]; then
+    tmp_path=$expanded_path
+  else
+    tmp_path=$PWD/$expanded_path
+  fi
+  tmp_path=$tmp_path:a
+
+  while [[ $tmp_path != / ]]; do
+    [[ -n "${(M)X_ZSH_HIGHLIGHT_DIRS_BLACKLIST:#$tmp_path}" ]] && return 1
+    tmp_path=$tmp_path:h
+  done
 
   # Search the path in CDPATH
   local cdpath_dir
   for cdpath_dir in $cdpath ; do
-    [[ -d "$cdpath_dir/$expanded_path" ]] && return 0
+    # [[ -d "$cdpath_dir/$expanded_path" ]] && return 0
+    [[ -e "$cdpath_dir/$expanded_path" ]] && return 0
   done
 
   # If dirname($arg) doesn't exist, neither does $arg.
@@ -1223,18 +1245,133 @@ _zsh_highlight_main_highlighter_check_path()
   return 1
 }
 
-# Highlight special chars inside double-quoted strings
-_zsh_highlight_main_highlighter_highlight_string()
+# Highlight an argument and possibly special chars in quotes
+# This command will at least highlight start_pos to end_pos with the default style
+_zsh_highlight_main_highlighter_highlight_argument()
 {
-  setopt localoptions noksharrays
+  local base_style=default i path_eligible=1 style
+  local -a highlights reply
+
   local -a match mbegin mend
   local MATCH; integer MBEGIN MEND
+
+  if [[ $arg[1] == - ]]; then
+    if [[ $arg[2] == - ]]; then
+      base_style=double-hyphen-option
+    else
+      base_style=single-hyphen-option
+    fi
+    path_eligible=0
+  fi
+
+  for (( i = 1 ; i <= end_pos - start_pos ; i += 1 )); do
+    case "$arg[$i]" in
+      "\\") (( i += 1 )); continue;;
+      "'")
+        _zsh_highlight_main_highlighter_highlight_single_quote $i
+        (( i = REPLY ))
+        highlights+=($reply)
+        ;;
+      '"')
+        _zsh_highlight_main_highlighter_highlight_double_quote $i
+        (( i = REPLY ))
+        highlights+=($reply)
+        ;;
+      '`')
+        _zsh_highlight_main_highlighter_highlight_backtick $i
+        (( i = REPLY ))
+        highlights+=($reply)
+        ;;
+      '$')
+        path_eligible=0
+        if [[ $arg[i+1] == "'" ]]; then
+          path_eligible=1
+          _zsh_highlight_main_highlighter_highlight_dollar_quote $i
+          (( i = REPLY ))
+          highlights+=($reply)
+          continue
+        fi
+        while [[ $arg[i+1] == [\^=~#+] ]]; do
+          (( i += 1 ))
+        done
+        if [[ $arg[i+1] == [*@#?$!-] ]]; then
+          (( i += 1 ))
+        fi;;
+      *)
+        if $highlight_glob && [[ ${arg[$i]} =~ ^[*?] || ${arg:$i-1} =~ ^\<[0-9]*-[0-9]*\> ]]; then
+          highlights+=($(( start_pos + i - 1 )) $(( start_pos + i + $#MATCH - 1)) globbing)
+          (( i += $#MATCH - 1 ))
+          path_eligible=0
+        else
+          continue
+        fi
+        ;;
+    esac
+  done
+
+  if (( path_eligible )) && _zsh_highlight_main_highlighter_check_path; then
+    base_style=$REPLY
+    _zsh_highlight_main_highlighter_highlight_path_separators $base_style
+    highlights+=($reply)
+  fi
+
+  highlights=($start_pos $end_pos $base_style $highlights)
+  _zsh_highlight_main_add_many_region_highlights $highlights
+}
+
+# Quote Helper Functions
+#
+# $arg is expected to be set to the current argument
+# $start_pos is expected to be set to the start of $arg in $BUFFER
+# $1 is the index in $arg which starts the quote
+# $REPLY is returned as the end of quote index in $arg
+# $reply is returned as an array of region_highlight additions
+
+# Highlight single-quoted strings
+_zsh_highlight_main_highlighter_highlight_single_quote()
+{
+  local arg1=$1 i q=\' style
+  i=$arg[(ib:arg1+1:)$q]
+  reply=()
+
+  if [[ $zsyh_user_options[rcquotes] == on ]]; then
+    while [[ $arg[i+1] == "'" ]]; do
+      reply+=($(( start_pos + i - 1 )) $(( start_pos + i + 1 )) rc-quote)
+      (( i++ ))
+      i=$arg[(ib:i+1:)$q]
+    done
+  fi
+
+  if [[ $arg[i] == "'" ]]; then
+    style=single-quoted-argument
+  else
+    # If unclosed, i points past the end
+    (( i-- ))
+    style=single-quoted-argument-unclosed
+  fi
+  reply=($(( start_pos + arg1 - 1 )) $(( start_pos + i )) $style $reply)
+  REPLY=$i
+}
+
+# Highlight special chars inside double-quoted strings
+_zsh_highlight_main_highlighter_highlight_double_quote()
+{
+  local -a match mbegin mend saved_reply
+  local MATCH; integer MBEGIN MEND
   local i j k style
-  # Starting quote is at 1, so start parsing at offset 2 in the string.
-  for (( i = 2 ; i < end_pos - start_pos ; i += 1 )) ; do
+  reply=()
+
+  for (( i = $1 + 1 ; i <= end_pos - start_pos ; i += 1 )) ; do
     (( j = i + start_pos - 1 ))
     (( k = j + 1 ))
     case "$arg[$i]" in
+      '"') break;;
+      '`') saved_reply=($reply)
+           _zsh_highlight_main_highlighter_highlight_backtick $i
+           (( i = REPLY ))
+           reply=($saved_reply $reply)
+           continue
+           ;;
       '$' ) style=dollar-double-quoted-argument
             # Look for an alphanumeric parameter name.
             if [[ ${arg:$i} =~ ^([A-Za-z_][A-Za-z0-9_]*|[0-9]+) ]] ; then
@@ -1265,27 +1402,45 @@ _zsh_highlight_main_highlighter_highlight_string()
               continue
             fi
             ;;
+      ($histchars[1]) # ! - may be a history expansion
+            if [[ $arg[i+1] != ('='|$'\x28'|$'\x7b'|[[:blank:]]) ]]; then
+              style=history-expansion
+            else
+              continue
+            fi
+            ;;
       *) continue ;;
 
     esac
-    _zsh_highlight_main_add_region_highlight $j $k $style
+    reply+=($j $k $style)
   done
+
+  if [[ $arg[i] == '"' ]]; then
+    style=double-quoted-argument
+  else
+    # If unclosed, i points past the end
+    (( i-- ))
+    style=double-quoted-argument-unclosed
+  fi
+  reply=($(( start_pos + $1 - 1)) $(( start_pos + i )) $style $reply)
+  REPLY=$i
 }
 
 # Highlight special chars inside dollar-quoted strings
-_zsh_highlight_main_highlighter_highlight_dollar_string()
+_zsh_highlight_main_highlighter_highlight_dollar_quote()
 {
-  setopt localoptions noksharrays
   local -a match mbegin mend
   local MATCH; integer MBEGIN MEND
   local i j k style
   local AA
   integer c
-  # Starting dollar-quote is at 1:2, so start parsing at offset 3 in the string.
-  for (( i = 3 ; i < end_pos - start_pos ; i += 1 )) ; do
+  reply=()
+
+  for (( i = $1 + 2 ; i <= end_pos - start_pos ; i += 1 )) ; do
     (( j = i + start_pos - 1 ))
     (( k = j + 1 ))
     case "$arg[$i]" in
+      "'") break;;
       "\\") style=back-dollar-quoted-argument
             for (( c = i + 1 ; c <= end_pos - start_pos ; c += 1 )); do
               [[ "$arg[$c]" != ([0-9xXuUa-fA-F]) ]] && break
@@ -1311,8 +1466,36 @@ _zsh_highlight_main_highlighter_highlight_dollar_string()
       *) continue ;;
 
     esac
-    _zsh_highlight_main_add_region_highlight $j $k $style
+    reply+=($j $k $style)
   done
+
+  if [[ $arg[i] == "'" ]]; then
+    style=dollar-quoted-argument
+  else
+    # If unclosed, i points past the end
+    (( i-- ))
+    style=dollar-quoted-argument-unclosed
+  fi
+  reply=($(( start_pos + $1 - 1 )) $(( start_pos + i )) $style $reply)
+  REPLY=$i
+}
+
+# Highlight backtick subshells
+_zsh_highlight_main_highlighter_highlight_backtick()
+{
+  local arg1=$1 i=$1 q=\` style
+  reply=()
+  while i=$arg[(ib:i+1:)$q]; [[ $arg[i-1] == '\' && $i -lt $(( end_pos - start_pos )) ]]; do done
+
+  if [[ $arg[i] == '`' ]]; then
+    style=back-quoted-argument
+  else
+    # If unclosed, i points past the end
+    (( i-- ))
+    style=back-quoted-argument-unclosed
+  fi
+  reply=($(( start_pos + arg1 - 1 )) $(( start_pos + i )) $style)
+  REPLY=$i
 }
 
 # Called with a single positional argument.
@@ -1326,7 +1509,7 @@ _zsh_highlight_main_highlighter_expand_path()
   # The $~1 syntax normally performs filename generation, but not when it's on the right-hand side of ${x:=y}.
   setopt localoptions nonomatch
   unset REPLY
-  : ${REPLY:=${(Q)~1}}
+  : ${REPLY:=${(Q)${~1}}}
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -1346,3 +1529,4 @@ else
   # Make sure the cache is unset
   unset _zsh_highlight_main__command_type_cache
 fi
+typeset -ga X_ZSH_HIGHLIGHT_DIRS_BLACKLIST
