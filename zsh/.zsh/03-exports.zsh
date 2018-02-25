@@ -9,7 +9,7 @@ path_dirs=(
 	${HOME}/.rvm/bin
 	${BIN_HOME}/{,go/bin,local,wm/bin}
     /opt/android-sdk/platform-tools
-    /mnt/home/.local/bin
+    /zero/.local/bin
     /opt/cuda/bin
     /opt/go/bin
     /opt/intel/bin
@@ -55,7 +55,7 @@ alias zless=${PAGER}
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export BROWSER="waterfox"
 
-export VAGRANT_HOME="/mnt/home/vagrant"
+export VAGRANT_HOME="/zero/vagrant"
 export PERLBREW_ROOT=${HOME}/.perl5
 
 export LESSCHARSET=UTF-8
