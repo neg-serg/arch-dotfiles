@@ -63,12 +63,6 @@ function fg-widget() {
 }
 zle -N fg-widget
 
-function copy-to-clipboard() {
-    (( $+commands[xclip] )) || return
-    echo -E -n - "$BUFFER" | xclip -i
-}
-zle -N copy-to-clipboard
-
 function up-one-dir   { pushd .. 2> /dev/null; zle redisplay; zle -M $(pwd);  }
 function back-one-dir { popd     2> /dev/null; zle redisplay; zle -M $(pwd);  }
 zle -N up-one-dir
@@ -82,20 +76,6 @@ function magic-abbrev-expand() {
 }
 
 function no-magic-abbrev-expand() { LBUFFER+=' ' }
-
-# expand-or-complete, but sets buffer to "cd" if it's empty
-function expand-or-complete-or-cd() {
-    if [[ $#BUFFER == 0 ]]; then
-        BUFFER="cd "
-        CURSOR=3
-        # don't want that after all
-        # zle menu-expand-or-complete
-        zle menu-expand-or-complete
-    else
-        zle expand-or-complete
-    fi
-}
-zle -N expand-or-complete-or-cd
 
 function slash-backward-kill-word () {
     local WORDCHARS="${WORDCHARS:s@/@}"
