@@ -106,8 +106,6 @@ repo = 'yuki777/gtags.vim.git' # Gtags v0.64
 repo = 'bbchung/gasynctags.git' # autogenerate gtags to cscope db
 [[plugins]]
 repo = 'https://github.com/neg-serg/gtags-cscope-vim' #  my gtags-cscope fork
-[[plugins]]
-repo = 'ozelentok/deoplete-gtags' #  deoplete support
 # ---------------[ Misc syntax ]----------------------------------------------------------
 [[plugins]]
 repo = 'sheerun/vim-polyglot' # all-in-one vim syntax plugin

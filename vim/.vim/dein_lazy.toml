@@ -1,12 +1,6 @@
 # --[ Main ]-------------------------------------------------------------------------------
 [[plugins]]
-repo = 'Shougo/deoplete.nvim' # dark-powered completion engine
-on_i = 1
-[[plugins]]
 repo = 'Shougo/neoinclude.vim' # include completion framework for neocomplete/deoplete
-on_i = 1
-[[plugins]]
-repo = 'Shougo/echodoc.vim' # better completions with deoplete
 on_i = 1
 # --[ Search ]-----------------------------------------------------------------------------
 [[plugins]]
@@ -35,10 +29,6 @@ repo = 'marijnh/tern_for_vim' # tern for vim
 on_ft = ['javascript']
 build = 'npm install'
 [[plugins]]
-repo = 'carlitux/deoplete-ternjs' # deoplete tern support
-on_ft = ['javascript']
-depends = 'deoplete.nvim'
-[[plugins]]
 repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
 on_ft = ['javascript']
 [[plugins]]
@@ -66,14 +56,7 @@ on_ft = ['python']
 [[plugins]]
 repo = 'mkomitee/vim-gf-python.git' # gf for python
 on_ft = ['python']
-[[plugins]]
-repo = 'zchee/deoplete-jedi' # jedi bindings for deoplete
-on_ft = ['python']
-depends = 'deoplete.nvim'
 # --[ Scala ]-----------------------------------------------------------------------------
-[[plugins]]
-repo = 'ensime/ensime-vim' # scala vim autocompletion
-on_ft = ['scala']
 [[plugins]]
 repo = 'derekwyatt/vim-scala' # various initial scala support for vim
 on_ft = ['scala']
@@ -105,14 +88,6 @@ merged = 1
 [[plugins]]
 repo = 'jtdowney/vimux-cargo' # rust-cargo bindings
 [[plugins]]
-repo = 'sebastianmarkow/deoplete-rust' #  deoplete support via racer
-on_ft = ['rust']
-depends = 'deoplete.nvim'
-# --[ Elixir ]-----------------------------------------------------------------------------
-[[plugins]]
-repo = 'slashmili/alchemist.vim' #  deoplete support via alchemist-server
-on_ft = ['elixir']
-depends = 'deoplete.nvim'
 # --[ Nim ]---------------------------------------------------------------------------------
 [[plugins]]
 repo = 'baabelfish/nvim-nim' # nim support for vim and advanced support for neovim
@@ -196,25 +171,12 @@ on_ft = ['crystal']
 repo = 'ocaml/merlin' # ocaml support
 on_ft = 'ocaml'
 rtp = 'vim/merlin'
-[[plugins]] # swift autocomplete deoplete support
-repo = 'mitsuse/autocomplete-swift'
-on_ft = 'swift'
-depends = 'deoplete.nvim'
 [[plugins]]
 repo = 'jstemmer/gotags.git' # tags for go
 on_ft = ['go']
 [[plugins]]
-repo = 'zchee/deoplete-go' # go autocomplete
-on_ft = ['go']
-depends = 'deoplete.nvim'
-build = 'make'
-[[plugins]]
 repo = 'jnwhiteh/vim-golang.git' # golang syntax highlight
 on_ft = ['go']
-[[plugins]]
-repo = 'zchee/deoplete-zsh' # zsh autocompletion
-depends = 'deoplete.nvim'
-on_ft = 'zsh'
 [[plugins]]
 repo = 'jalvesaq/Nvim-R' # nvim R support
 on_ft = 'R'
