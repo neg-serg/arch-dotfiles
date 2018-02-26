@@ -232,7 +232,11 @@ fun! s:HI(group, bg, fg, attr)
                 \ . ' ' . (a:attr != '' ? s:venv . '='   . a:attr : '')
 endfun
 
-call s:HI(         'Normal', 'NONE', 'NONE', 'NONE' )
+if !exists("g:gui_oni")
+    call s:HI(         'Normal', 'NONE', 'NONE', 'NONE' )
+else
+    hi Normal guifg=#617287 guibg=NONE
+endif
 
 hi! clear DiffAdd
 hi! clear DiffAdded
