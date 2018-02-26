@@ -1,22 +1,4 @@
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - autozimu/LanguageClient-neovim                                           │ 
-" │ https://github.com/autozimu/LanguageClient-neovim                                 │ 
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('LanguageClient-neovim')
-    let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'javascript': ['javascript-typescript-stdio'],
-        \ 'javascript.jsx': ['javascript-typescript-stdio'],
-        \ 'cpp': ['/usr/local/bin/cquery', '--language-server'],
-        \ 'haskell': ['hie', '--lsp']
-        \ }
-    let g:LanguageClient_loadSettings = 1
-    " Use an absolute configuration path if you want system-wide settings
-    let g:LanguageClient_settingsPath = '/home/neg/.config/nvim/settings.json'
-    nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - airblade/vim-gitgutter                                                   │ 
 " │ https://github.com/airblade/vim-gitgutter                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -169,10 +151,6 @@ if dein#tap('deoplete.nvim')
     let g:deoplete#enable_camel_case = 1
     let g:deoplete#max_list          = 500
     let g:deoplete#max_menu_width    = 8
-
-    let g:deoplete#sources#clang#libclang_path ="/usr/lib/libclang.so"
-    let g:deoplete#sources#clang#clang_header="/usr/lib/clang/4.0.1"
-    let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
 
     " java && jsp
     let g:deoplete#omni#input_patterns.java = [
