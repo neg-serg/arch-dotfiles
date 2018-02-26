@@ -38,6 +38,12 @@ module.exports = {
     "editor.backgroundImageUrl": "/home/neg/pic/wl/HeuanqL.jpg",
     "editor.backgroundOpacity": 0.9,
     "commandline.mode": true,
+    "statusbar.enabled": false,
+    "statusbar.fontSize": "14pt",
+    "editor.scrollBar.visible": false,
+    "editor.quickOpen.execCommand": true,
+    "editor.cursorLine": true,
+    "tabs.mode": "hidden",
 
     // UI customizations
     "ui.animations.enabled": true,
