@@ -15,6 +15,7 @@ path_dirs=(
     /opt/intel/bin
     # Add RVM to PATH for scripting
     ${HOME}/.rvm/bin
+    /home/neg/.cargo/bin
 )
 
 whence ruby >/dev/null && \
