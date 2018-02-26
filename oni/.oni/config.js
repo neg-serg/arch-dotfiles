@@ -28,6 +28,8 @@ module.exports = {
     //add custom config here, such as
 
     "ui.colorscheme": "neg",
+    "ui.fontFamily": "Iosevka Term Medium",
+    "ui.fontSize": "18pt",
     "oni.useDefaultConfig": false, 
     "oni.hideMenu": true,
     "oni.useExternalPopupMenu": true,
