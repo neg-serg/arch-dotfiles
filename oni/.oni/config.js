@@ -14,7 +14,7 @@ const deactivate = () => {
 module.exports = {
     activate,
     deactivate,
-    "autoClosingPairs.enabled": true, // disable autoclosing pairs
+    "autoClosingPairs.enabled": false, // disable autoclosing pairs
     "commandline.icons": true,
     "commandline.mode": false, // Do not override commandline UI
     "editor.backgroundImageUrl": "/home/neg/pic/wl/HeuanqL.jpg",
