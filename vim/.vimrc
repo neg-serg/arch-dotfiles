@@ -47,6 +47,10 @@ else
     let g:nvim_is_started='off'
 endif
 
+if exists('g:gui_oni')
+    let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket' | let g:nvim_is_started='on'
+endif
+
 if has('nvim')
     let g:python_interpreter='python2'
         let &runtimepath = expand('~/.vim/') . ','
