@@ -2,7 +2,7 @@
 *.foreground:  #617287
 *.cursorColor: #375BC1
 *.pointerBlank:1
-    
+
 *.color0:#020202
 *.color8:#3D3D3D
 *.color1:#8A2F58

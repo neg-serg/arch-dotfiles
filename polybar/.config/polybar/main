@@ -117,7 +117,7 @@ format-playing-prefix = ${self.lmpd}
 format-playing-suffix = ${c.rs}
 format-paused = "%{F#395573}⟬%{O5}%{F#005f87}||%{F#395573} %{F#ccc}"
 format-paused-suffix = ${c.rs}
-format-stopped = 
+format-stopped =
 format-offline = no mpd
 label-song = %artist% ― %title%
 label-time = %elapsed%%{F#395573}/%{F#ccc}%total%
@@ -151,10 +151,10 @@ label = " vpn"
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
- 
+
 format-prefix = ${c.l}
 format-suffix = ${c.delim}
- 
+
 label-layout = input:%{O5}%layout%
 label-indicator-padding = 0
 label-indicator-background = ${colors.background}
