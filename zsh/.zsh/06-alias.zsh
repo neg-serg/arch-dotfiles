@@ -175,10 +175,12 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal="task calendar"
 
-if hash glances >/dev/null; then
-    alias {{h,}top,lk}=glances
+if hash ${DEFAULT_TOP} > /dev/null; then
+    alias {{h,}top,lk}=${DEFAULT_TOP}
 elif hash htop >/dev/null; then
     alias {{h,}top,lk}=htop
+elif hash glances >/dev/null; then
+    alias {{h,}top,lk}=glances
 elif hash top >/dev/null; then
     alias {{h,}top,lk}=top
 fi
