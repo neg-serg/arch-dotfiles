@@ -1,5 +1,3 @@
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 export ZSHDIR=${HOME}/.zsh
 export BIN_HOME=${HOME}/bin
 export SCRIPT_HOME=${BIN_HOME}/scripts
@@ -43,14 +41,6 @@ export NCURSES_NO_PADDING=1
 
 export PERLBREW_ROOT=${HOME}/.perl5
 
-if [ -x "$(which "vimpager" 2>/dev/null)" ]; then
-    export PAGER="vimpager -u ~/.vim/vimpagerrc" SDCV_PAGER=${PAGER}
-    alias less=${PAGER}
-    alias zless=${PAGER}
-else
-    export PAGER="less"
-fi
-
 export X_OSD_COLOR='#00ffff'
 
 export LESSCHARSET=UTF-8
@@ -78,8 +68,6 @@ export GOMAXPROCS=8
 export KEYTIMEOUT=5 # allow to use ,<key> more fast
 export ESCDELAY=1
 
-export OSSLIBDIR=/usr/lib/oss
-
 export JAVA_FONTS=/usr/share/fonts/TTF
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
@@ -95,25 +83,9 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=0
 
 export STEAM_RUNTIME=1
 
-export QEMU_AUDIO_DRV=pa
-export QEMU_PA_SOURCE=input
-export QEMU_PA_SINK=alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo
-
 export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"
 
 export VIDEO_PLAYER_="mpv"
 
 export AUTOPAIR_INHIBIT_INIT=1
-
-if [ -n "$GTK_MODULES" ]
-then
-  GTK_MODULES="$GTK_MODULES:unity-gtk-module"
-else
-  GTK_MODULES="unity-gtk-module"
-fi
-
-if [ -z "$UBUNTU_MENUPROXY" ]
-then
-  UBUNTU_MENUPROXY=1
-fi 
