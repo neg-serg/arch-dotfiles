@@ -11,7 +11,7 @@ super + control + XF86Audio{Raise,Lower}Volume
 super + 8
     mpc -q volume 0 || amixer -q set Master 0% mute
 super + shift + 8
-    mpc -q volume 35 || amixer -q set Master 35% unmute
+    mpc -q volume 35 || amixer -q set Master 35% unmute 
 {super + control + shift + u,XF86Sleep}
     sudo systemctl suspend
 super + U
