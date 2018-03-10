@@ -87,8 +87,10 @@ repo = 'chrisbra/vim-diff-enhanced.git' # patience diff
 repo = 'tpope/vim-dispatch.git' # provide async build via tmux
 [[plugins]]
 repo = 'w0rp/ale' # ale as linter
+#[[plugins]]
+#repo = 'tpope/vim-commentary.git' # try it instead of tcommentc
 [[plugins]]
-repo = 'tpope/vim-commentary.git' # try it instead of tcommentc
+repo = 'tomtom/tcomment_vim'
 [[plugins]]
 repo = 'tpope/vim-endwise' # to insert endif for if, end for begin and so on
 [[plugins]]
