@@ -29,10 +29,10 @@ module.exports = {
     "oni.loadInitVim": true, // Load user's init.vim
     "oni.useDefaultConfig": false, // Do not load Oni's init.vim
     "oni.useExternalPopupMenu": true,
-    "statusbar.enabled": false,
-    "statusbar.fontSize": "14pt",
+    "statusbar.enabled": false, // Disable statusbar
+    "statusbar.fontSize": "16pt", // Statusbar fontsize
     "tabs.mode": "native", // tabs behave like vim
-    "tabs.wrap": true,
+    "tabs.wrap": true, // wrap tabs
     "tabs.height" : "1.2em",
     "ui.animations.enabled": true,
     "ui.colorscheme": "neg",
