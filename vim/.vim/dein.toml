@@ -87,8 +87,6 @@ repo = 'chrisbra/vim-diff-enhanced.git' # patience diff
 repo = 'tpope/vim-dispatch.git' # provide async build via tmux
 [[plugins]]
 repo = 'w0rp/ale' # ale as linter
-#[[plugins]]
-#repo = 'tpope/vim-commentary.git' # try it instead of tcommentc
 [[plugins]]
 repo = 'tomtom/tcomment_vim'
 [[plugins]]
