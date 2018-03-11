@@ -118,7 +118,7 @@ format-playing-suffix = ${c.rs}
 format-paused = "%{F#395573}⟬%{O5}%{F#005f87}||%{F#395573} %{F#ccc}"
 format-paused-suffix = ${c.rs}
 format-stopped =
-format-offline = no mpd
+format-offline = [no mpd]
 label-song = %artist% ― %title%
 label-time = %elapsed%%{F#395573}/%{F#ccc}%total%
 icon-random = 🔀
@@ -130,8 +130,8 @@ lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 [module/volume]
 type = custom/script
 interval = 0
-exec = ~/bin/mon/vol.lua
-exec-if = mpc idle > /dev/null
+exec = echo -ne v | nc 0.0.0.0 31888
+exec-if = mpc idle player mixer > /dev/null
 
 [module/date]
 type = internal/date
