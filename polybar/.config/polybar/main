@@ -101,8 +101,7 @@ compositing-border = over
 [module/ws]
 type = custom/script
 interval = 0
-exec = echo 'ws' | nc 0.0.0.0  31888
-exec-if = echo 'idle' | nc 0.0.0.0 31889
+exec = echo 'idle' | nc 0.0.0.0 31889 && echo 'ws' | nc 0.0.0.0 31888
 format-prefix=${c.l}
 format-suffix=${c.delim}
 format = <label>
@@ -130,7 +129,7 @@ lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 [module/volume]
 type = custom/script
 interval = 0
-exec = echo -ne v | nc 0.0.0.0 31888
+exec = echo 'v' | nc 0.0.0.0 31888
 exec-if = mpc idle player mixer > /dev/null
 
 [module/date]
