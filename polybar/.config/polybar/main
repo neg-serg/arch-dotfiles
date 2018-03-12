@@ -100,12 +100,12 @@ compositing-border = over
 
 [module/ws]
 type = custom/script
-interval = 0
-exec = echo 'idle' | nc 0.0.0.0 31889 && echo 'ws' | nc 0.0.0.0 31888
+exec = /home/neg/.config/i3/ws_watcher.py
+exec-if = sleep 1
 format-prefix=${c.l}
 format-suffix=${c.delim}
 format = <label>
-tail = false
+tail = true
 
 [module/mpd]
 type = internal/mpd
