@@ -129,8 +129,9 @@ lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 [module/volume]
 type = custom/script
 interval = 0
-exec = echo 'v' | nc 0.0.0.0 31888
-exec-if = mpc idle player mixer > /dev/null
+exec = /home/neg/.config/i3/vol_watcher.py
+exec-if = sleep 1
+tail = true
 
 [module/date]
 type = internal/date
