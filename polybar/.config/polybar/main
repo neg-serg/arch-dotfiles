@@ -100,7 +100,7 @@ compositing-border = over
 
 [module/ws]
 type = custom/script
-exec = /home/neg/.config/i3/ws_watcher.py
+exec = /home/neg/.config/i3/ws_printer.py
 exec-if = sleep 1
 format-prefix=${c.l}
 format-suffix=${c.delim}
@@ -129,7 +129,7 @@ lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 [module/volume]
 type = custom/script
 interval = 0
-exec = /home/neg/.config/i3/vol_watcher.py
+exec = /home/neg/.config/i3/vol_printer.py
 exec-if = sleep 1
 tail = true
 
