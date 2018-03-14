@@ -23,7 +23,6 @@ function compton_run(){
                     --paint-on-overlay \
                     --glx-no-stencil \
                     --glx-no-rebind-pixmap \
-                    --glx-swap-method=1 \
                 > /dev/null &
         fi
     else
