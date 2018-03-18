@@ -17,8 +17,8 @@ module.exports = {
     "autoClosingPairs.enabled": false, // disable autoclosing pairs
     "commandline.icons": true,
     "commandline.mode": false, // Do not override commandline UI
-    "editor.backgroundImageUrl": "/home/neg/pic/wl/Sojourner of Worlds.jpg",
-    "editor.backgroundOpacity": 0.92,
+    "editor.backgroundImageUrl": "/home/neg/pic/wl/Path_of_Exile_Wallpaper_18.jpg",
+    "editor.backgroundOpacity": 0.88,
     "editor.completions.enabled": true,
     "editor.cursorLine": true,
     "editor.fontFamily": "Iosevka Term Medium",
