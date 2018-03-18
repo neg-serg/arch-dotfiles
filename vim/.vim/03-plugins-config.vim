@@ -1,4 +1,14 @@
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - xolox/vim-session                                                        │ 
+" │ https://github.com/xolox/vim-session                                              │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('vim-session')
+    let g:session_autoload = 'yes'
+    let g:session_autosave = 'yes'
+    let g:session_autosave_to = 'default'
+    let g:session_verbose_messages = 1
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - airblade/vim-gitgutter                                                   │ 
 " │ https://github.com/airblade/vim-gitgutter                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
