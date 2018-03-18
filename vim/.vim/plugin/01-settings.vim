@@ -370,9 +370,6 @@ let g:is_posix        = 1
 " When using the taglist plugin, don't attempt to resize the terminal
 let g:is_bash         = 1
 
-let g:session_autoload = "no"
-let g:session_autosave = "yes"
-
 if has('clpum')
     set wildmode=popup
     set wildmenu
