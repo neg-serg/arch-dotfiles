@@ -226,3 +226,9 @@ repo = 'ahw/vim-hooks' # try to add some custom hooks with it
 repo = 'itchyny/vim-parenmatch' #  An efficient alternative to the standard matchparen plugin
 [[plugins]]
 repo = 'itchyny/calendar.vim' #  Google calendar in vim
+#--[ Session ]--------------------------------------------------------------------------
+[[plugins]]
+repo = 'xolox/vim-misc' # for vim-session
+[[plugins]]
+repo = 'xolox/vim-session' # rule sessions
+depends = 'vim-misc'

@@ -3,10 +3,12 @@
 " │ https://github.com/xolox/vim-session                                              │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vim-session')
+    " Remember info about open buffers on close
+    set viminfo^=%
     let g:session_autoload = 'yes'
     let g:session_autosave = 'yes'
     let g:session_autosave_to = 'default'
-    let g:session_verbose_messages = 1
+    let g:session_verbose_messages = 0
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - airblade/vim-gitgutter                                                   │ 

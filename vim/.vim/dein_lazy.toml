@@ -5,7 +5,7 @@ on_i = 1
 # --[ Search ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'teto/nvim-palette' # fzf-finder for vim options
-do = ':UpdateRemotePlugins'
+build = ':UpdateRemotePlugins'
 depends = 'fzf.vim'
 # --[ Edit ]-------------------------------------------------------------------------------
 [[plugins]]
@@ -27,7 +27,7 @@ on_ft = ['markdown']
 [[plugins]]
 repo = 'marijnh/tern_for_vim' # tern for vim
 on_ft = ['javascript']
-build = 'npm install'
+#build = 'npm install'
 [[plugins]]
 repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
 on_ft = ['javascript']
@@ -128,7 +128,7 @@ on_ft = 'clojure'
 [[plugins]]
 repo = 'php-vim/phpcd.vim' # php autocomplete
 on_ft = ['php']
-build = 'composer install'
+#build = 'composer install'
 [[plugins]]
 repo = 'StanAngeloff/php.vim' # modern php syntax file
 on_ft = ['php']
