@@ -380,3 +380,5 @@ vim/.vim/state_gvim.vim
 w3m/.w3m/history
 compdef/
 zsh/.zsh/zcomp-sanctum
+mutt/.mutt/hcache/
+sessions/
