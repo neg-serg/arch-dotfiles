@@ -8,7 +8,7 @@
     show_age_threshold    = 60
     ignore_newline        = false
     geometry              = "550x12-8-35"
-    shrink                = true
+    shrink                = false
     transparency          = 8
     idle_threshold        = 120
     monitor               = 0
