@@ -169,8 +169,9 @@ function vid_fancy_print(){
                  ${genre_str} \
                  ${description_str} \
                  ; do
-            [[ ! ${q} == "" ]] && builtin print -n "${q}\n"
+            [[ ! ${q} == "" ]] && builtin print -n "${q}"
         done
+        echo
         unset exifdata_
     fi
 }
