@@ -113,6 +113,7 @@ RESET 0 # reset to "normal" color
 .pgm              38;5;110
 .ppm              38;5;110
 .psd              38;5;110
+.indd             38;5;110
 .tga              38;5;110
 .xbm              38;5;111
 .xpm              00;38;5;36
