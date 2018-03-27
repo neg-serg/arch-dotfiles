@@ -288,7 +288,6 @@ function py23switch(){
 
 if inpath nvim && inpath nvr; then
     function gv(){
-        nwim
         nvr --remote-send ":cd $(pwd)<CR>:GV<CR>"
     }
 fi
