@@ -330,8 +330,8 @@ else
     set viminfo=
     set shada=
 endif
-set nomodeline                        " disable modelines
-set grepprg=ag\ --nogroup\ --nocolor  " use ag over grep
+set modeline            " disable modelines
+set grepprg=rg          " use ripgrep over grep
 
 set iminsert=0          " write latin1 characters first
 set imsearch=0          " search with latin1 characters first
