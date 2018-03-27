@@ -6,7 +6,6 @@ margin-bottom = 0
 background= "#ee020209"
 border = ${xrdb:color32}
 border_top = ${xrdb:color32}
-urgent = "#9633A7"
 
 [bar/main]
 #monitor=HDMI2
@@ -20,13 +19,12 @@ spacing = 0
 width = 100%
 enable-ipc = true
 
-padding-left  = 0 # offset from x
-padding-right = 0 # offset from -x
+padding-left  = 0       # offset from x
+padding-right = 0       # offset from -x
 
 module-margin-right = 0 # looks nice
-module-margin-left  = 0
-
-modules-left = LL date ws xkeyboard network checkvpn mail RR
+module-margin-left  = 0 # looks nice
+modules-left = LL date ws xkeyboard networkenp6s0 networkenp7s0 mail RR
 modules-center =
 modules-right = mpd volume
 
@@ -47,56 +45,10 @@ tray-maxsize = 16
 tray-background = "#000000"
 
 compositing-background = over
-compositing-foreground = over
-compositing-overline = over
-compositing-underline = over
-compositing-border = over
-
-[bar/main_bottombar]
-#monitor=HDMI2
-bottom=true
-
-border-top-size = 2
-border-top-color = ${colors.border_top}
-border-bottom-size = 2
-border-bottom-color = ${colors.border_top}
-
-height = 30
-spacing = 0
-width = 100%
-enable-ipc = true
-
-padding-left  = 0 # offset from x
-padding-right = 0 # offset from -x
-
-module-margin-right = 0 # looks nice
-module-margin-left  = 0
-
-modules-left = LL date ws xkeyboard network checkvpn mail RR
-modules-center =
-modules-right = mpd volume
-
-background = ${colors.background}
-foreground = "#ccc"
-
-underline-size = 2
-
-font-0 = Iosevka Term Heavy:weight=bold:size=15;2
-font-1 = PragmataPro for Powerline:weight=bold:size=15;3
-font-2 = Code2000:weight=bold:size=18;4
-
-tray-detached = false
-tray-position = right
-tray-offset-x = 1
-tray-padding = 1
-tray-maxsize = 16
-tray-background = "#000000"
-
-compositing-background = over
-compositing-foreground = over
-compositing-overline = over
-compositing-underline = over
-compositing-border = over
+compositing-foreground = lighten
+compositing-overline = lighten
+compositing-underline = lighten
+compositing-border = lighten
 
 [module/ws]
 type = custom/script
@@ -109,7 +61,6 @@ tail = true
 
 [module/mpd]
 type = internal/mpd
-interval = 1
 format-online = <label-song> <label-time>
 format-playing = ${self.format-online}
 format-playing-prefix = ${self.lmpd}
@@ -117,14 +68,19 @@ format-playing-suffix = ${c.rs}
 format-paused = "%{F#395573}⟬%{O5}%{F#005f87}||%{F#395573} %{F#ccc}"
 format-paused-suffix = ${c.rs}
 format-stopped =
-format-offline = [no mpd]
+format-offline = "%{F#395573}⟬%{O5}%{F#ccc}No MPD%{O5}"
 label-song = %artist% ― %title%
 label-time = %elapsed%%{F#395573}/%{F#ccc}%total%
-icon-random = 🔀
-icon-repeat = 🔁
-icon-repeatone = 🔂
-icon-consume = ✀
 lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
+interval = 1
+
+[module/LL]
+type=custom/text
+content="%{F#395573}⟬%{F#ccc}"
+
+[module/RR]
+type=custom/text
+content="%{O5}%{F#395573}⟭%{F#ccc}"
 
 [module/volume]
 type = custom/script
@@ -141,31 +97,33 @@ date = %H:%M%
 interval = 5
 format-padding = 0
 
-[module/checkvpn]
-type = custom/script
-format-padding = 2
-exec = pgrep openvpn
-interval = 5
-label = " vpn"
-
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
-
 format-prefix = ${c.l}
 format-suffix = ${c.delim}
-
 label-layout = input:%{O5}%layout%
 label-indicator-padding = 0
 label-indicator-background = ${colors.background}
 label-indicator-underline = ${colors.background}
 
-[module/network]
+[module/networkenp6s0]
 type = internal/network
 interface = enp6s0
 interval = 1.0
-accumulate-stats = false
-label-connected = net:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%
+accumulate-stats = false # Accumulate values from all interfaces
+ping-interval = 60.0
+label-connected = eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%
+format-connected-prefix=${c.l}
+format-connected-suffix=${c.rs}
+
+[module/networkenp7s0]
+type = internal/network
+interface = enp7s0
+interval = 1.0
+accumulate-stats = false # Accumulate values from all interfaces
+ping-interval = 60.0
+label-connected = eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%
 format-connected-prefix=${c.l}
 format-connected-suffix=${c.rs}
 
@@ -182,18 +140,9 @@ l="%{O5}"
 r="%{O5}"
 ls=
 rs=
-
 lspec="%{F#395573}⟬ %{F#ccc}"
 rspec="%{F#395573}⟭ %{F#ccc}"
 delim="%{F#005f87}%{O5}∣%{F#ccc}"
 deliml="%{F#005f87}%{O5}∣%{F#ccc}%{O5}"
 
-[module/LL]
-type=custom/text
-content="%{F#395573}⟬%{F#ccc}"
-
-[module/RR]
-type=custom/text
-content="%{O5}%{F#395573}⟭%{F#ccc}"
-
-; vim:ft=dosini
+; vim:ft=conf
