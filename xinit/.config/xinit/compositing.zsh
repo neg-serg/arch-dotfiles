@@ -1,5 +1,39 @@
 #!/bin/zsh
 
+function intel_compton_settings(){
+    compton -b --config "${compton_cfg}" \
+        --blur-method=kawase \
+        --blur-strength=2 \
+        --backend="glx" \
+        --glx-no-stencil \
+        --glx-no-rebind-pixmap \
+        --glx-swap-method=exchange \
+        --glx-use-copysubbuffermesa \
+        --sw-opti \
+        --vsync drm
+}
+
+function nvidia_with_hardcore_blur(){
+    compton -b --config "${compton_cfg}"  --vsync=none \
+            --blur-kern="${hardcore_blur}" \
+            --backend="glx" \
+            --paint-on-overlay \
+            --glx-no-stencil \
+            --glx-no-rebind-pixmap \
+            --glx-swap-method=1 \
+        > /dev/null &
+}
+
+function nvidia_compton_settings(){
+    compton -b --config "${compton_cfg}"  --vsync=none \
+            --blur-kern="3x3box" \
+            --backend="glx" \
+            --paint-on-overlay \
+            --glx-no-stencil \
+            --glx-no-rebind-pixmap \
+        > /dev/null &
+}
+
 function compton_run(){
     compton_cfg="${XDG_CONFIG_HOME}/compton/compton.conf"
     local with_hardcore_blur=false
@@ -8,44 +42,18 @@ function compton_run(){
     )
     if [[ $(lsmod|grep nvidia) != "" ]]; then
         if ${with_hardcore_blur}; then
-            compton -b --config "${compton_cfg}"  --vsync=none \
-                    --blur-kern="${hardcore_blur}" \
-                    --backend="glx" \
-                    --paint-on-overlay \
-                    --glx-no-stencil \
-                    --glx-no-rebind-pixmap \
-                    --glx-swap-method=1 \
-                > /dev/null &
+            nvidia_with_hardcore_blur
         else
-            compton -b --config "${compton_cfg}"  --vsync=none \
-                    --blur-kern="3x3box" \
-                    --backend="glx" \
-                    --paint-on-overlay \
-                    --glx-no-stencil \
-                    --glx-no-rebind-pixmap \
-                > /dev/null &
+            nvidia_compton_settings
         fi
     else
-        compton -b --config "${compton_cfg}" \
-            --blur-method=kawase \
-            --blur-strength=2 \
-            --backend="glx" \
-            --glx-no-stencil \
-            --glx-no-rebind-pixmap \
-            --glx-swap-method=exchange \
-            --glx-use-copysubbuffermesa \
-            --sw-opti \
-            --vsync drm
+        intel_compton_settings
     fi
 }
 
 case "${1}" in
-    "r"*) 
-        compton_run
-    ;;
-    "k"*) 
-        killall compton 
-    ;;
+    "r"*) compton_run ;;
+    "k"*) killall compton ;;
     *)
         if pidof compton; then
             killall compton 
