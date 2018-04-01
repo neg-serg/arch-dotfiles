@@ -22,7 +22,7 @@ module.exports = {
     "editor.completions.enabled": true,
     "editor.cursorLine": true,
     "editor.fontFamily": "Iosevka Term Medium",
-    "editor.fontSize": "19pt",
+    "editor.fontSize": "20pt",
     "editor.quickOpen.execCommand": false,
     "editor.scrollBar.visible": false,
     "oni.hideMenu": true, // Hide default menu, can be opened with <alt>
