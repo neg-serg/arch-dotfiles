@@ -32,6 +32,7 @@ readonly TAGFILE="${XDG_CONFIG_HOME}/sxiv/tags"
 readonly tmp_file="${tmpfs}/sxiv.$$"
 readonly tmp_file2="${tmpfs}/sxiv2.$$"
 readonly tmp_imgur="${tmpfs}/sxiv_imgur.$$"
+readonly tmp_wall="${tmpfs}/wall_sxiv.$$"
 
 readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
 readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
@@ -40,16 +41,17 @@ readonly width_x11_=$(xrandr -q |awk '/Screen/{print $8}')
 readonly width_="$[${width_x11_}-70]"
 readonly lines_=12
 
-readonly rofi_cmd=(rofi -dmenu 
-                    -opacity "${opacity_}"
-                    -theme-str "'#window { width:${width_}; y-offset: 20; location: north; anchor: north; }'"
-                    -theme-str "'#listview { lines:${lines_}; }'"
-                    -sort
-                    -matching fuzzy
-                    -no-plugins
-                    -no-only-match
-                    -custom
-                   )
+readonly rofi_cmd=(
+    rofi -dmenu 
+    -opacity "${opacity_}"
+    -theme-str "'#window { width:${width_}; y-offset: 20; location: north; anchor: north; }'"
+    -theme-str "'#listview { lines:${lines_}; }'"
+    -sort
+    -matching fuzzy
+    -no-plugins
+    -no-only-match
+    -custom
+)
 
 function finish_(){
     rm -f "${tmp_file}" "${tmp_file2}" "${tmp_imgur}"
@@ -159,6 +161,31 @@ function imgur_it() {
     trap finish_ EXIT
 }
 
+function wall(){
+    local action="$1"
+    local wallarg=()
+    local specarg=()
+    case ${action} in
+        c*) wallarg=("-center") ;;
+        t*) wallarg=("-tile") ;;
+        fi*) wallarg=("-fill") ;;
+        fu*) wallarg=("-full") ;;
+        mono) specarg=("plus")
+    esac
+    >>"${tmp_wall}"
+    if [[ -z ${specarg} ]]; then
+        while read wall; do
+            hsetroot ${wallarg[@]} "${wall}" &
+        done < "${tmp_wall}"
+    else
+        while read wall; do
+            convert "${wall}" -colors 2 "${tmpfs}/__$(basename ${wall})"
+            hsetroot -full "${tmpfs}/__$(basename ${wall})"
+            rm "${tmpfs}/__$(basename ${wall})"
+        done < "${tmp_wall}"
+    fi
+}
+
 case "${opt}" in
     "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
     "C-comma")  rotate 270 ;;
@@ -171,9 +198,10 @@ case "${opt}" in
     "C-r")      rename ;;
     "r")        rep ;;
     "c")        copy_name ;;
-    "C-1")      xargs -n1 hsetroot -center ;;
-    "C-2")      xargs -n1 hsetroot -fill ;;
-    "C-3")      xargs -n1 hsetroot -full ;;
-    "C-4")      xargs -n1 hsetroot -tile ;;
+    "C-1")      wall "center" ;;
+    "C-2")      wall "fill" ;;
+    "C-3")      wall "full" ;;
+    "C-4")      wall "tile" ;;
+    "C-5")      wall "mono" ;;
     "C-i")      imgur_it ;;
 esac
