@@ -33,7 +33,7 @@ foreground = "#ccc"
 
 underline-size = 2
 
-font-0 = Iosevka Term Heavy:weight=bold:size=15;1
+font-0 = Iosevka Term Heavy:size=15;1
 font-1 = PragmataPro for Powerline:weight=bold:size=15;2
 font-2 = Code2000:weight=bold:size=20;3
 
