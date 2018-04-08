@@ -382,3 +382,6 @@ compdef/
 zsh/.zsh/zcomp-sanctum
 mutt/.mutt/hcache/
 sessions/
+oni/.config/oni/GPUCache/
+oni/.config/oni/Preferences
+oni/.config/oni/Settings
