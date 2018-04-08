@@ -4,7 +4,7 @@ const activate = oni => {
     console.log("config activated")
     oni.input.unbind("<c-p>")
     oni.input.bind("<f8>", "markdown.togglePreview")
-    oni.commands.executeCommand("sidebar.toggle")
+    oni.input.bind(["<enter>", "<tab>"], "contextMenu.select");
 }
 
 const deactivate = () => {
@@ -16,8 +16,9 @@ module.exports = {
     deactivate,
     "autoClosingPairs.enabled": false, // disable autoclosing pairs
     "commandline.icons": true,
+    "sidebar.enabled": false,
     "commandline.mode": false, // Do not override commandline UI
-    "editor.backgroundImageUrl": "/home/neg/pic/wl/Path_of_Exile_Wallpaper_18.jpg",
+    "editor.backgroundImageUrl": "/home/neg/pic/wl/wallpaper-2519516.jpg",
     "editor.backgroundOpacity": 0.88,
     "editor.completions.enabled": true,
     "editor.cursorLine": true,
