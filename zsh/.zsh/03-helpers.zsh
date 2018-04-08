@@ -53,7 +53,7 @@ function _zfile_sz(){
 }
 
 function _zsufhi(){
-    { sed "s/\([KMGT]\)/$fg[green]&/" 
+    { sed "s/\([KMGT]\)/$fg[green]&/"
     builtin print -n "$fg[white]"  } | \
     tr -d '\n'
 }
@@ -137,10 +137,6 @@ function vid_fancy_print(){
         not_empty_in_fact_ ${muxing_app} && \
         local muxing_app_str="$(_zwrap "Muxing App $(_zdelim) ${wrighting_app}")"
         #------------------------------------------
-        local doc_type="$(_zex_tag 'Doc Type'|tr '\n' ' '|sed 's/ *$//')"
-        not_empty_in_fact_ ${doc_type} && \
-        local doc_type_str="$(_zwrap "Doc Type $(_zdelim) $fg[white]${doc_type}")"
-        #------------------------------------------
         local date_time="$(_zex_tag_untr 'Date\/Time Original')"
         not_empty_in_fact_ ${date_time} && \
         local date_time_str="$(_zwrap "Date/Time $(_zdelim) $fg[white]${date_time}")"
@@ -163,7 +159,6 @@ function vid_fancy_print(){
                  ${comment_str} \
                  ${wrighting_app_str} \
                  ${muxing_app_str} \
-                 ${doc_type_str} \
                  ${date_time_str} \
                  ${encoder_str} \
                  ${genre_str} \
