@@ -1,26 +1,19 @@
 // https://github.com/onivim/oni/wiki/Configuration
-
 const activate = oni => {
-    console.log("config activated")
     oni.input.unbind("<c-p>")
     oni.input.bind("<f8>", "markdown.togglePreview")
     oni.input.bind(["<enter>", "<tab>"], "contextMenu.select");
 }
 
-const deactivate = () => {
-    console.log("config deactivated")
-}
-
 module.exports = {
     activate,
-    deactivate,
     "autoClosingPairs.enabled": false, // disable autoclosing pairs
     "commandline.icons": true,
     "sidebar.enabled": false,
     "commandline.mode": false, // Do not override commandline UI
     "editor.backgroundImageUrl": "/home/neg/pic/wl/wallpaper-2519516.jpg",
     "editor.backgroundOpacity": 0.88,
-    "editor.completions.enabled": true,
+    "editor.completions.mode": 'oni',
     "editor.cursorLine": true,
     "editor.fontFamily": "Iosevka Term Medium",
     "editor.fontSize": "20pt",
