@@ -104,7 +104,7 @@ if has('user_commands')
 endif
 "----------------------------------------------------------------------------
 set keywordprg=:help
-let $PATH = $PATH . ':' . expand("~/bin/go/bin")
+let $PATH = $PATH . ':' . expand('~/bin/go/bin')
 
 set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
@@ -118,7 +118,7 @@ set noshowmode                              " no show the mode ("-- INSERT --") 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
 set autoread
-if executable(resolve(expand("par")))
+if executable(resolve(expand('par')))
     set formatprg="par -140"  " use par as formatter
 else
     set formatprg="fmt -140"  " use fmt as formatter
@@ -180,7 +180,7 @@ set completeopt=menu,menuone,longest
 "probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
-set nu                          " Line numbers on
+set number                      " Line numbers on
 set noshowmatch                 " Show matching brackets/parenthesis
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
@@ -256,7 +256,7 @@ if has('arabic')
   set noarabicshape
 endif
 "--[ change undo file location ]----------------------------------
-if exists("+undofile")
+if exists('+undofile')
   " undofile - This allows you to use undos after exiting and restarting
   " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
   " :help undo-persistence
@@ -296,7 +296,7 @@ set autoindent          " on new lines, match indent of previous line
 set nosmartindent       " disable smart auto indenting, I think it should be deprecated
 set copyindent          " copy the previous indentation on autoindenting
 set cindent             " smart indenting for c-like code
-set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
+set cinoptions=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
 set laststatus=2        " requied by PowerLine/Airline
 
 set nocursorline        " highlight current line is too slow
@@ -324,7 +324,7 @@ set maxmapdepth=1000    " Maximum number of times a mapping is done
 set maxmem=8188370      " Maximum amount of memory (in Kbyte) to use for one buffer
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
-if !has("nvim")
+if !has('nvim')
     set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 else
     set viminfo=
@@ -339,27 +339,26 @@ set cmdheight=1         " standard cmdline height
 
 set tags=./tags
 " Make tags placed in .git/tags file available in all levels of a repository
-let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-if gitroot != ''
-    let &tags = &tags . ',' . gitroot . '/.git/tags'
+let s:gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+if s:gitroot != ''
+    let &tags = &tags . ',' . s:gitroot . '/.git/tags'
 endif
 
-if has("cscope")
-    if executable("gtags")
-        set csprg=/usr/bin/gtags-cscope
+if has('cscope')
+    if executable('gtags')
+        set cscopeprg=/usr/bin/gtags-cscope
     else
-        set csprg=/usr/bin/cscope
+        set cscopeprg=/usr/bin/cscope
     endif
-    set csto=0
+    set cscopetagorder=0
     set cscopetag
-    " set cscopequickfix=s-,c-,d-,i-,t-,e-
 
-    let GtagsCscope_Auto_Map        = 1
-    let GtagsCscope_Use_Old_Key_Map = 0
-    let GtagsCscope_Ignore_Case     = 1
-    let GtagsCscope_Absolute_Path   = 1
-    let GtagsCscope_Keep_Alive      = 1
-    let GtagsCscope_Auto_Load       = 0
+    let g:GtagsCscope_Auto_Map        = 1
+    let g:GtagsCscope_Use_Old_Key_Map = 0
+    let g:GtagsCscope_Ignore_Case     = 1
+    let g:GtagsCscope_Absolute_Path   = 1
+    let g:GtagsCscope_Keep_Alive      = 1
+    let g:GtagsCscope_Auto_Load       = 0
 endif
 
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
