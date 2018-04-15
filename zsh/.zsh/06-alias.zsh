@@ -358,3 +358,4 @@ fi
 alias yt4k=4kvideodownloader
 alias @r=${SCRIPT_HOME}/music_rename
 alias vimv=massren
+alias ip='ip -c'
