@@ -22,10 +22,11 @@ hwdec=cuda
 osd-font="Iosevka Term Medium"
 
 sub-scale=.4
-sub-gauss=.75
+sub-gauss=.82
 sub-gray=yes
 sub-auto=fuzzy
-sub-font="Iosevka Term Medium"
+sub-font="Helvetica Neue LT Std"
+sub-font="HelveticaNeue LT CYR 57 Cond"
 
 osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?vo-drop-frame-count:${!vo-drop-frame-count==0: Dropped: ${vo-drop-frame-count}}}${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
 osd-font-size=12
