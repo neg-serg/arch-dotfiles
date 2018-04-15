@@ -1,8 +1,0 @@
-rofi.color-enabled: true
-rofi.color-window: #101010, #6833ff, #6833ff
-rofi.color-normal: #101010, #ffffff, #181818, #6833ff, #ffffff
-rofi.color-active: #101010, #6833ff, #181818, #6833ff, #ffffff
-rofi.color-urgent: #101010, #f3843d, #181818, #6833ff, #ffc39c
-rofi.bw: 2
-rofi.width: -80
-rofi.scroll-method: 1
