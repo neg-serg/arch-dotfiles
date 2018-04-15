@@ -1,5 +1,5 @@
 [global]
-    font                  = EmojiOne Color, Iosevka Term Medium 12, PragmataPro for Powerline 12
+    font                  = Iosevka Term Medium 12, PragmataPro for Powerline 12
     markup                = full
     plain_text            = false
     format                = "<b>%s</b>\n%b"
@@ -35,7 +35,6 @@
     frame_width           = 1
     frame_color           = "#073642"
     width                 = 0
-
 
 [shortcuts]
     close_all = mod4+space
@@ -81,14 +80,8 @@
 [mpd]
     appname    = mpd-notification
     format     = ""
-    script     = "~/bin/scripts/prepare_image"
+    script     = "~/bin/scripts/mpd_notification"
     urgency    = normal
-
-
-# thx to [mbellgb]
-[scrot]
-    summary = scrot
-    format = "<b>  %s</b>\n%b"
 
 [mopidy]
     summary = Mopidy
