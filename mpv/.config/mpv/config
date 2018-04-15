@@ -10,11 +10,10 @@ alang=en
 monitoraspect=16:10
 geometry=100%:100%
 
-profile=opengl-hq
 vd-lavc-threads=9
 screenshot-template="~/dw/scr-%F_%P"
-vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
-hwdec=cuda
+hwdec-codecs=all
+hwdec=vaapi
 
 # # I am dont like gui
 # no-osc
@@ -40,35 +39,16 @@ osd-border-color='#99000000'
 osd-bar-align-y=0.8
 
 ytdl
-ytdl-format=bestvideo+bestaudio
+ytdl-format=bestvideo+bestaudio/best
 
 cursor-autohide=1000
-really-quiet
+#really-quiet
 
 volume=40
-
-[profile.opengl-hq]
-hwdec=vdpau
-scale=ewa_lanczossharp
-cscale=ewa_lanczossharp
-interpolation
-temporal-dither
-blend-subtitles=yes
-target-prim=adobe
-target-trc=auto
-
-[cuda]
-hwdec=cuda
-scale=ewa_lanczossharp
-cscale=ewa_lanczossharp
-interpolation
-temporal-dither
-blend-subtitles=yes
-target-prim=adobe
-target-trc=auto
 
 [extension.flac]
 term-osd-bar=yes
 
 [extension.mp3]
 term-osd-bar=yes
+
