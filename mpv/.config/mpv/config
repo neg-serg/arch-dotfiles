@@ -43,7 +43,7 @@ ytdl
 ytdl-format=bestvideo+bestaudio/best
 
 cursor-autohide=1000
-#really-quiet
+really-quiet
 
 volume=40
 
