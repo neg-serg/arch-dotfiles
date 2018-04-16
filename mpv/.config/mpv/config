@@ -12,6 +12,7 @@ geometry=100%:100%
 
 vd-lavc-threads=9
 screenshot-template="~/dw/scr-%F_%P"
+vo=vaapi
 hwdec-codecs=all
 hwdec=vaapi
 
