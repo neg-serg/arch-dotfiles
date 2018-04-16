@@ -17,6 +17,8 @@ tabspaces: 4
 
 draw_bold_text_with_bright_colors: false
 
+background_opacity: 0.92
+
 font:
   normal:
     family: "Iosevka Term Medium"
@@ -64,7 +66,7 @@ colors:
 
   cursor:
     text: '0x2B2A3B'
-    cursor: '0xC8D1E3'
+    cursor: '0x375BC1'
 
   normal:
     black:   '0x020202'
@@ -74,7 +76,7 @@ colors:
     blue:    '0x395573'
     magenta: '0x5E468C'
     cyan:    '0x899CA1'
-    white:   '0x5E5E5E'
+    white:   '0x617287'
 
   bright:
     black:   '0x5E5E5E'
@@ -84,17 +86,7 @@ colors:
     blue:    '0x4779B3'
     magenta: '0x7F62B3'
     cyan:    '0x47959E'
-    white:   '0xC0C0C0'
-
-  dim:
-￼   black:   '0x333333'
-￼   red:     '0xf2777a'
-￼   green:   '0x99cc99'
-￼   yellow:  '0xffcc66'
-￼   blue:    '0x6699cc'
-￼   magenta: '0xcc99cc'
-￼   cyan:    '0x66cccc'
-￼   white:   '0xdddddd'
+    white:   '0x899CA1'
 
 # Possible values for `animation`
 # `Ease`
