@@ -17,7 +17,7 @@ tabspaces: 4
 
 draw_bold_text_with_bright_colors: false
 
-background_opacity: 0.92
+background_opacity: 0.88
 
 font:
   normal:
