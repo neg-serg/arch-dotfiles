@@ -3,8 +3,8 @@ env:
 
 window:
     dimensions:
-        columns: 80
-        lines: 24
+        columns: 120
+        lines: 48
     padding:
         x: 0
         y: 0
@@ -21,18 +21,18 @@ background_opacity: 0.88
 
 font:
   normal:
-    family: "Iosevka Term Medium"
+    family: "Iosevka Term"
     style: Regular
 
   bold:
     family: "Iosevka Term"
-    style: Heavy
+    style: Bold
 
   italic:
     family: "Iosevka Term"
     style: Italic
 
-  size: 17.0
+  size: 18.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -223,6 +223,4 @@ selection:
 hide_cursor_when_typing: false
 
 shell:
- program: /bin/zsh
- # args:
- #   - --login
+ program: /bin/zsh 
