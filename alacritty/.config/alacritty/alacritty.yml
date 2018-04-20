@@ -25,11 +25,11 @@ font:
     style: Regular
 
   bold:
-    family: "Iosevka Term Medium"
-    style: Bold
+    family: "Iosevka Term"
+    style: Heavy
 
   italic:
-    family: "Iosevka Term Medium"
+    family: "Iosevka Term"
     style: Italic
 
   size: 17.0
