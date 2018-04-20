@@ -65,7 +65,7 @@ colors:
     foreground: '0x617287'
 
   cursor:
-    text: '0x2B2A3B'
+    text: '0x000000'
     cursor: '0x375BC1'
 
   normal:
