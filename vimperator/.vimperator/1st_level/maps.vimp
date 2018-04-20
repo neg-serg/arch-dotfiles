@@ -52,10 +52,6 @@ let g:walk_input_map_backward = '<C-.>'
 nmap <silent> ,, :noh<CR>
 map <silent> B :bmarks<CR>
 
-map <silent> <F4> :set complete=lS<CR>
-map <silent> <F5> :set complete=bookmark<CR>
-nmap ,d :downloads<CR>
-
 map <silent> <C-s>i  :silent set defsearch=ix<CR>
 map <silent> <C-s>s  :silent set defsearch=searx<CR>
 map <silent> <C-s>g  :silent set defsearch=google<CR>
