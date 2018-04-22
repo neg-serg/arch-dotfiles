@@ -4,7 +4,6 @@ const activate = oni => {
     oni.input.bind("<f8>", "markdown.togglePreview");
     oni.input.bind("<S-Insert>", "editor.clipboard.paste");
     oni.input.bind(["<enter>", "<tab>"], "contextMenu.select");
-    oni.input.bind("<c-enter>", () => oni.recorder.takeScreenshot());
 }
 
 module.exports = {
@@ -13,9 +12,9 @@ module.exports = {
     "commandline.icons": true, // Commandline icons.
     "sidebar.enabled": false, // Disable sidebar.
     "commandline.mode": false, // Do not override commandline UI.
-    "editor.backgroundImageUrl": "/home/neg/pic/wl/wallpaper-2519516.jpg",
     "editor.backgroundOpacity": 0.88, // Dark enough.
     "editor.completions.mode": 'oni', // VSCode-like completion.
+    "editor.backgroundImageUrl": "/home/neg/pic/wl/J8IW4DE.png",
     "editor.cursorLine": false, // Disables cursor line highlight.
     "editor.cursorColumn": false, // Disables cursor column highlight. 
     "editor.cursorLineOpacity": 0.5, // Defines opacity of cursor line highlight.
