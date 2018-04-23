@@ -1,7 +1,6 @@
 // https://github.com/onivim/oni/wiki/Configuration
 const activate = oni => {
     oni.input.unbind("<c-p>");
-    oni.input.bind("<f8>", "markdown.togglePreview");
     oni.input.bind("<S-Insert>", "editor.clipboard.paste");
     oni.input.bind(["<enter>", "<tab>"], "contextMenu.select");
 }
