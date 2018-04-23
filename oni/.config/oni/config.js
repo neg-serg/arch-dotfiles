@@ -41,6 +41,6 @@ module.exports = {
     "ui.fontSmoothing": "auto", // Auto font smooth.
     "wildmenu.mode": false, // Do not override vim's native wildmenu UI.
     "learning.enabled": false, // Disable learning.
-    "experimental.markdownPreview.enabled": true, // Experimental Markdown preview.
+    "experimental.markdownPreview.enabled": false, // Experimental Markdown preview.
 }
 
