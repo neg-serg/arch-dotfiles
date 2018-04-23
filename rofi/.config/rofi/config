@@ -4,7 +4,7 @@ rofi.run-shell-command:             st {cmd}
 rofi.levenshtein-sort:              false
 rofi.parse-hosts:                   false
 rofi.auto-select:                   false
-rofi.show-icons:                    true
+rofi.show-icons:                    false
 rof.drun-icon-theme:                "La Capitaine"
 
 rofi.fuzzy:                         true
