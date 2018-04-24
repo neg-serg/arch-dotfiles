@@ -6,8 +6,8 @@ window:
         columns: 0
         lines: 0
     padding:
-        x: 8
-        y: 8
+        x: 4
+        y: 4
 
 dpi:
   x: 96.0
