@@ -388,3 +388,7 @@ oni/.config/oni/Local
 oni/.config/oni/Local Storage/
 vim/.vim/sessions/
 vim/.config/nvim/.netrwhist
+oni/.config/oni/Cache/
+oni/.config/oni/Cookies
+oni/.config/oni/Cookies-journal
+imgur-screenshot/
