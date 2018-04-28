@@ -56,7 +56,7 @@ function stty_setup(){
     stty time 0 2> /dev/null
     stty min 0 2> /dev/null
     stty line 6 2> /dev/null
-    stty speed 4000000 &> /dev/null
+    stty speed 38400 &> /dev/null
 }
 
 [[ $- =~ i ]] && stty_setup
