@@ -14,6 +14,7 @@ visualizer_type = ellipse
 #--=[ Playlist ]=---------------
 playlist_disable_highlight_delay = "1"
 playlist_show_remaining_time = "yes"
+show_duplicate_tags = "no"
 playlist_display_mode = "classic"
 cyclic_scrolling = "no"
 lines_scrolled = "4"
