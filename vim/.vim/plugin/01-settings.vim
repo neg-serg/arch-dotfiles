@@ -297,6 +297,8 @@ set nosmartindent       " disable smart auto indenting, I think it should be dep
 set copyindent          " copy the previous indentation on autoindenting
 set cindent             " smart indenting for c-like code
 set cinoptions=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
+set cinkeys-=0#         " better support for
+set indentkeys-=0#      " tcomment
 set laststatus=2        " requied by PowerLine/Airline
 
 set nocursorline        " highlight current line is too slow

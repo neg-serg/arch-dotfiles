@@ -90,7 +90,7 @@ repo = 'radenling/vim-dispatch-neovim' # advanced neovim support
 [[plugins]]
 repo = 'w0rp/ale' # ale as linter
 [[plugins]]
-repo = 'tomtom/tcomment_vim'
+repo = 'tomtom/tcomment_vim' # commenter plugin
 [[plugins]]
 repo = 'tpope/vim-endwise' # to insert endif for if, end for begin and so on
 [[plugins]]
