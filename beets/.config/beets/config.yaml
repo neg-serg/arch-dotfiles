@@ -1,0 +1,23 @@
+plugins: mpdstats chroma discogs lastgenre
+
+directory: ~/music            # The default library root directory.
+library: ~/music/library.db   # The default library database file to use.
+
+threaded: yes
+color: yes
+
+per_disc_numbering: no
+original_date: yes
+
+import:
+    copy: no
+
+chroma:
+    auto: yes
+
+lastgenre:
+    auto: true
+    canonical: true
+
+match:
+    ignored: missing_tracks unmatched_tracks
