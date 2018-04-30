@@ -16,11 +16,6 @@ vo=vaapi
 hwdec-codecs=all
 hwdec=vaapi
 
-# # I am dont like gui
-# no-osc
-
-osd-font="Iosevka Term Medium"
-
 sub-scale=.4
 sub-gauss=.82
 sub-gray=yes
@@ -28,21 +23,22 @@ sub-auto=fuzzy
 sub-font="Helvetica Neue LT Std"
 sub-font="HelveticaNeue LT CYR 57 Cond"
 
+osd-font="Iosevka Term Medium"
 osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?vo-drop-frame-count:${!vo-drop-frame-count==0: Dropped: ${vo-drop-frame-count}}}${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
-osd-font-size=12
+osd-font-size=22
 term-osd-bar-chars = "──╼ ·"
 # make the OSD progress bar be big and centered like in mplayer and mplayer2
 osd-bar-align-y=0
-osd-bar-h=2
-osd-border-size=1
-osd-color='#CCE6EEFA'
-osd-border-color='#99000000'
-osd-bar-align-y=0.8
+osd-bar-h=3
+osd-border-size=0
+osd-color='#cc53a6a6'
+osd-border-color='#00000000'
+osd-bar-align-y=0.95
 
 ytdl
 ytdl-format=bestvideo+bestaudio/best
 
-cursor-autohide=1000
+cursor-autohide=500
 really-quiet
 
 volume=80
