@@ -45,7 +45,8 @@ ytdl-format=bestvideo+bestaudio/best
 cursor-autohide=1000
 really-quiet
 
-volume=40
+volume=80
+volume-max=100
 
 [extension.flac]
 term-osd-bar=yes
