@@ -7,8 +7,6 @@ repo = 'Shougo/neomru.vim' # add neomru source
 repo = 'itchyny/lightline.vim' # lightline statusline
 [[plugins]]
 repo = 'maximbaz/lightline-ale' # lightline ale mod
-[[plugins]]
-repo = 'sheerun/vim-polyglot' #  language pack collection
 # --[ Edit ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'sbdchd/neoformat' # universal formatter
@@ -21,9 +19,9 @@ repo = 'tpope/vim-unimpaired.git' # good mappings and toggles
 [[plugins]]
 repo = 'tpope/vim-repeat' # dot for everything
 [[plugins]]
-repo = 'Raimondi/delimitMate' # autopair ([]{}
+repo = 'Raimondi/delimitMate' # autopair ([]{})
 [[plugins]]
-repo = 'tpope/vim-surround' # new commands to vim for ({}[]''# # <>
+repo = 'tpope/vim-surround' # new commands to vim for ({}[]''# # <>)
 #--[ Additions ]--------------------------------------------------------------------------
 [[plugins]]
 repo = 'kopischke/vim-fetch' # vim path/to/file.ext:12:3
@@ -41,15 +39,11 @@ repo = 'luochen1990/rainbow' # rainbow parentheses
 [[plugins]]
 repo = 'chrisbra/colorizer' # css and colors colorizer
 [[plugins]]
-repo = 'sunaku/vim-hicterm' # highlight colors in terminal
-[[plugins]]
 repo = 'thinca/vim-qfreplace.git' # visual replace for multiple files
 [[plugins]]
 repo = 'mattboehm/vim-unstack' # stack trace parser
 [[plugins]]
 repo = 'mhinz/vim-lookup' # jump for vim ids without tags
-[[plugins]]
-repo = 'rdnetto/YCM-Generator' # generate config for ycm
 [[plugins]]
 repo = 'mopp/autodirmake.vim.git' # automake dir which didnt exists
 [[plugins]]
@@ -57,10 +51,6 @@ repo = 'tpope/vim-eunuch.git' # for SudoWrite, Locate, Find etc
 [[plugins]]
 repo = 'tpope/vim-abolish' # for different case coersion
 #--[ Search ]-----------------------------------------------------------------------------
-[[plugins]]
-repo = 'dyng/ctrlsf.vim' # interactive vim-grep
-[[plugins]]
-repo = 'mhinz/vim-grepper' # yet another interactive grepper
 [[plugins]]
 repo = 'junegunn/fzf' # fzf itself
 build = './install'
@@ -70,12 +60,20 @@ repo = 'junegunn/fzf.vim' #  fzf vim bindings
 depends = 'fzf'
 [[plugins]]
 repo = 'sjbach/lusty.git' # file/buffer explorer
+[[plugins]]
+repo = 'dyng/ctrlsf.vim' # interactive vim-grep
+[[plugins]]
+repo = 'haya14busa/incsearch.vim' # highlight all patterns, not only current
+merged = 0
+[[plugins]]
+repo = 'haya14busa/incsearch-fuzzy.vim' # fuzzy incsearch
+merged = 0
+[[plugins]]
+repo = 'jremmen/vim-ripgrep' # ripgrep binding
 # ----------------------------------------------------------------------------------------
 [[plugins]]
 repo = 'Shougo/neco-vim' # modern vim autocomplete
 # --[ Docs ]------------------------------------------------------------------------------
-[[plugins]]
-repo = 'mhinz/vim-rfc' # view and search rfc
 [[plugins]]
 repo = 'thinca/vim-ref.git' # integrated reference viewer man/perldoc etc
 # --[ Dev ]-------------------------------------------------------------------------------
@@ -96,141 +94,80 @@ repo = 'tpope/vim-endwise' # to insert endif for if, end for begin and so on
 [[plugins]]
 repo = 'dbakker/vim-projectroot' # better rooter
 [[plugins]]
-repo = 'derekwyatt/vim-fswitch.git' # switching between companion source files (e.g. .h and .cpp
+repo = 'derekwyatt/vim-fswitch.git' # switching between companion source files (e.g. .h and .cpp)
 [[plugins]]
 repo = 'janko-m/vim-test.git' # easy testing for various langs
 # ----------------[  Tags  ]--------------------------------------------------------------
-[[plugins]]
-repo = 'szw/vim-tags' # autogen ctags
 [[plugins]]
 repo = 'yuki777/gtags.vim.git' # Gtags v0.64
 [[plugins]]
 repo = 'bbchung/gasynctags.git' # autogenerate gtags to cscope db
 [[plugins]]
-repo = 'https://github.com/neg-serg/gtags-cscope-vim' #  my gtags-cscope fork
+repo = 'neg-serg/gtags-cscope-vim' #  my gtags-cscope fork
 # ---------------[ Misc syntax ]----------------------------------------------------------
 [[plugins]]
-repo = 'sheerun/vim-polyglot' # all-in-one vim syntax plugin
+repo = 'sheerun/vim-polyglot' #  language pack collection
 [[plugins]]
 repo = 'tpope/vim-git' # syntax, indent, and filetype plugin files for git
 [[plugins]]
-repo = 'arakashic/chromatica.nvim' # semantic highlight
-[[plugins]]
 repo = 'whatyouhide/vim-gotham' # gotham colorscheme for nvim
-[[plugins]]
-repo = 'w0ng/vim-hybrid' # hybrid colorscheme
-[[plugins]]
-repo = 'nanotech/jellybeans.vim' # jellybeands colorscheme
 [[plugins]]
 repo = 'joshdick/onedark.vim' # onedark colorscheme
 [[plugins]]
 repo = 'KeitaNakamura/neodark.vim' # neodark colorscheme
 [[plugins]]
-repo = 'MaxSt/FlatColor' # FlatColor colorscheme
-[[plugins]]
 repo = 'NLKNguyen/papercolor-theme' # great bright colorscheme
 [[plugins]]
 repo = 'icymind/NeoSolarized' # solarized with better neovim support
 [[plugins]]
-repo = 'rigaspapas/totem-theme' # totem theme
-[[plugins]]
 repo = 'arcticicestudio/nord-vim'  # dark and cold colorscheme
 [[plugins]]
-repo = 'itchyny/landscape.vim' # colorscheme and syntax file
-[[plugins]]
 repo = 'chriskempson/base16-vim' # base16 colorschemes pack
-[[plugins]]
-repo = 'morhetz/gruvbox' # gruvbox colorscheme
 [[plugins]]
 repo = 'tyrannicaltoucan/vim-deep-space' # deepspace colorscheme
 [[plugins]]
 repo = 'ryanoasis/vim-devicons.git' # fancy icons for fonts
-# --[ Search ]-----------------------------------------------------------------------------
-[[plugins]]
-repo = 'jremmen/vim-ripgrep' # ripgrep binding
 # --[ dcvs ]------------------------------------------------------------------------------
 [[plugins]]
 repo = 'tpope/vim-fugitive.git' # Git stuff. Needed for powerline etc
 [[plugins]]
-repo = 'tpope/vim-rhubarb' # github bindings for fugitive
-[[plugins]]
-repo = 'junegunn/vim-github-dashboard.git' # Git dashboard in vim
-[[plugins]]
-repo = 'jaxbot/github-issues.vim.git' # github issues autocomp
-[[plugins]]
-repo = 'idanarye/vim-merginal.git' # to handle branches/merge conflicts
+repo = 'idanarye/vim-merginal.git' # to handle branches/megge conflicts
 [[plugins]]
 repo = 'junegunn/gv.vim' # yet another git commit browser
 on_cmd = 'GV'
 [[plugins]]
-repo = 'vim-scripts/DirDiff.vim.git' # diff directories easyer with vim
-[[plugins]]
 repo = 'airblade/vim-gitgutter.git' # show last git changes
 [[plugins]]
-repo = 'jreybert/vimagit' # vimagit like magit from emacs inter. mode
-[[plugins]]
 repo = 'gregsexton/gitv' # gitk for vim
-# ----------------------------------------------------------------------------------------
-[[plugins]]
-repo = 'tpope/vim-tbone.git' # tmux basics
+# --[ Tmux ]----------------------------------------------------------------------------
 [[plugins]]
 repo = 'christoomey/vim-tmux-navigator' # easy jump between windows
-# --[ Misc ]------------------------------------------------------------------------------
-[[plugins]]
-repo = 'powerman/vim-plugin-ruscmd' # prevent to much ru-en layout switching with c-s
-[[plugins]]
-repo = 'mjbrownie/swapit' #  vim nice swapit
-[[plugins]]
-repo = 's3rvac/AutoFenc' #  try to autodelect filetype
-[[plugins]]
-repo = 'wellle/targets.vim' # better text objects
-[[plugins]]
-repo = 'vim-scripts/Improved-AnsiEsc' # text to esc-seqs in vim
-[[plugins]]
-repo = 'Konfekt/FastFold' # Do not update folds when it's not needed
-[[plugins]]
-repo = 'Shougo/neossh.vim.git' # work with ssh easier
-[[plugins]]
-repo = 'vim-scripts/ViewOutput.git' # VO commandline output
-[[plugins]]
-repo = 'kana/vim-gf-user.git' # framework open file by context
-[[plugins]]
-repo = 'kana/vim-gf-diff.git' # go to the changed block under the cursor from diff output
-[[plugins]]
-repo = 'mattn/gf-user-vimfn.git' # vim-gf-user extension: jump Vim script function
-[[plugins]]
-repo = 'wikitopian/hardmode' # funny vim hardmode plugin
-[[plugins]]
-repo = 'jamessan/vim-gnupg.git' # Transparent work with gpg-encrypted files
-[[plugins]]
-repo = 'blindFS/vim-taskwarrior' # add taskwarrior vim plug wrapper
-[[plugins]]
-repo = 'justinmk/vim-gtfo' # to term of fm
-[[plugins]]
-repo = 'ReekenX/vim-rename2.git' # rename for files even with spaces in filename
-[[plugins]]
-repo = 'haya14busa/incsearch.vim' # highlight all patterns, not only current
-merged = 0
-[[plugins]]
-repo = 'haya14busa/incsearch-fuzzy.vim' # fuzzy incsearch
-merged = 0
-[[plugins]]
-repo = 'Yggdroot/indentLine' # indentlines
-[[plugins]]
-repo = 'tpope/vim-scriptease' # better interaction with viml
-[[plugins]]
-repo = 'haya14busa/vim-asterisk' # better asterisk commands
-[[plugins]]
-repo = 'Shougo/deol.nvim' # better neovim terminal-based mode
-[[plugins]]
-repo = 'ahw/vim-hooks' # try to add some custom hooks with it
-[[plugins]]
-repo = 'itchyny/vim-parenmatch' #  An efficient alternative to the standard matchparen plugin
-[[plugins]]
-repo = 'itchyny/calendar.vim' #  Google calendar in vim
 #--[ Session ]--------------------------------------------------------------------------
 [[plugins]]
 repo = 'xolox/vim-misc' # for vim-session
 [[plugins]]
 repo = 'xolox/vim-session' # rule sessions
 depends = 'vim-misc'
+# --[ Misc ]----------------------------------------------------------------------------
+[[plugins]]
+repo = 'powerman/vim-plugin-ruscmd' # prevent too much ru-en layout switching with c-s
+[[plugins]]
+repo = 's3rvac/AutoFenc' #  try to autodelect filetype
+[[plugins]]
+repo = 'wellle/targets.vim' # better text objects
+[[plugins]]
+repo = 'Konfekt/FastFold' # Do not update folds when it's not needed
+[[plugins]]
+repo = 'vim-scripts/ViewOutput.git' # VO commandline output
+[[plugins]]
+repo = 'jamessan/vim-gnupg.git' # Transparent work with gpg-encrypted files
+[[plugins]]
+repo = 'blindFS/vim-taskwarrior' # add taskwarrior vim plug wrapper
+[[plugins]]
+repo = 'ReekenX/vim-rename2.git' # rename for files even with spaces in filename
+[[plugins]]
+repo = 'Yggdroot/indentLine' # indentlines
+[[plugins]]
+repo = 'Shougo/deol.nvim' # better neovim terminal-based mode
+[[plugins]]
+repo = 'itchyny/vim-parenmatch' #  An efficient alternative to the standard matchparen plugin

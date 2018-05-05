@@ -2,11 +2,6 @@
 [[plugins]]
 repo = 'Shougo/neoinclude.vim' # include completion framework for neocomplete/deoplete
 on_i = 1
-# --[ Search ]-----------------------------------------------------------------------------
-[[plugins]]
-repo = 'teto/nvim-palette' # fzf-finder for vim options
-build = ':UpdateRemotePlugins'
-depends = 'fzf.vim'
 # --[ Edit ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'simnalamburt/vim-mundo' # undo tree
@@ -22,18 +17,17 @@ on_cmd = 'StripWhitespace'
 repo = 'rstacruz/sparkup.git' # write html code faster
 on_ft = ['html']
 [[plugins]]
+repo = 'mattn/emmet-vim' # expanding abbreviations similar to emmet
+on_cmd = ['EmmetInstall']
+[[plugins]]
 repo = 'tpope/vim-markdown' # markdown vim mode
 on_ft = ['markdown']
 [[plugins]]
 repo = 'marijnh/tern_for_vim' # tern for vim
 on_ft = ['javascript']
-#build = 'npm install'
 [[plugins]]
 repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
 on_ft = ['javascript']
-[[plugins]]
-repo = 'joker1007/vim-markdown-quote-syntax' # highlight through quote syntax
-on_ft = ['markdown']
 [[plugins]]
 repo = 'mzlogin/vim-markdown-toc' # plugin to autogenerate table of contents for markdown
 on_ft = ['markdown']
@@ -48,13 +42,10 @@ on_ft = ['markdown']
 repo = 'vim-scripts/IndentConsistencyCop.git' # autochecks for indent
 on_ft = ['python']
 [[plugins]]
-repo = 'hynek/vim-python-pep8-indent.git' # python autoindent pep8 compatible
+repo = 'Vimjas/vim-python-pep8-indent' # python autoindent pep8 compatible
 on_ft = ['python']
 [[plugins]]
 repo = 'fs111/pydoc.vim' # pydoc integration
-on_ft = ['python']
-[[plugins]]
-repo = 'mkomitee/vim-gf-python.git' # gf for python
 on_ft = ['python']
 # --[ Scala ]-----------------------------------------------------------------------------
 [[plugins]]
@@ -72,28 +63,19 @@ on_ft = ['tex']
 repo = 'blindFS/vim-regionsyntax' #  region syntax highlighting
 on_ft = ['vimwiki', 'markdown', 'tex', 'html']
 [[plugins]]
-repo = 'leafo/moonscript-vim' # basic moonscript support
-on_ft = ['moonscript']
-[[plugins]]
 repo = 'baskerville/vim-sxhkdrc' # sxhkd config syntax
 on_ft = ['sxhkdrc']
 # --[ Rust ]-------------------------------------------------------------------------------
-[[plugins]]
-repo = 'racer-rust/vim-racer' # racer support
-on_ft = ['rust']
 [[plugins]]
 repo = 'rust-lang/rust.vim' # detection of rust files
 on_ft = ['rust']
 merged = 1
 [[plugins]]
+repo = 'racer-rust/vim-racer' # racer support
+on_ft = ['rust']
+[[plugins]]
 repo = 'jtdowney/vimux-cargo' # rust-cargo bindings
 [[plugins]]
-# --[ Nim ]---------------------------------------------------------------------------------
-[[plugins]]
-repo = 'baabelfish/nvim-nim' # nim support for vim and advanced support for neovim
-[[plugins]]
-repo = 'zah/nim.vim' # syntax file for nim
-on_ft = ['nim']
 # --[ Haskell ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'ujihisa/neco-ghc' # autocomplete for hs using ghc-mod
@@ -149,9 +131,6 @@ repo = 'SpaceVim/vim-swig' # swig syntax highlighting
 [[plugins]]
 repo = 'c9s/perlomni.vim' # perl omnicomplete
 on_ft = ['perl']
-[[plugins]]
-repo = 'mattn/emmet-vim' # expanding abbreviations similar to emmet
-on_cmd = ['EmmetInstall']
 [[plugins]]
 repo = 'vim-perl/vim-perl' # perl support
 on_ft = ['perl']
