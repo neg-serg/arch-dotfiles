@@ -554,8 +554,8 @@ if dein#tap('vim-markdown')
                 \},
                 \}
     if dein#tap('markdown-preview.vim')
-        if executable('firefox')
-            let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
+        if executable('waterfox')
+            let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'waterfox')
         endif
     endif
 endif
