@@ -20,14 +20,12 @@ on_ft = ['html']
 repo = 'mattn/emmet-vim' # expanding abbreviations similar to emmet
 on_cmd = ['EmmetInstall']
 [[plugins]]
+repo = 'othree/html5.vim' #  html5 autocomplete and synta
+on_ft = ['html', 'htmldjango']
+# --[ Markdown ]--------------------------------------------------------------------------
+[[plugins]]
 repo = 'tpope/vim-markdown' # markdown vim mode
 on_ft = ['markdown']
-[[plugins]]
-repo = 'marijnh/tern_for_vim' # tern for vim
-on_ft = ['javascript']
-[[plugins]]
-repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
-on_ft = ['javascript']
 [[plugins]]
 repo = 'mzlogin/vim-markdown-toc' # plugin to autogenerate table of contents for markdown
 on_ft = ['markdown']
@@ -37,6 +35,13 @@ on_ft = ['markdown']
 [[plugins]]
 repo = 'iamcco/mathjax-support-for-mkdp' # mathjax support for markdown preview
 on_ft = ['markdown']
+# --[ JS ]---------------------------------------------------------------------------------
+[[plugins]]
+repo = 'marijnh/tern_for_vim' # tern for vim
+on_ft = ['javascript']
+[[plugins]]
+repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
+on_ft = ['javascript']
 # --[ Python ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'vim-scripts/IndentConsistencyCop.git' # autochecks for indent
@@ -58,13 +63,6 @@ on_ft = ['scala']
 [[plugins]]
 repo = 'donRaphaco/neotex'
 on_ft = ['tex']
-# --[ Misc syntax ]-----------------------------------------------------------------------
-[[plugins]]
-repo = 'blindFS/vim-regionsyntax' #  region syntax highlighting
-on_ft = ['vimwiki', 'markdown', 'tex', 'html']
-[[plugins]]
-repo = 'baskerville/vim-sxhkdrc' # sxhkd config syntax
-on_ft = ['sxhkdrc']
 # --[ Rust ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'rust-lang/rust.vim' # detection of rust files
@@ -106,11 +104,10 @@ on_ft = ['ruby']
 [[plugins]]
 repo = 'guns/vim-clojure-static' # better clojure support
 on_ft = 'clojure'
-# --[ Misc Langs ]--------------------------------------------------------------------------
+# --[ PHP ]---------------------------------------------------------------------------------
 [[plugins]]
 repo = 'php-vim/phpcd.vim' # php autocomplete
 on_ft = ['php']
-#build = 'composer install'
 [[plugins]]
 repo = 'StanAngeloff/php.vim' # modern php syntax file
 on_ft = ['php']
@@ -120,45 +117,40 @@ on_ft = ['php']
 [[plugins]]
 repo = 'rafi/vim-phpspec' # tiny php-spec wrapper
 on_ft = ['php']
-[[plugins]]
-repo = 'joonty/vdebug' #  Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.
-on_cmd = ['VdebugStart']
-[[plugins]]
-repo = 'othree/html5.vim' #  html5 autocomplete and synta
-on_ft = ['html', 'htmldjango']
-[[plugins]]
-repo = 'SpaceVim/vim-swig' # swig syntax highlighting
-[[plugins]]
-repo = 'c9s/perlomni.vim' # perl omnicomplete
-on_ft = ['perl']
+# --[ Perl ]--------------------------------------------------------------------------------
 [[plugins]]
 repo = 'vim-perl/vim-perl' # perl support
 on_ft = ['perl']
 [[plugins]]
-repo = 'sbl/scvim.git' # vim plugin for supercollider
-on_ft = ['supercollider']
-[[plugins]]
-repo = 'oscarh/vimerl' # vim erlang support
-on_ft = ['erlang']
-[[plugins]]
-repo = 'kballard/vim-swift' # tiny swift support
-on_ft = ['swift']
-[[plugins]]
-repo = 'rhysd/vim-crystal' # crystal language support
-on_ft = ['crystal']
-[[plugins]]
-repo = 'ocaml/merlin' # ocaml support
-on_ft = 'ocaml'
-rtp = 'vim/merlin'
+repo = 'c9s/perlomni.vim' # perl omnicomplete
+on_ft = ['perl']
+# --[ Go ]-----------------------------------------------------------------------------------
 [[plugins]]
 repo = 'jstemmer/gotags.git' # tags for go
 on_ft = ['go']
 [[plugins]]
 repo = 'jnwhiteh/vim-golang.git' # golang syntax highlight
 on_ft = ['go']
+# --[ Misc Langs ]--------------------------------------------------------------------------
+[[plugins]]
+repo = 'joonty/vdebug' #  Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.
+on_cmd = ['VdebugStart']
+[[plugins]]
+repo = 'oscarh/vimerl' # vim erlang support
+on_ft = ['erlang']
+[[plugins]]
+repo = 'rhysd/vim-crystal' # crystal language support
+on_ft = ['crystal']
 [[plugins]]
 repo = 'jalvesaq/Nvim-R' # nvim R support
 on_ft = 'R'
 [[plugins]]
 repo = 'nosami/Omnisharp.git' # omnisharp completion
 on_ft = 'csharp'
+# --[ Misc syntax ]-----------------------------------------------------------------------
+[[plugins]]
+repo = 'blindFS/vim-regionsyntax' #  region syntax highlighting
+on_ft = ['vimwiki', 'markdown', 'tex', 'html']
+[[plugins]]
+repo = 'baskerville/vim-sxhkdrc' # sxhkd config syntax
+on_ft = ['sxhkdrc']
