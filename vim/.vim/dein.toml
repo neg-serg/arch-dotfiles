@@ -160,3 +160,5 @@ repo = 'Yggdroot/indentLine' # indentlines
 repo = 'Shougo/deol.nvim' # better neovim terminal-based mode
 [[plugins]]
 repo = 'itchyny/vim-parenmatch' #  An efficient alternative to the standard matchparen plugin
+[[plugins]]
+repo = 'haya14busa/dein-command.vim' # dein commands

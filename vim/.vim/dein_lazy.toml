@@ -49,16 +49,6 @@ on_ft = ['python']
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent' # python autoindent pep8 compatible
 on_ft = ['python']
-[[plugins]]
-repo = 'fs111/pydoc.vim' # pydoc integration
-on_ft = ['python']
-# --[ Scala ]-----------------------------------------------------------------------------
-[[plugins]]
-repo = 'derekwyatt/vim-scala' # various initial scala support for vim
-on_ft = ['scala']
-[[plugins]]
-repo = 'derekwyatt/vim-sbt' # basic SBT support for vim
-on_ft = ['scala']
 # --[ LaTeX ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'donRaphaco/neotex'
@@ -100,23 +90,6 @@ on_ft = ['ruby']
 [[plugins]]
 repo = 'tpope/vim-rbenv.git' # ruby rbenv support
 on_ft = ['ruby']
-# --[ Lisp-like ]---------------------------------------------------------------------------
-[[plugins]]
-repo = 'guns/vim-clojure-static' # better clojure support
-on_ft = 'clojure'
-# --[ PHP ]---------------------------------------------------------------------------------
-[[plugins]]
-repo = 'php-vim/phpcd.vim' # php autocomplete
-on_ft = ['php']
-[[plugins]]
-repo = 'StanAngeloff/php.vim' # modern php syntax file
-on_ft = ['php']
-[[plugins]]
-repo = '2072/PHP-Indenting-for-VIm' # indenting plugin for php
-on_ft = ['php']
-[[plugins]]
-repo = 'rafi/vim-phpspec' # tiny php-spec wrapper
-on_ft = ['php']
 # --[ Perl ]--------------------------------------------------------------------------------
 [[plugins]]
 repo = 'vim-perl/vim-perl' # perl support
@@ -127,9 +100,6 @@ on_ft = ['perl']
 # --[ Go ]-----------------------------------------------------------------------------------
 [[plugins]]
 repo = 'jstemmer/gotags.git' # tags for go
-on_ft = ['go']
-[[plugins]]
-repo = 'jnwhiteh/vim-golang.git' # golang syntax highlight
 on_ft = ['go']
 # --[ Misc Langs ]--------------------------------------------------------------------------
 [[plugins]]
