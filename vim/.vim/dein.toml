@@ -55,12 +55,6 @@ repo = 'sjbach/lusty.git' # file/buffer explorer
 [[plugins]]
 repo = 'dyng/ctrlsf.vim' # interactive vim-grep
 [[plugins]]
-repo = 'haya14busa/incsearch.vim' # highlight all patterns, not only current
-merged = 0
-[[plugins]]
-repo = 'haya14busa/incsearch-fuzzy.vim' # fuzzy incsearch
-merged = 0
-[[plugins]]
 repo = 'jremmen/vim-ripgrep' # ripgrep binding
 # --[ Docs ]------------------------------------------------------------------------------
 [[plugins]]
