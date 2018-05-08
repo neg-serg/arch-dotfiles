@@ -156,7 +156,7 @@ RESET 0 # reset to "normal" color
 .temp             00;38;5;244
 .tmp              00;38;5;244
 .added            00;38;5;235
-                 
+
 .chm              00;38;5;235
 .djv              00;38;5;7
 .djvu             00;38;5;7
@@ -258,7 +258,7 @@ RESET 0 # reset to "normal" color
 .nfo                01;32
 .offlineimaprc      01;32
 .pacnew             00;38;5;33
-                   
+
 .patch              48;5;7;38;5;16;1
 .diff               48;5;7;38;5;16;1
 .pc                 00;34
@@ -316,6 +316,7 @@ zshrc          01;38;5;77;4
 .xinitrc       01;34
 .Xmodmap       00;34
 .Xresources    01;33
+.snippets      00;38;5;222
 
 .dmg           01;38;5;141
 .img           01;38;5;141
@@ -366,6 +367,7 @@ zshrc          01;38;5;77;4
 .json            01;38;5;77
 .yml             00;38;5;77
 .yml             00;38;5;77
+.reg             00;38;5;77
 *TODO            01;38;5;91
 
 *README.markdown 01;38;5;7
