@@ -359,3 +359,12 @@ alias yt4k=4kvideodownloader
 alias @r=${SCRIPT_HOME}/music_rename
 alias vimv=massren
 alias ip='ip -c'
+
+function mimemap() {
+  default=${1}; shift
+  for i in $@; do alias -s ${i}=${default}; done
+}
+
+mimemap ${BROWSER} htm html
+mimemap ${VIDEO_PLAYER_} ape avi flv mkv mov mp3 mpeg mpg ogg ogm rm wav webm
+
