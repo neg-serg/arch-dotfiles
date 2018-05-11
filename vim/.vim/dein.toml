@@ -37,8 +37,6 @@ repo = 'luochen1990/rainbow' # rainbow parentheses
 [[plugins]]
 repo = 'thinca/vim-qfreplace.git' # visual replace for multiple files
 [[plugins]]
-repo = 'mopp/autodirmake.vim.git' # automake dir which didnt exists
-[[plugins]]
 repo = 'tpope/vim-eunuch.git' # for SudoWrite, Locate, Find etc
 [[plugins]]
 repo = 'tpope/vim-abolish' # for different case coersion
@@ -82,6 +80,15 @@ repo = 'derekwyatt/vim-fswitch.git' # switching between companion source files (
 repo = 'janko-m/vim-test.git' # easy testing for various langs
 [[plugins]]
 repo = 'Shougo/neco-vim' # modern vim autocomplete
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent' # python autoindent pep8 compatible
+[[plugins]]
+repo = 'racer-rust/vim-racer' # racer support
+[[plugins]]
+repo = 'marijnh/tern_for_vim' # tern for vim
+# --[ LaTeX ]-----------------------------------------------------------------------------
+[[plugins]]
+repo = 'donRaphaco/neotex'
 # ----------------[  Tags  ]--------------------------------------------------------------
 [[plugins]]
 repo = 'yuki777/gtags.vim.git' # Gtags v0.64
@@ -90,6 +97,10 @@ repo = 'bbchung/gasynctags.git' # autogenerate gtags to cscope db
 [[plugins]]
 repo = 'neg-serg/gtags-cscope-vim' #  my gtags-cscope fork
 # ---------------[ Misc syntax ]----------------------------------------------------------
+[[plugins]]
+repo = 'tpope/vim-markdown' # markdown vim mode
+[[plugins]]
+repo = 'mzlogin/vim-markdown-toc' # plugin to autogenerate table of contents for markdown
 [[plugins]]
 repo = 'sheerun/vim-polyglot' #  language pack collection
 [[plugins]]
@@ -117,7 +128,6 @@ repo = 'tpope/vim-fugitive.git' # Git stuff. Needed for powerline etc
 repo = 'idanarye/vim-merginal.git' # to handle branches/megge conflicts
 [[plugins]]
 repo = 'junegunn/gv.vim' # yet another git commit browser
-on_cmd = 'GV'
 [[plugins]]
 repo = 'airblade/vim-gitgutter.git' # show last git changes
 [[plugins]]
@@ -147,10 +157,6 @@ repo = 'vim-scripts/ViewOutput.git' # VO commandline output
 [[plugins]]
 repo = 'jamessan/vim-gnupg.git' # Transparent work with gpg-encrypted files
 [[plugins]]
-repo = 'blindFS/vim-taskwarrior' # add taskwarrior vim plug wrapper
-[[plugins]]
-repo = 'ReekenX/vim-rename2.git' # rename for files even with spaces in filename
-[[plugins]]
 repo = 'Yggdroot/indentLine' # indentlines
 [[plugins]]
 repo = 'Shougo/deol.nvim' # better neovim terminal-based mode
@@ -158,3 +164,5 @@ repo = 'Shougo/deol.nvim' # better neovim terminal-based mode
 repo = 'itchyny/vim-parenmatch' #  An efficient alternative to the standard matchparen plugin
 [[plugins]]
 repo = 'haya14busa/dein-command.vim' # dein commands
+[[plugins]]
+repo = 'mopp/autodirmake.vim.git' # automake dir which didnt exists

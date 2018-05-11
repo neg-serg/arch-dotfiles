@@ -14,21 +14,9 @@ repo = 'ntpeters/vim-better-whitespace' # find whitespaces with ease
 on_cmd = 'StripWhitespace'
 # --[ Web ]-------------------------------------------------------------------------------
 [[plugins]]
-repo = 'rstacruz/sparkup.git' # write html code faster
-on_ft = ['html']
-[[plugins]]
 repo = 'mattn/emmet-vim' # expanding abbreviations similar to emmet
 on_cmd = ['EmmetInstall']
-[[plugins]]
-repo = 'othree/html5.vim' #  html5 autocomplete and synta
-on_ft = ['html', 'htmldjango']
 # --[ Markdown ]--------------------------------------------------------------------------
-[[plugins]]
-repo = 'tpope/vim-markdown' # markdown vim mode
-on_ft = ['markdown']
-[[plugins]]
-repo = 'mzlogin/vim-markdown-toc' # plugin to autogenerate table of contents for markdown
-on_ft = ['markdown']
 [[plugins]]
 repo = 'iamcco/markdown-preview.vim' # markdown preview
 on_ft = ['markdown']
@@ -37,30 +25,17 @@ repo = 'iamcco/mathjax-support-for-mkdp' # mathjax support for markdown preview
 on_ft = ['markdown']
 # --[ JS ]---------------------------------------------------------------------------------
 [[plugins]]
-repo = 'marijnh/tern_for_vim' # tern for vim
-on_ft = ['javascript']
-[[plugins]]
 repo = 'maksimr/vim-jsbeautify' # neoformat formatter ;)
 on_ft = ['javascript']
 # --[ Python ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'vim-scripts/IndentConsistencyCop.git' # autochecks for indent
 on_ft = ['python']
-[[plugins]]
-repo = 'Vimjas/vim-python-pep8-indent' # python autoindent pep8 compatible
-on_ft = ['python']
-# --[ LaTeX ]-----------------------------------------------------------------------------
-[[plugins]]
-repo = 'donRaphaco/neotex'
-on_ft = ['tex']
 # --[ Rust ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'rust-lang/rust.vim' # detection of rust files
 on_ft = ['rust']
 merged = 1
-[[plugins]]
-repo = 'racer-rust/vim-racer' # racer support
-on_ft = ['rust']
 [[plugins]]
 repo = 'jtdowney/vimux-cargo' # rust-cargo bindings
 [[plugins]]
