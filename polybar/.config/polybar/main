@@ -3,7 +3,7 @@ margin-top = 0
 margin-bottom = 0
 
 [colors]
-background= "#ee020209"
+background= "#cc020209"
 border = ${xrdb:color32}
 border_top = ${xrdb:color32}
 
@@ -135,7 +135,7 @@ ls=
 rs=
 lspec="%{F#395573}⟬ %{F#ccc}"
 rspec="%{F#395573}⟭ %{F#ccc}"
-delim="%{F#005f87}%{O5}∣%{F#ccc}"
-deliml="%{F#005f87}%{O5}∣%{F#ccc}%{O5}"
+delim="%{F#395573}%{O5}∣%{F#ccc}"
+deliml="%{F#395573}%{O5}∣%{F#ccc}%{O5}"
 
 ; vim:ft=conf
