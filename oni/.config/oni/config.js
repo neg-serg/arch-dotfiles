@@ -7,6 +7,7 @@ const activate = oni => {
 
 module.exports = {
     activate,
+
     "autoClosingPairs.enabled": false, // Disable oni's autoclosing pairs.
     "commandline.icons": true, // Commandline icons.
     "sidebar.enabled": false, // Disable sidebar.
@@ -42,5 +43,54 @@ module.exports = {
     "wildmenu.mode": false, // Do not override vim's native wildmenu UI.
     "learning.enabled": false, // Disable learning.
     "experimental.markdownPreview.enabled": false, // Experimental Markdown preview.
+
+    "colors.background": "#000000",
+    "colors.foreground": "#617287",
+
+    "colors.title.background": "#1E2127",
+    "colors.title.foreground": "#ABB2BF",
+
+    "colors.editor.background": "#000000",
+    "colors.editor.foreground": "#375BC1",
+
+    "colors.tabs.background": "#282C34",
+    "colors.tabs.foreground": "#ABB3BF",
+
+    "colors.toolTip.background": "#000000",
+    "colors.toolTip.foreground": "#617287", // like pmenu color
+    "colors.toolTip.border": "#080820",
+
+    "colors.menu.background": "#282C34",
+    "colors.menu.foreground": "#ABB2BF",
+    "colors.menu.border": "#080820",
+
+    "colors.contextMenu.background": "#000000",
+    "colors.contextMenu.foreground": "#ABB2BF",
+    "colors.contextMenu.border": "#080820",
+    "colors.contextMenu.highlight": "#1E2127",
+
+    "colors.sidebar.background": "#1E2127",
+    "colors.sidebar.foreground": "#ABB2BF",
+    "colors.sidebar.active.background": "#282C34",
+    "colors.sidebar.selection.border": "#080830",
+    "colors.statusBar.background": "#000000",
+    "colors.statusBar.foreground": "#617287",
+
+    "colors.highlight.mode.insert.background": "#375BC1",
+    "colors.highlight.mode.insert.foreground": "#282c34",
+    "colors.highlight.mode.normal.background": "#375BC1",
+    "colors.highlight.mode.normal.foreground": "#282c34",
+    "colors.highlight.mode.operator.background": "#d19a66",
+    "colors.highlight.mode.operator.foreground": "#282c34",
+    "colors.highlight.mode.visual.background": "#56b6c2",
+    "colors.highlight.mode.visual.foreground": "#282c34",
+
+    "colors.editor.hover.title.background": '#000000',
+    "colors.editor.hover.title.foreground": "#617287",
+    "colors.editor.hover.border": "#395573",
+    "editor.hover.contents.background": '#000000',
+    "editor.hover.contents.foreground": "#617287",
+    "editor.hover.contents.codeblock.background": '#000000',
+    "editor.hover.contents.codeblock.foreground": "#617287",
 }
 
