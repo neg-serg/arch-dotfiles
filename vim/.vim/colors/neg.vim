@@ -71,7 +71,7 @@ if has('gui_running') || (has('termguicolors') && &termguicolors) || !empty($NVI
     let s:color228_hex='00406D'    " (color 228)
     let s:color162_hex='CC6666'    " (color 162)
     let s:color127_hex='5F0000'    " (color 127)
-    let s:color253_hex='C5C8C6'    " (color 253)
+    let s:color253_hex='617287'    " (color 253)
     let s:color255_hex='eeeeee'    " (color 255)
     let s:color200_hex='0C1014'    " (color 200)
     let s:colorcursor_hex='375BC1' " (color cursor)

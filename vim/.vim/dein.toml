@@ -128,9 +128,11 @@ repo = 'christoomey/vim-tmux-navigator' # easy jump between windows
 #--[ Session ]--------------------------------------------------------------------------
 [[plugins]]
 repo = 'xolox/vim-misc' # for vim-session
+merged = 0
 [[plugins]]
 repo = 'xolox/vim-session' # rule sessions
 depends = 'vim-misc'
+merged = 0
 # --[ Misc ]----------------------------------------------------------------------------
 [[plugins]]
 repo = 'powerman/vim-plugin-ruscmd' # prevent too much ru-en layout switching with c-s
