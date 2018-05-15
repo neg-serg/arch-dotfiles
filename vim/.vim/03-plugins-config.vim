@@ -112,11 +112,11 @@ if dein#tap('ultisnips')
     let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
     if has("gui_macvim")
         " Ctrl conflicts with Dvorak-Qwerty Command
-        let g:UltiSnipsExpandTrigger       = "<m-s>"
+        let g:UltiSnipsExpandTrigger       = "<Tab>"
     else
-        let g:UltiSnipsExpandTrigger       = "<m-s>"
-        let g:UltiSnipsJumpForwardTrigger  = "<m-s>"
-        let g:UltiSnipsJumpBackwardTrigger = "<m-f>"
+        let g:UltiSnipsExpandTrigger       = "<Tab>"
+        let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
+        let g:UltiSnipsJumpBackwardTrigger = "<C-Tab>"
         let g:UltiSnipsListSnippets        = "<c-m-s>"
     endif
     if has('conceal')
@@ -202,7 +202,7 @@ endif
 " │ https://github.com/majutsushi/tagbar.git                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('tagbar')
-    nnoremap <silent> <leader>tt :TagbarToggle<CR>
+    nnoremap <silent> <leader>t :TagbarToggle<CR>
     let g:tagbar_type_markdown = {
         \ 'ctagstype' : 'markdown',
         \ 'kinds' : [
@@ -359,13 +359,6 @@ if dein#tap('vimfiler.vim')
     endfunction
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - tpope/vim-fugitive.git                                                   │
-" │ https://github.com/tpope/vim-fugitive.git                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-" if dein#tap('vim-fugitive')
-"     " ...............
-" endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - dbakker/vim-projectroot.git                                              │
 " │ https://github.com/dbakker/vim-projectroot.git                                    │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -379,23 +372,6 @@ endif
 if dein#tap('gasynctags')
     let g:gasynctags_autostart = 0
     nmap <silent><space>d :GasyncTagsEnable<CR>:GtagsCscope<CR>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - othree/eregex.vim.git                                                    │
-" │ https://github.com/othree/eregex.vim.git                                          │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('eregex.vim')
-    " With this map, we can select some text in visual mode and by invoking the map,
-    " have the selection automatically filled in as the search text and the cursor
-    " placed in the position for typing the replacement text. Also, this will ask
-    " for confirmation before it replaces any instance of the search text in the
-    " file.
-    " NOTE: We're using %S here instead of %s; the capital S version comes from the
-    " eregex.vim plugin and uses Perl-style regular expressions.
-    vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
-    let g:eregex_default_enable    = 0
-    " Toggles '/' to mean eregex search or normal Vim search
-    nnoremap <leader>/ :call eregex#toggle()<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-dispatch.git                                                   │
@@ -479,15 +455,6 @@ if dein#tap('rainbow')
         \}
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - rstacruz/sparkup                                                         │
-" │ https://github.com/rstacruz/sparkup                                               │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('sparkup')
-    let g:sparkupMapsNormal     = 0       "default = 0
-    let g:sparkupMaps           = 0       "default = 1
-    let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - joshdick/onedark.vim                                                     │
 " │ https://github.com/joshdick/onedark.vim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -568,8 +535,10 @@ if dein#tap('indentLine')
     let g:indentLine_setColors                  = 1
     let g:indentLine_color_term                 = 239
     let g:indentLine_char                       = '┆'
+    let g:indentLine_faster                     = 1
     " none X terminal
-    let g:indentLine_bgcolor_gui                = '#040404'
+    let g:indentLine_color_gui                  = '#37414D'
+    let g:indentLine_bgcolor_gui                = '#000000'
     let g:indentLine_concealcursor              = 'inc'
     let g:indentLine_conceallevel               = 2
 endif
