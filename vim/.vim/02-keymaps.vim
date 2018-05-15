@@ -11,15 +11,6 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 nnoremap Y y$
 
-nnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
-nnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
-vnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
-vnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
-
-function! s:search_forward_p()
-  return exists('v:searchforward') ? v:searchforward : 1
-endfunction
-
 let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
@@ -41,14 +32,12 @@ set pastetoggle=<A-p>
 
 " Toggle some opts
 nnoremap <silent> cow :set wrap!<CR>
-nnoremap <silent> cof :call ToggleOptionFlags('formatoptions', ['a','t'])<Return>
 nnoremap <silent> cop :setlocal paste!<Return>
 nnoremap <silent> cos :setlocal spell!<Return>
-nnoremap <silent> coz :setlocal foldenable!<Return>
 
 " These create newlines like o and O but stay in normal mode
-nnoremap <silent> zj o<Esc>k
-nnoremap <silent> zk O<Esc>j
+nnoremap <silent> zJ o<Esc>k
+nnoremap <silent> zK O<Esc>j
 
 " semicolon magic
 nnoremap <Space>w :w!<cr>
@@ -118,17 +107,6 @@ noremap U <C-r>
 
 " Strip trailing workspaces
 nnoremap <silent> <Space><C-s> :call StripTrailingWhitespace()<Return>
-
-nnoremap <F1> :echom
-	\ ' hi['
-	\ . synIDattr(synID(line('.'),col('.'),1),'name')
-	\ . '] trans['
-	\ . synIDattr(synID(line('.'),col('.'),0),'name')
-	\ . '] lo['
-	\ . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')
-	\ . ']'
-	\ . ' fg[' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'fg#')
-	\ . ']' <CR>
 
 " Use | and _ to split windows (while preserving original behaviour of [count]bar and [count]_).
 nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
