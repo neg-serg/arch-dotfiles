@@ -30,7 +30,6 @@ if 1
     let g:loaded_2html_plugin    = 1 " 2html is too ugly for me
     let g:loaded_logipat         = 1 " Boolean logic patterns
     let g:loaded_matchparen      = 1 " Don't show matching brackets/parenthesis
-    let g:loaded_netrwPlugin     = 1 " Don't use netrw
     let g:loaded_vimballPlugin   = 1 " Don't use legacy vimball
     let g:loaded_tarPlugin       = 1 " Don't use archive-related plugins
     let g:loaded_gzip            = 1 " Don't use archive-related plugins
