@@ -2,7 +2,7 @@
 const activate = oni => {
     oni.input.unbind("<c-p>");
     oni.input.bind("<S-Insert>", "editor.clipboard.paste");
-    oni.input.bind(["<enter>", "<tab>"], "contextMenu.select");
+    oni.input.bind(["<enter>", "<S-tab>", "<C-Space>"], "contextMenu.select");
 }
 
 module.exports = {
@@ -43,6 +43,7 @@ module.exports = {
     "wildmenu.mode": false, // Do not override vim's native wildmenu UI.
     "learning.enabled": false, // Disable learning.
     "experimental.markdownPreview.enabled": false, // Experimental Markdown preview.
+    "language.cpp.languageServer.arguments": ["-std=c++17"],
 
     "colors.background": "#000000",
     "colors.foreground": "#617287",
