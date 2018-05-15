@@ -42,20 +42,18 @@ autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
     \ | redraw
     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 if exists('$TMUX')
-    let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket' | let g:nvim_is_started='on'
+    let $NVIM_LISTEN_ADDRESS='~/1st_level/nvim.socket' | let g:nvim_is_started='on'
 else
     let g:nvim_is_started='off'
 endif
 
 if exists('g:gui_oni')
-    let $NVIM_LISTEN_ADDRESS='/home/neg/1st_level/nvim.socket' | let g:nvim_is_started='on'
+    let $NVIM_LISTEN_ADDRESS='~/1st_level/nvim.socket' | let g:nvim_is_started='on'
 endif
 
 if has('nvim')
-    let g:python_interpreter='python2'
-        let &runtimepath = expand('~/.vim/') . ','
-        \ . expand('~/.vim/after/') . ',' . &runtimepath
-    runtime! plugin/python_setup.vim
+    let &runtimepath = expand('~/.vim/') . ','
+    \ . expand('~/.vim/after/') . ',' . &runtimepath
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     let $COLORTERM='truecolor'
     "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
@@ -72,6 +70,7 @@ if (!isdirectory(expand('$HOME/.vim/repos/github.com/Shougo/dein.vim')))
 endif
 
 set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim/
+
 if dein#load_state(expand('~/.vim/repos'))
     call dein#begin(expand('~/.vim'))
     call dein#load_toml('~/.vim/dein_lazy.toml', {'lazy' : 1})
