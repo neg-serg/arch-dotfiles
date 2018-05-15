@@ -12,8 +12,8 @@ module.exports = {
     "commandline.icons": true, // Commandline icons.
     "sidebar.enabled": false, // Disable sidebar.
     "commandline.mode": false, // Do not override commandline UI.
-    "editor.backgroundOpacity": 0.88, // Dark enough.
     "editor.completions.mode": 'oni', // VSCode-like completion.
+    "editor.backgroundOpacity": 0.88, // Dark enough.
     "editor.backgroundImageUrl": "/home/neg/pic/wl/J8IW4DE.png",
     "editor.cursorLine": false, // Disables cursor line highlight.
     "editor.cursorColumn": false, // Disables cursor column highlight. 
