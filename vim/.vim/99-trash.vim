@@ -53,3 +53,61 @@ if dein#tap('deoplete.nvim')
     endfunction"}}}
     inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<Tab>"
 endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - davidhalter/jedi-vim.git                                                 │
+" │ https://github.com/davidhalter/jedi-vim.git                                       │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('jedi-vim')
+    let g:jedi#popup_on_dot = 1
+    let g:jedi#popup_select_first = 0
+    let g:jedi#completions_enabled = 1
+    let g:jedi#usages_command = "<leader>z"
+    function! s:jedi_settings()
+        nnoremap <buffer><leader>r :<C-u>call jedi#rename()<CR>
+        nnoremap <buffer><leader>g :<C-u>call jedi#goto_assignments()<CR>
+        nnoremap <buffer><leader>d :<C-u>call jedi#goto_definitions()<CR>
+        nnoremap <buffer>K :<C-u>call jedi#show_documentation()<CR>
+        nnoremap <buffer><leader>u :<C-u>call jedi#usages()<CR>
+        nnoremap <buffer><leader>i :<C-u>Pyimport<leader>
+        setlocal omnifunc=jedi#completions
+        command! -nargs=0 JediRename call jedi#rename()
+    endfunction
+    autocmd Filetype python call <SID>jedi_settings()
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - majutsushi/tagbar.git                                                    │
+" │ https://github.com/majutsushi/tagbar.git                                          │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('tagbar')
+    nnoremap <silent> <leader>t :TagbarToggle<CR>
+    let g:tagbar_type_markdown = {
+        \ 'ctagstype' : 'markdown',
+        \ 'kinds' : [
+            \ 'h:Heading_L1',
+            \ 'i:Heading_L2',
+            \ 'k:Heading_L3'
+        \ ]
+    \ }
+    let g:tagbar_type_css = {
+        \ 'ctagstype' : 'Css',
+        \ 'kinds' : [
+            \ 'c:classes',
+            \ 's:selectors',
+            \ 'i:identities'
+        \ ]
+    \ }
+    let g:tagbar_type_ruby = {
+        \ 'kinds' : [
+            \ 'm:modules',
+            \ 'c:classes',
+            \ 'd:describes',
+            \ 'C:contexts',
+            \ 'f:methods',
+            \ 'F:singleton methods'
+        \ ]
+    \ }
+    let g:tagbar_width   = 30
+    let g:tagbar_left    = 0
+    let g:tagbar_sort    = 0
+    let g:tagbar_compact = 1
+endif

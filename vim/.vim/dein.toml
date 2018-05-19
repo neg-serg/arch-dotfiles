@@ -57,8 +57,6 @@ repo = 'jremmen/vim-ripgrep' # ripgrep binding
 repo = 'thinca/vim-ref.git' # integrated reference viewer man/perldoc etc
 # --[ Dev ]-------------------------------------------------------------------------------
 [[plugins]]
-repo = 'majutsushi/tagbar' # tag bar
-[[plugins]]
 repo = 'chrisbra/vim-diff-enhanced.git' # patience diff
 [[plugins]]
 repo = 'tpope/vim-dispatch.git' # provide async build via tmux

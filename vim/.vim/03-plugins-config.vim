@@ -48,11 +48,7 @@ endif
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('fzf.vim')
-    if !has("nvim")
-        let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
-    else
-        let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
-    endif
+    let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
     if !dein#tap('lusty') && !dein#tap('lycosaexplorer') && has("nvim")
         nnoremap <leader>l :Files %:p:h<CR>
     endif
@@ -110,15 +106,10 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('ultisnips')
     let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
-    if has("gui_macvim")
-        " Ctrl conflicts with Dvorak-Qwerty Command
-        let g:UltiSnipsExpandTrigger       = "<Tab>"
-    else
-        let g:UltiSnipsExpandTrigger       = "<Tab>"
-        let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
-        let g:UltiSnipsJumpBackwardTrigger = "<C-Tab>"
-        let g:UltiSnipsListSnippets        = "<c-m-s>"
-    endif
+    let g:UltiSnipsExpandTrigger       = "<Tab>"
+    let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<C-Tab>"
+    let g:UltiSnipsListSnippets        = "<c-m-s>"
     if has('conceal')
         set conceallevel=2 concealcursor=i
     endif
@@ -141,43 +132,6 @@ if dein#tap('vim-xkbswitch')
     let g:XkbSwitchIMappings = ['ru']
     let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
     let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - majutsushi/tagbar.git                                                    │
-" │ https://github.com/majutsushi/tagbar.git                                          │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('tagbar')
-    nnoremap <silent> <leader>t :TagbarToggle<CR>
-    let g:tagbar_type_markdown = {
-        \ 'ctagstype' : 'markdown',
-        \ 'kinds' : [
-            \ 'h:Heading_L1',
-            \ 'i:Heading_L2',
-            \ 'k:Heading_L3'
-        \ ]
-    \ }
-    let g:tagbar_type_css = {
-        \ 'ctagstype' : 'Css',
-        \ 'kinds' : [
-            \ 'c:classes',
-            \ 's:selectors',
-            \ 'i:identities'
-        \ ]
-    \ }
-    let g:tagbar_type_ruby = {
-        \ 'kinds' : [
-            \ 'm:modules',
-            \ 'c:classes',
-            \ 'd:describes',
-            \ 'C:contexts',
-            \ 'f:methods',
-            \ 'F:singleton methods'
-        \ ]
-    \ }
-    let g:tagbar_width   = 30
-    let g:tagbar_left    = 0
-    let g:tagbar_sort    = 0
-    let g:tagbar_compact = 1
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
@@ -255,27 +209,6 @@ if dein#tap('vim-dispatch')
     nmap MC :Make clean<cr>
     nmap <Space>cc :Make -j10<cr>
     nmap <Space>mc :Make distclean<cr>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - davidhalter/jedi-vim.git                                                 │
-" │ https://github.com/davidhalter/jedi-vim.git                                       │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('jedi-vim')
-    let g:jedi#popup_on_dot = 1
-    let g:jedi#popup_select_first = 0
-    let g:jedi#completions_enabled = 1
-    let g:jedi#usages_command = "<leader>z"
-    function! s:jedi_settings()
-        nnoremap <buffer><leader>r :<C-u>call jedi#rename()<CR>
-        nnoremap <buffer><leader>g :<C-u>call jedi#goto_assignments()<CR>
-        nnoremap <buffer><leader>d :<C-u>call jedi#goto_definitions()<CR>
-        nnoremap <buffer>K :<C-u>call jedi#show_documentation()<CR>
-        nnoremap <buffer><leader>u :<C-u>call jedi#usages()<CR>
-        nnoremap <buffer><leader>i :<C-u>Pyimport<leader>
-        setlocal omnifunc=jedi#completions
-        command! -nargs=0 JediRename call jedi#rename()
-    endfunction
-    autocmd Filetype python call <SID>jedi_settings()
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - luochen1990/rainbow                                                      │
