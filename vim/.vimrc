@@ -33,21 +33,15 @@ endif
 autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
     \ | redraw
     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
-if exists('$TMUX')
+if (exists('$TMUX') ||  exists('g:gui_oni'))
     let $NVIM_LISTEN_ADDRESS='~/1st_level/nvim.socket' | let g:nvim_is_started='on'
 else
     let g:nvim_is_started='off'
 endif
 
-if exists('g:gui_oni')
-    let $NVIM_LISTEN_ADDRESS='~/1st_level/nvim.socket' | let g:nvim_is_started='on'
-endif
-
 if has('nvim')
     let &runtimepath = expand('~/.vim/') . ','
-    \ . expand('~/.vim/after/') . ',' . &runtimepath
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    let $COLORTERM='truecolor'
+        \ . expand('~/.vim/after/') . ',' . &runtimepath
     set termguicolors
 endif
 
