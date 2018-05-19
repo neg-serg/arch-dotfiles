@@ -143,61 +143,6 @@ if dein#tap('vim-xkbswitch')
     let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - Shougo/deoplete.nvim                                                     │
-" │ https://github.com/Shougo/deoplete.nvim                                           │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('deoplete.nvim')
-    if has("nvim")
-        let g:deoplete#enable_at_startup = 1 
-    endif
-    let g:deoplete#ignore_sources      = {}
-    let g:deoplete#omni#input_patterns = {}
-    let g:deoplete#omni_patterns       = {}
-
-    let g:deoplete#enable_at_startup     = 1
-    let g:deoplete#enable_ignore_case    = 1
-    let g:deoplete#enable_smart_case     = 1
-    let g:deoplete#enable_camel_case     = 1
-    let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#max_abbr_width        = 0
-    let g:deoplete#max_menu_width        = 0
-
-    let g:deoplete#complete_method   = "complete"
-    let g:deoplete#enable_camel_case = 1
-    let g:deoplete#max_list          = 500
-    let g:deoplete#max_menu_width    = 8
-
-    " java && jsp
-    let g:deoplete#omni#input_patterns.java = [
-                \'[^. \t0-9]\.\w*',
-                \'[^. \t0-9]\->\w*',
-                \'[^. \t0-9]\::\w*',
-                \]
-    let g:deoplete#omni#input_patterns.jsp = ['[^. \t0-9]\.\w*']
-
-    " perl
-    let g:deoplete#omni#input_patterns.perl = [
-                \'[^. \t0-9]\.\w*',
-                \'[^. \t0-9]\->\w*',
-                \'[^. \t0-9]\::\w*',
-                \]
-
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-    set isfname-==
-
-    " deoplete tab-complete
-    inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ deoplete#mappings#manual_complete()
-    function! s:check_back_space() abort "{{{
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction"}}}
-    inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<Tab>"
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - majutsushi/tagbar.git                                                    │
 " │ https://github.com/majutsushi/tagbar.git                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -252,14 +197,6 @@ if dein#tap('vim-fswitch')
     nnoremap <Space>sv :FSSplitLeft<cr>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - chrisbra/Join.git                                                        │
-" │ https://github.com/chrisbra/Join.git                                              │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('Join')
-    nmap J :Join<CR>
-    vmap J :Join<CR>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - gregsexton/gitv.git                                                      │
 " │ https://github.com/gregsexton/gitv.git                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -295,70 +232,6 @@ if dein#tap('delimitMate')
     imap <Esc>OF <Plug>delimitMateEnd
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - Shougo/vimfiler.vim                                                      │
-" │ https://github.com/Shougo/vimfiler.vim                                            │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vimfiler.vim')
-    let g:vimfiler_as_default_explorer    = 1
-    let g:vimfiler_restore_alternate_file = 1
-    let g:vimfiler_tree_indentation       = 1
-    let g:vimfiler_tree_leaf_icon         = ''
-    let g:vimfiler_tree_opened_icon       = '▼'
-    let g:vimfiler_tree_closed_icon       = '▷'
-    let g:vimfiler_file_icon              = ''
-    let g:vimfiler_readonly_file_icon     = '*'
-    let g:vimfiler_marked_file_icon       = '√'
-    let g:vimfiler_direction              = 'rightbelow'
-    let g:vimfiler_ignore_pattern         = [
-        \ '^\.git$',
-        \ '^\.DS_Store$',
-        \ '^\.init\.vim-rplugin\~$',
-        \ '^\.netrwhist$',
-        \ '\.class$'
-        \]
-
-    let g:vimfiler_quick_look_command = 'gloobus-preview'
-
-    function! s:setcolum() abort
-        return 'filetypeicon:gitstatus'
-    endfunction
-
-    call vimfiler#custom#profile('default', 'context', {
-        \ 'explorer' : 1,
-        \ 'winwidth' : 20,
-        \ 'winminwidth' : 30,
-        \ 'toggle' : 1,
-        \ 'auto_expand': 1,
-        \ 'direction' : g:vimfiler_direction,
-        \ 'explorer_columns' : s:setcolum(),
-        \ 'parent': 0,
-        \ 'status' : 1,
-        \ 'safe' : 0,
-        \ 'split' : 1,
-        \ 'hidden': 1,
-        \ 'no_quit' : 1,
-        \ 'force_hide' : 0,
-        \ })
-
-    augroup vfinit
-    au!
-    autocmd FileType vimfiler call s:vimfilerinit()
-    augroup END
-    function! s:vimfilerinit()
-        setl nonumber
-        setl norelativenumber
-
-        silent! nunmap <buffer> <Space>
-        silent! nunmap <buffer> <C-l>
-        silent! nunmap <buffer> <C-j>
-        silent! nunmap <buffer> E
-        silent! nunmap <buffer> gr
-        silent! nunmap <buffer> gf
-        silent! nunmap <buffer> -
-        silent! nunmap <buffer> s
-    endfunction
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - dbakker/vim-projectroot.git                                              │
 " │ https://github.com/dbakker/vim-projectroot.git                                    │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -378,7 +251,7 @@ endif
 " │ https://github.com/tpope/vim-dispatch.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vim-dispatch')
-    nmap MK :Make -j4
+    nmap MK :Make -j9
     nmap MC :Make clean<cr>
     nmap <Space>cc :Make -j10<cr>
     nmap <Space>mc :Make distclean<cr>
@@ -403,28 +276,6 @@ if dein#tap('jedi-vim')
         command! -nargs=0 JediRename call jedi#rename()
     endfunction
     autocmd Filetype python call <SID>jedi_settings()
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - godlygeek/tabular                                                        │ 
-" │ git@github.com:godlygeek/tabular                                                  │ 
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('tabular') 
-    nmap <Leader>a&     :Tabularize /&<CR>
-    vmap <Leader>a&     :Tabularize /&<CR>
-    nmap <Leader>a=     :Tabularize /^[^=]*\zs=<CR>
-    vmap <Leader>a=     :Tabularize /^[^=]*\zs=<CR>
-    nmap <Leader>a=>    :Tabularize /=><CR>
-    vmap <Leader>a=>    :Tabularize /=><CR>
-    nmap <Leader>a:     :Tabularize /:<CR>
-    vmap <Leader>a:     :Tabularize /:<CR>
-    nmap <Leader>a::    :Tabularize /:\zs<CR>
-    vmap <Leader>a::    :Tabularize /:\zs<CR>
-    nmap <Leader>a,     :Tabularize /,<CR>
-    vmap <Leader>a,     :Tabularize /,<CR>
-    nmap <Leader>a,,    :Tabularize /,\zs<CR>
-    vmap <Leader>a,,    :Tabularize /,\zs<CR>
-    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - luochen1990/rainbow                                                      │
@@ -534,7 +385,7 @@ if dein#tap('indentLine')
     let g:indentLine_enabled                    = 1
     let g:indentLine_setColors                  = 1
     let g:indentLine_color_term                 = 239
-    let g:indentLine_char                       = '┆'
+    let g:indentLine_char                       = '▏' " It can be : ¦┆│⎸ ▏
     let g:indentLine_faster                     = 1
     " none X terminal
     let g:indentLine_color_gui                  = '#37414D'
@@ -598,16 +449,16 @@ if dein#tap('lightline.vim')
 
     let g:lightline.mode_map = {
         \ 'n' : 'N',
-        \ 'i' : 'INSERT',
+        \ 'i' : 'INS',
         \ 'R' : 'REPLACE',
-        \ 'v' : 'VISUAL',
-        \ 'V' : 'V-LINE',
-        \ "\<C-v>": 'V-BLOCK',
-        \ 'c' : 'COMMAND',
-        \ 's' : 'SELECT',
+        \ 'v' : 'v',
+        \ 'V' : 'V',
+        \ "\<C-v>": 'vb',
+        \ 'c' : 'CMD',
+        \ 's' : 'SEL',
         \ 'S' : 'S-LINE',
         \ "\<C-s>": 'S-BLOCK',
-        \ 't': 'TERMINAL',
+        \ 't': 'TERM',
     \ }
     function! LightlineModified()
         return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'

@@ -13,8 +13,6 @@ repo = 'sbdchd/neoformat' # universal formatter
 [[plugins]]
 repo = 'SirVer/ultisnips.git' # Snippets with ycm compatibility
 [[plugins]]
-repo = 'chrisbra/Join.git' # Extended and fast Join for vim
-[[plugins]]
 repo = 'tpope/vim-unimpaired.git' # good mappings and toggles
 [[plugins]]
 repo = 'tpope/vim-repeat' # dot for everything
