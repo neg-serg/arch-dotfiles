@@ -1,12 +1,9 @@
-let g:strange_keymaps=''
-
-if g:strange_keymaps
+if get(g:, 'strange_keymaps')
     nnoremap 4 $
     nnoremap $ 4
 endif
 
-" Some helpers to edit mode
-" http://vimcasts.org/e/14
+" Some helpers to edit mode (http://vimcasts.org/e/14)
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 nnoremap Y y$
@@ -27,11 +24,9 @@ nnoremap <space> <Nop>
 
 nnoremap <silent> <leader>4 :set cursorline!<CR>
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
-nnoremap <silent> <F2> :set invpaste paste?<CR>
-set pastetoggle=<A-p>
 
-" Toggle some opts
-nnoremap <silent> cow :set wrap!<CR>
+nnoremap <silent> <C--> :set invpaste paste?<CR>
+nnoremap <silent> cow :set wrap!<CR>  
 nnoremap <silent> cop :setlocal paste!<Return>
 nnoremap <silent> cos :setlocal spell!<Return>
 
@@ -90,27 +85,14 @@ nnoremap <silent> [Quickfix]l :normal :<C-u>clist<CR>
 nnoremap ' `
 nnoremap ` '
 
-" g<c-]> is jump to tag if there's only one matching tag, but show list of
-" options when there is more than one definition
-nnoremap <space>g g<c-]>
-
-nnoremap <C-w>- :resize -10<CR>
-nnoremap <C-w>+ :resize +10<CR>
-nnoremap <C-w>, :vertical resize -10<CR>
-nnoremap <C-w>. :vertical resize +10<CR>
+nnoremap <Space>- :resize -10<CR>
+nnoremap <Space>+ :resize +10<CR>
+nnoremap <Space>, :vertical resize -10<CR>
+nnoremap <Space>. :vertical resize +10<CR>
 
 " Macros editing
 nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
-
 " use U for redo
-noremap U <C-r>
-
-" Strip trailing workspaces
-nnoremap <silent> <Space><C-s> :call StripTrailingWhitespace()<Return>
-
-" Use | and _ to split windows (while preserving original behaviour of [count]bar and [count]_).
-nnoremap <expr><silent> <Bar> v:count == 0 ? "<C-W>v<C-W><Right>" : ":<C-U>normal! 0".v:count."<Bar><CR>"
-nnoremap <expr><silent> _     v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_<CR>"
-
+nnoremap U <C-r>
 " like firefox tabs
 nnoremap <silent> <A-w> :bd<CR>
