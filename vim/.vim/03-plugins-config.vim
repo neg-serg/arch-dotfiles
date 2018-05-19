@@ -95,11 +95,11 @@ if dein#tap('fzf.vim')
     imap <c-x><c-l> <Plug>(fzf-complete-line)
 
     nnoremap <silent> <Leader>. :call fzf#run({
-                \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
-                \ 'options': '--tiebreak=index --multi --reverse --margin 15%,0',
-                \ 'down': '20%',
-                \ 'sink': 'e '
-                \ })<CR>
+        \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
+        \ 'options': '--tiebreak=index --multi --reverse --margin 15%,0',
+        \ 'down': '20%',
+        \ 'sink': 'e '
+        \ })<CR>
     function! s:escape(path)
         return substitute(a:path, ' ', '\\ ', 'g')
     endfunction
@@ -330,31 +330,6 @@ if dein#tap('onedark')
         \ "special_grey": { "gui": "#2D3B42", "cterm": "238", "cterm16": "15" },
         \ "vertsplit": { "gui": "#202A2F", "cterm": "59", "cterm16": "15" }
     \}
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - fatih/vim-go.git                                                         │
-" │ https://github.com/fatih/vim-go.git                                               │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vim-go')
-    let g:go_highlight_functions         = 1
-    let g:go_highlight_methods           = 1
-    let g:go_highlight_structs           = 1
-    let g:go_highlight_operators         = 1
-    let g:go_highlight_build_constraints = 1
-    let g:go_fmt_command                 = 'goimports'
-    let g:go_snippet_engine              = 'UltiSnips'
-    augroup Go
-        au!
-        au FileType go nmap <Buffer><silent><Leader>s <Plug>(go-implements)
-        au FileType go nmap <Buffer><silent><Leader>i <Plug>(go-info)
-        au FileType go nmap <Buffer><silent><Leader>e <Plug>(go-rename)
-        au FileType go nmap <Buffer><silent><Leader>r <Plug>(go-run)
-        au FileType go nmap <Buffer><silent><Leader>b <Plug>(go-build)
-        au FileType go nmap <Buffer><silent><Leader>t <Plug>(go-test)
-        au FileType go nmap <Buffer><silent><Leader>gd <Plug>(go-doc)
-        au FileType go nmap <Buffer><silent><Leader>gv <Plug>(go-doc-vertical)
-        au FileType go nmap <Buffer><silent><Leader>co <Plug>(go-coverage)
-    augroup END
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-markdown                                                       │
