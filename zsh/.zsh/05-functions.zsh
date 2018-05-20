@@ -307,18 +307,3 @@ function ipaddr(){
 }
 
 ::() { echo -e "\e[0;31m:: \e[0;32m$*\e[0m" >&2 "$@" }
-
-function sprunge() {
-    if [[ -t 0 ]]; then
-      if [[ "$*" ]]; then
-        if [[ -f "$*" ]]; then
-          cat "$*"
-        else
-          echo "$*"
-        fi | curl -F 'sprunge=<-' http://sprunge.us
-      fi
-    else
-      curl -F 'sprunge=<-' http://sprunge.us
-    fi
-}
-
