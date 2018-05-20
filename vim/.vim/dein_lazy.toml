@@ -41,16 +41,10 @@ repo = 'jtdowney/vimux-cargo' # rust-cargo bindings
 [[plugins]]
 # --[ Haskell ]-----------------------------------------------------------------------------
 [[plugins]]
-repo = 'ujihisa/neco-ghc' # autocomplete for hs using ghc-mod
-on_ft = ['haskell']
-[[plugins]]
-repo = 'eagletmt/ghcmod-vim.git' # ghc-mod integration
-on_ft = ['haskell']
-[[plugins]]
 repo = 'bitc/vim-hdevtools' # type-related features
 on_ft = ['haskell']
 [[plugins]]
-repo = 'neovimhaskell/haskell-vim' # neovim haskell support
+repo = 'neovimhaskell/haskell-vim' # syntax highlight and indentation
 on_ft = ['haskell']
 # --[ Ruby ]--------------------------------------------------------------------------------
 [[plugins]]
