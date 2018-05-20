@@ -1,0 +1,11 @@
+[Unit]
+Description=Pic dirs notification
+After=sockets.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/home/neg/bin/scripts/update-pic-dirs
+
+[Install]
+WantedBy=default.target
