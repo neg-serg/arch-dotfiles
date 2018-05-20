@@ -45,6 +45,15 @@ module.exports = {
     "experimental.markdownPreview.enabled": false, // Experimental Markdown preview.
     "language.cpp.languageServer.arguments": ["-std=c++17"],
 
+    // haskell support ( need haskell-ide-engine )
+    "language.haskell.languageServer.command": "hi",
+    "language.haskell.languageServer.arguments": ["--lsp"],
+    "language.haskell.languageServer.rootFiles": [".git"],
+
+    // Lua support ( need lua-lsp )
+    "language.lua.languageServer.command": "lua-ls",
+    "language.lua.languageServer.rootFiles": [".git"],
+
     "colors.background": "#000000",
     "colors.foreground": "#617287",
 
