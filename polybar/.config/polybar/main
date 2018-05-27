@@ -24,7 +24,7 @@ padding-right = 0       # offset from -x
 
 module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
-modules-left = LL date ws xkeyboard networkenp6s0 networkenp7s0 mail RR
+modules-left = LL date ws xkeyboard networkenp6s0 networkenp7s0 gmail RR
 modules-center =
 modules-right = mpd volume
 
@@ -120,13 +120,11 @@ label-connected = eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%
 format-connected-prefix=${c.l}
 format-connected-suffix=${c.rs}
 
-[module/mail]
+[module/gmail]
 type = custom/script
-exec = ~/bin/mon/mail_count
-format-prefix = ${c.deliml}
-format-suffix = ${c.r}
-format = <label>
-interval = 180
+exec = ~/.config/polybar/gmail/launch.py -p ''
+tail = true
+click-left = xdg-open https://mail.google.com
 
 [c]
 l="%{O5}"
