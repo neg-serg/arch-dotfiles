@@ -395,3 +395,5 @@ imgur-screenshot/
 beets/.config/beets/discogs_token.json
 beets/.config/beets/state.pickle
 vim/.vim/.netrwhist
+gmail/client_secrets.json
+polybar/.config/polybar/gmail/client_secrets.json
