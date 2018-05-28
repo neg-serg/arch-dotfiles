@@ -1,0 +1,8 @@
+addition () { echo $(($1 + $2)) }
+eval "$initDocs"
+usage '<function> <accumulator> [<item>...]'
+example addition 0 {1..5}
+eval "$doneDocs"
+
+typeset f="echo \$($1 \$acc \$x)"; shift
+fold "$f" "$@"

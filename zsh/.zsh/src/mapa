@@ -1,0 +1,7 @@
+eval "$initDocs"
+usage "<arithmetic-lambda-function> [<item>...]"
+example "'\$1+5'" 1 2 3
+eval "$doneDocs"
+
+typeset f="\$[ $1 ]"; shift
+map "$f" "$@"

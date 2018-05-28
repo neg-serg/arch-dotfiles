@@ -1,0 +1,8 @@
+echo_twice () { echo $1 $1 }
+eval "$initDocs"
+usage "<function> [list...]"
+example "echo_twice" a b c
+eval "$doneDocs"
+
+typeset f="$1 \"\$1\""; shift
+each "$f" "$@"
