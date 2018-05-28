@@ -122,9 +122,11 @@ format-connected-suffix=${c.rs}
 
 [module/gmail]
 type = custom/script
-exec = ~/.config/polybar/gmail/launch.py -p ''
+exec = ~/.config/polybar/gmail/launch.py -p 'mail:'
 tail = true
 click-left = xdg-open https://mail.google.com
+format-prefix=${c.deliml}
+format = <label>
 
 [c]
 l="%{O5}"
