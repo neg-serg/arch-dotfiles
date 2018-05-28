@@ -29,7 +29,7 @@ def update_count(count_was):
     if count > 0:
         print(unread_prefix + str(count), flush=True)
     else:
-        print(args.prefix, flush=True)
+        print("", flush=True)
     if not args.nosound and count_was < count and count > 0:
         subprocess.run(['canberra-gtk-play', '-i', 'message'])
     return count
