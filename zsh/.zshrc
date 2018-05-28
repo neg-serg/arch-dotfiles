@@ -10,14 +10,15 @@
 #                               -
 #--------------------------------
 
-export ZDOTDIR="${HOME}/.zsh" 
+export ZDOTDIR="${HOME}/.zsh"
 local _zsh_home="${ZDOTDIR}"
 
 local _zsh_files=(
     00-common.zsh
     01-init.zsh
     03-exports.zsh
-    04-prompt.zsh
+    04-git-async-prompt.zsh
+    04-oldprompt.zsh
     05-functions.zsh
     06-alias.zsh
     08-base16-plugin.zsh
@@ -27,11 +28,9 @@ local _zsh_files=(
     13-bindkeys.zsh
     60-functional.zsh
     70-games.zsh
-    71-zsh-history-substring-search.zsh
     81-completion_gen.zsh
     89-neovim-interaction.zsh
     96-fzf.zsh
-    97-open-pr.plugin.zsh
     98-syntax.zsh
     99-misc.zsh
 )
