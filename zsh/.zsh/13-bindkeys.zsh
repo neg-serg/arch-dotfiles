@@ -1,13 +1,6 @@
 #!/usr/bin/zsh
-
 bindkey -e
-
 zmodload -i zsh/parameter
-insert-last-command-output() {
-    LBUFFER+="$(eval $history[$((HISTCMD-1))])"
-}
-zle -N insert-last-command-output
-bindkey "^X^L" insert-last-command-output
 
 #k# Kill left-side word or everything up to next slash
 bindkey '\ev' slash-backward-kill-word
