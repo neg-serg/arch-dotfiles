@@ -173,12 +173,6 @@ M
 .mime.types
 misc/.slit/history
 .mozilla
-.mpd.error
-.mpd/mpd.db
-.mpd/mpd.error
-.mpd/mpd.history
-.mpd/mpd.pid
-.mpd/mpdstate
 music
 .mutt_certificates
 .mutt/hcache/
@@ -356,3 +350,6 @@ zsh_history
 zsh/.zsh/.zcompdump
 zsh/.zsh/zcomp-sanctum
 *.zwc
+mpd/.mpd/mpd.db
+mpd/.mpd/mpd.pid
+mpd/.mpd/mpdstate
