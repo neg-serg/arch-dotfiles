@@ -1,4 +1,0 @@
-# A parameter that is constant, but can be optional (think [--] in git add)
-local par=$1
-([[ $par[1] != '<' ]] &&
-[[ $par[1] != '[' ]])

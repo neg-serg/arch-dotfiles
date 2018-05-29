@@ -1,7 +1,0 @@
-eval "$initDocs"
-usage "<arithmetic-function> [list...]"
-example "'\$1%3 == 0'" {1..6}
-eval "$doneDocs"
-
-typeset f="(( $1 ))"; shift
-filter "$f" "$@"

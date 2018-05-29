@@ -1,8 +1,0 @@
-eval "$initDocs"
-usage '<arithmetic-lambda-function> <accumulator> [<item>...]'
-example "'\$1+\$2'" 0 {1..5}
-example "'\$acc+\$x'" 0 {1..5}
-eval "$doneDocs"
-
-typeset f="echo \$[ $1 ]"; shift
-fold "$f" "$@"

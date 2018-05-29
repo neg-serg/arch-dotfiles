@@ -25,7 +25,6 @@ local _zsh_files=(
     11-open.zsh
     12-completion.zsh
     13-bindkeys.zsh
-    60-functional.zsh
     70-games.zsh
     81-completion_gen.zsh
     89-neovim-interaction.zsh

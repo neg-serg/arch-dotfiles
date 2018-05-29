@@ -1,7 +1,0 @@
-eval "$initDocs"
-usage "<function> [list...]"
-example "'test 5 -ge'" 3 5 7 1
-eval "$doneDocs"
-
-typeset f="$1 \"\$x\""; shift
-filter "$f" "$@"
