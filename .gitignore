@@ -25,9 +25,6 @@ cgdb/.cgdb/readline_history.txt
 .cgdb/readline_history.txt
 chromium
 .Clion*
-.CLion*
-compdef/
-config
 .config/asciinema
 .config/Atom/
 .config/aurvote
@@ -43,7 +40,7 @@ config
 .config/ensime-vim
 .config/Epic
 .config/fasd
-./.config/fish
+.config/fish
 .config/fonts/*
 .config/gconf
 .config/gimp-2.8/gimpswap*
@@ -87,7 +84,7 @@ config
 .cpan
 .cpanm
 .cr3
-./.crawl
+.crawl
 .cxoffice
 cycle_settings.pyc
 .dbus
@@ -180,26 +177,12 @@ misc/.slit/history
 .mpd/mpd.db
 .mpd/mpd.error
 .mpd/mpd.history
-./mpd/.mpd/mpd.db
-mpd/.mpd/mpd.db
-./mpd/.mpd/mpd.pid
-mpd/.mpd/mpd.pid
-./mpd/.mpd/mpdstate
-mpd/.mpd/mpdstate
 .mpd/mpd.pid
 .mpd/mpdstate
-./mpd/.mpd/sticker.sql
-.mpd/sticker.sql
 music
 .mutt_certificates
 .mutt/hcache/
-mutt/.mutt/hcache/
-mutt/.mutt/hcache/25f9b555ba1552d7d56f91ba9ac6e67c
-mutt/.mutt/hcache/34f52eba6c59e54149c0220cce4746ce
-mutt/.mutt/hcache/58548df30958da094bfef79708eae4d3
-mutt/.mutt/hcache/601c9ebd2f566f15a21c900635fa46aa
-mutt/.mutt/hcache/c5aa27d2e63cd3c93e94e1e7f70f3668
-mutt/.mutt/hcache/imaps:serg.zorg@gmail.com@imap.googlemail.com
+mutt/.mutt/hcache/*
 mutt/.mutt/mailboxes
 .my-pwds.gpg
 .newsbeuter/cache.db
@@ -217,33 +200,10 @@ ns_config.pyc
 .nv
 .nvidia-settings-rc
 .octave_hist
-./.offlineimap
-./.offlineimap/Account-Gmail
-./.offlineimap/mbnames
-offlineimap/.offlineimap
-offlineimap/.offlineimap/Account-Gmail
-offlineimap/.offlineimap/Account-Gmail/LocalStatus-sqlite/[Gmail].All Mail
-offlineimap/.offlineimap/Account-Gmail/LocalStatus-sqlite/[Gmail].Drafts
-offlineimap/.offlineimap/Account-Gmail/LocalStatus-sqlite/[Gmail].Important
-offlineimap/.offlineimap/Account-Gmail/LocalStatus-sqlite/[Gmail].Sent Mail
-offlineimap/.offlineimap/Account-Gmail/LocalStatus-sqlite/[Gmail].Trash
-offlineimap/.offlineimap/Account-Gmail/LocalStatus-sqlite/INBOX
-offlineimap/.offlineimap/mbnames
-offlineimap/.offlineimap/mbnames/Gmail.json
-offlineimap/.offlineimap/mbnames/LocalStatus-sqlite/[Gmail].All
-offlineimap/.offlineimap/mbnames/LocalStatus-sqlite/[Gmail].All Mail
-offlineimap/.offlineimap/Repository-Gmail-Local
-offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Drafts
-offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Important
-offlineimap/.offlineimap/Repository-Gmail-Local/FolderValidity/[Gmail].Sent Mail
-offlineimap/.offlineimap/Repository-Gmail-Remote
-offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Drafts
-offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Important
-offlineimap/.offlineimap/Repository-Gmail-Remote/FolderValidity/[Gmail].Sent Mail
+.offlineimap
+.offlineimap/*
 .offlineimappass.gpg
 .offlineimaprc.gpg
-./.offlineimap/Repository-Gmail-Local
-./.offlineimap/Repository-Gmail-Remote
 oni/.config/oni/Cache/
 oni/.config/oni/Cookies
 oni/.config/oni/Cookies-journal
