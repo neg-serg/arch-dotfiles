@@ -223,4 +223,4 @@ selection:
 hide_cursor_when_typing: false
 
 shell:
- program: /bin/zsh 
+ program: /bin/zsh
