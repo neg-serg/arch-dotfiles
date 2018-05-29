@@ -21,7 +21,6 @@ local _zsh_files=(
     04-oldprompt.zsh
     05-functions.zsh
     06-alias.zsh
-    08-base16-plugin.zsh
     10-zle_functions.zsh
     11-open.zsh
     12-completion.zsh
