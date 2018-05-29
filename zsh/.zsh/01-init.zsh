@@ -129,8 +129,6 @@ fpath=(
 
 zrcautoload zmv # who needs mmv or rename?
 zrcautoload history-search-end
-zrcautoload zargs
-zrcautoload grep2awk
 zrcautoload split-shell-arguments
 zrcautoload compinit && compinit
 

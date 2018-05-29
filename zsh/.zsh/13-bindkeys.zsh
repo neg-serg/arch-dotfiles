@@ -16,9 +16,6 @@ zle -N no-magic-abbrev-expand
 bindkey " " magic-abbrev-expand
 bindkey "^x " no-magic-abbrev-expand
 
-zle -N grep2awk
-bindkey '^X^Y' grep2awk
-
 bindkey . rationalise-dot
 
 autoload up-line-or-beginning-search
