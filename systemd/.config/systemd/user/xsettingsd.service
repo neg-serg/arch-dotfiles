@@ -1,0 +1,13 @@
+[Unit]
+Description=Xsettings daemon
+After=sockets.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+Environment=DISPLAY=:0
+ExecStart=/usr/sbin/xsettingsd
+
+[Install]
+WantedBy=default.target
