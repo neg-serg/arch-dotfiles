@@ -1,0 +1,18 @@
+#compdef wl
+
+# zsh completions for 'wl'
+# automatically generated with http://github.com/RobSis/zsh-completion-generator
+local arguments
+
+arguments=(
+    '-t[toggle mode]'
+    '-o[open in image viewer]'
+    '-s[set wallpaper]'
+    '-r[set wallpaper from prepared list]'
+    '-d[delete wallpaper with given number]'
+    '-l[list wallpapers]'
+    '-c[print wallpaper name and copy it to clipboard]'
+    '*:filename:_files'
+)
+
+_arguments -s $arguments
