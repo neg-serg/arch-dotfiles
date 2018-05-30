@@ -64,7 +64,7 @@ mycompletion() {
         format        \
         "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
     zstyle ':completion:*:default'  list-colors ${${(s.:.)LS_COLORS}%ec=*}
-    zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;29'
+    zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;222'
     zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
     
     [[ -r ~/.ssh/known_hosts ]] && _ssh_hosts=(${${${${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}%%:*}#\[}%\]}) ||
