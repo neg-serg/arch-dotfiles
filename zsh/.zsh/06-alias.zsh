@@ -60,6 +60,7 @@ if [[ ! -x "${BIN_HOME}/l" ]]; then
     fi
 fi
 alias l='l -g'
+alias u='umount'
 
 alias primusrun="vblank_mode=0 primusrun"
 
