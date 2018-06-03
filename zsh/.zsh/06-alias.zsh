@@ -17,6 +17,10 @@
     unset cope_path_
 }
 
+if hash dfc > /dev/null; then
+    alias df='dfc -q type -T -n -s'
+fi
+
 local noglob_list=( \
     fc find {,s,l}ftp history locate rake rsync scp \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
@@ -73,8 +77,8 @@ function mp(){
 
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
 
-alias mpclove="mpc sendmessage mpdas love"
-alias mpcunlove="mpc sendmessage mpdas unlove"
+alias love="mpc sendmessage mpdas love"
+alias unlove="mpc sendmessage mpdas unlove"
 
 alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
 alias grep="grep --color=auto"
