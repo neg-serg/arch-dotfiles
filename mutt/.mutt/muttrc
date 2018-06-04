@@ -9,7 +9,8 @@ source ~/.mutt/mailboxes
 set nm_default_uri = "notmuch:///home/neg/.local/mail/gmail"
 virtual-mailboxes "My INBOX" "notmuch://?query=tag:inbox"
 # Header caching is a fine addition to any mutt.
-set header_cache=~/.mutt/hcache/
+set header_cache="~/.mutt/hcache/"
+set certificate_file="~/.mutt/certificates"
 # But body caching doesn't make so much sense with local mail.
 # The X-Label header changing dynamically also messes with this, so disable it.
 unset message_cachedir
@@ -127,3 +128,5 @@ auto_view text/html
 set query_command="goobook query '%s'"
 
 account-hook $folder "set imap_user=serg.zorg@gmail.com imap_pass=$my_pw_personal
+set smtp_url="smtps://mail.vpal@gmail.com@smtp.gmail.com:465/"
+set smtp_authenticators="gssapi:login"
