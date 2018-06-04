@@ -17,7 +17,7 @@
     unset cope_path_
 }
 
-if hash dfc > /dev/null; then
+if hash dfc > /dev/null && false; then
     alias df='dfc -q type -T -n -s'
 fi
 
@@ -83,7 +83,7 @@ alias unlove="mpc sendmessage mpdas unlove"
 alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
 alias grep="grep --color=auto"
 
-alias mutt="dtach -A ${HOME}/.mutt/mutt.session neomutt"
+alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
 
 alias s="sudo"
 alias x='xargs'
