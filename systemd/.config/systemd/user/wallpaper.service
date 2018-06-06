@@ -6,7 +6,7 @@ After=sockets.target
 Type=simple
 Restart=never
 Environment=DISPLAY=:0
-ExecStart=%h/bin/wl rand
+ExecStart=%h/bin/wl -r 
 
 [Install]
 WantedBy=default.target
