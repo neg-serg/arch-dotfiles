@@ -16,10 +16,8 @@ set maxitems=12
 set shell='/bin/zsh'
 set shellcmdflag='-c'
 
-set titlestring="[-= vimperator =-]"
-set history=9000
-
-command! morehints :set hinttags="//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s' or @class='lk cs' or @class='msc' or @class='ll'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //tr[@class='rr' or @class='ur']/td[position()=5]"
+set titlestring="vimperator"
+set history=4000
 
 source ~/.vimperator/1st_level/styles.vimp
 source ~/.vimperator/1st_level/maps.vimp
