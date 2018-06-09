@@ -8,6 +8,9 @@ window:
     padding:
         x: 2
         y: 2
+    # Window decorations
+    # Setting this to false will result in window without borders and title bar.
+    decorations: true
 
 dpi:
   x: 96.0
