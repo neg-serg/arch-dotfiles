@@ -7,10 +7,10 @@ function intel_compton_settings(){
         --backend="glx" \
         --glx-no-stencil \
         --glx-no-rebind-pixmap \
-        --glx-swap-method=exchange \
+        --glx-swap-method=undefined \
         --glx-use-copysubbuffermesa \
-        --sw-opti \
-        --vsync drm
+        --paint-on-overlay \
+        --vsync="opengl-mswc"
 }
 
 function nvidia_with_hardcore_blur(){
@@ -20,7 +20,8 @@ function nvidia_with_hardcore_blur(){
             --paint-on-overlay \
             --glx-no-stencil \
             --glx-no-rebind-pixmap \
-            --glx-swap-method=1 \
+            --glx-swap-method="buffer-age" \
+            --sw-opti \
         > /dev/null &
 }
 
@@ -31,6 +32,8 @@ function nvidia_compton_settings(){
             --paint-on-overlay \
             --glx-no-stencil \
             --glx-no-rebind-pixmap \
+            --glx-swap-method="buffer-age" \
+            --sw-opti \
         > /dev/null &
 }
 
