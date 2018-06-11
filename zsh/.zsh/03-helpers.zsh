@@ -1,6 +1,6 @@
 autoload -U colors && colors
 
-function _zwrap() { echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]" }
+function _zwrap() { echo "$fg[blue]⟬$fg[white]$1$fg[blue]⟭$fg[default]" }
 
 function _zFwrap(){
     apply="${1}";
@@ -18,12 +18,13 @@ function _zgwrap(){
 
 function _zfwrap() {
     local tmp_name="$(echo $1|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
-    local decoration="$fg[green]‒$fg[white]"
-    local fancy_name="${decoration} $fg[white]${tmp_name} ${decoration}"
+    local lhs="$fg[blue]⟬$fg[white]"
+    local rhs="$fg[blue]⟭$fg[white]"
+    local fancy_name="${lhs}$fg[white]${tmp_name}${rhs}"
     echo "${fancy_name}"
 }
 
-function _zpref() { echo $(_zwrap ">>") }
+function _zpref() { echo $(_zwrap "\e[38;05;25m>\e[38;05;26m>$fg[default]") }
 function _zfg(){ echo -ne "[38;5;$1m" }
 function _zdelim(){ echo -ne "$(_zfg 24)::"$(_zfg 8) }
 
@@ -70,8 +71,12 @@ function draw_line(){
     echo "$color$line${_nocolor_}"
 }
 
-_zex_tag(){ grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- | tr -d '[:blank:]' }
-_zex_tag_untr(){ grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- }
+_zex_tag(){
+    grep -E '^'"$1"'' <<< "${exifdata_}" | cut -d ':' -f 2- | tr -d '[:blank:]'
+}
+_zex_tag_untr(){
+    grep -E '^'"$1"'' <<< "${exifdata_}" | cut -d ':' -f 2-
+}
 
 function vid_fancy_print(){
     if [[ -f "$1" ]]; then
@@ -80,24 +85,24 @@ function vid_fancy_print(){
         local fancy_name=$(_zfwrap "$1")
         local vid_comment="$(_zex_tag 'Comment')"
         if [[ ! $(tr -d '[:blank:]'<<< ${vid_comment} ) == "" ]]; then
-            local comment_str="$(_zwrap "Comment $(_zdelim) ${vid_comment}")"
+            local comment_str="$(_zwrap "Comment$(_zdelim)${vid_comment}")"
         else
             local comment_str=""
         fi
         #------------------------------------------
         local img_width="$(_zex_tag 'Image Width')"
         local img_height="$(_zex_tag 'Image Height')"
-        local img_size_str="$(_zwrap "Size $(_zdelim) $fg[white]${img_width}$(_zfg 24)x$fg[white]${img_height}")"
+        local img_size_str="$(_zwrap "Size$(_zdelim)$fg[white]${img_width}$(_zfg 24)x$fg[white]${img_height}")"
         #------------------------------------------
         local duration="$(awk -F: '/^Duration/' <<< ${exifdata_}|awk -F ':' '{print substr($0, index($0,$2))}'|tr -d '[:blank:]')"
-        local duration_str="$(_zwrap "Duration $(_zdelim) $fg[white]${duration}")"
+        local duration_str="$(_zwrap "Duration$(_zdelim)$fg[white]${duration}")"
         #------------------------------------------
         local file_size="$(_zex_tag 'File Size')"
-        local file_size_str="$(_zwrap "File Size $(_zdelim) $fg[white] $(_zfile_sz <<< ${file_size})")"
+        local file_size_str="$(_zwrap "File Size$(_zdelim)$fg[white]$(_zfile_sz <<< ${file_size})")"
         #------------------------------------------
         local mime_type="$(_zex_tag 'MIME Type')"
         not_empty_in_fact_ ${mime_type} && \
-        local mime_type_str="$(_zwrap "MIME Type $(_zdelim) $fg[white]${mime_type}")"
+        local mime_type_str="$(_zwrap "MIME Type$(_zdelim)$fg[white]${mime_type}")"
         #------------------------------------------
         local average_bitrate="$(_zex_tag 'Average Bitrate')"
         local max_bitrate="$(_zex_tag 'Max Bitrate')"
@@ -105,49 +110,49 @@ function vid_fancy_print(){
         {
             local average_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Average Bitrate') / 1000.")K))
             local max_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Max Bitrate') / 1000.")K))
-            local bitrate_str="$(_zwrap "Bitrate $(_zdelim) $fg[white]${average_bitrate}/${max_bitrate}")"
+            local bitrate_str="$(_zwrap "Bitrate$(_zdelim)$fg[white]${average_bitrate}/${max_bitrate}")"
         }
         #------------------------------------------
         local genre="$(_zex_tag_untr 'Genre')"
         not_empty_in_fact_ ${genre} && \
-        local genre_str="$(_zwrap "Genre: $(_zdelim) $fg[white]${genre}")"
+        local genre_str="$(_zwrap "Genre:$(_zdelim)$fg[white]${genre}")"
         #------------------------------------------
         local video_frame_rate="$(_zex_tag 'Video Frame Rate')"
         not_empty_in_fact_ ${video_frame_rate} && \
-        local vid_fps_str="$(_zwrap "FPS: $(_zdelim) $fg[white]${video_frame_rate}")"
+        local vid_fps_str="$(_zwrap "FPS$(_zdelim)$fg[white]${video_frame_rate}")"
         #------------------------------------------
         local audio_bits="$(_zex_tag 'Audio Bits Per Sample')"
         local audio_sample_rate="$(_zex_tag 'Audio Sample Rate')"
         not_empty_in_fact_ ${audio_bits} && not_empty_in_fact_ ${audio_sample_rate} && \
-        local audio_qa_str="$(_zwrap "Audio: $(_zdelim) $fg[white]${audio_bits}$fg[green]bits$fg[blue]/$fg[white]$(printf "%.1f" $[${audio_sample_rate}/1000.])$fg[green]Khz")"
+        local audio_qa_str="$(_zwrap "Audio$(_zdelim)$fg[white]${audio_bits}$fg[green]bits$fg[blue]/$fg[white]$(printf "%.1f" $[${audio_sample_rate}/1000.])$fg[green]Khz")"
         #------------------------------------------
         local encoder="$(_zex_tag 'Encoder')"
         not_empty_in_fact_ ${encoder} && \
-        local encoder_str="$(_zwrap "Encoder: $(_zdelim) $fg[white]${encoder}")"
+        local encoder_str="$(_zwrap "Encoder$(_zdelim)$fg[white]${encoder}")"
         #------------------------------------------
         local wrighting_app="$(_zex_tag 'Wrighting App')"
         not_empty_in_fact_ ${wrighting_app} && \
-        local writing_app_str="$(_zwrap "Wrighting App $(_zdelim) ${wrighting_app}")"
+        local writing_app_str="$(_zwrap "Wrighting App$(_zdelim)${wrighting_app}")"
         #------------------------------------------
         local description="$(_zex_tag_untr 'Description'|par -120)"
         not_empty_in_fact_ ${description} && \
-        local description_str="$(_zwrap "Description $(_zdelim) $fg[white]${description}")"
+        local description_str="$(_zwrap "Description$(_zdelim)$fg[white]${description}")"
         #------------------------------------------
         local wrighting_app="$(_zex_tag 'Muxing App')"
         not_empty_in_fact_ ${muxing_app} && \
-        local muxing_app_str="$(_zwrap "Muxing App $(_zdelim) ${wrighting_app}")"
+        local muxing_app_str="$(_zwrap "Muxing App$(_zdelim)${wrighting_app}")"
         #------------------------------------------
         local date_time="$(_zex_tag_untr 'Date\/Time Original')"
         not_empty_in_fact_ ${date_time} && \
-        local date_time_str="$(_zwrap "Date/Time $(_zdelim) $fg[white]${date_time}")"
+        local date_time_str="$(_zwrap "Date/Time$(_zdelim)$fg[white]${date_time}")"
         #------------------------------------------
         if [[ ! $(tr -d '[:blank:]' <<< ${created_str}) == "" ]]; then
-            local created_str="$(_zwrap Created $(_zdelim) ${date_time})"
+            local created_str="$(_zwrap Created$(_zdelim)${date_time})"
         else
             local created_str=""
         fi
         #------------------------------------------
-        builtin print "$(_zpref) ${fancy_name}"
+        builtin print "$(_zpref)${fancy_name}"
         for q in ${img_size_str} \
                  ${duration_str} \
                  ${bitrate_str} \
