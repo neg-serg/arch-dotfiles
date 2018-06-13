@@ -13,7 +13,7 @@ GIT_PROMPT_ORDER=(
 )
 
 declare -A GIT_PROMPT_SYMBOLS
-lhs="[" rhs="]"
+lhs="⟬" rhs="⟭"
 GIT_PROMPT_SYMBOLS=(
 	"prefix" "%F{4}${lhs}%f"
 	"branch" "%F{7}"
