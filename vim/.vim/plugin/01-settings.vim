@@ -320,10 +320,8 @@ set cpoptions+=d        " make ./ in tags relative to tags file in current dir
 set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
 set maxfuncdepth=100    " Maximum depth of function calls for user functions
-set maxmemtot=2000000   " Maximum amount of memory in Kbyte to use for all buffers together.
 set maxmapdepth=1000    " Maximum number of times a mapping is done
                         " without resulting in a character to be used.
-set maxmem=8188370      " Maximum amount of memory (in Kbyte) to use for one buffer
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
 if !has('nvim')
