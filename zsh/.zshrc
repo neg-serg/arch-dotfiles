@@ -11,9 +11,7 @@
 #--------------------------------
 
 export ZDOTDIR="${HOME}/.zsh"
-local _zsh_home="${ZDOTDIR}"
-
-local _zsh_files=(
+local zsh_files=(
     00-common.zsh
     01-init.zsh
     03-exports.zsh
@@ -33,6 +31,6 @@ local _zsh_files=(
     99-misc.zsh
 )
 
-for i in ${_zsh_files[@]}; do
-    [[ -f ${_zsh_home}/${i} ]] && source ${_zsh_home}/${i}
+for i in "${zsh_files[@]}"; do
+    [[ -f "${ZDOTDIR}/${i}" ]] && source "${ZDOTDIR}/${i}"
 done
