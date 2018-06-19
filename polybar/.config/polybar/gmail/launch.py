@@ -22,8 +22,11 @@ unread_prefix = '%{F' + args.color + '}' + args.prefix + ' %{F-}'
 error_prefix = '%{F' + args.color + '}\uf06a %{F-}'
 count_was = 0
 
+
 def update_count(count_was):
-    gmail = discovery.build('gmail', 'v1', credentials=file.Storage(CREDENTIALS_PATH).get())
+    gmail = discovery.build(
+        'gmail', 'v1', credentials=file.Storage(CREDENTIALS_PATH).get()
+    )
     labels = gmail.users().labels().get(userId='me', id='INBOX').execute()
     count = labels['messagesUnread']
     if count > 0:
@@ -33,6 +36,7 @@ def update_count(count_was):
     if not args.nosound and count_was < count and count > 0:
         subprocess.run(['canberra-gtk-play', '-i', 'message'])
     return count
+
 
 while True:
     try:

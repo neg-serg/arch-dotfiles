@@ -8,7 +8,6 @@ border = ${xrdb:color32}
 border_top = ${xrdb:color32}
 
 [bar/main]
-#monitor=HDMI2
 bottom=true
 
 border-top-size = 2
