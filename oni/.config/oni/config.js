@@ -14,7 +14,7 @@ module.exports = {
     "commandline.mode": false, // Do not override commandline UI.
     "editor.completions.mode": 'oni', // VSCode-like completion.
     "editor.backgroundOpacity": 0.88, // Dark enough.
-    "editor.backgroundImageUrl": "/home/neg/pic/wl/J8IW4DE.png",
+    "editor.backgroundImageUrl": "/home/neg/pic/wl/wallhaven-625712.jpg",
     "editor.cursorLine": false, // Disables cursor line highlight.
     "editor.cursorColumn": false, // Disables cursor column highlight. 
     "editor.cursorLineOpacity": 0.5, // Defines opacity of cursor line highlight.
