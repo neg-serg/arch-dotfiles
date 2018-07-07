@@ -9,7 +9,7 @@
         else
             alias df="df -hT"
         fi
-    else 
+    else
         local cope_path_=${SCRIPT_HOME}/Cope
         for i in "${cope_path_}"/*; alias $(basename ${i})=\"$i\"
         alias df="${cope_path_}/df -hT"
@@ -26,7 +26,7 @@ local noglob_list=( \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
     translate links{,2} lynx you-get bower pip task)
 rlwrap_list=( bigloo clisp irb guile)
-sudo_list=({u,}mount ch{mod,own} modprobe i7z) 
+sudo_list=({u,}mount ch{mod,own} modprobe i7z)
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 sys_sudo_list=(reboot halt poweroff)
 
@@ -40,7 +40,7 @@ local sudo_commands=(
   link load cancel set-environment unset-environment
   edit)
 
-local nocorrect_commands=(ebuild gist heroku hpodder man mkdir mv mysql sudo) 
+local nocorrect_commands=(ebuild gist heroku hpodder man mkdir mv mysql sudo)
 
 for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
 for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
@@ -56,9 +56,9 @@ alias ls="ls --color=auto"   # do we have GNU ls with color-support?
 if [[ ! -x "${BIN_HOME}/l" ]]; then
     if  [[ -x "${BIN_HOME}/lsp" ]]; then
         alias l="lsp"
-        if [[ -x "/usr/bin/vendor_perl/ls++" ]]; then 
-            alias l="ls++"; 
-        else 
+        if [[ -x "/usr/bin/vendor_perl/ls++" ]]; then
+            alias l="ls++";
+        else
             alias l="ls -aChkopl --group-directories-first --color=auto";
         fi
     fi
@@ -70,12 +70,13 @@ alias primusrun="vblank_mode=0 primusrun"
 
 alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
-function mp(){ 
+function mp(){
     for i; do vid_fancy_print "${i}"; done
     ${VIDEO_PLAYER_} --input-ipc-server=/tmp/mpvsocket "$@"
 }
 
-alias mpa="${VIDEO_PLAYER_} -fs -ao null"
+alias mpa="${VIDEO_PLAYER_} -mute"
+alias mpA="${VIDEO_PLAYER_} -fs -ao null"
 
 alias love="mpc sendmessage mpdas love"
 alias unlove="mpc sendmessage mpdas unlove"
@@ -302,13 +303,13 @@ inpath nmap && {
     alias nmap_check_for_vulns="nmap --script=vulscan"
     alias nmap_full_udp="nmap -sS -sU -T4 -A -v -PE -PS22,25,80 -PA21,23,80,443,3389 "
     alias nmap_traceroute="nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute "
-    alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all " 
+    alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all "
     alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
 }
 
 inpath journalctl && {
     alias log='journalctl -f | ccze -A' #follow log
-} 
+}
 inpath iotop && {
     alias iotop='sudo iotop -oPa'
     alias diskact="sudo iotop -Po"
