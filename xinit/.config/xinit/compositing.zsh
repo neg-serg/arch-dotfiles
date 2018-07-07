@@ -37,6 +37,15 @@ function nvidia_compton_settings(){
         > /dev/null &
 }
 
+local sharp_shadows=(
+    --shadow-offset-x="8"
+    --shadow-offset-y="8"
+    --shadow-opacity="1.0"
+    --shadow-red="0.0"
+    --shadow-green="0.0"
+    --shadow-blue="0.0"
+)
+
 function compton_run(){
     compton_cfg="${XDG_CONFIG_HOME}/compton/compton.conf"
     local with_hardcore_blur=false
