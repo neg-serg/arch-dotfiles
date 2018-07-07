@@ -77,13 +77,13 @@ export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 export HISTCONTROL=ignoreboth:erasedups # ignoreboth (= ignoredups + ignorespace)
 
 local -a timefmt_=(
-    "$(_zwrap "$(_zfwrap "%J")")"
-    "$(_zwrap "%U")"
-    "$(_zwrap "user %S")"
-    "$(_zwrap "system %P")"
-    "$(_zwrap "cpu %*E total")"
-    "$(_zwrap "-||-")"
-    "$(_zwrap "Mem: %M kb max")"
+    "$(zwrap "$(zfwrap "%J")")"
+    "$(zwrap "%U")"
+    "$(zwrap "user %S")"
+    "$(zwrap "system %P")"
+    "$(zwrap "cpu %*E total")"
+    "$(zwrap "-||-")"
+    "$(zwrap "Mem: %M kb max")"
 )
 export TIMEFMT="${timefmt_[@]}"
 export COLORTERM="yes"
