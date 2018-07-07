@@ -6,6 +6,10 @@
 
 Of course this dotfiles structure not include everything that I use, like QEMU.
 
+# Screenshots
+
+![shot1](https://i.imgur.com/1cox0ps.png)
+
 + Terminal
     + **alacritty**               **::** nice cross-platform terminal emulator, but I am using suckless
     terminal for now.
