@@ -14,7 +14,7 @@ function zc(){
     compinit -d ${compdumpfile}
     for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
         zrecompile -p ${z}; 
-        echo $(_zpref) $(_zfwrap "${z}"); 
+        echo $(zpref) $(zfwrap "${z}"); 
         rm -fv "${z}.zwc.old"
     done
     for f in ${ZSH}/zshrc ${zcompdumpfile};
@@ -200,7 +200,7 @@ function pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 if whence adb > /dev/null; then
     function adbpush() {
         for i; do
-            echo "$(_zpref) -> $(_zwrap Pushing\ ${i}\ to\ /sdcard/${i:t})"
+            echo "$(zpref) -> $(zwrap Pushing\ ${i}\ to\ /sdcard/${i:t})"
             adb push ${i} /sdcard/${i:t}
         done
     }
@@ -218,7 +218,7 @@ function sp() {
     fi
     total=$(tail -1 <<< "${output}")
     distribution.pl --color -g -s=l --char=em <<< $(sed -e '$ d' <<< "${output}")
-    _zwrap "Total: $(cut -f1 <<< ${total})"
+    zwrap "Total: $(cut -f1 <<< ${total})"
 }
 
 
@@ -239,7 +239,7 @@ function ql(){
         local file=$(resolve_file "$1")
         local upload_dir=${HOME}/1st_level/upload/
         cp "${file}" "${upload_dir}" && \
-        builtin printf "$(_zfwrap ${file})\n"
+        builtin printf "$(zfwrap ${file})\n"
         xsel -o <<< "${upload_dir}/$(basename ${file})"
     fi
 }
@@ -262,10 +262,10 @@ function which() {
 
 function set_proxy(){
     if [[ -z ${http_proxy} ]]; then
-        echo $(_zpref) $(_zwrap "$(echo "setting proxy to http://127.0.0.1:8118/")")
+        echo $(zpref) $(zwrap "$(echo "setting proxy to http://127.0.0.1:8118/")")
         export http_proxy="http://127.0.0.1:8118/"
     else
-        echo $(_zpref) $(_zwrap "$(echo "unsetting proxy")")
+        echo $(zpref) $(zwrap "$(echo "unsetting proxy")")
         unset http_proxy
         export http_proxy
     fi
