@@ -11,14 +11,14 @@ function steam_wine(){
 }
 
 function bnet(){
-    local prefix_=""
+    local pref=""
     if [[ $1 =~ ".*32" ]]; then
-        prefix_="setarch i386 -3 "
-        _zwrap "set to 32 bit"
+        pref="setarch i386 -3 "
+        zwrap "set to 32 bit"
     fi
     cd "${wine_progs_}/Battle.net"
     eval WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C \
-    ${prefix_} wine ./Battle.net.exe &
+    ${pref} wine ./Battle.net.exe &
 }
 
 function doom(){

@@ -4,7 +4,7 @@ function arc-fix(){
 }
 
 function firefox_bookmarks(){
-    _zwrap "10 days history"
+    zwrap "10 days history"
     limit="10 days"
     places=$(find ${HOME}/.mozilla/ -name "places.sqlite" | head -1)
     sql="SELECT url FROM moz_places, moz_historyvisits \
@@ -13,7 +13,7 @@ function firefox_bookmarks(){
     ORDER by visit_date;"
     sqlite3 ${places} ${sql}
 
-    _zwrap "All history"
+    zwrap "All history"
     sqlite3 ~/.mozilla/firefox/*/places.sqlite "
     select moz_places.url, moz_bookmarks.title from moz_places, moz_bookmarks
     where moz_bookmarks.fk = moz_places.id and moz_bookmarks.type = 1

@@ -42,21 +42,21 @@ function vim_file_open() (
         local file_length=$(wc -l ${file_name} 2>/dev/null| \
             grep -owE '[0-9]* '| \
             tr -d ' ')
-        local sz_msg=$(_zwrap "sz$(_zfg 237)~$fg[white]${file_size}")
-        local len_msg=$(_zwrap "len$(_zfg 237)=$fg[white]${file_length}")
-        local new_file_msg=$(_zwrap new_file)
-        local dir_msg=$(_zwrap directory)
-        local pref=$(_zwrap ">>")
+        local sz_msg=$(zwrap "sz$(zfg 237)~$fg[white]${file_size}")
+        local len_msg=$(zwrap "len$(zfg 237)=$fg[white]${file_length}")
+        local new_file_msg=$(zwrap new_file)
+        local dir_msg=$(zwrap directory)
+        local pref=$(zwrap ">>")
         if [[ ! -e "${file_name}" ]]; then
-            <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${new_file_msg}"
+            <<< "${pref} $(zfwrap ${file_name}) $(zdelim) ${new_file_msg}"
         elif [[ -f "${file_name}" ]] && [[ ! -d "${file_name}" ]]; then
-            <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${sz_msg} $(_zdelim) ${len_msg}${syn_msg}"
+            <<< "${pref} $(zfwrap ${file_name}) $(zdelim) ${sz_msg} $(zdelim) ${len_msg}${syn_msg}"
         else
             if [[ -d "${file_name}" ]]; then
                 if [[ $(readlink -f ${file_name}) == $(readlink -f $(pwd)) ]]; then
-                    <<< "${pref} $(_zfwrap "current dir") $(_zdelim) ${dir_msg}"
+                    <<< "${pref} $(zfwrap "current dir") $(zdelim) ${dir_msg}"
                 else
-                    <<< "${pref} ${fancy_name} $(_zdelim) ${dir_msg}"
+                    <<< "${pref} ${fancy_name} $(zdelim) ${dir_msg}"
                 fi
             fi
         fi
