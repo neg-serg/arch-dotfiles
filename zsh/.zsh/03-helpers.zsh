@@ -169,7 +169,7 @@ function vid_fancy_print {
             created_str="$(zwrap Created$(zdelim)${date_time})"
         fi
         #------------------------------------------
-        if (( ${#1} < 29 )); then
+        if (( ${#1} < 34 )); then
             echo -ne "$(zpref)${fancy_name}$(zdelim 56 '//')"
         else
             echo -e "$(zpref)${fancy_name}"
