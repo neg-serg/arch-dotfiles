@@ -349,9 +349,7 @@ alias -s Dockerfile="docker build - < "
     alias mkeep="${SCRIPT_HOME}/mpd/mkeep"
 }
 
-yaourt() { pacaur "$@" }
 pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
-
 alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
 
 # upload to imgur with modified zmwangx/imgur
