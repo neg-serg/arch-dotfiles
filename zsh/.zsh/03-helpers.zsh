@@ -134,7 +134,7 @@ function vid_fancy_print {
         not_empty ${genre} && \
             local genre_str="$(zwrap "Genre$(zdelim)$fg[white]${genre}")"
         #------------------------------------------
-        local video_frame_rate="$(zex_tag 'Video Frame Rate')"
+        local video_frame_rate="$(printf "%.0f" $(zex_tag 'Video Frame Rate'))"
         not_empty ${video_frame_rate} && \
             local vid_fps_str="$(zwrap "FPS$(zdelim)$fg[white]${video_frame_rate}")"
         #------------------------------------------
