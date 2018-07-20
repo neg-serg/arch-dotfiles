@@ -1,7 +1,14 @@
 input-ipc-server=/tmp/mpvsocket
 no-border
 fullscreen=yes
-  
+
+profile=gpu-hq
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
+video-sync=display-resample
+interpolation
+tscale=oversample
+
 ao=pulse
 
 cache=65536
@@ -49,4 +56,14 @@ term-osd-bar=yes
 
 [extension.mp3]
 term-osd-bar=yes
+
+[svp]
+input-ipc-server=/tmp/mpvsocket     # Receives input from SVP
+hr-seek-framedrop=no                # Fixes audio desync
+resume-playback=no                  # Not compatible with SVP
+hwdec=auto-copy
+hwdec-codecs=all
+
+# Can fix stuttering in some cases, in other cases probably causes it. Try it if you experience stuttering.
+#opengl-early-flush=yes
 
