@@ -159,11 +159,11 @@ function yr(){
     if [[ -z "${wid}" ]]; then
         st -c youtube-get ${SCRIPT_HOME}/yr "$@"
     else
-        ${XDG_CONFIG_HOME}/i3/send ns toggle console
+        ${XDG_CONFIG_HOME}/i3/send ns show youtube
         for f in "$@"; do
-            xdotool type --clearmodifiers --delay 0 "$f "
+            xdotool type --clearmodifiers --delay 0 "${f} "
         done
-        xdotool type --clearmodifiers --delay 0 ''
+        sleep 0.1s && xdotool type --clearmodifiers --delay 0 ''
     fi
 }
 
