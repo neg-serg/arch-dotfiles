@@ -4,6 +4,12 @@ color=on
 search.case.sensitive=off
 
 include /usr/share/doc/task/rc/dark-blue-256.theme
+include /usr/share/doc/task/rc/holidays.ru-RU.rc
+calendar.details=sparse
+calendar.details.report=list
+calendar.legend=yes
+calendar.offset=no
+calendar.holidays=full
 
 taskd.server=freecinc.com:53589
 taskd.key=\/home\/neg\/.task\/freecinc_f54840ad.key.pem
