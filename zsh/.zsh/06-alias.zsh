@@ -155,16 +155,12 @@ _zsh_proxy=""
 yt(){ ${_zsh_proxy} you-get "$@" }
 
 function yr(){
-    wid=$(xdotool search --classname youtube-get)
-    if [[ -z "${wid}" ]]; then
-        st -c youtube-get ${SCRIPT_HOME}/yr "$@"
-    else
-        ${XDG_CONFIG_HOME}/i3/send ns show youtube
-        for f in "$@"; do
-            xdotool type --clearmodifiers --delay 0 "${f} "
-        done
-        sleep 0.1s && xdotool type --clearmodifiers --delay 0 ''
-    fi
+    ${XDG_CONFIG_HOME}/i3/send ns toggle youtube
+    sleep 1s
+    for f in "$@"; do
+        xdotool type --clearmodifiers --delay 0 "${f} "
+    done
+    sleep 0.1s && xdotool type --clearmodifiers --delay 0 ''
 }
 
 alias qe='cd *(/om[1])'
