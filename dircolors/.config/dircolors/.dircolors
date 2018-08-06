@@ -166,6 +166,7 @@ RESET 0 # reset to "normal" color
 .lit              00;38;5;7
 .mobi             00;38;5;7
 .pdf              01;38;5;7
+.cbz              01;38;5;7
 .markdown         00;38;5;110
 .md               00;38;5;110
 .org              00;38;5;110
