@@ -1,5 +1,15 @@
+inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
+nexec() { [[ -z $(pidof "$1") ]]; }
+
 setterm -bfreq 0 # disable annoying pc speaker
 if [[ "${TERM}" = "linux" ]]; then
+    local run_yaft=1
+    if hash yaft 2> /dev/null; then
+        if [[ ${run_yaft} == 1 ]]; then
+            yaft
+        fi
+    fi
+
     echo -en "\e]P0000000" #black
     echo -en "\e]P83d3d3d" #darkgrey
     echo -en "\e]P18c4665" #darkred
@@ -31,9 +41,7 @@ if [[ -z "${DISPLAY}"  ]] && \
    [[ $(tty) = /dev/tty1  ]] && \
    [[ -z ${DISPLAY} && ${XDG_VTNR} -eq 1  ]] && \
    [[ -z $(pgrep xinit)  ]]; then
-    exec startx -- -keeptty -nolisten tcp > /tmp/xorg.log 2>&1
-elif [[ $(tty) = /dev/tty4  ]]; then
-    tmux -f ${HOME}/.tmux.conf new -S ~/1st_level/main.socket
+   exec startx -- -keeptty -nolisten tcp > /tmp/xorg.log 2>&1
 fi
 
 # Let's set up some colors. By default, we won't use any color.
