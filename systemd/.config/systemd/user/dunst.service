@@ -6,11 +6,11 @@ After=sockets.target
 Type=simple
 Restart=always
 Environment=DISPLAY=:0
-ExecStartPre=/bin/mkdir -p /tmp/dunst-images
+ExecStartPre=/bin/mkdir -p %h/tmp/dunst-images
 ExecStart=/usr/sbin/dunst
-ExecReload=/bin/rm -fr /tmp/dunst-images
-ExecRestart=/bin/rm -fr /tmp/dunst-images
-ExecStop=/bin/rm -fr /tmp/dunst-images
+ExecReload=/bin/rm -fr %h/tmp/dunst-images
+ExecRestart=/bin/rm -fr %h/tmp/dunst-images
+ExecStop=/bin/rm -fr %h/tmp/dunst-images
 
 [Install]
 WantedBy=default.target
