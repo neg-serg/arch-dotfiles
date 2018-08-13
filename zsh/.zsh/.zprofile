@@ -2,7 +2,6 @@ inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
 if [[ -o LOGIN  ]]; then
-    
     setterm -bfreq 0 # disable annoying pc speaker
     if [[ "${TERM}" = "linux" ]]; then
         local run_yaft=1
@@ -32,16 +31,11 @@ if [[ -o LOGIN  ]]; then
 
     (( $#commands[tmux]  )) && tmux list-sessions 2>/dev/null
 
-    uptimestart=$(uptime | colrm 1 13 | colrm 6)
-    print "$fg[blue]Host: $fg[green]${HOST}$fg[blue], Zeit: $fg[green]$(date +%d.%m.%Y' '%H:%M:%S)$fg[blue], Up: $fg[green]$uptimestart"
-    print "$fg[blue]Term: $fg[green]${TTY} $fg[blue], $fg[blue]Shell: $fg[green]Zsh ${ZSH_VERSION} $fg[blue] (PID=$$)"
-    print "$fg[blue]Login: $fg[green]${LOGNAME} $fg[blue] (UID=${EUID}), cars: $fg[green]${COLUMNS} x ${LINES}"
-
     if [[ -z "${DISPLAY}"  ]] && \
     [[ $(tty) = /dev/tty1  ]] && \
     [[ -z ${DISPLAY} && ${XDG_VTNR} -eq 1  ]] && \
     [[ -z $(pgrep xinit)  ]]; then
-    exec startx -- -keeptty -nolisten tcp > /tmp/xorg.log 2>&1
+        exec startx -- -keeptty -nolisten tcp > /tmp/xorg.log 2>&1
     fi
 
     # Let's set up some colors. By default, we won't use any color.
@@ -96,4 +90,3 @@ if [[ -o LOGIN  ]]; then
         EOF
     fi
 fi
-
