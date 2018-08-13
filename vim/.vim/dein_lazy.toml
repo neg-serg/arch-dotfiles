@@ -36,9 +36,6 @@ on_ft = ['python']
 repo = 'rust-lang/rust.vim' # detection of rust files
 on_ft = ['rust']
 merged = 1
-[[plugins]]
-repo = 'jtdowney/vimux-cargo' # rust-cargo bindings
-[[plugins]]
 # --[ Haskell ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'bitc/vim-hdevtools' # type-related features
