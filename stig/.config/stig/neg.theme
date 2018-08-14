@@ -6,6 +6,9 @@ cli         white,bold on $default_bg_
 scrollbar   dark green on $default_bg_
 helptext    light gray on $default_bg_
 
+$tlist_bg.uf = #000
+$tlist_bg.f  = #025
+
 tabs.unfocused             white        on $default_bg_
 tabs.focused               #000         on white
 tabs.torrentlist.unfocused dark cyan    on $default_bg_
@@ -13,7 +16,7 @@ tabs.torrentlist.focused   white        on $default_bg_
 tabs.filelist.unfocused    dark magenta on $default_bg_
 tabs.filelist.focused      light magenta on $default_bg_
 tabs.peerlist.unfocused    dark green   on $default_bg_
-tabs.peerlist.focused      dark cyan    on $default_bg_
+tabs.peerlist.focused      dark cyan    on $tlist_bg.f
 tabs.help.unfocused        yellow       on $default_bg_
 tabs.help.focused          white        on $default_bg_
 
@@ -49,8 +52,6 @@ keychains.keys.next  yellow       on $keychains_bg
 keychains.action     white        on $keychains_bg
 
 
-$tlist_bg.uf = #000
-$tlist_bg.f  = #025
 torrentlist  default on $tlist_bg.uf
 torrentlist.focused bold on $tlist_bg.f
 torrentlist.header dark gray,underline on $tlist_bg.uf
@@ -89,14 +90,6 @@ torrentlist.path.header                            $path_fg,underline on $tlist_
 torrentlist.path.unfocused                         $path_fg           on $tlist_bg.uf
 torrentlist.path.focused                           $path_fg,bold      on $tlist_bg.f
 
-$connections_fg = dark gray
-$connections_hl = white
-torrentlist.connections.header                     $connections_fg,underline on $tlist_bg.uf
-torrentlist.connections.unfocused                  $connections_fg           on $tlist_bg.uf
-torrentlist.connections.focused                    $connections_fg,bold      on $tlist_bg.f
-torrentlist.connections.highlighted.unfocused      $connections_hl           on $tlist_bg.uf
-torrentlist.connections.highlighted.focused        $connections_hl,bold      on $tlist_bg.f
-
 $seeds_fg = dark gray
 $seeds_hl = white
 torrentlist.seeds.header                           $seeds_fg,underline on $tlist_bg.uf
@@ -107,27 +100,33 @@ torrentlist.seeds.highlighted.focused              $seeds_hl,bold      on $tlist
 
 $progress_fg = dark blue
 $progress_hl = light blue
-torrentlist.progress.header                        $progress_fg,underline on $tlist_bg.uf
-torrentlist.progress.unfocused                     $progress_fg           on $tlist_bg.uf
-torrentlist.progress.focused                       $progress_fg           on $tlist_bg.f
-torrentlist.progress.highlighted.unfocused         $progress_hl           on $tlist_bg.uf
-torrentlist.progress.highlighted.focused           $progress_hl           on $tlist_bg.f
+torrentlist.downloaded.header                      $downloaded_fg,underline on $tlist_bg.uf
+torrentlist.downloaded.unfocused                   $downloaded_fg           on $tlist_bg.uf
+torrentlist.downloaded.focused                     $downloaded_fg           on $tlist_bg.f
+torrentlist.downloaded.highlighted.unfocused       $downloaded_hl           on $tlist_bg.uf
+torrentlist.downloaded.highlighted.focused         $downloaded_hl           on $tlist_bg.f
+torrentlist.name.idle.progress1.unfocused          $default_bg_,underline on $tlist_bg.uf
+torrentlist.name.idle.progress1.focused            $default_bg_,underline on $tlist_bg.f
+torrentlist.name.idle.progress2.unfocused          $default_bg_           on $tlist_bg.uf
+torrentlist.name.idle.progress2.focused            $default_bg_           on $tlist_bg.f
+torrentlist.name.idle.complete.unfocused           $default_bg_           on $tlist_bg.uf
+torrentlist.name.idle.complete.focused             $default_bg_           on $tlist_bg.f
 
 $%available_fg = dark blue
 $%available_hl = light blue
-torrentlist.%available.header                      $%available_fg,underline on $tlist_bg.uf
-torrentlist.%available.unfocused                   $%available_fg           on $tlist_bg.uf
-torrentlist.%available.focused                     $%available_fg,bold      on $tlist_bg.f
-torrentlist.%available.highlighted.unfocused       $%available_hl           on $tlist_bg.uf
-torrentlist.%available.highlighted.focused         $%available_hl,bold      on $tlist_bg.f
+torrentlist.available.header                       $available_fg,underline   on $tlist_bg.uf
+torrentlist.available.unfocused                    $available_fg             on $tlist_bg.uf
+torrentlist.available.focused                      $available_fg             on $tlist_bg.f
+torrentlist.available.highlighted.unfocused        $available_hl             on $tlist_bg.uf
+torrentlist.available.highlighted.focused          $available_hl             on $tlist_bg.f
 
 $rate-down_fg = dark cyan
 $rate-down_hl = light cyan
 torrentlist.rate-down.header                       $rate-down_fg,underline on $tlist_bg.uf
 torrentlist.rate-down.unfocused                    $rate-down_fg           on $tlist_bg.uf
-torrentlist.rate-down.focused                      $rate-down_fg,bold      on $tlist_bg.f
+torrentlist.rate-down.focused                      $rate-down_fg           on $tlist_bg.f
 torrentlist.rate-down.highlighted.unfocused        $rate-down_hl           on $tlist_bg.uf
-torrentlist.rate-down.highlighted.focused          $rate-down_hl,bold      on $tlist_bg.f
+torrentlist.rate-down.highlighted.focused          $rate-down_hl           on $tlist_bg.f
 
 $rate-up_fg = dark green
 $rate-up_hl = light green
@@ -195,7 +194,6 @@ $started_fg = brown
 torrentlist.started.header                         $started_fg,underline on $tlist_bg.uf
 torrentlist.started.unfocused                      $started_fg           on $tlist_bg.uf
 torrentlist.started.focused                        $started_fg           on $tlist_bg.f
-
 
 $status.idle_fg        = dark gray
 $status.downloading_fg = dark cyan
@@ -314,8 +312,6 @@ torrentlist.name.discovering.progress2.focused     $name.discovering_fg         
 torrentlist.name.discovering.complete.unfocused    $name.discovering_fg           on $tlist_bg.uf
 torrentlist.name.discovering.complete.focused      $name.discovering_fg           on $tlist_bg.f
 
-
-
 $flist_bg.uf = black
 $flist_bg.f  = dark gray
 filelist                                   default              on $flist_bg.uf
@@ -350,16 +346,10 @@ filelist.downloaded.highlighted.focused    $downloaded_hl           on $flist_bg
 
 $progress_fg = dark blue
 $progress_hl = light blue
-filelist.progress.header                   $progress_fg,underline on $flist_bg.uf
-filelist.progress.unfocused                $progress_fg           on $flist_bg.uf
-filelist.progress.focused                  $progress_fg           on $flist_bg.f
-filelist.progress.highlighted.unfocused    $progress_hl           on $flist_bg.uf
-filelist.progress.highlighted.focused      $progress_hl           on $flist_bg.f
 
 $priority_fg = brown
 $priority_hl = yellow
 filelist.priority.header                   $priority_fg,underline on $flist_bg.uf
-filelist.priority.unfocused                $priority_fg           on $flist_bg.uf
 filelist.priority.focused                  $priority_fg           on $flist_bg.f
 filelist.priority.low.unfocused            $priority_fg           on $flist_bg.uf
 filelist.priority.low.focused              $priority_fg           on $flist_bg.f
@@ -367,9 +357,9 @@ filelist.priority.high.unfocused           $priority_hl           on $flist_bg.u
 filelist.priority.high.focused             $priority_hl           on $flist_bg.f
 
 $plist_bg = black
-peerlist                                      default              on $plist_bg
-peerlist.focused                              default              on $plist_bg
-peerlist.header                               dark gray,underline on $plist_bg
+peerlist                                      default              on $tlist_bg.uf
+peerlist.focused                              default              on $tlist_bg.uf
+peerlist.header                               dark gray,underline  on $tlist_bg.uf
 
 $name_fg = dark gray
 
@@ -387,9 +377,6 @@ peerlist.client.unfocused                     $client_fg           on $plist_bg
 
 $progress_fg = dark blue
 $progress_hl = light blue
-peerlist.progress.header                      $progress_fg,underline on $plist_bg
-peerlist.progress.unfocused                   $progress_fg           on $plist_bg
-peerlist.progress.highlighted.unfocused       $progress_hl           on $plist_bg
 
 $rate-down_fg = dark cyan
 $rate-down_hl = light cyan
