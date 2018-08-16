@@ -4,9 +4,9 @@ After=dbus.service
 
 [Service]
 Type=simple
-Restart=always
-RestartSec=1
-ExecStart=/usr/bin/compton
+Restart=on-failure
+RestartSec=5
+ExecStart=%h/.config/xinit/compositing.zsh
 
 [Install]
 WantedBy=default.target
