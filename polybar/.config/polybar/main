@@ -23,7 +23,7 @@ padding-right = 0       # offset from -x
 
 module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
-modules-left = LL date ws xkeyboard networkenp6s0 networkenp7s0 gmail RR
+modules-left = LL date ws xkeyboard networkenp6s0 networkenp7s0 RR
 modules-center =
 modules-right = mpd volume
 
