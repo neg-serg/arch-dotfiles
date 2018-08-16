@@ -1,6 +1,3 @@
-# Dir reload
-.() { [[ $# = 0 ]] && cd . || builtin . "$@"; }
-
 function chpwd() {
     if [ -x ${BIN_HOME}/Z ]; then
         [ "${PWD}" -ef "${HOME}" ] || Z -a "${PWD}"
@@ -27,15 +24,15 @@ zrcautoload is-at-least || is-at-least() { return 1 }
 
 function pk () {
     if [ $1 ] ; then
-        case $1 in
-            tbz)    tar cjvf $2.tar.bz2 $2                ;;
-            tgz)    tar czvf $2.tar.gz  $2                ;;
-            tar)    tar cpvf $2.tar  $2                   ;;
-            bz2)    bzip $2                               ;;
-            gz)     gzip -c -9 -n $2 > $2.gz              ;;
-            zip)    zip -r $2.zip $2                      ;;
-            7z)     7z a $2.7z $2                         ;;
-            *)      echo "'$1' cannot be packed via pk()" ;;
+        case ${1} in
+            tbz)    tar cjvf ${2}.tar.bz2 ${2}              ;;
+            tgz)    tar czvf ${2}.tar.gz  ${2}              ;;
+            tar)    tar cpvf ${2}.tar  ${2}                 ;;
+            bz2)    bzip ${2}                               ;;
+            gz)     gzip -c -9 -n ${2} > ${2}.gz            ;;
+            zip)    zip -r ${2}.zip ${2}                    ;;
+            7z)     7z a ${2}.7z ${2}                       ;;
+            *)      echo "'${1}' cannot be packed via pk()" ;;
         esac
     else
         echo "'$1' is not a valid file"
@@ -43,64 +40,64 @@ function pk () {
 }
 
 extract() {
-  local remove_archive
-  local success
-  local file_name
-  local extract_dir
+    local remove_archive
+    local success
+    local file_name
+    local extract_dir
 
-  remove_archive=1
-  if [[ "$1" == "-r" ]] || [[ "$1" == "--remove" ]]; then
-    remove_archive=0 
-    shift
-  fi
-
-  while (( $# > 0 )); do
-    if [[ ! -f "$1" ]]; then
-      echo "extract: '$1' is not a valid file" 1>&2
-      shift
-      continue
+    remove_archive=1
+    if [[ "$1" == "-r" ]] || [[ "$1" == "--remove" ]]; then
+        remove_archive=0 
+        shift
     fi
 
-    success=0
-    file_name="$( basename "$1" )"
-    extract_dir="$( echo "${file_name}" | sed "s/\.${1##*.}//g" )"
-    case "$1" in
-      (*.tar.gz|*.tgz) [ -z ${commands}[pigz] ] && tar zxvf "$1" || pigz -dc "$1" | tar xv ;;
-      (*.tar.bz2|*.tbz|*.tbz2) tar xvjf "$1" ;;
-      (*.tar.xz|*.txz) tar --xz --help &> /dev/null \
-        && tar --xz -xvf "$1" \
-        || xzcat "$1" | tar xvf - ;;
-      (*.tar.zma|*.tlz) tar --lzma --help &> /dev/null \
-        && tar --lzma -xvf "$1" \
-        || lzcat "$1" | tar xvf - ;;
-      (*.tar) tar xvf "$1" ;;
-      (*.gz) [ -z ${commands}[pigz] ] && gunzip "$1" || pigz -d "$1" ;;
-      (*.bz2) bunzip2 "$1" ;;
-      (*.xz) unxz "$1" ;;
-      (*.lzma) unlzma "$1" ;;
-      (*.Z) uncompress "$1" ;;
-      (*.zip|*.war|*.jar|*.sublime-package) unzip "$1" -d $extract_dir ;;
-      (*.rar) unrar x -ad "$1" ;;
-      (*.7z) 7za x "$1" ;;
-      (*.deb)
-        mkdir -p "${extract_dir}/control"
-        mkdir -p "${extract_dir}/data"
-        cd "$extract_dir"; ar vx "../${1}" > /dev/null
-        cd control; tar xzvf ../control.tar.gz
-        cd ../data; tar xzvf ../data.tar.gz
-        cd ..; rm *.tar.gz debian-binary
-        cd ..
-      ;;
-      (*) 
-        echo "extract: '$1' cannot be extracted" 1>&2
-        success=1 
-      ;; 
-    esac
+    while (( $# > 0 )); do
+        if [[ ! -f "$1" ]]; then
+            echo "extract: '$1' is not a valid file" 1>&2
+            shift
+            continue
+        fi
 
-    (( success = ${success} > 0 ? ${success} : $? ))
-    (( ${success} == 0 )) && (( ${remove_archive} == 0 )) && rm "$1"
-    shift
-  done
+        success=0
+        file_name="$( basename "$1" )"
+        extract_dir="$( echo "${file_name}" | sed "s/\.${1##*.}//g" )"
+        case "${1}" in
+        (*.tar.gz|*.tgz) [ -z ${commands}[pigz] ] && tar zxvf "${1}" || pigz -dc "${1}" | tar xv ;;
+        (*.tar.bz2|*.tbz|*.tbz2) tar xvjf "${1}" ;;
+        (*.tar.xz|*.txz) tar --xz --help &> /dev/null \
+            && tar --xz -xvf "${1}" \
+            || xzcat "${1}" | tar xvf - ;;
+        (*.tar.zma|*.tlz) tar --lzma --help &> /dev/null \
+            && tar --lzma -xvf "${1}" \
+            || lzcat "${1}" | tar xvf - ;;
+        (*.tar) tar xvf "${1}" ;;
+        (*.gz) [ -z ${commands}[pigz] ] && gunzip "${1}" || pigz -d "${1}" ;;
+        (*.bz2) bunzip2 "${1}" ;;
+        (*.xz) unxz "${1}" ;;
+        (*.lzma) unlzma "${1}" ;;
+        (*.Z) uncompress "${1}" ;;
+        (*.zip|*.war|*.jar|*.sublime-package) unzip "${1}" -d ${extract_dir} ;;
+        (*.rar) unrar x -ad "${1}" ;;
+        (*.7z) 7za x "${1}" ;;
+        (*.deb)
+            mkdir -p "${extract_dir}/control"
+            mkdir -p "${extract_dir}/data"
+            cd "$extract_dir"; ar vx "../${1}" > /dev/null
+            cd control; tar xzvf ../control.tar.gz
+            cd ../data; tar xzvf ../data.tar.gz
+            cd ..; rm *.tar.gz debian-binary
+            cd ..
+            ;;
+        (*) 
+            echo "extract: '${1}' cannot be extracted" 1>&2
+            success=1 
+            ;; 
+        esac
+
+        (( success = ${success} > 0 ? ${success} : $? ))
+        (( ${success} == 0 )) && (( ${remove_archive} == 0 )) && rm "$1"
+        shift
+    done
 }
 
 # grep for running process, like: 'any vime
@@ -151,21 +148,6 @@ function hugepage_disable(){
     cat /sys/kernel/mm/transparent_hugepage/defrag
 }
 
-function cache_list(){
-    dirlist=(
-        "${HOME}/.w3m/*"
-        "${XDG_DATA_HOME}/recently-used.xbel"
-        "${XDG_CACHE_HOME}/mc/*"
-        "${XDG_DATA_HOME}/mc/history"
-        "${HOME}/.viminfo"
-        "${HOME}/.adobe/"
-        "${HOME}/.macromedia/"
-        "${XDG_CACHE_HOME}/mozilla/"
-        "${HOME}/.thumbnails/"
-    )
-    sp ${dirlist}
-}
-
 function lastfm_scrobbler_toggle(){
     local is_run="active (running)"
     local use_mpdscribble=false
@@ -196,7 +178,7 @@ function lastfm_scrobbler_toggle(){
 function pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
 if whence adb > /dev/null; then
-    function adbpush() {
+    adbpush() {
         for i; do
             echo "$(zpref) -> $(zwrap Pushing\ ${i}\ to\ /sdcard/${i:t})"
             adb push ${i} /sdcard/${i:t}
@@ -289,19 +271,3 @@ if inpath nvim && inpath nvr; then
         nvr --remote-send ":e $(pwd)<CR>:GV<CR>"
     }
 fi
-
-function ipaddr(){
-    one_only=1
-    # Created by [jvinet], improved by [Neg]
-    for intf in $(ip link |awk -F : '/^[[:alnum:]]+:/{print $2}'|xargs); do
-        ip=$(ip addr show "${intf}" 2>/dev/null | grep 'inet ' | grep -o -E '[0-9\.]+' | head -n 1)
-        if [[ "${ip}" ]]; then
-            builtin print "${intf}: ${ip}"
-            if [[ ! ${one_only} ]]; then
-                exit # only output one, as that's what our conkyrc expects
-            fi
-        fi
-    done
-}
-
-::() { echo -e "\e[0;31m:: \e[0;32m$*\e[0m" >&2 "$@" }
