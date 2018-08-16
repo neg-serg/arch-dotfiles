@@ -8,12 +8,10 @@ if command -v dbus-update-activation-environment >/dev/null 2>&1; then
         dbus-update-activation-environment DISPLAY XAUTHORITY
 fi
 
-systemctl --user set-environment XDG_VTNR=5
-
 if [[ -o LOGIN  ]]; then
     setterm -bfreq 0 # disable annoying pc speaker
     if [[ "${TERM}" = "linux" ]]; then
-        local run_yaft=1
+        local run_yaft=0
         if hash yaft 2> /dev/null; then
             if [[ ${run_yaft} == 1 ]]; then
                 yaft
@@ -37,65 +35,5 @@ if [[ -o LOGIN  ]]; then
         echo -en "\e]P7899ca1" #lightgrey
         echo -en "\e]PFc0c0c0" #white
     fi
-
     (( $#commands[tmux]  )) && tmux list-sessions 2>/dev/null
-
-    if [[ -z "${DISPLAY}"  ]] && \
-    [[ $(tty) = /dev/tty1  ]] && \
-    [[ -z ${DISPLAY} && ${XDG_VTNR} -eq 1  ]] && \
-    [[ -z $(pgrep xinit)  ]]; then
-        exec startx -- -keeptty -nolisten tcp > /tmp/xorg.log 2>&1
-    fi
-
-    # Let's set up some colors. By default, we won't use any color.
-    EYES="" TRUNK="" LEAVES="" CLEAR=""
-
-    # If we're in a terminal, we can play with some color.
-    if [[ -t 1 ]]; then
-        # We'll choose our palette based on the number of available colors.
-        case $(tput colors) in
-            256)
-                EYES="$(tput setaf 240)" # A nice gray
-                SPOTS="$(tput setaf 15)" # Bright white
-                TRUNK="$(tput setaf 18)" 
-                LEAVES="$(tput setaf 22)" # Dark green
-                CLEAR="$(tput sgr0)"
-                ;;
-            16)
-                EYES="$(tput setaf 8)" # Gray
-                SPOTS="$(tput setaf 15)" # Bright white
-                TRUNK="$(tput setaf 3)" # Dark yellow
-                LEAVES="$(tput setaf 10)" # Bright green
-                CLEAR="$(tput sgr0)"
-                ;;
-            8)
-                EYES="$(tput setaf 7)" # White
-                SPOTS="$(tput setaf 7)" # White
-                TRUNK="$(tput setaf 3)" # Yellow
-                LEAVES="$(tput setaf 2)" # Green
-                CLEAR="$(tput sgr0)"
-                ;;
-        esac
-    fi
-
-    if [[ "${EUID}" != 0 ]]; then
-        true
-    else
-        cat <<-EOF
-        ${LEAVES}    _              ${TRUNK}__
-        ${LEAVES}   / \`\\  ${TRUNK}(~._    ./  )
-        ${LEAVES}   \__/ __${TRUNK}\`-_\\__/ ./
-        ${LEAVES}  _ ${TRUNK}\\ \\${LEAVES}/  \\   ${TRUNK}\\ |_   ${LEAVES}__
-        ${LEAVES}(   )  \\__/ ${TRUNK}-^    \\ ${LEAVES}/  \\
-        ${LEAVES} \\_/ ${TRUNK}"  \\  | ${EYES}o  o  ${TRUNK}|${LEAVES}.. /  __
-        ${TRUNK}      \\. --' ${SPOTS}====  ${TRUNK}/  || ${LEAVES}/  \\
-        ${TRUNK}        \\   ${SPOTS}.  .  ${TRUNK}|---${LEAVES}__${TRUNK}.${LEAVES}\\__/
-        ${TRUNK}        /  ${SPOTS}:     ${TRUNK}/   ${LEAVES}|   |
-        ${TRUNK}        /   ${SPOTS}:   ${TRUNK}/     ${LEAVES}\\_/
-        ${TRUNK}     --/ ${SPOTS}::    ${TRUNK}(
-        ${TRUNK}    (  |     (  (____
-        ${TRUNK}  .--  .. ----**.____)
-        ${TRUNK}  \\___/$CLEAR
-        EOF
-    fi
 fi
