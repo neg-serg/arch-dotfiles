@@ -2,6 +2,8 @@
 unset TMUX
 source ~/.zsh/03-exports.zsh
 ~/bin/wl -r &
+dash -c "pgrep sxhkd || sxhkd &"
+${XDG_CONFIG_HOME}/xinit/compositing.zsh &
 ${XDG_CONFIG_HOME}/xinit/start_xinit.zsh &
 [[ -f "${HOME}/.Xresources" ]] && \
     xrdb -I${XDG_CONFIG_HOME}/xres -load "${HOME}/.Xresources"
