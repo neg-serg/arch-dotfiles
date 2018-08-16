@@ -1,0 +1,12 @@
+[Unit]
+Description=Compositing manager
+After=dbus.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/usr/bin/compton
+
+[Install]
+WantedBy=default.target
