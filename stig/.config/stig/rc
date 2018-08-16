@@ -1,3 +1,8 @@
 set tui.theme neg.theme
 set tui.poll 4
-set columns.torrents name ratio rate-up rate-down
+
+tab ls all
+tab -b ls active|incomplete
+tab -b ls downloading
+tab -b ls uploading
+tab -b ls peers
