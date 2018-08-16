@@ -1,0 +1,9 @@
+[Unit]
+Description=Thunderbird client
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/thunderbird
+
+[Install]
+WantedBy=mystuff.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Binary space partitioning window manager
+Requires=sxhkd.service
+After=sxhkd.service
+
+[Service]
+Environment=PANEL_FIFO="/tmp/panel-fifo"
+Environment=DISPLAY=:0
+Environment=PATH=/home/daniel/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/daniel/bin:/home/daniel/.local/share/panel
+ExecStart=/home/daniel/bin/bspwm
+Restart=on-failure
+
+[Install]
+WantedBy=wm.target

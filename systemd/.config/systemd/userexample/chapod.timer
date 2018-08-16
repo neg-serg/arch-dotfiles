@@ -1,0 +1,5 @@
+[Timer]
+OnCalendar=*-*-* 01:00:00
+
+[Install]
+WantedBy=mystuff.target

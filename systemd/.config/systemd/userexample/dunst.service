@@ -1,0 +1,10 @@
+[Unit]
+Description=small notification daemon
+After=dbus.socket
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/dunst
+
+[Install]
+WantedBy=mystuff.target

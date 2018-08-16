@@ -1,15 +1,14 @@
 [Unit]
 Description=Lightweight and customizable notification daemon
-After=sockets.target
+After=dbus.service
 
 [Service]
 Type=simple
 Restart=always
-Environment=DISPLAY=:0
+RestartSec=5
 ExecStartPre=/bin/mkdir -p %h/tmp/dunst-images
 ExecStart=/usr/sbin/dunst
 ExecReload=/bin/rm -fr %h/tmp/dunst-images
-ExecRestart=/bin/rm -fr %h/tmp/dunst-images
 ExecStop=/bin/rm -fr %h/tmp/dunst-images
 
 [Install]

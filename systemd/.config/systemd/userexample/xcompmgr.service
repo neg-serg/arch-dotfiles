@@ -1,0 +1,10 @@
+[Unit]
+Description=xcompmgr
+After=xorg.target
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xcompmgr
+
+[Install]
+WantedBy=mystuff.target

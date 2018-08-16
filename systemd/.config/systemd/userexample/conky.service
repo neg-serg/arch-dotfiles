@@ -1,0 +1,10 @@
+[Unit]
+Description=System Monitor for X
+After=xorg.target
+
+[Service]
+ExecStart=/usr/bin/conky -c %h/.config/conky/config.txt
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=mystuff.target

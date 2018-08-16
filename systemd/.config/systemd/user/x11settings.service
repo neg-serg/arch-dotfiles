@@ -1,10 +1,11 @@
 [Unit]
 Description=X11 Settings service
-After=sockets.target
+After=dbus.service
 
 [Service]
-Type=forking
-Environment=DISPLAY=:0
+Type=simple
+Restart=on-failure
+RestartSec=5
 ExecStart=%h/.config/xinit/start_xinit.zsh
 
 [Install]

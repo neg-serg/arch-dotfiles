@@ -1,11 +1,10 @@
 [Unit]
 Description=Log info runner
-After=sockets.target
+After=dbus.service
 
 [Service]
 Type=simple
 Restart=never
-Environment=DISPLAY=:0
 ExecStart=%h/bin/scripts/log_runner
 
 [Install]

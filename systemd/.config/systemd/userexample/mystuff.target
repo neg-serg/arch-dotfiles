@@ -1,0 +1,6 @@
+[Unit]
+Description=Xinitrc Stuff
+After=xorg.target
+
+[Install]
+Alias=default.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Start my tmux session
+After=network.target
+
+[Service]
+RemainAfterExit=yes
+ExecStart=/usr/bin/tmux -f %h/.config/tmux/config start-server
+ExecStop=/usr/bin/tmux kill-server
+
+[Install]
+WantedBy=mystuff.target

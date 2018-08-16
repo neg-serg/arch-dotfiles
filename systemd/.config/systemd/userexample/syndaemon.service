@@ -1,0 +1,10 @@
+[Unit]
+Description=Kill touchpad when typing
+After=xorg.target
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/syndaemon -i 1 -K -k
+
+[Install]
+WantedBy=mystuff.target

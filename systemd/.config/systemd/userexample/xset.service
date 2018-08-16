@@ -1,0 +1,16 @@
+[Unit]
+Description=Turn off Xorg Blanking
+After=xorg.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/xset s 0 0
+ExecStart=/usr/bin/xset s noblank
+ExecStart=/usr/bin/xset -dpms
+ExecStop=/usr/bin/xset s 600 600
+ExecStop=/usr/bin/xset s blank
+ExecStop=/usr/bin/xset +dpms
+
+[Install]
+WantedBy=mystuff.target
