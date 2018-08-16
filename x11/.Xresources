@@ -1,4 +1,3 @@
-#include <xft_settings>
 #include <xcursor>
 #include <colors/current_colors>
 #include <xscreenserver>
