@@ -5,11 +5,13 @@ After=dbus.service
 [Service]
 Type=simple
 Restart=always
-RestartSec=5
+RestartSec=2
 ExecStartPre=/bin/mkdir -p %h/tmp/dunst-images
-ExecStart=/usr/sbin/dunst
+ExecStart=/usr/sbin/dunst 2>/dev/null
 ExecReload=/bin/rm -fr %h/tmp/dunst-images
 ExecStop=/bin/rm -fr %h/tmp/dunst-images
+StandardOutput=null
+StandardError=null
 
 [Install]
 WantedBy=default.target
