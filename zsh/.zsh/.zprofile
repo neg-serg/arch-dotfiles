@@ -1,13 +1,6 @@
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
-systemctl --user import-environment PATH
-systemctl --user import-environment XDG_CONFIG_HOME
-systemctl --user import-environment DISPLAY XAUTHORITY
-if command -v dbus-update-activation-environment >/dev/null 2>&1; then
-        dbus-update-activation-environment DISPLAY XAUTHORITY
-fi
-
 if [[ -o LOGIN  ]]; then
     setterm -bfreq 0 # disable annoying pc speaker
     if [[ "${TERM}" = "linux" ]]; then
