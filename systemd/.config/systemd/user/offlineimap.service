@@ -7,6 +7,9 @@ Type=idle
 ExecStart=/usr/bin/offlineimap -l /dev/null
 KillSignal=SIGUSR2
 Restart=always
+RestartSec=5
+StandardOutput=null
+StandardError=null
 
 [Install]
 WantedBy=default.target
