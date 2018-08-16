@@ -10,15 +10,13 @@ function chpwd() {
 
 function zc(){
     autoload -U zrecompile
-    local zcompdumpfile="${HOME}/.zsh/zcomp-${HOST}"
-    compinit -d ${compdumpfile}
     for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
         zrecompile -p ${z}; 
-        echo $(zpref) $(zfwrap "${z}"); 
+        print $(zpref) $(zfwrap "${z}"); 
         rm -fv "${z}.zwc.old"
     done
     for f in ${ZSH}/zshrc ${zcompdumpfile};
-        zrecompile -p "${f}" && command rm -f "${f}.zwc.old"
+        zrecompile -p "${f}" && rm -f "${f}.zwc.old"
     source ${HOME}/.zshrc
 }
 
