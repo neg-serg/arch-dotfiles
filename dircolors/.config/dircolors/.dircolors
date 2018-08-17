@@ -127,6 +127,7 @@ RESET 0 # reset to "normal" color
 .mng              00;38;5;24
 .pcx              00;38;5;24
 .png              00;38;5;24;1
+.webp             00;38;5;24;1
 .bpg              00;38;5;24;1
 .svg              00;38;5;25
 .svgz             00;38;5;25
