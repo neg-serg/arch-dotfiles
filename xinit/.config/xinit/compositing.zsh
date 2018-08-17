@@ -16,7 +16,7 @@ function intel_compton_settings(){
         --glx-swap-method=undefined \
         --glx-use-copysubbuffermesa \
         --paint-on-overlay \
-        --vsync="opengl-mswc"
+        --vsync="drm"
 }
 
 function nvidia_with_hardcore_blur(){
