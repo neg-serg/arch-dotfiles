@@ -44,7 +44,7 @@ compositing-border = lighten
 
 [module/ws]
 type = custom/script
-exec = ~/.config/i3/ws_printer.py 2> /dev/null
+exec = ~/.config/i3/proc/ws_printer.py 2> /dev/null
 exec-if = sleep 1
 format-prefix=${c.l}
 format-suffix=${c.delim}
@@ -77,7 +77,7 @@ content="%{O5}%{F#395573}⟭%{F#ccc}"
 [module/volume]
 type = custom/script
 interval = 0
-exec = ~/.config/i3/vol_printer.py 2> /dev/null
+exec = ~/.config/i3/proc/vol_printer.py 2> /dev/null
 exec-if = sleep 1
 tail = true
 
