@@ -4,8 +4,9 @@ source ~/.zsh/03-exports.zsh
 ~/bin/wl -r &
 dash -c "pgrep sxhkd || sxhkd &"
 ${XDG_CONFIG_HOME}/xinit/compositing.zsh &
-${HOME}/.config/xinit/cursor_swarp.zsh &
-${HOME}/.config/xinit/keyboard_and_mouse.zsh &
+${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh &
+${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh &
+gpaste-client > /dev/null &
 [[ -f "${HOME}/.Xresources" ]] && \
     xrdb -I${XDG_CONFIG_HOME}/xres -load "${HOME}/.Xresources"
 if [[ ! ${WITHLOGS} -eq "" ]]; then
