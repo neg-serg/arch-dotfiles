@@ -8,7 +8,11 @@ repo = 'itchyny/lightline.vim' # lightline statusline
 [[plugins]]
 repo = 'maximbaz/lightline-ale' # lightline ale mod
 [[plugins]]
-repo = 'justinmk/vim-dirvish'
+repo = 'justinmk/vim-dirvish' # netrw replacement
+[[plugins]]
+repo = 'bounceme/remote-viewer' # dirvish remote-viewer
+[[plugins]]
+repo = 'kristijanhusak/vim-dirvish-git' # git support for divish
 # --[ Edit ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'sbdchd/neoformat' # universal formatter
