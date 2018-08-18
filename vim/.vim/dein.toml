@@ -7,6 +7,8 @@ repo = 'Shougo/neomru.vim' # add neomru source
 repo = 'itchyny/lightline.vim' # lightline statusline
 [[plugins]]
 repo = 'maximbaz/lightline-ale' # lightline ale mod
+[[plugins]]
+repo = 'justinmk/vim-dirvish'
 # --[ Edit ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'sbdchd/neoformat' # universal formatter
