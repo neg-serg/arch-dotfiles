@@ -65,6 +65,8 @@ label-song = %artist% ― %title%
 label-time = %elapsed%%{F#395573}/%{F#ccc}%total%
 lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
 interval = 1
+host = ::1
+port = 6600
 
 [module/LL]
 type=custom/text
