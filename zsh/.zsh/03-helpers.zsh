@@ -170,7 +170,7 @@ function vid_fancy_print {
         fi
         #------------------------------------------
         if (( ${#1} < 34 )); then
-            echo -ne "$(zpref)${fancy_name}$(zdelim 56 '//')"
+            echo -ne "$(zpref)${fancy_name}$(zdelim 56 ':')"
         else
             echo -e "$(zpref)${fancy_name}"
         fi
