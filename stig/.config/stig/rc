@@ -1,7 +1,7 @@
 set tui.theme neg.theme
 set tui.poll 4
 
-tab ls all --columns ratio,name,status,size,downloaded,rate-down,rate-up,status
+tab ls all --columns ratio,name,size,status,rate-down,rate-up
 tab -b ls active|incomplete
 tab -b ls downloading
 tab -b ls uploading
