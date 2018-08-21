@@ -157,10 +157,8 @@ yt(){ ${_zsh_proxy} you-get "$@" }
 function yr(){
     ${XDG_CONFIG_HOME}/i3/send ns toggle youtube
     sleep 1s
-    for f in "$@"; do
-        xdotool type --clearmodifiers --delay 0 "${f} "
-    done
-    sleep 0.1s && xdotool type --clearmodifiers --delay 0 ''
+    echo "$@" | xsel -i
+    xdotool key shift+Insert
 }
 
 alias qe='cd *(/om[1])'
