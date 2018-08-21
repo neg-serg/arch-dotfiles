@@ -1,6 +1,6 @@
 function chpwd() {
-    if [ -x ${BIN_HOME}/Z ]; then
-        [ "${PWD}" -ef "${HOME}" ] || Z -a "${PWD}"
+    if [[ -x ${BIN_HOME}/Z ]]; then
+        [[ "${PWD}" -ef "${HOME}" ]] || Z -a "${PWD}"
     fi
     setup_prompt
 }
@@ -211,9 +211,6 @@ function zurl() {
     wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
 }
 
-torch_activate(){ source  ~/src/1st_level/torch/install/bin/torch-activate }
-scm_init(){ [[ -s "${HOME}/.scm_breeze/scm_breeze.sh" ]] && source "${HOME}/.scm_breeze/scm_breeze.sh" }
-
 function ql(){
     if [[ $1 != "" ]]; then
         local file=$(resolve_file "$1")
@@ -230,9 +227,7 @@ kut() { awk "{ print $(for n; do echo -n "\$$n,"; done | sed 's/,$//') }" ;}
 
 function which() {
     if [[ $# > 0 ]]; then
-        if [[ -x ${BIN_HOME}/_v ]]; then
-            ${BIN_HOME}/_v -c 'set ft=sh' <<< $(builtin which "$@")
-        elif [[ -x /usr/bin/ccat ]]; then
+        if [[ -x /usr/bin/ccat ]]; then
             builtin which "$@" | ccat
         else            
             builtin which "$@"
