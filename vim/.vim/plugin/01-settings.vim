@@ -1,4 +1,4 @@
-set shell=/bin/bash
+set shell=/bin/zsh
 if bufname('%') == ''
   set bufhidden=wipe
 endif
