@@ -9,7 +9,7 @@ local -a hardcore_blur=(
 function intel_compton_settings(){
     compton -b --config "${compton_cfg}" \
         --blur-method=kawase \
-        --blur-strength=2 \
+        --blur-strength=6 \
         --backend="glx" \
         --glx-no-stencil \
         --glx-no-rebind-pixmap \
@@ -19,27 +19,14 @@ function intel_compton_settings(){
         --vsync="drm"
 }
 
-function nvidia_with_hardcore_blur(){
-    compton -b --config "${compton_cfg}"  --vsync=none \
-            --blur-kern="${hardcore_blur}" \
-            --backend="glx" \
-            --paint-on-overlay \
-            --glx-no-stencil \
-            --glx-no-rebind-pixmap \
-            --glx-swap-method="buffer-age" \
-            --sw-opti \
-        > /dev/null &
-}
-
 function nvidia_compton_settings(){
     compton -b --config "${compton_cfg}"  --vsync=none \
-            --blur-kern="3x3box" \
+            --blur-method=kawase \
+            --blur-strength=6 \
             --backend="glx" \
             --paint-on-overlay \
             --glx-no-stencil \
             --glx-no-rebind-pixmap \
-            --glx-swap-method="buffer-age" \
-            --sw-opti \
         > /dev/null &
 }
 
@@ -54,11 +41,7 @@ local sharp_shadows=(
 
 function compton_run(){
     if [[ $(lsmod|grep nvidia) != "" ]]; then
-        if ${with_hardcore_blur}; then
-            nvidia_with_hardcore_blur
-        else
-            nvidia_compton_settings
-        fi
+        nvidia_compton_settings
     else
         intel_compton_settings
     fi
