@@ -1,2 +1,2 @@
 #!/bin/dash
-exec /usr/bin/Xorg -sharevts -keeptty -nolisten tcp "$@" vt$XDG_VTNR
+exec /usr/bin/Xorg -nolisten tcp "$@" vt$XDG_VTNR
