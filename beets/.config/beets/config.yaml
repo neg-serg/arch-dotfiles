@@ -1,4 +1,4 @@
-plugins: mpdstats chroma discogs lastgenre
+plugins: mpdstats chroma discogs lastgenre fetchart
 
 directory: ~/music            # The default library root directory.
 library: ~/music/library.db   # The default library database file to use.
@@ -21,3 +21,8 @@ lastgenre:
 
 match:
     ignored: missing_tracks unmatched_tracks
+
+fetchart:
+    cautious: true
+    cover_names: front back
+    sources: itunes *
