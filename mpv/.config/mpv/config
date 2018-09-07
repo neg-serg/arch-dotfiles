@@ -1,7 +1,11 @@
 input-ipc-server=/tmp/mpvsocket
-no-border
-fullscreen=yes
 
+#--[Decoding]----------------------------------------------
+vo=vaapi,vdpau
+hwdec=vaapi,vdpau
+hwdec-codecs=all
+vd-lavc-threads=9
+cache=65536
 profile=gpu-hq
 scale=ewa_lanczossharp
 cscale=ewa_lanczossharp
@@ -9,20 +13,22 @@ video-sync=display-resample
 interpolation
 tscale=oversample
 
-ao=pulse
+#--[Volume]------------------------------------------------
+volume=100
+volume-max=100
+ao=pulse,jack
 
-cache=65536
+#--[Language]----------------------------------------------
 slang=ru,rus
 alang=en
+
+#--[Geometry]----------------------------------------------
 monitoraspect=16:10
 geometry=100%:100%
+no-border
+fullscreen=yes
 
-vd-lavc-threads=9
-screenshot-template="~/dw/scr-%F_%P"
-vo=vaapi
-hwdec-codecs=all
-hwdec=vaapi
-
+#--[Subtitles]---------------------------------------------
 sub-scale=.4
 sub-gauss=.82
 sub-gray=yes
@@ -30,32 +36,34 @@ sub-auto=fuzzy
 sub-font="Helvetica Neue LT Std"
 sub-font="HelveticaNeue LT CYR 57 Cond"
 
+#--[OSD]---------------------------------------------------
 osd-font="Iosevka Term Medium"
-osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?vo-drop-frame-count:${!vo-drop-frame-count==0: Dropped: ${vo-drop-frame-count}}}${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
 osd-font-size=22
-term-osd-bar-chars = "──╼ ·"
-# make the OSD progress bar be big and centered like in mplayer and mplayer2
+osd-color='#cc53a6a6'
+osd-border-color='#cc000000'
+osd-border-size=1
 osd-bar-align-y=0
 osd-bar-h=3
-osd-color='#cc53a6a6'
 osd-bar-align-y=0.95
-osd-border-size=1
-osd-border-color='#cc000000'
+osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?vo-drop-frame-count:${!vo-drop-frame-count==0: Dropped: ${vo-drop-frame-count}}}${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
+cursor-autohide=500
 
+#--[Youtube-DL]--------------------------------------------
 ytdl
 ytdl-format=bestvideo+bestaudio/best
 
-cursor-autohide=500
-really-quiet
+#--[ETC]---------------------------------------------------
+screenshot-template="~/dw/scr-%F_%P"
+quiet
 
-volume=80
-volume-max=100
-
+#----------------------------------------------------------
 [extension.flac]
 term-osd-bar=yes
+term-osd-bar-chars = "──╼ ·"
 
 [extension.mp3]
 term-osd-bar=yes
+term-osd-bar-chars = "──╼ ·"
 
 [svp]
 input-ipc-server=/tmp/mpvsocket     # Receives input from SVP
@@ -63,7 +71,4 @@ hr-seek-framedrop=no                # Fixes audio desync
 resume-playback=no                  # Not compatible with SVP
 hwdec=auto-copy
 hwdec-codecs=all
-
-# Can fix stuttering in some cases, in other cases probably causes it. Try it if you experience stuttering.
-#opengl-early-flush=yes
 
