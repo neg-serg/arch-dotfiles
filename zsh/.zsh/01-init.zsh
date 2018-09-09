@@ -110,6 +110,9 @@ setopt transient_rprompt # only show the rprompt on the current prompt
 setopt interactivecomments # allow interactive comments
 setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
 
+setopt extendedglob # enable extended globbing
+setopt interactivecomments # allow interactive comments after '#' in command line
+
 # ~ substitution and tab completion after a = (for --x=filename args)
 setopt magicequalsubst
 # setopt glob_star_short # */** -> **
