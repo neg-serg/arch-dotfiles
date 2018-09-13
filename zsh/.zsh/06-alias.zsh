@@ -95,7 +95,7 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 function mp(){
     for i; do vid_fancy_print "${i}"; done
-    ${VIDEO_PLAYER_} --input-ipc-server=/tmp/mpvsocket "$@" > ${HOME}/mpv.log
+    ${VIDEO_PLAYER_} --input-ipc-server=/tmp/mpvsocket "$@" > ${HOME}/tmp/mpv.log
 }
 
 alias mpa="${VIDEO_PLAYER_} -mute > ${HOME}/mpv.log"
