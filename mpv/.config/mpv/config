@@ -1,8 +1,6 @@
 input-ipc-server=/tmp/mpvsocket
 
 #--[Decoding]----------------------------------------------
-vo=vaapi,vdpau
-hwdec=vaapi,vdpau
 hwdec-codecs=all
 vd-lavc-threads=9
 cache=65536
