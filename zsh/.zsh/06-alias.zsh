@@ -94,12 +94,22 @@ alias primusrun="vblank_mode=0 primusrun"
 alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 function mp(){
+    vdpau=false
     for i; do vid_fancy_print "${i}"; done
-    ${VIDEO_PLAYER_} --input-ipc-server=/tmp/mpvsocket "$@" > ${HOME}/tmp/mpv.log
+    if lsmod |& rg -i nvidia > /dev/null; then
+        if [[ ${vdpau} == false ]]; then
+            mpv --input-ipc-server=/tmp/mpvsocket --vo=opengl --vd-lavc-dr=yes "$@" > ${HOME}/tmp/mpv.log
+        else
+            mpv --input-ipc-server=/tmp/mpvsocket --vo=vdpau --hwdec=vdpau "$@" > ${HOME}/tmp/mpv.log
+        fi
+    else
+        mpv --input-ipc-server=/tmp/mpvsocket --vo=vaapi --hwdec=vaapi "$@" > ${HOME}/tmp/mpv.log
+    fi
+    
 }
 
-alias mpa="${VIDEO_PLAYER_} -mute > ${HOME}/mpv.log"
-alias mpA="${VIDEO_PLAYER_} -fs -ao null > ${HOME}/mpv.log"
+alias mpa="mpv -mute > ${HOME}/mpv.log"
+alias mpA="mpv -fs -ao null > ${HOME}/mpv.log"
 
 alias love="mpc sendmessage mpdas love"
 alias unlove="mpc sendmessage mpdas unlove"
@@ -282,7 +292,7 @@ hash nc > /dev/null && alias nyan='nc -v nyancat.dakko.us 23'
 alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias zinc="zinc -nailed"
 alias je="bundle exec jekyll serve"
-alias twitch="livestreamer -p ${VIDEO_PLAYER_} twitch.tv/$1 high"
+alias twitch="livestreamer -p mpv twitch.tv/$1 high"
 alias recordmydesktop="recordmydesktop --no-frame"
 alias up="rtv -s unixporn"
 
@@ -327,5 +337,5 @@ function mimemap() {
 }
 
 mimemap ${BROWSER} htm html
-mimemap ${VIDEO_PLAYER_} ape avi flv mkv mov mp3 mpeg mpg ogg ogm rm wav webm
+mimemap mpv ape avi flv mkv mov mp3 mpeg mpg ogg ogm rm wav webm
 
