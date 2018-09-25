@@ -189,19 +189,6 @@ fi
 # gather external ip address
 function geteip() { curl http://ifconfig.me }
 
-function sp() {
-    setopt extendedglob bareglobqual
-    if [[ $# == 0 ]]; then
-        output=$(du -smc *)
-    else
-        output=$(du -smc "$@")
-    fi
-    total=$(tail -1 <<< "${output}")
-    distribution.pl --color -g -s=l --char=em <<< $(sed -e '$ d' <<< "${output}")
-    zwrap "Total: $(cut -f1 <<< ${total})"
-}
-
-
 # shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
 # MISC: zurl() create small urls via tinyurl.com needs wget, grep and sed. yes, it's a hack ;)
 function zurl() {

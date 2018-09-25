@@ -336,6 +336,8 @@ function mimemap() {
   for i in $@; do alias -s ${i}=${default}; done
 }
 
+alias sp='cdu -idh -s -r -c "#"'
+
 mimemap ${BROWSER} htm html
 mimemap mpv ape avi flv mkv mov mp3 mpeg mpg ogg ogm rm wav webm
 
