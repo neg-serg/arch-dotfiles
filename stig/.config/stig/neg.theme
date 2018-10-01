@@ -343,8 +343,8 @@ filelist.priority.high.focused             $priority_hl                         
 peerlist                                      default                             on $tlist_bg.uf
 peerlist.focused                              default                             on $tlist_bg.uf
 peerlist.header                               dark gray,underline                 on $tlist_bg.uf
-peerlist.ip.header                            $ip_fg,underline                    on $plist_bg
-peerlist.ip.unfocused                         $ip_fg                              on $plist_bg
+#peerlist.ip.header                            $ip_fg,underline                    on $plist_bg
+#peerlist.ip.unfocused                         $ip_fg                              on $plist_bg
 peerlist.port.header                          $port_fg,underline                  on $plist_bg
 peerlist.port.unfocused                       $port_fg                            on $plist_bg
 peerlist.client.header                        $client_fg,underline                on $plist_bg
