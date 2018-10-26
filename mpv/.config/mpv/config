@@ -43,7 +43,7 @@ osd-border-size=1
 osd-bar-align-y=0
 osd-bar-h=3
 osd-bar-align-y=0.95
-osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?vo-drop-frame-count:${!vo-drop-frame-count==0: Dropped: ${vo-drop-frame-count}}}${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
+osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
 cursor-autohide=500
 
 #--[Youtube-DL]--------------------------------------------
