@@ -19,6 +19,32 @@ set $term urxvt
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec
 
+
+set $m4  Mod4
+set $alt Mod1
+set $c   Control
+set $S   Shift
+
+set $i3 ${XDG_CONFIG_HOME}/i3
+
+set $circle exec --no-startup-id ${XDG_CONFIG_HOME}/i3/send circle
+set $ns exec --no-startup-id ${XDG_CONFIG_HOME}/i3/send ns
+set $flast exec --no-startup-id ${XDG_CONFIG_HOME}/i3/send flast
+set $menu exec ${XDG_CONFIG_HOME}/i3/send menu
+set $wm3 exec --no-startup-id ${XDG_CONFIG_HOME}/i3/send wm3
+set $volume exec --no-startup-id ${XDG_CONFIG_HOME}/i3/send vol
+set $executor exec --no-startup-id ${XDG_CONFIG_HOME}/i3/send executor
+
+set $scratchpad_dialog floating enable, move absolute position 180 20, resize set 1556 620, move scratchpad
+
+for_window [title="^NPP$"] floating enable, move absolute position 0 px 0 px, move workspace $ws4, workspace --no-auto-back-and-forth $ws4
+
+bindsym $m4+w $circle next web
+bindsym $m4+b $circle next vid
+bindsym $m4+o $circle next doc
+bindsym $m4+$S+o $circle next obs
+bindsym $m4+$c+f $circle next discord
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
@@ -145,11 +171,11 @@ output * bg /home/neg/pic/wl/into_the_depths_by_starkiteckt-daaed6s.png fill
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
+    # bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    # bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
