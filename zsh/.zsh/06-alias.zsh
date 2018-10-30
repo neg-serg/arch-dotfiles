@@ -108,8 +108,8 @@ function mp(){
     
 }
 
-alias mpa="mpv -mute > ${HOME}/mpv.log"
-alias mpA="mpv -fs -ao null > ${HOME}/mpv.log"
+alias mpa="mpv -mute > ${HOME}/tmp/mpv.log"
+alias mpA="mpv -fs -ao null > ${HOME}/tmp/mpv.log"
 
 alias love="mpc sendmessage mpdas love"
 alias unlove="mpc sendmessage mpdas unlove"
