@@ -42,7 +42,6 @@ for q in nvim vim vi;
     && export EDITOR=${q}; break }
 if which nvimpager >/dev/null; then
     export PAGER="nvimpager"
-    export VISUAL="${PAGER}"
 elif hash slit > /dev/null; then
     export PAGER="slit"
 else
