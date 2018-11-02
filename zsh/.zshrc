@@ -17,8 +17,7 @@ local zsh_files=(
     03-exports.zsh
     04-git-async-prompt.zsh
     04-oldprompt.zsh
-    05-functions.zsh
-    06-alias.zsh
+    05-cmds.zsh
     10-zle_functions.zsh
     11-open.zsh
     12-completion.zsh
