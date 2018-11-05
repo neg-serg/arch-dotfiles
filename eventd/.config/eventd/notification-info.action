@@ -1,9 +1,0 @@
-[Action]
-Name=notification-info
-
-[Notification]
-
-[NotificationBubble]
-Queue=topleft
-Timeout=0
-MinWidth=1

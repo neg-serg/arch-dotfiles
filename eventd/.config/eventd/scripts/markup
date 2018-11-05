@@ -1,8 +1,0 @@
-#!/bin/bash
-
-markup(){
-	# $1 = icon
-	# $2 = text
-	# $3 = color (without #, defaults to FFF)
-	echo "<span color='#${3:-FFF}' font='Iosevka Term 10px'>$1</span> $2"
-}

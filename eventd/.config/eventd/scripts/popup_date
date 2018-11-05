@@ -1,9 +1,0 @@
-#!/bin/bash
-
-DATE_ICON=''
-DATE_FORMAT='%-d %b (%-V)'
-
-status_date(){
-	status=`date +"$DATE_FORMAT"`
-	markup $DATE_ICON "$status"
-}
