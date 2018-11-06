@@ -8,7 +8,7 @@ ${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh &
 gpaste-client > /dev/null &
 [[ -f "${HOME}/.Xresources" ]] && \
     xrdb -I${XDG_CONFIG_HOME}/xres -load "${HOME}/.Xresources"
-xss-lock -- ~/bin/scripts/lock/lock.sh
+xss-lock -- ~/bin/scripts/lock/lock.sh &
 if [[ ! ${WITHLOGS} -eq "" ]]; then
     SHELL=dash exec i3 -V >> "${HOME}/tmp/i3log-$(date +'%F-%k-%M-%S')" 2>&1
 else
