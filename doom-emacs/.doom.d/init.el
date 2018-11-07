@@ -183,7 +183,7 @@
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
-       (default +bindings +snippets +evil-commands))
+       (default +bindings +snippets +evil-commands +hydra))
 
 (setq doom-font (font-spec :family "Iosevka Term Medium" :size 19))
 (setq doom-theme 'doom-city-lights)
@@ -253,3 +253,21 @@
     (org-set-tags)))
 ;; Bind this to a reasonable key
 (define-key org-capture-mode-map "\C-c\C-t" 'mrb/add-tags-in-capture)
+
+;; Define the custum capture templates
+(setq org-capture-templates
+      '(("t" "todo" entry (file org-default-notes-file)
+         "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+        ("m" "Meeting" entry (file org-default-notes-file)
+         "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
+        ("d" "Diary" entry (file+datetree "~/org/diary.org")
+         "* %?\n%U\n" :clock-in t :clock-resume t)
+        ("i" "Idea" entry (file org-default-notes-file)
+         "* %? :IDEA: \n%t" :clock-in t :clock-resume t)
+        ("n" "Next Task" entry (file+headline org-default-notes-file "Tasks")
+         "** NEXT %? \nDEADLINE: %t") ))
+
+(setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
+
+(defadvice load-theme (before theme-dont-propagate activate)
+    (mapc #'disable-theme custom-enabled-themes))
