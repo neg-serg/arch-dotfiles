@@ -1,5 +1,5 @@
 [global]
-    font                  = Iosevka Term Medium 12
+    font                  = Iosevka Term Medium 14
     markup                = full
     plain_text            = false
     format                = "<b>%s</b>\n%b"
@@ -7,7 +7,7 @@
     alignment             = left
     show_age_threshold    = 60
     ignore_newline        = false
-    geometry              = "550x12-8-35"
+    geometry              = "650x12-8-35"
     shrink                = false
     transparency          = 8
     idle_threshold        = 120
@@ -27,7 +27,7 @@
     browser               = /usr/bin/firefox -new-tab
     icon_position         = left
     icon_path             = ~/.icons/custom_dunst:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/devices
-    max_icon_size         = 200
+    max_icon_size         = 250
     title                 = Dunst
     class                 = Dunst
     stack_duplicates      = true
