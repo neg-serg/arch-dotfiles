@@ -108,17 +108,17 @@ function vid_fancy_print {
         local img_width="$(zex_tag 'Image Width')"
         local img_height="$(zex_tag 'Image Height')"
         not_empty ${img_width} && not_empty ${img_height} && \
-            local img_size_str="$(zwrap "Resolution$(zdelim)$fg[white]${img_width}$(zfg 24)x$fg[white]${img_height}")"
+            local img_size_str="$(zwrap "$fg[white]${img_width}$(zfg 24)x$fg[white]${img_height}")"
         #------------------------------------------
         local duration="$(awk -F: '/^Duration/' <<< ${exifdata_}|awk -F ':' '{print substr($0, index($0,$2))}'|tr -d '[:blank:]')"
-        local duration_str="$(zwrap "Duration$(zdelim)$fg[white]${duration}")"
+        local duration_str="$(zwrap "$fg[white]${duration}")"
         #------------------------------------------
         local file_size="$(zex_tag 'File Size')"
-        local file_size_str="$(zwrap "Size$(zdelim)$fg[white]$(zfile_sz <<< ${file_size})")"
+        local file_size_str="$(zwrap "$fg[white]$(zfile_sz <<< ${file_size})")"
         #------------------------------------------
         local mime_type="$(zex_tag 'MIME Type')"
         not_empty ${mime_type} && \
-            local mime_type_str="$(zwrap "MIME$(zdelim)$fg[white]${mime_type}")"
+            local mime_type_str="$(zwrap "$fg[white]${mime_type}")"
         #------------------------------------------
         local average_bitrate="$(zex_tag 'Average Bitrate')"
         local max_bitrate="$(zex_tag 'Max Bitrate')"
@@ -136,13 +136,13 @@ function vid_fancy_print {
         #------------------------------------------
         local video_frame_rate="$(printf "%.0f" $(zex_tag 'Video Frame Rate'))"
         not_empty ${video_frame_rate} && \
-            local vid_fps_str="$(zwrap "FPS$(zdelim)$fg[white]${video_frame_rate}")"
+            local vid_fps_str="$(zwrap "$fg[white]${video_frame_rate}$fg[green]fps")"
         #------------------------------------------
         local audio_bits="$(zex_tag 'Audio Bits Per Sample')"
         local audio_sample_rate="$(zex_tag 'Audio Sample Rate')"
         not_empty ${audio_bits} && \
         not_empty ${audio_sample_rate} && \
-            local audio_qa_str="$(zwrap "Audio$(zdelim)$fg[white]${audio_bits}$fg[green]bits$fg[blue]/$fg[white]$(printf "%.1f" $[${audio_sample_rate}/1000.])$fg[green]Khz")"
+            local audio_qa_str="$(zwrap "$fg[white]${audio_bits}$fg[green]bits$fg[blue]/$fg[white]$(printf "%.1f" $[${audio_sample_rate}/1000.])$fg[green]Khz")"
         #------------------------------------------
         local encoder="$(zex_tag 'Encoder')"
         not_empty ${encoder} && \
