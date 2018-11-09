@@ -5,6 +5,23 @@ function chpwd() {
     setup_prompt
 }
 
+local readonly use_cope_path=false
+if [[ ${use_cope_path} == true  ]]; then
+    if [[ -x $(which cope_path 2> /dev/null) ]]; then
+        # to prevent slow cope_path evaluation
+        local copepath=$(cope_path)
+        for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
+        alias df="${copepath}/df -hT"
+    else
+        alias df="df -hT"
+    fi
+else
+    local copepath=${SCRIPT_HOME}/Cope
+    for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
+    alias df="${copepath}/df -hT"
+fi
+unset copepath
+
 function zc(){
     autoload -U zrecompile
     for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
@@ -138,9 +155,6 @@ unset fasd_cache
 
 [[ ! -x $(which fd)  ]] && fd() { find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d }
 
-XC() { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
-
-function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
 function dropcache { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
 
 function hugepage_disable(){
@@ -189,15 +203,6 @@ fi
 # gather external ip address
 function geteip() { curl http://ifconfig.me }
 
-# shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
-# MISC: zurl() create small urls via tinyurl.com needs wget, grep and sed. yes, it's a hack ;)
-function zurl() {
-    [[ -z ${1} ]] && print "please give an url to shrink." && return 1
-    local url=${1}
-    local tiny="http://tinyurl.com/create.php?url="
-    wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
-}
-
 function ql(){
     if [[ $1 != "" ]]; then
         local file=$(resolve_file "$1")
@@ -222,17 +227,6 @@ function which() {
     fi
 }
 
-function set_proxy(){
-    if [[ -z ${http_proxy} ]]; then
-        echo $(zpref) $(zwrap "$(echo "setting proxy to http://127.0.0.1:8118/")")
-        export http_proxy="http://127.0.0.1:8118/"
-    else
-        echo $(zpref) $(zwrap "$(echo "unsetting proxy")")
-        unset http_proxy
-        export http_proxy
-    fi
-}
-
 function py23switch(){
     python_path="$(which python)"
 
@@ -253,25 +247,6 @@ if inpath nvim && inpath nvr; then
         nvr --remote-send ":e $(pwd)<CR>:GV<CR>"
     }
 fi
-
-(){
-    local readonly use_cope_path=false
-    if [[ ${use_cope_path} == true  ]]; then
-        if [[ -x $(which cope_path 2> /dev/null) ]]; then
-            # to prevent slow cope_path evaluation
-            local copepath=$(cope_path)
-            for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
-            alias df="${copepath}/df -hT"
-        else
-            alias df="df -hT"
-        fi
-    else
-        local copepath=${SCRIPT_HOME}/Cope
-        for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
-        alias df="${copepath}/df -hT"
-    fi
-    unset copepath
-}
 
 if hash dfc > /dev/null && false; then
     alias df='dfc -q type -T -n -s'
@@ -447,7 +422,6 @@ fi
 
 alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
-alias httpscan='sudo ngrep -d "enp6s0" -t "^(GET|POST) " "tcp and port 80"'
 
 alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
 
@@ -457,13 +431,11 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias cal="task calendar"
 
 if hash ${DEFAULT_TOP} > /dev/null; then
-    alias {{h,}top,lk}=${DEFAULT_TOP}
+    alias {{h,}top}=${DEFAULT_TOP}
 elif hash htop >/dev/null; then
-    alias {{h,}top,lk}=htop
+    alias top=htop
 elif hash glances >/dev/null; then
-    alias {{h,}top,lk}=glances
-elif hash top >/dev/null; then
-    alias {{h,}top,lk}=top
+    alias {{h,}top}=glances
 fi
 
 if [[ $(whence python) != "" ]]; then
@@ -544,11 +516,9 @@ hash iotop > /dev/null && {
 
 hash nc > /dev/null && alias nyan='nc -v nyancat.dakko.us 23'
 
-
 alias java='java "$_SILENT_JAVA_OPTIONS"'
-alias zinc="zinc -nailed"
 alias je="bundle exec jekyll serve"
-alias twitch="livestreamer -p mpv twitch.tv/$1 high"
+alias twitch="streamlink -p mpv twitch.tv/$1 720p60"
 alias recordmydesktop="recordmydesktop --no-frame"
 alias up="rtv -s unixporn"
 
@@ -557,7 +527,6 @@ alias taco='curl -L git.io/taco'
 alias starwars='telnet towel.blinkenlights.nl'
 
 #--[ Csound ]--------------
-alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +4  synth whitenoise lowpass -1 100 lowpass -1 100  lowpass -1 100 gain +2'
 alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tremolo 0.125 80;'
 
 #--[ gdb ]-----------------
@@ -581,32 +550,21 @@ fi
 
 alias @r=${SCRIPT_HOME}/music_rename
 
-alias vim=nvim
+[[ -x =nvim ]] && alias vim=nvim
 alias vimv=massren
 
 alias ip='ip -c'
 alias fd='fd -H'
 
 function mimemap() {
-  default=${1}; shift
-  for i in $@; do alias -s ${i}=${default}; done
+    default=${1}; shift
+    for i in $@; do alias -s ${i}=${default}; done
 }
 
 alias sp='cdu -idh -s -r -c "#"'
 
-mimemap ${BROWSER} htm html
-mimemap mpv ape avi flv mkv mov mp3 mpeg mpg ogg ogm rm wav webm
-
 # --------------------------------------------------------------------
 # ZLE-related stuff
-
-# If I am using vi keys, I want to know what mode I'm currently using.
-# zle-keymap-select is executed every time KEYMAP changes.
-# From http://zshwiki.org/home/examples/zlewidgets
-function zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
-    zle reset-prompt
-}
 
 function inplace_mk_dirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
