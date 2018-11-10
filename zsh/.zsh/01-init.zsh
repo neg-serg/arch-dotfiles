@@ -31,7 +31,7 @@ function zrcautoload() {
     local -i ffound
 
     ffile=$1
-    (( found = 0 ))
+    (( ffound = 0 ))
     for fdir in ${fpath} ; do
         [[ -e ${fdir}/${ffile} ]] && (( ffound = 1 ))
     done
@@ -45,7 +45,6 @@ zrcautoload colors && colors
 
 zle_highlight+=(suffix:fg=blue)
 
-zle -N zle-keymap-select
 unset MAILCHECK
 
 stty eof  2> /dev/null  # stty eof ''
