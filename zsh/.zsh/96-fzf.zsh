@@ -96,26 +96,6 @@ function ftpane () {
     fi
 }
 
-function pl(){
-    [[ -e "$1" ]] && arg_="$1"
-    [[ -z "${arg_}" ]] && arg_="${XDG_VIDEOS_DIR}/"
-    pushd ${arg_}
-    rg_cmd=(
-        rg -g \"'!{.git,node_modules}/*'\"
-        --files
-        --hidden
-        --follow
-    )
-    run_command=(sk-tmux -c \'${rg_cmd[@]}\' -d 40% -- ${SKIM_DEFAULT_OPTIONS})
-    find_result="$(eval ${run_command[@]})"
-    xsel <<< "${find_result}"
-    if [[ ! -z ${find_result} ]]; then
-        vid_fancy_print "${find_result}"
-        mpv "${find_result}"
-    fi
-    popd
-}
-
 function fmpc() {
     local song_position
     song_position=$(mpc -f "%position%) %artist% - %title%" playlist | \
