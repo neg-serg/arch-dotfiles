@@ -2,7 +2,7 @@ function chpwd() {
     if [[ -x ${BIN_HOME}/Z ]]; then
         [[ "${PWD}" -ef "${HOME}" ]] || Z -a "${PWD}"
     fi
-    setup_prompt
+    hash setup_prompt 2> /dev/null && setup_prompt
 }
 
 local readonly use_cope_path=false
@@ -44,6 +44,7 @@ function pk () {
         case ${1} in
             tbz)    tar cjvf ${2}.tar.bz2 ${2}              ;;
             tgz)    tar czvf ${2}.tar.gz  ${2}              ;;
+            txz)    tar cJvf ${2}.tar.xz  ${2}              ;;
             tar)    tar cpvf ${2}.tar  ${2}                 ;;
             bz2)    bzip ${2}                               ;;
             gz)     gzip -c -9 -n ${2} > ${2}.gz            ;;
