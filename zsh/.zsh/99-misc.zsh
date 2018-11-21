@@ -3,55 +3,12 @@ function arc-fix(){
     find -type f -exec sed -i 's/5294E2/00465F/g' {} \;
 }
 
-function firefox_bookmarks(){
-    zwrap "10 days history"
-    limit="10 days"
-    places=$(find ${HOME}/.mozilla/ -name "places.sqlite" | head -1)
-    sql="SELECT url FROM moz_places, moz_historyvisits \
-    WHERE moz_places.id = moz_historyvisits.place_id \
-    and visit_date > strftime('%s','now','-$limit')*1000000 \
-    ORDER by visit_date;"
-    sqlite3 ${places} ${sql}
-
-    zwrap "All history"
-    sqlite3 ~/.mozilla/firefox/*/places.sqlite "
-    select moz_places.url, moz_bookmarks.title from moz_places, moz_bookmarks
-    where moz_bookmarks.fk = moz_places.id and moz_bookmarks.type = 1
-    and length(moz_bookmarks.title) > 0 order by moz_bookmarks.dateAdded"
-}
-
 function allip(){
     netstat -lantp \
   | grep ESTABLISHED \
   | awk '{print }' \
   | awk -F: '{print }' \
   | sort -u
-}
-
-function flac2alac() {
-    for infile in "$@"; do
-        [[ "${infile}" != *.flac ]] && continue
-        outfile="${infile/%flac/m4a}"
-
-        album_artist=$(metaflac --show-tag='ALBUM ARTIST' "${infile}" | sed 's/ALBUM ARTIST=//g')
-        album="$(metaflac --show-tag=album "${infile}" | sed 's/[^=]*=//')"
-        artist="$(metaflac --show-tag=artist "${infile}" | sed 's/[^=]*=//')"
-        date="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
-        title="$(metaflac --show-tag=title "${infile}" | sed 's/[^=]*=//')"
-        year="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
-        genre="$(metaflac --show-tag=genre "${infile}" | sed 's/[^=]*=//')"
-        tracknumber="$(metaflac --show-tag=tracknumber "${infile}" | sed 's/[^=]*=//')"
-
-        ffmpeg -i "${infile}" -c:a alac \
-            -metadata album_artist="${album_artist}" \
-            -metadata album="${album}" \
-            -metadata artist="${artist}" \
-            -metadata title="${title}" \
-            -metadata date="${date}" \
-            -metadata genre="${genre}" \
-            -metadata tracknumber="${tracknumber}" \
-                "${outfile}" 
-    done
 }
 
 function flac2mp3(){
@@ -81,19 +38,16 @@ tmux-neww-in-cwd() {
     SIP=$(tmux display-message -p "#S:#I:#P")
 
     PTY=$(tmux server-info |
-    egrep flags=\|bytes |
-    awk '/windows/ { s = $2 }
-    /references/ { i = $1 }
-    /bytes/ { print s i $1 $2 } ' |
-    grep "$SIP" |
+        egrep flags=\|bytes |
+        awk '/windows/ { s = $2 }
+        /references/ { i = $1 }
+        /bytes/ { print s i $1 $2 } ' |
+        grep "$SIP" |
     cut -d: -f4)
 
     PTS=${PTY#/dev/}
-
     PID=$(ps -eao pid,tty,command --forest | awk '$2 == "'$PTS'" {print $1; exit}')
-
     DIR=$(readlink /proc/$PID/cwd)
-
     tmux neww "cd '$DIR'; $SHELL"
 }
 
@@ -117,17 +71,6 @@ function connections_num() {
     | sort \
     | uniq -c \
     | sort -rn
-    echo :: consip ::
-    netstat -ntu \
-    | tail -n +3 \
-    | awk '{print $5}' \
-    | cut -d:f -f1 \
-    | sort \
-    | uniq -c \
-    | sort -n 
 }
 
 +strip_trailing_workspaces(){  sed ${1:+-i} 's/\s\+$//' "$@" }
-+show_coredumps() { locate -b '^core\.?[0-9]*$' --regex | xargs file | fgrep ELF | awk '{print $1}' | sed 's,:$,,'}
-teapot_xterm(){ curl http://www.dim13.org/tek/teapot.tek }
-
