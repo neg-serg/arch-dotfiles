@@ -13,6 +13,8 @@ repo = 'justinmk/vim-dirvish' # netrw replacement
 repo = 'bounceme/remote-viewer' # dirvish remote-viewer
 [[plugins]]
 repo = 'kristijanhusak/vim-dirvish-git' # git support for divish
+[[plugins]]
+repo = 'Shougo/defx.nvim' # better file-manager for nvim
 # --[ Edit ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'sbdchd/neoformat' # universal formatter
@@ -88,6 +90,8 @@ repo = 'Vimjas/vim-python-pep8-indent' # python autoindent pep8 compatible
 repo = 'racer-rust/vim-racer' # racer support
 [[plugins]]
 repo = 'marijnh/tern_for_vim' # tern for vim
+[[plugins]]
+repo = 'Shougo/echodoc.vim' # print documents in echo area
 # --[ LaTeX ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'donRaphaco/neotex'
