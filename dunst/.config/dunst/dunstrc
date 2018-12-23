@@ -49,7 +49,7 @@
 [urgency_normal]
     background = "#000000"
     foreground = "#ffffff"
-    timeout    = 4
+    timeout    = 10
 
 [urgency_critical]
     background = "#010204"
