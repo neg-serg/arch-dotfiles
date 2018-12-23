@@ -1,11 +1,6 @@
 #!/bin/zsh
 source ~/.zsh/03-xdg_vars.zsh
 
-keyboard_name='Logitech Gaming Keyboard G910'
-while [[ $(xinput | grep ${keyboard_name} | wc -l) == 0 ]]; do
-    sleep 1s
-done
-
 xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc
 unclutter --fork --timeout 1
 
