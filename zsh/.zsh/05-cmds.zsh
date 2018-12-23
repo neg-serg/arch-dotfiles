@@ -243,7 +243,7 @@ function py23switch(){
     fi
 }
 
-if inpath nvim && inpath nvr; then
+if hash nvim > /dev/null && hash nvr > /dev/null; then
     function gv(){
         nvr --remote-send ":e $(pwd)<CR>:GV<CR>"
     }
@@ -371,7 +371,7 @@ alias acpi="acpi -V"
 alias se=extract
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
 
-if inpath git; then
+if hash git 2>/dev/null; then
     alias gs='git status --short -b'
     alias gp='git push'
     alias gdd='git diff'
