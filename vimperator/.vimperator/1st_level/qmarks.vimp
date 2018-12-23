@@ -1,7 +1,7 @@
 silent qmark c https://www.twitch.tv/cooller
 silent qmark C https://coursera.com/
 silent qmark e http://www.ektoplazm.com/
-silent qmark g https://mail.protonmail.com/inbox
+silent qmark g https://mail.google.com/mail/u/0/#inbox
 silent qmark G https://github.com/neg-serg
 silent qmark N https://neg-serg.github.io/
 silent qmark L http://gen.lib.rus.ec/
@@ -14,3 +14,4 @@ silent qmark V https://www.reddit.com/r/vim/
 silent qmark p https://www.reddit.com/r/vimplugins/
 silent qmark y https://youtube.com/
 silent qmark k https://www.reddit.com/r/MechanicalKeyboards/
+silent qmark A https://magazine.artstation.com/
