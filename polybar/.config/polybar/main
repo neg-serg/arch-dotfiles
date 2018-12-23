@@ -23,7 +23,7 @@ padding-right = 0       # offset from -x
 
 module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
-modules-left = LL date ws xkeyboard networkenp6s0 networkenp7s0 RR
+modules-left = LL date ws xkeyboard networkenp6s0 RR
 modules-center =
 modules-right = mpd volume
 
@@ -33,8 +33,8 @@ foreground = "#ccc"
 underline-size = 2
 
 font-0 = Iosevka Term Heavy:size=15;1
-font-1 = PragmataPro for Powerline:weight=bold:size=15;2
-font-2 = Code2000:weight=bold:size=20;3
+font-1 = Code2000:style=Regular:size=20;3
+font-2 = PragmataPro for Powerline:style=Bold:size=15;2
 
 compositing-background = over
 compositing-foreground = lighten
