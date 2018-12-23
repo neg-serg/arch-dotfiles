@@ -22,16 +22,8 @@ set show-all-if-ambiguous      on
 set show-all-if-unmodified     on
 set skip-completed-text        on
 set visible-stats              on
-
-$if pimpd2
-  "\C-h": "help\n"
-  "\C-l": "loved?\n"
-  "\C-n": "np\n"
-  "\C-o": "stop\n"
-  "\C-k": "stop\n"
-  "\C-y": "copy\n"
-  "\C-ya": "copya\n"
-$endif
+set colored-stats on
+set completion-prefix-display-length 3
 
 $if mode=vi
   set keymap vi-insert
