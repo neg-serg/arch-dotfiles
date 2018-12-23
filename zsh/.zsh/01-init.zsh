@@ -1,26 +1,3 @@
-function start_agent {
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add > /dev/null;
-}
-
-function ssh_agent_start_(){
-    SSH_ENV="${HOME}/.ssh/environment"
-
-    # Source SSH settings, if applicable
-    if [[ -f "${SSH_ENV}" ]]; then
-        . "${SSH_ENV}" > /dev/null
-        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-            start_agent;
-        }
-    else
-        start_agent;
-    fi
-}
-
-ssh_agent_start_
-
 # autoload wrapper - use this one instead of autoload directly
 # We need to define this function as early as this, because autoloading
 # 'is-at-least()' needs it.
@@ -41,15 +18,56 @@ function zrcautoload() {
     return 0
 }
 
+# Speeds up load time
+DISABLE_UPDATE_PROMPT=true
+
+# Perform compinit only once a day.
+autoload -Uz compinit
+
+setopt EXTENDEDGLOB
+for dump in ${HOME}/.zcompdump(#qN.m1); do
+    compinit
+    if [[ -s "${dump}" && (! -s "${dump}.zwc" || "${dump}" -nt "${dump}.zwc") ]]; then
+        zcompile "${dump}"
+    fi
+done
+unsetopt EXTENDEDGLOB
+compinit -C
+
+function start_agent {
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add > /dev/null;
+}
+
+function ssh_agent_start(){
+    SSH_ENV="${HOME}/.ssh/environment"
+
+    # Source SSH settings, if applicable
+    if [[ -f "${SSH_ENV}" ]]; then
+        . "${SSH_ENV}" > /dev/null
+        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+            start_agent
+        }
+    else
+        start_agent
+    fi
+}
+
+ssh_agent_start &!
+
 zrcautoload colors && colors
 
 zle_highlight+=(suffix:fg=blue)
 
 unset MAILCHECK
 
-stty eof  2> /dev/null  # stty eof ''
-stty ixany
-stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
+{
+    stty eof  2> /dev/null  # stty eof ''
+    stty ixany
+    stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
+} &!
 
 function stty_setup(){
     stty time 0 2> /dev/null
@@ -58,7 +76,7 @@ function stty_setup(){
     stty speed 38400 &> /dev/null
 }
 
-[[ $- =~ i ]] && stty_setup
+[[ $- =~ i ]] && stty_setup &!
 
 [[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
 
@@ -132,7 +150,6 @@ fpath=(
 zrcautoload zmv # who needs mmv or rename?
 zrcautoload history-search-end
 zrcautoload split-shell-arguments
-zrcautoload compinit && compinit
 
 zrcautoload zed # use ZLE editor to edit a file or function
 
