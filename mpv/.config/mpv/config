@@ -4,12 +4,13 @@ input-ipc-server=/tmp/mpvsocket
 hwdec-codecs=all
 vd-lavc-threads=9
 cache=65536
-profile=gpu-hq
 scale=ewa_lanczossharp
 cscale=ewa_lanczossharp
 video-sync=display-resample
 interpolation
 tscale=oversample
+hwdec=vaapi
+vo=vaapi
 
 #--[Volume]------------------------------------------------
 volume=100
