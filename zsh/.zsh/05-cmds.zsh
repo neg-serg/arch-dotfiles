@@ -609,6 +609,37 @@ function rationalise-dot() {
 }
 zle -N rationalise-dot
 
+function toggle_single_string() {
+    LBUFFER=$(echo ${LBUFFER} | sed "s/\(.*\) /\1 '/")
+    RBUFFER=$(echo ${RBUFFER} | sed "s/\($\| \)/' /")
+    zle redisplay
+}
+zle -N toggle_single_string
+
+function toggle_double_string() {
+    LBUFFER=$(echo ${LBUFFER} | sed 's/\(.*\) /\1 "/')
+    RBUFFER=$(echo ${RBUFFER} | sed 's/\($\| \)/" /')
+    zle redisplay
+}
+zle -N toggle_double_string
+
+function clear_string() {
+    LBUFFER=$(echo ${LBUFFER} | sed 's/\(.*\)\('"'"'\|"\).*/\1\2/')
+    RBUFFER=$(echo ${RBUFFER} | sed 's/.*\('"'"'\|"\)\(.*$\)/\1\2/')
+    zle redisplay
+}
+zle -N clear_string
+
+# run command line as user root via sudo:
+function sudo-command-line () {
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ ${BUFFER} != sudo\ * ]]; then
+        BUFFER="sudo ${BUFFER}"
+        CURSOR=$(( CURSOR+5 ))
+    fi
+}
+zle -N sudo-command-line
+
 function fg-widget() {
     stty icanon echo -inlcr < /dev/tty
     stty lnext '^V' quit '^\' susp '^Z' < /dev/tty
