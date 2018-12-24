@@ -20,6 +20,11 @@ local zsh_files=(
     04-oldprompt.zsh
     05-cmds.zsh
     11-open.zsh
+
+    # plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    plugins/zsh-histdb/sqlite-history.zsh
+    plugins/zsh-histdb/histdb-interactive.zsh
+
     12-completion.zsh
     13-bindkeys.zsh
     70-games.zsh
