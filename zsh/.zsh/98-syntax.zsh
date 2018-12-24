@@ -40,6 +40,10 @@ builtin unalias -m '[^+]*'
 # Core highlighting update system
 # -------------------------------------------------------------------------------------------------
 
+if [[ ${ZSH_NEW_SYNTAX} == true ]]; then
+    source "${ZDOTDIR}/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+fi
+
 # Use workaround for bug in ZSH?
 # zsh-users/zsh@48cadf4 http://www.zsh.org/mla/workers//2017/msg00034.html
 autoload -U is-at-least
