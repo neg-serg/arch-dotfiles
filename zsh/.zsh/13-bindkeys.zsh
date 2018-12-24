@@ -75,5 +75,4 @@ for index in $(seq 1 $((${#jump_dirs[@]} ))); do
     bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}"
 done
 
-zle     -N    foc
-bindkey '\ei' foc
+bindkey '^]' _histdb-isearch
