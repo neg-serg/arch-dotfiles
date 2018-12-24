@@ -154,8 +154,6 @@ fi
 source "${fasd_cache}"
 unset fasd_cache
 
-[[ ! -x $(which fd)  ]] && fd() { find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d }
-
 function dropcache { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
 
 function hugepage_disable(){
