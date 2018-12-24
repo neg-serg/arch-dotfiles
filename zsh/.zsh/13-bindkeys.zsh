@@ -76,3 +76,8 @@ for index in $(seq 1 $((${#jump_dirs[@]} ))); do
 done
 
 bindkey '^]' _histdb-isearch
+
+bindkey "^xs" sudo-command-line
+bindkey "^x'" toggle_single_string
+bindkey '^x"' toggle_double_string
+bindkey '^x;' clear_string
