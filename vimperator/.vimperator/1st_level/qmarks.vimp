@@ -12,6 +12,7 @@ silent qmark u http://www.reddit.com/r/unixporn
 silent qmark v https://vk.com/feed
 silent qmark V https://www.reddit.com/r/vim/
 silent qmark p https://www.reddit.com/r/vimplugins/
+silent qmark h http://www.hsluv.org/
 silent qmark y https://youtube.com/
 silent qmark k https://www.reddit.com/r/MechanicalKeyboards/
 silent qmark A https://magazine.artstation.com/
