@@ -2,7 +2,6 @@
 " unbind --mode=ex <C-a>
 
 bind w fillcmdline tab
-bind --mode=ex <C-c> exclaim_quiet xdotool getactivewindow key Esc
 
 bind n exclaim_quiet xdotool getactivewindow key F3
 bind N exclaim_quiet xdotool getactivewindow key Shift+F3
