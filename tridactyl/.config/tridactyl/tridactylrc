@@ -1,0 +1,53 @@
+" Allow Ctrl-a to select all in the commandline
+" unbind --mode=ex <C-a>
+
+bind w fillcmdline tab
+bind --mode=ex <C-c> exclaim_quiet xdotool getactivewindow key Esc
+
+bind n exclaim_quiet xdotool getactivewindow key F3
+bind N exclaim_quiet xdotool getactivewindow key Shift+F3
+
+" bind . find
+" bind ? find -1
+" bind n findnext
+" bind N findnext -1.
+
+" set editorcmd to suckless terminal, or use the defaults on other platforms
+js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "st vim" : "auto"; tri.config.set("editorcmd", editorcmd)})
+
+" Sane hinting mode
+set hintfiltermode vimperator-reflow
+"set hintnames numeric
+set hintchars 12345
+
+" Make Tridactyl work on more sites at the expense of some security
+set csp clobber
+fixamo_quiet
+
+" Make quickmarks for the sane Tridactyl issue view
+quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
+quickmark c https://www.twitch.tv/cooller
+quickmark C https://coursera.com/
+quickmark e http://www.ektoplazm.com/
+quickmark g https://mail.google.com/mail/u/0/#inbox
+quickmark G https://github.com/neg-serg
+quickmark N https://neg-serg.github.io/
+quickmark L http://gen.lib.rus.ec/
+quickmark l http://www.last.fm/user/e7z0x1
+quickmark q https://quora.com/
+quickmark s http://store.steampowered.com/?l=russian
+quickmark u http://www.reddit.com/r/unixporn
+quickmark v https://vk.com/feed
+quickmark V https://www.reddit.com/r/vim/
+quickmark p https://www.reddit.com/r/vimplugins/
+quickmark h http://www.hsluv.org/
+quickmark y https://youtube.com/
+quickmark k https://www.reddit.com/r/MechanicalKeyboards/
+quickmark A https://magazine.artstation.com/
+
+" New reddit is bad
+autocmd DocStart www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+" Mosquito nets won't make themselves
+autocmd DocStart www.amazon.co.uk js tri.excmds.urlmodify("-t", "www", "smile")
+
+" vim: set filetype=vim:
