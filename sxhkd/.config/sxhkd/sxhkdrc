@@ -5,13 +5,13 @@ XF86AudioMute
 super + quotedbl
     i3-msg reload
 XF86Audio{Prev,Next,Play,Stop}
-    mpc -q {prev,next,toggle,stop}
+    playerctl {previous,next,play-pause,stop}
 super + control + XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 super + 8
-    mpc -q volume 0 || amixer -q set Master 0% mute
+    playerctl volume 0.0 || amixer -q set Master 0% mute
 super + shift + 8
-    mpc -q volume 100 || amixer -q set Master 100% unmute
+    playerctl volume 1.0 || amixer -q set Master 100% unmute
 {super + control + shift + u,XF86Sleep}
     sudo systemctl suspend
 super + U
