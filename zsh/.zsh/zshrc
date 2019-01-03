@@ -32,7 +32,6 @@ local _zsh_files=(
     96-fzf.zsh
     97-open-pr.plugin.zsh
     98-syntax.zsh
-    99-misc.zsh
 )
 
 for i in ${_zsh_files[@]}; do

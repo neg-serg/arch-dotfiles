@@ -562,6 +562,50 @@ function mimemap() {
 
 alias sp='cdu -idh -s -r -c "#"'
 
+function allip(){
+    netstat -lantp \
+    | grep ESTABLISHED \
+    | awk '{print }' \
+    | awk -F: '{print }' \
+    | sort -u
+}
+
+function flac2mp3(){
+    for infile in "$@"; do
+        [[ "${infile}" != *.flac ]] && continue
+        album="$(metaflac --show-tag=album "${infile}" | sed 's/[^=]*=//')"
+        artist="$(metaflac --show-tag=artist "${infile}" | sed 's/[^=]*=//')"
+        date="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
+        title="$(metaflac --show-tag=title "${infile}" | sed 's/[^=]*=//')"
+        year="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
+        genre="$(metaflac --show-tag=genre "${infile}" | sed 's/[^=]*=//')"
+        tracknumber="$(metaflac --show-tag=tracknumber "${infile}" | sed 's/[^=]*=//')"
+
+        flac --decode --stdout "${infile}" | lame -b 320 --add-id3v2 \
+            --tt "${title}" \
+            --ta "${artist}" \
+            --tl "${album}" \
+            --ty "${year}" \
+            --tn "${tracknumber}" \
+            --tg "${genre}" - "${infile%.flac}.mp3"
+    done
+}
+
+function fun::fonts(){
+    alias 2023='toilet -f future'
+    alias gaym='toilet --gay -f mono9 -t'
+    alias gayf='toilet --gay -f future -t'
+    alias gayt='toilet --gay -f term -t'
+    alias gayp='toilet --gay -f pagga -t'
+    alias metm='toilet --metal -f mono9 -t'
+    alias metf='toilet --metal -f future -t'
+    alias mett='toilet --metal -f term -t'
+    alias metp='toilet --metal -f pagga -t'
+    alias 3d='figlet -f 3d'
+}
+
++strip_trailing_workspaces(){  sed ${1:+-i} 's/\s\+$//' "$@" }
+
 # --------------------------------------------------------------------
 # ZLE-related stuff
 
