@@ -32,6 +32,10 @@ foreground = "#ccc"
 
 underline-size = 2
 
+tray-position = right
+tray-padding = 1
+tray-background = ${colors.background}
+
 font-0 = Iosevka Term Heavy:size=15;1
 font-1 = Code2000:style=Regular:size=20;3
 font-2 = PragmataPro for Powerline:style=Bold:size=15;2
