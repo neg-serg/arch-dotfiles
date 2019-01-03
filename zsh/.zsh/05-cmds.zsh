@@ -407,7 +407,8 @@ fi
 for i in x q Q; eval alias :${i}=\' exit\'
 
 alias iostat='iostat -mtx'
-alias yt='you-get'
+alias yt="youtube-dl"
+alias yd='you-get'
 
 function yr(){
     ${XDG_CONFIG_HOME}/i3/send ns toggle youtube
