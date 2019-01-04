@@ -6,6 +6,17 @@ library: ~/music/library.db   # The default library database file to use.
 threaded: yes
 color: yes
 
+ui:
+  color: yes
+  colors:
+    text_success: green
+    text_warning: yellow
+    text_error: red
+    text_highlight: red
+    text_highlight_minor: lightgray
+    action_default: turquoise
+    action: blue
+
 per_disc_numbering: no
 original_date: yes
 
@@ -22,7 +33,34 @@ lastgenre:
 match:
     ignored: missing_tracks unmatched_tracks
 
+# Main beets config
+plugins: >
+  acousticbrainz chroma discogs duplicates edit embedart export fetchart
+  fromfilename ftintitle fuzzy info lastgenre lastimport lyrics mbsync play
+  smartplaylist web
+
 fetchart:
     cautious: true
     cover_names: front back
     sources: itunes *
+
+chroma:
+  auto: no
+
+embedart:
+  remove_art_file: no
+
+fetchart:
+  auto: yes
+  maxwidth: 500
+
+lastfm:
+  user: AbhinavTushar
+
+lastgenre:
+  auto: yes
+  canonical: yes
+  count: 5
+
+lyrics:
+  auto: yes
