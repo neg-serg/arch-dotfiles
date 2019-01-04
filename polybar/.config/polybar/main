@@ -1,11 +1,8 @@
+include-file = $HOME/.config/polybar/common.cfg
+
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
-[colors]
-background= "#cc020209"
-border = ${xrdb:color32}
-border_top = ${xrdb:color32}
 
 [bar/main]
 bottom=true
@@ -36,9 +33,9 @@ tray-position = right
 tray-padding = 1
 tray-background = ${colors.background}
 
-font-0 = Iosevka Term Heavy:size=15;1
-font-1 = Code2000:style=Regular:size=20;3
-font-2 = PragmataPro for Powerline:style=Bold:size=15;2
+font-0 = ${font.font-0}
+font-1 = ${font.font-1}
+font-2 = ${font.font-2}
 
 compositing-background = over
 compositing-foreground = lighten
@@ -132,15 +129,5 @@ tail = true
 click-left = xdg-open https://mail.google.com
 format-prefix=${c.deliml}
 format = <label>
-
-[c]
-l="%{O5}"
-r="%{O5}"
-ls=
-rs=
-lspec="%{F#395573}⟬ %{F#ccc}"
-rspec="%{F#395573}⟭ %{F#ccc}"
-delim="%{F#395573}%{O5}∣%{F#ccc}"
-deliml="%{F#395573}%{O5}∣%{F#ccc}%{O5}"
 
 ; vim:ft=conf
