@@ -61,7 +61,10 @@ map <silent> s :sidebar<Space>
 map <silent> S :sbclose<CR>
 map gq :noscript popup<cr>
 
-" " Russian language keyboard mappings (UTF-8)
+nmap <silent> h :tabprev<cr>
+nmap <silent> l :tabnext<cr>
+
+" Russian language keyboard mappings (UTF-8)
 nmap <silent> щ  :silent !xkb-switch -s us &<CR>o
 nmap <silent> е  :silent !xkb-switch -s us &<CR>t
 nmap <silent> пш :silent !xkb-switch -s us &<CR>gi
