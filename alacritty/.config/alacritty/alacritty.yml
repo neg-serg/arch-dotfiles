@@ -8,9 +8,7 @@ window:
     padding:
         x: 2
         y: 2
-    # Window decorations
-    # Setting this to false will result in window without borders and title bar.
-    decorations: true
+    decorations: full
 
 dpi:
   x: 96.0
@@ -57,10 +55,6 @@ font:
 
 # Should display the render timer
 render_timer: false
-
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: true
 
 colors:
   primary:
@@ -219,11 +213,12 @@ mouse_bindings:
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+custom_cursor_colors: true
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
-
-hide_cursor_when_typing: false
 
 shell:
  program: /bin/zsh 
