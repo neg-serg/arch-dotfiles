@@ -1,32 +1,42 @@
-GIT_PROMPT_ORDER=(
-	"prefix"
-	"branch"
-	"behind"
-	"ahead"
-	"separator"
-	"staged"
-	"changed"
-	"conflicts"
-	"untracked"
-	"clean"
-	"suffix"
-)
+if [[ -z $GIT_PROMPT_ORDER ]]; then
+    GIT_PROMPT_ORDER=(
+        "prefix"
+        "branch"
+        "behind"
+        "ahead"
+        "separator"
+        "staged"
+        "changed"
+        "conflicts"
+        "untracked"
+        "clean"
+        "suffix"
+    )
+fi
 
 declare -A GIT_PROMPT_SYMBOLS
 lhs="⟬" rhs="⟭"
-GIT_PROMPT_SYMBOLS=(
-	"prefix" "%F{4}${lhs}%f"
-	"branch" "%F{7}"
-	"behind" "%F{25}%{←%G%}"
-	"ahead" "%F{25}%{→%G%}"
-	"separator" "%F{206}|%f"
-	"staged" "%F{117}%{♦%G%}"
-	"changed" "%F{226}%{◊%G%}"
-	"conflicts" "%F{9}%{≠%G%}"
-	"untracked" "%F{1}%{…%G%}"
-	"clean" "%F{10}%B%{✓%G%}%b"
-	"suffix" "%F{4}${rhs}%f%{$reset_color%}"
-)
+if [[ -z $GIT_PROMPT_SYMBOLS ]]; then
+	declare -A GIT_PROMPT_SYMBOLS
+    GIT_PROMPT_SYMBOLS=(
+        "prefix" "%F{4}${lhs}%f"
+        "branch" "%F{7}"
+        "behind" "%F{25}%{←%G%}"
+        "ahead" "%F{25}%{→%G%}"
+        "separator" "%F{206}|%f"
+        "staged" "%F{117}%{♦%G%}"
+        "changed" "%F{226}%{◊%G%}"
+        "conflicts" "%F{9}%{≠%G%}"
+        "untracked" "%F{1}%{…%G%}"
+        "clean" "%F{10}%B%{✓%G%}%b"
+        "suffix" "%F{4}${rhs}%f%{$reset_color%}"
+    )
+fi
+
+# Remove right margin from $RPROMPT. In theory, setting ZLE_RPROMPT_INDENT
+# appropriately should be enough, but in practice results vary:
+# https://superuser.com/q/655607
+: ${GIT_PROMPT_INDENT_HACK:=1}
 
 declare -A GIT_STATUS_MAP
 GIT_STATUS_MAP=(
@@ -65,6 +75,14 @@ GIT_STATUS_MAP=(
 )
 
 GIT_PROMPT_FIFO_DIR="${HOME}/tmp/zsh-git-prompt"
+
+if [[ $GIT_PROMPT_INDENT_HACK -eq 1 ]]; then
+	if [[ $TMUX_PANE ]]; then
+		export ZLE_RPROMPT_INDENT=0
+	else
+		export ZLE_RPROMPT_INDENT=1
+	fi
+fi
 
 function git_get_status() {
 	local status_string map_status chunk chunk_index mapped_status
@@ -181,12 +199,19 @@ function git_get_tag_or_hash() {
 
 function git_prompt_completed_callback() {
 	local symbol line k buffer=""
-	while read -t 0 -r -u 3 line; do
+	while read -t 0 -r -u $GIT_PROMPT_DESCRIPTOR line; do
 		eval $line
 	done
 	if [[ ${git_flags[in_repo]} -eq 1 ]]; then
 		for k in $GIT_PROMPT_ORDER; do
 			symbol="${GIT_PROMPT_SYMBOLS[$k]}"
+			if [[ $GIT_PROMPT_INDENT_HACK -eq 1 ]]; then
+				if [[ -z $TMUX_PANE ]]; then
+					if [[ $k == suffix ]]; then
+						symbol="%{$symbol%}"
+					fi
+				fi
+			fi
 			if [[ ${git_strings[$k]} != "" ]] then
 				buffer+="$symbol${git_strings[$k]}"
 			elif [[ ${git_numbers[$k]} != "" ]] then
@@ -207,7 +232,7 @@ function git_prompt_completed_callback() {
 }
 
 function git_prompt_bg() {
-	git_get_status >&3
+	git_get_status >&$GIT_PROMPT_DESCRIPTOR
 	kill -s USR1 $$
 }
 
@@ -220,12 +245,12 @@ function git_prompt_hook() {
 }
 
 function git_prompt_init() {
-	typeset -g GIT_PROMPT_BG_PID
+	typeset -g GIT_PROMPT_BG_PID GIT_PROMPT_DESCRIPTOR
 	GIT_PROMPT_BG_PID=0
 	local fifo="$GIT_PROMPT_FIFO_DIR/$$.fifo"
 	mkdir -m 700 -p "$GIT_PROMPT_FIFO_DIR"
 	mkfifo -m 600 $fifo
-	exec 3<>$fifo
+	exec {GIT_PROMPT_DESCRIPTOR}<>$fifo
 	rm -f $fifo
 }
 
