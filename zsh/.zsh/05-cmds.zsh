@@ -562,6 +562,8 @@ function mimemap() {
 
 alias sp='cdu -idh -s -r -c "#"'
 
+alias v="${BIN_HOME}/nwim"
+
 function allip(){
     netstat -lantp \
     | grep ESTABLISHED \
