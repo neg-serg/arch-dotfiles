@@ -70,18 +70,6 @@ function zsufhi {
     } | tr -d '\n'
 }
 
-function draw_line {
-    [ ${1} ] && linechar=${1} || linechar='─'
-    [ ${2} ] && color=${2} || color=${_red_}
-    width=$(tput cols)
-
-    line=$(head -c "${width}" </dev/zero | tr '\0' 'X')
-    # utf-8 characters preclude use of cut -b -$width
-    line=$(echo "${line}" | sed "s/X/$linechar/g" | sed -e "s/^\(.\{$width\}\).*/\1/")
-
-    echo "${color}${line}${_nocolor_}"
-}
-
 function zex_tag {
     grep -E '^'"${1}"'' <<< "${exifdata_}" \
         | cut -d ':' -f 2- \
