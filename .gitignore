@@ -354,3 +354,6 @@ mpd/.mpd/mpd.db
 mpd/.mpd/mpd.pid
 mpd/.mpd/mpdstate
 doom-emacs/.doom.d/init.elc
+oni/.config/oni/SS
+oni/.config/oni/SingletonCookie
+oni/.config/oni/SingletonLock
