@@ -210,12 +210,12 @@ key_bindings:
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
+custom_cursor_colors: true
+
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
   hide_when_typing: true
-
-custom_cursor_colors: true
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
