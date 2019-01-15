@@ -96,5 +96,4 @@ export VIDEO_PLAYER_="mpv"
 
 export AUTOPAIR_INHIBIT_INIT=1
 
-source ~/.zsh/00-common.zsh
 source ~/.zsh/03-xdg_vars.zsh
