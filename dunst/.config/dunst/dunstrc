@@ -7,7 +7,7 @@
     alignment             = left
     show_age_threshold    = 60
     ignore_newline        = false
-    geometry              = "650x12-8-35"
+    geometry              = "650x12-0-35"
     shrink                = false
     transparency          = 8
     idle_threshold        = 120
@@ -32,7 +32,7 @@
     class                 = Dunst
     stack_duplicates      = true
     hide_duplicate_count  = true
-    frame_width           = 1
+    frame_width           = 2
     frame_color           = "#073642"
     width                 = 0
     ellipsize             = middle
