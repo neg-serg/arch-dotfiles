@@ -46,7 +46,7 @@ fi
 
 # Use workaround for bug in ZSH?
 # zsh-users/zsh@48cadf4 http://www.zsh.org/mla/workers//2017/msg00034.html
-autoload -U is-at-least
+autoload -Uz is-at-least
 if is-at-least 5.4; then
   zsh_highlight__pat_static_bug=false
 else
@@ -296,7 +296,7 @@ _zsh_highlight_bind_widgets()
 
   # Override ZLE widgets to make them invoke _zsh_highlight.
   local -U widgets_to_bind
-  widgets_to_bind=(${${(k)widgets}:#(.*|run-help|which-command|beep|set-local-history|yank)})
+  widgets_to_bind=(${${(k)widgets}:#(.*|run-help|which-command|beep|set-local-history|yank|yank-pop)})
 
   # Always wrap special zle-line-finish widget. This is needed to decide if the
   # current line ends and special highlighting logic needs to be applied.
@@ -354,7 +354,7 @@ _zsh_highlight_bind_widgets()
 #   1) Path to the highlighters directory.
 _zsh_highlight_load_highlighters()
 {
-  setopt localoptions noksharrays
+  setopt localoptions noksharrays bareglobqual
 
   # Check the directory exists.
   [[ -d "$1" ]] || {
@@ -411,7 +411,7 @@ _zsh_highlight_preexec_hook() {
   typeset -g _ZSH_HIGHLIGHT_PRIOR_BUFFER=
   typeset -gi _ZSH_HIGHLIGHT_PRIOR_CURSOR=
 }
-autoload -U add-zsh-hook
+autoload -Uz add-zsh-hook
 add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
     print -r -- >&2 'zsh-syntax-highlighting: failed loading add-zsh-hook.'
 }
