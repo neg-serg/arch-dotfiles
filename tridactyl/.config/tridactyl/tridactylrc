@@ -6,10 +6,11 @@ bind w fillcmdline tab
 bind n exclaim_quiet xdotool getactivewindow key F3
 bind N exclaim_quiet xdotool getactivewindow key Shift+F3
 
-" bind . find
-" bind ? find -1
-" bind n findnext
-" bind N findnext -1.
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,, nohlsearch
 
 " set editorcmd to suckless terminal, or use the defaults on other platforms
 js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "st vim" : "auto"; tri.config.set("editorcmd", editorcmd)})
