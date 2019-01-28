@@ -20,6 +20,12 @@ else
     for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
     alias df="${copepath}/df -hT"
 fi
+
+
+if hash dfc > /dev/null && false; then
+    alias df='dfc -q type -T -n -s'
+fi
+
 unset copepath
 
 function zc(){
@@ -245,10 +251,6 @@ if hash nvim > /dev/null && hash nvr > /dev/null; then
     function gv(){
         nvr --remote-send ":e $(pwd)<CR>:GV<CR>"
     }
-fi
-
-if hash dfc > /dev/null && false; then
-    alias df='dfc -q type -T -n -s'
 fi
 
 local noglob_list=(
@@ -554,6 +556,10 @@ alias vimv=massren
 
 alias ip='ip -c'
 alias fd='fd -H'
+
+alias куищще='reboot'
+alias учше='exit'
+alias :й=':q'
 
 function mimemap() {
     default=${1}; shift
