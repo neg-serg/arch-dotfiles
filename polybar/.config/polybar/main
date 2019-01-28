@@ -1,8 +1,12 @@
+[section/base]
 include-file = $HOME/.config/polybar/common.cfg
 
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[settings]
+screenchange-reload = true
 
 [bar/main]
 bottom=true
@@ -20,9 +24,9 @@ padding-right = 0       # offset from -x
 
 module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
-modules-left = LL date ws xkeyboard networkenp6s0 RR
+modules-left = LL time ws xkeyboard networkenp6s0 RR
 modules-center =
-modules-right = mpd volume
+modules-right = mpd volume vol2
 
 background = ${colors.background}
 foreground = "#ccc"
@@ -55,6 +59,7 @@ tail = true
 [module/mpd]
 type = internal/mpd
 format-online = <label-song> <label-time>
+# %{A1:$USERSCRIPT/rofi-widgets/widgets/mpc.sh:}<label-song>%{A}
 format-playing = ${self.format-online}
 format-playing-prefix = ${self.lmpd}
 format-playing-suffix = ${c.rs}
@@ -84,7 +89,7 @@ exec = ~/.config/i3/proc/vol_printer.py 2> /dev/null
 exec-if = sleep 1
 tail = true
 
-[module/date]
+[module/time]
 type = internal/date
 format-prefix=${c.l}
 format-suffix=${c.delim}
@@ -170,5 +175,105 @@ animation-charging-9 = 
 ; Framerate in milliseconds
 animation-charging-framerate = 500
 poll-interval = 5
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+format = <ramp>
+format-padding = 1
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+
+# [module/date]
+# type = internal/date
+# label = %date% %time%
+# format =%{A1:"$USERSCRIPT/rofi-widgets/widgets/reminders.sh":}<label>%{A}
+# format-prefix = 
+# format-prefix-foreground = ${colors.magenta}
+# format-padding = 1
+# date = " %d/%m"
+# time = %H:%M
+# interval = 5
+
+[module/temperature]
+type = internal/temperature
+label = %temperature-c%
+format = <ramp> <label>
+thermal-zone = 0
+warn-temperature = 100
+ramp-foreground = ${colors.red}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+interval = 5
+
+[module/cpu]
+type = internal/cpu
+label = %percentage:3%%
+format-prefix = " "
+format-prefix-foreground = ${colors.blue}
+format-padding = 1
+interval = 0.5
+
+[module/memory]
+type = internal/memory
+label = %percentage_used%%
+format-prefix = " "
+format-prefix-foreground = ${colors.green}
+format-padding = 1
+interval = 5
+
+[module/wifi-alt]
+type = custom/script
+exec = "$USERSCRIPT/wifi-speed.sh"
+label = %output:35:35%
+tail = false
+
+[module/gpu_intel]
+type = custom/script
+exec = sudo intel_gpu_frequency | awk '/cur/ {print $2}'
+label = %output:3:3%
+format-prefix = " "
+format-prefix-foreground = ${colors.yellow}
+format-suffix = "Mhz"
+tail = false
+interval = 0.5
+
+[module/sound]
+type = custom/script
+exec = ". $USERSCRIPT/rofi-widgets/widgets/pulse-audio.sh && pulse_get_devices_polybar"
+click-left = ". $USERSCRIPT/rofi-widgets/widgets/pulse-audio.sh && pulse_set_devices_rofi"
+tail = false
+interval = 5
+
+[module/volume_alsa]
+type = internal/volume
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+label-volume = ""
+format-volume-foreground = ${colors.foreground}
+format-volume = <label-volume> <bar-volume>
+label-muted = ""
+format-muted-foreground = ${colors.foreground}
+format-muted = <label-muted> <bar-volume>
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.blue}
+bar-volume-foreground-1 = ${colors.blue}
+bar-volume-foreground-2 = ${colors.blue}
+bar-volume-foreground-3 = ${colors.yellow}
+bar-volume-foreground-4 = ${colors.yellow}
+bar-volume-foreground-5 = ${colors.red}
+bar-volume-foreground-6 = ${colors.red}
+bar-volume-gradient = false
+bar-volume-indicator = " "
+bar-volume-indicator-font = 1
+bar-volume-fill = ""
+bar-volume-fill-font = 1
+bar-volume-empty = " "
+bar-volume-empty-font = 1
+bar-volume-empty-foreground = ${colors.foreground}
 
 ; vim:ft=conf
