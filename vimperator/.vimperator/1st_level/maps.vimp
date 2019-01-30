@@ -74,6 +74,11 @@ nmap <silent> . :silent !xkb-switch -s us &<CR>/
 nmap хх [[
 nmap ъъ ]]
 
+nnoremap e gt
+nnoremap E gT
+nunmap gt
+nunmap gT
+
 nmap ё `
 nmap э '
 nmap й q
@@ -100,6 +105,8 @@ nmap ь m
 nmap б ,
 nmap ю .
 nmap Ё ~
+nmap у e
+nmap У E
 
 nmap gr gT
 nmap пк gT
