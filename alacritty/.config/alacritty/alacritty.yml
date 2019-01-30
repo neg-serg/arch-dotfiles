@@ -3,12 +3,17 @@ env:
 
 window:
     dimensions:
-        columns: 0
-        lines: 0
+      columns: 0
+      lines: 0
     padding:
-        x: 2
-        y: 2
-    decorations: true
+      x: 2
+      y: 2
+    decorations: full
+
+    # Spread additional padding evenly around the terminal content.
+    dynamic_padding: false
+
+    start_maximized: false
 
 dpi:
   x: 96.0
@@ -85,6 +90,29 @@ colors:
     cyan:    '0x47959E'
     white:   '0x899CA1'
 
+# Indexed Colors
+#
+# The indexed colors include all colors from 16 to 256.
+# When these are not set, they're filled with sensible defaults.
+#
+# Example:
+#   `- { index: 16, color: '0xff00ff' }`
+#
+# indexed_colors: []
+
+cursor:
+  # Cursor style
+  #
+  # Values for `style`:
+  #   - ▇ Block
+  #   - _ Underline
+  #   - | Beam
+  style: Block
+
+  # If this is `true`, the cursor will be rendered as a hollow box when the
+  # window is not focused.
+  unfocused_hollow: true
+
 # Possible values for `animation`
 # `Ease`
 # `EaseOut`
@@ -101,6 +129,7 @@ colors:
 visual_bell:
   animation: EaseOutExpo
   duration: 0
+  color: '0xffffff'
 
 # Key bindings
 #
@@ -209,8 +238,6 @@ key_bindings:
 # - Copy (TODO)
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
-
-custom_cursor_colors: true
 
 mouse:
   double_click: { threshold: 300 }
