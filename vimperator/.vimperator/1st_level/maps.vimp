@@ -108,8 +108,8 @@ nmap Ё ~
 nmap у e
 nmap У E
 
-nmap gr gT
-nmap пк gT
-nmap пе gt
+" nmap gr gT
+" nmap пк gT
+" nmap пе gt
 
 ignorekeys clear
