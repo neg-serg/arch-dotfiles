@@ -9,8 +9,8 @@
     ignore_newline        = false
     geometry              = "650x12-0-35"
     shrink                = false
-    transparency          = 8
-    idle_threshold        = 120
+    transparency          = 0
+    idle_threshold        = 8
     monitor               = 0
     follow                = mouse
     sticky_history        = true
@@ -50,7 +50,7 @@
 [urgency_normal]
     background = "#000000"
     foreground = "#ffffff"
-    timeout    = 10
+    timeout    = 4
 
 [urgency_critical]
     background = "#010204"
