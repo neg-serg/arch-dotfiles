@@ -4,11 +4,6 @@ map <C-w> <NOP>
 map <C-t> <NOP>
 map <C-i> <NOP>
 
-noremap # gt
-noremap E gT
-
-map  gr gT
-
 map <C-S-w> <NOP>
 map <C-q> <NOP>
 map <F1> <NOP>
@@ -76,8 +71,9 @@ nmap ъъ ]]
 
 nnoremap e gt
 nnoremap E gT
-nunmap gt
-nunmap gT
+noremap # gt
+"nunmap gt
+"nunmap gT
 
 nmap ё `
 nmap э '
@@ -107,9 +103,5 @@ nmap ю .
 nmap Ё ~
 nmap у e
 nmap У E
-
-" nmap gr gT
-" nmap пк gT
-" nmap пе gt
 
 ignorekeys clear
