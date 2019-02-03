@@ -270,7 +270,20 @@ git_prompt_init
 # LHS="❬" RHS="❭"  
 # LHS="❲" RHS="❳" 
 
+export PROMPT_FST="❯"
+export PROMPT_SND=">"
+
+local tilda_color='2'
+local prompt_color='4'
+local error_color='1'
+
 function precmd {
+    export tilda_color
+    export prompt_color
+    export error_color
+    export PROMPT_LHS="%F{${prompt_color}}⟬" PROMPT_RHS=""
+    export MAIN_COLOR="%(?.%F{${prompt_color}}.%F{${error_color}})"
+    export TILDA_COLOR="%(?.%F{${tilda_color}}.%F{${prompt_color}})"
     export PS1="$(${ZSH}/neg-prompt)" 
 }
 

@@ -130,11 +130,3 @@ export nwim_sock_path="${HOME}/1st_level/nvim.socket"
 export NVIM_LISTEN_ADDRESS="${HOME}/1st_level/nvim.socket"
 
 export DEFAULT_TOP="htop"
-
-export PROMPT_LHS="%F{4}⟬" PROMPT_RHS=""
-export PROMPT_RHS=""
-
-export PROMPT_FST="❯"
-export PROMPT_SND=">"
-export DARK_BLUE="%F{4}"
-export DARK_BLUE_BOLD="%B%F{4}"

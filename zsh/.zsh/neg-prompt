@@ -1,10 +1,10 @@
 #!/usr/bin/zsh
 
 prompt_end="∣%F{25}${PROMPT_FST}%B%F{26}${PROMPT_SND}%B%f "
-neg_user_pretok="${DARK_BLUE}${PROMPT_LHS}%f"
+neg_user_pretok="${PROMPT_LHS}%f"
 
-[[ ${UID} -ne 0 ]] && _neg_promptcolor="%F{2}" && _neg_user_pretoken="%F{4}${PROMPT_LHS}%f"
-[[ ${UID} -ne 0 ]] && _neg_promptcolor="%F{2}" && _neg_user_token="%F{4}${rhs}${prompt_end}"
+[[ ${UID} -ne 0 ]] && _neg_promptcolor="${TILDA_COLOR}" && _neg_user_pretoken="${MAIN_COLOR}${PROMPT_LHS}%f"
+[[ ${UID} -ne 0 ]] && _neg_promptcolor="${TILDA_COLOR}" && _neg_user_token="${MAIN_COLOR}${PROMPT_RHS}${prompt_end}"
 
 setopt sh_word_split
 local _neg_dyn_pwd=""
