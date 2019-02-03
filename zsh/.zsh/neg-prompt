@@ -1,8 +1,9 @@
 #!/usr/bin/zsh
-# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
-# vim: ft=zsh sw=2 ts=2 et
 
-[[ ${UID} -ne 0 ]] && _neg_promptcolor="%F{2}" && _neg_user_pretoken="%F{4}${lhs}%f"
+prompt_end="∣%F{25}${PROMPT_FST}%B%F{26}${PROMPT_SND}%B%f "
+neg_user_pretok="${DARK_BLUE}${PROMPT_LHS}%f"
+
+[[ ${UID} -ne 0 ]] && _neg_promptcolor="%F{2}" && _neg_user_pretoken="%F{4}${PROMPT_LHS}%f"
 [[ ${UID} -ne 0 ]] && _neg_promptcolor="%F{2}" && _neg_user_token="%F{4}${rhs}${prompt_end}"
 
 setopt sh_word_split
@@ -36,5 +37,5 @@ unsetopt sh_word_split
 IFS=${_neg_saveIFS}
 [[ ${_neg_full_path/${HOME}/\~} != ${_neg_full_path} ]] && _neg_dyn_pwd=${_neg_dyn_pwd/\/~/~}
 # remove the slash in front of ${HOME}
-_neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
-builtin print ${_neg_prompt}
+neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
+builtin print "${neg_user_pretok}%f%40<..<${neg_prompt}"
