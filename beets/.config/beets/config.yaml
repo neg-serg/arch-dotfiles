@@ -1,4 +1,8 @@
-plugins: mpdstats chroma discogs lastgenre fetchart
+# Main beets config
+plugins: >
+  acousticbrainz chroma discogs duplicates edit embedart export fetchart
+  fromfilename ftintitle fuzzy info lastgenre lastimport lyrics mbsync play
+  smartplaylist web mpdstats 
 
 directory: ~/music            # The default library root directory.
 library: ~/music/library.db   # The default library database file to use.
@@ -21,46 +25,34 @@ per_disc_numbering: no
 original_date: yes
 
 import:
-    copy: no
+  copy: no
 
 chroma:
-    auto: yes
+  auto: yes
 
 lastgenre:
-    auto: true
-    canonical: true
+  auto: true
+  canonical: true
+  count: 5
 
 match:
-    ignored: missing_tracks unmatched_tracks
-
-# Main beets config
-plugins: >
-  acousticbrainz chroma discogs duplicates edit embedart export fetchart
-  fromfilename ftintitle fuzzy info lastgenre lastimport lyrics mbsync play
-  smartplaylist web
+  ignored: missing_tracks unmatched_tracks
 
 fetchart:
-    cautious: true
-    cover_names: front back
-    sources: itunes *
-
-chroma:
-  auto: no
+  auto: yes
+  cautious: true
+  cover_names: front back
+  sources: amazon *
 
 embedart:
   remove_art_file: no
 
-fetchart:
-  auto: yes
-  maxwidth: 500
-
 lastfm:
-  user: AbhinavTushar
-
-lastgenre:
-  auto: yes
-  canonical: yes
-  count: 5
+  user: e7z0x1
 
 lyrics:
   auto: yes
+
+bbq:
+  fields: artist title album
+
