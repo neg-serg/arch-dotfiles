@@ -275,7 +275,7 @@ export PROMPT_SND=">"
 
 local tilda_color='2'
 local prompt_color='4'
-local error_color='1'
+local error_color='226'
 
 function precmd {
     export tilda_color
