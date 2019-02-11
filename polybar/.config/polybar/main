@@ -4,6 +4,8 @@ include-file = $HOME/.config/polybar/common.cfg
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+wm-stack = i3
+override-redirect = true
 
 [settings]
 screenchange-reload = true
