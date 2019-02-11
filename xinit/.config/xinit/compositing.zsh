@@ -14,8 +14,6 @@ function intel_compton_settings(){
         --glx-no-stencil \
         --glx-no-rebind-pixmap \
         --glx-swap-method=undefined \
-        --glx-use-copysubbuffermesa \
-        --paint-on-overlay \
         --vsync="drm"
 }
 
