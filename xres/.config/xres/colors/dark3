@@ -3,6 +3,10 @@
 *.cursorColor: #375BC1
 *.pointerBlank:1
 
+polybar.light: #cccccc
+polybar.mode_color: #005fd7
+polybar.ws_color: #8FA8C7
+
 *.color0:#020202
 *.color8:#3D3D3D
 *.color1:#8A2F58
