@@ -1,5 +1,5 @@
 [section/base]
-include-file = $HOME/.config/polybar/common.cfg
+include-file = $XDG_CONFIG_HOME/polybar/common.cfg
 
 [global/wm]
 margin-top = 0
@@ -31,7 +31,7 @@ modules-center =
 modules-right = mpd volume vol2
 
 background = ${colors.background}
-foreground = "#ccc"
+foreground = ${colors.foreground}
 
 underline-size = 2
 
@@ -51,7 +51,7 @@ compositing-border = lighten
 
 [module/ws]
 type = custom/script
-exec = ~/.config/i3/proc/ws_printer.py 2> /dev/null
+exec = ${XDG_CONFIG_HOME}/i3/proc/ws_printer.py 2> /dev/null
 exec-if = sleep 1
 format-prefix=${c.l}
 format-suffix=${c.delim}
@@ -60,34 +60,33 @@ tail = true
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song> <label-time>
-# %{A1:$USERSCRIPT/rofi-widgets/widgets/mpc.sh:}<label-song>%{A}
+format-online = ${env:POLYBAR_MPD_FORMAT_ONLINE}
 format-playing = ${self.format-online}
 format-playing-prefix = ${self.lmpd}
 format-playing-suffix = ${c.rs}
-format-paused = "%{F#395573}⟬%{O5}%{F#005f87}paused%{F#395573} %{F#395573}⟭"
+format-paused = ${env:POLYBAR_MPD_FORMAT_PAUSED}
 format-paused-suffix = ${c.rs}
 format-stopped =
-format-offline = "%{F#395573}⟬%{O5}%{F#ccc}No MPD%{O5}%{F#395573}⟭ %{F#ccc}"
+format-offline = ${env:POLYBAR_MPD_OFFLINE}
 label-song = %artist% ― %title%
-label-time = %elapsed%%{F#395573}/%{F#ccc}%total%
-lmpd="%{F#395573}⟬%{O5}%{F#005f87}〉%{F#005fd7}〉%{F#395573} %{F#ccc}"
-interval = 1
+label-time = ${env:POLYBAR_MPD_SONG_TIME}
+lmpd=${env:POLYBAR_MPD_LEFT_SIDE}
 host = ::1
 port = 6600
+interval = 1
 
 [module/LL]
 type=custom/text
-content="%{F#395573}⟬%{F#ccc}"
+content=${env:POLYBAR_LL}
 
 [module/RR]
 type=custom/text
-content="%{O5}%{F#395573}⟭%{F#ccc}"
+content=${env:POLYBAR_RR}
 
 [module/volume]
 type = custom/script
 interval = 0
-exec = ~/.config/i3/proc/vol_printer.py 2> /dev/null
+exec = ${XDG_CONFIG_HOME}/i3/proc/vol_printer.py 2> /dev/null
 exec-if = sleep 1
 tail = true
 
@@ -104,7 +103,7 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 format-prefix = ${c.l}
 format-suffix = ${c.delim}
-label-layout = input:%{O5}%layout%
+label-layout = ${env:POLYBAR_INPUT_FORMAT}
 label-indicator-padding = 0
 label-indicator-background = ${colors.background}
 label-indicator-underline = ${colors.background}
@@ -131,7 +130,7 @@ format-connected-suffix=${c.rs}
 
 [module/gmail]
 type = custom/script
-exec = ~/.config/polybar/gmail/launch.py -p 'mail:'
+exec = ${XDG_CONFIG_HOME}/polybar/gmail/launch.py -p 'mail:'
 tail = true
 click-left = xdg-open https://mail.google.com
 format-prefix=${c.deliml}
@@ -187,17 +186,6 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-3 = 
-
-# [module/date]
-# type = internal/date
-# label = %date% %time%
-# format =%{A1:"$USERSCRIPT/rofi-widgets/widgets/reminders.sh":}<label>%{A}
-# format-prefix = 
-# format-prefix-foreground = ${colors.magenta}
-# format-padding = 1
-# date = " %d/%m"
-# time = %H:%M
-# interval = 5
 
 [module/temperature]
 type = internal/temperature
