@@ -2,10 +2,9 @@
 include-file = $XDG_CONFIG_HOME/polybar/common.cfg
 
 [global/wm]
-margin-top = 0
-margin-bottom = 0
-wm-stack = i3
+wm-restack = i3
 override-redirect = true
+monitor-strict = false
 
 [settings]
 screenchange-reload = true
