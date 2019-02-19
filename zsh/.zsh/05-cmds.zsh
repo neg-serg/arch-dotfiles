@@ -339,7 +339,6 @@ function mp(){
     else
         mpv --input-ipc-server=/tmp/mpvsocket --vo=vaapi --hwdec=vaapi "$@" > ${HOME}/tmp/mpv.log
     fi
-    
 }
 
 alias mpa="mpv -mute > ${HOME}/tmp/mpv.log"
