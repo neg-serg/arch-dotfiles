@@ -12,6 +12,9 @@ bind n findnext 1
 bind N findnext -1
 bind ,, nohlsearch
 
+bind j scrollline 4
+bind k scrollline -4
+
 " set editorcmd to suckless terminal, or use the defaults on other platforms
 js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "st vim" : "auto"; tri.config.set("editorcmd", editorcmd)})
 
