@@ -50,7 +50,7 @@ compositing-border = lighten
 
 [module/ws]
 type = custom/script
-exec = ${XDG_CONFIG_HOME}/i3/proc/ws_printer.py 2> /dev/null
+exec = ${XDG_CONFIG_HOME}/i3/proc/polybar_ws.py 2> /dev/null
 exec-if = sleep 1
 format-prefix=${c.l}
 format-suffix=${c.delim}
@@ -85,7 +85,7 @@ content=${env:POLYBAR_RR}
 [module/volume]
 type = custom/script
 interval = 0
-exec = ${XDG_CONFIG_HOME}/i3/proc/vol_printer.py 2> /dev/null
+exec = ${XDG_CONFIG_HOME}/i3/proc/polybar_vol.py 2> /dev/null
 exec-if = sleep 1
 tail = true
 
