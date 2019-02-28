@@ -3,7 +3,7 @@ source ~/.zsh/03-exports.zsh
 ~/bin/wl -r &
 pgrep sxhkd || sxhkd &
 ${XDG_CONFIG_HOME}/xinit/compositing.zsh &
-${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh &
+${XDG_CONFIG_HOME}/xinit/xinput.zsh &
 ${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh &
 gpaste-client > /dev/null &
 /usr/lib/udisks2/udisksd &
