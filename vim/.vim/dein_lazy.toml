@@ -7,9 +7,6 @@ on_i = 1
 repo = 'simnalamburt/vim-mundo' # undo tree
 on_cmd = 'MundoToggle'
 [[plugins]]
-repo = 'godlygeek/tabular.git' # for tabularizing
-on_cmd = 'Tabularize'
-[[plugins]]
 repo = 'ntpeters/vim-better-whitespace' # find whitespaces with ease
 on_cmd = 'StripWhitespace'
 # --[ Web ]-------------------------------------------------------------------------------

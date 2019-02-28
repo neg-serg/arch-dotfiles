@@ -28,6 +28,10 @@ repo = 'tpope/vim-repeat' # dot for everything
 repo = 'Raimondi/delimitMate' # autopair ([]{})
 [[plugins]]
 repo = 'tpope/vim-surround' # new commands to vim for ({}[]''# # <>)
+[[plugins]]
+repo = 'junegunn/vim-easy-align' # use easy-align, instead of tabular
+[[plugins]]
+repo = 'machakann/vim-swap' # swap with emacs
 #--[ Additions ]--------------------------------------------------------------------------
 [[plugins]]
 repo = 'kopischke/vim-fetch' # vim path/to/file.ext:12:3
@@ -37,6 +41,8 @@ repo = 'FooSoft/vim-argwrap' # vim arg wrapper
 repo = 'Valloric/ListToggle.git' # toggle quickfix and location list <leader>l by def
 [[plugins]]
 repo = 'lyokha/vim-xkbswitch.git' # Autoswitch on <esc> with libxkb needs xkb-switch-git to run
+[[plugins]]
+repo = 'echuraev/translate-shell.vim' # translate in nvim
 # --[ Rice ]-------------------------------------------------------------------------------
 [[plugins]]
 repo = 'luochen1990/rainbow' # rainbow parentheses
@@ -46,6 +52,8 @@ repo = 'thinca/vim-qfreplace.git' # visual replace for multiple files
 repo = 'tpope/vim-eunuch.git' # for SudoWrite, Locate, Find etc
 [[plugins]]
 repo = 'tpope/vim-abolish' # for different case coersion
+[[plugins]]
+repo = 'TaDaa/vimade' # dynamic syntax highlighting
 #--[ Search ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'junegunn/fzf' # fzf itself
@@ -60,6 +68,8 @@ repo = 'sjbach/lusty.git' # file/buffer explorer
 repo = 'dyng/ctrlsf.vim' # interactive vim-grep
 [[plugins]]
 repo = 'jremmen/vim-ripgrep' # ripgrep binding
+[[plugins]]
+repo = 'wsdjeg/FlyGrep.vim' # async grep
 # --[ Docs ]------------------------------------------------------------------------------
 [[plugins]]
 repo = 'thinca/vim-ref.git' # integrated reference viewer man/perldoc etc
@@ -92,6 +102,8 @@ repo = 'racer-rust/vim-racer' # racer support
 repo = 'marijnh/tern_for_vim' # tern for vim
 [[plugins]]
 repo = 'Shougo/echodoc.vim' # print documents in echo area
+[[plugins]]
+repo = 'apalmer1377/factorus' # refactoring tool
 # --[ LaTeX ]-----------------------------------------------------------------------------
 [[plugins]]
 repo = 'donRaphaco/neotex'
@@ -125,6 +137,8 @@ repo = 'arcticicestudio/nord-vim'  # dark and cold colorscheme
 repo = 'chriskempson/base16-vim' # base16 colorschemes pack
 [[plugins]]
 repo = 'tyrannicaltoucan/vim-deep-space' # deepspace colorscheme
+[[plugins]]
+repo = 'bluz71/vim-moonfly-colors' # moonfly colorscheme
 [[plugins]]
 repo = 'ryanoasis/vim-devicons.git' # fancy icons for fonts
 # --[ dcvs ]------------------------------------------------------------------------------
