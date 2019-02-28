@@ -8,6 +8,8 @@ XF86Audio{Prev,Next,Play,Stop}
     mpc -q {prev,next,toggle,stop}
 super + control + XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+control + 4
+    mpc toggle > /dev/null
 super + 8
     mpc -q volume 0 || amixer -q set Master 0% mute
 super + shift + 8
