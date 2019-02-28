@@ -198,10 +198,10 @@ case "${opt}" in
     "C-r")      rename ;;
     "r")        rep ;;
     "c")        copy_name ;;
-    "C-1")      wall "center" ;;
-    "C-2")      wall "fill" ;;
-    "C-3")      wall "full" ;;
-    "C-4")      wall "tile" ;;
-    "C-5")      wall "mono" ;;
+    "C-q")      wall "center" ;;
+    "C-w")      wall "fill" ;;
+    "C-e")      wall "full" ;;
+    "C-r")      wall "tile" ;;
+    "C-t")      wall "mono" ;;
     "C-i")      imgur_it ;;
 esac
