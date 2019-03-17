@@ -1,8 +1,8 @@
+export PATH=/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
+
 export ZSHDIR=${HOME}/.zsh
 export BIN_HOME=${HOME}/bin
 export SCRIPT_HOME=${BIN_HOME}/scripts
-
-export PATH="${PATH}:${HOME}/.rvm/bin"
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
