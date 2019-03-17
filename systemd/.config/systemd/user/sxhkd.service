@@ -1,0 +1,13 @@
+[Unit]
+Description=hotkey manager
+After=dbus.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+ExecStart=sxhkd
+
+[Install]
+WantedBy=default.target
+
