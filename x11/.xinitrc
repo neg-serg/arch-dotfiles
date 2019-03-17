@@ -1,8 +1,6 @@
 #!/bin/zsh
-source ~/.zsh/03-xdg_vars.zsh
-path_dirs=(/usr/{s,}bin /usr/lib64/notion/bin {/usr/local,}/{s,}bin)
-export PATH=${(j_:_)path_dirs}
-
+# temp hack for powerline daemon
+export PATH=/usr/sbin:/usr/bin:${PATH}
 ~/bin/wl -r &
 [[ -f "${HOME}/.Xresources" ]] && \
     xrdb -I${XDG_CONFIG_HOME}/xres -load "${HOME}/.Xresources"
