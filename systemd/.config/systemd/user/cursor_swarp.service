@@ -1,0 +1,11 @@
+[Unit]
+Description=cursor swarp
+After=dbus.service
+
+[Service]
+Type=simple
+Restart=on-failure
+ExecStart=%h/.config/xinit/cursor_swarp.zsh
+
+[Install]
+WantedBy=default.target
