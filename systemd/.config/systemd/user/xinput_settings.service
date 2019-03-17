@@ -1,0 +1,11 @@
+[Unit]
+Description=my xinput settings
+After=dbus.service
+
+[Service]
+Type=forking
+ExecStartPre=/bin/sleep 4
+ExecStart=%h/.config/xinit/xinput.zsh
+
+[Install]
+WantedBy=default.target
