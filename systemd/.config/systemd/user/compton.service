@@ -3,9 +3,8 @@ Description=Compositing manager
 After=dbus.service
 
 [Service]
-Type=simple
-Restart=on-failure
-RestartSec=5
+Type=forking
+ExecStartPre=/bin/sleep 4
 ExecStart=%h/.config/xinit/compositing.zsh
 
 [Install]
