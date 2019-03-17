@@ -1,7 +1,0 @@
-[Unit]
-Description=GPaste daemon
-
-[Service]
-Type=dbus
-BusName=org.gnome.GPaste
-ExecStart=@pkglibexecdir@/gpaste-daemon
