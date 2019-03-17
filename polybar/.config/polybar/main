@@ -2,30 +2,87 @@
 include-file = $XDG_CONFIG_HOME/polybar/common.cfg
 
 [global/wm]
-wm-restack = i3
-override-redirect = true
+monitor =
+monitor-fallback =
 monitor-strict = false
+margin-bottom = 0
+margin-top = 0
+
+wm-restack = i3
 
 [settings]
-screenchange-reload = true
+; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
+screenchange-reload = false
+
+compositing-background = over
+compositing-foreground = lighten
+compositing-overline = lighten
+compositing-underline = lighten
+compositing-border = lighten
+
+# Define fallback values used by all module formats
+format-foreground = 
+format-background = 
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+; The throttle settings lets the eventloop swallow up til X events
+; if they happen within Y millisecond after first event was received.
+; This is done to prevent flood of update event.
+;
+; For example if 5 modules emit an update event at the same time, we really
+; just care about the last one. But if we wait too long for events to swallow
+; the bar would appear sluggish so we continue if timeout
+; expires or limit is reached.
+throttle-output = 5
+throttle-output-for = 10
+
+; Time in milliseconds that the input handler will wait between processing events
+throttle-input-for = 30
 
 [bar/main]
+; Tell the Window Manager not to configure the window.
+; Use this to detach the bar if your WM is locking its size/position.
+override-redirect = false
+
+; Prefer fixed center position for the `modules-center` block
+; When false, the center position will be based on the size of the other blocks.
+fixed-center = true
+
 bottom=true
 
-border-top-size = 2
+border-top-size = 1
+border-bottom-size = 1
+border-left-size = 1
+border-right-size = 1
 border-top-color = ${colors.border_top}
+border-bottom-color = ${colors.border_top}
+border-left-color = ${colors.border_top}
+border-right-color = ${colors.border_top}
 
-height = 32
-spacing = 0
 width = 100%
+height = 32
+
 enable-ipc = true
 
-padding-left  = 0       # offset from x
-padding-right = 0       # offset from -x
+padding = 0
+offset-x = 0%
+offset-y = 0%
+separator =
+
+radius-top = 0.0
+radius-bottom = 0.0
+
+overline-size = 2
+overline-color = ${color.ac}
 
 module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
-modules-left = LL time ws xkeyboard networkenp6s0 RR
+modules-left = time right-end-bottom left-end-top ws right-end-top left-end-bottom xkeyboard right-end-top left-end-bottom networkenp6s0  right-end-top 
 modules-center =
 modules-right = mpd volume vol2
 
@@ -34,26 +91,69 @@ foreground = ${colors.foreground}
 
 underline-size = 2
 
-tray-position = right
-tray-padding = 1
+; Opacity value between 0.0 and 1.0 used on fade in/out
+dim-value = 1.0
+
+; Locale used to localize various module data (e.g. date)
+; Expects a valid libc locale, for example: sv_SE.UTF-8
+locale = 
+
+; Value to be used to set the WM_NAME atom
+; If the value is empty or undefined, the atom value
+; will be created from the following template: polybar-[BAR]_[MONITOR]
+; NOTE: The placeholders are not available for custom values
+wm-name = 
+
+tray-padding = 1.0
+tray-scale = 1.0
 tray-background = ${colors.background}
+tray-position = right
+tray-offset-x = 0
+tray-offset-y = 0
+tray-maxsize = 16
+tray-detached = false
+# tray-position = none
+
+; Fallback click handlers that will be called if
+; there's no matching module handler found.
+click-left = 
+click-middle = 
+click-right =
+scroll-up =
+scroll-down =
+double-click-left =
+double-click-middle =
+double-click-right =
+
+; Requires polybar to be built with xcursor support (xcb-util-cursor)
+; Possible values are:
+; - default   : The default pointer as before, can also be an empty string (default)
+; - pointer   : Typically in the form of a hand
+; - ns-resize : Up and down arrows, can be used to indicate scrolling
+cursor-click = 
+cursor-scroll = 
 
 font-0 = ${font.font-0}
 font-1 = ${font.font-1}
 font-2 = ${font.font-2}
+font-3 = ${font.font-3}
+font-4 = ${font.font-4}
+font-5 = ${font.font-5}
 
-compositing-background = over
-compositing-foreground = lighten
-compositing-overline = lighten
-compositing-underline = lighten
-compositing-border = lighten
+[layout]
+module-padding = 1
+
+;; Bars
+icon-font = 2
+;bar-format = %{T4}%fill%%indicator%%{F#dc404040}%empty%%{F-}%{T-}
+bar-format = %{T4}%fill%%indicator%%empty%%{F-}%{T-}
+bar-fill-icon = ﭳ
 
 [module/ws]
 type = custom/script
 exec = ${XDG_CONFIG_HOME}/i3/proc/polybar_ws.py 2> /dev/null
 exec-if = sleep 1
-format-prefix=${c.l}
-format-suffix=${c.delim}
+format-background = ${color.mgf}
 format = <label>
 tail = true
 
@@ -91,21 +191,40 @@ tail = true
 
 [module/time]
 type = internal/date
-format-prefix=${c.l}
-format-suffix=${c.delim}
 date = %H:%M%
 interval = 5
-format-padding = 0
+format-padding = ${layout.module-padding}
+format-background = ${color.mgf}
+
+[module/decor-glyph]
+type = custom/text
+content-background = ${color.bg}
+content-foreground = ${color.mgf}
+
+[module/left-end-top]
+inherit = module/decor-glyph
+content = "%{T3}%{T-}"
+
+[module/right-end-top]
+inherit = module/decor-glyph
+content = "%{T3}%{T-}"
+
+[module/left-end-bottom]
+inherit = module/decor-glyph
+content = "%{T3}%{T-}"
+
+[module/right-end-bottom]
+inherit = module/decor-glyph
+content = "%{T3}%{T-}"
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
-format-prefix = ${c.l}
-format-suffix = ${c.delim}
 label-layout = ${env:POLYBAR_INPUT_FORMAT}
 label-indicator-padding = 0
-label-indicator-background = ${colors.background}
-label-indicator-underline = ${colors.background}
+label-indicator-background = ${color.mgf}
+label-indicator-underline = ${color.mgf}
+format-background =  ${color.mgf}
 
 [module/networkenp6s0]
 type = internal/network
@@ -113,9 +232,8 @@ interface = enp6s0
 interval = 1.0
 accumulate-stats = false # Accumulate values from all interfaces
 ping-interval = 60.0
-label-connected = eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%
-format-connected-prefix=${c.l}
-format-connected-suffix=${c.rs}
+label-connected = "eth: %downspeed%%{F#395573}/%{F#ccc}%upspeed%  "
+format-connected-background = ${color.mgf}
 
 [module/networkenp7s0]
 type = internal/network
@@ -123,17 +241,14 @@ interface = enp7s0
 interval = 1.0
 accumulate-stats = false # Accumulate values from all interfaces
 ping-interval = 60.0
-label-connected = eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%
-format-connected-prefix=${c.l}
-format-connected-suffix=${c.rs}
+label-connected = "eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%  "
+format-connected-background = ${color.mgf}
 
 [module/gmail]
 type = custom/script
 exec = ${XDG_CONFIG_HOME}/polybar/gmail/launch.py -p 'mail:'
 tail = true
 click-left = xdg-open https://mail.google.com
-format-prefix=${c.deliml}
-format = <label>
 
 [module/battery]
 type = internal/battery
@@ -180,7 +295,7 @@ poll-interval = 5
 type = internal/backlight
 card = intel_backlight
 format = <ramp>
-format-padding = 1
+format-padding = ${layout.module-padding}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
@@ -203,7 +318,7 @@ type = internal/cpu
 label = %percentage:3%%
 format-prefix = " "
 format-prefix-foreground = ${colors.blue}
-format-padding = 1
+format-padding = ${layout.module-padding}
 interval = 0.5
 
 [module/memory]
@@ -211,7 +326,7 @@ type = internal/memory
 label = %percentage_used%%
 format-prefix = " "
 format-prefix-foreground = ${colors.green}
-format-padding = 1
+format-padding = ${layout.module-padding}
 interval = 5
 
 [module/wifi-alt]
@@ -264,5 +379,7 @@ bar-volume-fill-font = 1
 bar-volume-empty = " "
 bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground}
+
+pseudo-transparency = false
 
 ; vim:ft=conf
