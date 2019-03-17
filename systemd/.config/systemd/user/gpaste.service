@@ -1,0 +1,12 @@
+[Unit]
+Description=GPaste daemon
+After=dbus.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+ExecStart=/usr/sbin/gpaste-client daemon
+
+[Install]
+WantedBy=default.target
