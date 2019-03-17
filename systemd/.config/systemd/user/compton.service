@@ -4,7 +4,7 @@ After=dbus.service
 
 [Service]
 Type=forking
-ExecStartPre=/bin/sleep 4
+ExecStartPre=/bin/sleep 2
 ExecStart=%h/.config/xinit/compositing.zsh
 
 [Install]
