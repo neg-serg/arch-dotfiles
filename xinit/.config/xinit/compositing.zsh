@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source ~/.zsh/03-xdg_vars.zsh
+
 local compton_cfg="${XDG_CONFIG_HOME}/compton/compton.conf"
 local with_hardcore_blur=false
 local -a hardcore_blur=(
@@ -38,22 +40,22 @@ local sharp_shadows=(
 )
 
 function compton_run(){
-    if [[ $(lsmod|grep nvidia) != "" ]]; then
-        nvidia_compton_settings
-    else
-        intel_compton_settings
-    fi
+    # if [[ $(lsmod|grep nvidia) != "" ]]; then
+    #     nvidia_compton_settings
+    # else
+    # intel_compton_settings
+    # fi
+    compton -b --config "/home/neg/.config/compton/compton.conf" --blur-method=kawase --blur-strength=6 --backend="glx" --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method=undefined --vsync="drm"
 }
+
+# function compton_run(){
+#     compton
+# }
+
 
 case "${1}" in
     "r"*) compton_run ;;
     "k"*) killall compton ;;
-    *)
-        if pidof compton; then
-            killall compton 
-            compton_run
-        else
-            compton_run
-        fi
-    ;;
+    *) compton_run ;;
 esac
+
