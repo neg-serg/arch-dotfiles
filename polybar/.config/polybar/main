@@ -86,9 +86,10 @@ overline-color = ${color.ac}
 
 module-margin-right = 0
 module-margin-left  = 0
-modules-left = START time right-end-top left-end-bottom START_DARK ws right-end-top left-end-bottom START_BR xkeyboard right-end-top left-end-bottom START_BR networkenp6s0  right-end-top 
+
+modules-left = start time right-end-top left-end-bottom start-dark ws right-end-top left-end-bottom start-br xkeyboard right-end-top left-end-bottom start-br networkenp6s0  right-end-top 
 modules-center =
-modules-right = left-end-top START_MPD mpd volume vol2
+modules-right = left-end-top start-mpd mpd volume vol2
 
 background = ${colors.background}
 foreground = ${colors.foreground}
