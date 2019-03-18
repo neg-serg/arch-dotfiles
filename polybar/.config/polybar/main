@@ -84,7 +84,7 @@ module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
 modules-left = START time right-end-top left-end-bottom START_DARK ws right-end-top left-end-bottom START_BR xkeyboard right-end-top left-end-bottom START_BR networkenp6s0  right-end-top 
 modules-center =
-modules-right = left-end-top-full START_MPD mpd volume vol2
+modules-right = left-end-top START_MPD mpd volume vol2
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -202,27 +202,23 @@ content-foreground = ${color.mgf}
 
 [module/START]
 type = custom/text
-content = "%{T3}%{F#005f87}╱%{F#ccc}%{T-}"
+content = "%{T3} %{F-}%{T-}"
 content-background = ${color.mgf}
 
 [module/START_DARK]
 type = custom/text
-content = "%{T3}%{F#005f87}╱%{F#ccc}%{T-}"
+content = "%{T3}%{F#005f87}╱%{F-}%{T-}"
 content-background = ${color.mgf}
 
 [module/START_BR]
 type = custom/text
-content = "%{T3}%{F#395573}╱%{F#ccc}%{T-}"
+content = "%{T3}%{F#395573}╱%{F-}%{T-}"
 content-background = ${color.mgf}
 
 [module/START_MPD]
 type = custom/text
-content = "%{T3}%{F#005f87}╲%{F#ccc}%{T-} "
+content = "%{T3}%{F#005f87}╲%{F-}%{T-} "
 content-background = ${color.mgf}
-
-[module/left-end-top-full]
-inherit = module/decor-glyph
-content = "%{T3}%{T-}"
 
 [module/left-end-top]
 inherit = module/decor-glyph
@@ -255,7 +251,7 @@ interface = enp6s0
 interval = 1.0
 accumulate-stats = false # Accumulate values from all interfaces
 ping-interval = 60.0
-label-connected = "eth:%downspeed%%{F#395573}/%{F#ccc}%upspeed% "
+label-connected = "eth:%downspeed%%{F#395573}/%{F-}%upspeed% "
 format-connected-background = ${color.mgf}
 
 [module/networkenp7s0]
@@ -264,7 +260,7 @@ interface = enp7s0
 interval = 1.0
 accumulate-stats = false # Accumulate values from all interfaces
 ping-interval = 60.0
-label-connected = "eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed% "
+label-connected = "eth:%{O5}%downspeed%%{F#395573}/%{F-}%upspeed% "
 format-connected-background = ${color.mgf}
 
 [module/gmail]
