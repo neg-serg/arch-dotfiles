@@ -59,10 +59,11 @@ fixed-center = true
 
 bottom=true
 
-border-top-size = 1
-border-bottom-size = 1
-border-left-size = 1
-border-right-size = 1
+border-top-size = ${border.t}
+border-bottom-size = ${border.b}
+border-left-size = ${border.l}
+border-right-size = ${border.r}
+
 border-top-color = ${colors.border_top}
 border-bottom-color = ${colors.border_top}
 border-left-color = ${colors.border_top}
@@ -87,7 +88,7 @@ overline-color = ${color.ac}
 module-margin-right = 0
 module-margin-left  = 0
 
-modules-left = start time right-end-top left-end-bottom start-dark ws right-end-top left-end-bottom start-br xkeyboard right-end-top left-end-bottom start-br networkenp6s0  right-end-top 
+modules-left = start time start-dark ws right-end-top left-end-bottom start-br xkeyboard right-end-top left-end-bottom start-br networkenp6s0  right-end-top 
 modules-center =
 modules-right = left-end-top start-mpd mpd volume vol2
 
