@@ -38,3 +38,5 @@ for i in "${zsh_files[@]}"; do
 done
 
 [[ ${PROFILE_CONFIG} == true ]] && zprof
+
+export BW_SESSION="Q5rUQXOWIZ0vYmxgFhSQ4ltI0QW/Dd5uv5z081swdE+RMa8aHJ9ut1Bvl9p7V69LOaXwmEJSJWuH3j+DD4ca2g=="

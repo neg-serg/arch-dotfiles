@@ -206,7 +206,7 @@ content-foreground = ${color.mgf}
 
 [module/START]
 type = custom/text
-content = "%{T3}%{F#005fd7}╱%{F#ccc}%{O-1}%{T-} "
+content = "%{T3}%{F#005f87}╱%{F#ccc}%{T-}"
 content-background = ${color.mgf}
 
 [module/START_DARK]
