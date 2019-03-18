@@ -82,9 +82,9 @@ overline-color = ${color.ac}
 
 module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
-modules-left = START time right-end-top left-end-bottom START_DARK ws right-end-top left-end-bottom START_BR xkeyboard right-end-top left-end-bottom START networkenp6s0  right-end-top 
+modules-left = START time right-end-top left-end-bottom START_DARK ws right-end-top left-end-bottom START_BR xkeyboard right-end-top left-end-bottom START_BR networkenp6s0  right-end-top 
 modules-center =
-modules-right = left-end-top-full mpd volume vol2
+modules-right = left-end-top-full START_MPD mpd volume vol2
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -197,7 +197,6 @@ tail = true
 type = internal/date
 date = %H:%M%
 interval = 5
-format-padding = ${layout.module-padding}
 format-background = ${color.mgf}
 
 [module/decor-glyph]
@@ -212,12 +211,17 @@ content-background = ${color.mgf}
 
 [module/START_DARK]
 type = custom/text
-content = "%{T3}%{F#005f87}╱%{F#ccc}%{T-} "
+content = "%{T3}%{F#005f87}╱%{F#ccc}%{T-}"
 content-background = ${color.mgf}
 
 [module/START_BR]
 type = custom/text
-content = "%{T3}%{F#395573}╱%{F#ccc}%{T-} "
+content = "%{T3}%{F#395573}╱%{F#ccc}%{T-}"
+content-background = ${color.mgf}
+
+[module/START_MPD]
+type = custom/text
+content = "%{T3}%{F#005f87}╲%{F#ccc}%{T-} "
 content-background = ${color.mgf}
 
 [module/left-end-top-full]
@@ -226,19 +230,19 @@ content = "%{T3}%{T-}"
 
 [module/left-end-top]
 inherit = module/decor-glyph
-content = "%{O-12}%{T3}%{T-}"
+content = "%{T3}%{T-}"
 
 [module/right-end-top]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}%{O-6}"
+content = "%{T3}%{T-}"
 
 [module/left-end-bottom]
 inherit = module/decor-glyph
-content = "%{O-14}%{T3}%{T-}"
+content = "%{T3}%{T-}"
 
 [module/right-end-bottom]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}%{O-6}"
+content = "%{T3}%{T-}%"
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -255,7 +259,7 @@ interface = enp6s0
 interval = 1.0
 accumulate-stats = false # Accumulate values from all interfaces
 ping-interval = 60.0
-label-connected = "eth: %downspeed%%{F#395573}/%{F#ccc}%upspeed%  "
+label-connected = "eth:%downspeed%%{F#395573}/%{F#ccc}%upspeed% "
 format-connected-background = ${color.mgf}
 
 [module/networkenp7s0]
@@ -264,7 +268,7 @@ interface = enp7s0
 interval = 1.0
 accumulate-stats = false # Accumulate values from all interfaces
 ping-interval = 60.0
-label-connected = "eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed%  "
+label-connected = "eth:%{O5}%downspeed%%{F#395573}/%{F#ccc}%upspeed% "
 format-connected-background = ${color.mgf}
 
 [module/gmail]
