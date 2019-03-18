@@ -137,14 +137,10 @@ font-0 = ${font.font-0}
 font-1 = ${font.font-1}
 font-2 = ${font.font-2}
 font-3 = ${font.font-3}
-font-4 = ${font.font-4}
-font-5 = ${font.font-5}
-font-6 = ${font.font-6}
 
 [layout]
 module-padding = 1
 
-;; Bars
 icon-font = 2
 ;bar-format = %{T4}%fill%%indicator%%{F#dc404040}%empty%%{F-}%{T-}
 bar-format = %{T4}%fill%%indicator%%empty%%{F-}%{T-}
