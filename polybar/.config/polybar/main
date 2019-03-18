@@ -65,7 +65,7 @@ border-left-color = ${colors.border_top}
 border-right-color = ${colors.border_top}
 
 width = 100%
-height = 32
+height = 27
 
 enable-ipc = true
 
@@ -82,9 +82,9 @@ overline-color = ${color.ac}
 
 module-margin-right = 0 # looks nice
 module-margin-left  = 0 # looks nice
-modules-left = time right-end-bottom left-end-top ws right-end-top left-end-bottom xkeyboard right-end-top left-end-bottom networkenp6s0  right-end-top 
+modules-left = START time right-end-top left-end-bottom START_DARK ws right-end-top left-end-bottom START_BR xkeyboard right-end-top left-end-bottom START networkenp6s0  right-end-top 
 modules-center =
-modules-right = mpd volume vol2
+modules-right = left-end-top-full mpd volume vol2
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -139,6 +139,7 @@ font-2 = ${font.font-2}
 font-3 = ${font.font-3}
 font-4 = ${font.font-4}
 font-5 = ${font.font-5}
+font-6 = ${font.font-6}
 
 [layout]
 module-padding = 1
@@ -170,6 +171,8 @@ format-offline = ${env:POLYBAR_MPD_OFFLINE}
 label-song = %artist% ― %title%
 label-time = ${env:POLYBAR_MPD_SONG_TIME}
 lmpd=${env:POLYBAR_MPD_LEFT_SIDE}
+format-online-background = ${color.mgf}
+format-offline-background = ${color.mgf}
 host = ::1
 port = 6600
 interval = 1
@@ -185,6 +188,7 @@ content=${env:POLYBAR_RR}
 [module/volume]
 type = custom/script
 interval = 0
+format-background = ${color.mgf}
 exec = ${XDG_CONFIG_HOME}/i3/proc/polybar_vol.py 2> /dev/null
 exec-if = sleep 1
 tail = true
@@ -198,24 +202,43 @@ format-background = ${color.mgf}
 
 [module/decor-glyph]
 type = custom/text
-content-background = ${color.bg}
+content-background = ${colors.background}
 content-foreground = ${color.mgf}
 
-[module/left-end-top]
+[module/START]
+type = custom/text
+content = "%{T3}%{F#005fd7}╱%{F#ccc}%{O-1}%{T-} "
+content-background = ${color.mgf}
+
+[module/START_DARK]
+type = custom/text
+content = "%{T3}%{F#005f87}╱%{F#ccc}%{T-} "
+content-background = ${color.mgf}
+
+[module/START_BR]
+type = custom/text
+content = "%{T3}%{F#395573}╱%{F#ccc}%{T-} "
+content-background = ${color.mgf}
+
+[module/left-end-top-full]
 inherit = module/decor-glyph
 content = "%{T3}%{T-}"
 
+[module/left-end-top]
+inherit = module/decor-glyph
+content = "%{O-12}%{T3}%{T-}"
+
 [module/right-end-top]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}"
+content = "%{T3}%{T-}%{O-6}"
 
 [module/left-end-bottom]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}"
+content = "%{O-14}%{T3}%{T-}"
 
 [module/right-end-bottom]
 inherit = module/decor-glyph
-content = "%{T3}%{T-}"
+content = "%{T3}%{T-}%{O-6}"
 
 [module/xkeyboard]
 type = internal/xkeyboard
