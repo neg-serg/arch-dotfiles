@@ -1,0 +1,10 @@
+[Unit]
+Description=setup wallpaper
+After=dbus.service
+
+[Service]
+Type=forking
+ExecStart=%h/bin/wl -r
+
+[Install]
+WantedBy=default.target
