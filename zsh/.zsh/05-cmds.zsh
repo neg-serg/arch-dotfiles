@@ -317,7 +317,7 @@ hash l > /dev/null || alias l="ls -aChkopl --group-directories-first --color=aut
 
 alias s="sudo"
 alias x='xargs'
-alias e="open"
+alias e="mimeo"
 
 alias u='umount'
 
