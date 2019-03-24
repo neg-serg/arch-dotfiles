@@ -1,6 +1,6 @@
 [Unit]
 Description=setup wallpaper
-After=dbus.service
+After=compton.service
 
 [Service]
 Type=forking
