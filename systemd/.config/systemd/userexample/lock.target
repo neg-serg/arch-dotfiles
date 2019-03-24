@@ -1,7 +1,0 @@
-[Unit]
-Description=Lock Screen on first login
-Wants=wm.target
-AllowIsolate=true
-
-[Install]
-Alias=default.target

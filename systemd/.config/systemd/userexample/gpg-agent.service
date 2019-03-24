@@ -1,8 +1,0 @@
-[Service]
-RemainAfterExit=yes
-Type=oneshot
-ExecStart=/home/daniel/bin/keychain start
-ExecStop=/home/daniel/bin/keychain stop
-
-[Install]
-WantedBy=mystuff.target

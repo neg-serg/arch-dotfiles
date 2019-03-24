@@ -1,5 +1,0 @@
-[Path]
-PathExists=/dev/fb1
-
-[Install]
-WantedBy=mystuff.target

@@ -1,9 +1,0 @@
-[Unit]
-Description=Window Manager
-Wants=xorg.target
-Wants=mystuff.target
-Requires=dbus.socket
-AllowIsolate=true
-
-[Install]
-Alias=default.target
