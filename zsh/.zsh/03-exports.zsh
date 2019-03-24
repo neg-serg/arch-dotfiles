@@ -3,18 +3,9 @@ source ~/.zsh/03-xdg_vars.zsh
 
 path_dirs=(
     /usr/{s,}bin
-    /usr/lib64/notion/bin
     {/usr/local,}/{s,}bin
 	/usr/bin/{site,vendor,core}_perl
-	${HOME}/.rvm/bin
-	${BIN_HOME}/{,go/bin,local,wm/bin}
-    /opt/android-sdk/platform-tools
-    /zero/.local/bin
-    /opt/cuda/bin
     /opt/go/bin
-    /opt/intel/bin
-    # Add RVM to PATH for scripting
-    ${HOME}/.rvm/bin
     /home/neg/.cargo/bin
 )
 
