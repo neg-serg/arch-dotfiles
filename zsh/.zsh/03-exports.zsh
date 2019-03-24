@@ -2,7 +2,8 @@ source ~/.zsh/03-helpers.zsh
 source ~/.zsh/03-xdg_vars.zsh
 
 path_dirs=(
-    /usr/{s,}bin
+    /usr/bin
+    ${HOME}/bin
     {/usr/local,}/{s,}bin
 	/usr/bin/{site,vendor,core}_perl
     /opt/go/bin
