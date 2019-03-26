@@ -1,0 +1,10 @@
+[Unit]
+Description=Start mailspring
+After=dbus.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mailspring --background
+
+[Install]
+WantedBy=default.target
