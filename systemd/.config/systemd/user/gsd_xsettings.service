@@ -1,0 +1,10 @@
+[Unit]
+Description=Apply gnome settings dynamically
+After=dbus.service
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/gsd-xsettings
+
+[Install]
+WantedBy=default.target
