@@ -64,10 +64,10 @@ border-bottom-size = ${border.b}
 border-left-size = ${border.l}
 border-right-size = ${border.r}
 
-border-top-color = ${colors.border_top}
-border-bottom-color = ${colors.border_top}
-border-left-color = ${colors.border_top}
-border-right-color = ${colors.border_top}
+border-top-color = ${color.border_top}
+border-bottom-color = ${color.border_top}
+border-left-color = ${color.border_top}
+border-right-color = ${color.border_top}
 
 width = 100%
 height = 27
@@ -90,10 +90,10 @@ module-margin-left  = 0
 
 modules-left = start time start-dark ws right-end-top left-end-bottom start-br xkeyboard right-end-top left-end-bottom start-br networkenp6s0  right-end-top 
 modules-center =
-modules-right = left-end-top start-mpd mpd volume vol2
+modules-right = left-end-top start-mpd mpd volume
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${color.background}
+foreground = ${color.foreground}
 
 underline-size = 2
 
@@ -112,7 +112,7 @@ wm-name =
 
 tray-padding = 1.0
 tray-scale = 1.0
-tray-background = ${colors.background}
+tray-background = "#020209"
 tray-position = right
 tray-offset-x = 0
 tray-offset-y = 0
