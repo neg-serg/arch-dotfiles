@@ -91,7 +91,7 @@ module-margin-left  = 0
 
 modules-left = start time start-dark ws right-end-top left-end-bottom start-br xkeyboard right-end-top left-end-bottom start-br networkenp6s0  right-end-top 
 modules-center =
-modules-right = left-end-top start-mpd mpd volume
+modules-right = left-end-top start-mpd mpd volume end
 
 background = ${color.background}
 foreground = ${color.foreground}
