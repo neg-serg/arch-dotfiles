@@ -4,6 +4,7 @@ include-file = $XDG_CONFIG_HOME/polybar/modules.cfg
 include-file = $XDG_CONFIG_HOME/polybar/batt.cfg
 include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
 include-file = $XDG_CONFIG_HOME/polybar/neg_mods.cfg
+include-file = $XDG_CONFIG_HOME/polybar/tray.cfg
 
 [global/wm]
 monitor =
@@ -110,16 +111,6 @@ locale =
 ; NOTE: The placeholders are not available for custom values
 wm-name = 
 
-tray-padding = 1.0
-tray-scale = 1.0
-tray-background = "#020209"
-tray-position = right
-tray-offset-x = 0
-tray-offset-y = 0
-tray-maxsize = 16
-tray-detached = false
-# tray-position = none
-
 ; Fallback click handlers that will be called if
 ; there's no matching module handler found.
 click-left = 
@@ -139,21 +130,14 @@ double-click-right =
 cursor-click = 
 cursor-scroll = 
 
+; Framerate in milliseconds
+animation-charging-framerate = 500
+poll-interval = 5
+pseudo-transparency = false
+
 font-0 = ${font.font-0}
 font-1 = ${font.font-1}
 font-2 = ${font.font-2}
 font-3 = ${font.font-3}
-
-; Framerate in milliseconds
-animation-charging-framerate = 500
-poll-interval = 5
-
-pseudo-transparency = false
-
-[layout]
-module-padding = 1
-icon-font = 2
-bar-format = %{T4}%fill%%indicator%%empty%%{F-}%{T-}
-bar-fill-icon = ﭳ
 
 ; vim:ft=conf
