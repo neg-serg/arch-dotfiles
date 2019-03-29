@@ -21,11 +21,6 @@ set inputbar-fg "#cccccc"
 set completion-bg "#232323"
 set completion-fg "#bbbbbb"
 
-set tabbar-bg "#191919"
-set tabbar-fg "#98a7b6"
-set tabbar-focus-bg "#232323"
-set tabbar-focus-fg "#a488d9"
-
 set completion-group-bg "#101010"
 set completion-group-fg "#eeeeee"
 set completion-highlight-fg "#6A9FB5"
@@ -43,7 +38,6 @@ set notification-warning-bg "#98a7b6"
 set notification-warning-fg "#000000"
 
 map <C-[> abort
-map <C-с> abort
 map <F11> toggle_fullscreen
 map <C-l> reload
 map R rotate rotate-ccw
