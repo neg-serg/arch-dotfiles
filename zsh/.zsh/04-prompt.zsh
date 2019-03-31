@@ -263,25 +263,40 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd git_prompt_hook
 git_prompt_init
 
-# LHS="%F{25}⟬%F{4}<" RHS="⧔" 
-# LHS="❬" RHS="❭" 
-# LHS="❲" RHS="❳" 
-# LHS="%F{25}⟬%F{4}<" RHS="" 
-# LHS="❬" RHS="❭"  
-# LHS="❲" RHS="❳" 
-
 export PROMPT_FST="❯"
 export PROMPT_SND=">"
 
 local tilda_color='2'
 local prompt_color='4'
-local error_color='226'
+local error_color='4'
+
+typeset -A possible_lhs=(
+    ['0']="%F{25}⟬%F{4}<" 
+    ['1']="❬" 
+    ['2']="❲" 
+    ['3']="%F{25}⟬%F{4}<" 
+    ['4']="❬" 
+    ['5']="❲" 
+)
+
+typeset -A possible_rhs=(
+    ['0']="⧔" 
+    ['1']="❭" 
+    ['2']="❳" 
+    ['3']="" 
+    ['4']="❭"  
+    ['5']="❳" 
+)
+
 
 function precmd {
     export tilda_color
     export prompt_color
     export error_color
-    export PROMPT_LHS="%F{${prompt_color}}⟬" PROMPT_RHS=""
+
+    export PROMPT_LHS="%F{${prompt_color}}⟬" 
+    export PROMPT_RHS=""
+
     export MAIN_COLOR="%(?.%F{${prompt_color}}.%F{${error_color}})"
     export TILDA_COLOR="%(?.%F{${tilda_color}}.%F{${prompt_color}})"
     export PS1="$(${ZSH}/neg-prompt)" 
