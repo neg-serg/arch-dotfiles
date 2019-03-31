@@ -184,10 +184,7 @@ local rlwrap_list=(
     bigloo clisp irb guile
 )
 
-local sudo_list=(
-    {u,}mount ch{mod,own} modprobe i7z
-    node npm reaver aircrack-ng
-)
+local sudo_list=({u,}mount ch{mod,own} modprobe i7z aircrack-ng)
 
 local user_commands=(
     list-units is-active status show help list-unit-files
