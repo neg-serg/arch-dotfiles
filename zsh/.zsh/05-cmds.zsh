@@ -35,8 +35,9 @@ function zc(){
         print $(zpref) $(zfwrap "${z}"); 
         rm -fv "${z}.zwc.old"
     done
-    for f in ${ZSH}/zshrc ${zcompdumpfile};
-        zrecompile -p "${f}" && rm -f "${f}.zwc.old"
+    for f in ${zcompdumpfile};
+        zrecompile -p "${f}" && \
+        rm -f "${f}.zwc.old"
     source ${HOME}/.zshrc
 }
 
