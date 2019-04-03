@@ -4,8 +4,8 @@ After=dbus.service
 
 [Service]
 Type=simple
-Restart=always
-RestartSec=2
+Restart=on-failure
+RestartSec=10
 ExecStart=/usr/sbin/gpaste-client daemon
 
 [Install]
