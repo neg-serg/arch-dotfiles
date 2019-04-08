@@ -21,8 +21,6 @@ dpi:
 
 tabspaces: 4
 
-draw_bold_text_with_bright_colors: false
-
 background_opacity: 0.88
 
 font:
@@ -243,6 +241,12 @@ mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
   hide_when_typing: true
+
+persistent_logging: false
+draw_bold_text_with_bright_colors: false
+
+selection:
+  semantic_escape_chars: ",`|:\"' ()[]{}<>"
 
 shell:
  program: /bin/zsh 
