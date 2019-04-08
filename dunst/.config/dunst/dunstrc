@@ -36,6 +36,7 @@
     frame_color           = "#073642"
     width                 = 0
     ellipsize             = middle
+    verbosity             = mesg
 
 [shortcuts]
     close_all = mod4+space
