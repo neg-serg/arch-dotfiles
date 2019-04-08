@@ -24,6 +24,7 @@ function nvidia_compton_settings(){
     compton -b --config "${compton_cfg}" \
             --blur-method=kawase \
             --blur-strength=6 \
+            --vsync=none \
         > /dev/null &
 }
 
