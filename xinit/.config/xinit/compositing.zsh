@@ -22,6 +22,14 @@ function intel_compton_settings(){
 function nvidia_compton_settings(){
     compton_cfg="${HOME}/.config/compton/compton_nvidia.conf"
     compton -b --config "${compton_cfg}" \
+            --backend xrender \
+            --vsync=none \
+        > /dev/null &
+}
+
+function nvidia_compton_settings_glx(){
+    compton_cfg="${HOME}/.config/compton/compton_nvidia.conf"
+    compton -b --config "${compton_cfg}" \
             --blur-method=kawase \
             --blur-strength=6 \
             --vsync=none \
