@@ -1,5 +1,5 @@
 super + apostrophe
-    i3-msg restart
+    i3-msg restart; pkill -f negi3mods.py
 XF86AudioMute
     pactl set-sink-mute 1 toggle
 super + quotedbl
