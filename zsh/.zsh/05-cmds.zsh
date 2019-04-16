@@ -247,7 +247,7 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 alias pacaur='yay'
 
 function mp(){
-    vdpau=false
+    vdpau=true
     for i; do vid_fancy_print "${i}"; done
     if lsmod |& rg -i nvidia > /dev/null; then
         if [[ ${vdpau} == false ]]; then
