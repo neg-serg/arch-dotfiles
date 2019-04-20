@@ -36,7 +36,7 @@ compinit -C
 
 zrcautoload colors && colors
 
-eval $(keychain --eval --quiet id_rsa id_ecdsa)
+eval $(keychain --eval --quiet id_rsa)
 
 zle_highlight+=(suffix:fg=blue)
 
