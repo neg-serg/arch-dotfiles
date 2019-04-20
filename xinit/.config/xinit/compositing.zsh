@@ -21,7 +21,7 @@ function intel_compton_settings(){
 
 function nvidia_compton_settings(){
     compton_cfg="${HOME}/.config/compton/new.conf"
-    compton -b --config "${compton_cfg}" > /dev/null &
+    compton --config "${compton_cfg}" > /dev/null
 }
 
 local sharp_shadows=(

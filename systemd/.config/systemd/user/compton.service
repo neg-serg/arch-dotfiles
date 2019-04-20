@@ -3,7 +3,7 @@ Description=Compositing manager
 After=dbus.service
 
 [Service]
-Type=forking
+Type=simple
 ExecStartPre=/bin/sleep 2
 ExecStart=%h/.config/xinit/compositing.zsh
 
