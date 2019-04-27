@@ -140,5 +140,6 @@ font-1 = ${font.font-1}
 font-2 = ${font.font-2}
 font-3 = ${font.font-3}
 font-4 = ${font.font-4}
+font-5 = ${font.font-5}
 
 ; vim:ft=conf
