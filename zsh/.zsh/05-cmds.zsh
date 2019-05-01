@@ -251,12 +251,12 @@ function mp(){
     for i; do vid_fancy_print "${i}"; done
     if lsmod |& rg -i nvidia > /dev/null; then
         if [[ ${vdpau} == false ]]; then
-            mpv --input-ipc-server=/tmp/mpvsocket --vo=opengl --vd-lavc-dr=yes "$@" > ${HOME}/tmp/mpv.log
+            mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
         else
-            mpv --input-ipc-server=/tmp/mpvsocket --vo=vdpau --hwdec=vdpau "$@" > ${HOME}/tmp/mpv.log
+            mpv --input-ipc-server=/tmp/mpvsocket --vo=vdpau "$@" > ${HOME}/tmp/mpv.log
         fi
     else
-        mpv --input-ipc-server=/tmp/mpvsocket --vo=vaapi --hwdec=vaapi "$@" > ${HOME}/tmp/mpv.log
+        mpv --input-ipc-server=/tmp/mpvsocket --vo=vaapi "$@" > ${HOME}/tmp/mpv.log
     fi
 }
 
