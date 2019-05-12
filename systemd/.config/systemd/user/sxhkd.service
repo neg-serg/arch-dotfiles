@@ -6,7 +6,8 @@ After=dbus.service
 Type=simple
 Restart=on-failure
 RestartSec=2
-ExecStart=sxhkd
+Environment="SXHKD_SHELL=dash"
+ExecStart=/usr/bin/sxhkd
 
 [Install]
 WantedBy=default.target
