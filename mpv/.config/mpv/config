@@ -1,4 +1,5 @@
 input-ipc-server=/tmp/mpvsocket
+vo-vdpau-colorkey="#020507"
 
 #--[Decoding]----------------------------------------------
 hwdec-codecs=all
