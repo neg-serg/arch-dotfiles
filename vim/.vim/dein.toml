@@ -177,8 +177,6 @@ repo = 'vim-scripts/ViewOutput.git' # VO commandline output
 [[plugins]]
 repo = 'jamessan/vim-gnupg.git' # Transparent work with gpg-encrypted files
 [[plugins]]
-repo = 'Yggdroot/indentLine' # indentlines
-[[plugins]]
 repo = 'Shougo/deol.nvim' # better neovim terminal-based mode
 [[plugins]]
 repo = 'itchyny/vim-parenmatch' #  An efficient alternative to the standard matchparen plugin
