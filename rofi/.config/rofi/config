@@ -21,7 +21,7 @@ rofi.lazy-grab:                     true
 rofi.lazy-filter-limit:             100
 rofi.theme:                         ~/.config/xres/rofi/neg.rasi
 
-rofi.kb-clear-line:                 
+rofi.kb-clear-line:
 rofi.kb-primary-paste:              Control+Shift+v,Shift+Insert
 rofi.kb-secondary-paste:            Control+v,Insert
 rofi.kb-move-front:                 Control+a
