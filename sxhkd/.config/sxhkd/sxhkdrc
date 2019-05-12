@@ -1,5 +1,5 @@
 super + apostrophe
-    i3-msg restart; pkill -f negi3mods.py
+    i3-msg restart
 XF86AudioMute
     pactl set-sink-mute 1 toggle
 super + quotedbl
@@ -31,10 +31,6 @@ super + control + r ; { c, d, i, r }
     }
 alt + grave
     rofi -no-plugins -sort -show run -lines 1 -columns 4 -case-sensitive=false -matching fuzzy -theme-str '* \{ font: "Iosevka Term Medium 15"; \}' -theme-str '#window \{ width:1900; y-offset: -32; location: south; anchor: south; \}' -disable-history
-super + shift + {5,6}
-    { \
-        ~/bin/wl -s, \
-        ~/bin/wl -r, \
-        ~/bin/wl -v
-    }
+super + shift + {6,7}
+    { ~/bin/wl, ~/bin/wl -r }
 # vim: set ft=sxhkdrc:
