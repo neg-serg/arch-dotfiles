@@ -1,8 +1,8 @@
 // https://github.com/onivim/oni/wiki/Configuration
 const activate = oni => {
-    oni.input.unbind("<c-p>");
     oni.input.bind("<S-Insert>", "editor.clipboard.paste");
-    oni.input.bind(["<enter>", "<S-tab>", "<C-Space>"], "contextMenu.select");
+    oni.input.bind(["<tab>"], "contextMenu.select");
+    oni.input.unbind("<c-p>");
 }
 
 module.exports = {
@@ -14,9 +14,9 @@ module.exports = {
     "commandline.mode": false, // Do not override commandline UI.
     "editor.completions.mode": 'oni', // VSCode-like completion.
     "editor.backgroundOpacity": 0.88, // Dark enough.
-    "editor.backgroundImageUrl": "/home/neg/pic/wl/wallhaven-625712.jpg",
+    "editor.backgroundImageUrl": "/home/neg/pic/wl/art-celldweller-transmissions.jpg",
     "editor.cursorLine": false, // Disables cursor line highlight.
-    "editor.cursorColumn": false, // Disables cursor column highlight. 
+    "editor.cursorColumn": false, // Disables cursor column highlight.
     "editor.cursorLineOpacity": 0.5, // Defines opacity of cursor line highlight.
     "editor.cursorColumnOpacity": 0.5, // Defines opacity of cursor column highlight.
     "editor.fontFamily": "Iosevka Term Medium", // Editor font.
@@ -24,35 +24,42 @@ module.exports = {
     "editor.fontSize": "20pt", // Font size.
     "editor.fontLigatures": true, // Use ligatures in editor.
     "editor.quickOpen.execCommand": 'fzf', // FZF as default src to populate fuzzy finder.
+    "editor.quickInfo.delay": 200,
     "editor.scrollBar.visible": false, // Hide scrollbar.
     "editor.errors.slideOnFocus": true, // Enables showing details when cursor is over an error.
     "oni.hideMenu": true, // Hide default menu, can be opened with <alt>.
     "oni.loadInitVim": true, // Load user's init.vim.
     "oni.useDefaultConfig": false, // Do not load Oni's init.vim.
-    "oni.useExternalPopupMenu": false, // Use oni GUI popup menu.
+    "oni.useExternalPopupMenu": true, // Use oni GUI popup menu.
     "statusbar.enabled": false, // Disable statusbar.
     "statusbar.fontSize": "16pt", // Statusbar fontsize.
     "tabs.mode": "native", // Tabs behave like vim.
     "tabs.wrap": true, // Wrap tabs.
     "tabs.height" : "1.2em", // Tabs height.
-    "ui.animations.enabled": true, // Use animations.
+    "ui.animations.enabled": false, // Use animations.
     "ui.colorscheme": "neg", // My custom colorscheme.
-    "ui.fontFamily": "Iosevka Term Medium", // GUI font family.
+    "ui.fontFamily": "Iosevka", // GUI font family.
     "ui.fontSize": "14pt", // GUI font size.
-    "ui.fontSmoothing": "auto", // Auto font smooth.
+    "ui.fontSmoothing": "antialiased", // Auto font smooth.
     "wildmenu.mode": false, // Do not override vim's native wildmenu UI.
     "learning.enabled": false, // Disable learning.
+    "browser.enabled": false, // Disable browser
+
     "experimental.markdownPreview.enabled": false, // Experimental Markdown preview.
+    "experimental.indentLines.enabled": true,
+    "editor.textMateHighlighting.enabled": true,
+
+    // cpp
     "language.cpp.languageServer.arguments": ["-std=c++17"],
+
+    // bash
+    "language.bash.languageServer.command": "bash-language-server",
+    "language.bash.languageServer.arguments": ["start"],
 
     // haskell support ( need haskell-ide-engine )
     "language.haskell.languageServer.command": "hi",
     "language.haskell.languageServer.arguments": ["--lsp"],
     "language.haskell.languageServer.rootFiles": [".git"],
-
-    // Lua support ( need lua-lsp )
-    "language.lua.languageServer.command": "lua-ls",
-    "language.lua.languageServer.rootFiles": [".git"],
 
     "colors.background": "#000000",
     "colors.foreground": "#617287",
