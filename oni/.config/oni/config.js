@@ -3,6 +3,7 @@ const activate = oni => {
     oni.input.bind("<S-Insert>", "editor.clipboard.paste");
     oni.input.bind(["<tab>"], "contextMenu.select");
     oni.input.unbind("<c-p>");
+    oni.input.unbind("<enter>");
 }
 
 module.exports = {
