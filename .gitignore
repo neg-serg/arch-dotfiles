@@ -285,9 +285,6 @@ tmp
 .tor-browser-en
 torrent
 vid
-.vim/bundle/*
-.vim/bundle/.neobundle/*
-.vim/bundle/NeoBundle.lock
 .vim/.compiler_info
 vim/.config/nvim/.netrwhist
 .viminfo
@@ -357,3 +354,4 @@ doom-emacs/.doom.d/init.elc
 oni/.config/oni/SS
 oni/.config/oni/SingletonCookie
 oni/.config/oni/SingletonLock
+vim/.vim/plugged/
