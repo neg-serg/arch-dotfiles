@@ -1,3 +1,12 @@
 {
-  "suggest.noselect": false
+  "suggest.noselect": true,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.timeout": 300,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.snippetIndicator": "►",
+  "coc.preferences.hoverTarget": "preview",
+  "diagnostic.messageTarget": "echo",
+  "signature.target": "echo"
 }
+
