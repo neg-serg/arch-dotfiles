@@ -7,10 +7,10 @@ Plug 'justinmk/vim-dirvish' " netrw replacement
 Plug 'bounceme/remote-viewer' " dirvish remote-viewer
 Plug 'kristijanhusak/vim-dirvish-git' " git support for divish
 Plug 'Shougo/defx.nvim' " better file-manager for nvim
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists'
 Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc-neoinclude'
+Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc-python'
 Plug 'neoclide/coc-sources'
 " --[ Edit ]-------------------------------------------------------------------------------
