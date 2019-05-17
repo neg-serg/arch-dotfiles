@@ -7,7 +7,12 @@ Plug 'justinmk/vim-dirvish' " netrw replacement
 Plug 'bounceme/remote-viewer' " dirvish remote-viewer
 Plug 'kristijanhusak/vim-dirvish-git' " git support for divish
 Plug 'Shougo/defx.nvim' " better file-manager for nvim
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc-lists'
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc-neoinclude'
+Plug 'neoclide/coc-python'
+Plug 'neoclide/coc-sources'
 " --[ Edit ]-------------------------------------------------------------------------------
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
@@ -45,7 +50,6 @@ Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'radenling/vim-dispatch-neovim' " advanced neovim support
 Plug 'w0rp/ale' " ale as linter
 Plug 'tomtom/tcomment_vim' " commenter plugin
-Plug 'tpope/vim-endwise' " to insert endif for if, end for begin and so on
 Plug 'dbakker/vim-projectroot' " better rooter
 Plug 'derekwyatt/vim-fswitch' " switching between companion source files e.g. .h and .cpp
 Plug 'janko-m/vim-test' " easy testing for various langs
