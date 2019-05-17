@@ -1,7 +1,6 @@
 // https://github.com/onivim/oni/wiki/Configuration
 const activate = oni => {
     oni.input.bind("<S-Insert>", "editor.clipboard.paste");
-    oni.input.bind(["<tab>"], "contextMenu.select");
     oni.input.unbind("<c-p>");
     oni.input.unbind("<enter>");
 }
@@ -13,7 +12,7 @@ module.exports = {
     "commandline.icons": true, // Commandline icons.
     "sidebar.enabled": false, // Disable sidebar.
     "commandline.mode": false, // Do not override commandline UI.
-    "editor.completions.mode": 'oni', // VSCode-like completion.
+    "editor.completions.mode": 'native', // VSCode-like completion.
     "editor.backgroundOpacity": 0.88, // Dark enough.
     "editor.backgroundImageUrl": "/home/neg/pic/wl/art-celldweller-transmissions.jpg",
     "editor.cursorLine": false, // Disables cursor line highlight.
