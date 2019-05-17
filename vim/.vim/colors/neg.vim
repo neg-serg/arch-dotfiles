@@ -434,4 +434,5 @@ call s:IgnoreFiletypeIfNotSet('haskell')
 call s:IgnoreFiletypeIfNotSet('text')
 call s:IgnoreFiletypeIfNotSet('lisp')
 
-highlight NormalFloat gui=NONE guifg=#93a1a1 guibg=#000000
+hi link NormalFloat Normal
+hi link CocFloating Normal
