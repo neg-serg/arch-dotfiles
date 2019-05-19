@@ -183,7 +183,7 @@ endfunction
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:UltiSnipsRemoveSelectModeMappings = 1
 let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
-let g:UltiSnipsExpandTrigger       = ""
+let g:UltiSnipsExpandTrigger       = "<NOP>"
 let g:UltiSnipsJumpForwardTrigger  = "<C-;>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-Tab>"
 let g:UltiSnipsListSnippets        = "<c-m-s>"
