@@ -139,6 +139,12 @@ nnoremap ed :Buffers<CR>
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
+if 0
+    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+else
+    let g:fzf_layout = { 'down': '~20%' }
+endif
+
 function! FloatingFZF()
     let buf = nvim_create_buf(v:false, v:true)
     call setbufvar(buf, '&signcolumn', 'no')
