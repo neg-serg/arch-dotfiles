@@ -138,6 +138,7 @@ nnoremap ed :Buffers<CR>
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
 function! FloatingFZF()
     let buf = nvim_create_buf(v:false, v:true)
     call setbufvar(buf, '&signcolumn', 'no')
@@ -360,8 +361,8 @@ let g:lightline = {
     \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
     \ },
     \ 'colorscheme': 'neg',
-    \ 'separator': { 'left': '▒', 'right': '▒' },
-    \ 'subseparator': { 'left': '∣', 'right': '∣' }
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
 \ }
 
 let g:lightline.component = {
@@ -401,6 +402,13 @@ let g:lightline.mode_map = {
     \ "\<C-s>": 'S-BLOCK',
     \ 't': 'TERM',
 \ }
+
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
+call insert(s:palette.normal.right, s:palette.normal.left[1], 0)
+
 function! LightlineModified()
     return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
