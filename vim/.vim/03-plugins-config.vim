@@ -414,6 +414,8 @@ let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
 let s:palette.inactive.middle = s:palette.normal.middle
 let s:palette.tabline.middle = s:palette.normal.middle
 call insert(s:palette.normal.right, s:palette.normal.left[1], 0)
+call insert(s:palette.inactive.right, s:palette.normal.right[1], 0)
+call insert(s:palette.inactive.left, s:palette.normal.left[1], 0)
 
 function! LightlineModified()
     return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
