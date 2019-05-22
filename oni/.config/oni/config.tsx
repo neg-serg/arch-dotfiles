@@ -8,6 +8,7 @@ export const activate = (oni: Oni.Plugin.Api) => {
     oni.input.unbind("<c-p>")
     oni.input.unbind("<enter>")
     oni.input.unbind("<c-g>")
+    oni.input.unbind("<c-/>")
     oni.input.bind("<s-c-g>", () => oni.commands.executeCommand("sneak.show"))
 }
 

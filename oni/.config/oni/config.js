@@ -6,6 +6,7 @@ exports.activate = function (oni) {
     oni.input.unbind("<c-p>");
     oni.input.unbind("<enter>");
     oni.input.unbind("<c-g>");
+    oni.input.unbind("<c-/>");
     oni.input.bind("<s-c-g>", function () { return oni.commands.executeCommand("sneak.show"); });
 };
 exports.deactivate = function (oni) {
