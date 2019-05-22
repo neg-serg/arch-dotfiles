@@ -41,7 +41,7 @@ Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'sjbach/lusty' " file/buffer explorer
 Plug 'dyng/ctrlsf.vim' " interactive vim-grep
 Plug 'jremmen/vim-ripgrep' " ripgrep binding
-Plug 'wsdjeg/FlyGrep.vim' " async grep
+Plug 'mhinz/vim-grepper' "better grep plugin
 " --[ Docs ]------------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]-------------------------------------------------------------------------------
