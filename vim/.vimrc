@@ -47,13 +47,6 @@ if has('nvim')
     set termguicolors
 endif
 
-if (!isdirectory(expand('$HOME/.vim/repos/github.com/Shougo/dein.vim')))
-    call system(expand('mkdir -p $HOME/.vim/repos/github.com'))
-    call system(expand('git clone https://github.com/Shougo/dein.vim $HOME/.vim/repos/github.com/Shougo/dein.vim'))
-endif
-
-set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim/
-
 call plug#begin('~/.vim/plugged')
 source ~/.vim/00-plugin-list.vim
 source ~/.vim/01-plugin-lazy-list.vim

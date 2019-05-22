@@ -100,5 +100,4 @@ Plug 'vim-scripts/ViewOutput' " VO commandline output
 Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
 Plug 'Shougo/deol.nvim' " better neovim terminal-based mode
 Plug 'itchyny/vim-parenmatch' "  An efficient alternative to the standard matchparen plugin
-Plug 'haya14busa/dein-command.vim' " dein commands
 Plug 'mopp/autodirmake.vim' " automake dir which didnt exists
