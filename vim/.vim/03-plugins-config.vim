@@ -351,5 +351,4 @@ source ~/.vim/10-lightline-config.vim
 " │ plugin - mhinz/vim-grepper                                                        │
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:grepper.tools = ['rg', 'git', 'grep']
 nnoremap <C-/> :Grepper -tool rg<CR>
