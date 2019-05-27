@@ -23,6 +23,7 @@ Plug 'Raimondi/delimitMate' " autopair []{}
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'machakann/vim-swap' " swap with emacs
+Plug 'google/vim-searchindex' "search indexing
 "--[ Additions ]--------------------------------------------------------------------------
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
@@ -101,3 +102,4 @@ Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
 Plug 'Shougo/deol.nvim' " better neovim terminal-based mode
 Plug 'itchyny/vim-parenmatch' "  An efficient alternative to the standard matchparen plugin
 Plug 'mopp/autodirmake.vim' " automake dir which didnt exists
+Plug 'xarthurx/taskwarrior.vim' "taskwarrior support
