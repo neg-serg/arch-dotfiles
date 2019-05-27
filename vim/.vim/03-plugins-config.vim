@@ -112,23 +112,17 @@ highlight link ALEErrorSign Title
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
-" Taken from :
-" [https://github.com/aliev/vim/blob/master/vimrc]
-if executable('ag')
-    " Silver searcher instead of grep
-    set grepprg=ag\ --vimgrep
-    set grepformat=%f:%l:%c%m
+if executable('rg')
+    let s:rg_cmd = "rg --hidden --follow"
+    let s:rg_ignore = split(&wildignore, ',') + [
+        \ 'node_modules', 'target', 'build', 'dist', '.stack-work'
+        \ ]
+    let s:rg_cmd .= " --glob '!{'" . shellescape(join(s:rg_ignore, ',')) . "'}'"
 
-    " If you're running fzf in a large git repository, git ls-tree can boost up
-    " the speed of the traversal.
-    if isdirectory('.git') && executable('git')
-        let $FZF_DEFAULT_COMMAND='
-                    \ (git ls-tree -r --name-only HEAD ||
-                    \ find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
-                    \ sed s/^..//) 2> /dev/null'
-    else
-        let $FZF_DEFAULT_COMMAND='ag -g ""'
-    endif
+    let &grepprg = s:rg_cmd . ' --vimgrep'
+    let $FZF_DEFAULT_COMMAND = s:rg_cmd . ' --files'
+    command! -bang -nargs=* Rg call fzf#vim#grep(s:rg_cmd . ' --column --line-number --no-heading --fixed-strings --smart-case --color always ' . shellescape(<q-args>), 1, <bang>0)
+    command! -bang -nargs=* Find Rg<bang> <args>
 endif
 
 nnoremap qe :Files %:p:h<CR>
