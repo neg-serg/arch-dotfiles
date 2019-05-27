@@ -22,6 +22,8 @@ set regexpengine=1
 set conceallevel=2
 set concealcursor=i
 
+set inccommand=nosplit "interactive substitution
+
 if has('filterpipe')
     set noshelltemp
 endif
