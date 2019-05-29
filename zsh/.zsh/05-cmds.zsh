@@ -247,17 +247,8 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 alias pacaur='yay'
 
 function mp(){
-    vdpau=true
-    for i; do vid_fancy_print "${i}"; done
-    if lsmod |& rg -i nvidia > /dev/null; then
-        if [[ ${vdpau} == false ]]; then
-            mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
-        else
-            mpv --input-ipc-server=/tmp/mpvsocket --vo=vdpau "$@" > ${HOME}/tmp/mpv.log
-        fi
-    else
-        mpv --input-ipc-server=/tmp/mpvsocket --vo=vaapi "$@" > ${HOME}/tmp/mpv.log
-    fi
+    for i; vid_fancy_print "${i}"
+    mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
 }
 
 alias mpa="mpv -mute > ${HOME}/tmp/mpv.log"
