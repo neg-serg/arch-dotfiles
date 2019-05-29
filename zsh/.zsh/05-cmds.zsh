@@ -221,23 +221,15 @@ for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
 if [[ ! -x "${BIN_HOME}/l" ]] && [[ ! -x $(which l) ]]; then
-    if  [[ -x "${BIN_HOME}/lsp" ]]; then
-        alias l="lsp"
-    elif [[ -x "$(which ls++)" ]]; then
-        alias l="ls++"
-    else
-        alias l="ls -aChkopl --group-directories-first --color=auto"
-    fi
+    alias l="ls -aChkopl --group-directories-first --color=auto"
 else
     alias l='l -g'
 fi
 alias ls="ls --color=auto" # do we have GNU ls with color-support?
-hash l > /dev/null || alias l="ls -aChkopl --group-directories-first --color=auto"
 
 alias s="sudo"
 alias x='xargs'
 alias e="mimeo"
-
 alias u='umount'
 
 alias primusrun="vblank_mode=0 primusrun"
