@@ -3,6 +3,9 @@ if get(g:, 'strange_keymaps')
     nnoremap $ 4
 endif
 
+nnoremap <Tab> :bnext<cr>
+nnoremap <S-Tab> :bprevious<cr>
+
 " Some helpers to edit mode (http://vimcasts.org/e/14)
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
