@@ -522,6 +522,16 @@ function fg-widget() {
 }
 zle -N fg-widget
 
+function __expand-alias() {
+	zle _expand_alias
+	zle self-insert
+}
+
+function expand_aliases() {
+    zle -N __expand-alias
+    bindkey -M main ' ' __expand-alias
+}
+
 function up-one-dir   { pushd .. 2> /dev/null; zle redisplay; zle -M $(pwd);  }
 function back-one-dir { popd     2> /dev/null; zle redisplay; zle -M $(pwd);  }
 zle -N up-one-dir
