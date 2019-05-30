@@ -13,6 +13,7 @@ Plug 'neoclide/coc-neco'
 Plug 'jsfaint/coc-neoinclude'
 Plug 'neoclide/coc-python'
 Plug 'neoclide/coc-sources'
+Plug 'voldikss/coc-github'
 " --[ Edit ]-------------------------------------------------------------------------------
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
