@@ -74,8 +74,3 @@ local jump_dirs=( ~/1st_level ~/dw ~/tmp ~/src/1st_level ~/vid/new)
 for index in $(seq 1 $((${#jump_dirs[@]} ))); do
     bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}"
 done
-
-bindkey "^xs" sudo-command-line
-bindkey "^x'" toggle_single_string
-bindkey '^x"' toggle_double_string
-bindkey '^x;' clear_string
