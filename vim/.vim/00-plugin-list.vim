@@ -7,21 +7,21 @@ Plug 'justinmk/vim-dirvish' " netrw replacement
 Plug 'bounceme/remote-viewer' " dirvish remote-viewer
 Plug 'kristijanhusak/vim-dirvish-git' " git support for divish
 Plug 'Shougo/defx.nvim' " better file-manager for nvim
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists'
-Plug 'neoclide/coc-neco'
-Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc-python'
-Plug 'neoclide/coc-sources'
-Plug 'voldikss/coc-github'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} "autocomplete
+Plug 'neoclide/coc-lists' "use it for files support
+Plug 'neoclide/coc-neco' "vimL completion engine via neco-vim
+Plug 'jsfaint/coc-neoinclude' "neoinclude support
+Plug 'neoclide/coc-python' "python support
+Plug 'neoclide/coc-sources' "use it for coc-ultisnips
+Plug 'voldikss/coc-github' "github issues support
 " --[ Edit ]-------------------------------------------------------------------------------
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
 Plug 'tpope/vim-unimpaired' " good mappings and toggles
 Plug 'tpope/vim-repeat' " dot for everything
-Plug 'Raimondi/delimitMate' " autopair []{}
-" new commands to vim for {}[]''" " <>
-Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate' " autopair for brackets
+Plug 'tpope/vim-surround' "new commands to vim for generic brackets
+Plug 'stefandtw/quickfix-reflector.vim' "qf editing
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'machakann/vim-swap' " swap with emacs
 Plug 'google/vim-searchindex' "search indexing
