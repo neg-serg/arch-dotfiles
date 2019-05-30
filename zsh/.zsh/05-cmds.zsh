@@ -20,12 +20,6 @@ else
     for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
     alias df="${copepath}/df -hT"
 fi
-
-
-if hash dfc > /dev/null && false; then
-    alias df='dfc -q type -T -n -s'
-fi
-
 unset copepath
 
 function zc(){
@@ -40,11 +34,6 @@ function zc(){
         rm -f "${f}.zwc.old"
     source ${HOME}/.zshrc
 }
-
-# Load is-at-least() for more precise version checks Note that this test will
-# *always* fail, if the is-at-least function could not be marked for
-# autoloading.
-zrcautoload is-at-least || is-at-least() { return 1 }
 
 # grep for running process, like: 'any vime
 function any() {
@@ -69,12 +58,6 @@ function imv() {
     done
 }
 
-function pstop() {
-    ps -eo pid,user,pri,ni,vsz,rsz,stat,pcpu,pmem,time,comm --sort -pcpu |
-    head "${@:--n 20}" | 
-    column -t
-}
-
 fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
 if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
     fasd --init auto >| "${fasd_cache}"
@@ -83,11 +66,6 @@ source "${fasd_cache}"
 unset fasd_cache
 
 function dropcache { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
-
-function hugepage_disable(){
-    echo 'echo "madvise" >> /sys/kernel/mm/transparent_hugepage/defrag' | sudo -s
-    cat /sys/kernel/mm/transparent_hugepage/defrag
-}
 
 function lastfm_scrobbler_toggle(){
     local is_run="active (running)"
@@ -118,18 +96,6 @@ function lastfm_scrobbler_toggle(){
 
 function pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
-if whence adb > /dev/null; then
-    adbpush() {
-        for i; do
-            echo "$(zpref) -> $(zwrap Pushing\ ${i}\ to\ /sdcard/${i:t})"
-            adb push ${i} /sdcard/${i:t}
-        done
-    }
-fi
-
-# gather external ip address
-function geteip() { curl http://ifconfig.me }
-
 function ql(){
     if [[ $1 != "" ]]; then
         local file=$(resolve_file "$1")
@@ -139,10 +105,6 @@ function ql(){
         xsel -o <<< "${upload_dir}/$(basename ${file})"
     fi
 }
-
-# this is similar to cut(1) but using awk(1) fields:
-# print only the given columns, numbered from 1 to N
-kut() { awk "{ print $(for n; do echo -n "\$$n,"; done | sed 's/,$//') }" ;}
 
 function which() {
     if [[ $# > 0 ]]; then
@@ -232,11 +194,7 @@ alias x='xargs'
 alias e="mimeo"
 alias u='umount'
 
-alias primusrun="vblank_mode=0 primusrun"
-
 alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
-
-alias pacaur='yay'
 
 function mp(){
     for i; vid_fancy_print "${i}"
@@ -254,12 +212,7 @@ alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
 
 alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
 
-alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
-alias pstree="pstree -U "$@" | sed '
-	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
-	s/[{}]/\x1B[31m&\x1B[0m/g
-	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
-
+alias pstop='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
 alias '?=bc -l <<<'
 
 alias {z,m}mv="noglob zmv -Wn"
@@ -267,7 +220,6 @@ alias mv="mv -i"
 alias mk="mkdir -p"
 alias rd="rmdir"
 
-alias tree="tree --dirsfirst -C"
 alias acpi="acpi -V"
 alias se="patool extract"
 alias pk="patool create"
@@ -312,7 +264,7 @@ for i in x q Q; eval alias :${i}=\' exit\'
 
 alias iostat='iostat -mtx'
 alias yt="youtube-dl"
-alias yd='you-get'
+alias ytt='you-get'
 
 function yr(){
     ${XDG_CONFIG_HOME}/i3/send ns toggle youtube
@@ -326,23 +278,12 @@ if hash ccat > /dev/null; then
     alias {cat,hi}='ccat -G String="_default_" -G Plaintext="white" -G Punctuation="blue" -G Literal="fuscia" -G Keyword="fuscia" 2>/dev/null'
 fi
 
-alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
-
-alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
 
 alias objdump='objdump -M intel -d'
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal="task calendar"
-
-if hash ${DEFAULT_TOP} > /dev/null; then
-    alias {{h,}top}=${DEFAULT_TOP}
-elif hash htop >/dev/null; then
-    alias top=htop
-elif hash glances >/dev/null; then
-    alias {{h,}top}=glances
-fi
 
 if [[ $(whence python) != "" ]]; then
     alias urlencode='python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]))"'
@@ -422,17 +363,13 @@ hash iotop > /dev/null && {
 
 hash nc > /dev/null && alias nyan='nc -v nyancat.dakko.us 23'
 
-alias java='java "$_SILENT_JAVA_OPTIONS"'
-alias je="bundle exec jekyll serve"
 alias twitch="streamlink -p mpv twitch.tv/$1 720p60"
 alias recordmydesktop="recordmydesktop --no-frame"
 alias up="rtv -s unixporn"
 
-#--[ Fun ]-----------------
 alias taco='curl -L git.io/taco'
 alias starwars='telnet towel.blinkenlights.nl'
 
-#--[ gdb ]-----------------
 alias gdb8="gdb -x ${XDG_CONFIG_HOME}/gdb/gdbinit8.gdb"
 alias gdbv="gdb -x ${XDG_CONFIG_HOME}/gdb/voltron.gdb"
 alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
@@ -454,7 +391,6 @@ fi
 alias @r=${SCRIPT_HOME}/music_rename
 
 [[ -x =nvim ]] && alias vim=nvim
-alias vimv=massren
 
 alias ip='ip -c'
 alias fd='fd -H'
@@ -563,27 +499,6 @@ function rationalise-dot() {
     fi
 }
 zle -N rationalise-dot
-
-function toggle_single_string() {
-    LBUFFER=$(echo ${LBUFFER} | sed "s/\(.*\) /\1 '/")
-    RBUFFER=$(echo ${RBUFFER} | sed "s/\($\| \)/' /")
-    zle redisplay
-}
-zle -N toggle_single_string
-
-function toggle_double_string() {
-    LBUFFER=$(echo ${LBUFFER} | sed 's/\(.*\) /\1 "/')
-    RBUFFER=$(echo ${RBUFFER} | sed 's/\($\| \)/" /')
-    zle redisplay
-}
-zle -N toggle_double_string
-
-function clear_string() {
-    LBUFFER=$(echo ${LBUFFER} | sed 's/\(.*\)\('"'"'\|"\).*/\1\2/')
-    RBUFFER=$(echo ${RBUFFER} | sed 's/.*\('"'"'\|"\)\(.*$\)/\1\2/')
-    zle redisplay
-}
-zle -N clear_string
 
 # run command line as user root via sudo:
 function sudo-command-line () {
