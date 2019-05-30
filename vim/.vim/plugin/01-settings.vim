@@ -333,7 +333,6 @@ else
     set shada=
 endif
 set modeline            " disable modelines
-set grepprg=rg          " use ripgrep over grep
 
 set iminsert=0          " write latin1 characters first
 set imsearch=0          " search with latin1 characters first
