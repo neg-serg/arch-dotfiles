@@ -10,8 +10,7 @@ cscale=ewa_lanczossharp
 video-sync=display-resample
 interpolation
 tscale=oversample
-hwdec=vaapi
-vo=vaapi
+vo=gpu
 
 #--[Volume]------------------------------------------------
 volume=100
