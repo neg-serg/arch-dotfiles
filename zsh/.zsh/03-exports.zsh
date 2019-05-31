@@ -118,8 +118,4 @@ export AUTOPAIR_INHIBIT_INIT=1
     hash -d p='/home/neg/pic'
 }
 
-export nwim_sock_path="${HOME}/1st_level/nvim.socket"
-export NVIM_LISTEN_ADDRESS="${HOME}/1st_level/nvim.socket"
-
-export DEFAULT_TOP="htop"
 export QT_QPA_PLATFORMTHEME="qt5ct"
