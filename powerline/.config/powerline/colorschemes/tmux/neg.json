@@ -13,7 +13,7 @@
 
 		"information:unimportant":  { "fg": "gray8", "bg": "really_dark1", "attrs": [] },
 		"information:additional":   { "fg": "gray9", "bg": "gray4", "attrs": [] },
-		"background":               { "fg": "blue", "bg": "nothing", "attrs": [] },
+		"background":               { "fg": "gray1", "bg": "nothing", "attrs": [] },
 		"background:divider":       { "fg": "gray6", "bg": "really_dark1", "attrs": [] },
 		"mode":                     { "fg": "white", "bg": "normal_my_cyan1", "attrs": ["bold"] },
 		"visual_range":             { "fg": "white", "bg": "darkestpurple", "attrs": ["bold"] },
