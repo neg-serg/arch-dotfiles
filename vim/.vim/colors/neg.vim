@@ -252,7 +252,6 @@ hi! link DiffAdded String
 
 call s:HI(         'Ignore',     '', s:lblk,             '' )
 call s:HI(        'Comment',     '', s:dwht,             '' )
-call s:HI(         'LineNr',     s:color233, s:lblk,     '' )
 call s:HI(          'Float',     '', s:dylw,             '' )
 call s:HI(        'Include',     '', s:dmag,             '' )
 call s:HI(         'Define',     '', s:dgrn,             '' )
@@ -436,3 +435,4 @@ call s:IgnoreFiletypeIfNotSet('lisp')
 
 hi link NormalFloat Normal
 hi link CocFloating Normal
+hi LineNr guifg=#202022 guibg=#040404
