@@ -1,23 +1,10 @@
 {
     "dividers": {
-        "left": {
-            "hard": " ",
-            "soft": " "
-        },
-        "right": {
-            "hard": " ",
-            "soft": " "
-        }
-    },
-    
-    "segment_data": {
-        "time": {
-            "before": ""
-        }
+        "left": { "hard": " ", "soft": "❯> " },
+        "right": { "hard": " ", "soft": " <❮" }
     },
     "segments": {
-        "left": [
-        ],
+        "left": [],
         "right": [
             {
                 "function": "powerline.segments.common.sys.system_load",
