@@ -5,7 +5,7 @@
     format                = "<b>%s</b>\n%b"
     sort                  = true
     alignment             = left
-    show_age_threshold    = 60
+    show_age_threshold    = -1
     ignore_newline        = false
     geometry              = "650x12-0-35"
     shrink                = false
