@@ -267,7 +267,7 @@ alias yt="youtube-dl"
 alias ytt='you-get'
 
 function yr(){
-    ${XDG_CONFIG_HOME}/i3/send ns toggle youtube
+    ${XDG_CONFIG_HOME}/i3/send bscratch toggle youtube
     sleep 1s
     echo "$@" | xsel -i
     xdotool key shift+Insert
