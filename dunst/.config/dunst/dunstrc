@@ -1,8 +1,9 @@
 [global]
-    font                  = Iosevka Term Medium 14
+    font                  = Iosevka Medium 14
+    allow_markup          = yes
     markup                = full
     plain_text            = false
-    format                = "<b>%s</b>\n%b"
+    format                = "%s\n%b"
     sort                  = true
     alignment             = left
     show_age_threshold    = -1
