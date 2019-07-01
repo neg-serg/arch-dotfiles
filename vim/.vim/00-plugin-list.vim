@@ -27,6 +27,8 @@ Plug 'machakann/vim-swap' " swap with emacs
 Plug 'google/vim-searchindex' "search indexing
 Plug 'voldikss/vim-translate-me' "translate support
 "--[ Additions ]--------------------------------------------------------------------------
+Plug 'romainl/vim-qf' "better quickfix support
+Plug 'thinca/vim-qfreplace' " visual replace for multiple files
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'Valloric/ListToggle' " toggle quickfix and location list <leader>l by def
@@ -34,7 +36,6 @@ Plug 'lyokha/vim-xkbswitch' " Autoswitch on <esc> with libxkb needs xkb-switch-g
 Plug 'echuraev/translate-shell.vim' " translate in nvim
 " --[ Rice ]-------------------------------------------------------------------------------
 Plug 'luochen1990/rainbow' " rainbow parentheses
-Plug 'thinca/vim-qfreplace' " visual replace for multiple files
 Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 Plug 'tpope/vim-abolish' " for different case coersion
 Plug 'TaDaa/vimade' " dynamic syntax highlighting
