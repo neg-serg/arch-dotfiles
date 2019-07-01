@@ -1,6 +1,5 @@
 [global]
     font                  = Iosevka Medium 14
-    allow_markup          = yes
     markup                = full
     plain_text            = false
     format                = "%s\n%b"
@@ -118,3 +117,9 @@
 [spotify]
     appname = Spotify
     urgency = normal
+
+[mailspring]
+    appname = Mailspring
+    urgency = normal
+    new_icon = applications-multimedia
+
