@@ -8,6 +8,21 @@
   "coc.preferences.hoverTarget": "preview",
   "diagnostic.messageTarget": "float",
   "signature.target": "float",
+  "post.enable": {
+      "type": "boolean",
+      "default": true,
+      "description": "enable this extension?"
+  },
+  "post.detect": {
+      "type": "boolean",
+      "default": true,
+      "description": "is enable detect filetype for *.post file"
+  },
+  "post.root": {
+      "type": "string",
+      "default": "~/.coc-post",
+      "description": "directory to save post file with post.new command"
+  },
   "languageserver": {
       "ccls": {
           "command": "ccls",
