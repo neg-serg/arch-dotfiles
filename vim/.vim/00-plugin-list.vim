@@ -26,6 +26,7 @@ Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'machakann/vim-swap' " swap with emacs
 Plug 'google/vim-searchindex' "search indexing
 Plug 'voldikss/vim-translate-me' "translate support
+Plug 'rhysd/clever-f.vim' "more clever-f
 "--[ Additions ]--------------------------------------------------------------------------
 Plug 'romainl/vim-qf' "better quickfix support
 Plug 'thinca/vim-qfreplace' " visual replace for multiple files
