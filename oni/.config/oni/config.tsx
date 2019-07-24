@@ -24,8 +24,7 @@ export const configuration = {
     "notifications.enabled": true,
     "editor.completions.mode": "native", // VSCode-like completion.
     "editor.backgroundOpacity": 0.88, // Dark enough.
-    "editor.backgroundImageUrl":
-    "/home/neg/pic/wl/art-celldweller-transmissions.jpg",
+    "editor.backgroundImageUrl": "/home/neg/pic/wl/Sojourner of Worlds.jpg",
     "editor.cursorLine": false, // Disables cursor line highlight.
     "editor.cursorColumn": false, // Disables cursor column highlight.
     "editor.cursorLineOpacity": 0.5, // Defines opacity of cursor line highlight.
