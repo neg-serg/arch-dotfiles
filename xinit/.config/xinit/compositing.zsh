@@ -4,7 +4,11 @@ source ~/.zsh/03-xdg_vars.zsh
 
 function compton_settings(){
     compton_cfg="${HOME}/.config/compton/new.conf"
-    compton --config "${compton_cfg}" > /dev/null
+    if [[ $(lsmod | grep nvidia) > /dev/null ]]; then
+        compton --config "${compton_cfg}" > /dev/null
+    else
+        compton --config "${compton_cfg}" --blur-kern="" > /dev/null
+    fi
 }
 
 function compton_run(){
