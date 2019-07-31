@@ -16,8 +16,6 @@ super + shift + 8
     mpc -q volume 100 || amixer -q set Master 100% unmute
 {super + control + shift + u,XF86Sleep}
     sudo systemctl suspend
-super + U
-    eject -T
 super + c
     ~/bin/clip
 super + u
