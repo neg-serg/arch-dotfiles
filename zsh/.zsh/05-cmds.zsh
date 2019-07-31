@@ -1,4 +1,4 @@
-function chpwd() {
+chpwd() {
     if [[ -x ${BIN_HOME}/Z ]]; then
         [[ "${PWD}" -ef "${HOME}" ]] || Z -a "${PWD}"
     fi
@@ -22,7 +22,7 @@ else
 fi
 unset copepath
 
-function zc(){
+zc(){
     autoload -U zrecompile
     for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
         zrecompile -p ${z}; 
@@ -36,7 +36,7 @@ function zc(){
 }
 
 # grep for running process, like: 'any vime
-function any() {
+any() {
     emulate -L zsh
     unsetopt KSH_ARRAYS
     if [[ -z "$1" ]] ; then
@@ -48,7 +48,7 @@ function any() {
     fi
 }
 
-function imv() {
+imv() {
     local src dst
     for src; do
         [[ -e ${src} ]] || { print -u2 "${src} does not exist"; continue }
@@ -65,9 +65,9 @@ fi
 source "${fasd_cache}"
 unset fasd_cache
 
-function dropcache { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
+dropcache() { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
 
-function lastfm_scrobbler_toggle(){
+lastfm_scrobbler_toggle(){
     local is_run="active (running)"
     local use_mpdscribble=false
     if [[ use_mpdscribble == true ]]; then
@@ -94,9 +94,9 @@ function lastfm_scrobbler_toggle(){
     unset is_run use_mpdscribble
 }
 
-function pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
+pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
-function ql(){
+ql(){
     if [[ $1 != "" ]]; then
         local file=$(resolve_file "$1")
         local upload_dir=${HOME}/1st_level/upload/
@@ -106,7 +106,7 @@ function ql(){
     fi
 }
 
-function which() {
+which() {
     if [[ $# > 0 ]]; then
         if [[ -x /usr/bin/ccat ]]; then
             builtin which "$@" | ccat
@@ -116,7 +116,7 @@ function which() {
     fi
 }
 
-function py23switch(){
+py23switch(){
     python_path="$(which python)"
 
     if [[ $(basename $(readlink /usr/sbin/python)) == python3 ]]; then
@@ -132,7 +132,7 @@ function py23switch(){
 }
 
 if hash nvim > /dev/null && hash nvr > /dev/null; then
-    function gv(){
+    gv(){
         nvr --remote-send ":e $(pwd)<CR>:GV<CR>"
     }
 fi
@@ -196,7 +196,7 @@ alias u='umount'
 
 alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
-function mp(){
+mp(){
     for i; vid_fancy_print "${i}"
     mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
 }
@@ -240,7 +240,7 @@ if hash git 2>/dev/null; then
     # commit staged changes with the given message
     alias gcm='git commit -m'
 
-    function git_confclicts() {
+    git_confclicts() {
         # list all conflicted files
         alias gkl='git ls-files --unmerged | cut -f2 | uniq'
         # add changes from all conflicted files
@@ -266,7 +266,7 @@ alias iostat='iostat -mtx'
 alias yt="youtube-dl"
 alias ytt='you-get'
 
-function yr(){
+yr(){
     ${XDG_CONFIG_HOME}/i3/send bscratch toggle youtube
     sleep 1s
     echo "$@" | xsel -i
@@ -289,8 +289,8 @@ if [[ $(whence python) != "" ]]; then
     alias urlencode='python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]))"'
     alias urldecode='python -c "import sys, urllib; print(urllib.unquote_plus(sys.argv[1]))"'
 elif [[ $(whence xxd) != "" ]]; then
-    function urlencode() {echo $@ | tr -d "\n" | xxd -plain | sed "s/\(..\)/%\1/g"}
-    function urldecode() {printf $(echo -n $@ | sed 's/\\/\\\\/g;s/\(%\)\([0-9a-fA-F][0-9a-fA-F]\)/\\x\2/g')"\n"}
+    urlencode() {echo $@ | tr -d "\n" | xxd -plain | sed "s/\(..\)/%\1/g"}
+    urldecode() {printf $(echo -n $@ | sed 's/\\/\\\\/g;s/\(%\)\([0-9a-fA-F][0-9a-fA-F]\)/\\x\2/g')"\n"}
 fi
 
 zleiab() {
@@ -368,7 +368,7 @@ alias куищще='reboot'
 alias учше='exit'
 alias :й=':q'
 
-function mimemap() {
+mimemap() {
     default=${1}; shift
     for i in $@; do alias -s ${i}=${default}; done
 }
@@ -377,7 +377,7 @@ alias sp='cdu -idh -s -r -c "#"'
 
 alias v="${BIN_HOME}/nwim"
 
-function allip(){
+allip(){
     netstat -lantp \
     | grep ESTABLISHED \
     | awk '{print }' \
@@ -385,7 +385,7 @@ function allip(){
     | sort -u
 }
 
-function flac2mp3(){
+flac2mp3(){
     for infile in "$@"; do
         [[ "${infile}" != *.flac ]] && continue
         album="$(metaflac --show-tag=album "${infile}" | sed 's/[^=]*=//')"
@@ -406,7 +406,7 @@ function flac2mp3(){
     done
 }
 
-function fun::fonts(){
+fun::fonts(){
     alias 2023='toilet -f future'
     alias gaym='toilet --gay -f mono9 -t'
     alias gayf='toilet --gay -f future -t'
@@ -424,7 +424,7 @@ function fun::fonts(){
 # --------------------------------------------------------------------
 # ZLE-related stuff
 
-function inplace_mk_dirs() {
+inplace_mk_dirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
     # To select an area press ctrl-@ or ctrl-space and use the cursor.
     # Use case: you type "mv abc ~/testa/testb/testc/" and remember that the
@@ -456,8 +456,13 @@ function inplace_mk_dirs() {
     fi
 }
 
+# thx to github.com/MitchWeaver/dots
+75%() { mogrify -resize '75%X75%' "$@" ; }
+50%() { mogrify -resize '50%X50%' "$@" ; }
+25%() { mogrify -resize '25%X25%' "$@" ; }
+
 # just type '...' to get '../..'
-function rationalise-dot() {
+rationalise-dot() {
     local MATCH
     if [[ $LBUFFER =~ '(^|/| |  |'$'\n''|\||;|&)\.\.$' ]]; then
         LBUFFER+=/
@@ -470,7 +475,7 @@ function rationalise-dot() {
 zle -N rationalise-dot
 
 # run command line as user root via sudo:
-function sudo-command-line () {
+sudo-command-line () {
     [[ -z $BUFFER ]] && zle up-history
     if [[ ${BUFFER} != sudo\ * ]]; then
         BUFFER="sudo ${BUFFER}"
@@ -479,7 +484,7 @@ function sudo-command-line () {
 }
 zle -N sudo-command-line
 
-function fg-widget() {
+fg-widget() {
     stty icanon echo -inlcr < /dev/tty
     stty lnext '^V' quit '^\' susp '^Z' < /dev/tty
     zle reset-prompt
@@ -491,32 +496,42 @@ function fg-widget() {
 }
 zle -N fg-widget
 
-function __expand-alias() {
+__expand-alias() {
 	zle _expand_alias
 	zle self-insert
 }
 
-function expand_aliases() {
+expand_aliases() {
     zle -N __expand-alias
     bindkey -M main ' ' __expand-alias
 }
 
-function up-one-dir   { pushd .. 2> /dev/null; zle redisplay; zle -M $(pwd);  }
-function back-one-dir { popd     2> /dev/null; zle redisplay; zle -M $(pwd);  }
+up-one-dir() { pushd .. 2> /dev/null; zle redisplay; zle -M $(pwd);  }
+back-one-dir() { popd     2> /dev/null; zle redisplay; zle -M $(pwd);  }
 zle -N up-one-dir
 zle -N back-one-dir
 
-function magic-abbrev-expand() {
+magic-abbrev-expand() {
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
     LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
     zle self-insert
 }
 
-function no-magic-abbrev-expand() { LBUFFER+=' ' }
+no-magic-abbrev-expand() { LBUFFER+=' ' }
 
-function slash-backward-kill-word () {
+slash-backward-kill-word () {
     local WORDCHARS="${WORDCHARS:s@/@}"
     zle backward-kill-word
 }
 zle -N slash-backward-kill-word
+
+# directory marking
+# usage: 'm1' = mark 1
+#        'g1' = return to m1
+#
+# thanks to github.com/MitchWeaver/dots
+for i in 1 2 3 4 5 6 7 8 9 ; do
+    eval "m${i}() { export _MARK${i}=\$PWD ; }"
+    eval "g${i}() { cd \$_MARK${i} ; }"
+done
