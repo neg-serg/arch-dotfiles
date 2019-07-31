@@ -16,7 +16,7 @@ rofi.fixed-num-lines:               false
 rofi.separator-style:               solid
 rofi.markup-rows:                   false
 rofi.fullscreen:                    false
-rofi.fake-transparency:             true
+rofi.fake-transparency:             false
 rofi.lazy-grab:                     true
 rofi.lazy-filter-limit:             100
 rofi.theme:                         ~/.config/xres/rofi/neg.rasi
