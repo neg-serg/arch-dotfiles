@@ -214,6 +214,7 @@ alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
 
 alias pstop='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
 alias '?=bc -l <<<'
+??() { curl -s cheat.sh/$@ }
 
 alias {z,m}mv="noglob zmv -Wn"
 alias mv="mv -i"
