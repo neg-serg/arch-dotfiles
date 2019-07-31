@@ -3,11 +3,11 @@
    highlight:        bold underline #005FAF;
    urgentcolor:      #AB1E87;
 
-   blackwidget:      #000000;
-   mainbg:           #020404;
+   blackwidget:      #00000044;
+   mainbg:           #02040444;
 
    fgwhite:          #849BB8;
-   blackdarkest:     #040909;
+   blackdarkest:     #04090999;
    selectcolor:      #073742;
    darkgray:         #315C70;
 
