@@ -8,7 +8,7 @@
 
    fgwhite:          #849BB8;
    blackdarkest:     #04090999;
-   selectcolor:      #073742;
+   selectcolor:      #0a3749;
    darkgray:         #315C70;
 
    font: "Iosevka Term Bold 14";
@@ -22,7 +22,7 @@
 }
 
 #message {
-   padding: 6px 10px;
+   padding: 6px 6px;
    background-color:@blackwidget;
 }
 
@@ -35,18 +35,18 @@
    fixed-height: false;
    dynamic:      true;
    scrollbar:    true;
-   spacing:      0px;
-   padding:      1px 0px 0px 0px;
-   margin:       0px 0px 1px 0px;
+   spacing:      2px;
+   padding:      6px 6px 6px 6px;
+   margin:       0px 0px 0px 0px;
    background:   @blackdarkest;
 }
 
 #element {
-   padding: 2px 2px;
+   padding: 1px 1px;
 }
 
 #element.normal.normal {
-   padding:          0px 15px;
+   padding:          0px 0px;
    background-color: @mainbg;
    text-color:       @fgwhite;
 }
@@ -117,19 +117,19 @@
 
 #prompt {
    spacing:           0px;
-   padding:           4px 0px;
+   padding:           4px 4px;
    background-color:  @blackwidget;
    text-color:        @maincolor;
 }
 
 #entry {
-   padding:           6px 10px;
+   padding:           4px 4px;
    background-color:  @blackwidget;
    text-color:        @fgwhite;
 }
 
 #case-indicator {
-   padding:          6px 10px;
+   padding:          4px 4px;
    text-color:       @maincolor;
    background-color: @blackwidget;
 }
