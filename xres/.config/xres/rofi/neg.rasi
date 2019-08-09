@@ -42,7 +42,8 @@
 }
 
 #element {
-   padding: 1px 1px;
+   padding:      1px 1px;
+   padding:      1px;
 }
 
 #element.normal.normal {
@@ -113,6 +114,9 @@
 #inputbar {
    background-color:  @blackdarkest;
    spacing:           0px;
+   border:            1px 0px 1px 0px;
+   border-color:      #0a3749;
+   padding:           0px;
 }
 
 #prompt {
