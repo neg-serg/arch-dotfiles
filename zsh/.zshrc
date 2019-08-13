@@ -22,7 +22,7 @@ local zsh_files=(
     11-open.zsh
     12-completion.zsh
     13-bindkeys.zsh
-    70-games.zsh
+    70-forgit.zsh
     81-completion_gen.zsh
     96-fzf.zsh
     98-syntax.zsh
