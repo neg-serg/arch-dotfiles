@@ -536,3 +536,9 @@ for i in 1 2 3 4 5 6 7 8 9 ; do
     eval "m${i}() { export _MARK${i}=\$PWD ; }"
     eval "g${i}() { cd \$_MARK${i} ; }"
 done
+
+if (( $+commands[tag] )); then
+    export TAG_SEARCH_PROG=rg
+    tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+    alias rg=tag
+fi
