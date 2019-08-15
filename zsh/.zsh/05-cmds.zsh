@@ -25,8 +25,8 @@ unset copepath
 zc(){
     autoload -U zrecompile
     for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
-        zrecompile -p ${z}; 
-        print $(zpref) $(zfwrap "${z}"); 
+        zrecompile -p ${z}
+        print $(zpref) $(zfwrap "${z}")
         rm -fv "${z}.zwc.old"
     done
     for f in ${zcompdumpfile};
@@ -225,6 +225,7 @@ alias acpi="acpi -V"
 alias se="patool extract"
 alias pk="patool create"
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
+python(){ ~/bin/python-color "$@" }
 
 if hash git 2>/dev/null; then
     alias gs='git status --short -b'
@@ -287,11 +288,11 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias cal="task calendar"
 
 if [[ $(whence python) != "" ]]; then
-    alias urlencode='python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]))"'
-    alias urldecode='python -c "import sys, urllib; print(urllib.unquote_plus(sys.argv[1]))"'
+    urlencode() { python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]))" }
+    urldecode() { python -c "import sys, urllib; print(urllib.unquote_plus(sys.argv[1]))" }
 elif [[ $(whence xxd) != "" ]]; then
-    urlencode() {echo $@ | tr -d "\n" | xxd -plain | sed "s/\(..\)/%\1/g"}
-    urldecode() {printf $(echo -n $@ | sed 's/\\/\\\\/g;s/\(%\)\([0-9a-fA-F][0-9a-fA-F]\)/\\x\2/g')"\n"}
+    urlencode() { echo $@ | tr -d "\n" | xxd -plain | sed "s/\(..\)/%\1/g" }
+    urldecode() { printf $(echo -n $@ | sed 's/\\/\\\\/g;s/\(%\)\([0-9a-fA-F][0-9a-fA-F]\)/\\x\2/g')"\n" }
 fi
 
 zleiab() {
