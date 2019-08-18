@@ -69,6 +69,12 @@ nmap <silent> . :silent !xkb-switch -s us &<CR>/
 nmap хх [[
 nmap ъъ ]]
 
+unmap .
+nmap .w :silent w<CR>
+nmap .p :silent preferences<CR>
+nmap .a :silent addons<CR>
+nmap .b :sidebar BitWarden [1]<CR>
+
 nnoremap e gt
 nnoremap E gT
 noremap # gt
