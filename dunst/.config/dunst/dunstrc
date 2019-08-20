@@ -32,7 +32,7 @@
     class                 = Dunst
     stack_duplicates      = true
     hide_duplicate_count  = true
-    frame_width           = 2
+    frame_width           = 1
     frame_color           = "#073642"
     width                 = 0
     ellipsize             = middle
