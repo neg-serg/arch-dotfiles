@@ -10,6 +10,7 @@ nnoremap <S-Tab> :bprevious<cr>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 nnoremap Y y$
+nnoremap ; :
 
 let mapleader      = ','
 let maplocalleader = ' '
