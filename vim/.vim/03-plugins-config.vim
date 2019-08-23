@@ -134,27 +134,21 @@ let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
 if 1
-    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+    let s:layout_top = 1
+    if s:layout_top == 1
+        let g:fzf_layout = { 'window': 'call FloatingFZF(4, 50, 80, (&lines - 8) / 2)' }
+    else
+        let g:fzf_layout = { 'window': 'call FloatingFZF(&lines - 8, 50, 80, (&lines - 8) / 2)' }
+    endif
 else
     let g:fzf_layout = { 'down': '~20%' }
 endif
 
-function! FloatingFZF()
+function! FloatingFZF(row, col, width, height)
     let buf = nvim_create_buf(v:false, v:true)
     call setbufvar(buf, '&signcolumn', 'no')
-
-    let height = &lines - 3
-    let width = float2nr(&columns - (&columns * 2 / 10))
-    let col = float2nr((&columns - width) / 2)
-
-    let opts = {
-        \ 'relative': 'editor',
-        \ 'row': 40,
-        \ 'col': col,
-        \ 'width': width / 2,
-        \ 'height': height / 2
-    \ }
-
+    let s:height = &lines - 8
+    let opts = {'relative': 'editor', 'row': a:row, 'col': a:col, 'width': a:width, 'height': a:height}
     call nvim_open_win(buf, v:true, opts)
 endfunction
 
@@ -346,3 +340,5 @@ source ~/.vim/10-lightline-config.vim
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <C-/> :Grepper -tool rg<CR>
+
+let g:gutentags_modules = ['ctags']
