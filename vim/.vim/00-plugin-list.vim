@@ -14,6 +14,7 @@ Plug 'jsfaint/coc-neoinclude' "neoinclude support
 Plug 'neoclide/coc-python' "python support
 Plug 'neoclide/coc-sources' "use it for coc-ultisnips
 Plug 'voldikss/coc-github' "github issues support
+Plug 'wsdjeg/FlyGrep.vim' "interactive grep with floating menu
 " --[ Edit ]-------------------------------------------------------------------------------
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
@@ -21,11 +22,11 @@ Plug 'tpope/vim-unimpaired' " good mappings and toggles
 Plug 'tpope/vim-repeat' " dot for everything
 Plug 'Raimondi/delimitMate' " autopair for brackets
 Plug 'tpope/vim-surround' "new commands to vim for generic brackets
+Plug 'machakann/vim-sandwich' "Surround-like operators
 Plug 'stefandtw/quickfix-reflector.vim' "qf editing
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'machakann/vim-swap' " swap with emacs
 Plug 'google/vim-searchindex' "search indexing
-Plug 'voldikss/vim-translate-me' "translate support
 Plug 'rhysd/clever-f.vim' "more clever-f
 "--[ Additions ]--------------------------------------------------------------------------
 Plug 'romainl/vim-qf' "better quickfix support
@@ -34,37 +35,31 @@ Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'Valloric/ListToggle' " toggle quickfix and location list <leader>l by def
 Plug 'lyokha/vim-xkbswitch' " Autoswitch on <esc> with libxkb needs xkb-switch-git to run
-Plug 'echuraev/translate-shell.vim' " translate in nvim
 " --[ Rice ]-------------------------------------------------------------------------------
 Plug 'luochen1990/rainbow' " rainbow parentheses
 Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 Plug 'tpope/vim-abolish' " for different case coersion
-Plug 'TaDaa/vimade' " dynamic syntax highlighting
 "--[ Search ]-----------------------------------------------------------------------------
 Plug 'junegunn/fzf' " fzf itself
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'sjbach/lusty' " file/buffer explorer
 Plug 'dyng/ctrlsf.vim' " interactive vim-grep
-Plug 'jremmen/vim-ripgrep' " ripgrep binding
 Plug 'mhinz/vim-grepper' "better grep plugin
 " --[ Docs ]------------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]-------------------------------------------------------------------------------
 Plug 'chrisbra/vim-diff-enhanced' " patience diff
 Plug 'tpope/vim-dispatch' " provide async build via tmux
-Plug 'radenling/vim-dispatch-neovim' " advanced neovim support
 Plug 'w0rp/ale' " ale as linter
 Plug 'tomtom/tcomment_vim' " commenter plugin
 Plug 'dbakker/vim-projectroot' " better rooter
 Plug 'derekwyatt/vim-fswitch' " switching between companion source files e.g. .h and .cpp
-Plug 'janko-m/vim-test' " easy testing for various langs
 Plug 'Shougo/neco-vim' " modern vim autocomplete
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
-Plug 'racer-rust/vim-racer' " racer support
-Plug 'marijnh/tern_for_vim' " tern for vim
 Plug 'Shougo/echodoc.vim' " print documents in echo area
 Plug 'apalmer1377/factorus' " refactoring tool
 Plug 'rhysd/git-messenger.vim' " shows git message
+Plug 'janko-m/vim-test' " easy testing for various langs
 " --[ LaTeX ]-----------------------------------------------------------------------------
 Plug 'donRaphaco/neotex'
 " ----------------[  Tags  ]--------------------------------------------------------------
@@ -85,10 +80,9 @@ Plug 'chriskempson/base16-vim' " base16 colorschemes pack
 Plug 'tyrannicaltoucan/vim-deep-space' " deepspace colorscheme
 Plug 'bluz71/vim-moonfly-colors' " moonfly colorscheme
 Plug 'ryanoasis/vim-devicons' " fancy icons for fonts
+Plug 'chr4/nginx.vim' "nginx syntax highlighting
 " --[ dcvs ]------------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive' " Git stuff. Needed for powerline etc
-Plug 'idanarye/vim-merginal' " to handle branches/megge conflicts
-Plug 'junegunn/gv.vim' " yet another git commit browser
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'gregsexton/gitv' " gitk for vim
 " --[ Tmux ]----------------------------------------------------------------------------
