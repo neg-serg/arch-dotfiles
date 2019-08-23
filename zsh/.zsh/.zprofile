@@ -1,16 +1,6 @@
-inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
-nexec() { [[ -z $(pidof "$1") ]]; }
-
 if [[ -o LOGIN  ]]; then
     setterm -bfreq 0 # disable annoying pc speaker
     if [[ "${TERM}" = "linux" ]]; then
-        local run_yaft=0
-        if hash yaft 2> /dev/null; then
-            if [[ ${run_yaft} == 1 ]]; then
-                yaft
-            fi
-        fi
-
         echo -en "\e]P0000000" #black
         echo -en "\e]P83d3d3d" #darkgrey
         echo -en "\e]P18c4665" #darkred
