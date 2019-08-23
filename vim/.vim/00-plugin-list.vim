@@ -11,10 +11,8 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} "autocomplete
 Plug 'neoclide/coc-lists' "use it for files support
 Plug 'neoclide/coc-neco' "vimL completion engine via neco-vim
 Plug 'jsfaint/coc-neoinclude' "neoinclude support
-Plug 'neoclide/coc-python' "python support
 Plug 'neoclide/coc-sources' "use it for coc-ultisnips
 Plug 'voldikss/coc-github' "github issues support
-Plug 'wsdjeg/FlyGrep.vim' "interactive grep with floating menu
 " --[ Edit ]-------------------------------------------------------------------------------
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
