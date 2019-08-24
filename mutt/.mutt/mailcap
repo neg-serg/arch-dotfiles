@@ -1,11 +1,12 @@
-text/html; /usr/bin/w3m -I %{charset} -T text/html %s; copiousoutput;
 video/*; /usr/bin/mpv -really-quiet -msglevel all=0 %s 2>/dev/null; test=test -n "$DISPLAY";
 application/pdf; /usr/bin/zathura %s; test=test -n "$DISPLAY";
 application/gpg; /usr/bin/gpg --decrypt %s; copiousoutput;
 
+text/html; /usr/bin/firefox --class mutterfox --new-window 2>/dev/null %s; copiousoutput;
+image/jpg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
+image/jpeg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
+image/pjpeg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
+image/png; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s png
+image/gif; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s gif
+
 image/*; /usr/local/bin/sxiv -b %s; test=test -n "$DISPLAY";
-image/jpg; BROWSER=w3m ~/.mutt/scripts/view_attachment.sh %s jpg
-image/jpeg; BROWSER=w3m ~/.mutt/scripts/view_attachment.sh %s jpg
-image/pjpeg; BROWSER=w3m ~/.mutt/scripts/view_attachment.sh %s jpg
-image/png; BROWSER=w3m ~/.mutt/scripts/view_attachment.sh %s png
-image/gif; BROWSER=w3m ~/.mutt/scripts/view_attachment.sh %s gif

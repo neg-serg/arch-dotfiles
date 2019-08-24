@@ -18,8 +18,6 @@ bind index g noop
 bind pager g noop
 bind attach g noop
 
-macro index ZQ   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
-
 bind index gg first-entry
 bind index G last-entry
 bind index R group-reply

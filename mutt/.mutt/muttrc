@@ -1,29 +1,15 @@
 source ~/.mutt/headers.mutt
 source ~/.mutt/bindings.mutt
-source ~/.mutt/hooks.mutt
 source ~/.mutt/sidebar.mutt
-source ~/.mutt/gmail.mutt
 source ~/.mutt/themes/fscety
-source ~/.mutt/mailboxes
-
-set nm_default_uri = "notmuch:///home/neg/.local/mail/gmail"
-virtual-mailboxes "My INBOX" "notmuch://?query=tag:inbox"
-# Header caching is a fine addition to any mutt.
-set header_cache="~/.mutt/hcache/"
-set certificate_file="~/.mutt/certificates"
-# But body caching doesn't make so much sense with local mail.
-# The X-Label header changing dynamically also messes with this, so disable it.
-unset message_cachedir
 
 set shell="/bin/zsh"
 set realname="Sergey Miroshnichenko" 
 set charset=utf-8 # Local charset
 set send_charset="utf-8" 
-# set sendmail="/usr/bin/sendmail"
-set use_from=no # I want to generate "From:" using my_hdr
-set attribution="On %d, %n wrote:" # Quoting subject
-# set editor="vim +':set textwidth=70' %s"
-set editor="NWIM_STANDALONE=1 /home/neg/bin/nwim %s"
+set use_from=yes
+set attribution="On %d, %n wrote:"
+set editor="nvim %s"
 unset markers
 set delete=yes          # purge deleted messages without asking
 set copy=ask-no         # ask to save a copy of outgoing message?
@@ -55,10 +41,9 @@ set print_command="muttprint"
 set signature="~/.mutt/scripts/signature"  # This is a script executable
 set forward_format="Fwd: %s"
 set help
-# MIME types handering - - -  - - - - - - - - - - - - - - - - - - - - - - #
-alternative_order text/plain text/enriched text/html
-alternative_order text/enriched text/plain text/html
-alternative_order text/plain text/html *
+set header_cache="~/.mutt/hcache/"
+set certificate_file="~/.mutt/certificates"
+set message_cachedir="/home/neg/.mail/cache"
 
 set implicit_autoview                # try to understand MIME types
 set mailcap_path="~/.mutt/mailcap"   # see MIME types in mailcap database
@@ -85,13 +70,10 @@ set query_format="%3c %t %-40.40a %-25.25n  %># %?e?%e?"
 set alias_format="%4n %t %-20a %r"
 set date_format="[%d/%m/%y] [%I:%M]"
 set index_format="%3C| %-4c > %-19.19F  %s%*  %?X?[%X]? %Z| %d"
-#set index_format    = "%3C [%Z] %D %-20.18F //   %s"
 set quote_regexp="^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 set sort=reverse-last-date-received  # like gmail
-#set sort='reverse-threads'
-#set sort_aux='last-date-received'
 set sort_re
 set uncollapse_jump # don't collapse on an unread message
 set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
@@ -102,15 +84,18 @@ lists   ruby-talk yesodweb
 subscribe ruby-talk yesodweb
 
 source "gpg -dq $HOME/.mutt/password.gpg |"
-set smtp_url = "smtp://serg.zorg@smtp.gmail.com:587/"
+set folder = "imaps://imap.gmail.com:993"
+set ssl_force_tls = yes
+bind index G imap-fetch-mail
+
 set from = "serg.zorg@gmail.com"
 set realname = "Sergey Miroshnichenko"
 
-set folder=/home/neg/.local/mail/gmail
-set spoolfile="+INBOX"
-set mbox_type="Maildir"
-set postponed="+[Gmail].Drafts"
-set mbox="+[Gmail].All Mail"
+set spoolfile = +INBOX
+set record = "+[Gmail]/Sent Mail"
+set postponed = "+[Gmail]/Drafts"
+unset record
+unset signature
 
 set imap_check_subscribed
 
@@ -126,7 +111,9 @@ hdr_order Date From To Cc
 auto_view text/html
 
 set query_command="goobook query '%s'"
+set sendmail="/usr/bin/msmtp -a gmail"
+my_hdr bcc: serg.zorg@gmail.com
+unmy_hdr X-PGP-Key
+set pgp_autosign = no
 
-account-hook $folder "set imap_user=serg.zorg@gmail.com imap_pass=$my_pw_personal
-set smtp_url="smtps://mail.vpal@gmail.com@smtp.gmail.com:465/"
-set smtp_authenticators="gssapi:login"
+alternative_order text/plain text/html *
