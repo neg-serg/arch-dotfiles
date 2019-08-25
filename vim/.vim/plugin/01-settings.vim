@@ -136,6 +136,7 @@ endif
 " Setting this value explicitly, though to the default value.
 set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
 set termencoding=utf8                       " Set termencoding to utf-8
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 "--------------------------------------------------------------------------
 " Where file browser's directory should begin:
 "   last    - same directory as last file browser
