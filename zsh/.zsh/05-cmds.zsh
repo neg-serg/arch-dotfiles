@@ -131,12 +131,6 @@ py23switch(){
     fi
 }
 
-if hash nvim > /dev/null && hash nvr > /dev/null; then
-    gv(){
-        nvr --remote-send ":e $(pwd)<CR>:GV<CR>"
-    }
-fi
-
 local noglob_list=(
     fc find {,s,l}ftp history locate rake rsync scp
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer}
@@ -318,9 +312,6 @@ zleiab() {
     LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
     LBUFFER+=${abk[$MATCH]:-$MATCH}
 }
-
-alias vmpd='command cava -i fifo -p /tmp/mpd.fifo -b 20'
-
 zle -N zleiab
 
 hash journalctl > /dev/null && {
@@ -377,7 +368,8 @@ mimemap() {
 
 alias sp='cdu -idh -s -r -c "#"'
 
-alias v="${BIN_HOME}/nwim"
+v(){ ~/bin/v --remote-silent "$@" }
+gv(){ ~/bin/v --remote-send ':e "${pwd}"<CR>:Gitv<CR>' }
 
 allip(){
     netstat -lantp \
