@@ -49,7 +49,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 source ~/.vim/00-plugin-list.vim
-source ~/.vim/01-plugin-lazy-list.vim
 call plug#end()
 
 source ~/.vim/02-keymaps.vim

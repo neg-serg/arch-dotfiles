@@ -45,7 +45,6 @@ Plug 'sjbach/lusty' " file/buffer explorer
 " --[ Docs ]-------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]--------------------------------------------------------------------------
-Plug 'apalmer1377/factorus' " refactoring tool
 Plug 'chrisbra/vim-diff-enhanced' " patience diff
 Plug 'dbakker/vim-projectroot' " better rooter
 Plug 'derekwyatt/vim-fswitch' " switching between companion source files e.g. .h and .cpp
@@ -72,9 +71,7 @@ Plug 'arcticicestudio/nord-vim' " dark and cold colorscheme
 Plug 'chriskempson/base16-vim' " base16 colorschemes pack
 Plug 'icymind/NeoSolarized' " solarized with better neovim support
 Plug 'joshdick/onedark.vim' " onedark colorscheme
-Plug 'KeitaNakamura/neodark.vim' " neodark colorscheme
 Plug 'NLKNguyen/papercolor-theme' " great bright colorscheme
-Plug 'ryanoasis/vim-devicons' " fancy icons for fonts
 Plug 'tyrannicaltoucan/vim-deep-space' " deepspace colorscheme
 Plug 'whatyouhide/vim-gotham' " gotham colorscheme for nvim
 " --[ DCVS ]-------------------------------------------------------------------------
@@ -90,7 +87,29 @@ Plug 'xolox/vim-session' " rule sessions
 Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
 Plug 'Konfekt/FastFold' " Do not update folds when it's not needed
 Plug 'mopp/autodirmake.vim' " automake dir which didnt exists
-Plug 'powerman/vim-plugin-ruscmd' " prevent too much ru-en layout switching with c-s
 Plug 's3rvac/AutoFenc' "  try to autodelect filetype
-Plug 'Shougo/deol.nvim' " better neovim terminal-based mode
 Plug 'vim-scripts/ViewOutput' " VO commandline output
+
+" #----------------------------------------------------------------------------------------
+" --[ Lazy plugins ]-----------------------------------------------------------------------
+" #----------------------------------------------------------------------------------------
+" --[ Main ]-------------------------------------------------------------------------------
+Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
+" --[ Edit ]-------------------------------------------------------------------------------
+Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'} " undo tree
+Plug 'ntpeters/vim-better-whitespace', {'on': 'StripWhitespace'} " delete whitespaces with ease
+" --[ Web ]-------------------------------------------------------------------------------
+Plug 'mattn/emmet-vim', {'on': 'EmmetInstall'} " expanding abbreviations similar to emmet
+" --[ Markdown ]--------------------------------------------------------------------------
+Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'} " markdown preview
+Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'} " mathjax support for markdown preview
+" --[ Python ]-----------------------------------------------------------------------------
+Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for indent
+" --[ Ruby ]-------------------------------------------------------------------------------
+Plug 'osyo-manga/vim-monster', {'for': 'ruby'} " alternative ruby autocompletion
+Plug 'tpope/vim-rails', {'for': 'ruby'} " rails plugin from Tim Pope
+Plug 'tpope/vim-rake', {'for': 'ruby'} " ruby rake support
+Plug 'tpope/vim-rbenv', {'for': 'ruby'} " ruby rbenv support
+" --[ Misc syntax ]-----------------------------------------------------------------------
+Plug 'blindFS/vim-regionsyntax', {'for': ['vimwiki', 'markdown', 'tex', 'html']} " region syntax highlighting
+Plug 'baskerville/vim-sxhkdrc', {'for': 'sxhkdrc'} " sxhkd config syntax
