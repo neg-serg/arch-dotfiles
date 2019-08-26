@@ -253,6 +253,7 @@ set eadirection=hor             " ver/hor/both - where does equalalways apply
 set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
 set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
+set lazyredraw                  " Reduce useless redrawing
 " Avoid command-line redraw on every entered character by turning off Arabic
 " shaping (which is implemented poorly).
 if has('arabic')
