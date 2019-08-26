@@ -165,7 +165,7 @@ imap <c-x><c-l> <Plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>. :call fzf#run({
     \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
-    \ 'options': '--tiebreak=index --multi --layout=reverse-list',
+    \ 'options': '--tiebreak=index --multi --layout=default',
     \ 'down': '30%',
     \ 'sink': 'e '
     \ })<CR>
