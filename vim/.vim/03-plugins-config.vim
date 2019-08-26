@@ -111,7 +111,7 @@ highlight link ALEErrorSign Title
 " │ plugin - junegunn/fzf.vim                                                         │ 
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
+let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3 --color=fg:#617287,header:#4779B3,info:#2b768d,pointer:#395573 --color=marker:#395573,fg+:#e5ebf1,prompt:#2b768d,hl+:#4779B3 --layout=reverse-list"
 if executable('rg')
     let s:rg_cmd = "rg --hidden --follow"
     let s:rg_ignore = split(&wildignore, ',') + [
@@ -165,8 +165,8 @@ imap <c-x><c-l> <Plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>. :call fzf#run({
     \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
-    \ 'options': '--tiebreak=index --multi --reverse --margin 15%,0',
-    \ 'down': '20%',
+    \ 'options': '--tiebreak=index --multi --layout=reverse-list',
+    \ 'down': '30%',
     \ 'sink': 'e '
     \ })<CR>
 function! s:escape(path)
