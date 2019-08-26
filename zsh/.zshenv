@@ -64,24 +64,14 @@ export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"
 
 _gen_fzf_default_opts() {
-    local color00='#0b1c2c'
-    local color01='#223b54'
-    local color02='#405c79'
-    local color03='#627e99'
-    local color04='#aabcce'
-    local color05='#cbd6e2'
-    local color06='#e5ebf1'
-    local color07='#f7f9fb'
-    local color08='#bf8b56'
-    local color09='#bfbf56'
-    local color0A='#8bbf56'
-    local color0B='#56bf8b'
-    local color0C='#568bbf'
-    local color0D='#8b56bf'
-    local color0E='#bf568b'
-    local color0F='#bf5656'
+    local color01="$(xrescat color215)"
+    local color04="$(xrescat color15)"
+    local color06="#e5ebf1"
+    local color0A="$(xrescat color22)"
+    local color0C="$(xrescat color4)"
+    local color0D="$(xrescat color12)"
 
-    export FZF_DEFAULT_OPTS="--color=bg+:$color01,bg:#000000,spinner:$color0C,hl:$color0D --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
+    export FZF_DEFAULT_OPTS="--color=bg+:${color01},bg:#000000,spinner:${color0C},hl:${color0D} --color=fg:${color04},header:${color0D},info:${color0A},pointer:${color0C} --color=marker:${color0C},fg+:${color06},prompt:${color0A},hl+:${color0D}"
 }
 
 _gen_fzf_default_opts
