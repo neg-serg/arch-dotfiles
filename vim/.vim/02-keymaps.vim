@@ -100,3 +100,5 @@ nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v
 nnoremap U <C-r>
 " like firefox tabs
 nnoremap <silent> <A-w> :bd<CR>
+
+inoremap <C-v> <C-o>p
