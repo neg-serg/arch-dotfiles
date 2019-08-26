@@ -340,5 +340,8 @@ source ~/.vim/10-lightline-config.vim
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <C-/> :Grepper -tool rg<CR>
-
-let g:gutentags_modules = ['ctags']
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - gregsexton/gitv                                                          │
+" │ https://github.com/gregsexton/gitv                                                │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:Gitv_OpenHorizontal = 0
