@@ -37,11 +37,11 @@ def_key "d"
 def_key "l"
   next_column
 
-def_key "+"
-  volume_up
-
 def_key "h"
   previous_column
+
+def_key "+"
+  volume_up
 
 def_key "-"
   volume_down
@@ -73,6 +73,9 @@ def_key "f2"
 def_key "3"
   show_search_engine
 
+def_key "y"
+  start_searching
+
 def_key "4"
   show_tag_editor
 
@@ -93,12 +96,6 @@ def_key ">"
 
 def_key "<"
   previous
-
-def_key "ctrl-h"
-  jump_to_parent_directory
-
-def_key "ctrl-h"
-  replay_song
 
 def_key "backspace"
   jump_to_parent_directory
@@ -127,9 +124,6 @@ def_key "z"
 def_key "y"
   save_tag_changes
 
-def_key "y"
-  start_searching
-
 def_key "Y"
   toggle_replay_gain_mode
 
@@ -141,15 +135,6 @@ def_key "|"
 
 def_key "u"
   update_database
-
-def_key "ctrl-v"
-  sort_playlist
-
-def_key "ctrl-r"
-  reverse_playlist
-
-def_key "/"
-  find
 
 def_key "/"
   find_item_forward
@@ -184,9 +169,6 @@ def_key "e"
 def_key "e"
   edit_playlist_name
 
-def_key "e"
-  edit_lyrics
-
 def_key "i"
   show_song_info
 
@@ -206,28 +188,10 @@ def_key "a"
   add_selected_items
 
 def_key "c"
+  dummy
+
+def_key "C"
   clear_main_playlist
-
-def_key "C"
-  crop_playlist
-
-def_key "C"
-  crop_main_playlist
-
-def_key "K"
-  move_sort_order_up
-
-def_key "m"
-  move_selected_items_up
-
-def_key "J"
-  move_sort_order_down
-
-def_key "n"
-  move_selected_items_down
-
-def_key "M"
-  move_selected_items_to
 
 def_key "S"
   save_playlist
@@ -246,9 +210,6 @@ def_key "E"
 
 def_key "\\"
   toggle_interface
-
-def_key "!"
-  toggle_separators_between_albums
 
 def_key "L"
   toggle_lyrics_fetcher
@@ -291,4 +252,3 @@ def_key "left"
 
 def_key "right"
   dummy
-

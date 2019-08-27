@@ -21,9 +21,11 @@ lines_scrolled = "4"
 mouse_list_scroll_whole_page = "no"
 
 use_console_editor = "yes"
-external_editor = "/usr/sbin/nvim"
+external_editor = "/home/neg/bin/v"
 
 jump_to_now_playing_song_at_start = "yes"
+
+ask_before_clearing_playlists = "no"
 
 #--=[ Bars ]=---------------
 song_status_format = "{$8%a} $(25)❯$(26)> {$8%t} $(25)❯$(26)> $b{$8%b}$/b $b({$8%y})$/b"
