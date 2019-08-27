@@ -13,14 +13,12 @@ Plug 'neoclide/coc-neco' "vimL completion engine via neco-vim
 Plug 'neoclide/coc-sources' "use it for coc-ultisnips
 Plug 'voldikss/coc-github' "github issues support
 " --[ Edit ]-------------------------------------------------------------------------
-Plug 'google/vim-searchindex' "search indexing
 Plug 'inkarkat/vim-ReplaceWithRegister' "replace with register keybindings
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'machakann/vim-swap' " swap with emacs
 Plug 'Raimondi/delimitMate' " autopair for brackets
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
-Plug 'stefandtw/quickfix-reflector.vim' "qf editing
 Plug 'tpope/vim-repeat' " dot for everything
 Plug 'tpope/vim-surround' "new commands to vim for generic brackets
 Plug 'tpope/vim-unimpaired' " good mappings and toggles
@@ -29,9 +27,11 @@ Plug 'wellle/targets.vim' " better text objects
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'lyokha/vim-xkbswitch' " Autoswitch on <esc> with libxkb needs xkb-switch-git to run
+Plug 'Valloric/ListToggle' " toggle quickfix and location list <leader>l by def
+"--[ QuickFix stuff ]----------------------------------------------------------------
 Plug 'romainl/vim-qf' "better quickfix support
 Plug 'thinca/vim-qfreplace' " visual replace for multiple files
-Plug 'Valloric/ListToggle' " toggle quickfix and location list <leader>l by def
+Plug 'stefandtw/quickfix-reflector.vim' "qf editing
 " --[ Rice ]-------------------------------------------------------------------------
 Plug 'luochen1990/rainbow' " rainbow parentheses
 Plug 'tpope/vim-abolish' " for different case coersion
