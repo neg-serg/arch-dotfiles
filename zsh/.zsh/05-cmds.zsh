@@ -352,7 +352,10 @@ fi
 
 alias @r=${SCRIPT_HOME}/music_rename
 
+v(){ ~/bin/v --remote-silent "$@" }
+gv(){ ~/bin/v --remote-send ':e "${pwd}"<CR>:Gitv<CR>' }
 [[ -x =nvim ]] && alias vim=nvim
+[[ ${DISPLAY} ]] &&  alias nvim=v
 
 alias ip='ip -c'
 alias fd='fd -H'
@@ -368,8 +371,6 @@ mimemap() {
 
 alias sp='cdu -idh -s -r -c "#"'
 
-v(){ ~/bin/v --remote-silent "$@" }
-gv(){ ~/bin/v --remote-send ':e "${pwd}"<CR>:Gitv<CR>' }
 
 allip(){
     netstat -lantp \
