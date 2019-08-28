@@ -54,35 +54,8 @@ set isfname+=}
 set background=dark
 colorscheme neg
 
-if !has("gui_running") && exists('$TMUX')
-    let g:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
-    if g:not_tmuxed_vim =~ "FALSE"
-        set t_ut=
-        if !exists('$ST_TERM')
-            autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
-            autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
-            let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
-            let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            autocmd VimLeave * silent !tmux set status on;
-                \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-        else
-            if !has("nvim")
-                autocmd VimEnter * silent !echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
-                let &t_SI = "\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\"
-                let &t_EI = "\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\"
-            endif
-            autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
-            autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
-            autocmd VimLeave * silent !tmux set status on;
-                \ echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
-        endif
-        autocmd VimEnter * silent !tmux set status off > /dev/null
-        autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-        set timeout ttimeout
-        set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
-    endif
-endif
+set timeout ttimeout
+set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
 
 " convert "\\" to "/" on win32 like environment
 if exists('+shellslash')
@@ -102,7 +75,6 @@ if has('user_commands')
     command! -nargs=0 Sw :SudoWrite
     command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
-    "command! -nargs=0 curf let @+=expand("%:p")
 endif
 "----------------------------------------------------------------------------
 set keywordprg=:help
@@ -371,23 +343,3 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 let g:is_posix        = 1
 " When using the taglist plugin, don't attempt to resize the terminal
 let g:is_bash         = 1
-
-if has('clpum')
-    set wildmode=popup
-    set wildmenu
-    set clpumheight=40
-    set clcompletefunc=UserDefinedClComplete
-    function! UserDefinedClComplete(findstart, base)
-        if a:findstart
-            return getcmdpos()
-        else
-            return [
-            \   { 'word': 'Jan', 'menu': 'January' },
-            \   { 'word': 'Feb', 'menu': 'February' },
-            \   { 'word': 'Mar', 'menu': 'March' },
-            \   { 'word': 'Apr', 'menu': 'April' },
-            \   { 'word': 'May', 'menu': 'May' },
-            \ ]
-        endif
-    endfunc
-endif
