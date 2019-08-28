@@ -4,7 +4,6 @@ source ~/.mutt/sidebar.mutt
 source ~/.mutt/themes/fscety
 
 set shell="/bin/zsh"
-set realname="Sergey Miroshnichenko" 
 set charset=utf-8 # Local charset
 set send_charset="utf-8" 
 set use_from=yes
@@ -41,9 +40,6 @@ set print_command="muttprint"
 set signature="~/.mutt/scripts/signature"  # This is a script executable
 set forward_format="Fwd: %s"
 set help
-set header_cache="~/.mutt/hcache/"
-set certificate_file="~/.mutt/certificates"
-set message_cachedir="/home/neg/.mail/cache"
 
 set implicit_autoview                # try to understand MIME types
 set mailcap_path="~/.mutt/mailcap"   # see MIME types in mailcap database
@@ -83,13 +79,19 @@ unsubscribe *
 lists   ruby-talk yesodweb 
 subscribe ruby-talk yesodweb
 
-source "gpg -dq $HOME/.mutt/password.gpg |"
+# gmail-specific settings
+# Folder hooks
+folder-hook 'home.gmail' 'source "gpg -dq $HOME/.mutt/home.gpg |'
+folder-hook 'work.gmail' 'source "gpg -dq $HOME/.mutt/work.gpg |'
+
+# Default account
+source "gpg -dq $HOME/.mutt/home.gpg |"
+
+folder-hook . 'unset trash'
+folder-hook imaps://imap.gmail.com 'set trash="=[Gmail]/Trash"'
+
 set folder = "imaps://imap.gmail.com:993"
 set ssl_force_tls = yes
-bind index G imap-fetch-mail
-
-set from = "serg.zorg@gmail.com"
-set realname = "Sergey Miroshnichenko"
 
 set spoolfile = +INBOX
 set record = "+[Gmail]/Sent Mail"

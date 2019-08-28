@@ -33,15 +33,8 @@ bind pager R group-reply
 bind attach <return> view-mailcap
 bind attach,browser,pager,index ZZ exit
 
-macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
-macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"
-
 macro index,pager,attach gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager,attach ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
-macro index,pager,attach gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent mail"
-macro index,pager,attach gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
-macro index,pager,attach g* "<change-folder>=[Gmail].Starred<enter>" "Go to starred"
-macro index,pager,attach gt "<change-folder>=[Gmail].Trash<enter>" "Go to trash"
 macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
 
 # 'A' shows all messages again (supersedes default <alias> binding)
@@ -51,5 +44,15 @@ macro pager X "|~/.mutt/mimedump"
 
 macro index g/ "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/external/mutt-notmuch-py/mutt-notmuch-py<enter><change-folder-readonly>~/tmp/mutt_results<enter>" \
           "search mail (using notmuch)"
+
+macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+macro index,pager d "<save-message>=[Gmail]/Trash<enter>" "Trash"
+macro index,pager A "<save-message>=[Gmail]/All Mail<enter>" "Archive"
+
+bind index G imap-fetch-mail
+
+# Macros for switching accounts
+macro index gh '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>!<enter>'
+macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>!<enter>'
 
 # vim:ft=muttrc
