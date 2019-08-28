@@ -131,9 +131,7 @@ nnoremap ed :Buffers<CR>
 
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-if 1
+if 0
     let s:layout_top = 1
     if s:layout_top == 1
         let g:fzf_layout = { 'window': 'call FloatingFZF(4, 50, 80, (&lines - 8) / 2)' }
@@ -141,7 +139,7 @@ if 1
         let g:fzf_layout = { 'window': 'call FloatingFZF(&lines - 8, 50, 80, (&lines - 8) / 2)' }
     endif
 else
-    let g:fzf_layout = { 'down': '~20%' }
+    let g:fzf_layout = { 'down': '~30%' }
 endif
 
 function! FloatingFZF(row, col, width, height)
