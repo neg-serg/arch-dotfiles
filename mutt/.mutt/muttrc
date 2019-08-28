@@ -34,6 +34,7 @@ unset collapse_unread   # do not collapse threads with new mail
 unset mark_old          # unread old messages are still unread after quitting
 set suspend             # allow Ctrl-Z to shutdown mutt
 unset beep              # fuckin' noizy pc-speaker
+set sleep_time = 0      # Speed up folders switch
 unset beep_new
 set askcc=no            # ask for cc when creating new message?
 set print_command="muttprint" 
@@ -112,10 +113,12 @@ ignore "DKIM-Signature:"
 hdr_order Date From To Cc
 auto_view text/html
 
-set query_command="goobook query '%s'"
 set sendmail="/usr/bin/msmtp -a gmail"
 my_hdr bcc: serg.zorg@gmail.com
 unmy_hdr X-PGP-Key
 set pgp_autosign = no
+
+## GooBook
+set query_command="goobook query '%s'"
 
 alternative_order text/plain text/html *

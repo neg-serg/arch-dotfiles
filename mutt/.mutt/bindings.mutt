@@ -7,6 +7,13 @@ bind pager n next-unread # It's better to use p & p for this
 bind pager ,p print-message # Print message when viewing it
 
 macro pager W "|urlscan 2> /dev/null\n"
+macro index \w "\
+:set my_tmp_pipe_decode=\$pipe_decode\n\
+:set pipe_decode\n\
+|urlview\n\
+:set pipe_decode=\$my_tmp_pipe_decode\n\
+:unset my_tmp_pipe_decode\n" \
+'call urlview to extract URLs out of a message'
 macro index S "!~/.mutt/scripts/msgnum.sh\r"
 
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
@@ -45,7 +52,7 @@ macro pager X "|~/.mutt/mimedump"
 macro index g/ "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/external/mutt-notmuch-py/mutt-notmuch-py<enter><change-folder-readonly>~/tmp/mutt_results<enter>" \
           "search mail (using notmuch)"
 
-macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
 macro index,pager d "<save-message>=[Gmail]/Trash<enter>" "Trash"
 macro index,pager A "<save-message>=[Gmail]/All Mail<enter>" "Archive"
 
@@ -54,5 +61,7 @@ bind index G imap-fetch-mail
 # Macros for switching accounts
 macro index gh '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>!<enter>'
 macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>!<enter>'
+
+bind editor <Tab> complete-query
 
 # vim:ft=muttrc
