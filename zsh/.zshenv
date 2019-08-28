@@ -71,7 +71,7 @@ _gen_fzf_default_opts() {
     local color0C="$(xrescat color4)"
     local color0D="$(xrescat color12)"
 
-    export FZF_DEFAULT_OPTS="--color=bg+:${color01},bg:#000000,spinner:${color0C},hl:${color0D} --color=fg:${color04},header:${color0D},info:${color0A},pointer:${color0C} --color=marker:${color0C},fg+:${color06},prompt:${color0A},hl+:${color0D} --bind='ctrl-t:execute(~/bin/v {})+abort' --preview 'bat --color \"always\" {}'"
+    export FZF_DEFAULT_OPTS="--color=bg+:${color01},bg:#000000,spinner:${color0C},hl:${color0D} --color=fg:${color04},header:${color0D},info:${color0A},pointer:${color0C} --color=marker:${color0C},fg+:${color06},prompt:${color0A},hl+:${color0D} --bind='ctrl-t:execute(~/bin/v {})+abort'"
 }
 
 _gen_fzf_default_opts
