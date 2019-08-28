@@ -62,9 +62,7 @@ bindkey -M emacs "^Z" fg-widget
 bindkey -M vicmd "^Z" fg-widget
 bindkey -M viins "^Z" fg-widget
 
-bindkey '^Xa' fasd-complete     # C-x C-a to do fasd-complete (files and directories)
-bindkey '^Xf' fasd-complete-f   # C-x C-f to do fasd-complete-f (only files)
-bindkey '^Xd' fasd-complete-d   # C-x C-d to do fasd-complete-d (only directories)
+bindkey '^j' fasd-complete     # C-x C-a to do fasd-complete (files and directories)
 
 local jump_dirs=( ~/1st_level ~/dw ~/tmp ~/src/1st_level ~/vid/new)
 
