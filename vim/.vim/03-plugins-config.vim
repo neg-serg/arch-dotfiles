@@ -198,6 +198,7 @@ let g:XkbSwitchEnabled = 1
 let g:XkbSwitchIMappings = ['ru']
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
 let g:XkbSwitchSkipFt = ['nerdtree', 'tex']
+let g:XkbSwitchSkipIMappings = {'*' : ['[', ']', '{', '}', "'", '<', '>', ',', '.', '"']}
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
 " │ https://github.com/derekwyatt/vim-fswitch.git                                     │
