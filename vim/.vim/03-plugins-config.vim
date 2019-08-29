@@ -11,8 +11,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 let g:coc_snippet_next = '<tab>'
@@ -111,7 +111,6 @@ highlight link ALEErrorSign Title
 " │ plugin - junegunn/fzf.vim                                                         │ 
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3 --color=fg:#617287,header:#4779B3,info:#2b768d,pointer:#395573 --color=marker:#395573,fg+:#e5ebf1,prompt:#2b768d,hl+:#4779B3 --layout=reverse-list"
 if executable('rg')
     let s:rg_cmd = "rg --hidden --follow"
     let s:rg_ignore = split(&wildignore, ',') + [
