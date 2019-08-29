@@ -520,13 +520,3 @@ slash-backward-kill-word () {
     zle backward-kill-word
 }
 zle -N slash-backward-kill-word
-
-# directory marking
-# usage: 'm1' = mark 1
-#        'g1' = return to m1
-#
-# thanks to github.com/MitchWeaver/dots
-for i in 1 2 3 4 5 6 7 8 9 ; do
-    eval "m${i}() { export _MARK${i}=\$PWD ; }"
-    eval "g${i}() { cd \$_MARK${i} ; }"
-done
