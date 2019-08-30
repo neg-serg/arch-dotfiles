@@ -101,4 +101,8 @@ nnoremap U <C-r>
 " like firefox tabs
 nnoremap <silent> <A-w> :bd<CR>
 
-inoremap <C-v> <C-o>P
+cmap <C-V> <C-R>+
+exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
+exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
+nnoremap <silent> <C-w>v :vnew<CR>
+nnoremap <silent> <C-w>s :new<CR>
