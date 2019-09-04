@@ -40,8 +40,6 @@
 
 [shortcuts]
     close_all = mod4+space
-    history   = mod4+shift+0
-    context   = mod4+ctrl+shift+0
 
 [urgency_low]
     background = "#010204"
