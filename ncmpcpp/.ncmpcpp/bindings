@@ -188,9 +188,6 @@ def_key "a"
   add_selected_items
 
 def_key "c"
-  dummy
-
-def_key "C"
   clear_main_playlist
 
 def_key "S"
