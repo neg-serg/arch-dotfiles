@@ -1,24 +1,13 @@
 set shell=/bin/zsh
 if bufname('%') == ''
-  set bufhidden=wipe
+    set bufhidden=wipe
 endif
 
 let g:impact_transbg=1
 let g:enable_cursorline=0
 let g:enable_cursorcolumn=0
 
-if v:version >= 704
-    " The new Vim regex engine is currently slooooow as hell which makes syntax
-    " highlighting slow, which introduces typing latency.
-    " Consider removing this in the future when the new regex engine becomes
-    " faster.
-    " set regexpengine=1
-    " Now I make it autodetect
-    set regexpengine=0
-endif
-
 set regexpengine=1
-
 set conceallevel=2
 set concealcursor=i
 
@@ -61,6 +50,7 @@ set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combin
 if exists('+shellslash')
     set shellslash
 endif
+
 if has('user_commands')
     command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
     command! -bang -nargs=* -complete=file E e<bang> <args>
@@ -82,16 +72,13 @@ let $PATH = $PATH . ':' . expand('~/bin/go/bin')
 
 set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
-" set autowrite                             " Autowrite by default
 set noautowrite                             " Don't autowrite by default
-" set autoread                              " Auto reload
-set noautochdir                             " Dont't change pwd automaticly
-" set autochdir                             " Change pwd automaticly
+set autoread                                " Auto reload
+set noautochdir                             " Dont't change pwd automaticly because of problems with plugins
 set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
-set autoread
 if executable(resolve(expand('par')))
     set formatprg="par -140"  " use par as formatter
 else
@@ -124,24 +111,7 @@ set browsedir=buffer
 " 'useopen' may be useful for re-using QuickFix window.
 set switchbuf=useopen,usetab
 
-if has('unnamedplus')
-  " By default, Vim will not use the system clipboard when yanking/pasting to
-  " the default register. This option makes Vim use the system default
-  " clipboard.
-  " Note that on X11, there are _two_ system clipboards: the "standard" one, and
-  " the selection/mouse-middle-click one. Vim sees the standard one as register
-  " '+' (and this option makes Vim use it by default) and the selection one as '*'.
-  " See :h 'clipboard' for details.
-  if has ('x') && has ('gui') " On Linux use + register for copy-paste
-      set clipboard=unnamedplus
-  elseif has ('gui')          " On mac and Windows, use * register for copy-paste
-      set clipboard=unnamed
-  endif
-  set clipboard=unnamed
-else
-  " Vim now also uses the selection system clipboard for default yank/paste.
-  set clipboard+=unnamed
-endif
+set clipboard=unnamedplus
 
 " Protect home directory
 if !empty($SUDO_USER) && $USER !=# $SUDO_USER
@@ -225,6 +195,7 @@ set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
 set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
 set lazyredraw                  " Reduce useless redrawing
+set diffopt+=internal,algorithm:patience " Better diff algorithm
 " Avoid command-line redraw on every entered character by turning off Arabic
 " shaping (which is implemented poorly).
 if has('arabic')
@@ -257,13 +228,6 @@ set formatoptions-=2    " don't use second line of paragraph when autoindenting
 set formatoptions-=v    " don't worry about vi compatiblity
 set formatoptions-=b    " don't worry about vi compatiblity
 set formatoptions-=j    " delete comment character when joining
-" Where it makes sense, remove a comment leader when joining lines.  For
-" example, joining:
-try
-  " Vim 7.4
-  set formatoptions+=j
-catch /.*/
-endtry
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
@@ -281,6 +245,7 @@ set backup              " backuping is good
 
 set backupdir=~/trash
 set directory=~/trash
+
 set undofile            " So is persistent undo ...
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
