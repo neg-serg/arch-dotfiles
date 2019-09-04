@@ -12,6 +12,7 @@ Plug 'neoclide/coc-lists' "use it for files support
 Plug 'neoclide/coc-neco' "vimL completion engine via neco-vim
 Plug 'neoclide/coc-sources' "use it for coc-ultisnips
 Plug 'voldikss/coc-github' "github issues support
+Plug 'Shougo/neco-vim' " modern vim autocomplete
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'inkarkat/vim-ReplaceWithRegister' "replace with register keybindings
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
@@ -27,7 +28,7 @@ Plug 'wellle/targets.vim' " better text objects
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'lyokha/vim-xkbswitch' " Autoswitch on <esc> with libxkb needs xkb-switch-git to run
-Plug 'Valloric/ListToggle' " toggle quickfix and location list <leader>l by def
+Plug 'Valloric/ListToggle' " toggle quickfix and location list
 "--[ QuickFix stuff ]----------------------------------------------------------------
 Plug 'romainl/vim-qf' "better quickfix support
 Plug 'thinca/vim-qfreplace' " visual replace for multiple files
@@ -45,13 +46,11 @@ Plug 'sjbach/lusty' " file/buffer explorer
 " --[ Docs ]-------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]--------------------------------------------------------------------------
-Plug 'chrisbra/vim-diff-enhanced' " patience diff
-Plug 'dbakker/vim-projectroot' " better rooter
+Plug 'dbakker/vim-projectroot' " autochdir for project
 Plug 'derekwyatt/vim-fswitch' " switching between companion source files e.g. .h and .cpp
 Plug 'janko-m/vim-test' " easy testing for various langs
 Plug 'rhysd/git-messenger.vim' " shows git message
 Plug 'Shougo/echodoc.vim' " print documents in echo area
-Plug 'Shougo/neco-vim' " modern vim autocomplete
 Plug 'tomtom/tcomment_vim' " commenter plugin
 Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
@@ -105,11 +104,6 @@ Plug 'iamcco/markdown-preview.vim', {'for': 'markdown'} " markdown preview
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'} " mathjax support for markdown preview
 " --[ Python ]-----------------------------------------------------------------------------
 Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for indent
-" --[ Ruby ]-------------------------------------------------------------------------------
-Plug 'osyo-manga/vim-monster', {'for': 'ruby'} " alternative ruby autocompletion
-Plug 'tpope/vim-rails', {'for': 'ruby'} " rails plugin from Tim Pope
-Plug 'tpope/vim-rake', {'for': 'ruby'} " ruby rake support
-Plug 'tpope/vim-rbenv', {'for': 'ruby'} " ruby rbenv support
 " --[ Misc syntax ]-----------------------------------------------------------------------
 Plug 'blindFS/vim-regionsyntax', {'for': ['vimwiki', 'markdown', 'tex', 'html']} " region syntax highlighting
 Plug 'baskerville/vim-sxhkdrc', {'for': 'sxhkdrc'} " sxhkd config syntax
