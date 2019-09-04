@@ -1,8 +1,6 @@
 let s:enabled = 0
 
 set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
 function MyKeyMapHighlight()
     if &iminsert == 0
         if s:enabled
