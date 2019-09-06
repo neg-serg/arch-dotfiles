@@ -35,17 +35,10 @@ endif
 autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
     \ | redraw
     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
-if (exists('$TMUX') ||  exists('g:gui_oni'))
-    let $NVIM_LISTEN_ADDRESS='~/1st_level/nvim.socket' | let g:nvim_is_started='on'
-else
-    let g:nvim_is_started='off'
-endif
 
-if has('nvim')
-    let &runtimepath = expand('~/.vim/') . ','
-        \ . expand('~/.vim/after/') . ',' . &runtimepath
-    set termguicolors
-endif
+let &runtimepath = expand('~/.vim/') . ','
+    \ . expand('~/.vim/after/') . ',' . &runtimepath
+set termguicolors
 
 call plug#begin('~/.vim/plugged')
 source ~/.vim/00-plugin-list.vim
