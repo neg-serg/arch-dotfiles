@@ -355,3 +355,10 @@ oni/.config/oni/SS
 oni/.config/oni/SingletonCookie
 oni/.config/oni/SingletonLock
 vim/.vim/plugged/
+oni/.config/oni/tsconfig.json
+mutt/.mutt/home.gmail/cache/
+mutt/.mutt/home.gmail/hcache
+mutt/.mutt/work.gmail/cache/
+mutt/.mutt/work.gmail/hcache
+mutt/.mutt/home.gmail/cache
+mutt/.mutt/work.gmail/cache
