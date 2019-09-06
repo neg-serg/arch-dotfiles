@@ -220,7 +220,6 @@ alias acpi="acpi -V"
 alias se="patool extract"
 alias pk="patool create"
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
-python(){ ~/bin/python-color "$@" }
 
 if hash git 2>/dev/null; then
     alias gs='git status --short -b'
