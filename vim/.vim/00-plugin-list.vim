@@ -54,7 +54,7 @@ Plug 'Shougo/echodoc.vim' " print documents in echo area
 Plug 'tomtom/tcomment_vim' " commenter plugin
 Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
-Plug 'w0rp/ale' " ale as linter
+Plug 'dense-analysis/ale' " ale as linter
 " --[ LaTeX ]------------------------------------------------------------------------
 Plug 'donRaphaco/neotex'
 " ----------------[  Tags  ]---------------------------------------------------------
