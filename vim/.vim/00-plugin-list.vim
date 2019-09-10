@@ -22,7 +22,6 @@ Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
 Plug 'tpope/vim-repeat' " dot for everything
 Plug 'tpope/vim-surround' "new commands to vim for generic brackets
-Plug 'tpope/vim-unimpaired' " good mappings and toggles
 Plug 'wellle/targets.vim' " better text objects
 "--[ Additions ]---------------------------------------------------------------------
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
