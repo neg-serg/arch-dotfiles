@@ -62,6 +62,30 @@ bind index G imap-fetch-mail
 macro index gh '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>!<enter>'
 macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>!<enter>'
 
+# toggle index display in pager
+macro pager ,@inds "\
+<enter-command> set pager_index_lines=`expr $(tput lines) / 7`; \
+macro pager z ,@indh 'show/hide index'<enter>"
+macro pager ,@indh "\
+<enter-command> set pager_index_lines=0; \
+macro pager z ,@inds 'hide/show index'<enter>"
+macro pager z ,@indh "hide/show index"
+
+# toggle alternative_order
+macro pager ,@aoh= "\
+<enter-command> unalternative_order *; \
+alternative_order text/enriched text/html text/plain text *; \
+macro pager V ,@aot= 'toggle alternative order'<enter>\
+<exit><display-message>"
+macro pager ,@aot= "\
+<enter-command> unalternative_order *; \
+alternative_order text/enriched text/plain text/html text *; \
+macro pager V ,@aoh= 'toggle alternative order'<enter>\
+<exit><display-message>"
+macro pager V ,@aot= "toggle alternative order"
+
+macro index q '<enter-command>alternative_order text/enriched text/plain text text/html *;<enter><exit>'
+
 bind editor <Tab> complete-query
 
 # vim:ft=muttrc
