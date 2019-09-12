@@ -55,7 +55,7 @@ Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
 Plug 'dense-analysis/ale' " ale as linter
 " --[ LaTeX ]------------------------------------------------------------------------
-Plug 'donRaphaco/neotex'
+Plug 'donRaphaco/neotex' "latex support
 " ----------------[  Tags  ]---------------------------------------------------------
 Plug 'bbchung/gasynctags' " autogenerate gtags to cscope db
 Plug 'neg-serg/gtags-cscope-vim' "  my gtags-cscope fork
@@ -87,10 +87,7 @@ Plug 'Konfekt/FastFold' " Do not update folds when it's not needed
 Plug 'mopp/autodirmake.vim' " automake dir which didnt exists
 Plug 's3rvac/AutoFenc' "  try to autodelect filetype
 Plug 'vim-scripts/ViewOutput' " VO commandline output
-
-" #----------------------------------------------------------------------------------------
-" --[ Lazy plugins ]-----------------------------------------------------------------------
-" #----------------------------------------------------------------------------------------
+" ----------------------------------------------------------------------[ Lazy plugins ]---
 " --[ Main ]-------------------------------------------------------------------------------
 Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
 " --[ Edit ]-------------------------------------------------------------------------------
