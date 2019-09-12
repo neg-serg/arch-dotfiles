@@ -2,6 +2,7 @@ video/*; /usr/bin/mpv -really-quiet -msglevel all=0 %s 2>/dev/null; test=test -n
 application/pdf; /usr/bin/zathura %s; test=test -n "$DISPLAY";
 application/gpg; /usr/bin/gpg --decrypt %s; copiousoutput;
 
+# sometimes you should use needsterminal instead of copiousoutput
 text/html; /usr/bin/firefox --class mutterfox --new-window 2>/dev/null %s; copiousoutput;
 image/jpg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
 image/jpeg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
