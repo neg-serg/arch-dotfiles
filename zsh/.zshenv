@@ -29,8 +29,6 @@ export PYTHONIOENCODING='utf-8'
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
-export VISUAL="oni"
-
 export INPUTRC=${XDG_CONFIG_HOME}/inputrc
 
 export BROWSER="waterfox"
@@ -60,21 +58,17 @@ unset _JAVA_OPTIONS
 
 export PULSE_LATENCY_MSEC=60
 
-export SXHKD_FIFO="/tmp/sxhkd_fifo"
-export SXHKD_SHELL="zsh"
-
 export FZF_DEFAULT_OPTS="--bind='ctrl-t:execute(/bin/nvim {})+abort'"
-[[ ${DISPLAY} ]] && _gen_fzf_default_opts() {
-    local color01="$(xrescat color215)"
-    local color04="$(xrescat color15)"
+[[ ${DISPLAY} != "" ]] && _gen_fzf_default_opts() {
+    local color01="$(xrescat color215 || echo '#184454')"
+    local color04="$(xrescat color15 || echo '#617287')"
     local color06="#e5ebf1"
-    local color0A="$(xrescat color22)"
-    local color0C="$(xrescat color4)"
-    local color0D="$(xrescat color12)"
+    local color0A="$(xrescat color22 || echo '#2b768d')"
+    local color0C="$(xrescat color4 || echo '#395573')"
+    local color0D="$(xrescat color12 || echo '#4779B3')"
 
     export FZF_DEFAULT_OPTS="--color=bg+:${color01},bg:#000000,spinner:${color0C},hl:${color0D} --color=fg:${color04},header:${color0D},info:${color0A},pointer:${color0C} --color=marker:${color0C},fg+:${color06},prompt:${color0A},hl+:${color0D} --bind='ctrl-t:execute(~/bin/v {})+abort'"
 }
-
 _gen_fzf_default_opts
 
 export FZF_TMUX=1
