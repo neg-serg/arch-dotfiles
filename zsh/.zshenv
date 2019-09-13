@@ -58,6 +58,9 @@ unset _JAVA_OPTIONS
 
 export PULSE_LATENCY_MSEC=60
 
+export SXHKD_FIFO="/tmp/sxhkd_fifo"
+export SXHKD_SHELL="zsh"
+
 export FZF_DEFAULT_OPTS="--bind='ctrl-t:execute(/bin/nvim {})+abort'"
 [[ ${DISPLAY} != "" ]] && _gen_fzf_default_opts() {
     local color01="$(xrescat color215 || echo '#184454')"
