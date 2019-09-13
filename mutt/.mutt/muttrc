@@ -110,7 +110,6 @@ ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
 hdr_order Date From To Cc
-auto_view text/html
 
 set sendmail="/usr/bin/msmtp -a gmail"
 my_hdr bcc: serg.zorg@gmail.com
@@ -120,6 +119,7 @@ set pgp_autosign = no
 ## GooBook
 set query_command="goobook query '%s'"
 
+auto_view text/html
 alternative_order text/plain text/html *
 
 my_hdr X-Comment-To: "Sergey Miroshnichenko"
