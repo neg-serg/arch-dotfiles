@@ -62,7 +62,7 @@ export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"
 
 export FZF_DEFAULT_OPTS="--bind='ctrl-t:execute(/bin/nvim {})+abort'"
-[[ ${DISPLAY} != "" ]] && _gen_fzf_default_opts() {
+gen_fzf_default_opts() {
     local color01="$(xrescat color215 || echo '#184454')"
     local color04="$(xrescat color15 || echo '#617287')"
     local color06="#e5ebf1"
@@ -72,7 +72,7 @@ export FZF_DEFAULT_OPTS="--bind='ctrl-t:execute(/bin/nvim {})+abort'"
 
     export FZF_DEFAULT_OPTS="--color=bg+:${color01},bg:#000000,spinner:${color0C},hl:${color0D} --color=fg:${color04},header:${color0D},info:${color0A},pointer:${color0C} --color=marker:${color0C},fg+:${color06},prompt:${color0A},hl+:${color0D} --bind='ctrl-t:execute(~/bin/v {})+abort'"
 }
-_gen_fzf_default_opts
+[[ ${DISPLAY} != "" ]] && gen_fzf_default_opts; unfunction gen_fzf_default_opts
 
 export FZF_TMUX=1
 export FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
