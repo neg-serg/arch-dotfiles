@@ -13,10 +13,6 @@ autorefresh = 3
 [Repository Gmail-Local]
 type = Maildir
 auth_mechanisms = XOAUTH2
-oauth2_client_id = oauth2_client_id()
-oauth2_client_secret = oauth2_client_secret()
-oauth2_request_url = oauth2_request_url()
-oauth2_refresh_token = oauth2_refresh_token()
 localfolders = ~/.local/mail/gmail
 nametrans: lambda s: {  '[Gmail]/Starred'   : '[Gmail].Starred',
                         '[Gmail]/Trash'     : '[Gmail].Trash',
@@ -30,11 +26,6 @@ nametrans: lambda s: {  '[Gmail]/Starred'   : '[Gmail].Starred',
 
 [Repository Gmail-Remote]
 type = Gmail
-auth_mechanisms = XOAUTH2
-oauth2_client_id = oauth2_client_id()
-oauth2_client_secret = oauth2_client_secret()
-oauth2_request_url = oauth2_request_url()
-oauth2_refresh_token = oauth2_refresh_token()
 remoteuser = serg.zorg@gmail.com
 remotepasseval = get_pass()
 realdelete = no
@@ -51,7 +42,10 @@ folderfilter = lambda folder: folder not in ['[Gmail].Trash',
                                              'Trash'
                                              ]
 ssl = yes
+# Necessary as of OfflineIMAP 6.5.4
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+# Necessary to work around https://github.com/OfflineIMAP/offlineimap/issues/573 (versions 7.0.12, 7.2.1)
+ssl_version = tls1_2
 
 [mbnames]
 enabled = yes
