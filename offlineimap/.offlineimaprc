@@ -1,11 +1,18 @@
 [general]
-accounts = Gmail
+accounts = main,work
 maxsyncaccounts = 3
-pythonfile = ~/bin/scripts/utf7.py
+pythonfile = ~/bin/scripts/offlineimap.py
 
-[Account Gmail]
+[Account main]
 localrepository = Gmail-Local
 remoterepository = Gmail-Remote
+quick = 30
+postsynchook = notmuch new
+autorefresh = 3
+
+[Account work]
+localrepository = Gmail-Local-Work
+remoterepository = Gmail-Work
 quick = 30
 postsynchook = notmuch new
 autorefresh = 3
@@ -14,15 +21,16 @@ autorefresh = 3
 type = Maildir
 auth_mechanisms = XOAUTH2
 localfolders = ~/.local/mail/gmail
-nametrans: lambda s: {  '[Gmail]/Starred'   : '[Gmail].Starred',
-                        '[Gmail]/Trash'     : '[Gmail].Trash',
-                        'gmail/Trash'       : '[Gmail].Trash',
-                        '[Gmail]/Sent Mail' : '[Gmail].Sent Mail',
-                        '[Gmail]/Important' : '[Gmail].Important',
-                        '[Gmail]/Drafts'    : '[Gmail].Drafts',
-                        '[Gmail]/All Mail'  : '[Gmail].All Mail',
-                        'INBOX'             : 'INBOX'
-                      }.get (s, s).decode ('imap4-utf-7').encode ('utf8')
+nametrans: lambda s: {
+    '[Gmail]/Starred'   : '[Gmail].Starred',
+    '[Gmail]/Trash'     : '[Gmail].Trash',
+    'gmail/Trash'       : '[Gmail].Trash',
+    '[Gmail]/Sent Mail' : '[Gmail].Sent Mail',
+    '[Gmail]/Important' : '[Gmail].Important',
+    '[Gmail]/Drafts'    : '[Gmail].Drafts',
+    '[Gmail]/All Mail'  : '[Gmail].All Mail',
+    'INBOX'             : 'INBOX'
+    }.get (s, s).decode('imap4-utf-7').encode ('utf8')
 
 [Repository Gmail-Remote]
 type = Gmail
@@ -32,15 +40,35 @@ realdelete = no
 maxconnections = 3
 keepalive = 60
 holdconnectionopen = yes
-
 nametrans = lambda foldername: foldername.decode('imap4-utf-7').encode('utf-8')
+folderfilter = lambda folder: folder not in [
+    '[Gmail].Trash', '[Gmail].Important', '[Gmail].Spam',
+    '[Gmail].All Mail', 'Trash']
+ssl = yes
+# Necessary as of OfflineIMAP 6.5.4
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+# Necessary to work around https://github.com/OfflineIMAP/offlineimap/issues/573 (versions 7.0.12, 7.2.1)
+ssl_version = tls1_2
 
-folderfilter = lambda folder: folder not in ['[Gmail].Trash',
-                                             '[Gmail].Important',
-                                             '[Gmail].Spam',
-                                             '[Gmail].All Mail',
-                                             'Trash'
-                                             ]
+[Repository Gmail-Local-Work]
+type = Maildir
+auth_mechanisms = XOAUTH2
+localfolders = ~/.local/mail/gmail
+nametrans: lambda s: { 'INBOX': 'INBOX'
+    }.get (s, s).decode('imap4-utf-7').encode ('utf8')
+
+[Repository Gmail-Work]
+type = Gmail
+remoteuser = sergey.insales@gmail.com
+remotepasseval = get_pass_work()
+realdelete = no
+maxconnections = 3
+keepalive = 60
+holdconnectionopen = yes
+nametrans = lambda foldername: foldername.decode('imap4-utf-7').encode('utf-8')
+folderfilter = lambda folder: folder not in [
+    '[Gmail].Trash', '[Gmail].Important', '[Gmail].Spam',
+    '[Gmail].All Mail', 'Trash']
 ssl = yes
 # Necessary as of OfflineIMAP 6.5.4
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
@@ -52,5 +80,5 @@ enabled = yes
 sep = " "
 filename = ~/.mutt/mailboxes
 header = "mailboxes "
-peritem = "~/.local/mail/gmail/%(foldername)s"
+peritem = "+%(accountname)s-%(foldername)s"
 footer = "\n"
