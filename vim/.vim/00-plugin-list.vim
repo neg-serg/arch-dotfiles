@@ -11,7 +11,6 @@ Plug 'jsfaint/coc-neoinclude' "neoinclude support
 Plug 'neoclide/coc-lists' "use it for files support
 Plug 'neoclide/coc-neco' "vimL completion engine via neco-vim
 Plug 'neoclide/coc-sources' "use it for coc-ultisnips
-Plug 'voldikss/coc-github' "github issues support
 Plug 'Shougo/neco-vim' " modern vim autocomplete
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'inkarkat/vim-ReplaceWithRegister' "replace with register keybindings
@@ -33,7 +32,7 @@ Plug 'romainl/vim-qf' "better quickfix support
 Plug 'thinca/vim-qfreplace' " visual replace for multiple files
 Plug 'stefandtw/quickfix-reflector.vim' "qf editing
 " --[ Rice ]-------------------------------------------------------------------------
-Plug 'luochen1990/rainbow' " rainbow parentheses
+Plug 'frazrepo/vim-rainbow' " better rainbow parentheses
 Plug 'tpope/vim-abolish' " for different case coersion
 Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 "--[ Search ]------------------------------------------------------------------------
