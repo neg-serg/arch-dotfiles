@@ -206,7 +206,7 @@ def_key "E"
   jump_to_tag_editor
 
 def_key "\\"
-  toggle_interface
+  dummy
 
 def_key "L"
   toggle_lyrics_fetcher
