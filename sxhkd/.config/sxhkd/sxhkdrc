@@ -31,6 +31,6 @@ super + control + r ; { c, d, i, r }
     }
 alt + grave
     rofi -no-plugins -sort -show run -lines 1 -columns 4 -case-sensitive=false -matching fuzzy -theme-str '* \{ font: "Iosevka Term Medium 15"; \}' -theme-str '#window \{ width:1900; y-offset: -32; location: south; anchor: south; \}' -disable-history
-super + shift + {6,7}
-    { ~/bin/wl, ~/bin/wl -r }
+super + shift + 6
+    ~/bin/wl
 # vim: set ft=sxhkdrc:
