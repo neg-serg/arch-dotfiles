@@ -106,3 +106,6 @@ exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
 exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
 nnoremap <silent> <C-w>v :vnew<CR>
 nnoremap <silent> <C-w>s :new<CR>
+
+" fix floating windows
+nnoremap <C-C> <C-[>
