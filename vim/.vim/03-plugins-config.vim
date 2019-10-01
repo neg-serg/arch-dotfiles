@@ -262,31 +262,19 @@ nmap MC :Make clean<cr>
 nmap <Space>cc :Make -j10<cr>
 nmap <Space>mc :Make distclean<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - luochen1990/rainbow                                                      │
-" │ https://github.com/luochen1990/rainbow.git                                        │
+" │ plugin - frazrepo/vim-rainbow                                                     │
+" │ https://github.com/frazrepo/vim-rainbow                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rainbow_active = 1 
-let g:rainbow_conf = {
-    \   'guifgs': ['#005F87', '#005F5F', '#2B768D', '#395573'],
-    \   'ctermfgs': ['cyan', 'darkcyan', 'blue', 'darkblue'],
-    \   'operators': '_,_',
-    \   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-    \   'separately': {
-    \       '*': {},
-    \       'lisp': {
-    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-    \           'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
-    \       },
-    \       'vim': {
-    \           'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-    \       },
-    \       'tex': {
-    \           'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
-    \       },
-    \       'css': 0,
-    \       'stylus': 0,
-    \   }
-    \}
+let g:rainbow_guifgs = ['#005F87', '#005F5F', '#2B768D', '#395573']
+let g:rainbow_operators = '_,_'
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ ['vim', [ ['(',')'], ['\[','\]'], ['{','}']] ],
+    \ ['tex', [ [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']] ] ],
+    \ ['css', []],
+    \ ['stylus', []],
+\ ]
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - joshdick/onedark.vim                                                     │
 " │ https://github.com/joshdick/onedark.vim                                           │
