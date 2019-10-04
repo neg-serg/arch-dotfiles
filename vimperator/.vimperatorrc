@@ -1,6 +1,6 @@
+colorscheme neg
 set verbose=0
 set gui=none
-colorscheme neg
 
 set defsearch=google
 set suggestengines=google
@@ -13,7 +13,7 @@ set focuscontent=false
 set animations=false
 
 set maxitems=12
-set shell='/bin/zsh'
+set shell='/bin/dash'
 set shellcmdflag='-c'
 
 set titlestring="vimperator"
