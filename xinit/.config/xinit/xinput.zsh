@@ -1,8 +1,7 @@
-#!/bin/zsh
-source ~/.zsh/03-xdg_vars.zsh
+#!/bin/dash
 
-xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc
-unclutter --fork --timeout 1
+xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc &
+unclutter --fork --timeout 1 &
 
 xset m 0 0 # disable mouse acceleration
 xset -b r rate 250 50
@@ -13,5 +12,3 @@ setxkbmap \
     -option 'grp:alt_shift_toggle' \
     -variant altgr-intl \
     -option ctrl:nocaps
-
-xhost +localhost +local: +si:localuser:$(id -un) > /dev/null
