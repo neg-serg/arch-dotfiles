@@ -1,0 +1,11 @@
+[Unit]
+Description=Prevents the desktop becoming idle in full-screen mode.
+After=dbus.service
+
+[Service]
+Type=simple
+Restart=on-failure
+ExecStart=/usr/bin/caffeine
+
+[Install]
+WantedBy=default.target

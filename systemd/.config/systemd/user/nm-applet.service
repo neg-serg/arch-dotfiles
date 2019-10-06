@@ -1,0 +1,11 @@
+[Unit]
+Description=NetworkManager applet startup
+After=dbus.service
+
+[Service]
+Type=simple
+Restart=on-failure
+ExecStart=/usr/bin/nm-applet
+
+[Install]
+WantedBy=default.target
