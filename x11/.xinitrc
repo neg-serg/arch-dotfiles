@@ -1,5 +1,4 @@
 #!/bin/dash
-xhost +localhost +local: +si:localuser:$(id -un) > /dev/null
 
 # Force KDE environment when running i3
 export QT_QPA_PLATFORMTHEME="qt5ct"
