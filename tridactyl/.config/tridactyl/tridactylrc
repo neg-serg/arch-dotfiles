@@ -3,6 +3,12 @@ colors neg
 set allowautofocus false
 " seturl google.com allowautofocus true
 
+set keytranslatemodes.nmaps true
+set keytranslatemodes.imaps true
+set keytranslatemodes.inputmaps true
+set keytranslatemodes.exmaps true
+set keytranslatemodes.ignoremaps true
+
 bind --mode=ex <C-c> ex.hide_and_clear
 unbind --mode=ex <C-w>
 bind --mode=input <C-c> composite unfocus | mode normal
@@ -17,7 +23,7 @@ bind w fillcmdline tab
 bind e tabnext_gt
 bind E tabprev
 
-bind y clipboard yank
+bind y yank
 
 bind / fillcmdline find
 bind ? fillcmdline find -?
@@ -34,8 +40,6 @@ set hintnames numeric
 set hintchars 12345
 set incsearch true
 set modeindicatorshowkeys true
-
-set keytranslatemodes {"nmaps":"true","imaps":"true","inputmaps":"true","ignoremaps":"false","exmaps":"true","hintmaps":"false"}
 
 " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
 set hintdelay 100
