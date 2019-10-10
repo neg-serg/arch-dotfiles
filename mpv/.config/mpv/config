@@ -36,7 +36,7 @@ sub-font="Helvetica Neue LT Std"
 sub-font="HelveticaNeue LT CYR 57 Cond"
 
 #--[OSD]---------------------------------------------------
-osd-font="Iosevka Term Medium"
+osd-font="Iosevka Medium"
 osd-font-size=22
 osd-color='#cc53a6a6'
 osd-border-color='#cc000000'
