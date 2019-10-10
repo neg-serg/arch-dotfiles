@@ -1,4 +1,5 @@
-colors dark
+colors neg
+
 set allowautofocus false
 " seturl google.com allowautofocus true
 
@@ -16,27 +17,29 @@ bind w fillcmdline tab
 bind e tabnext_gt
 bind E tabprev
 
+bind y clipboard yank
+
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 bind ,, nohlsearch
 
-bind j scrollline 4
-bind k scrollline -4
+bind j scrollline 3
+bind k scrollline -3
 
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
-set hintnames uniform
+set hintnames numeric
 set hintchars 12345
 set incsearch true
 set modeindicatorshowkeys true
 
+set keytranslatemodes {"nmaps":"true","imaps":"true","inputmaps":"true","ignoremaps":"false","exmaps":"true","hintmaps":"false"}
+
 " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
 set hintdelay 100
 
-" Make Tridactyl work on more sites at the expense of some security
-set csp clobber
 fixamo_quiet
 
 " Make quickmarks for the sane Tridactyl issue view
