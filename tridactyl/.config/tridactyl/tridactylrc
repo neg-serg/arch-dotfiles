@@ -1,13 +1,20 @@
 colors neg
 
-set allowautofocus false
-" seturl google.com allowautofocus true
+set allowautofocus true
+
+alias w saveas
 
 set keytranslatemodes.nmaps true
 set keytranslatemodes.imaps true
 set keytranslatemodes.inputmaps true
 set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
+
+unbindurl mail\.google\.com j
+unbindurl mail\.google\.com k
+unbindurl mail\.google\.com o
+unbindurl mail\.google\.com x
+unbindurl mail\.google\.com e
 
 bind --mode=ex <C-c> ex.hide_and_clear
 unbind --mode=ex <C-w>
@@ -25,18 +32,12 @@ bind E tabprev
 
 bind y yank
 
-bind / fillcmdline find
-bind ? fillcmdline find -?
-bind n findnext 1
-bind N findnext -1
-bind ,, nohlsearch
-
 bind j scrollline 3
 bind k scrollline -3
 
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
-set hintnames numeric
+set hintnames short
 set hintchars 12345
 set incsearch true
 set modeindicatorshowkeys true
@@ -44,7 +45,13 @@ set modeindicatorshowkeys true
 " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
 set hintdelay 100
 
-fixamo_quiet
+bind --mode=normal <C-f> fillcmdline find
+bind --mode=normal / fillcmdline find
+
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,, nohlsearch
 
 " Make quickmarks for the sane Tridactyl issue view
 quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
