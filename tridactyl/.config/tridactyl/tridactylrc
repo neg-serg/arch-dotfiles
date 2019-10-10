@@ -1,10 +1,20 @@
-" Allow Ctrl-a to select all in the commandline
-" unbind --mode=ex <C-a>
+colors dark
+set allowautofocus false
+" seturl google.com allowautofocus true
+
+bind --mode=ex <C-c> ex.hide_and_clear
+unbind --mode=ex <C-w>
+bind --mode=input <C-c> composite unfocus | mode normal
+bind --mode=insert <C-c> composite unfocus | mode normal
+bind --mode=input <C-[> composite unfocus | mode normal
+bind --mode=insert <C-[> composite unfocus | mode normal
+
+bind --mode=normal <C-c> composite unfocus | mode normal
+bind --mode=normal <C-[> composite unfocus | mode normal
 
 bind w fillcmdline tab
-
-bind n exclaim_quiet xdotool getactivewindow key F3
-bind N exclaim_quiet xdotool getactivewindow key Shift+F3
+bind e tabnext_gt
+bind E tabprev
 
 bind / fillcmdline find
 bind ? fillcmdline find -?
@@ -15,13 +25,15 @@ bind ,, nohlsearch
 bind j scrollline 4
 bind k scrollline -4
 
-" set editorcmd to suckless terminal, or use the defaults on other platforms
-js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "st vim" : "auto"; tri.config.set("editorcmd", editorcmd)})
-
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
-"set hintnames numeric
+set hintnames uniform
 set hintchars 12345
+set incsearch true
+set modeindicatorshowkeys true
+
+" Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
+set hintdelay 100
 
 " Make Tridactyl work on more sites at the expense of some security
 set csp clobber
@@ -30,14 +42,11 @@ fixamo_quiet
 " Make quickmarks for the sane Tridactyl issue view
 quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
 quickmark c https://www.twitch.tv/cooller
-quickmark C https://coursera.com/
 quickmark e http://www.ektoplazm.com/
 quickmark g https://mail.google.com/mail/u/0/#inbox
 quickmark G https://github.com/neg-serg
-quickmark N https://neg-serg.github.io/
 quickmark L http://gen.lib.rus.ec/
 quickmark l http://www.last.fm/user/e7z0x1
-quickmark q https://quora.com/
 quickmark s http://store.steampowered.com/?l=russian
 quickmark u http://www.reddit.com/r/unixporn
 quickmark v https://vk.com/feed
@@ -48,9 +57,8 @@ quickmark y https://youtube.com/
 quickmark k https://www.reddit.com/r/MechanicalKeyboards/
 quickmark A https://magazine.artstation.com/
 
-" New reddit is bad
-autocmd DocStart www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
-" Mosquito nets won't make themselves
-autocmd DocStart www.amazon.co.uk js tri.excmds.urlmodify("-t", "www", "smile")
+" Sometimes the status bar in the bottom left corner overlaps the Tridactyl
+" command line, so set an option to move the status bar to the right.
+guiset_quiet hoverlink right
 
 " vim: set filetype=vim:
