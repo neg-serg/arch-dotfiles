@@ -95,7 +95,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     --in-content-item-hover: rgba(0,149,221,0.25);
     --in-content-item-selected: var(--tone-8)!important;
     --in-content-border-highlight: var(--accent-1)!important;
-    --in-content-border-focus: var(--accent-1)!important;
+    --in-content-border-focus: #147094 !important;
     --in-content-border-color: var(--tone-6)!important;
     --in-content-category-outline-focus: 1px dotted #0a84ff;
     --in-content-category-text: var(--tone-4)!important;
@@ -212,9 +212,12 @@ url(chrome://browser/content/pageinfo/pageInfo.xul) {
 
 #urlbar,
 .searchbar-textbox {
-  border: 8px solid !important;
-  box-shadow: 0 1px 4px var(--in-content-border-focus)!important;
-  border-color: var(--in-content-border-focus)!important
+  border: 1px solid var(--in-content-border-focus) !important;
+  box-shadow: 0 1px 4px var(--in-content-border-focus) !important;
+  border-color: var(--in-content-border-focus) !important
+  font-family: "Iosevka Custom";
+  font-weight: Bold;
+  font-size: 14pt;
 }
 
 .ac-url,
