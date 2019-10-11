@@ -291,156 +291,7 @@ screen and (-moz-os-version:windows-win10) {
     margin-right: 0!important
   }
 }
-@-moz-document url(chrome://browser/content/places/places.xul) {
-  toolbar {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-category-header-background)!important;
-    border: none!important
-  }
-  listbox,
-  textbox {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-box-background)!important;
-    color: var(--in-content-page-color)!important;
-    min-height: 20px!important;
-    padding: 0 0 0 4px!important;
-    border: 1px solid!important;
-    border-color: var(--in-content-box-border-color)!important;
-    border-radius: 3px!important
-  }
-  #editBMPanel_rows > row > hbox > textbox,
-  #editBMPanel_rows > row > textbox,
-  #editBMPanel_tagsSelector {
-    background: var(--in-content-box-background)!important
-  }
-  #placesToolbar > toolbarbutton {
-    margin: 6px 4px 5px!important;
-    -moz-appearance: none!important;
-    background-color: var(--tone-4)!important;
-    border-radius: 5px!important;
-    filter: invert(100%)!important
-  }
-  #placesList {
-    -moz-appearance: none!important;
-    color: var(--in-content-page-color)!important;
-    background-color: var(--in-content-page-background)!important
-  }
-  #placesView > splitter {
-    border-color: var(--in-content-border-color)!important
-  }
-  #places #downloadsRichListBox {
-    -moz-appearance: none!important;
-    color: var(--in-content-page-color)!important;
-    background-color: var(--in-content-box-background)!important
-  }
-  #detailsDeck {
-    border: none!important;
-    background-color: var(--in-content-page-background)!important;
-    color: var(--in-content-page-color)!important
-  }
-  .expander-down,
-  .expander-up {
-    filter: invert(77%)!important
-  }
-  #placeContent treechildren:not(.autocomplete-treebody)::-moz-tree-cell-text() {
-    color: var(--in-content-text-color)!important
-  }
-  #places treechildren:not(.autocomplete-treebody)::-moz-tree-row(selected),
-  #placesList > treechildren::-moz-tree-row(selected) {
-    -moz-appearance: none!important;
-    -moz-font-smoothing-background-color: none!important;
-    border-top: none!important;
-    background: var(--theme-selection-background)!important;
-    color: var(--in-content-text-color)!important
-  }
-  #placeContent treechildren:not(.autocomplete-treebody)::-moz-tree-cell-text(selected),
-  #placesList > treechildren::-moz-tree-cell-text(selected) {
-    color: var(--in-content-text-color)!important
-  }
-  #places treechildren::-moz-tree-row {
-    background-color: transparent!important
-  }
-  #places treechildren::-moz-tree-image {
-    fill: var(--in-content-page-color)!important
-  }
-  #places treechildren::-moz-tree-image(selected) {
-    fill: var(--selected-icon-fill-color)!important
-  }
-  #placeContent > treechildren::-moz-tree-cell,
-  #placeContent > treechildren::-moz-tree-column {
-    border-color: var(--in-content-box-border-color)!important
-  }
-  #contentView treecol {
-    -moz-appearance: none!important;
-    border: none!important;
-    background: var(--in-content-category-header-background)!important;
-    color: var(--in-content-text-color)!important;
-    border-right: 1px solid!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  tree {
-    background-color: var(--in-content-box-background)!important
-  }
-  #editBMPanel_tagsSelectorExpander.expander-down {
-    -moz-appearance: -moz-mac-disclosure-button-closed!important;
-    filter: invert(79%)!important
-  }
-  #editBMPanel_tagsSelectorExpander.expander-up {
-    -moz-appearance: -moz-mac-disclosure-button-open!important;
-    filter: invert(79%)!important
-  }
-  #main-menubar {
-    background-color: var(--in-content-category-header-background)!important
-  }
-  #main-menubar > * {
-    color: var(--in-content-page-color)!important
-  }
-  #main-menubar > :hover,
-  menubar > menu[_moz-menuactive=true][open=true] {
-    -moz-appearance: none!important;
-    background: var(--in-content-page-background)!important
-  }
-  @media screen and (-moz-windows-theme),
-  screen and (-moz-windows-classic),
-  screen and (-moz-windows-default-theme),
-  screen and (-moz-os-version:windows-win7),
-  screen and (-moz-os-version:windows-win8),
-  screen and (-moz-os-version:windows-win10) {
-    #metaTagsCaption,
-    #security-identity,
-    #security-identity-groupbox,
-    #security-privacy,
-    #security-privacy-groupbox,
-    #security-technical,
-    #security-technical-groupbox {
-      -moz-appearance: none!important;
-      background-color: var(--in-content-page-background)!important;
-      border: none!important;
-      color: var(--in-content-selected-text)!important
-    }
-    #placesMenu > menu {
-      color: var(--in-content-page-color)!important
-    }
-    #security-identity-groupbox,
-    #security-privacy-groupbox,
-    #security-technical-groupbox {
-      -moz-appearance: none!important;
-      background-color: var(--in-content-category-header-background)!important
-    }
-    #places treechildren:not(.autocomplete-treebody)::-moz-tree-row(hover):not(.autocomplete-treebody)::-moz-tree-cell-text(selected) {
-      background: 0 0!important;
-      -moz-border-top-colors: transparent!important;
-      -moz-border-right-colors: transparent!important;
-      -moz-border-left-colors: transparent!important;
-      -moz-border-bottom-colors: transparent!important
-    }
-  }
-  @media screen and (-moz-os-version:windows-win7) {
-    treechildren {
-      --treechildren-outline: none!important
-    }
-  }
-}
+
 @-moz-document url-prefix(about:),
 url-prefix(chrome://browser) {
   .checkbox-check,
@@ -480,6 +331,7 @@ url-prefix(chrome://browser) {
     margin-bottom: -1px
   }
 }
+
 @-moz-document url-prefix(about:),
 url-prefix(chrome://browser/content/preferences/),
 url(chrome://passwordmgr/content/passwordManager.xul),
@@ -1176,19 +1028,7 @@ toolbarseparator {
     background-color: var(--in-content-box-background)!important
   }
 }
-@-moz-document url-prefix(chrome://pippki/content/exceptionDialog) {
-  #exceptiondialog {
-    -moz-appearance: none!important;
-    background-color: var(--tone-8)!important
-  }
-  textbox {
-    -moz-appearance: none!important;
-    min-height: 20px!important;
-    background: var(--in-content-box-background)!important;
-    border: 1px solid var(--in-content-box-border-color);
-    padding: 1px
-  }
-}
+
 #navigator-toolbox::after {
   border-bottom: 0!important
 }
@@ -1273,32 +1113,8 @@ hbox#sidebar-search-container textbox#search-box {
 .item-title {
   color: var(--in-content-page-color)!important
 }
-@-moz-document url-prefix(chrome://browser/content/places) {
-  ::-moz-tree-row(selected) {
-    -moz-appearance: none!important;
-    background-color: var(--theme-selection-background)!important
-  }
-}
-@-moz-document url(chrome://browser/content/places/bookmarksSidebar.xul) {
-  @media screen and (-moz-os-version:windows-win7) {
-    treechildren {
-      --treechildren-outline: none!important
-    }
-  }
-}
-#statuspanel #statuspanel-label,
-statuspanel .statuspanel-label {
-  background-color: var(--in-content-category-header-background)!important;
-  color: var(--in-content-page-color)!important;
-  border: none!important
-}
-.tab-line[selected=true] {
-  background-color: var(--in-content-border-focus)!important
-}
 
-
-/* @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); */
-
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 #TabsToolbar {
   visibility: collapse;
 }
@@ -1326,74 +1142,18 @@ statuspanel .statuspanel-label {
 }
 
 /* Remove padding above tabbar in compact mode */
-
 #main-window[sizemode="normal"] > #titlebar {
   -moz-appearance: initial !important;
 }
 
 /* Move hamburger menu to the left */
-
 #PanelUI-button,
 #customization-panel-container,
 #customization-panelWrapper .panel-arrow {
   -moz-box-ordinal-group: 0 !important;
 }
 
-#appMenu-popup {
-  margin-right: -258px !important;
-}
-
-#appMenu-popup .panel-arrow {
-  margin-right: 248px !important;
-}
-
-/* Remove border between tabs
-Delete this rule if you want separators between background tabs */
-
-.tabbrowser-tab::after,
-.tabbrowser-tab::before {
-  border-left: none !important;
-}
-
-/* Border between background tabs */
-
-.tabbrowser-tab::after,
-.tabbrowser-tab::before {
-  color: grey !important;
-  opacity: .2 !important;
-}
-
-/* New tab button color */
-
-#new-tab-button,
-.tabs-newtab-button {
-  fill: var(--chrome-color) !important;
-}
-
-/* tab line - adjust color & size, default #0a84ff 2px */
-
-.tab-line {
-  background-color: #0a84ff !important;
-  height: 0 !important;
-}
-
-#identity-box {
-  max-width: 0 !important;
-}
-
-*|*.textbox-input::-moz-placeholder {
-  opacity: 0 !important;
-}
-
-.tabbrowser-tab[visuallyselected="true"],
-.tab-background[selected="true"] {
-  /*active tab bgcolor*/
-  background-color: grey !important;
-  background-image: none !important;
-}
-
 /* Hide various elements */
-
 #minimize-button,
 #restore-button,
 #close-button 
@@ -1435,15 +1195,4 @@ ar-button,
 #navigator-toolbox > toolbar {
   padding-top: 1px !important;
   height: 30px !important;
-}
-
-#PopupAutoCompleteRichResult {
-  height: 32em !important;
-  margin-top: calc(-32em - 20px) !important;
-  width: var(--searchbar-width) !important;
-  background-image: none !important;
-}
-
-#PopupAutoCompleteRichResult .autocomplete-richlistbox > scrollbox {
-  overflow-y: auto !important;
 }
