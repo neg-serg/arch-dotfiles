@@ -30,8 +30,8 @@ bind w fillcmdline tab
 bind e tabnext_gt
 bind E tabprev
 
-bind f hint -f
-bind F hint -ft
+bind f hint
+bind F hint -t
 bind y yank
 
 bind j scrollline 3
