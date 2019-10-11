@@ -1,22 +1,23 @@
-:root {    /* Solarized-dark by Chris Kempson (http://chriskempson.com) */
-    --base00: #002b36;
-    --base01: #073642;
-    --base02: #586e75;
-    --base03: #657b83;
-    --base04: #839496;
-    --base05: #93a1a1;
-    --base06: #eee8d5;
-    --base07: #fdf6e3;
-    --base08: #dc322f;
-    --base09: #cb4b16;
-    --base0A: #b58900;
-    --base0B: #859900;
-    --base0C: #2aa198;
-    --base0D: #268bd2;
-    --base0E: #6c71c4;
-    --base0F: #d33682;
+:root {
+    --base00: #020202;
+    --base01: #8A2F58;
+    --base02: #287373;
+    --base03: #914E89;
+    --base04: #395573;
+    --base05: #5E468C;
+    --base06: #2B7694;
+    --base07: #899CA1;
+    --base08: #3D3D3D;
+    --base09: #CF4F88;
+    --base0A: #53A6A6;
+    --base0B: #BF85CC;
+    --base0C: #4779B3;
+    --base0D: #7F62B3;
+    --base0E: #47959E;
+    --base0F: #617287;
+    --foreground: #DEDEDE;
 
-    --tridactyl-fg: var(--base05);
+    --tridactyl-fg: var(--foreground);
     --tridactyl-bg: var(--base00);
     --tridactyl-url-fg: var(--base08);
     --tridactyl-url-bg: var(--base00);
@@ -29,118 +30,111 @@
 
     /* Element Highlights */
     --tridactyl-hint-active-fg: none;
-    --tridactyl-hint-active-bg: none;
+    --tridactyl-hint-active-bg: var(--base0B);
     --tridactyl-hint-active-outline: none;
     --tridactyl-hint-bg: none;
     --tridactyl-hint-outline: none;
-    font-family: "Iosevka";
 }
 
-#command-line-holder {    order: 1;
-    border: 2px solid var(--base0B);
+#command-line-holder {    
+    order: 1;
+    border: 2px solid #0a3749;
     color: var(--tridactyl-bg);
 }
 
-#tridactyl-input {    padding: 1rem;
+#tridactyl-input {    
     color: var(--tridactyl-fg);
-    width: 90%;
-    font-size: 1.5rem;
-    line-height: 1.5;
     background: var(--tridactyl-bg);
     padding-left: unset;
-    padding: 1rem;
+    font-family: "Iosevka";
+    font-weight: Medium;
+    font-size: 14pt;
 }
-
-#completions table {    
-    font-size: 0.8rem;
-    font-weight: 200;
-    border-spacing: 0;
-    table-layout: fixed;
-    padding: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-#completions > div {    max-height: calc(20 * var(--option-height));
-    min-height: calc(10 * var(--option-height));
-}
-
-/* COMPLETIONS */
 
 #completions {    
-    --option-height: 1.4em;
+    --option-height: 1.5em;
     color: var(--tridactyl-fg);
     background: var(--tridactyl-bg);
     display: inline-block;
-    font-size: unset;
-    font-weight: 200;
     overflow: hidden;
     width: 100%;
-    border-top: unset;
-    order: 2;
+
+    font-family: "Iosevka";
+    font-weight: Medium;
+    font-size: 14pt;
 }
 
-/* Olie doesn't know how CSS inheritance works */
-#completions .HistoryCompletionSource {    max-height: unset;
+#completions > div {    
+    max-height: calc(20 * var(--option-height));
+    min-height: calc(2 * var(--option-height));
+}
+
+#completions table {    
+    padding: unset;
+    padding-top: unset;
+    padding-bottom: unset;
+    font-family: "Iosevka";
+    font-weight: Medium;
+    font-size: 14pt;
+}
+
+#completions .HistoryCompletionSource {    
+    max-height: unset;
     min-height: unset;
 }
 
-#completions .HistoryCompletionSource table {    width: 100%;
+#completions .HistoryCompletionSource table {    
+    width: 100%;
     font-size: 14pt;
     border-spacing: 0;
     table-layout: fixed;
 }
 
 /* redundancy 2: redundancy 2: more redundancy */
-#completions .BmarkCompletionSource {    max-height: unset;
+#completions .BmarkCompletionSource {    
+    max-height: unset;
     min-height: unset;
 }
 
-#completions .BufferCompletionSource table {    width: unset;
+#completions .BufferCompletionSource table {    
+    width: unset;
     font-size: unset;
     border-spacing: unset;
     table-layout: unset;
 }
 
-#completions table tr .title {    width: 50%;
+#completions table tr .title {    
+    width: 50%;
 }
 
-#completions table tr {    white-space: nowrap;
+#completions table tr {    
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-#completions .sectionHeader {    background: unset;
-    font-weight: 200;
+#completions .sectionHeader {    
+    background: unset;
     border-bottom: unset;
-    padding: 1rem !important;
     padding-left: unset;
-    padding-bottom: 0.2rem;
 }
 
-#cmdline_iframe {    position: fixed !important;
-    bottom: unset;
-    top: 25% !important;
-    left: 10% !important;
-    z-index: 2147483647 !important;
-    width: 80% !important;
-    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 20px !important;
-}
-
-.TridactylStatusIndicator {    position: fixed !important;
+.TridactylStatusIndicator {    
+    position: fixed !important;
     bottom: 0 !important;
     background: var(--tridactyl-bg) !important;
     border: unset !important;
     border: 1px var(--base0B) solid !important;
-    font-size: 16pt !important;
-    /*font-weight: 200 !important;*/
-    padding: 0.8ex !important;
+    font-size: 10px !important;
+    padding: 0.4ex !important;
 }
 
-#completions .focused {    background: var(--base0B);
-    color: var(--base00);
+#completions .focused {    
+    background: #184050;
+    color: var(--foreground);
 }
 
-#completions .focused .url {    background: var(--base0B);
-    color: var(--base00);
+#completions .focused .url {    
+    background: #184050;
+    color: var(--foreground);
 }
