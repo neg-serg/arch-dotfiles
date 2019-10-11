@@ -41,7 +41,7 @@
 
 #command-line-holder {    
     order: 1;
-    border: 2px solid #0a3749;
+    border: 1px solid #0a3749;
     color: var(--tridactyl-bg);
 }
 
