@@ -1,16 +1,3 @@
-/*! =============
-@name             ShadowFox
-@description      A universal dark theme for Firefox 57+
-@version          1.6.0
-@lastUpdated      October 7, 2018
-@author           overdodactyl
-@homepageURL      https://overdodactyl.github.io/ShadowFox/
-@sourceCode       https://github.com/overdodactyl/ShadowFox
-@supportURL       https://github.com/overdodactyl/ShadowFox/issues
-@subreddit        https://www.reddit.com/r/ShadowFoxCSS/
-@slackInvitation  https://join.slack.com/t/shadowfox-workspace/shared_invite/enQtMzU3NTU2NTQ0NDA1LTcwN2I1M2I4MzlkMWFlMWEzODc2MTY1NzU2NjhlYTgzOGY5ZTQzM2UxZTFiZDMxNDM1NDMyNjlhOWQ4MWQ3ZDc
-@license          MIT License Copyright (c) 2017 overdodactyl
-================= */
 @-moz-document url-prefix(https://discovery.addons.mozilla.org),
 url-prefix(chrome://),
 url-prefix(about:),
@@ -217,55 +204,19 @@ url(chrome://browser/content/pageinfo/pageInfo.xul) {
     }
   }
 }
-@-moz-document url(chrome://browser/content/aboutDialog.xul) {
-  #clientBox {
-    color: var(--in-content-page-color)!important;
-    background-color: var(--in-content-page-background)!important
-  }
-  #bottomBox {
-    background: var(--in-content-category-header-background)!important
-  }
-}
+
 :root {
   --panel-separator-color: var(--in-content-border-color)!important;
   --tab-loading-fill: var(--in-content-category-text-selected)!important
 }
-#urlbar[focused=true],
-.searchbar-textbox[focused=true] {
-  border: 1px solid!important;
+
+#urlbar,
+.searchbar-textbox {
+  border: 8px solid !important;
   box-shadow: 0 1px 4px var(--in-content-border-focus)!important;
   border-color: var(--in-content-border-focus)!important
 }
-#PopupAutoCompleteRichResult .autocomplete-richlistbox,
-.searchbar-treebody::-moz-tree-row {
-  background-color: var(--in-content-box-background)!important
-}
-#PopupAutoCompleteRichResult .autocomplete-richlistitem,
-.autocomplete-tree {
-  border-bottom-color: var(--in-content-page-color)!important
-}
-.autocomplete-richlistitem[selected=true],
-.searchbar-treebody::-moz-tree-row(selected) {
-  background-color: var(--theme-selection-background)!important
-}
-#PopupSearchAutoComplete tree,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistitem .ac-action,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistitem .ac-separator,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistitem .ac-title,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-tree {
-  color: var(--in-content-page-color)!important
-}
-.ac-action[selected],
-.ac-separator[selected],
-.ac-title[selected],
-.ac-url[selected],
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistitem[selected=true] .ac-action,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistitem[selected=true] .ac-separator,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistitem[selected=true] .ac-title,
-popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistitem[selected=true] .ac-url {
-  color: var(--in-content-selected-text)!important
-}
+
 .ac-url,
 .search-panel-input-value {
   color: var(--in-content-link-color)!important
@@ -289,60 +240,10 @@ popupset#mainPopupSet panel#PopupAutoCompleteRichResult .autocomplete-richlistit
 treechildren.searchbar-treebody::-moz-tree-row(hover) {
   background-color: var(--in-content-page-background)!important
 }
+
 #urlbar ::-moz-selection,
 .searchbar-textbox ::-moz-selection {
   background: var(--in-content-selected-text-background)!important
-}
-#editBMPanel_folderMenuList,
-#editBMPanel_foldersExpander,
-#editBMPanel_rows > row > hbox > textbox,
-#editBMPanel_rows > row > textbox,
-#editBMPanel_tagsSelectorExpander,
-#editBookmarkPanelDoneButton,
-#editBookmarkPanelRemoveButton {
-  -moz-appearance: none!important;
-  background: var(--in-content-page-background)!important;
-  color: var(--in-content-page-color)!important;
-  border: 1px solid!important;
-  border-color: var(--in-content-box-border-color)!important;
-  box-shadow: none!important
-}
-#editBookmarkPanel .expander-down > .button-box > .button-icon {
-  filter: invert(65%)!important
-}
-#editBMPanel_folderTree,
-#editBMPanel_tagsSelector {
-  -moz-appearance: none!important;
-  background: var(--in-content-page-background)!important;
-  color: var(--in-content-page-color)!important;
-  opacity: 1!important
-}
-#editBMPanel_folderTree treechildren:not(.autocomplete-treebody)::-moz-tree-row,
-#editBMPanel_tagsSelector treechildren:not(.autocomplete-treebody)::-moz-tree-row {
-  background: var(--in-content-box-background)!important;
-  color: var(--in-content-page-background)!important
-}
-#editBMPanel_folderTree treechildren:not(.autocomplete-treebody)::-moz-tree-row(hover),
-#editBMPanel_tagsSelector treechildren:not(.autocomplete-treebody)::-moz-tree-row(hover) {
-  background: var(--theme-selection-background-hover)!important;
-  color: var(--in-content-selected-text)!important;
-  -moz-border-top-colors: var(--theme-selection-background-hover)!important;
-  -moz-border-right-colors: var(--theme-selection-background-hover)!important;
-  -moz-border-left-colors: var(--theme-selection-background-hover)!important;
-  -moz-border-bottom-colors: var(--theme-selection-background-hover)!important
-}
-#editBMPanel_folderTree treechildren:not(.autocomplete-treebody)::-moz-tree-cell-text(hover) {
-  color: var(--in-content-selected-text)!important
-}
-#editBMPanel_folderTree treechildren::-moz-tree-image {
-  fill: var(--in-content-page-color)!important
-}
-#editBMPanel_folderTree treechildren::-moz-tree-image(hover),
-#editBMPanel_folderTree treechildren::-moz-tree-image(selected) {
-  fill: var(--selected-icon-fill-color)!important
-}
-#editBMPanel_folderTree treechildren:not(.autocomplete-treebody)::-moz-tree-row(selected,current,focus) {
-  background: var(--theme-selection-background)!important
 }
 listitem[selected=true] {
   background-color: var(--theme-selection-background)!important;
@@ -360,59 +261,7 @@ listitem[selected=true] {
   border-color: var(--in-content-box-border-color)!important;
   box-shadow: none!important
 }
-@-moz-document url(chrome://browser/content/places/bookmarkProperties.xul),
-url(chrome://browser/content/places/bookmarkProperties2.xul) {
-  #bookmarkproperties {
-    -moz-appearance: none!important;
-    color: var(--in-content-page-color)!important;
-    background-color: var(--in-content-category-header-background)!important
-  }
-  textbox {
-    -moz-appearance: none!important;
-    min-height: 20px!important;
-    padding: 2px!important;
-    border: 1px solid var(--in-content-box-border-color);
-    color: var(--in-content-page-color)!important;
-    background: var(--in-content-box-background)!important
-  }
-  #editBMPanel_folderTree {
-    background: var(--in-content-box-background)!important
-  }
-  #editBMPanel_folderMenuList {
-    background-color: var(--in-content-box-background)!important;
-    padding: 2px!important
-  }
-  #editBMPanel_foldersExpander.expander-down,
-  #editBMPanel_tagsSelectorExpander.expander-down {
-    -moz-appearance: -moz-mac-disclosure-button-closed!important;
-    filter: invert(79%)!important
-  }
-  #editBMPanel_foldersExpander.expander-up,
-  #editBMPanel_tagsSelectorExpander.expander-up {
-    -moz-appearance: -moz-mac-disclosure-button-open!important;
-    filter: invert(78%)!important
-  }
-  #editBMPanel_newFolderButton,
-  .dialog-button {
-    -moz-appearance: none!important;
-    background: var(--in-content-page-background)!important;
-    color: var(--in-content-page-color)!important;
-    border: 1px solid!important;
-    border-color: var(--in-content-box-border-color)!important;
-    border-radius: 3px!important
-  }
-  .dialog-button[disabled=true] {
-    opacity: .4!important
-  }
-  #editBMPanel_folderTree {
-    border: 1px solid;
-    border-radius: 3px;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  #editBMPanel_newFolderBox {
-    background: 0 0!important
-  }
-}
+
 @-moz-document url(chrome://browser/content/sanitize.xul) {
   #SanitizeDialog {
     -moz-appearance: none!important;
@@ -436,6 +285,7 @@ url(chrome://browser/content/places/bookmarkProperties2.xul) {
     background-color: var(--in-content-box-background)!important
   }
 }
+
 @-moz-document url("chrome://global/content/commonDialog.xul") {
   #commonDialog {
     -moz-appearance: none!important;
@@ -608,247 +458,6 @@ toolbarseparator {
   background: var(--in-content-link-color);
   color: var(--in-content-selected-text)!important
 }
-@-moz-document url(chrome://browser/content/pageinfo/pageInfo.xul) {
-  #topBar {
-    -moz-appearance: none!important;
-    background: var(--in-content-category-header-background)!important
-  }
-  #mainDeck {
-    background: var(--in-content-page-background)!important;
-    color: var(--in-content-page-color)!important
-  }
-  textbox {
-    color: var(--in-content-page-color)!important
-  }
-  .text-link {
-    color: var(--in-content-link-color)!important
-  }
-  button {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-page-background)!important;
-    border: 1px solid!important;
-    border-radius: 3px!important;
-    color: var(--in-content-page-color)!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  button:hover {
-    background-color: var(--in-content-box-background)!important
-  }
-  #feedListbox,
-  #feedListbox > richlistitem,
-  #imagecontainerbox,
-  .groupbox-body,
-  .permission {
-    -moz-appearance: none!important;
-    background: var(--in-content-box-background)!important;
-    color: var(--in-content-page-color)!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  #feedListbox richlistitem {
-    border-color: var(--in-content-box-border-color)!important
-  }
-  #permPluginTemplate {
-    color: var(--in-content-page-color)!important
-  }
-  #feedListbox,
-  #imagecontainerbox,
-  #permList,
-  .groupbox-body {
-    border: 1px solid!important
-  }
-  #permList {
-    -moz-appearance: none!important
-  }
-  groupbox.collapsable caption .caption-icon {
-    filter: invert(65%)!important
-  }
-  tree {
-    -moz-appearance: none!important;
-    color: var(--in-content-page-color)!important
-  }
-  treecol {
-    -moz-appearance: none!important;
-    border: 0 solid!important;
-    border-color: var(--in-content-box-background)!important
-  }
-  treecolpicker {
-    -moz-appearance: none;
-    border: none!important;
-    filter: invert(84%)
-  }
-  .checkbox-check[checked] {
-    list-style-image: url(chrome://global/skin/icons/check.svg);
-    -moz-context-properties: fill;
-    fill: var(--in-content-border-highlight)!important
-  }
-  #imagetree,
-  #metatree {
-    border: 1px solid!important
-  }
-  #viewGroup > radio {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-box-background)!important;
-    text-shadow: none!important;
-    padding: 0 8px!important;
-    color: var(--in-content-page-color);
-    border-right: 1px solid!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  #viewGroup > radio[selected=true] {
-    color: var(--in-content-selected-text)!important
-  }
-  #viewGroup > radio:first-of-type {
-    border-top-left-radius: 4px!important;
-    border-bottom-left-radius: 4px!important
-  }
-  #viewGroup > radio:last-of-type {
-    border: none!important;
-    border-top-right-radius: 4px!important;
-    border-bottom-right-radius: 4px!important
-  }
-  @media screen and (-moz-windows-theme),
-  screen and (-moz-windows-classic),
-  screen and (-moz-windows-default-theme),
-  screen and (-moz-os-version:windows-win7),
-  screen and (-moz-os-version:windows-win8),
-  screen and (-moz-os-version:windows-win10) {
-    #topBar {
-      -moz-appearance: none!important;
-      background-color: var(--in-content-category-header-background)!important;
-      border: none!important;
-      padding-top: 5px!important;
-      padding-bottom: 5px!important;
-      color: var(--selected-icon-fill-color)!important
-    }
-    #metaTagsCaption,
-    #security-identity,
-    #security-identity-groupbox,
-    #security-privacy,
-    #security-privacy-groupbox,
-    #security-technical,
-    #security-technical-groupbox {
-      -moz-appearance: none!important;
-      background-color: var(--in-content-page-background)!important;
-      border: none!important;
-      color: var(--in-content-selected-text)!important
-    }
-    #security-identity-groupbox,
-    #security-privacy-groupbox,
-    #security-technical-groupbox {
-      -moz-appearance: none!important;
-      background-color: var(--in-content-category-header-background)!important
-    }
-  }
-}
-@-moz-document url-prefix(chrome://browser/content/preferences/cookies.xul) {
-  #CookiesDialog {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-page-background)!important
-  }
-  #domainCol,
-  #nameCol {
-    -moz-appearance: none!important;
-    border: none!important
-  }
-  #domainCol {
-    border-right: 1px solid!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  .windowDialog,
-  textbox {
-    color: var(--in-content-page-color)!important
-  }
-  textbox[type=search] {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-box-background)!important;
-    border: 1px solid;
-    border-color: var(--in-content-box-border-color)!important;
-    border-radius: 3px!important;
-    padding: 2px 4px 2px 2px!important
-  }
-  #cookiesList {
-    -moz-appearance: none!important;
-    border: 1px solid!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  button {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-page-background)!important;
-    border: 1px solid!important;
-    border-radius: 3px!important;
-    color: var(--in-content-page-color)!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  button:hover {
-    background-color: var(--in-content-box-background)!important
-  }
-}
-@-moz-document url-prefix(chrome://pippki) {
-  tab {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-box-background)!important;
-    text-shadow: none!important;
-    padding: 0 8px!important;
-    color: var(--in-content-page-color);
-    border-right: 1px solid!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  tab:first-of-type {
-    border-top-left-radius: 4px!important;
-    border-bottom-left-radius: 4px!important
-  }
-  tab:last-of-type {
-    border: none!important;
-    border-top-right-radius: 4px!important;
-    border-bottom-right-radius: 4px!important
-  }
-  tab[selected=true] {
-    color: var(--in-content-selected-text)!important
-  }
-  #certDetails {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-page-background)!important
-  }
-  tree {
-    -moz-appearance: none!important;
-    color: var(--in-content-page-color)!important
-  }
-  treecol {
-    -moz-appearance: none!important;
-    border: 0 solid!important;
-    border-color: var(--in-content-box-background)!important
-  }
-  treecolpicker {
-    -moz-appearance: none;
-    border: none!important
-  }
-  .windowDialog,
-  dialog,
-  textbox {
-    color: var(--in-content-page-color)!important
-  }
-  #certDumpVal,
-  .scrollfield,
-  textbox[type=search] {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-box-background)!important;
-    border: 1px solid;
-    border-color: var(--in-content-box-border-color)!important;
-    border-radius: 3px!important;
-    padding: 2px 4px 2px 2px!important
-  }
-  button {
-    -moz-appearance: none!important;
-    background-color: var(--in-content-page-background)!important;
-    border: 1px solid!important;
-    border-radius: 3px!important;
-    color: var(--in-content-page-color)!important;
-    border-color: var(--in-content-box-border-color)!important
-  }
-  button:hover {
-    background-color: var(--in-content-box-background)!important
-  }
-}
 
 #navigator-toolbox::after {
   border-bottom: 0!important
@@ -867,11 +476,14 @@ browser[type=content] > html {
 .identity-popup-connection-secure {
   color: var(--secure-connection-color)!important
 }
+
+/* Connection icon */
 #connection-icon,
 #identity-popup[connection^=secure] #identity-popup-security-content,
 #identity-popup[connection^=secure] #identity-popup-securityView {
   fill: var(--secure-connection-color)!important
 }
+
 #sidebar-header,
 #sidebar-search-container,
 #sidebar-search-container #viewButton,
@@ -935,6 +547,7 @@ hbox#sidebar-search-container textbox#search-box {
   color: var(--in-content-page-color)!important
 }
 
+/* ----------------------------- HERE ------------------------------- */
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 #TabsToolbar {
   visibility: collapse;
@@ -942,9 +555,6 @@ hbox#sidebar-search-container textbox#search-box {
 
 #nav-bar {
   margin-bottom: -1px !important;
-  /* remove navbar bottom 1px border */
-  /* margin-top: -32px !important; */
-  /* margin-right: 70vw !important; */
 }
 
 #urlbar[focused="true"],
@@ -994,10 +604,10 @@ hbox#sidebar-search-container textbox#search-box {
 #urlbar-zoom-button,
 #pageActionButton,
 #pocket-button-box,
+#back-button,
+#forward-button,
 ar-button,
 .autocomplete-history-dropmarker,
-#identity-icon-labels,
-#identity-icon,
 .urlbar-go-button,
 #nav-bar-overflow-button,
 #sidebar-button,
@@ -1016,3 +626,4 @@ ar-button,
   padding-top: 1px !important;
   height: 30px !important;
 }
+
