@@ -25,12 +25,15 @@
     --tridactyl-highlight-box-fg: var(--base00);
 
     /* Hint character tags */
-    --tridactyl-hintspan-fg: var(--base00) !important;
-    --tridactyl-hintspan-bg: var(--base0A) !important;
+    --tridactyl-hintspan-fg: #89CDD2 !important;
+    --tridactyl-hintspan-bg: #001742 !important;
+    --tridactyl-hintspan-font-family: "Iosevka" !important;
+    --tridactyl-hintspan-font-size: 10pt !important;
+    --tridactyl-hintspan-font-weight: Medium !important;
 
     /* Element Highlights */
-    --tridactyl-hint-active-fg: none;
-    --tridactyl-hint-active-bg: var(--base0B);
+    --tridactyl-hint-active-fg: var(--foreground);
+    --tridactyl-hint-active-bg: var(--tridactyl-hintspan-bg);
     --tridactyl-hint-active-outline: none;
     --tridactyl-hint-bg: none;
     --tridactyl-hint-outline: none;
@@ -137,4 +140,21 @@
 #completions .focused .url {    
     background: #184050;
     color: var(--foreground);
+}
+
+/* taken from hint css */
+span.TridactylHint {
+    position: absolute !important;
+    font-family: var(--tridactyl-hintspan-font-family) !important;
+    font-size: var(--tridactyl-hintspan-font-size) !important;
+    font-weight: var(--tridactyl-hintspan-font-weight) !important;
+    color: var(--tridactyl-hintspan-fg) !important;
+    background-color: var(--tridactyl-hintspan-bg) !important;
+    border-width: var(--tridactyl-hintspan-border-width) !important;
+    min-width: 0.75em !important;
+    border-style: var(--tridactyl-hintspan-border-style) !important;
+    padding: 2pt !important;
+    z-index: 2147483646 !important;
+
+    border-radius: 4px!important;
 }
