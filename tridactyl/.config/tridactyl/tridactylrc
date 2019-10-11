@@ -32,10 +32,11 @@ bind E tabprev
 
 bind f hint
 bind F hint -t
-bind y yank
 
 bind j scrollline 3
 bind k scrollline -3
+
+bind --mode=normal y composite get_current_url | yank
 
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
@@ -53,7 +54,6 @@ bind --mode=normal / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
-bind ,, nohlsearch
 
 " Make quickmarks for the sane Tridactyl issue view
 quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
