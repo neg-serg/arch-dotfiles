@@ -212,12 +212,12 @@ url(chrome://browser/content/pageinfo/pageInfo.xul) {
 
 #urlbar,
 .searchbar-textbox {
-  border: 1px solid var(--in-content-border-focus) !important;
+  border: 1px 1px 1px 1px solid var(--in-content-border-focus) !important;
   box-shadow: 0 1px 4px var(--in-content-border-focus) !important;
-  border-color: var(--in-content-border-focus) !important
-  font-family: "Iosevka Custom";
-  font-weight: Bold;
-  font-size: 14pt;
+  border-color: var(--in-content-border-focus) !important;
+  font-family: "Iosevka" !important;
+  font-weight: Bold !important;
+  font-size: 14pt !important;
 }
 
 .ac-url,
