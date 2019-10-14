@@ -1,4 +1,3 @@
-set shell=/bin/zsh
 if bufname('%') == ''
     set bufhidden=wipe
 endif
@@ -136,16 +135,6 @@ set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
 
-if has('multi_byte') && &encoding ==# 'utf-8'
-    set listchars=tab:›…,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-    if has('patch-7.4.338')
-        " Show ↪ at the beginning of wrapped lines
-        let &showbreak = nr2char(8618).' '
-        set breakindent
-        set breakindentopt=sbr
-    endif
-endif
-
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
 set showcmd                     " Show partial commands in status line and Selected characters/lines in visual mode
@@ -199,17 +188,17 @@ set diffopt+=internal,algorithm:patience " Better diff algorithm
 " Avoid command-line redraw on every entered character by turning off Arabic
 " shaping (which is implemented poorly).
 if has('arabic')
-  set noarabicshape
+    set noarabicshape
 endif
 "--[ change undo file location ]----------------------------------
 if exists('+undofile')
-  " undofile - This allows you to use undos after exiting and restarting
-  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-  " :help undo-persistence
-  " This is only present in 7.3+
-  silent !mkdir -p ~/trash > /dev/null 2>&1
-  set undodir=~/trash/
-  set undofile
+    " undofile - This allows you to use undos after exiting and restarting
+    " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+    " :help undo-persistence
+    " This is only present in 7.3+
+    silent !mkdir -p ~/trash > /dev/null 2>&1
+    set undodir=~/trash/
+    set undofile
 endif
 
 " This makes vim act like all other editors, buffers can
@@ -299,11 +288,3 @@ if has('cscope')
     let g:GtagsCscope_Keep_Alive      = 1
     let g:GtagsCscope_Auto_Load       = 0
 endif
-
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
-" this makes sure that shell scripts are highlighted
-" as bash scripts and not sh scripts
-let g:is_posix        = 1
-" When using the taglist plugin, don't attempt to resize the terminal
-let g:is_bash         = 1
