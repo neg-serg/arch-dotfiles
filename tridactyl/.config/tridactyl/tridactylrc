@@ -6,8 +6,18 @@ colors neg
 set allowautofocus true
 
 set newtab http://localhost:31831
+set tabopencontaineraware true
 
 alias w saveas
+
+setpref general.warnOnAboutConfig false
+setpref extensions.webextensions.restrictedDomains ""
+setpref xpinstall.signatures.required false
+setpref accessibility.typeaheadfind.flashBar 0
+setpref pdfjs.disabled true
+"setpref browser.display.use_document_fonts 0
+setpref browser.download.dir "/home/neg/dw"
+setpref ui.key.accelKey 18
 
 unbindurl mail\.google\.com j
 unbindurl mail\.google\.com k
