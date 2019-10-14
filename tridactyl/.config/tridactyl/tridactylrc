@@ -1,3 +1,6 @@
+" reset settings on startup
+sanitize tridactyllocal tridactylsync
+
 colors neg
 
 set allowautofocus true
@@ -22,6 +25,36 @@ bind --mode=insert <C-[> composite unfocus | mode normal
 bind --mode=normal <C-c> composite unfocus | mode normal
 bind --mode=normal <C-[> composite unfocus | mode normal
 
+" thx to: https://github.com/glacambre/.dotfiles/blob/master/default/.config/tridactyl/tridactylrc
+bind --mode=ex          <C-a>   text.beginning_of_line
+bind --mode=insert      <C-a>   text.beginning_of_line
+bind --mode=input       <C-a>   text.beginning_of_line
+bind --mode=ex          <C-e>   text.end_of_line
+bind --mode=insert      <C-e>   text.end_of_line
+bind --mode=input       <C-e>   text.end_of_line
+bind --mode=ex          <C-f>   text.forward_word
+bind --mode=insert      <C-f>   text.forward_word
+bind --mode=input       <C-f>   text.forward_word
+bind --mode=ex          <C-k>   text.kill_line
+bind --mode=insert      <C-k>   text.kill_line
+bind --mode=input       <C-k>   text.kill_line
+bind --mode=ex          <C-u>   text.backward_kill_line
+bind --mode=insert      <C-u>   text.backward_kill_line
+bind --mode=input       <C-u>   text.backward_kill_line
+" Requires custom firefox build: https://github.com/glacambre/firefox-patches
+" or you can make simple modification over 
+" ui.key.accelKey 17(Ctrl) to 18(Alt) in about:config.
+bind --mode=ex          <C-w>   text.backward_kill_word
+bind --mode=insert      <C-w>   text.backward_kill_word
+bind --mode=input       <C-w>   text.backward_kill_word
+
+bind --mode=ex          <C-n>   ex.next_completion
+bind --mode=ex          <C-p>   ex.prev_completion
+bind --mode=ex          <C-y>   ex.insert_completion
+bind --mode=ex          <C-e>   ex.deselect_completion
+bind --mode=ex          <Tab>   ex.complete
+bind --mode=ex          <C-g>   composite text.beginning_of_line ; text.forward_word ; text.kill_word
+
 bind w fillcmdline tab
 bind e tabnext_gt
 bind E tabprev
@@ -33,6 +66,12 @@ bind j scrollline 3
 bind k scrollline -3
 
 bind --mode=normal y composite get_current_url | yank
+
+" thx to: https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc
+" Stupid workaround to let hint -; be used with composite which steals semi-colons
+command hint_focus hint -;
+" Open right click menu on links
+bind ;C composite hint_focus; !s xdotool key Menu
 
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
@@ -51,8 +90,6 @@ bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 
-" Make quickmarks for the sane Tridactyl issue view
-quickmark t https://github.com/cmcaine/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
 quickmark c https://www.twitch.tv/cooller
 quickmark e http://www.ektoplazm.com/
 quickmark g https://mail.google.com/mail/u/0/#inbox
@@ -77,6 +114,7 @@ set keytranslatemodes.ignoremaps true
 " command line, so set an option to move the status bar to the right.
 guiset_quiet hoverlink right
 
+" Cyrillic keymap support
 keymap , ?
 keymap . /
 keymap / |
