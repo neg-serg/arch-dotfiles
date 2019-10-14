@@ -62,7 +62,6 @@ bind --mode=ex          <C-n>   ex.next_completion
 bind --mode=ex          <C-p>   ex.prev_completion
 bind --mode=ex          <C-y>   ex.insert_completion
 bind --mode=ex          <C-e>   ex.deselect_completion
-bind --mode=ex          <Tab>   ex.complete
 bind --mode=ex          <C-g>   composite text.beginning_of_line ; text.forward_word ; text.kill_word
 
 bind w fillcmdline tab
