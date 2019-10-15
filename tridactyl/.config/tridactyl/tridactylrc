@@ -1,7 +1,7 @@
 " reset settings on startup
 sanitize tridactyllocal tridactylsync
 
-set searchengine qwant
+set searchengine google
 
 colors neg
 
