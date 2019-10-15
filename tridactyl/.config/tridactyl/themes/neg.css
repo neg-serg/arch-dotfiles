@@ -134,18 +134,20 @@
     position: fixed !important;
     bottom: 0 !important;
     background: var(--tridactyl-bg) !important;
-    border: 1px var(--base0B) solid !important;
-    padding: 0.4ex !important;
+    border: 2px #0a3749 solid !important;
+    padding: 1px !important;
     font-family: "Iosevka" !important;
-    font-size: 14pt !important;
+    font-weight: "Medium" !important;
+    font-size: 12pt !important;
 }
 
 /* taken from hint css */
 span.TridactylHint {
-    position: absolute !important;
     font-family: var(--tridactyl-hintspan-font-family) !important;
     font-size: var(--tridactyl-hintspan-font-size) !important;
     font-weight: var(--tridactyl-hintspan-font-weight) !important;
+
+    position: absolute !important;
     color: var(--tridactyl-hintspan-fg) !important;
     background-color: var(--tridactyl-hintspan-bg) !important;
     border-width: var(--tridactyl-hintspan-border-width) !important;
