@@ -1,6 +1,8 @@
 " reset settings on startup
 sanitize tridactyllocal tridactylsync
 
+set searchengine qwant
+
 colors neg
 
 set allowautofocus true
