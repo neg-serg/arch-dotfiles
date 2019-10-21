@@ -1,5 +1,6 @@
 source ~/.mutt/bindings.mutt
 source ~/.mutt/sidebar.mutt
+source ~/.mutt/gpg.rc
 source ~/.mutt/themes/fscety
 
 set shell="/bin/zsh"
@@ -85,16 +86,14 @@ folder-hook 'home.gmail' 'source "gpg -dq $HOME/.mutt/home.gpg |'
 folder-hook 'work.gmail' 'source "gpg -dq $HOME/.mutt/work.gpg |'
 
 # Default account
-source "gpg -dq $HOME/.mutt/home.gpg |"
+source "gpg -dq $HOME/.mutt/work.gpg |"
 
 folder-hook . 'unset trash'
 folder-hook imaps://imap.gmail.com 'set trash="=[Gmail]/Trash"'
 
-set folder = "imaps://imap.gmail.com:993"
 set ssl_force_tls = yes
 
 set spoolfile = +INBOX
-set record = "+[Gmail]/Sent Mail"
 set postponed = "+[Gmail]/Drafts"
 unset record
 unset signature
@@ -106,14 +105,7 @@ set timeout=300
 set imap_keepalive=300
 set include
 set auto_tag = yes
-ignore "Authentication-Results:"
-ignore "DomainKey-Signature:"
-ignore "DKIM-Signature:"
-hdr_order Date From To Cc
-
 set sendmail="/usr/bin/msmtp -a gmail"
-my_hdr bcc: serg.zorg@gmail.com
-unmy_hdr X-PGP-Key
 set pgp_autosign = no
 
 ## GooBook
@@ -121,6 +113,11 @@ set query_command="goobook query '%s'"
 
 auto_view text/html
 alternative_order text/plain text/html *
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
 
 my_hdr X-Comment-To: "Sergey Miroshnichenko"
 my_hdr User-Agent: Outluck Express 1.5.6i for MS-DOS 6.22-SMP  # This is too
