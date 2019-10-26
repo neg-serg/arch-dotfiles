@@ -630,3 +630,123 @@ ar-button,
   height: 30px !important;
 }
 
+
+/*----------------------hamburger menu-----------------------------*/
+
+.panel-arrow {
+	fill: #1f1f1f !important;
+}
+
+.panel-subview-body {
+	color: #ffffff !important;
+	background: #1f1f1f !important;
+	border-color: #ffffff !important;
+}
+
+.appMenu-zoomReset-button {
+	color: dodgerblue !important;
+	fill: dodgerblue !important;
+	border-color: dodgerblue !important;
+	border-radius: 0px !important;
+	background-color: #1f1f1f !important;
+}
+
+.subviewbutton.panel-subview-footer {
+	background-color: #1f1f1f !important;
+	border-top: 0px solid !important;
+}
+
+.panel-header {
+	border-bottom: 1px solid #1f1f1f !important;
+	background: #1f1f1f !important;
+}
+
+.panel-subview-footer,
+[class^="PanelUI-"] {
+	color: #ffffff !important;
+	background: #1f1f1f !important;
+}
+
+.subviewbutton.panel-subview-footer {
+	background-color: #1f1f1f !important;
+	border-top: 1px solid #1f1f1f !important;
+}
+
+.appMenu-tp-separator,
+toolbarseparator {
+	display: visible !important;
+	border-color: #404040 !important;
+}
+
+/* ----------------colouring shortcuts ----------------------------*/
+.subviewbutton[shortcut]::after {
+	font-family: Fira Sans !important;
+	color: dodgerblue !important;
+}
+/*-----------------------------------------------------------------*/
+
+
+.subviewbutton-nav::after {
+	fill: dodgerblue !important;
+}
+
+#appMenu-popup .subviewbutton .toolbarbutton-text,
+#appMenu-popup .panel-arrowcontent,
+panelmultiview .toolbaritem-combined-buttons>label {
+	font-family: Fira Sans !important;
+	font-size: 14px !important;
+}
+
+/* Hamburger Menu Zoom Control */
+#appMenu-zoomReduce-button {
+	background: transparent !important;
+	color: dodgerblue !important;
+	/* BG color */
+	border: 0px solid dodgerblue !important;
+	/* Adding border */
+	border-radius: 0px !important;
+	/* Adding Border Radius */
+}
+
+#appMenu-zoomReset-button label {
+	background: transparent !important;
+	color: dodgerblue !important;
+	/* BG color 
+	border: 1px solid dodgerblue !important;*/
+	/* Adding border */
+	border-radius: 0px !important;
+	/* Adding Border Radius */
+	font-family: "Fira Sans" !important;
+}
+
+#appMenu-zoomReset-button {
+	background: transparent !important;
+	color: dodgerblue !important;
+	/* BG color */
+	border: 1px solid dodgerblue !important;
+	/* Adding border */
+	border-radius: 0px !important;
+	/* Adding Border Radius */
+
+}
+
+#appMenu-fullscreen-button {
+	background: transparent !important;
+	color: dodgerblue !important;
+	/* BG color */
+	border: 0px solid #ffffff !important;
+	/* Adding border */
+	border-radius: 0px !important;
+	/* Adding Border Radius */
+}
+
+#appMenu-zoomEnlarge-button {
+	background: transparent !important;
+	color: dodgerblue !important;
+	/* BG color */
+	border: 0px solid #ffffff !important;
+	/* Adding border */
+	border-radius: 0px !important;
+	/* Adding Border Radius */
+}
+
