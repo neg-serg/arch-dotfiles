@@ -8,7 +8,6 @@ function MyKeyMapHighlight()
         endif
     else
         if !s:enabled
-            " hi StatusLine ctermfg=white guifg=white
             let s:enabled = 1
         endif
     endif
