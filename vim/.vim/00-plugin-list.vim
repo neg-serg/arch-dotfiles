@@ -65,13 +65,10 @@ Plug 'mzlogin/vim-markdown-toc' " plugin to autogenerate table of contents for m
 Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'tpope/vim-markdown' " markdown vim mode
 " ---------------[ Colorscheme ]-----------------------------------------------------
-Plug 'arcticicestudio/nord-vim' " dark and cold colorscheme
 Plug 'chriskempson/base16-vim' " base16 colorschemes pack
 Plug 'icymind/NeoSolarized' " solarized with better neovim support
-Plug 'joshdick/onedark.vim' " onedark colorscheme
 Plug 'NLKNguyen/papercolor-theme' " great bright colorscheme
 Plug 'tyrannicaltoucan/vim-deep-space' " deepspace colorscheme
-Plug 'whatyouhide/vim-gotham' " gotham colorscheme for nvim
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'gregsexton/gitv' " gitk for vim
