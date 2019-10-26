@@ -1,7 +1,0 @@
-screenshots@mozilla.org=fafa9407-1832-459a-a1ee-aa0ee415e8f2
-webcompat-reporter@mozilla.org=78f32d63-f8c7-4558-8ac5-9a519fc9ea40
-webcompat@mozilla.org=a6af1281-e55d-4d3b-bf1c-28909408f41f
-tridactyl.vim.betas@cmcaine.co.uk=fbead27e-83bf-4b10-968b-758b037878b6
-fxmonitor@mozilla.org=a8dcdeba-989b-4a07-b28f-3d82535d5d3e
-{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}=7969de29-aa0e-457e-8146-cce186cbc2a0
-formautofill@mozilla.org=ae682a21-620c-4735-b67f-6bd43fb4e190
