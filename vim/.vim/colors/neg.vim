@@ -16,7 +16,6 @@ let s:conf_dblk_hex='121212'
 let s:conf_lblk_hex='3d3d3d'
 
 let s:bclr_hex=s:conf_bclr_hex " background color hexadecimal
-let s:fclr_hex='999999'        " foreground color hexadecimal
 let s:dblk_hex=s:conf_dblk_hex " dark black hexadecimal    (color 0)
 let s:lblk_hex=s:conf_lblk_hex " light black hexadecimal   (color 8)
 let s:dred_hex='8a2f58'        " dark red hexadecimal      (color 1)
@@ -58,7 +57,6 @@ let s:colorsearch_hex='005FAF' " (search highlight color)
 let s:venv='gui' " vim environment (term, cterm, gui)
 
 let s:bclr='#'.s:bclr_hex
-let s:fclr='#'.s:fclr_hex
 let s:dblk='#'.s:dblk_hex
 let s:lblk='#'.s:lblk_hex
 let s:dred='#'.s:dred_hex
@@ -100,7 +98,6 @@ let s:colorsearch='#'.s:colorsearch_hex
 if $TERM == 'linux'
     let s:venv='cterm'
     let s:bclr=''
-    let s:fclr=''
     let s:dblk='Black'
     let s:lblk='DarkGray'
     let s:dred='DarkRed'
@@ -180,7 +177,7 @@ call s:HI('Constant', '', s:lmag, '' )
 call s:HI('Special', '', s:lgrn, '' )
 call s:HI('SpecialChar', '', s:color30, '' )
 call s:HI('Number', '', s:lcyn, '' )
-call s:HI('Identifier', '', s:lmag, '' )
+call s:HI('Identifier', '', '#6289B3', '' )
 call s:HI('Conditional', '', s:lcyn, '' )
 call s:HI('Repeat', '', s:lcyn, '' )
 call s:HI('Statement', '', s:dblu, '' )
@@ -231,7 +228,7 @@ call s:HI('DiffText', 'NONE', s:lwht, '' )
 call s:HI('DiffDelete', s:color162, s:color127, '' )
 call s:HI('Error', s:color162, s:color127, '' )
 
-call s:HI('Pmenu', s:color253, s:color234, 'reverse')
+call s:HI('Pmenu', s:color253, s:bclr, 'reverse')
 call s:HI('PmenuSel', s:colorsearch, s:color200, 'reverse')
 call s:HI('PmenuSbar', s:dblk, 'NONE', '')
 call s:HI('PmenuThumb', s:dgrn, 'NONE', '')
