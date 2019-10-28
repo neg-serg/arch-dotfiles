@@ -19,8 +19,8 @@ let g:lightline = {
     \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())',
     \ },
     \ 'colorscheme': 'neg',
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '', 'right': '' }
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
 \ }
 
 let g:lightline.component = {
