@@ -103,95 +103,94 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
 
 #urlbar,
 .searchbar-textbox {
-  border: 1px 1px 1px 1px solid var(--in-content-border-focus) !important;
-  box-shadow: 0 1px 4px var(--in-content-border-focus) !important;
-  border-color: var(--in-content-border-focus) !important;
-  font-family: "Iosevka" !important;
-  font-weight: Bold !important;
-  font-size: 14pt !important;
+    border: 1px 1px 1px 1px solid var(--in-content-border-focus) !important;
+    box-shadow: 0 1px 4px var(--in-content-border-focus) !important;
+    border-color: var(--in-content-border-focus) !important;
+    font-family: "Iosevka" !important;
+    font-weight: Bold !important;
+    font-size: 14pt !important;
 }
 
 .ac-url,
 .search-panel-input-value {
-  color: var(--in-content-link-color)!important
+    color: var(--in-content-link-color)!important
 }
 .search-one-offs {
-  background: var(--in-content-box-background)!important
+    background: var(--in-content-box-background)!important
 }
 .search-panel-header,
 .search-panel-one-offs {
-  background: var(--in-content-category-header-background)!important;
-  border-top: none!important
+    background: var(--in-content-category-header-background)!important;
+    border-top: none!important
 }
 
 @-moz-document url-prefix(chrome://) {
-  @media screen and (-moz-os-version:windows-win7) {
-    window {
-      background-color: var(--tone-9)!important;
-      color: var(--in-content-page-color)!important
+    @media screen and (-moz-os-version:windows-win7) {
+        window {
+            background-color: var(--tone-9)!important;
+            color: var(--in-content-page-color)!important
+        }
     }
-  }
 }
 
 #navigator-toolbox::after {
-  border-bottom: 0!important
+    border-bottom: 0!important
 }
 #browser vbox#appcontent tabbrowser,
 #content,
 #tabbrowser-tabpanels,
 browser[type=content-primary],
 browser[type=content] > html {
-  background: var(--in-content-page-background)!important
+    background: var(--in-content-page-background)!important
 }
 #identity-box.verifiedIdentity {
-  --urlbar-separator-color: var(--secure-connection-color)!important
+    --urlbar-separator-color: var(--secure-connection-color)!important
 }
 #identity-box.verifiedIdentity #identity-icon-labels,
 .identity-popup-connection-secure {
-  color: var(--secure-connection-color)!important
+    color: var(--secure-connection-color)!important
 }
 
 /* Connection icon */
 #connection-icon,
 #identity-popup[connection^=secure] #identity-popup-security-content,
 #identity-popup[connection^=secure] #identity-popup-securityView {
-  fill: var(--secure-connection-color)!important
+    fill: var(--secure-connection-color)!important
 }
 
-/* ----------------------------- HERE ------------------------------- */
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 #TabsToolbar {
-  visibility: collapse;
+    visibility: collapse;
 }
 
 #nav-bar {
-  margin-bottom: -1px !important;
+    margin-bottom: -1px !important;
 }
 
 #urlbar[focused="true"],
 #urlbar,
 #urlbar-container,
 #nav-bar-customization-target.customization-target {
-  border: none !important;
-  min-width: 100% !important;
+    border: none !important;
+    min-width: 100% !important;
 }
 
 .tabbrowser-tab,
 .tab-background,
 .tab-content {
-  mask-image: unset !important;
+    mask-image: unset !important;
 }
 
 /* Remove padding above tabbar in compact mode */
 #main-window[sizemode="normal"] > #titlebar {
-  -moz-appearance: initial !important;
+    -moz-appearance: initial !important;
 }
 
 /* Move hamburger menu to the left */
 #PanelUI-button,
 #customization-panel-container,
 #customization-panelWrapper .panel-arrow {
-  -moz-box-ordinal-group: 0 !important;
+    -moz-box-ordinal-group: 0 !important;
 }
 
 /* Hide various elements */
@@ -238,8 +237,6 @@ ar-button,
   height: 30px !important;
 }
 
-
-/*----------------------hamburger menu-----------------------------*/
 .panel-arrow {
 	fill: #1f1f1f !important;
 }
@@ -285,13 +282,10 @@ toolbarseparator {
 	border-color: #404040 !important;
 }
 
-/* ----------------colouring shortcuts ----------------------------*/
 .subviewbutton[shortcut]::after {
 	font-family: Iosevka !important;
 	color: dodgerblue !important;
 }
-/*-----------------------------------------------------------------*/
-
 
 .subviewbutton-nav::after {
 	fill: dodgerblue !important;
@@ -304,61 +298,44 @@ panelmultiview .toolbaritem-combined-buttons>label {
 	font-size: 14px !important;
 }
 
-/* Hamburger Menu Zoom Control */
 #appMenu-zoomReduce-button {
 	background: transparent !important;
 	color: dodgerblue !important;
-	/* BG color */
 	border: 0px solid dodgerblue !important;
-	/* Adding border */
 	border-radius: 0px !important;
-	/* Adding Border Radius */
 }
 
 #appMenu-zoomReset-button label {
 	background: transparent !important;
 	color: dodgerblue !important;
-	/* BG color 
-	border: 1px solid dodgerblue !important;*/
-	/* Adding border */
 	border-radius: 0px !important;
-	/* Adding Border Radius */
 	font-family: "Iosevka" !important;
 }
 
 #appMenu-zoomReset-button {
 	background: transparent !important;
 	color: dodgerblue !important;
-	/* BG color */
 	border: 1px solid dodgerblue !important;
-	/* Adding border */
 	border-radius: 0px !important;
-	/* Adding Border Radius */
 
 }
 
 #appMenu-fullscreen-button {
 	background: transparent !important;
 	color: dodgerblue !important;
-	/* BG color */
 	border: 0px solid #ffffff !important;
-	/* Adding border */
 	border-radius: 0px !important;
-	/* Adding Border Radius */
 }
 
 #appMenu-zoomEnlarge-button {
 	background: transparent !important;
 	color: dodgerblue !important;
-	/* BG color */
 	border: 0px solid #ffffff !important;
-	/* Adding border */
 	border-radius: 0px !important;
-	/* Adding Border Radius */
 }
 
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 :root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) {
-  min-height: calc(0px);
-  overflow: hidden;
+    min-height: calc(0px);
+    overflow: hidden;
 }
