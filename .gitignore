@@ -274,14 +274,6 @@ surf
 .thumbnails
 tmp
 *.tmp
-.tmux/plugins
-@tmux/.tmux/plugins/tmux-copycat/
-@tmux/.tmux/plugins/tmux-fingers/
-@tmux/.tmux/plugins/tmux-fpp/
-@tmux/.tmux/plugins/tmux-resurrect/
-@tmux/.tmux/plugins/tmux-sensible/
-@tmux/.tmux/plugins/tmux-sessionist/
-@tmux/.tmux/plugins/tmux-yank/
 .tor-browser-en
 torrent
 vid
