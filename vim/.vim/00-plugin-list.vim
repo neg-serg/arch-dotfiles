@@ -12,7 +12,6 @@ Plug 'neoclide/coc-lists' "use it for files support
 Plug 'neoclide/coc-neco' "vimL completion engine via neco-vim
 Plug 'neoclide/coc-sources' "use it for coc-ultisnips
 Plug 'Shougo/neco-vim' " modern vim autocomplete
-Plug 'zxqfl/tabnine-vim' "all-language autocompletion
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'inkarkat/vim-ReplaceWithRegister' "replace with register keybindings
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
@@ -66,11 +65,9 @@ Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'tpope/vim-markdown' " markdown vim mode
 " ---------------[ Colorscheme ]-----------------------------------------------------
 Plug 'icymind/NeoSolarized' " solarized with better neovim support
-Plug 'NLKNguyen/papercolor-theme' " great bright colorscheme
 Plug 'tyrannicaltoucan/vim-deep-space' " deepspace colorscheme
 Plug 'rakr/vim-one' "one colorscheme
 Plug 'cocopon/iceberg.vim' "iceberg colorscheme
-Plug 'owickstrom/vim-colors-paramount' "paramount colorscheme
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'gregsexton/gitv' " gitk for vim
