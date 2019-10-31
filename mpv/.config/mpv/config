@@ -63,11 +63,3 @@ term-osd-bar-chars = "──╼ ·"
 [extension.mp3]
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
-
-[svp]
-input-ipc-server=/tmp/mpvsocket     # Receives input from SVP
-hr-seek-framedrop=no                # Fixes audio desync
-resume-playback=no                  # Not compatible with SVP
-hwdec=auto-copy
-hwdec-codecs=all
-
