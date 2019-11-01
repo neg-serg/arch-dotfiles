@@ -116,10 +116,10 @@ def_key "b"
   seek_backward
 
 def_key "r"
-  toggle_repeat
+  dummy
 
 def_key "z"
-  toggle_random
+  dummy
 
 def_key "y"
   save_tag_changes
