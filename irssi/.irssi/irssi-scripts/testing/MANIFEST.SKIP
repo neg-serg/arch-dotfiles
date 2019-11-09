@@ -1,9 +1,0 @@
-.*\.git.*
-pm_to_blib
-.*\.old
-.*\.bak
-.*\.swp
-blib/.*
-^Makefile$
-\d+_local_
-
