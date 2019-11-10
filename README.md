@@ -20,7 +20,6 @@ Of course this dotfiles structure not include everything that I use, like QEMU.
     + **term-colorschemes**       **::** various dynamic colorschemes, not up-to-date.
     + **terminfo**                **::** terminfo...
     + **dircolors**               **::** my 256-color filetype-based dircolors.
-    + **powerline**               **::** famous statusbar, I am using it only with tmux for now, because of no support in neovim.
     + **@tmux**                   **::** tmux config
 + Dev
     + **vim**                     **::** I am using neovim for now, a lot of nice stuff. Also used as IDE for almost all languages(except of java, scala)
@@ -78,7 +77,6 @@ Of course this dotfiles structure not include everything that I use, like QEMU.
         + mpd.service
         + network_applet.service
         + offlineimap.service
-        + powerline-daemon.service
         + sxhkd.service
         + transmissiond.service
         + udiskie.service
