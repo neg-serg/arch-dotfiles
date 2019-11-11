@@ -1,58 +1,55 @@
-set shell=/bin/dash
 if bufname('%') == ''
-  set bufhidden=wipe
+    set bufhidden=wipe
 endif
 
 let g:impact_transbg=1
 let g:enable_cursorline=0
 let g:enable_cursorcolumn=0
 
+set regexpengine=1
 set conceallevel=2
 set concealcursor=i
+
+set inccommand=nosplit "interactive substitution
 
 if has('filterpipe')
     set noshelltemp
 endif
 
+" Options initiating with ?m?
+" [global] |'magic'| Set 'magic' patterns ;)
+" Examples:
+"  \v       \m       \M       \V         matches ~
+"  $        $        $        \$         matches end-of-line
+"  .        .        \.       \.         matches any character
+"  *        *        \*       \*         any number of the previous atom
+"  ()       \(\)     \(\)     \(\)       grouping into an atom
+"  |        \|       \|       \|         separating alternatives
+"  \a       \a       \a       \a         alphabetic character
+"  \\       \\       \\       \\         literal backslash
+"  \.       \.       .        .          literal dot
+"  \{       {        {        {          literal '{'
+"  a        a        a        a          literal 'a'
 set magic
+
+set path+=.,..,./include,../include,/usr/include
+execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
+execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
 
 set isfname+={
 set isfname+=}
 
-if exists('$TMUX')
-    let g:not_tmuxed_vim = system(expand('~/bin/scripts/not_tmuxed_wim'))
-    if g:not_tmuxed_vim =~ 'FALSE'
-        set t_ut=
-        if !exists('$ST_TERM')
-            autocmd VimEnter * silent !echo -ne '\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\'
-            autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
-            autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
-            let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
-            let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            autocmd VimLeave * silent !tmux set status on;
-                \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-        else
-            if !has('nvim')
-                autocmd VimEnter * silent !echo -ne '\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\'
-                let &t_SI = '\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\'
-                let &t_EI = '\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\'
-            endif
-            autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
-            autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
-            autocmd VimLeave * silent !tmux set status on;
-                \ echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
-        endif
-        autocmd VimEnter * silent !tmux set status off > /dev/null
-        autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-        set timeout ttimeout
-        set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
-    endif
-endif
+set background=dark
+colorscheme neg
+
+set timeout ttimeout
+set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
 
 " convert "\\" to "/" on win32 like environment
 if exists('+shellslash')
     set shellslash
 endif
+
 if has('user_commands')
     command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
     command! -bang -nargs=* -complete=file E e<bang> <args>
@@ -70,16 +67,17 @@ if has('user_commands')
 endif
 "----------------------------------------------------------------------------
 set keywordprg=:help
+let $PATH = $PATH . ':' . expand('~/bin/go/bin')
 
 set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
 set noautowrite                             " Don't autowrite by default
-set noautochdir                             " Dont't change pwd automaticly
+set autoread                                " Auto reload
+set noautochdir                             " Dont't change pwd automaticly because of problems with plugins
 set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
-set autoread
 if executable(resolve(expand('par')))
     set formatprg="par -140"  " use par as formatter
 else
@@ -112,24 +110,7 @@ set browsedir=buffer
 " 'useopen' may be useful for re-using QuickFix window.
 set switchbuf=useopen,usetab
 
-if has('unnamedplus')
-  " By default, Vim will not use the system clipboard when yanking/pasting to
-  " the default register. This option makes Vim use the system default
-  " clipboard.
-  " Note that on X11, there are _two_ system clipboards: the "standard" one, and
-  " the selection/mouse-middle-click one. Vim sees the standard one as register
-  " '+' (and this option makes Vim use it by default) and the selection one as '*'.
-  " See :h 'clipboard' for details.
-  if has ('x') && has ('gui') " On Linux use + register for copy-paste
-      set clipboard=unnamedplus
-  elseif has ('gui')          " On mac and Windows, use * register for copy-paste
-      set clipboard=unnamed
-  endif
-  set clipboard=unnamed
-else
-  " Vim now also uses the selection system clipboard for default yank/paste.
-  set clipboard+=unnamed
-endif
+set clipboard=unnamedplus
 
 " Protect home directory
 if !empty($SUDO_USER) && $USER !=# $SUDO_USER
@@ -153,12 +134,6 @@ set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
-
-set listchars=tab:›…,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-" Show ↪ at the beginning of wrapped lines
-let &showbreak = nr2char(8618).' '
-set breakindent
-set breakindentopt=sbr
 
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
@@ -208,6 +183,24 @@ set eadirection=hor             " ver/hor/both - where does equalalways apply
 set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
 set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
+set lazyredraw                  " Reduce useless redrawing
+set diffopt+=internal,algorithm:patience " Better diff algorithm
+" Avoid command-line redraw on every entered character by turning off Arabic
+" shaping (which is implemented poorly).
+if has('arabic')
+    set noarabicshape
+endif
+"--[ change undo file location ]----------------------------------
+if exists('+undofile')
+    " undofile - This allows you to use undos after exiting and restarting
+    " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+    " :help undo-persistence
+    " This is only present in 7.3+
+    silent !mkdir -p ~/trash > /dev/null 2>&1
+    set undodir=~/trash/
+    set undofile
+endif
+
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
@@ -224,47 +217,50 @@ set formatoptions-=2    " don't use second line of paragraph when autoindenting
 set formatoptions-=v    " don't worry about vi compatiblity
 set formatoptions-=b    " don't worry about vi compatiblity
 set formatoptions-=j    " delete comment character when joining
-" Where it makes sense, remove a comment leader when joining lines.  For
-" example, joining:
-try
-  " Vim 7.4
-  set formatoptions+=j
-catch /.*/
-endtry
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
-set autoindent                     " on new lines, match indent of previous line
-set nosmartindent                  " disable smart auto indenting
-set copyindent                     " copy the previous indentation on autoindenting
-set cindent                        " smart indenting for c-like code
+set autoindent          " on new lines, match indent of previous line
+set nosmartindent       " disable smart auto indenting, I think it should be deprecated
+set copyindent          " copy the previous indentation on autoindenting
+set cindent             " smart indenting for c-like code
 set cinoptions=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
-set laststatus=2                   " requied by PowerLine/Airline
+set cinkeys-=0#         " better support for
+set indentkeys-=0#      " tcomment
+set laststatus=2        " requied by PowerLine/Airline
 
-set nocursorline                   " highlight current line is too slow
-set backup                         " backuping is good
+set nocursorline        " highlight current line is too slow
+set backup              " backuping is good
 
 set backupdir=~/trash
 set directory=~/trash
-set undofile                       " So is persistent undo ...
-set undolevels=1000                " Maximum number of changes that can be undone
-set undoreload=10000               " Maximum number lines to save for undo on a buffer reload
-set cpoptions=a                    " :read with a filename set the alternate filename for window
-set cpoptions+=A                   " -- : write --
-set cpoptions+=c                   " search -> end of any match at the cursor pos but not start of the next line
-set cpoptions+=e                   " :@r adds CR and nonlinewise
-set cpoptions+=F                   " :write set name for current buffer if no
-set cpoptions+=s                   " set buf opts before it created
-set cpoptions+=B                   " a backslash has no special meaning in mappings
-set cpoptions+=d                   " make ./ in tags relative to tags file in current dir
-set cpoptions+=$                   " no line redisplay -> put a '$' at the end
 
-set maxfuncdepth=100               " Maximum depth of function calls for user functions
-set maxmapdepth=1000               " Maximum number of times a mapping is done
-                                   " without resulting in a character to be used.
-set maxmempattern=1000             " Maximum amount of memory (in Kbyte) to use for pattern matching.
+set undofile            " So is persistent undo ...
+set undolevels=1000     " Maximum number of changes that can be undone
+set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
+set cpoptions=a         " :read with a filename set the alternate filename for window
+set cpoptions+=A        " -- : write --
+set cpoptions+=c        " search -> end of any match at the cursor pos but not start of the next line
+set cpoptions+=e        " :@r adds CR and nonlinewise
+set cpoptions+=F        " :write set name for current buffer if no
+set cpoptions+=s        " set buf opts before it created
+set cpoptions+=B        " a backslash has no special meaning in mappings
+set cpoptions+=d        " make ./ in tags relative to tags file in current dir
+set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
-set nomodeline                     " disable modelines
-set iminsert=0                     " write latin1 characters first
-set imsearch=0                     " search with latin1 characters first
-set cmdheight=1                    " standard cmdline height
+set maxfuncdepth=100    " Maximum depth of function calls for user functions
+set maxmapdepth=1000    " Maximum number of times a mapping is done
+                        " without resulting in a character to be used.
+set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
+
+if !has('nvim')
+    set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
+else
+    set viminfo=
+    set shada=
+endif
+set modeline            " disable modelines
+
+set iminsert=0          " write latin1 characters first
+set imsearch=0          " search with latin1 characters first
+set cmdheight=1         " standard cmdline height
