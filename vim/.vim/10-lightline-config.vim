@@ -110,11 +110,6 @@ endfunction
 function! LightlineMode()
 let fname = expand('%:t')
 return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
         \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
@@ -130,7 +125,7 @@ function! s:lightline_update()
     try
         if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|dracula'
             let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
-                        \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
+                \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
             call lightline#init()
             call lightline#colorscheme()
             call lightline#update()
