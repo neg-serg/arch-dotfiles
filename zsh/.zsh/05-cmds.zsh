@@ -332,12 +332,6 @@ alias up="rtv -s unixporn"
 alias taco='curl -L git.io/taco'
 alias starwars='telnet towel.blinkenlights.nl'
 
-alias gdb8="gdb -x ${XDG_CONFIG_HOME}/gdb/gdbinit8.gdb"
-alias gdbv="gdb -x ${XDG_CONFIG_HOME}/gdb/voltron.gdb"
-alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
-
-clojure(){ drip -cp /usr/share/clojure/clojure.jar clojure.main }
-
 alias -s Dockerfile="docker build - < "
 
 pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
