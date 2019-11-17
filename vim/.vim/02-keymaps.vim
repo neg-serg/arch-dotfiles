@@ -1,8 +1,3 @@
-if get(g:, 'strange_keymaps')
-    nnoremap 4 $
-    nnoremap $ 4
-endif
-
 nnoremap <Tab> :bnext<cr>
 nnoremap <S-Tab> :bprevious<cr>
 
@@ -16,10 +11,6 @@ let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
 
-"Annoying %)
-nnoremap q: <Nop>
-nnoremap q/ <Nop>
-nnoremap q? <Nop>
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Right> <Nop>
@@ -29,7 +20,6 @@ nnoremap <space> <Nop>
 nnoremap <silent> <leader>4 :set cursorline!<CR>
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
 
-nnoremap <silent> <C--> :set invpaste paste?<CR>
 nnoremap <silent> cow :set wrap!<CR>  
 nnoremap <silent> cop :setlocal paste!<Return>
 nnoremap <silent> cos :setlocal spell!<Return>
@@ -41,8 +31,6 @@ nnoremap <silent> zK O<Esc>j
 " semicolon magic
 nnoremap <Space>w :w!<cr>
 nnoremap q4 :q<cr>
-
-map <silent><space>l :set rnu!<cr>
 
 " Toggle hlsearch for current results, start highlight
 nnoremap <leader><leader> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
@@ -69,9 +57,6 @@ noremap L g_
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
 
-" Easier horizontal scrolling
-map zl zL
-map zh zH
 "-------[ Quickfix ]------------------------------------------------
 nnoremap Q q
 nnoremap [Quickfix] <Nop>
@@ -95,7 +80,7 @@ nnoremap <Space>, :vertical resize -10<CR>
 nnoremap <Space>. :vertical resize +10<CR>
 
 " Macros editing
-nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+nnoremap <leader>m :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 " use U for redo
 nnoremap U <C-r>
 " like firefox tabs
