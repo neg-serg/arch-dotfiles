@@ -22,13 +22,6 @@ super + u
     udiskie-umount -a
 super + M
     ~/bin/scripts/rofi_mpd
-super + control + r ; { c, d, i, r }
-    { \
-        xcalib -c, \
-        xcalib -alter -invert, \
-        xcalib -alter -invert, \
-        xcalib -gc 1.08 -co 97 ~/.config/color_profiles/x230.icm
-    }
 alt + grave
     rofi -no-plugins -sort -show run -lines 1 -columns 4 -case-sensitive=false -matching fuzzy \
     -theme-str '* \{ font: "Iosevka Term Medium 12"; \}' \
