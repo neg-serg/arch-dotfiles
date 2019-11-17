@@ -39,6 +39,7 @@
     verbosity             = mesg
 
 [shortcuts]
+    history = mod4+shift+9
     close_all = mod4+space
 
 [urgency_low]
