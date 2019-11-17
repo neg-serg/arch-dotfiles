@@ -69,12 +69,6 @@ call insert(s:palette.normal.right, s:palette.normal.left[1], 0)
 call insert(s:palette.inactive.right, s:palette.normal.right[1], 0)
 call insert(s:palette.inactive.left, s:palette.normal.left[1], 0)
 
-function! LightlineModified()
-    return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-function! LightlineReadonly()
-    return &ft !~? 'help' && &readonly ? 'RO' : ''
-endfunction
 function! LightlineFugitive()
     try
         if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
@@ -86,17 +80,20 @@ function! LightlineFugitive()
     endtry
     return ''
 endfunction
+function! LightlineModified()
+    return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+function! LightlineReadonly()
+    return &ft !~? 'help' && &readonly ? 'RO' : ''
+endfunction
 function! LightlineFilename()
 let fname = expand('%:t')
-return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
-        \ fname =~ '__Gundo\|NERD_tree' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+return &ft == 'vimfiler' ? vimfiler#get_status_string() :
+       \ &ft == 'unite' ? unite#get_status_string() :
+       \ &ft == 'vimshell' ? vimshell#get_status_string() :
+       \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+       \ ('' != fname ? fname : '') .
+       \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
 endfunction
 function! LightlineFileformat()
     return winwidth(0) > 70 ? &fileformat : ''
