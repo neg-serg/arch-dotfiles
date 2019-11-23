@@ -6,12 +6,37 @@
 
 Of course this dotfiles structure not include everything that I use, like QEMU.
 
-# Screenshots
+## Screenshots
 
 ![terminal_shot](https://i.imgur.com/O08SzU3.png)
 ![nvim_shot](https://i.imgur.com/Tqfu65R.png)
 ![firefox_shot](https://i.imgur.com/rgq2LcN.png)
 ![unixporn_like_shot](https://i.imgur.com/z1arTLh.png)
+
+## Interesting stuff
+
+I have very heavily customized i3-gaps to make it UX similar to good one
+[ion3](https://tuomov.iki.fi/software/) and [notion](https://notionwm.net/),
+you can find it here:
+
+https://github.com/neg-serg/negi3mods
+
+I presumptuously think that this is the most sophisticated thing that was
+created with the help of these i3ipc tools in the world ever and is also
+a good example of creating some new stuff with i3ipc. Though it python-based
+it's really fast because of client-server architecture.
+
+Also I have some custom config "distribution" of ZSH, Neovim, tmux and
+polybar config are also interesting enough with some more-or-less unique
+features.
+
+If you are vimperator fan like me please try tridactyl, after some patching
+and user-css stuff it become nice enough for daily use. You can find it
+config here:
+
+https://github.com/neg-serg/dotfiles/tree/master/tridactyl
+
+## Overview
 
 + Terminal
     + **alacritty** -- nice cross-platform terminal emulator, but I am using suckless
