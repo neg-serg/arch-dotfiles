@@ -1,38 +1,18 @@
-#--------------------------------
-#                   ██          -
-#                  ░██          -
-#    ██████  ██████░██          -
-#   ░░░░██  ██░░░░ ░██████      -
-#      ██  ░░█████ ░██░░░██     -
-#     ██    ░░░░░██░██  ░██     -
-#    ██████ ██████ ░██  ░██     -
-#   ░░░░░░ ░░░░░░  ░░   ░░      -
-#                               -
-#--------------------------------
-
 PROFILE_CONFIG=false
 [[ $PROFILE_CONFIG == true ]] && zmodload zsh/zprof
 export ZDOTDIR="${HOME}/.zsh"
 
-local zsh_files=(
-    01-init.zsh
-    03-exports.zsh
-    04-prompt.zsh
-    05-cmds.zsh
-    11-open.zsh
-    12-completion.zsh
-    13-bindkeys.zsh
-    70-forgit.zsh
-    81-completion_gen.zsh
-    96-fzf.zsh
-    98-syntax.zsh
-    99-misc.zsh
-)
+source "${ZDOTDIR}/zsh-defer/zsh-defer.plugin.zsh"
 
-for i in "${zsh_files[@]}"; do
-    [[ -f "${ZDOTDIR}/${i}" ]] && source "${ZDOTDIR}/${i}"
-done
+source "${ZDOTDIR}/01-init.zsh"
+source "${ZDOTDIR}/03-exports.zsh"
+source "${ZDOTDIR}/04-prompt.zsh"
+zsh-defer source "${ZDOTDIR}/05-cmds.zsh"
+zsh-defer source "${ZDOTDIR}/12-completion.zsh"
+zsh-defer source "${ZDOTDIR}/13-bindkeys.zsh"
+zsh-defer source "${ZDOTDIR}/70-forgit.zsh"
+zsh-defer source "${ZDOTDIR}/81-completion_gen.zsh"
+zsh-defer source "${ZDOTDIR}/96-fzf.zsh"
+zsh-defer source "${ZDOTDIR}/98-syntax.zsh"
 
 [[ ${PROFILE_CONFIG} == true ]] && zprof
-
-export BW_SESSION="Q5rUQXOWIZ0vYmxgFhSQ4ltI0QW/Dd5uv5z081swdE+RMa8aHJ9ut1Bvl9p7V69LOaXwmEJSJWuH3j+DD4ca2g=="
