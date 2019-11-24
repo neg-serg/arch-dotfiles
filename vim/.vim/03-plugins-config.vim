@@ -309,10 +309,10 @@ let g:markdown_enable_mappings                    = 0
 let g:markdown_enable_insert_mode_leader_mappings = 0
 let g:markdown_enable_spell_checking              = 0
 let g:markdown_quote_syntax_filetypes = {
-            \ "vim" : {
-            \   "start" : "\\%(vim\\|viml\\)",
-            \},
-            \}
+    \ "vim" : {
+    \   "start" : "\\%(vim\\|viml\\)",
+    \},
+    \}
 if executable('waterfox')
     let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'waterfox')
 endif
@@ -325,7 +325,7 @@ source ~/.vim/10-lightline-config.vim
 " │ plugin - mhinz/vim-grepper                                                        │
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <C-/> :Grepper -tool rg<CR>
+nnoremap <A-/> :Grepper -tool rg<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - gregsexton/gitv                                                          │
 " │ https://github.com/gregsexton/gitv                                                │
