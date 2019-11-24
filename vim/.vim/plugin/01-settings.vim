@@ -7,8 +7,8 @@ let g:enable_cursorline=0
 let g:enable_cursorcolumn=0
 
 set regexpengine=1
-set conceallevel=2
-set concealcursor=i
+set conceallevel=0 "no concealed text
+set concealcursor=
 
 set inccommand=nosplit "interactive substitution
 
