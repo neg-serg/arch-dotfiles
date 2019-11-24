@@ -331,3 +331,8 @@ nnoremap <A-/> :Grepper -tool rg<CR>
 " │ https://github.com/gregsexton/gitv                                                │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:Gitv_OpenHorizontal = 0
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - https://github.com/FooSoft/vim-argwrap                                   │
+" │ https://github.com/FooSoft/vim-argwrap                                            │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+nnoremap <silent> <leader>a :ArgWrap<CR>
