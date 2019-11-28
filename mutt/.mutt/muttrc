@@ -103,7 +103,6 @@ set timeout=300
 set imap_keepalive=300
 set include
 set auto_tag = yes
-set sendmail="/usr/bin/msmtp -a gmail"
 set pgp_autosign = no
 
 ## GooBook
