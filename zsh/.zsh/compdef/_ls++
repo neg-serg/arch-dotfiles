@@ -1,2 +1,0 @@
-#compdef ls++
-compdef _gnu_generic ls++
