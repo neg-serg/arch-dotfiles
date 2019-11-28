@@ -57,7 +57,7 @@ export LESS_TERMCAP_ue="$(tput sgr0)"               # end underline
 
 export TEXINPUTS=".:${XDG_DATA_HOME}/texmf//:"
 
-export HISTFILE=${HOME}/.zsh/zsh_history
+export HISTFILE=${ZDOTDIR}/zsh_history
 export SAVEHIST=100000 # useful for setopt append_history
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
