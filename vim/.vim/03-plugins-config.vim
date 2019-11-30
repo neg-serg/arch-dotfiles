@@ -167,14 +167,11 @@ endfunction
 " │ https://github.com/SirVer/ultisnips.git                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:UltiSnipsRemoveSelectModeMappings = 1
-let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
+let g:UltiSnipsSnippetsDir         = $HOME . './vim/snippets'
 let g:UltiSnipsExpandTrigger       = "<NOP>"
 let g:UltiSnipsJumpForwardTrigger  = "<C-;>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-Tab>"
 let g:UltiSnipsListSnippets        = "<c-m-s>"
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjbach/lusty.git                                                         │
 " │ https://github.com/sjbach/lusty.git                                               │
