@@ -130,16 +130,9 @@ nnoremap ed :Buffers<CR>
 
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-if 0
-    let s:layout_top = 1
-    if s:layout_top == 1
-        let g:fzf_layout = { 'window': 'call FloatingFZF(4, 50, 80, (&lines - 8) / 2)' }
-    else
-        let g:fzf_layout = { 'window': 'call FloatingFZF(&lines - 8, 50, 80, (&lines - 8) / 2)' }
-    endif
-else
-    let g:fzf_layout = { 'down': '~30%' }
-endif
+" load lua functions for navigation
+lua require("navigation")
+let g:fzf_layout = { 'window': 'lua NavigationFloatingWin()' }
 
 function! FloatingFZF(row, col, width, height)
     let buf = nvim_create_buf(v:false, v:true)
