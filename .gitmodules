@@ -16,7 +16,7 @@
 	path = @tmux/.tmux/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
 [submodule "@tmux/.tmux/plugins/tpm"]
-	path = @tmux/.tmux/plugins/tpm
+	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
 [submodule "@rogue_emacs"]
 	path = @rogue_emacs
