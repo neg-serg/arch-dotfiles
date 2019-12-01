@@ -1,5 +1,5 @@
 env:
-  TERM: st-256color
+  TERM: alacritty-direct
 
 window:
     dimensions:
