@@ -39,4 +39,5 @@ source ~/.vim/02-keymaps.vim
 source ~/.vim/03-plugins-config.vim
 source ~/.vim/04-autocmds.vim
 source ~/.vim/11-vimacs.vim
+source ~/.vim/14-abbr.vim
 source ~/.vim/21-langmap.vim
