@@ -46,9 +46,8 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **zsh** -- the best of the best shell for me, pretty complex custom config. Based on GRML many years ago, maybe now it is not.
     + **cool-retro-term** -- very nice(but slow) terminal emulator a-la "old TV"
     + **term-colorschemes** -- various dynamic colorschemes, not up-to-date.
-    + **terminfo** -- terminfo...
     + **dircolors** -- my 256-color filetype-based dircolors.
-    + **@tmux** -- tmux config
+    + **tmux** -- tmux config
 + Dev
     + **vim** -- I am using neovim for now, a lot of nice stuff. Also used as IDE for almost all languages(except of java, scala)
     + **dcvs** -- configs for dcvs, except git.
