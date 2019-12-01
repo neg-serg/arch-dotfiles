@@ -11,13 +11,9 @@ if exists('syntax on')
     syntax reset
 endif
 
-let s:conf_bclr_hex='000000'
-let s:conf_dblk_hex='121212'
-let s:conf_lblk_hex='3d3d3d'
-
-let s:bclr_hex=s:conf_bclr_hex " background color hexadecimal
-let s:dblk_hex=s:conf_dblk_hex " dark black hexadecimal    (color 0)
-let s:lblk_hex=s:conf_lblk_hex " light black hexadecimal   (color 8)
+let s:bclr_hex='000000'        " background color hexadecimal
+let s:dblk_hex='121212'        " dark black hexadecimal    (color 0)
+let s:lblk_hex='3d3d3d'        " light black hexadecimal   (color 8)
 let s:dred_hex='8a2f58'        " dark red hexadecimal      (color 1)
 let s:lred_hex='cf4f88'        " light red hexadecimal     (color 9)
 let s:dgrn_hex='297480'        " dark green hexadecimal    (color 2)
@@ -94,46 +90,6 @@ let s:color255='#'.s:color255_hex
 let s:color200='#'.s:color200_hex
 let s:colorcursor='#'.s:colorcursor_hex
 let s:colorsearch='#'.s:colorsearch_hex
-
-if $TERM == 'linux'
-    let s:venv='cterm'
-    let s:bclr=''
-    let s:dblk='Black'
-    let s:lblk='DarkGray'
-    let s:dred='DarkRed'
-    let s:lred='LightRed'
-    let s:dgrn='DarkGreen'
-    let s:lgrn='LightGreen'
-    let s:dylw='DarkYellow'
-    let s:lylw='LightYellow'
-    let s:dblu='DarkBlue'
-    let s:lblu='LightBlue'
-    let s:dmag='DarkMagenta'
-    let s:lmag='LightMagenta'
-    let s:dcyn='DarkCyan'
-    let s:lcyn='LightCyan'
-    let s:dwht='LightGray'
-    let s:lwht='White'
-    let s:culc=s:dblk
-    let s:colorsearch='DarkCyan'
-endif
-
-let g:terminal_color_0=s:dblk
-let g:terminal_color_8=s:lblk
-let g:terminal_color_1=s:dred
-let g:terminal_color_9=s:lred
-let g:terminal_color_2=s:dgrn
-let g:terminal_color_10=s:lgrn
-let g:terminal_color_3=s:dylw
-let g:terminal_color_11=s:lylw
-let g:terminal_color_4=s:dblu
-let g:terminal_color_12=s:lblu
-let g:terminal_color_5=s:dmag
-let g:terminal_color_13=s:lmag
-let g:terminal_color_6=s:dcyn
-let g:terminal_color_14=s:lcyn
-let g:terminal_color_7=s:dwht
-let g:terminal_color_15=s:lwht
 
 fun! s:HI(group, bg, fg, attr)
     exec "hi" a:group
