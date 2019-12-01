@@ -1,6 +1,6 @@
 " Name:        neg
-" Version:     1.2
-" Last Change: 26-10-2019
+" Version:     1.3
+" Last Change: 02-11-2019
 " Maintainer:  Sergey Miroshnichenko <serg.zorg@gmail.com>
 " URL:         
 " About:       neg theme extends Jason W Ryan's miromiro(1) Vim color file
@@ -11,98 +11,53 @@ if exists('syntax on')
     syntax reset
 endif
 
-let s:bclr_hex='000000'        " background color hexadecimal
-let s:dblk_hex='121212'        " dark black hexadecimal    (color 0)
-let s:lblk_hex='3d3d3d'        " light black hexadecimal   (color 8)
-let s:dred_hex='8a2f58'        " dark red hexadecimal      (color 1)
-let s:lred_hex='cf4f88'        " light red hexadecimal     (color 9)
-let s:dgrn_hex='297480'        " dark green hexadecimal    (color 2)
-let s:lgrn_hex='53a6a6'        " light green hexadecimal   (color 10)
-let s:dylw_hex='914e89'        " dark yellow hexadecimal   (color 3)
-let s:lylw_hex='bf85cc'        " light yellow hexadecimal  (color 11)
-let s:dblu_hex='395573'        " dark blue hexadecimal     (color 4)
-let s:lblu_hex='4779b3'        " light blue hexadecimal    (color 12)
-let s:dmag_hex='5e468c'        " dark magentahexadecimal   (color 5)
-let s:lmag_hex='7f62b3'        " light magenta hexadecimal (color 13)
-let s:dcyn_hex='2b7694'        " dark cyan hexadecimal     (color 6)
-let s:lcyn_hex='47959e'        " light cyan hexadecimal    (color 14)
-let s:dwht_hex='899ca1'        " dark white hexadecimal    (color 7)
-let s:lwht_hex='c0c0c0'        " light white hexadecimal   (color 15)
-let s:culc_hex='272727'        " cursor line/column hexadecimal
-let s:color233_hex='040404'    " (color 233)
-let s:color30_hex='008787'     " (color 30)
-let s:color31_hex='0087AF'     " (color 31)
-let s:color32_hex='002B36'     " (color 32)
-let s:color222_hex='5C9CAA'    " (color 222)
-let s:color225_hex='25533F'    " (color 225)
-let s:color250_hex='666666'    " (color 250)
-let s:color251_hex='AFA0F0'    " (color 251)
-let s:color89_hex='232030'     " (color 89)
-let s:color62_hex='002B36'     " (color 62)
-let s:color234_hex='080808'    " (color 234)
-let s:color227_hex='006D39'    " (color 227)
-let s:color228_hex='00406D'    " (color 228)
-let s:color162_hex='CC6666'    " (color 162)
-let s:color127_hex='5F0000'    " (color 127)
-let s:color253_hex='617287'    " (color 253)
-let s:color255_hex='eeeeee'    " (color 255)
-let s:color200_hex='0C1014'    " (color 200)
-let s:colorcursor_hex='375BC1' " (color cursor)
-let s:colorsearch_hex='005FAF' " (search highlight color)
+let s:bclr='#000000'        " background color hexadecimal
+let s:dblk='#121212'        " dark black hexadecimal    (color 0)
+let s:lblk='#3d3d3d'        " light black hexadecimal   (color 8)
+let s:dred='#8a2f58'        " dark red hexadecimal      (color 1)
+let s:lred='#cf4f88'        " light red hexadecimal     (color 9)
+let s:dgrn='#297480'        " dark green hexadecimal    (color 2)
+let s:lgrn='#53a6a6'        " light green hexadecimal   (color 10)
+let s:dylw='#914e89'        " dark yellow hexadecimal   (color 3)
+let s:lylw='#bf85cc'        " light yellow hexadecimal  (color 11)
+let s:dblu='#395573'        " dark blue hexadecimal     (color 4)
+let s:lblu='#4779b3'        " light blue hexadecimal    (color 12)
+let s:dmag='#5e468c'        " dark magentahexadecimal   (color 5)
+let s:lmag='#7f62b3'        " light magenta hexadecimal (color 13)
+let s:dcyn='#2b7694'        " dark cyan hexadecimal     (color 6)
+let s:lcyn='#47959e'        " light cyan hexadecimal    (color 14)
+let s:dwht='#899ca1'        " dark white hexadecimal    (color 7)
+let s:lwht='#c0c0c0'        " light white hexadecimal   (color 15)
+let s:culc='#272727'        " cursor line/column hexadecimal
+let s:color233='#040404'    " (color 233)
+let s:color30='#008787'     " (color 30)
+let s:color31='#0087AF'     " (color 31)
+let s:color32='#002B36'     " (color 32)
+let s:color222='#5C9CAA'    " (color 222)
+let s:color225='#25533F'    " (color 225)
+let s:color250='#666666'    " (color 250)
+let s:color251='#AFA0F0'    " (color 251)
+let s:color89='#232030'     " (color 89)
+let s:color62='#002B36'     " (color 62)
+let s:color234='#080808'    " (color 234)
+let s:color227='#006D39'    " (color 227)
+let s:color228='#00406D'    " (color 228)
+let s:color162='#CC6666'    " (color 162)
+let s:color127='#5F0000'    " (color 127)
+let s:color253='#617287'    " (color 253)
+let s:color255='#eeeeee'    " (color 255)
+let s:color200='#0C1014'    " (color 200)
+let s:colorcursor='#375BC1' " (color cursor)
+let s:colorsearch='#005FAF' " (search highlight color)
 
-let s:venv='gui' " vim environment (term, cterm, gui)
-
-let s:bclr='#'.s:bclr_hex
-let s:dblk='#'.s:dblk_hex
-let s:lblk='#'.s:lblk_hex
-let s:dred='#'.s:dred_hex
-let s:lred='#'.s:lred_hex
-let s:dgrn='#'.s:dgrn_hex
-let s:lgrn='#'.s:lgrn_hex
-let s:dylw='#'.s:dylw_hex
-let s:lylw='#'.s:lylw_hex
-let s:dblu='#'.s:dblu_hex
-let s:lblu='#'.s:lblu_hex
-let s:dmag='#'.s:dmag_hex
-let s:lmag='#'.s:lmag_hex
-let s:dcyn='#'.s:dcyn_hex
-let s:lcyn='#'.s:lcyn_hex
-let s:dwht='#'.s:dwht_hex
-let s:lwht='#'.s:lwht_hex
-let s:culc='#'.s:culc_hex
-let s:color233='#'.s:color233_hex
-let s:color30='#'.s:color30_hex
-let s:color31='#'.s:color31_hex
-let s:color32='#'.s:color32_hex
-let s:color222='#'.s:color222_hex
-let s:color225='#'.s:color225_hex
-let s:color250='#'.s:color250_hex
-let s:color251='#'.s:color251_hex
-let s:color89='#'.s:color89_hex
-let s:color62='#'.s:color62_hex
-let s:color234='#'.s:color234_hex
-let s:color227='#'.s:color227_hex
-let s:color228='#'.s:color228_hex
-let s:color162='#'.s:color162_hex
-let s:color127='#'.s:color127_hex
-let s:color253='#'.s:color253_hex
-let s:color255='#'.s:color255_hex
-let s:color200='#'.s:color200_hex
-let s:colorcursor='#'.s:colorcursor_hex
-let s:colorsearch='#'.s:colorsearch_hex
-
-fun! s:HI(group, bg, fg, attr)
+fun! s:hi(group, bg, fg, attr)
     exec "hi" a:group
-         \ . ' ' . (a:bg   != '' ? s:venv . 'bg=' . a:bg   : '')
-         \ . ' ' . (a:fg   != '' ? s:venv . 'fg=' . a:fg   : '')
-         \ . ' ' . (a:attr != '' ? s:venv . '='   . a:attr : '')
+         \ . ' ' . (a:bg   != '' ? 'guibg=' . a:bg   : '')
+         \ . ' ' . (a:fg   != '' ? 'guifg=' . a:fg   : '')
+         \ . ' ' . (a:attr != '' ? 'gui='   . a:attr : '')
 endfun
 
-if !exists("g:gui_oni")
-    call s:HI(         'Normal', 'NONE', 'NONE', 'NONE' )
-else
-    hi Normal guifg=#617287 guibg=NONE
-endif
+hi Normal guifg=#617287 guibg=NONE
 
 hi! clear DiffAdd
 hi! clear DiffAdded
@@ -116,125 +71,117 @@ hi! link Conceal Operator
 hi! link DiffRemoved Constant
 hi! link DiffAdded String
 
-call s:HI('Ignore', '', s:lblk, '')
-call s:HI('Comment', '', s:dwht, '')
-call s:HI('Float', '', s:dylw, '')
-call s:HI('Include', '', s:dmag, '')
-call s:HI('Define', '', s:dgrn, '')
-call s:HI('Macro', '', s:lmag, '')
-call s:HI('PreProc', '', s:lgrn, '')
-call s:HI('PreCondit', '', s:lmag, '')
-call s:HI('NonText', '', s:dcyn, '')
-call s:HI('Directory', '', s:dcyn, '')
-call s:HI('SpecialKey', '', s:lylw, '')
-call s:HI('Type', '', s:dcyn, '')
-call s:HI('String', '', s:dgrn, '')
-call s:HI('Constant', '', s:lmag, '')
-call s:HI('Special', '', s:lgrn, '')
-call s:HI('SpecialChar', '', s:color30, '')
-call s:HI('Number', '', s:lcyn, '')
-call s:HI('Identifier', '', '#6289B3', '')
-call s:HI('Conditional', '', s:lcyn, '')
-call s:HI('Repeat', '', s:lcyn, '')
-call s:HI('Statement', '', s:dblu, '')
-call s:HI('Label', '', s:lmag, '')
-call s:HI('Operator', '', s:dcyn, '')
-call s:HI('Keyword', '', s:dcyn, '')
-call s:HI('StorageClass', '', s:color31, '')
-call s:HI('Structure', '', s:dmag, '')
-call s:HI('Typedef', '', s:dcyn, '')
-call s:HI('Function', '', s:color222, '')
-call s:HI('cFunctionTag', '', s:color30, '')
-call s:HI('Exception', '', s:dred, '')
-call s:HI('Underlined', '', s:dblu, '')
-call s:HI('Title', '', s:dylw, '')
-call s:HI('Tag', '', s:lylw, '')
-call s:HI('Delimiter', '', s:lblu, '')
-call s:HI('SpecialComment', '', s:dwht, 'underline')
-call s:HI('Boolean', '', s:dylw, '')
-call s:HI('Todo', 'NONE', s:dred, '')
-call s:HI('MoreMsg', 'NONE', s:lmag, '')
-call s:HI('ModeMsg', 'NONE', s:lmag, '')
-call s:HI('Debug', 'NONE', s:dred, '')
-call s:HI('MatchParen', s:dwht, s:dblk, '')
-call s:HI('ErrorMsg', 'NONE', s:color250, '')
-call s:HI('WildMenu', s:dblk, s:dmag, '')
-call s:HI('Folded', s:color32, s:dwht, '')
-call s:HI('Search', s:dblu, s:dblk, '')
-call s:HI('IncSearch', s:dblk, s:colorsearch, 'underline')
-call s:HI('WarningMsg', 'NONE', s:color250, '')
-call s:HI('Question', 'NONE', s:lgrn, '')
-call s:HI('Visual', s:color62, s:dwht, '')
-call s:HI('StatusLine', 'NONE', s:dblu, 'bold')
-call s:HI('StatusLineNC', 'NONE', 'NONE', 'none')
-call s:HI('VertSplit', 'NONE', 'NONE', 'none')
-call s:HI('TabLine', s:dblk, s:dwht, '')
-call s:HI('TabLineFill', 'NONE', s:dblk, '')
-call s:HI('TabLineSel', s:dblk, s:dwht, '')
-call s:HI('Cursor', s:colorcursor, 'NONE', 'NONE')
-call s:HI('CursorLine', s:color234, 'NONE', 'none')
-call s:HI('CursorLineNr', 'NONE', s:lylw, 'none')
-call s:HI('CursorColumn', s:culc, 'NONE', '')
-call s:HI('ColorColumn', s:culc, 'NONE', '')
-call s:HI('FoldColumn', 'NONE', s:lblk, '')
-call s:HI('SignColumn', 'NONE', 'NONE', '')
-call s:HI('DiffAdd', s:lwht, s:color225, '')
-call s:HI('DiffChange', s:lwht, s:color228, '')
-call s:HI('DiffText', 'NONE', s:lwht, '')
-call s:HI('DiffDelete', s:color162, s:color127, '')
-call s:HI('Error', s:color162, s:color127, '')
-
-call s:HI('Pmenu', s:color253, s:bclr, 'reverse')
-call s:HI('PmenuSel', s:colorsearch, s:color200, 'reverse')
-call s:HI('PmenuSbar', s:dblk, 'NONE', '')
-call s:HI('PmenuThumb', s:dgrn, 'NONE', '')
-
-call s:HI('vimCommentTitle', '', s:lgrn, '')
-call s:HI('vimFold', s:lwht, s:dblk, '')
-
-call s:HI('helpHyperTextJump', '', s:lylw, '')
-
-call s:HI('javaScriptNumber', '', s:lylw, '')
-
-call s:HI('htmlTag', '', s:dcyn, '')
-call s:HI('htmlEndTag', '', s:dcyn, '')
-call s:HI('htmlTagName', '', s:lylw, '')
-
-call s:HI('perlSharpBang', '', s:lgrn, 'standout')
-call s:HI('perlStatement', '', s:lmag, '')
-call s:HI('perlStatementStorage', '', s:dred, '')
-call s:HI('perlVarPlain', '', s:dylw, '')
-call s:HI('perlVarPlain2', '', s:lylw, '')
-
-call s:HI('rubySharpBang', '', s:lgrn, 'standout')
-
-call s:HI('diffLine', '', s:lgrn, '')
-call s:HI('diffOldLine', '', s:dgrn, '')
-call s:HI('diffOldFile', '', s:dgrn, '')
-call s:HI('diffNewFile', '', s:dgrn, '')
-call s:HI('diffAdded', '', s:dblu, '')
-call s:HI('diffRemoved', '', s:dred, '')
-call s:HI('diffChanged', '', s:dcyn, '')
-call s:HI('fzf1', '', s:dred, '')
-call s:HI('fzf2', '', s:dylw, '')
-call s:HI('fzf3', '', s:lylw, '')
+call s:hi('Ignore',               '',            s:lblk,        '')
+call s:hi('Comment',              '',            s:dwht,        '')
+call s:hi('Float',                '',            s:dylw,        '')
+call s:hi('Include',              '',            s:dmag,        '')
+call s:hi('Define',               '',            s:dgrn,        '')
+call s:hi('Macro',                '',            s:lmag,        '')
+call s:hi('PreProc',              '',            s:lgrn,        '')
+call s:hi('PreCondit',            '',            s:lmag,        '')
+call s:hi('NonText',              '',            s:dcyn,        '')
+call s:hi('Directory',            '',            s:dcyn,        '')
+call s:hi('SpecialKey',           '',            s:lylw,        '')
+call s:hi('Type',                 '',            s:dcyn,        '')
+call s:hi('String',               '',            s:dgrn,        '')
+call s:hi('Constant',             '',            s:lmag,        '')
+call s:hi('Special',              '',            s:lgrn,        '')
+call s:hi('SpecialChar',          '',            s:color30,     '')
+call s:hi('Number',               '',            s:lcyn,        '')
+call s:hi('Identifier',           '',            '#6289B3',     '')
+call s:hi('Conditional',          '',            s:lcyn,        '')
+call s:hi('Repeat',               '',            s:lcyn,        '')
+call s:hi('Statement',            '',            s:dblu,        '')
+call s:hi('Label',                '',            s:lmag,        '')
+call s:hi('Operator',             '',            s:dcyn,        '')
+call s:hi('Keyword',              '',            s:dcyn,        '')
+call s:hi('StorageClass',         '',            s:color31,     '')
+call s:hi('Structure',            '',            s:dmag,        '')
+call s:hi('Typedef',              '',            s:dcyn,        '')
+call s:hi('Function',             '',            s:color222,    '')
+call s:hi('cFunctionTag',         '',            s:color30,     '')
+call s:hi('Exception',            '',            s:dred,        '')
+call s:hi('Underlined',           '',            s:dblu,        '')
+call s:hi('Title',                '',            s:dylw,        '')
+call s:hi('Tag',                  '',            s:lylw,        '')
+call s:hi('Delimiter',            '',            s:lblu,        '')
+call s:hi('SpecialComment',       '',            s:dwht,        'underline')
+call s:hi('Boolean',              '',            s:dylw,        '')
+call s:hi('Todo',                 'NONE',        s:dred,        '')
+call s:hi('MoreMsg',              'NONE',        s:lmag,        '')
+call s:hi('ModeMsg',              'NONE',        s:lmag,        '')
+call s:hi('Debug',                'NONE',        s:dred,        '')
+call s:hi('MatchParen',           s:dwht,        s:dblk,        '')
+call s:hi('ErrorMsg',             'NONE',        s:color250,    '')
+call s:hi('WildMenu',             s:dblk,        s:dmag,        '')
+call s:hi('Folded',               s:color32,     s:dwht,        '')
+call s:hi('Search',               s:dblu,        s:dblk,        '')
+call s:hi('IncSearch',            s:dblk,        s:colorsearch, 'underline')
+call s:hi('WarningMsg',           'NONE',        s:color250,    '')
+call s:hi('Question',             'NONE',        s:lgrn,        '')
+call s:hi('Visual',               s:color62,     s:dwht,        '')
+call s:hi('StatusLine',           'NONE',        s:dblu,        'bold')
+call s:hi('StatusLineNC',         'NONE',        'NONE',        'none')
+call s:hi('VertSplit',            'NONE',        'NONE',        'none')
+call s:hi('TabLine',              s:dblk,        s:dwht,        '')
+call s:hi('TabLineFill',          'NONE',        s:dblk,        '')
+call s:hi('TabLineSel',           s:dblk,        s:dwht,        '')
+call s:hi('Cursor',               s:colorcursor, 'NONE',        'NONE')
+call s:hi('CursorLine',           s:color234,    'NONE',        'none')
+call s:hi('CursorLineNr',         'NONE',        s:lylw,        'none')
+call s:hi('CursorColumn',         s:culc,        'NONE',        '')
+call s:hi('ColorColumn',          s:culc,        'NONE',        '')
+call s:hi('FoldColumn',           'NONE',        s:lblk,        '')
+call s:hi('SignColumn',           'NONE',        'NONE',        '')
+call s:hi('DiffAdd',              s:lwht,        s:color225,    '')
+call s:hi('DiffChange',           s:lwht,        s:color228,    '')
+call s:hi('DiffText',             'NONE',        s:lwht,        '')
+call s:hi('DiffDelete',           s:color162,    s:color127,    '')
+call s:hi('Error',                s:color162,    s:color127,    '')
+call s:hi('Pmenu',                s:color253,    s:bclr,        'reverse')
+call s:hi('PmenuSel',             s:colorsearch, s:color200,    'reverse')
+call s:hi('PmenuSbar',            s:dblk,        'NONE',        '')
+call s:hi('PmenuThumb',           s:dgrn,        'NONE',        '')
+call s:hi('vimCommentTitle',      '',            s:lgrn,        '')
+call s:hi('vimFold',              s:lwht,        s:dblk,        '')
+call s:hi('helpHyperTextJump',    '',            s:lylw,        '')
+call s:hi('javaScriptNumber',     '',            s:lylw,        '')
+call s:hi('htmlTag',              '',            s:dcyn,        '')
+call s:hi('htmlEndTag',           '',            s:dcyn,        '')
+call s:hi('htmlTagName',          '',            s:lylw,        '')
+call s:hi('perlSharpBang',        '',            s:lgrn,        'standout')
+call s:hi('perlStatement',        '',            s:lmag,        '')
+call s:hi('perlStatementStorage', '',            s:dred,        '')
+call s:hi('perlVarPlain',         '',            s:dylw,        '')
+call s:hi('perlVarPlain2',        '',            s:lylw,        '')
+call s:hi('rubySharpBang',        '',            s:lgrn,        'standout')
+call s:hi('diffLine',             '',            s:lgrn,        '')
+call s:hi('diffOldLine',          '',            s:dgrn,        '')
+call s:hi('diffOldFile',          '',            s:dgrn,        '')
+call s:hi('diffNewFile',          '',            s:dgrn,        '')
+call s:hi('diffAdded',            '',            s:dblu,        '')
+call s:hi('diffRemoved',          '',            s:dred,        '')
+call s:hi('diffChanged',          '',            s:dcyn,        '')
+call s:hi('fzf1',                 '',            s:dred,        '')
+call s:hi('fzf2',                 '',            s:dylw,        '')
+call s:hi('fzf3',                 '',            s:lylw,        '')
 
 if has('spell')
     hi clear SpellBad
     hi clear SpellCap
     hi clear SpellRare
     hi clear SpellLocal
-    call s:HI('SpellBad', '', '', 'underline')
-    call s:HI('SpellCap', '', '', 'underline')
-    call s:HI('SpellRare', '', '', 'underline')
-    call s:HI('SpellLocal', '', '', 'underline')
+    call s:hi('SpellBad', '', '', 'underline')
+    call s:hi('SpellCap', '', '', 'underline')
+    call s:hi('SpellRare', '', '', 'underline')
+    call s:hi('SpellLocal', '', '', 'underline')
 endif
 
-call s:HI('SyntasticErrorSign', s:culc, s:lred, '')
-call s:HI('SyntasticWarningSign', s:culc, s:lmag, '')
+call s:hi('SyntasticErrorSign', s:culc, s:lred, '')
+call s:hi('SyntasticWarningSign', s:culc, s:lmag, '')
 
-call s:HI('TermCursor', s:colorcursor, 'NONE', 'NONE')
-call s:HI('TermCursorNC', s:lblk, 'NONE', 'NONE')
+call s:hi('TermCursor', s:colorcursor, 'NONE', 'NONE')
+call s:hi('TermCursorNC', s:lblk, 'NONE', 'NONE')
 
 if has('spell')
     hi! clear SpellBad
