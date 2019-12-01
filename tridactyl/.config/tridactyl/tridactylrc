@@ -10,7 +10,7 @@ set allowautofocus true
 set newtab http://localhost:31831
 set tabopencontaineraware true
 
-alias w saveas
+alias w saveas ~/dw/
 
 setpref general.warnOnAboutConfig false
 setpref extensions.webextensions.restrictedDomains ""
