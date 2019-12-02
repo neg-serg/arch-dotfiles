@@ -1,5 +1,5 @@
 " Name:        neg
-" Version:     1.3
+" Version:     1.4
 " Last Change: 02-11-2019
 " Maintainer:  Sergey Miroshnichenko <serg.zorg@gmail.com>
 " URL:         
@@ -83,7 +83,7 @@ call s:hi('NonText',              '',            s:dcyn,        '')
 call s:hi('Directory',            '',            s:dcyn,        '')
 call s:hi('SpecialKey',           '',            s:lylw,        '')
 call s:hi('Type',                 '',            s:dcyn,        '')
-call s:hi('String',               '',            s:dgrn,        '')
+call s:hi('String',               '',            '#6F839C',     '')
 call s:hi('Constant',             '',            s:lmag,        '')
 call s:hi('Special',              '',            s:lgrn,        '')
 call s:hi('SpecialChar',          '',            s:color30,     '')
