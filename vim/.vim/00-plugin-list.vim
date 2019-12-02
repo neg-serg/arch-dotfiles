@@ -18,7 +18,7 @@ Plug 'Shougo/neco-vim' " modern vim autocomplete
 Plug 'inkarkat/vim-ReplaceWithRegister' "replace with register keybindings
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'machakann/vim-swap' " swap with emacs
-Plug 'Raimondi/delimitMate' " autopair for brackets
+Plug 'jiangmiao/auto-pairs' " autopair for brackets
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
 Plug 'tpope/vim-repeat' " dot for everything
