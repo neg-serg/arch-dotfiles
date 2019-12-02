@@ -131,37 +131,26 @@ nnoremap ed :Buffers<CR>
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 " load lua functions for navigation
-lua require("navigation")
-let g:fzf_layout = { 'window': 'lua NavigationFloatingWin()' }
-
-function! FloatingFZF(row, col, width, height)
-    let buf = nvim_create_buf(v:false, v:true)
-    call setbufvar(buf, '&signcolumn', 'no')
-    let s:height = &lines - 8
-    let opts = {'relative': 'editor', 'row': a:row, 'col': a:col, 'width': a:width, 'height': a:height}
-    call nvim_open_win(buf, v:true, opts)
-endfunction
+if 0
+    lua require("navigation")
+    let g:fzf_layout = { 'window': 'lua NavigationFloatingWin()' }
+endif
 
 " For Commits and BCommits to customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 " Advanced customization using autoload functions
 autocmd VimEnter * command! Colors
-\ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+    \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
 
 " Insert mode completion
 imap <c-x><c-f> <Plug>(fzf-complete-path)
 imap <c-x><c-l> <Plug>(fzf-complete-line)
-
-nnoremap <silent> <Leader>. :call fzf#run({
-    \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
-    \ 'options': '--tiebreak=index --multi --layout=default',
-    \ 'down': '30%',
-    \ 'sink': 'e '
-    \ })<CR>
-function! s:escape(path)
-    return substitute(a:path, ' ', '\\ ', 'g')
-endfunction
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - pbogut/fzf-mru.vim                                                       │
+" │ https://github.com/pbogut/fzf-mru.vim                                             │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+nnoremap <silent> <Leader>. :FZFMru<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - SirVer/ultisnips.git                                                     │
 " │ https://github.com/SirVer/ultisnips.git                                           │

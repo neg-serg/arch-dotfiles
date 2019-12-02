@@ -1,5 +1,5 @@
 "--[ Main ]--------------------------------------------------------------------------
-Plug 'Shougo/neomru.vim' " add neomru source
+Plug 'pbogut/fzf-mru.vim' "fzf mru source
 Plug 'Shougo/defx.nvim' " better file-manager for nvim
 Plug 'francoiscabrol/ranger.vim' " ranger integration in vim
 Plug 'rbgrouleff/bclose.vim' " some dep for ranger.vim
