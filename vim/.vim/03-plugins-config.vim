@@ -320,3 +320,12 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 " │ https://github.com/francoiscabrol/ranger.vim                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:ranger_replace_netrw = 1
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - jiangmiao/auto-pairs                                                     │
+" │ https://github.com/jiangmiao/auto-pairs                                           │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutBackInsert = ''
+let g:AutoPairs =  {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", '<':'>'}
