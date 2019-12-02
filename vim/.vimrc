@@ -8,7 +8,7 @@ let g:loaded_getscriptPlugin = 1 " I don't use it
 let g:loaded_2html_plugin    = 1 " 2html is too ugly for me
 let g:loaded_vimballPlugin   = 1 " Don't use legacy vimball
 let g:loaded_matchparen      = 1 " Don't show matching brackets/parenthesis
-let loaded_netrwPlugin       = 1
+let loaded_netrwPlugin       = 1 " Disable netrw plugin, use vim-ranger
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
@@ -24,8 +24,7 @@ if get(g:, 'profile')
     call ProfileStart()
 endif
 autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
-    \ | redraw
-    \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+        \ | redraw | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 
 let &runtimepath = expand('~/.vim/') . ','
     \ . expand('~/.vim/after/') . ',' . &runtimepath
