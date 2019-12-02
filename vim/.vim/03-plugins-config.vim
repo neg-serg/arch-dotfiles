@@ -322,7 +322,12 @@ nnoremap <A-/> :Grepper -tool rg<CR>
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:Gitv_OpenHorizontal = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - https://github.com/FooSoft/vim-argwrap                                   │
+" │ plugin - FooSoft/vim-argwrap                                                      │
 " │ https://github.com/FooSoft/vim-argwrap                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <leader>a :ArgWrap<CR>
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - francoiscabrol/ranger.vim                                                │
+" │ https://github.com/francoiscabrol/ranger.vim                                      │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:ranger_replace_netrw = 1
