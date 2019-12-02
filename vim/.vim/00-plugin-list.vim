@@ -1,6 +1,8 @@
 "--[ Main ]--------------------------------------------------------------------------
 Plug 'Shougo/neomru.vim' " add neomru source
 Plug 'Shougo/defx.nvim' " better file-manager for nvim
+Plug 'francoiscabrol/ranger.vim' " ranger integration in vim
+Plug 'rbgrouleff/bclose.vim' " some dep for ranger.vim
 Plug 'thinca/vim-quickrun' " run a bunch of text
 "--[ Statusline ]--------------------------------------------------------------------
 Plug 'itchyny/lightline.vim' " lightline statusline
