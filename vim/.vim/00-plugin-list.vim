@@ -42,7 +42,6 @@ Plug 'dyng/ctrlsf.vim' " interactive vim-grep
 Plug 'junegunn/fzf' " fzf itself
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'mhinz/vim-grepper' "better grep plugin
-Plug 'sjbach/lusty' " file/buffer explorer
 " --[ Docs ]-------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]--------------------------------------------------------------------------
@@ -101,3 +100,4 @@ Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for inde
 " --[ Misc syntax ]-----------------------------------------------------------------------
 Plug 'blindFS/vim-regionsyntax', {'for': ['vimwiki', 'markdown', 'tex', 'html']} " region syntax highlighting
 Plug 'baskerville/vim-sxhkdrc', {'for': 'sxhkdrc'} " sxhkd config syntax
+Plug 'sjbach/lusty', {'on': ['LustyFilesystemExplorer', 'LustyFilesystemExplorerFromHere']} " file/buffer explorer
