@@ -192,11 +192,6 @@ if has('arabic')
 endif
 "--[ change undo file location ]----------------------------------
 if exists('+undofile')
-    " undofile - This allows you to use undos after exiting and restarting
-    " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-    " :help undo-persistence
-    " This is only present in 7.3+
-    silent !mkdir -p ~/trash > /dev/null 2>&1
     set undodir=~/trash/
     set undofile
 endif
@@ -253,12 +248,8 @@ set maxmapdepth=1000    " Maximum number of times a mapping is done
                         " without resulting in a character to be used.
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
-if !has('nvim')
-    set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-else
-    set viminfo=
-    set shada=
-endif
+set viminfo=
+set shada=
 set modeline            " disable modelines
 
 set iminsert=0          " write latin1 characters first
