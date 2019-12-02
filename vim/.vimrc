@@ -13,6 +13,7 @@ let loaded_netrwPlugin       = 1 " Disable netrw plugin, use vim-ranger
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
+let g:profile = 0
 fun! ProfileStart()
     let l:profile_file = '/tmp/vim.'.getpid().'.profile.txt'
     echom 'Profiling into' l:profile_file
