@@ -9,10 +9,7 @@ window:
       x: 2
       y: 2
     decorations: full
-
-    # Spread additional padding evenly around the terminal content.
     dynamic_padding: false
-
     startup_mode: Maximized
 
 dpi:
@@ -38,26 +35,17 @@ font:
 
   size: 18.0
 
-  # Offset is the extra space around each character. offset.y can be thought of
-  # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
     x: 0
     y: 0
 
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increase the x offset to move the glyph to
-  # the right, increase the y offset to move the glyph upward.
   glyph_offset:
     x: 0
     y: 0
 
-  # OS X only: use thin stroke font rendering. Thin strokes are suitable
-  # for retina displays, but for non-retina you probably want this set to
-  # false.
   use_thin_strokes: true
 
 debug:
-  # Should display the render timer
   render_timer: false
   persistent_logging: false
 
@@ -90,41 +78,9 @@ colors:
     cyan:    '0x47959E'
     white:   '0x899CA1'
 
-# Indexed Colors
-#
-# The indexed colors include all colors from 16 to 256.
-# When these are not set, they're filled with sensible defaults.
-#
-# Example:
-#   `- { index: 16, color: '0xff00ff' }`
-#
-# indexed_colors: []
-
 cursor:
-  # Cursor style
-  #
-  # Values for `style`:
-  #   - ▇ Block
-  #   - _ Underline
-  #   - | Beam
   style: Block
-
-  # If this is `true`, the cursor will be rendered as a hollow box when the
-  # window is not focused.
   unfocused_hollow: true
-
-# Possible values for `animation`
-# `Ease`
-# `EaseOut`
-# `EaseOutSine`
-# `EaseOutQuad`
-# `EaseOutCubic`
-# `EaseOutQuart`
-# `EaseOutQuint`
-# `EaseOutExpo`
-# `EaseOutCirc`
-# `Linear`
-# To completely disable the visual bell, set its duration to 0.
 
 visual_bell:
   animation: EaseOutExpo
@@ -221,21 +177,6 @@ key_bindings:
   - { key: Insert,                  chars: "\x1b[2~"                     }
   - { key: Delete,                  chars: "\x1b[3~"                     }
 
-# Mouse bindings
-#
-# Currently doesn't support modifiers. Both the `mouse` and `action` fields must
-# be specified.
-#
-# Values for `mouse`:
-# - Middle
-# - Left
-# - Right
-# - Numeric identifier such as `5`
-#
-# Values for `action`:
-# - Paste
-# - PasteSelection
-# - Copy (TODO)
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
 
@@ -250,4 +191,4 @@ selection:
   semantic_escape_chars: ",`|:\"' ()[]{}<>"
 
 shell:
- program: /bin/zsh 
+  program: /bin/zsh 
