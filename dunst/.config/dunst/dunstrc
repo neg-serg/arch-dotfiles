@@ -33,7 +33,7 @@
     stack_duplicates      = true
     hide_duplicate_count  = true
     frame_width           = 1
-    frame_color           = "#073642"
+    frame_color           = "#0C0C0D"
     width                 = 0
     ellipsize             = middle
     verbosity             = mesg
