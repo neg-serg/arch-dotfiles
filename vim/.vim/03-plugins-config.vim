@@ -156,11 +156,11 @@ nnoremap <silent> <Leader>. :FZFMru<CR>
 " │ https://github.com/SirVer/ultisnips.git                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:UltiSnipsRemoveSelectModeMappings = 1
-let g:UltiSnipsSnippetsDir         = $HOME . './vim/snippets'
-let g:UltiSnipsExpandTrigger       = "<NOP>"
-let g:UltiSnipsJumpForwardTrigger  = "<C-;>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-Tab>"
-let g:UltiSnipsListSnippets        = "<c-m-s>"
+let g:UltiSnipsSnippetDirectories  = ['usnippets']
+let g:UltiSnipsExpandTrigger       = "<C-Space>"
+let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<NOP>"
+let g:UltiSnipsListSnippets        = "<NOP>"
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjbach/lusty.git                                                         │
 " │ https://github.com/sjbach/lusty.git                                               │
