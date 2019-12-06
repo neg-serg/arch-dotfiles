@@ -5,7 +5,7 @@
     pager =
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
-	editor = ~/bin/v
+	editor = "nvr --remote-wait-silent"
 [color]
     branch     = auto
     diff       = 1
@@ -53,9 +53,9 @@
 [difftool "nvr"]
     cmd = nvr -s -d $LOCAL $REMOTE
 [merge]
-    tool = nvr
+    tool = nvim
 [mergetool "nvr"]
-    cmd = "nvr -cc tabnew -o \"$BASE\" \"$REMOTE\" -O \"$LOCAL\" \"$MERGED\""
+    cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
 [credential]
     helper = cache --timeout=28800
 [interactive]
