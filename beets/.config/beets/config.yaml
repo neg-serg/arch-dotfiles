@@ -26,6 +26,10 @@ original_date: yes
 
 import:
   copy: no
+  incremental_skip_later: yes
+  quiet_fallback: yes
+  none_rec_action: skip
+  duplicate_action: remove
 
 chroma:
   auto: yes
