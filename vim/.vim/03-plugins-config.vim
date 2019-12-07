@@ -15,8 +15,6 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -24,9 +22,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> [Quickfix]c <Plug>(coc-diagnostic-next)
+nmap <silent> [Quickfix]C <Plug>(coc-diagnostic-prev)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -72,8 +69,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " │ plugin - xolox/vim-session                                                        │ 
 " │ https://github.com/xolox/vim-session                                              │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-" Remember info about open buffers on close
-set viminfo^=%
 let g:session_lock_enabled = 0
 let g:session_verbose_messages = 0
 let g:session_autosave_silent = 1
@@ -87,7 +82,6 @@ let g:session_autosave = 'yes'
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:gitgutter_realtime = 1 " github.com/airblade/vim-gitgutter/issues/106
 let g:gitgutter_async = 1
-" GitGutter styling to use · instead of +/-
 let g:gitgutter_sign_added = '∙'
 let g:gitgutter_sign_modified = '∙'
 let g:gitgutter_sign_removed = '∙'
@@ -97,10 +91,8 @@ highlight SignColumn ctermbg=4
 " │ plugin - w0rp/ale                                                                 │ 
 " │ https://github.com/w0rp/ale                                                       │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-" ⚡😱✗➽⚑⚐♒⛢❕❗✖➤
 let g:ale_sign_warning = '⚡'
-let g:ale_sign_error = '😱'
-
+let g:ale_sign_error = '✖'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -150,7 +142,7 @@ imap <c-x><c-l> <Plug>(fzf-complete-line)
 " │ plugin - pbogut/fzf-mru.vim                                                       │
 " │ https://github.com/pbogut/fzf-mru.vim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <silent> <Leader>. :FZFMru<CR>
+nnoremap <silent> <Leader>. :FZFMru --prompt "❯> "<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - SirVer/ultisnips.git                                                     │
 " │ https://github.com/SirVer/ultisnips.git                                           │
@@ -175,7 +167,7 @@ nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchIMappings = ['ru']
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
-let g:XkbSwitchSkipFt = ['nerdtree', 'tex']
+let g:XkbSwitchSkipFt = []
 let g:XkbSwitchSkipIMappings = {'*' : ['[', ']', '{', '}', "'", '<', '>', ',', '.', '"']}
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
@@ -255,30 +247,6 @@ let g:rainbow_load_separately = [
     \ ['stylus', []],
 \ ]
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - joshdick/onedark.vim                                                     │
-" │ https://github.com/joshdick/onedark.vim                                           │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:onedark_color_overrides = {
-    \ "red": { "gui": "#F07178", "cterm": "204", "cterm16": "1" },
-    \ "dark_red": { "gui": "#F07178", "cterm": "196", "cterm16": "9" },
-    \ "green": { "gui": "#C3E88D", "cterm": "114", "cterm16": "2" },
-    \ "yellow": { "gui": "#FFE082", "cterm": "180", "cterm16": "3" },
-    \ "dark_yellow": { "gui": "#FFCB6B", "cterm": "173", "cterm16": "11" },
-    \ "blue": { "gui": "#82AAFF", "cterm": "39", "cterm16": "4" },
-    \ "purple": { "gui": "#C792EA", "cterm": "170", "cterm16": "5" },
-    \ "cyan": { "gui": "#89DDF3", "cterm": "38", "cterm16": "6" },
-    \ "white": { "gui": "#B2CCD6", "cterm": "145", "cterm16": "7" },
-    \ "black": { "gui": "#263238", "cterm": "235", "cterm16": "0" },
-    \ "visual_black": { "gui": "NONE", "cterm": "NONE", "cterm16": "0" },
-    \ "comment_grey": { "gui": "#4F6875", "cterm": "59", "cterm16": "15" },
-    \ "gutter_fg_grey": { "gui": "#3E4A50", "cterm": "238", "cterm16": "15" },
-    \ "cursor_grey": { "gui": "#37625A", "cterm": "236", "cterm16": "8" },
-    \ "visual_grey": { "gui": "#2D3B42", "cterm": "237", "cterm16": "15" },
-    \ "menu_grey": { "gui": "#2D3B42", "cterm": "237", "cterm16": "8" },
-    \ "special_grey": { "gui": "#2D3B42", "cterm": "238", "cterm16": "15" },
-    \ "vertsplit": { "gui": "#202A2F", "cterm": "59", "cterm16": "15" }
-\}
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-markdown                                                       │
 " │ https://github.com/tpope/vim-markdown                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -293,7 +261,7 @@ let g:markdown_quote_syntax_filetypes = {
     \},
     \}
 if executable('waterfox')
-    let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'waterfox')
+    let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - itchyny/lightline.vim                                                    │

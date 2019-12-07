@@ -114,7 +114,6 @@ set clipboard=unnamedplus
 
 " Protect home directory
 if !empty($SUDO_USER) && $USER !=# $SUDO_USER
-  set viminfo=
   set directory-=~/trash
   set backupdir-=~/trash
 endif
@@ -248,7 +247,8 @@ set maxmapdepth=1000    " Maximum number of times a mapping is done
                         " without resulting in a character to be used.
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
-set viminfo=
+" Remember info about open buffers on close
+set viminfo^=%
 set shada=
 set modeline            " disable modelines
 
@@ -266,16 +266,16 @@ endif
 if has('cscope')
     if executable('gtags')
         set cscopeprg=/usr/bin/gtags-cscope
+
+        let g:GtagsCscope_Auto_Map        = 1
+        let g:GtagsCscope_Use_Old_Key_Map = 0
+        let g:GtagsCscope_Ignore_Case     = 1
+        let g:GtagsCscope_Absolute_Path   = 1
+        let g:GtagsCscope_Keep_Alive      = 1
+        let g:GtagsCscope_Auto_Load       = 0
     else
         set cscopeprg=/usr/bin/cscope
     endif
     set cscopetagorder=0
     set cscopetag
-
-    let g:GtagsCscope_Auto_Map        = 1
-    let g:GtagsCscope_Use_Old_Key_Map = 0
-    let g:GtagsCscope_Ignore_Case     = 1
-    let g:GtagsCscope_Absolute_Path   = 1
-    let g:GtagsCscope_Keep_Alive      = 1
-    let g:GtagsCscope_Auto_Load       = 0
 endif
