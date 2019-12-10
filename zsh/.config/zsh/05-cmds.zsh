@@ -138,7 +138,7 @@ local noglob_list=(
 )
 
 local rlwrap_list=(
-    bigloo clisp irb guile
+    bigloo clisp irb guile bb
 )
 
 local sudo_list=({u,}mount ch{mod,own} modprobe i7z aircrack-ng)
