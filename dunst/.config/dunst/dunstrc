@@ -74,9 +74,9 @@
 
 [pic_notify]
     appname    = screenshot 
+    format     = ""
     script     = "~/bin/scripts/pic_notify"
     urgency    = normal
-    format     = ""
 
 [mpd]
     appname    = mpd-notification
@@ -84,41 +84,6 @@
     script     = "~/bin/scripts/mpd_notification"
     urgency    = normal
 
-[mopidy]
-    summary = Mopidy
-    appname = notify-send
-    urgency = low
-    format = "<b>  %s</b>\n%b"
-
-[google-play-music-desktop-player]
-    appname = Electron
-    urgency = low
-    format = "<b>  %s</b>\n%b"
-    new_icon = applications-multimedia
-
 [usb]
     summary = Automount
     format = "<b> %s</b>\n%b"
-
-[slack]
-    summary = Slack Notification
-    format = "<b> %s</b>\n%b"
-
-[weechat]
-    appname = weechat
-    format = "<b>  %s</b>\n%b"
-
-[Pushbullet]
-    summary = "*Iphone7*"
-    format = "<b> %s</b>\n%b"
-    urgency = low
-
-[spotify]
-    appname = Spotify
-    urgency = normal
-
-[mailspring]
-    appname = Mailspring
-    urgency = normal
-    new_icon = applications-multimedia
-
