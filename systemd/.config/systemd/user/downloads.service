@@ -1,5 +1,6 @@
 [Unit]
 Description=Downloads cleaner and handler
+After=dbus.service
 
 [Service]
 Type=simple
