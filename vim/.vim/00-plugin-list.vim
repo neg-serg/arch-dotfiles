@@ -1,5 +1,5 @@
 "--[ Main ]--------------------------------------------------------------------------
-Plug 'pbogut/fzf-mru.vim' "fzf mru source
+Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'francoiscabrol/ranger.vim' " ranger integration in vim
 Plug 'rbgrouleff/bclose.vim' " some dep for ranger.vim
 Plug 'thinca/vim-quickrun' " run a bunch of text
@@ -7,31 +7,32 @@ Plug 'thinca/vim-quickrun' " run a bunch of text
 Plug 'itchyny/lightline.vim' " lightline statusline
 Plug 'maximbaz/lightline-ale' " lightline ale mod
 "--[ Autocompletion ]----------------------------------------------------------------
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} "autocomplete
-Plug 'jsfaint/coc-neoinclude' "neoinclude support
-Plug 'neoclide/coc-lists' "use it for files support
-Plug 'neoclide/coc-neco' "vimL completion engine via neco-vim
-Plug 'neoclide/coc-sources' "use it for coc-ultisnips
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " autocomplete
+Plug 'jsfaint/coc-neoinclude' " neoinclude support
+Plug 'neoclide/coc-lists' " use it for files support
+Plug 'neoclide/coc-neco' " vimL completion engine via neco-vim
+Plug 'neoclide/coc-sources' " use it for coc-ultisnips
 Plug 'Shougo/neco-vim' " modern vim autocomplete
 " --[ Edit ]-------------------------------------------------------------------------
-Plug 'inkarkat/vim-ReplaceWithRegister' "replace with register keybindings
+Plug 'inkarkat/vim-ReplaceWithRegister' " replace with register keybindings
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'machakann/vim-swap' " swap with emacs
 Plug 'jiangmiao/auto-pairs' " autopair for brackets
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
 Plug 'tpope/vim-repeat' " dot for everything
-Plug 'tpope/vim-surround' "new commands to vim for generic brackets
+Plug 'tpope/vim-surround' " new commands to vim for generic brackets
 Plug 'wellle/targets.vim' " better text objects
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " browser integration
 "--[ Additions ]---------------------------------------------------------------------
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'lyokha/vim-xkbswitch' " Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 Plug 'Valloric/ListToggle' " toggle quickfix and location list
 "--[ QuickFix stuff ]----------------------------------------------------------------
-Plug 'romainl/vim-qf' "better quickfix support
+Plug 'romainl/vim-qf' " better quickfix support
 Plug 'thinca/vim-qfreplace' " visual replace for multiple files
-Plug 'stefandtw/quickfix-reflector.vim' "qf editing
+Plug 'stefandtw/quickfix-reflector.vim' " qf editing
 " --[ Rice ]-------------------------------------------------------------------------
 Plug 'frazrepo/vim-rainbow' " better rainbow parentheses
 Plug 'tpope/vim-abolish' " for different case coersion
@@ -41,6 +42,7 @@ Plug 'dyng/ctrlsf.vim' " interactive vim-grep
 Plug 'junegunn/fzf' " fzf itself
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'mhinz/vim-grepper' "better grep plugin
+Plug 'google/vim-searchindex' "search index
 " --[ Docs ]-------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]--------------------------------------------------------------------------
@@ -54,7 +56,7 @@ Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
 Plug 'dense-analysis/ale' " ale as linter
 " --[ LaTeX ]------------------------------------------------------------------------
-Plug 'donRaphaco/neotex' "latex support
+Plug 'donRaphaco/neotex' " latex support
 " ----------------[  Tags  ]---------------------------------------------------------
 Plug 'bbchung/gasynctags' " autogenerate gtags to cscope db
 Plug 'neg-serg/gtags-cscope-vim' "  my gtags-cscope fork
