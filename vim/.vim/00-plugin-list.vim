@@ -23,6 +23,7 @@ Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
 Plug 'tpope/vim-repeat' " dot for everything
 Plug 'tpope/vim-surround' " new commands to vim for generic brackets
 Plug 'wellle/targets.vim' " better text objects
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'} " firefox integration
 "--[ Additions ]---------------------------------------------------------------------
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
