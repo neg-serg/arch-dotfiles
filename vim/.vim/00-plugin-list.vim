@@ -1,7 +1,5 @@
 "--[ Main ]--------------------------------------------------------------------------
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
-Plug 'francoiscabrol/ranger.vim' " ranger integration in vim
-Plug 'rbgrouleff/bclose.vim' " some dep for ranger.vim
 Plug 'thinca/vim-quickrun' " run a bunch of text
 "--[ Statusline ]--------------------------------------------------------------------
 Plug 'itchyny/lightline.vim' " lightline statusline
@@ -55,6 +53,7 @@ Plug 'tomtom/tcomment_vim' " commenter plugin
 Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
 Plug 'dense-analysis/ale' " ale as linter
+Plug 'norcalli/nvim-colorizer.lua' " fast colorizer
 " --[ LaTeX ]------------------------------------------------------------------------
 Plug 'donRaphaco/neotex' " latex support
 " ----------------[  Tags  ]---------------------------------------------------------
