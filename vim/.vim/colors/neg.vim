@@ -230,3 +230,6 @@ call s:IgnoreFiletypeIfNotSet('lisp')
 hi link NormalFloat Normal
 hi link CocFloating Normal
 hi LineNr guifg=#202022 guibg=#040404
+
+" add pmenu transparency
+hi PmenuSel blend=0

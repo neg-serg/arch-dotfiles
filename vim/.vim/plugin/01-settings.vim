@@ -130,9 +130,14 @@ set winminheight=0              " Windows can be 0 line high
 set winminwidth=0               " Windows can be 0 line width
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
-set wildmenu                    " Show list instead of just completing
+set nowildmenu                  " Do not show list instead of just completing
+set wildoptions=pum,tagfile     " wild options
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
+set pumblend=15                 " Set up pmenu transparency
+set pumheight=8                 " Do not make pmenu too wide
+
+set winblend=15                 " Pseudo-transparency for floating windows
 
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
