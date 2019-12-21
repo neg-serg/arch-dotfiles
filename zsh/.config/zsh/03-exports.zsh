@@ -41,7 +41,7 @@ alias zless=${PAGER}
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
-export BROWSER="waterfox"
+export BROWSER="firefox"
 
 export VAGRANT_HOME="/zero/vagrant"
 export PERLBREW_ROOT=${HOME}/.perl5
