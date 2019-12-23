@@ -41,7 +41,6 @@ Plug 'dyng/ctrlsf.vim' " interactive vim-grep
 Plug 'junegunn/fzf' " fzf itself
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'mhinz/vim-grepper' "better grep plugin
-Plug 'google/vim-searchindex' "search index
 " --[ Docs ]-------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]--------------------------------------------------------------------------
