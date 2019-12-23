@@ -22,6 +22,7 @@ Plug 'tpope/vim-repeat' " dot for everything
 Plug 'tpope/vim-surround' " new commands to vim for generic brackets
 Plug 'wellle/targets.vim' " better text objects
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'} " firefox integration
+Plug 'justinmk/vim-dirvish' "minimalistic file manager
 "--[ Additions ]---------------------------------------------------------------------
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
@@ -69,6 +70,7 @@ Plug 'icymind/NeoSolarized' " solarized with better neovim support
 Plug 'tyrannicaltoucan/vim-deep-space' " deepspace colorscheme
 Plug 'rakr/vim-one' "one colorscheme
 Plug 'cocopon/iceberg.vim' "iceberg colorscheme
+Plug 'conweller/endarkened.vim' "endarkened colorscheme
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'gregsexton/gitv' " gitk for vim
@@ -87,6 +89,7 @@ Plug 'vim-scripts/ViewOutput' " VO commandline output
 " ----------------------------------------------------------------------[ Lazy plugins ]---
 " --[ Main ]-------------------------------------------------------------------------------
 Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
+Plug 'sjbach/lusty', {'on': ['LustyFilesystemExplorer', 'LustyFilesystemExplorerFromHere']} " file/buffer explorer
 " --[ Edit ]-------------------------------------------------------------------------------
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'} " undo tree
 Plug 'ntpeters/vim-better-whitespace', {'on': 'StripWhitespace'} " delete whitespaces with ease
@@ -100,4 +103,3 @@ Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for inde
 " --[ Misc syntax ]-----------------------------------------------------------------------
 Plug 'blindFS/vim-regionsyntax', {'for': ['vimwiki', 'markdown', 'tex', 'html']} " region syntax highlighting
 Plug 'baskerville/vim-sxhkdrc', {'for': 'sxhkdrc'} " sxhkd config syntax
-Plug 'sjbach/lusty', {'on': ['LustyFilesystemExplorer', 'LustyFilesystemExplorerFromHere']} " file/buffer explorer
