@@ -7,7 +7,7 @@
     alignment             = left
     show_age_threshold    = -1
     ignore_newline        = false
-    geometry              = "650x12-0-35"
+    geometry              = "610x12-40-35"
     shrink                = false
     transparency          = 0
     idle_threshold        = 8
@@ -57,16 +57,6 @@
     foreground = "#cc2222"
     timeout    = 0
 
-[irc_hilight]
-    appname    = weechat
-    urgency    = low
-    format     = "<span weight='normal' letter_spacing='3000' color='#aaaaaa'>%s</span>\n%b"
-
-[notify-send]
-    appname    = notify-send
-    urgency    = normal
-    format     = "<span weight='normal' letter_spacing='1000' color='#aaaaaa'>👽 %s</span>\n%b"
-
 [skype]
     appname    = skype
     format     = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
@@ -83,7 +73,3 @@
     format     = ""
     script     = "~/bin/scripts/mpd_notification"
     urgency    = normal
-
-[usb]
-    summary = Automount
-    format = "<b> %s</b>\n%b"
