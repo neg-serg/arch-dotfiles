@@ -21,7 +21,6 @@ Plug 'SirVer/ultisnips' " Snippets with ycm compatibility
 Plug 'tpope/vim-repeat' " dot for everything
 Plug 'tpope/vim-surround' " new commands to vim for generic brackets
 Plug 'wellle/targets.vim' " better text objects
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'} " firefox integration
 Plug 'justinmk/vim-dirvish' "minimalistic file manager
 "--[ Additions ]---------------------------------------------------------------------
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
