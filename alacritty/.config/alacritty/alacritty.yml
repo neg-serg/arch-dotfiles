@@ -23,7 +23,7 @@ background_opacity: 0.88
 font:
   normal:
     family: "Iosevka Term"
-    style: Regular
+    style: Medium
 
   bold:
     family: "Iosevka Term"
@@ -48,6 +48,11 @@ font:
 debug:
   render_timer: false
   persistent_logging: false
+
+scrolling:
+  history: 1000
+  multiplier: 3
+  auto_scroll: false
 
 colors:
   primary:
@@ -77,6 +82,10 @@ colors:
     magenta: '0x7F62B3'
     cyan:    '0x47959E'
     white:   '0x899CA1'
+
+  # Example:
+  #   `- { index: 16, color: '0xff00ff' }`
+  indexed_colors: []
 
 cursor:
   style: Block
