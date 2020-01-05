@@ -69,6 +69,7 @@ Plug 'tyrannicaltoucan/vim-deep-space' " deepspace colorscheme
 Plug 'rakr/vim-one' "one colorscheme
 Plug 'cocopon/iceberg.vim' "iceberg colorscheme
 Plug 'conweller/endarkened.vim' "endarkened colorscheme
+Plug 'niklas-8/vim-darkspace' "vim-darkspace colorscheme
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'gregsexton/gitv' " gitk for vim
