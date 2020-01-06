@@ -41,7 +41,7 @@ color44="#4FFFFF"
 color51="#00FFFF"
 
 # blue
-color24="#005f87" #default
+color24="#245361" #default
 color25="#005faf" #default
 color26="#005fd7" #default
 color27="#0090FF"
