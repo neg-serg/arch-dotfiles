@@ -19,7 +19,7 @@ color14="#47959E"
 color15="#617287"
 
 # blue
-color16="#000000"
+color16="#040408"
 color17="#01004C"
 color18="#00006C"
 color19="#000090"
@@ -32,7 +32,6 @@ color28="#005200"
 color34="#007C00"
 color40="#00AE00"
 color46="#00FF01"
-
 # cyan
 color23="#004E4E"
 color30="#017978"
@@ -126,3 +125,24 @@ color154="#C3FF01"
 color155="#FFFF7D"
 color156="#E0FF7D"
 color157="#EAFFA2"
+
+# ultramarine
+color66="#8D74B6"
+color67="#7C59B5"
+color68="#C5A2FE"
+color69="#DBC3FF"
+
+# green3
+color64="#547D55"
+color65="#80AE80"
+color70="#367C36"
+color71="#61AD62"
+color76="#3FAD88"
+color77="#62AE94"
+color82="#86DB24"
+color83="#55AE24"
+
+# blue more dark
+color73="#367CB0"
+color74="#5788B0"
+color75="#7095B0"
