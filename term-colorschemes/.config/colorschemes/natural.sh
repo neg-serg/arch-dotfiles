@@ -81,10 +81,48 @@ color197="#FF01A2"
 # rose
 color54="#320031"
 color90="#570055"
-color127="#810081"
-color163="#B100B0"
-color199="#FF00FE"
+color126="#810081"
+color162="#B100B0"
+color198="#FF00FE"
 
-# additional
-color67="#245361"
-color68="#0a3749"
+# additional blue
+color56="#245361"
+color57="#0a3749"
+
+# violet
+color55="#260039"
+color91="#3D005D"
+color127="#570083"
+color163="#7700B2"
+color199="#AA00FF"
+
+# orange
+color202="#FF5F01"
+color166="#B04000"
+color130="#7F2E01"
+color94="#531E00"
+
+# golden
+color208="#FFAA01"
+color172="#AC7300"
+color136="#795000"
+color100="#4E3608"
+
+# golden-light
+color209="#FFD37C"
+color173="#FFC44E"
+color137="#AD893F"
+color101="#AC9563"
+
+# light-violet
+color213="#EBC3FF"
+color177="#E1A1FF"
+color141="#DBC3FF"
+color105="#D37CFF"
+color104="#AE7CFF"
+
+# lime
+color154="#C3FF01"
+color155="#FFFF7D"
+color156="#E0FF7D"
+color157="#EAFFA2"
