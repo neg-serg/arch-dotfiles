@@ -1,7 +1,7 @@
 zstyle ':acceptline:*' rehash true
 # allow one error for every three characters typed in approximate completer
 zstyle ':completion:*:approximate:' \
-                                            max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
+    max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
 # don't complete backup files as executables
 zstyle ':completion:*:complete:-command-::commands' \
                                             ignored-patterns '(aptitude-*|*\~)'
@@ -63,7 +63,7 @@ zstyle ':completion:*:default'      \
     format        \
     "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
 zstyle ':completion:*:default'  list-colors ${${(s.:.)LS_COLORS}%ec=*}
-zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;222'
+zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;235'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
 
 [[ -r ~/.ssh/known_hosts ]] && _ssh_hosts=(${${${${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}%%:*}#\[}%\]}) ||
