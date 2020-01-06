@@ -23,7 +23,7 @@ if [[ -z $GIT_PROMPT_SYMBOLS ]]; then
         "branch" "%F{7}"
         "behind" "%F{25}%{←%G%}"
         "ahead" "%F{25}%{→%G%}"
-        "separator" "%F{24}|%f"
+        "separator" "%F{67}|%f"
         "staged" "%F{117}%{♦%G%}"
         "changed" "%F{161}%{◊%G%}"
         "conflicts" "%F{9}%{≠%G%}"

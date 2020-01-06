@@ -41,7 +41,7 @@ color44="#4FFFFF"
 color51="#00FFFF"
 
 # blue
-color24="#245361" #default
+color24="#005f87" #default
 color25="#005faf" #default
 color26="#005fd7" #default
 color27="#0090FF"
@@ -84,3 +84,7 @@ color90="#570055"
 color127="#810081"
 color163="#B100B0"
 color199="#FF00FE"
+
+# additional
+color67="#245361"
+color68="#0a3749"
