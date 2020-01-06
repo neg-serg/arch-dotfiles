@@ -20,9 +20,9 @@ ZSH_HIGHLIGHT_STYLES+=(
     hashed-command                  fg=green
     globbing                        fg=110
     history-expansion               fg=blue
-    single-hyphen-option            fg=244
-    double-hyphen-option            fg=244
-    comment                         fg=221
+    single-hyphen-option            fg=61
+    double-hyphen-option            fg=61
+    comment                         fg=56
     arg0                            fg=green
     rc-quote                        cyan
     # redirection                   none
@@ -34,7 +34,7 @@ ZSH_HIGHLIGHT_STYLES+=(
     dollar-double-quoted-argument   fg=004,bold
     back-double-quoted-argument     fg=024,bold
     back-dollar-quoted-argument     fg=024,bold
-    assign                          fg=222,bold
+    assign                          fg=38,bold
 )
 ZSH_HIGHLIGHT_STYLES+=($(< ${ZDOTDIR}/highlighters/ft_list.zsh))
 
