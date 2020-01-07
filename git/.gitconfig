@@ -2,7 +2,7 @@
 	email = serg.zorg@gmail.com
 	name = Neg
 [core]
-    pager =
+    pager = # do not use external pager
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
 	editor = "nvr --remote-wait-silent"
@@ -16,34 +16,31 @@
     ui         = auto
 [color "status"]
     added     = 2 bold
-    branch    = 100
+    branch    = 62
     changed   = 4 bold
     header    = 23
     nobranch  = 197
-    untracked = 240
+    untracked = 235
 [color "branch"]
-    current = 23
+    current = 67
     local   = 18 bold
-    remote  = 17
+    remote  = 25
 [color "diff"]
     old        = 1
-    new        = 23
+    new        = 24
     plain      = 7
-    meta       = 18
+    meta       = 25
     frag       = 67
     func       = 68
     commit     = 4
     whitespace = 54
 [man]
-    viewer = man
+    viewer = nvimpager
 [receive]
     denyCurrentBranch = ignore
 [alias]
     wtf  = "!~/bin/git/git-wtf"
     undo = checkout --
-    l    = "log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short"
-    last = "log -7 --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Blue)[%an]' --date=short"
-    d    = difftool
 [github]
 	user = neg-serg
 [push]
