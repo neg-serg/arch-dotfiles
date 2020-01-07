@@ -292,10 +292,10 @@ rc                  00;34
 .tdesktop-theme     01;35
 .tdesktop-pallete   01;35
 .attheme            00;35
-.vim                00;38;5;221
-.viminfo            00;38;5;221
-.vimp               00;38;5;221
-.vimrc              00;38;5;221;4
+.vim                00;38;5;56
+.viminfo            00;38;5;56
+.vimp               00;38;5;56
+.vimrc              00;38;5;56;4
 .rasi               01;35
 
 .bash          01;38;5;103
