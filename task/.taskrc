@@ -4,11 +4,11 @@ color=on
 search.case.sensitive=off
 
 include ~/.config/task/darkblue-256.theme
-include /usr/share/doc/task/rc/holidays.ru-RU.rc
+include ~/.config/task/holidays.ru-RU.rc
 
 calendar.details=sparse
 calendar.details.report=list
-calendar.legend=yes
+calendar.legend=no
 calendar.offset=no
 calendar.holidays=full
 
