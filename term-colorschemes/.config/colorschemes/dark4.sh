@@ -18,7 +18,7 @@ color13="#7F62B3"
 color14="#47959E"
 color15="#617287"
 
-# blue
+# very dark blur blue, semi-default
 color16="#040408"
 color17="#01004C"
 color18="#00006C"
@@ -32,6 +32,7 @@ color28="#005200"
 color34="#007C00"
 color40="#00AE00"
 color46="#00FF01"
+
 # cyan
 color23="#004E4E"
 color30="#017978"
@@ -146,3 +147,12 @@ color83="#55AE24"
 color73="#367CB0"
 color74="#5788B0"
 color75="#7095B0"
+
+color110="#5B5BBB"
+color111="#7778BB"
+color112="#95DB18"
+color113="#9AEF45"
+color114="#C7FE40"
+color115="#05C390"
+color116="#7CD6EF"
+color117="#90EAFE"
