@@ -190,8 +190,8 @@ RESET 0 # reset to "normal" color
 .xlsm             00;38;5;14
 .xlsx             00;38;5;14
 .chrt             00;38;5;14;1
-.ppt              00;38;5;222
-.pptx             00;38;5;222
+.ppt              00;38;5;31
+.pptx             00;38;5;31
 .odb              38;5;29
 .odp              38;5;29
 .ods              38;5;29
@@ -209,10 +209,10 @@ RESET 0 # reset to "normal" color
 .awk                00;36
 .coffee             00;36
 .cs                 00;36
-.css                38;5;222
-.sass               38;5;222
-.scss               38;5;222
-.less               38;5;222
+.css                38;5;31
+.sass               38;5;31
+.scss               38;5;31
+.less               38;5;31
 .csv                00;36
 .dir_colors         01;34
 .enc                00;36
@@ -319,7 +319,7 @@ zshrc          01;38;5;29;4
 .xinitrc       01;34
 .Xmodmap       00;34
 .Xresources    01;33
-.snippets      00;38;5;222
+.snippets      00;38;5;31
 
 .dmg           01;38;5;134
 .img           01;38;5;134
