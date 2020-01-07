@@ -3,7 +3,7 @@ data.location=~/.task
 color=on
 search.case.sensitive=off
 
-include /usr/share/doc/task/rc/dark-blue-256.theme
+include ~/.config/task/darkblue-256.theme
 include /usr/share/doc/task/rc/holidays.ru-RU.rc
 
 calendar.details=sparse
