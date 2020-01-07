@@ -131,44 +131,44 @@ bind generic    z   stop-loading        # Stop all loading views
 bind generic    v   show-version        # Show Tig version
 
 #--[ Color settings ]----------------------
-color "diff --"             yellow  default
+color "diff --"             blue  default
 color "@@"                  magenta default
 color "+"                   green   default
 color " +"                  green   default
 color "-"                   red     default
 color " -"                  red     default
 color "index "              blue    default
-color "old file mode "      yellow  default
-color "new file mode "      yellow  default
-color "deleted file mode "  yellow  default
-color "copy from "          yellow  default
-color "copy to "            yellow  default
-color "rename from "        yellow  default
-color "rename to "          yellow  default
-color "similarity "         yellow  default
-color "dissimilarity "      yellow  default
+color "old file mode "      blue  default
+color "new file mode "      blue  default
+color "deleted file mode "  blue  default
+color "copy from "          blue  default
+color "copy to "            blue  default
+color "rename from "        blue  default
+color "rename to "          blue  default
+color "similarity "         blue  default
+color "dissimilarity "      blue  default
 color "diff-tree "          blue    default
 color "Author: "            cyan    default
 color "Commit: "            magenta default
 color "Tagger: "            magenta default
 color "Merge: "             blue    default
-color "Date: "              yellow  default
-color "AuthorDate: "        yellow  default
-color "CommitDate: "        yellow  default
-color "TaggerDate: "        yellow  default
+color "Date: "              blue  default
+color "AuthorDate: "        blue  default
+color "CommitDate: "        blue  default
+color "TaggerDate: "        blue  default
 color "Refs: "              red     default
 color "Reflog: "            red     default
-color "Reflog message: "    yellow  default
+color "Reflog message: "    blue  default
 color "stash@{"             magenta default
 color "commit "             green   default
 color "parent "             blue    default
 color "tree "               blue    default
 color "author "             white   default
 color "committer "          magenta default
-color "    Signed-off-by"   yellow  default
-color "    Acked-by"        yellow  default
-color "    Tested-by"       yellow  default
-color "    Reviewed-by"     yellow  default
+color "    Signed-off-by"   blue  default
+color "    Acked-by"        blue  default
+color "    Tested-by"       blue  default
+color "    Reviewed-by"     blue  default
 color default               default default
 color cursor                white   57
 color title-blur            black   blue
@@ -179,9 +179,9 @@ color date                  blue    default
 color mode                  cyan    default
 color id                    magenta default
 color overflow              red     default
-color header                yellow  default
+color header                blue  default
 color section               cyan    default
-color directory             yellow  default
+color directory             blue  default
 color file                  default default
 color grep.file             blue    default
 color file-size             default default
@@ -191,9 +191,9 @@ color title-focus           white   black bold
 color main-commit           default default
 color main-tag              magenta default bold
 color main-local-tag        magenta default
-color main-remote           yellow  default
+color main-remote           blue  default
 color main-replace          cyan    default
-color main-tracked          yellow  default bold
+color main-tracked          blue  default bold
 color main-ref              cyan    default
 color main-head             cyan    default bold
 color stat-none             default default
@@ -201,10 +201,10 @@ color stat-staged           magenta default
 color stat-unstaged         magenta default
 color stat-untracked        magenta default
 color help-group            blue    default
-color help-action           yellow  default
+color help-action           blue  default
 color diff-stat             blue    default
 color palette-0             magenta default
-color palette-1             yellow  default
+color palette-1             blue  default
 color palette-2             cyan    default
 color palette-3             green   default
 color palette-4             default default
