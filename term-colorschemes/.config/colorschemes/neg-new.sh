@@ -1,6 +1,7 @@
 background="#000000"
 foreground="#617287"
 cursorColor="#375BC1"
+
 color0="#020202"
 color1="#8A2F58"
 color2="#287373"
