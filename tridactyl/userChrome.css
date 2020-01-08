@@ -158,7 +158,6 @@ browser[type=content] > html {
     fill: var(--secure-connection-color)!important
 }
 
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 #TabsToolbar {
     visibility: collapse;
 }
@@ -334,7 +333,8 @@ panelmultiview .toolbaritem-combined-buttons>label {
 	border-radius: 0px !important;
 }
 
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+:root{ scrollbar-color: rgb(70,70,70) rgb(20,20,20) }
+
 :root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) {
     min-height: calc(0px);
     overflow: hidden;
