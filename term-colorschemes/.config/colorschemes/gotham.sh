@@ -1,6 +1,7 @@
 foreground="#98d1ce"
 background="#0a0f14"
 cursorColor="#98d1ce"
+
 color0="#0a0f14"
 color8="#10151b"
 color1="#c33027"
@@ -17,3 +18,5 @@ color6="#33859d"
 color14="#599caa"
 color7="#98d1ce"
 color15="#d3ebe9"
+
+source $XDG_CONFIG_HOME/colorschemes/new256color.sh

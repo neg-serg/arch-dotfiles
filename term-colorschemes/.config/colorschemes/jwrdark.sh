@@ -14,3 +14,5 @@ color6="#31658C"
 color14="#6096BF"
 color7="#899CA1"
 color15="#C0C0C0"
+
+source $XDG_CONFIG_HOME/colorschemes/new256color.sh

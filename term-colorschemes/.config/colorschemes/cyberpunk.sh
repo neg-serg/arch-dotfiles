@@ -1,10 +1,6 @@
-# mouse_background="$base02"
-# mouse_foreground="$base1"
-# highlight="$base02"
-# border="$base03"
-
 background="#0b0d17"
 foreground="#c5c8c6"
+
 cursor="#c5c8c6"
 color0="#282a2e"
 color8="#373b41"
@@ -22,3 +18,5 @@ color6="#82146f"
 color14="#98218e"
 color7="#b177a2"
 color15="#b4b1b6"
+
+source $XDG_CONFIG_HOME/colorschemes/new256color.sh

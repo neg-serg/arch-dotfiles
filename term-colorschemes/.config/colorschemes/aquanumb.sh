@@ -1,5 +1,6 @@
 background="#060808"
 foreground="#348781"
+
 color0="#060808"
 color1="#348781"
 color2="#6eb3af"
@@ -16,3 +17,5 @@ color12="#0f706a"
 color13="#37414b"
 color14="#348781"
 color15="#808080"
+
+source $XDG_CONFIG_HOME/colorschemes/new256color.sh
