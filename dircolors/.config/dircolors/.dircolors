@@ -10,26 +10,26 @@ OPTIONS -F -b -T 0
 # EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
 EIGHTBIT 1
 
-FILE           00           # normal file
-DIR            00;34        # directory
+FILE                  00           # normal file
+DIR                   00;34        # directory
 # numerical value, the color is as for the file pointed to.)
 MULTIHARDLINK 00 # regular file with more than one link
-SOCK           01;38;5;075  # socket
-BLK            38;5;24      # block device driver
-CHR            38;5;24;1    # character device driver
-CAPABILITY     38;5;17
+SOCK                  01;38;5;075  # socket
+BLK                   38;5;24      # block device driver
+CHR                   38;5;24;1    # character device driver
+CAPABILITY            38;5;17
 # This is for files with execute permission:
-EXEC           00;04;32     # socket
-NORMAL         00;38;5;244  # no color code at all
-FIFO           38;5;126
-DOOR           38;5;127
-LINK           38;5;05
-ORPHAN         40;31;01
-MULTIHARDLINK  48;5;233;38;5;7;1;3
-OTHER_WRITABLE 48;5;233;38;5;7;1;3
-SETGID         38;5;37;1
-SETUID         38;5;37
-STICKY         38;5;86;48;5;234
+EXEC                  00;04;32     # socket
+NORMAL                00;38;5;244  # no color code at all
+FIFO                  38;5;126
+DOOR                  38;5;127
+LINK                  38;5;05
+ORPHAN                40;31;01
+MULTIHARDLINK         48;5;233;38;5;7;1;3
+OTHER_WRITABLE        48;5;233;38;5;7;1;3
+SETGID                38;5;37;1
+SETUID                38;5;37
+STICKY                38;5;86;48;5;234
 STICKY_OTHER_WRITABLE 38;5;86;48;5;234;1
 RESET 0 # reset to "normal" color
 
