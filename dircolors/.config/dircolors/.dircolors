@@ -506,7 +506,7 @@ so               01;38;5;22
 
 # systemd units
 # http://www.freedesktop.org/software/systemd/man/systemd.unit.html
-.desktop              38;5;250
+.desktop              38;5;75
 .automount            38;5;66
 .device               38;5;24
 .mount                38;5;66
