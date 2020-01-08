@@ -63,7 +63,8 @@ zstyle ':completion:*:default'      \
     format        \
     "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
 zstyle ':completion:*:default'  list-colors ${${(s.:.)LS_COLORS}%ec=*}
-zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;235'
+zstyle ':completion:*' list-colors "ma=48;5;7;38;5;16;1"
+zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;75'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
 
 [[ -r ~/.ssh/known_hosts ]] && _ssh_hosts=(${${${${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}%%:*}#\[}%\]}) ||
@@ -107,13 +108,10 @@ zstyle ':completion:*:*:task:*'                verbose yes         # taskwarrior
 zstyle ':completion:*:*:task:*:descriptions'   format '%U%B%d%b%u' # taskwarrior
 zstyle ':completion:*:*:task:*'                group-name ''       # taskwarrior
 # command completion: highlight matching part of command, and 
-zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;248'\'' )'
+zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;75'\'' )'
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro'
 
-# This is needed to workaround a bug in _setup:12, causing almost 2 seconds delay for bigger LS_COLORS
-# UPDATE: not sure if this is required anymore, with the -command- style above.. keeping it here just to be sure
-zstyle ':completion:*:*:-command-:*' list-colors ''
 # run rehash on completion so new installed program are found automatically:
 _force_rehash() {
     (( CURRENT == 1 )) && rehash
