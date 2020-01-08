@@ -1,4 +1,8 @@
-color0="#333333"
+background="#000000"
+foreground="#617287"
+cursorColor="#375BC1"
+
+color0="#020202"
 color8="#3D3D3D"
 color1="#8C4665"
 color9="#BF4D80"
@@ -13,6 +17,6 @@ color13="#7E62B3"
 color6="#31658C"
 color14="#6096BF"
 color7="#899CA1"
-color15="#C0C0C0"
+color15="#617287"
 
 source $XDG_CONFIG_HOME/colorschemes/new256color.sh
