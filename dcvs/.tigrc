@@ -84,16 +84,16 @@ bind main   G   :toggle commit-title-graph # Toggle revision graph visualization
 bind main   F   :toggle commit-title-refs  # Toggle reference display (tags/branches)
 
 #--[ Cursor navigation ]---------------
-bind generic    k   move-up
-bind generic    j   move-down
+bind generic    k        move-up
+bind generic    j        move-down
 bind generic    <PgDown> move-page-down
-bind generic    <C-D>   move-page-down
-bind generic    <Space> move-page-down
-bind generic    <PgUp>  move-page-up
-bind generic    <C-U>   move-page-up
-bind generic    -   move-page-up
-bind generic    <Home>  move-first-line
-bind generic    <End>   move-last-line
+bind generic    <C-D>    move-page-down
+bind generic    <Space>  move-page-down
+bind generic    <PgUp>   move-page-up
+bind generic    <C-U>    move-page-up
+bind generic    -        move-page-up
+bind generic    <Home>   move-first-line
+bind generic    <End>    move-last-line
 
 #--[ Scrolling ]-------------------------
 bind generic    |       scroll-first-col
@@ -124,93 +124,93 @@ bind generic    W   :toggle ignore-space    # Toggle ignoring whitespace in diff
 bind generic    ?   :toggle commit-order    # Toggle commit ordering
 
 #--[ Misc ]-----------------------------------------------------
-bind generic    e   edit                # Open in editor
-bind generic    :   prompt              # Open the prompt
-bind generic    <C-L>   screen-redraw   # Redraw the screen
-bind generic    z   stop-loading        # Stop all loading views
-bind generic    v   show-version        # Show Tig version
+bind generic    e     edit                # Open in editor
+bind generic    :     prompt              # Open the prompt
+bind generic    <C-L> screen-redraw   # Redraw the screen
+bind generic    z     stop-loading        # Stop all loading views
+bind generic    v     show-version        # Show Tig version
 
 #--[ Color settings ]----------------------
-color "diff --"             blue  default
-color "@@"                  magenta default
-color "+"                   green   default
-color " +"                  green   default
-color "-"                   red     default
-color " -"                  red     default
-color "index "              blue    default
-color "old file mode "      blue  default
-color "new file mode "      blue  default
-color "deleted file mode "  blue  default
-color "copy from "          blue  default
-color "copy to "            blue  default
-color "rename from "        blue  default
-color "rename to "          blue  default
-color "similarity "         blue  default
-color "dissimilarity "      blue  default
-color "diff-tree "          blue    default
-color "Author: "            cyan    default
-color "Commit: "            magenta default
-color "Tagger: "            magenta default
-color "Merge: "             blue    default
-color "Date: "              blue  default
-color "AuthorDate: "        blue  default
-color "CommitDate: "        blue  default
-color "TaggerDate: "        blue  default
-color "Refs: "              red     default
-color "Reflog: "            red     default
-color "Reflog message: "    blue  default
-color "stash@{"             magenta default
-color "commit "             green   default
-color "parent "             blue    default
-color "tree "               blue    default
-color "author "             white   default
-color "committer "          magenta default
-color "    Signed-off-by"   blue  default
-color "    Acked-by"        blue  default
-color "    Tested-by"       blue  default
-color "    Reviewed-by"     blue  default
-color default               default default
-color cursor                white   57
-color title-blur            black   blue
-color title-focus           black   blue
-color status                green   default
-color delimiter             magenta default
-color date                  blue    default
-color mode                  cyan    default
-color id                    magenta default
-color overflow              red     default
-color header                blue  default
-color section               cyan    default
-color directory             blue  default
-color file                  default default
-color grep.file             blue    default
-color file-size             default default
-color line-number           cyan    default
-color title-blur            white   black
-color title-focus           white   black bold
-color main-commit           default default
-color main-tag              magenta default bold
-color main-local-tag        magenta default
-color main-remote           blue  default
-color main-replace          cyan    default
-color main-tracked          blue  default bold
-color main-ref              cyan    default
-color main-head             cyan    default bold
-color stat-none             default default
-color stat-staged           magenta default
-color stat-unstaged         magenta default
-color stat-untracked        magenta default
-color help-group            blue    default
-color help-action           blue  default
-color diff-stat             blue    default
-color palette-0             magenta default
-color palette-1             blue  default
-color palette-2             cyan    default
-color palette-3             green   default
-color palette-4             default default
-color palette-5             white   default
-color palette-6             red     default
-color graph-commit          25      default
+color "diff --"             blue       default
+color "@@"                  magenta    default
+color "+"                   green      default
+color " +"                  green      default
+color "-"                   red        default
+color " -"                  red        default
+color "index "              blue       default
+color "old file mode "      blue       default
+color "new file mode "      blue       default
+color "deleted file mode "  blue       default
+color "copy from "          blue       default
+color "copy to "            blue       default
+color "rename from "        blue       default
+color "rename to "          blue       default
+color "similarity "         blue       default
+color "dissimilarity "      blue       default
+color "diff-tree "          blue       default
+color "Author: "            cyan       default
+color "Commit: "            magenta    default
+color "Tagger: "            magenta    default
+color "Merge: "             blue       default
+color "Date: "              blue       default
+color "AuthorDate: "        blue       default
+color "CommitDate: "        blue       default
+color "TaggerDate: "        blue       default
+color "Refs: "              red        default
+color "Reflog: "            red        default
+color "Reflog message: "    blue       default
+color "stash@{"             magenta    default
+color "commit "             green      default
+color "parent "             blue       default
+color "tree "               blue       default
+color "author "             white      default
+color "committer "          magenta    default
+color "    Signed-off-by"   blue       default
+color "    Acked-by"        blue       default
+color "    Tested-by"       blue       default
+color "    Reviewed-by"     blue       default
+color default               default    default
+color cursor                white      57
+color title-blur            black      blue
+color title-focus           black      blue
+color status                green      default
+color delimiter             magenta    default
+color date                  blue       default
+color mode                  cyan       default
+color id                    magenta    default
+color overflow              red        default
+color header                blue       default
+color section               cyan       default
+color directory             blue       default
+color file                  default    default
+color grep.file             blue       default
+color file-size             default    default
+color line-number           cyan       default
+color title-blur            white      black
+color title-focus           white      black   bold
+color main-commit           default    default
+color main-tag              magenta    default bold
+color main-local-tag        magenta    default
+color main-remote           blue       default
+color main-replace          cyan       default
+color main-tracked          blue       default bold
+color main-ref              cyan       default
+color main-head             cyan       default bold
+color stat-none             default    default
+color stat-staged           magenta    default
+color stat-unstaged         magenta    default
+color stat-untracked        magenta    default
+color help-group            blue       default
+color help-action           blue       default
+color diff-stat             blue       default
+color palette-0             magenta    default
+color palette-1             blue       default
+color palette-2             cyan       default
+color palette-3             green      default
+color palette-4             default    default
+color palette-5             white      default
+color palette-6             red        default
+color graph-commit          25         default
 
 #--[ Mappings for colors read from git configuration. ]--
 #--[ Set to "no" to disable. ]---------------------------
