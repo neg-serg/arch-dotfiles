@@ -107,8 +107,6 @@ zstyle ':completion:*:command-descriptions' command '_call_whatis -l -s 1 -r .\*
 zstyle ':completion:*:*:task:*'                verbose yes         # taskwarrior
 zstyle ':completion:*:*:task:*:descriptions'   format '%U%B%d%b%u' # taskwarrior
 zstyle ':completion:*:*:task:*'                group-name ''       # taskwarrior
-# command completion: highlight matching part of command, and 
-zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;75'\'' )'
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro'
 
