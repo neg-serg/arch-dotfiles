@@ -1,6 +1,7 @@
 "--[ Main ]--------------------------------------------------------------------------
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'thinca/vim-quickrun' " run a bunch of text
+Plug 'neg-serg/neovim-colorschemes' "all colorschemes in the single repo
 "--[ Statusline ]--------------------------------------------------------------------
 Plug 'itchyny/lightline.vim' " lightline statusline
 Plug 'maximbaz/lightline-ale' " lightline ale mod
@@ -63,11 +64,6 @@ Plug 'yuki777/gtags.vim' " Gtags v0.64
 Plug 'mzlogin/vim-markdown-toc' " plugin to autogenerate table of contents for markdown
 Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'tpope/vim-markdown' " markdown vim mode
-" ---------------[ Colorscheme ]-----------------------------------------------------
-Plug 'icymind/NeoSolarized' " solarized with better neovim support
-Plug 'tyrannicaltoucan/vim-deep-space' " deepspace colorscheme
-Plug 'rakr/vim-one' "one colorscheme
-Plug 'cocopon/iceberg.vim' "iceberg colorscheme
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'gregsexton/gitv' " gitk for vim
