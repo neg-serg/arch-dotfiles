@@ -29,7 +29,7 @@ ask_before_clearing_playlists = "no"
 
 #--=[ Bars ]=---------------
 song_status_format = "{$8%a} $(25)❯$(26)> {$8%t} $(25)❯$(26)> $b{$8%b}$/b $b({$8%y})$/b"
-song_list_format = " $0$8$8%5n$0$8 $(236)|$7 $7%26a$7 $(236)❯$(236)>$7 $6%44t$(1)$R$(236)❮ $8%5l $(236)| $(8)%28b$(8) "
+song_list_format = " $0$8$8%5n$0$8 $(238)|$7 $7%26a$7 $(238)❯$(238)>$7 $6%44t$(1)$R$(238)❮ $8%5l $(238)| $(8)%28b$(8) "
 song_library_format = "{%n > }{%t}|{%f}"
 now_playing_suffix = "$/b$(24)◂$3"
 progressbar_look = "─╼ "
