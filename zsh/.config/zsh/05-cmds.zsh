@@ -363,8 +363,7 @@ mimemap() {
     for i in $@; do alias -s ${i}=${default}; done
 }
 
-alias sp='cdu -idh -s -r -c "#"'
-
+alias sp='cdu -idh -s -r -c ":"'
 
 allip(){
     netstat -lantp \
