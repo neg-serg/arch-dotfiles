@@ -176,11 +176,7 @@ for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 
 unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
-if [[ ! -x "${BIN_HOME}/l" ]] && [[ ! -x $(which l) ]]; then
-    alias l="ls -aChkopl --group-directories-first --color=auto"
-else
-    alias l='l -g'
-fi
+alias l=ls
 alias ls="ls --color=auto" # do we have GNU ls with color-support?
 
 alias s="sudo"
