@@ -67,33 +67,6 @@ unset fasd_cache
 
 dropcache() { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
 
-lastfm_scrobbler_toggle(){
-    local is_run="active (running)"
-    local use_mpdscribble=false
-    if [[ use_mpdscribble == true ]]; then
-        if [[ "$(systemctl --user status mpdscribble.service|grep -o "${is_run}")" != "" ]]; then
-            systemctl --user stop mpdscribble
-            =mpdscribble --conf ${XDG_CONFIG_HOME}/mpdscribble/hextrick.conf --no-daemon &!
-        else
-            pkill mpdscribble
-            systemctl --user start mpdscribble.service
-        fi
-        builtin printf "$(zpref) $(zfwrap "$(any mpdscribble | awk  '{print substr($0, index($0,$11))}'|
-            sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
-    else
-        if [[ "$(systemctl --user status mpdas.service|grep -o "${is_run}")" != "" ]]; then
-            systemctl --user stop mpdas.service
-            =mpdas -c ${XDG_CONFIG_HOME}/mpdas/hextrick.rc 2&> /dev/null &!
-        else
-            pkill mpdas
-            systemctl --user start mpdas.service
-        fi
-        builtin printf "$(zpref) $(zfwrap "$(any mpdas | awk  '{print substr($0, index($0,$11))}'|
-            sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
-    fi
-    unset is_run use_mpdscribble
-}
-
 pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
 ql(){
