@@ -373,27 +373,6 @@ allip(){
     | sort -u
 }
 
-flac2mp3(){
-    for infile in "$@"; do
-        [[ "${infile}" != *.flac ]] && continue
-        album="$(metaflac --show-tag=album "${infile}" | sed 's/[^=]*=//')"
-        artist="$(metaflac --show-tag=artist "${infile}" | sed 's/[^=]*=//')"
-        date="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
-        title="$(metaflac --show-tag=title "${infile}" | sed 's/[^=]*=//')"
-        year="$(metaflac --show-tag=date "${infile}" | sed 's/[^=]*=//')"
-        genre="$(metaflac --show-tag=genre "${infile}" | sed 's/[^=]*=//')"
-        tracknumber="$(metaflac --show-tag=tracknumber "${infile}" | sed 's/[^=]*=//')"
-
-        flac --decode --stdout "${infile}" | lame -b 320 --add-id3v2 \
-            --tt "${title}" \
-            --ta "${artist}" \
-            --tl "${album}" \
-            --ty "${year}" \
-            --tn "${tracknumber}" \
-            --tg "${genre}" - "${infile%.flac}.mp3"
-    done
-}
-
 fun::fonts(){
     alias 2023='toilet -f future'
     alias gaym='toilet --gay -f mono9 -t'
