@@ -29,4 +29,6 @@ alt + grave
     -disable-history
 super + shift + 6
     ~/bin/wl
+super + shift+ 2
+    mpc toggle
 # vim: set ft=sxhkdrc:
