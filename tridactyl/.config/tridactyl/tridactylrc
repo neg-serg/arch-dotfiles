@@ -94,9 +94,6 @@ set modeindicatorshowkeys true
 " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
 set hintdelay 100
 
-bind --mode=normal <C-f> fillcmdline find
-bind --mode=normal / fillcmdline find
-
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
