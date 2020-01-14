@@ -5,7 +5,7 @@ mpd_music_dir = "~/music"
 mpd_crossfade_time = "0"
 user_interface = "classic"
 #--=[ Visualizer ]=---------------
-visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_fifo_path = "/tmp/audio.fifo"
 visualizer_output_name = "my_fifo"
 visualizer_in_stereo = "no"
 visualizer_color = 091,097,108,104,99,105,111
