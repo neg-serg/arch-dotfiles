@@ -1,14 +1,24 @@
 " reset settings on startup
 sanitize tridactyllocal tridactylsync
-
-set searchengine google
-
+set searchengine g
 colors neg
-
 set allowautofocus true
-
 set newtab http://localhost:31831
 set tabopencontaineraware true
+" Sane hinting mode
+set hintfiltermode vimperator-reflow
+set hintnames short
+set hintchars 12345
+set incsearch true
+set modeindicatorshowkeys true
+" Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
+set hintdelay 100
+
+set keytranslatemodes.nmaps true
+set keytranslatemodes.imaps true
+set keytranslatemodes.inputmaps true
+set keytranslatemodes.exmaps true
+set keytranslatemodes.ignoremaps true
 
 alias w saveas ~/dw/
 
@@ -84,20 +94,6 @@ command hint_focus hint -;
 " Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
 
-" Sane hinting mode
-set hintfiltermode vimperator-reflow
-set hintnames short
-set hintchars 12345
-set incsearch true
-set modeindicatorshowkeys true
-
-" Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
-set hintdelay 100
-
-bind ? fillcmdline find -?
-bind n findnext 1
-bind N findnext -1
-
 quickmark c https://www.twitch.tv/cooller
 quickmark e http://www.ektoplazm.com/
 quickmark g https://mail.google.com/mail/u/0/#inbox
@@ -111,12 +107,6 @@ quickmark h http://www.hsluv.org/
 quickmark y https://youtube.com/
 quickmark k https://www.reddit.com/r/MechanicalKeyboards/
 quickmark A https://magazine.artstation.com/
-
-set keytranslatemodes.nmaps true
-set keytranslatemodes.imaps true
-set keytranslatemodes.inputmaps true
-set keytranslatemodes.exmaps true
-set keytranslatemodes.ignoremaps true
 
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
 " command line, so set an option to move the status bar to the right.
