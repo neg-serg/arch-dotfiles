@@ -191,7 +191,7 @@ zstyle ':zle:backward-kill-word*' word-style standard
 zstyle ':zle:*kill*' word-chars '*?_-.[]~=&;!#$%^(){}<>'
 
 function expand-or-complete-with-dots() {
-    echo -n "\e[36m···\e[0m"
+    echo -n "\e[36m··\e[0m"
     zle expand-or-complete
     zle redisplay
 }
