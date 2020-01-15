@@ -861,6 +861,7 @@ _zsh_highlight_highlighter_main_paint()
 		*.profile) style=ftype-profile ;;
 		*.bash_profile) style=ftype-bash_profile ;;
 		*.bash_logout) style=ftype-bash_logout ;;
+		*.zwc) style=ftype-zwc ;;
 		*.zsh) style=ftype-zsh ;;
 		*.tcsh) style=ftype-tcsh ;;
 		*.sh*) style=ftype-sh* ;;
@@ -1023,6 +1024,9 @@ _zsh_highlight_highlighter_main_paint()
 		*.bck) style=ftype-bck ;;
 		*.bak) style=ftype-bak ;;
 		*.aux) style=ftype-aux ;;
+		*.pem) style=ftype-pem ;;
+		*.pub) style=ftype-pub ;;
+		*.key) style=ftype-key ;;
 		*.ico) style=ftype-ico ;;
 		*.icns) style=ftype-icns ;;
 		*.gif) style=ftype-gif ;;
