@@ -77,6 +77,12 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
 + Net
     + **tridactyl** -- Vimperator-like firefox addon. Vim-like keybindings and UX in firefox.
     + **stig** -- custom colorscheme for this nice transmission-client
+    + **css**
+        * https://github.com/StylishThemes/GitHub-Dark
+        * https://userstyles.org/styles/144028/google-clean-dark
+        * https://userstyles.org/styles/159026/new-gmail-dark-theme-tweaks-gmail-2018
+        * https://userstyles.org/styles/126419/vanilla-dark-2-vk
+        * https://userstyles.org/styles/166756/yandex-dark-theme
 + IM / Mail / News
     + **mutt** -- famous cli-based mail-client
     + **newsboat** -- cli newsbeuter-based rss-reader.
