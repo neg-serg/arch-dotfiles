@@ -92,11 +92,11 @@ zstyle ':completion:*:wine:*'             file-patterns '(#i)*.(exe):exe'
 zstyle ':completion:*:parameters'         list-colors "=[^a-zA-Z]*=$color[cyan]"
 # highlight aliases                      
 zstyle ':completion:*:aliases'            list-colors "=*=$color[green]"
-### highlight the original input.
+# highlight the original input.
 zstyle ':completion:*:original'           list-colors "=*=$color[blue];$color[bold]"
-### highlight words like 'esac' or 'end'
+# highlight words like 'esac' or 'end'
 zstyle ':completion:*:reserved-words'     list-colors "=*=$color[blue]"
-### colorize processlist for 'kill'
+# colorize processlist for 'kill'
 zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
 zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -e -o pid,user,tty,cmd'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
@@ -190,30 +190,8 @@ zle -N forward-word-match
 zstyle ':zle:backward-kill-word*' word-style standard
 zstyle ':zle:*kill*' word-chars '*?_-.[]~=&;!#$%^(){}<>'
 
-expand-or-complete-with-dots() {
-    echo -n "\e[31m......\e[0m"
-    zle expand-or-complete
-    zle redisplay
-}
-zle -N expand-or-complete-with-dots
-
-# Load completion from bash, which isn't available in zsh yet.
-bash_completions=()
-if [ -n "$commands[vzctl]" ] ; then
-  bash_completions+=(/etc/bash_completion.d/vzctl.sh)
-fi
-if (( $#bash_completions )); then
-  if ! which complete &>/dev/null; then
-    autoload -Uz bashcompinit
-    if which bashcompinit &>/dev/null; then
-      bashcompinit
-    fi
-  fi
-  bash_source /etc/bash_completion.d/vzctl.sh
-fi
-
 function expand-or-complete-with-dots() {
-    echo -n "\e[36m-=--...--=-\e[0m"
+    echo -n "\e[36m···\e[0m"
     zle expand-or-complete
     zle redisplay
 }
