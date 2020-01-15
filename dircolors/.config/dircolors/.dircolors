@@ -138,6 +138,11 @@ RESET 0 # reset to "normal" color
 .icns             00;38;5;25;1
 .ico              00;38;5;25;1
 
+# keys
+.key              00;38;5;64;1
+.pub              00;38;5;64
+.pem              00;38;5;65
+
 # "unimportant" files as logs and backups (base01)
 *~                01;38;5;235
 *#                00;38;5;235
