@@ -193,6 +193,7 @@ alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magi
 if hash git 2>/dev/null; then
     alias gs='git status --short -b'
     alias gp='git push'
+    alias gd='git diff --word-diff'
     alias gdd='git diff'
     alias gc='git commit'
 
