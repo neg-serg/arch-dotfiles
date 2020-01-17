@@ -199,7 +199,8 @@ if hash git 2>/dev/null; then
     intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
     alias gd="${intra_line_less} git diff ${intra_line_diff}"
-    alias gd2="git diff -w -U0 --word-diff-regex=[^[:space:]]"
+    alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
+    alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
 
     # commit staged changes with the given message
     alias gcm='git commit -m'
