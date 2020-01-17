@@ -47,6 +47,7 @@
     default = simple
 [diff]
     tool = nvr
+    algorithm = patience
 [difftool "nvr"]
     cmd = nvr -s -d $LOCAL $REMOTE
 [merge]
