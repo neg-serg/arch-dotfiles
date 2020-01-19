@@ -237,8 +237,7 @@ nmap <Space>mc :Make distclean<cr>
 " │ https://github.com/frazrepo/vim-rainbow                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
-let g:rainbow_conf = {
-\	'guifgs': ["#2A4769", "#264263", "#223E5E"],
+let g:rainbow_conf_defaults = {
 \	'ctermfgs': ['lightblue'],
 \	'guis': [''],
 \	'cterms': [''],
@@ -293,7 +292,10 @@ let g:rainbow_conf = {
 \		'sh': 0,
 \	}
 \ }
-
+let s:rainbow_darkblue_colors = ["#2A4769", "#264263", "#223E5E"]
+let s:rainbow_royalblue_colors = ['#4169E1', '#3D63D4', '#3B5FCC', '#385AC2', '#3454B5']
+let g:rainbow_conf_defaults['guifgs'] = s:rainbow_royalblue_colors
+let g:rainbow_conf = g:rainbow_conf_defaults
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-markdown                                                       │
 " │ https://github.com/tpope/vim-markdown                                             │
