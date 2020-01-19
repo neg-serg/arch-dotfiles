@@ -134,6 +134,7 @@ set nowildmenu                  " Do not show list instead of just completing
 set wildoptions=pum,tagfile     " wild options
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
+set updatetime=300              " Faster diagnostics
 set pumblend=15                 " Set up pmenu transparency
 set pumheight=8                 " Do not make pmenu too wide
 
@@ -155,8 +156,8 @@ set sidescrolloff=10            " min num of scr columns to keep to the left and
                                 " right of the cursor if 'nowrap' is set.
 set virtualedit=onemore,block   " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
-set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')
-" set shortmess+=filmnrxoOtT    " Abbrev. of messages (avoids 'hit enter')
+set shortmess+=a                " Abbrev. of messages (avoids 'hit enter')
+set shortmess+=oOstTWAIcqFS     " Shorting messages for all
 set more                        " probably it should get out 'Press enter' msg
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set nofoldenable                " Disable folds as
