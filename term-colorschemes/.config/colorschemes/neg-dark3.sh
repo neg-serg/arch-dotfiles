@@ -1,0 +1,22 @@
+background="#000000"
+foreground="#6C7E96"
+cursorColor="#375BC1"
+
+color0="#020202"
+color1="#8A2F58"
+color2="#287373"
+color3="#914E89"
+color4="#395573"
+color5="#5E468C"
+color6="#31658C"
+color7="#899CA1"
+color8="#3D3D3D"
+color9="#CF4F88"
+color10="#53A6A6"
+color11="#BF85CC"
+color12="#477AB3"
+color13="#7E62B3"
+color14="#6096BF"
+color15="#617287"
+
+source $XDG_CONFIG_HOME/colorschemes/new256color.sh
