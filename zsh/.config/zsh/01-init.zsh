@@ -119,13 +119,6 @@ watch=(notme root)
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
 
-#fpath=(
-#    "${ZDOTDIR}/zsh-completions/src"
-#    "~/.zsh/compdef"
-#    "${ZDOTDIR}/zle"
-#    "${fpath}"
-#)
-
 zrcautoload zmv # who needs mmv or rename?
 zrcautoload history-search-end
 zrcautoload split-shell-arguments
