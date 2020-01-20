@@ -19,7 +19,6 @@ BLK                   38;5;24      # block device driver
 CHR                   38;5;24;1    # character device driver
 CAPABILITY            38;5;17
 # This is for files with execute permission:
-EXEC                  00;04;32     # socket
 NORMAL                00
 FIFO                  38;5;126
 DOOR                  38;5;127
