@@ -57,9 +57,8 @@ Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 " --[ LaTeX ]------------------------------------------------------------------------
 Plug 'donRaphaco/neotex' " latex support
 " ----------------[  Tags  ]---------------------------------------------------------
-Plug 'bbchung/gasynctags' " autogenerate gtags to cscope db
-Plug 'neg-serg/gtags-cscope-vim' "  my gtags-cscope fork
-Plug 'yuki777/gtags.vim' " Gtags v0.64
+Plug 'ludovicchabant/vim-gutentags' " A Vim plugin that manages your tag files
+Plug 'skywind3000/gutentags_plus' " handles switching between cscope db
 " ---------------[ Misc syntax ]-----------------------------------------------------
 Plug 'mzlogin/vim-markdown-toc' " plugin to autogenerate table of contents for markdown
 Plug 'sheerun/vim-polyglot' "  language pack collection
