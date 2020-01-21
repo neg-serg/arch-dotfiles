@@ -31,17 +31,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -80,7 +69,7 @@ let g:session_autosave = 'yes'
 " │ plugin - airblade/vim-gitgutter                                                   │ 
 " │ https://github.com/airblade/vim-gitgutter                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:gitgutter_realtime = 1 " github.com/airblade/vim-gitgutter/issues/106
+let g:gitgutter_realtime = 1
 let g:gitgutter_async = 1
 let g:gitgutter_sign_added = '∙'
 let g:gitgutter_sign_modified = '∙'
@@ -109,7 +98,6 @@ if executable('rg')
         \ 'node_modules', 'target', 'build', 'dist', '.stack-work'
         \ ]
     let s:rg_cmd .= " --glob '!{'" . shellescape(join(s:rg_ignore, ',')) . "'}'"
-
     let &grepprg=s:rg_cmd . ' --vimgrep'
     let $FZF_DEFAULT_COMMAND = 'rg --files'
 endif
