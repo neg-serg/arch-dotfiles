@@ -2,10 +2,6 @@ if bufname('%') == ''
     set bufhidden=wipe
 endif
 
-let g:impact_transbg=1
-let g:enable_cursorline=0
-let g:enable_cursorcolumn=0
-
 set regexpengine=1
 set conceallevel=0 "no concealed text
 set concealcursor=
@@ -50,21 +46,16 @@ if exists('+shellslash')
     set shellslash
 endif
 
-if has('user_commands')
-    command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
-    command! -bang -nargs=* -complete=file E e<bang> <args>
-    command! -bang -nargs=* -complete=file W w<bang> <args>
-    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-    command! -bang Wa wa<bang>
-    command! -bang WA wa<bang>
-    command! -bang Q q<bang>
-    command! -bang QA qa<bang>
-    command! -bang Qa qa<bang>
-    command! -nargs=0 Sw :SudoWrite
-    command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-                \ | wincmd p | diffthis
-endif
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -nargs=0 Sw :SudoWrite
 "----------------------------------------------------------------------------
 set keywordprg=:help
 let $PATH = $PATH . ':' . expand('~/bin/go/bin')
@@ -93,7 +84,7 @@ endif
 "   latin1   8-bit encoding typical of DOS
 " Setting this value explicitly, though to the default value.
 set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
-set termencoding=utf8                       " Set termencoding to utf-8
+set termencoding=utf8  " Set termencoding to utf-8
 "--------------------------------------------------------------------------
 " Where file browser's directory should begin:
 "   last    - same directory as last file browser
@@ -111,12 +102,6 @@ set browsedir=buffer
 set switchbuf=useopen,usetab
 
 set clipboard=unnamedplus
-
-" Protect home directory
-if !empty($SUDO_USER) && $USER !=# $SUDO_USER
-  set directory-=~/trash
-  set backupdir-=~/trash
-endif
 
 set completeopt=menu,menuone,longest
 "probably it will increase lusty+gundo speed
@@ -196,11 +181,6 @@ if has('arabic')
     set noarabicshape
 endif
 "--[ change undo file location ]----------------------------------
-if exists('+undofile')
-    set undodir=~/trash/
-    set undofile
-endif
-
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
@@ -231,11 +211,13 @@ set laststatus=2        " requied by PowerLine/Airline
 
 set nocursorline        " highlight current line is too slow
 set backup              " backuping is good
-
-set backupdir=~/trash
-set directory=~/trash
-
+" Protect home directory
+if !empty($SUDO_USER) && $USER !=# $SUDO_USER
+  set directory-=~/trash
+  set backupdir-=~/trash
+endif
 set undofile            " So is persistent undo ...
+set undodir=~/trash/    " Set up undo dir
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
 set cpoptions=a         " :read with a filename set the alternate filename for window
@@ -261,27 +243,3 @@ set modeline            " disable modelines
 set iminsert=0          " write latin1 characters first
 set imsearch=0          " search with latin1 characters first
 set cmdheight=1         " standard cmdline height
-
-set tags=./tags
-" Make tags placed in .git/tags file available in all levels of a repository
-let s:gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-if s:gitroot != ''
-    let &tags = &tags . ',' . s:gitroot . '/.git/tags'
-endif
-
-if has('cscope')
-    if executable('gtags')
-        set cscopeprg=/usr/bin/gtags-cscope
-
-        let g:GtagsCscope_Auto_Map        = 1
-        let g:GtagsCscope_Use_Old_Key_Map = 0
-        let g:GtagsCscope_Ignore_Case     = 1
-        let g:GtagsCscope_Absolute_Path   = 1
-        let g:GtagsCscope_Keep_Alive      = 1
-        let g:GtagsCscope_Auto_Load       = 0
-    else
-        set cscopeprg=/usr/bin/cscope
-    endif
-    set cscopetagorder=0
-    set cscopetag
-endif
