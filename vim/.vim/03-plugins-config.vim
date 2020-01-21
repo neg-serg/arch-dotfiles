@@ -112,8 +112,6 @@ if executable('rg')
 
     let &grepprg=s:rg_cmd . ' --vimgrep'
     let $FZF_DEFAULT_COMMAND = 'rg --files'
-    command! -bang -nargs=* Rg call fzf#vim#grep(s:rg_cmd . ' --column --line-number --no-heading --fixed-strings --smart-case --color always ' . shellescape(<q-args>), 1, <bang>0)
-    command! -bang -nargs=* Find Rg<bang> <args>
 endif
 
 nnoremap qe :Files %:p:h<CR>
@@ -122,14 +120,6 @@ nnoremap ed :Buffers<CR>
 
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-" load lua functions for navigation
-if 0
-    lua require("navigation")
-    let g:fzf_layout = { 'window': 'lua NavigationFloatingWin()' }
-endif
-
-" For Commits and BCommits to customize the options used by 'git log':
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 " Advanced customization using autoload functions
 autocmd VimEnter * command! Colors
@@ -138,6 +128,8 @@ autocmd VimEnter * command! Colors
 " Insert mode completion
 imap <c-x><c-f> <Plug>(fzf-complete-path)
 imap <c-x><c-l> <Plug>(fzf-complete-line)
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode ruler
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - pbogut/fzf-mru.vim                                                       │
 " │ https://github.com/pbogut/fzf-mru.vim                                             │
@@ -310,7 +302,7 @@ let g:markdown_quote_syntax_filetypes = {
     \   "start" : "\\%(vim\\|viml\\)",
     \},
     \}
-if executable('waterfox')
+if executable('firefox')
     let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -337,8 +329,18 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 " │ plugin - jiangmiao/auto-pairs                                                     │
 " │ https://github.com/jiangmiao/auto-pairs                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
+let g:AutoPairs =  {'(':')', '[':']', '{':'}', '<':'>'}
+let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutJump = ''
 let g:AutoPairsShortcutBackInsert = ''
-let g:AutoPairs =  {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", '<':'>'}
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - airblade/vim-rooter                                                      │
+" │ https://github.com/airblade/vim-rooter                                            │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:rooter_targets = '/,*' " directories and all files (default)
+let g:rooter_use_lcd = 1 " change directory for the current window only
+" change dir to current if there is no project
+let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_silent_chdir = 1
