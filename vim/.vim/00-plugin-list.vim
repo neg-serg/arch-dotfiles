@@ -74,7 +74,6 @@ Plug 'xolox/vim-misc' " for vim-session
 Plug 'xolox/vim-session' " rule sessions
 " --[ Misc ]-------------------------------------------------------------------------
 Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
-Plug 'Konfekt/FastFold' " Do not update folds when it's not needed
 Plug 'mopp/autodirmake.vim' " automake dir which didnt exists
 Plug 's3rvac/AutoFenc' "  try to autodelect filetype
 Plug 'vim-scripts/ViewOutput' " VO commandline output
