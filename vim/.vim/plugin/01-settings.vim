@@ -216,6 +216,8 @@ if !empty($SUDO_USER) && $USER !=# $SUDO_USER
   set directory-=~/trash
   set backupdir-=~/trash
 endif
+set directory=~/trash
+set backupdir=~/trash
 set undofile            " So is persistent undo ...
 set undodir=~/trash/    " Set up undo dir
 set undolevels=1000     " Maximum number of changes that can be undone
