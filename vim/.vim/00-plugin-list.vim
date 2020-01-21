@@ -1,6 +1,7 @@
 "--[ Main ]--------------------------------------------------------------------------
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'thinca/vim-quickrun' " run a bunch of text
+Plug 'neg-serg/neg' "separated repo for the my own colorscheme
 Plug 'neg-serg/neovim-colorschemes' "all colorschemes in the single repo
 "--[ Statusline ]--------------------------------------------------------------------
 Plug 'itchyny/lightline.vim' " lightline statusline
@@ -37,24 +38,22 @@ Plug 'luochen1990/rainbow' " better rainbow parentheses
 Plug 'tpope/vim-abolish' " for different case coersion
 Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 "--[ Search ]------------------------------------------------------------------------
-Plug 'dyng/ctrlsf.vim' " interactive vim-grep
 Plug 'junegunn/fzf' " fzf itself
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
+Plug 'dyng/ctrlsf.vim' " interactive vim-grep
 Plug 'mhinz/vim-grepper' "better grep plugin
-Plug 'gevann/vim-rg' "yet another grep integration
 " --[ Docs ]-------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 " --[ Dev ]--------------------------------------------------------------------------
-Plug 'dbakker/vim-projectroot' " autochdir for project
+Plug 'airblade/vim-rooter' " autochdir for project root or for current dir
 Plug 'derekwyatt/vim-fswitch' " switching between companion source files e.g. .h and .cpp
 Plug 'janko-m/vim-test' " easy testing for various langs
 Plug 'rhysd/git-messenger.vim' " shows git message
-Plug 'Shougo/echodoc.vim' " print documents in echo area
 Plug 'tomtom/tcomment_vim' " commenter plugin
 Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
 Plug 'dense-analysis/ale' " ale as linter
-Plug 'norcalli/nvim-colorizer.lua' " fast colorizer
+Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 " --[ LaTeX ]------------------------------------------------------------------------
 Plug 'donRaphaco/neotex' " latex support
 " ----------------[  Tags  ]---------------------------------------------------------
