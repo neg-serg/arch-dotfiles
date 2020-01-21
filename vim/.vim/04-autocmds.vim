@@ -1,15 +1,4 @@
-" We reset the vimrc augroup. Autocommands are added to this group throughout the file
-augroup vimrc
-    autocmd!
-    au BufRead *.session let g:session = expand('%:p:h') | so % | bd #
-    au VimLeave * if exists('g:session') | call Mks(g:session) | endif
-augroup end
 au StdinReadPost * set buftype=nofile
-au BufReadCmd file:///* exe "bd!|edit ".substitute(expand("<afile>"),"file:/*","","")
-
-fun! Mks(path)
-    exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
-endfun
 
 " Return to last edit position (You want this!) *N*
 autocmd BufReadPost *
