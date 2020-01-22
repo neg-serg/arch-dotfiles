@@ -27,17 +27,17 @@ endif
 autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
         \ | redraw | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 
-let &runtimepath = expand('~/.vim/') . ','
-    \ . expand('~/.vim/after/') . ',' . &runtimepath
+let &runtimepath = expand('~/.config/nvim/') . ','
+    \ . expand('~/.config/nvim/after/') . ',' . &runtimepath
 set termguicolors
 
-call plug#begin('~/.vim/plugged')
-source ~/.vim/00-plugin-list.vim
+call plug#begin('~/.config/nvim/plugged')
+source ~/.config/nvim/00-plugin-list.vim
 call plug#end()
 
-source ~/.vim/02-keymaps.vim
-source ~/.vim/03-plugins-config.vim
-source ~/.vim/04-autocmds.vim
-source ~/.vim/11-vimacs.vim
-source ~/.vim/14-abbr.vim
-source ~/.vim/21-langmap.vim
+source ~/.config/nvim/02-keymaps.vim
+source ~/.config/nvim/03-plugins-config.vim
+source ~/.config/nvim/04-autocmds.vim
+source ~/.config/nvim/11-vimacs.vim
+source ~/.config/nvim/14-abbr.vim
+source ~/.config/nvim/21-langmap.vim

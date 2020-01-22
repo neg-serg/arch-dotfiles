@@ -297,7 +297,7 @@ endif
 " │ plugin - itchyny/lightline.vim                                                    │
 " │ https://github.com/itchyny/lightline.vim                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-source ~/.vim/10-lightline-config.vim
+source ~/.config/nvim/10-lightline-config.vim
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - mhinz/vim-grepper                                                        │
 " │ https://github.com/mhinz/vim-grepper                                              │
