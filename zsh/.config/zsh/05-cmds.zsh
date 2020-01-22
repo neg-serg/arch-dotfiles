@@ -22,7 +22,7 @@ else
 fi
 unset copepath
 
-zc(){
+zc() {
     autoload -U zrecompile
     for z in ${ZDOTDIR}/*.zsh ${ZDOTDIR}/.zshrc; do 
         zrecompile -p ${z}
@@ -69,7 +69,7 @@ dropcache() { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_cache
 
 pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
-ql(){
+ql() {
     if [[ $1 != "" ]]; then
         local file=$(resolve_file "$1")
         local upload_dir=${HOME}/1st_level/upload/
@@ -89,7 +89,7 @@ which() {
     fi
 }
 
-py23switch(){
+py23switch() {
     python_path="$(which python)"
 
     if [[ $(basename $(readlink /usr/sbin/python)) == python3 ]]; then
@@ -214,7 +214,7 @@ alias iostat='iostat -mtx'
 alias yt="youtube-dl"
 alias ytt='you-get'
 
-yr(){
+yr() {
     ${XDG_CONFIG_HOME}/i3/send bscratch toggle youtube
     sleep 1s
     echo "$@" | xsel -i
@@ -298,8 +298,8 @@ fi
 
 alias @r=${SCRIPT_HOME}/music_rename
 
-v(){ ~/bin/v --remote-silent "$@" }
-gv(){ 
+v() { ~/bin/v --remote-silent "$@" }
+gv() { 
     ~/bin/v --remote-silent ./
     ~/bin/v --remote-send ":ProjectRootCD<CR>"
     ~/bin/v --remote-send ":Gitv<CR>"
@@ -321,7 +321,7 @@ mimemap() {
 
 alias sp='cdu -idh -s -r -c ":"'
 
-allip(){
+allip() {
     netstat -lantp \
     | grep ESTABLISHED \
     | awk '{print }' \
@@ -329,7 +329,7 @@ allip(){
     | sort -u
 }
 
-fun::fonts(){
+fun::fonts() {
     alias 2023='toilet -f future'
     alias gaym='toilet --gay -f mono9 -t'
     alias gayf='toilet --gay -f future -t'
@@ -342,7 +342,7 @@ fun::fonts(){
     alias 3d='figlet -f 3d'
 }
 
-+strip_trailing_workspaces(){  sed ${1:+-i} 's/\s\+$//' "$@" }
++strip_trailing_workspaces() { sed ${1:+-i} 's/\s\+$//' "$@" }
 
 # --------------------------------------------------------------------
 # ZLE-related stuff
@@ -398,7 +398,7 @@ rationalise-dot() {
 zle -N rationalise-dot
 
 # run command line as user root via sudo:
-sudo-command-line () {
+sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ ${BUFFER} != sudo\ * ]]; then
         BUFFER="sudo ${BUFFER}"

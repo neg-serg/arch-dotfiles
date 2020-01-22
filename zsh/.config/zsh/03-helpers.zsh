@@ -1,20 +1,20 @@
 autoload -U colors && colors
 
-function zwrap { 
+zwrap() { 
     echo "$fg[blue]⟬$fg[white]${1}$fg[blue]⟭$fg[default]" 
 }
 
-function zfwrap {
+zfwrap() {
     apply="${1}"; body="${2}"; shift
     echo "$(apply)" "${body}" "$(apply)"
 }
 
-function zgwrap {
+zgwrap() {
     side="${1}"; body="${2}"; shift
     echo "${side}" "${body}" "${side}"
 }
 
-function zfwrap {
+zfwrap() {
     local tmp_name="$(echo $1|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
     local lhs="$fg[blue]⟬$fg[white]"
     local rhs="$fg[blue]⟭$fg[white]"
@@ -22,15 +22,15 @@ function zfwrap {
     echo "${fancy_name}"
 }
 
-function zpref {
+zpref() {
     echo $(zwrap "\e[38;05;25m>\e[38;05;26m>$fg[default]") 
 }
 
-function zfg {
+zfg() {
     echo -ne "[38;5;$1m" 
 }
 
-function zdelim {
+zdelim() {
     if [[ $# == 0 ]]; then
         echo -ne "$(zfg 24)::"$(zfg 8) 
     else
@@ -38,7 +38,7 @@ function zdelim {
     fi
 }
 
-function resolve_file {
+resolve_file() {
     if [[ -f "${1}" ]]; then
         echo $(readlink -f "${1}")
     elif [[ "${1#/}" == "$1" ]]; then
@@ -48,7 +48,7 @@ function resolve_file {
     fi
 }
 
-function not_empty {
+not_empty() {
     if [[ $(echo "${1}"| tr -d '[:blank:]') != "" ]]; then
         true
     else
@@ -56,32 +56,32 @@ function not_empty {
     fi
 }
 
-function zfile_sz {
+zfile_sz() {
     sed "s/\([KMGT]\)/&i/" | {
         sed "s/\([KMGT]iB\|B\)/$fg[green]&/" || \
         numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/"
     }
 }
 
-function zsufhi {
+zsufhi() {
     { 
         sed "s/\([KMGT]\)/$fg[green]&/"
         builtin print -n "$fg[white]"  
     } | tr -d '\n'
 }
 
-function zex_tag {
+zex_tag() {
     grep -E '^'"${1}"'' <<< "${exifdata_}" \
         | cut -d ':' -f 2- \
         | tr -d '[:blank:]'
 }
 
-function zex_tag_untr {
+zex_tag_untr() {
     grep -E '^'"${1}"'' <<< "${exifdata_}" \
         | cut -d ':' -f 2-
 }
 
-function vid_fancy_print {
+vid_fancy_print() {
     if [[ -f "${1}" ]]; then
         exifdata_="$(exiftool "${1}")"
         #------------------------------------------

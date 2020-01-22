@@ -1,7 +1,7 @@
 # autoload wrapper - use this one instead of autoload directly
 # We need to define this function as early as this, because autoloading
 # 'is-at-least()' needs it.
-function zrcautoload() {
+zrcautoload() {
     emulate -L zsh
     setopt extended_glob
     local fdir ffile
@@ -48,7 +48,7 @@ unset MAILCHECK
     stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
 } &!
 
-function stty_setup(){
+stty_setup() {
     stty time 0 2> /dev/null
     stty min 0 2> /dev/null
     stty line 6 2> /dev/null

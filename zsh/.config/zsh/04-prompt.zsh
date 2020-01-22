@@ -84,7 +84,7 @@ if [[ $GIT_PROMPT_INDENT_HACK -eq 1 ]]; then
 	fi
 fi
 
-function git_get_status() {
+git_get_status() {
 	local status_string map_status chunk chunk_index mapped_status
 	local -a status_chunks
 	local -A git_flags git_strings git_numbers
@@ -131,7 +131,7 @@ function git_get_status() {
 	typeset -p git_flags git_strings git_numbers
 }
 
-function git_parse_status_header() {
+git_parse_status_header() {
 	local branches divergence div
 	typeset -g RETURN_AHEAD RETURN_BEHIND RETURN_BRANCH
 	RETURN_AHEAD=0
@@ -171,7 +171,7 @@ function git_parse_status_header() {
 	RETURN_BRANCH="${1# }"
 }
 
-function git_get_tag_or_hash() {
+git_get_tag_or_hash() {
 	local log_string
 	local refs ref
 	local ret_hash ret_tag
@@ -197,7 +197,7 @@ function git_get_tag_or_hash() {
 	fi
 }
 
-function git_prompt_completed_callback() {
+git_prompt_completed_callback() {
 	local symbol line k buffer=""
 	while read -t 0 -r -u $GIT_PROMPT_DESCRIPTOR line; do
 		eval $line
@@ -231,12 +231,12 @@ function git_prompt_completed_callback() {
 	zle && zle reset-prompt
 }
 
-function git_prompt_bg() {
+git_prompt_bg() {
 	git_get_status >&$GIT_PROMPT_DESCRIPTOR
 	kill -s USR1 $$
 }
 
-function git_prompt_hook() {
+git_prompt_hook() {
 	if [[ $GIT_PROMPT_BG_PID != 0 ]]; then
 		kill -s HUP $GIT_PROMPT_BG_PID > /dev/null 2>&1
 	fi
@@ -244,7 +244,7 @@ function git_prompt_hook() {
 	GIT_PROMPT_BG_PID=$!
 }
 
-function git_prompt_init() {
+git_prompt_init() {
 	typeset -g GIT_PROMPT_BG_PID GIT_PROMPT_DESCRIPTOR
 	GIT_PROMPT_BG_PID=0
 	local fifo="$GIT_PROMPT_FIFO_DIR/$$.fifo"
@@ -254,7 +254,7 @@ function git_prompt_init() {
 	rm -f $fifo
 }
 
-function TRAPUSR1() {
+TRAPUSR1() {
 	git_prompt_completed_callback
 	GIT_PROMPT_BG_PID=0
 }
@@ -289,7 +289,7 @@ typeset -A possible_rhs=(
 )
 
 
-function precmd {
+precmd() {
     export tilda_color
     export prompt_color
     export error_color
