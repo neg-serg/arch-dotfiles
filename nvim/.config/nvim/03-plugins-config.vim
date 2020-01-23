@@ -141,15 +141,6 @@ let g:LustyJugglerDefaultMappings = 0
 let LustyExplorerDefaultMappings  = 0
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - lyokha/vim-xkbswitch.git                                                 │
-" │ https://github.com/lyokha/vim-xkbswitch.git                                       │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:XkbSwitchEnabled = 1
-let g:XkbSwitchIMappings = ['ru']
-let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
-let g:XkbSwitchSkipFt = []
-let g:XkbSwitchSkipIMappings = {'*' : ['[', ']', '{', '}', "'", '<', '>', ',', '.', '"']}
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
 " │ https://github.com/derekwyatt/vim-fswitch.git                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
