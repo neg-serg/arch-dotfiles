@@ -129,8 +129,8 @@ nnoremap <silent> <Leader>. :FZFMru --prompt "❯> "<CR>
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:UltiSnipsRemoveSelectModeMappings = 1
 let g:UltiSnipsSnippetDirectories  = ['usnippets']
-let g:UltiSnipsExpandTrigger       = "<C-Space>"
-let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
+let g:UltiSnipsExpandTrigger       = "<NOP>"
+let g:UltiSnipsJumpForwardTrigger  = "<NOP>"
 let g:UltiSnipsJumpBackwardTrigger = "<NOP>"
 let g:UltiSnipsListSnippets        = "<NOP>"
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
