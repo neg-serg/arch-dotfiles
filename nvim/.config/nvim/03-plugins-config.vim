@@ -2,18 +2,18 @@
 " │ plugin - neoclide/coc.nvim                                                        │
 " │ https://github.com/neoclide/coc.nvim                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -123,16 +123,6 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 " │ https://github.com/pbogut/fzf-mru.vim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <Leader>. :FZFMru --prompt "❯> "<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - SirVer/ultisnips.git                                                     │
-" │ https://github.com/SirVer/ultisnips.git                                           │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:UltiSnipsRemoveSelectModeMappings = 1
-let g:UltiSnipsSnippetDirectories  = ['usnippets']
-let g:UltiSnipsExpandTrigger       = "<NOP>"
-let g:UltiSnipsJumpForwardTrigger  = "<NOP>"
-let g:UltiSnipsJumpBackwardTrigger = "<NOP>"
-let g:UltiSnipsListSnippets        = "<NOP>"
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjbach/lusty.git                                                         │
 " │ https://github.com/sjbach/lusty.git                                               │
