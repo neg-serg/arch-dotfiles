@@ -1,4 +1,4 @@
-priority -50
+inriority -50
 
 extends c
 
@@ -26,7 +26,7 @@ snippet inc "#include local header (inc)"
 endsnippet
 
 snippet in "#include <> (Inc)"
-#include <${1:.h}>
+#include <${1:.h}
 endsnippet
 
 snippet mark "#pragma mark (mark)"
@@ -135,28 +135,6 @@ struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`} {
 };
 endsnippet
 
-snippet fun "function" b
-${1:void} ${2:function_name}(${3}) {
-	${VISUAL}${0}
-}
-endsnippet
-
-snippet fund "function declaration" b
-${1:void} ${2:function_name}(${3});
-endsnippet
-
-# vim:ft=snippets:
-
-snippet mfun "member func"
-${1:void} ${2:`!p snip.rv = snip.basename`}::${3:Func}($4) {
-	$0
-}
-endsnippet
-
-snippet hfun "header func"
-${1:void} ${3:Func}($4);
-endsnippet
-
 snippet sw "switch (sw)"
 switch(${1:/*var*/}) {
 	case ${2:/*value*/}:
@@ -168,16 +146,5 @@ switch(${1:/*var*/}) {
 	${7:/*more cases*/}
 	default:
 		${6:assert(false);}
-}
-endsnippet
-
-
-snippet readfile "read file (readF)"
-std::vector<char> v;
-if (FILE *fp = fopen(${1:"filename"}, "r")) {
-	char buf[1024];
-	while(size_t len = fread(buf, 1, sizeof(buf), fp))
-		v.insert(v.end(), buf, buf + len);
-	fclose(fp);
 }
 endsnippet
