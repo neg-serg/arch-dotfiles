@@ -237,9 +237,6 @@ set maxmapdepth=1000    " Maximum number of times a mapping is done
                         " without resulting in a character to be used.
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
-" Remember info about open buffers on close
-set viminfo^=%
-set shada=
 set modeline            " disable modelines
 
 set iminsert=0          " write latin1 characters first
