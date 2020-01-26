@@ -119,7 +119,7 @@ set nowildmenu                  " Do not show list instead of just completing
 set wildoptions=pum,tagfile     " wild options
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
-set updatetime=300              " Faster diagnostics
+set updatetime=250              " Faster diagnostics
 set pumblend=15                 " Set up pmenu transparency
 set pumheight=8                 " Do not make pmenu too wide
 
