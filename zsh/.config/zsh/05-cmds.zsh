@@ -301,7 +301,7 @@ alias @r=${SCRIPT_HOME}/music_rename
 v() { ~/bin/v --remote-silent "$@" }
 gv() { 
     ~/bin/v --remote-silent ./
-    ~/bin/v --remote-send ":Gitv<CR>"
+    ~/bin/v --remote-send ":GV<CR>"
 }
 [[ -x =nvim ]] && alias vim=nvim
 [[ ${DISPLAY} ]] &&  alias nvim=v
