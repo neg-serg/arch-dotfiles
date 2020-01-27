@@ -75,36 +75,14 @@ else
     set formatprg="fmt -140"  " use fmt as formatter
 endif
 
-" 'fileencodings' contains a list of possible encodings to try when reading
-" a file.  When 'encoding' is a unicode value (such as utf-8), the
-" value of fileencodings defaults to ucs-bom,utf-8,default,latin1.
-"   ucs-bom  Treat as unicode-encoded file if and only if BOM is present
-"   utf-8    Use utf-8 encoding
-"   default  Value from environment LANG
-"   latin1   8-bit encoding typical of DOS
-" Setting this value explicitly, though to the default value.
-set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
+set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866 
 set termencoding=utf8  " Set termencoding to utf-8
 "--------------------------------------------------------------------------
-" Where file browser's directory should begin:
-"   last    - same directory as last file browser
-"   buffer  - directory of the related buffer
-"   current - current directory (pwd)
-"   {path}  - specified directory
-set browsedir=buffer
+set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
+set clipboard=unnamedplus             " always clipboard all operations
+set shada='256,f1,<128,:256,@256/128  " enable neovim shada
+set completeopt=menu,menuone,longest  "probably it will increase lusty+gundo speed
 
-" What to do when opening a new buffer. May be empty or may contain
-" comma-separated list of the following words:
-" useopen   - use existing windows if possible.
-" usetab    - like useopen but also checks other tabs
-" split     - split current window before loading a buffer
-" 'useopen' may be useful for re-using QuickFix window.
-set switchbuf=useopen,usetab
-set clipboard=unnamedplus
-set shada='256,f1,<128,:256,@256/128 
-
-set completeopt=menu,menuone,longest
-"probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
