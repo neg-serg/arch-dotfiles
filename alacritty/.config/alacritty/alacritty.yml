@@ -52,7 +52,6 @@ debug:
 scrolling:
   history: 1000
   multiplier: 3
-  auto_scroll: false
 
 colors:
   primary:
