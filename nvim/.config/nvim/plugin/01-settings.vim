@@ -100,8 +100,8 @@ set browsedir=buffer
 " split     - split current window before loading a buffer
 " 'useopen' may be useful for re-using QuickFix window.
 set switchbuf=useopen,usetab
-
 set clipboard=unnamedplus
+set shada='256,f1,<128,:256,@256/128 
 
 set completeopt=menu,menuone,longest
 "probably it will increase lusty+gundo speed
