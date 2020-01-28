@@ -11,8 +11,6 @@ export XDG_VIDEOS_DIR="${HOME}/vid"
 export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
 
 export ZSHDIR="${ZDOTDIR}"
-export BIN_HOME="${HOME}/bin"
-export SCRIPT_HOME="${BIN_HOME}/scripts"
 
 export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"

@@ -1,6 +1,6 @@
 chpwd() {
-    if [[ -x ${BIN_HOME}/Z ]]; then
-        [[ "${PWD}" -ef "${HOME}" ]] || Z -a "${PWD}"
+    if [[ -x $(which fasd) ]]; then
+        [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
     fi
     hash setup_prompt 2> /dev/null && setup_prompt
 }
@@ -16,7 +16,7 @@ if [[ ${use_cope_path} == true  ]]; then
         alias df="df -hT"
     fi
 else
-    local copepath=${SCRIPT_HOME}/Cope
+    local copepath=~/bin/scripts/Cope
     for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
     alias df="${copepath}/df -hT"
 fi
@@ -296,7 +296,7 @@ else
     alias img="imgur-screenshot $@"
 fi
 
-alias @r=${SCRIPT_HOME}/music_rename
+alias @r=~/bin/scripts/music_rename
 
 v() { ~/bin/v --remote-silent "$@" }
 gv() { 
