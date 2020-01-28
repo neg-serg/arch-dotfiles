@@ -149,7 +149,7 @@ set equalalways                 " keep windows equal when splitting (default)
 set eadirection=hor             " ver/hor/both - where does equalalways apply
 
 set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
-set paste                       " Enable paste by default
+set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
 set lazyredraw                  " Reduce useless redrawing
 set diffopt+=internal,algorithm:patience " Better diff algorithm
