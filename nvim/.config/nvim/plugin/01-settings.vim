@@ -80,7 +80,7 @@ set termencoding=utf8  " Set termencoding to utf-8
 "--------------------------------------------------------------------------
 set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
 set clipboard=unnamedplus             " always clipboard all operations
-set shada='256,f1,<128,:256,@256/128  " enable neovim shada
+set shada='256,f1,<128,:256,@256,/128 " enable neovim shada
 set completeopt=menu,menuone,longest  "probably it will increase lusty+gundo speed
 
 set backspace=indent,eol,start  " Backspace for dummies
