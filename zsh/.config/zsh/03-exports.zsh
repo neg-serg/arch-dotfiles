@@ -24,21 +24,20 @@ export PYTHONIOENCODING='utf-8'
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
-for q in nvim vim vi;
+for q in nvim vim vis vi;
     { [[ -n ${commands}[(I)${q}] ]] \
     && export EDITOR=${q}; break }
+
 if which nvimpager >/dev/null; then
     export PAGER="nvimpager"
-elif hash slit > /dev/null; then
-    export PAGER="slit"
-else
-    for q in nvim vim vi;
-        { [[ -n ${commands}[(I)${q}] ]] \
-        && export VISUAL=${q}; break }
 fi
+
+for q in nvim vim vis vi; {
+    [[ -n ${commands}[(I)${q}] ]] && export VISUAL=${q}; break 
+}
+
 alias less=${PAGER}
 alias zless=${PAGER}
-export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export BROWSER="firefox"
