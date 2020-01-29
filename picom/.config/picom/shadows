@@ -1,0 +1,4 @@
+# # new shadow color -- #5F7987
+# shadow-red = 0.325;    # Red color value of shadow. (0.0 - 1.0, defaults to 0)
+# shadow-green = 0.4745; # Green color value of shadow. (0.0 - 1.0, defaults to 0)
+# shadow-blue = 0.5294;  # Blue color value of shadow. (0.0 - 1.0, defaults to 0)
