@@ -1,1 +1,1 @@
-autocmd vimrc FileType git set nofoldenable
+autocmd FileType git set nofoldenable

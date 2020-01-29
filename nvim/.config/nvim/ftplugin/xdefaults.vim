@@ -1,1 +1,1 @@
-autocmd vimrc FileType xdefaults                           set commentstring=!%s
+autocmd FileType xdefaults set commentstring=!%s

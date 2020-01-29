@@ -1,1 +1,1 @@
-autocmd vimrc FileType            make           setlocal noexpandtab
+autocmd FileType make setlocal noexpandtab
