@@ -73,7 +73,7 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **rofi** -- dmenu analogue to run programs, find windows, everything, used very widely.
     + **sxhkd** -- x11-wide keybindings, independent to WM.
     + **color_profiles** -- custom icm color-profiles, I don't use it a lot, but it's funny.
-    + **compton** -- my x11 compositing manager.
+    + **picom** -- x11 compositing manager.
 + Net
     + **tridactyl** -- Vimperator-like firefox addon. Vim-like keybindings and UX in firefox.
     + **stig** -- custom colorscheme for this nice transmission-client
@@ -96,7 +96,7 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
         + caddy.service: local webserver for firefox startpage
         + caffeine.service: Prevents the desktop becoming idle in full-screen mode
         + downloads.service: Downloads cleaner and handler
-        + compton.service: Compositing manager
+        + picom.service: Compositing manager
         + cursor_swarp.service: cursor swarp
         + downloads.service: Downloads cleaner and handler
         + dunst.service: Lightweight and customizable notification daemon
