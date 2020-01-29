@@ -1,23 +1,12 @@
 #!/bin/zsh
-
 source ~/.zsh/03-xdg_vars.zsh
 
-function compton_settings(){
-    compton_cfg="${HOME}/.config/compton/new.conf"
-    if [[ $(lsmod | grep nvidia) > /dev/null ]]; then
-        compton --config "${compton_cfg}" > /dev/null
-    else
-        compton --config "${compton_cfg}" --blur-kern="" > /dev/null
-    fi
-}
-
-function compton_run(){
-    compton_settings
+picom_run(){
+    picom --experimental-backends > /dev/null
 }
 
 case "${1}" in
-    "r"*) compton_run ;;
-    "k"*) killall compton ;;
-    *) compton_run ;;
+    "r"*) picom_run ;;
+    "k"*) killall picom ;;
+    *) picom_run ;;
 esac
-
