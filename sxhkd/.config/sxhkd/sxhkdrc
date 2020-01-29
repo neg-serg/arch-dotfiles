@@ -1,7 +1,7 @@
 super + apostrophe
     make -C ~/.config/i3/ && pkill negi3mods; ${XDG_CONFIG_HOME}/i3/negi3mods.py >> ${HOME}/tmp/negi3mods.log 2>&1 &
 super + quotedbl
-    i3-msg restart
+    i3-msg restart &  systemctl --user restart picom &
 XF86AudioMute
     pactl set-sink-mute 1 toggle
 super + quotedbl
