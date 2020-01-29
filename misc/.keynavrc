@@ -1,6 +1,4 @@
-ctrl+semicolon start
-Escape end
-ctrl+bracketleft end
+super+semicolon start
 
 h move-left .50
 j move-down .50
@@ -16,12 +14,6 @@ q cell-select 1x1
 e cell-select 2x1
 z cell-select 1x2
 c cell-select 2x2
-
-
-1 cell-select 1x1
-2 cell-select 2x1
-3 cell-select 1x2
-4 cell-select 2x2
 
 shift+h cut-left
 shift+j cut-down
@@ -51,20 +43,9 @@ ctrl+u cut-right,cut-up
 ctrl+b cut-left,cut-down
 ctrl+n cut-right,cut-down
 
-# Record keynav actions
 shift+q record
-
-# Start drag holding the left mouse button
 ctrl+q drag 1
-
-# Start drag holding middle mouse + control and shift
 ctrl+w drag 2 ctrl+shift
-
 ctrl+a history-back
-
-# Emacs- and shell-like quit
-ctrl+g end
 ctrl+c end
-
-# r for restart / reload config
 ctrl+r restart
