@@ -28,12 +28,12 @@ ZSH_HIGHLIGHT_STYLES+=(
     # redirection                   none
     # commandseparator              none
 
-    back-quoted-argument            fg=024,bold
-    single-quoted-argument          fg=024
-    double-quoted-argument          fg=024
+    back-quoted-argument            fg=244,bold
+    single-quoted-argument          fg=244
+    double-quoted-argument          fg=244
     dollar-double-quoted-argument   fg=004,bold
-    back-double-quoted-argument     fg=024,bold
-    back-dollar-quoted-argument     fg=024,bold
+    back-double-quoted-argument     fg=244,bold
+    back-dollar-quoted-argument     fg=244,bold
     assign                          fg=38,bold
 )
 ZSH_HIGHLIGHT_STYLES+=($(< ${ZDOTDIR}/highlighters/ft_list.zsh))
