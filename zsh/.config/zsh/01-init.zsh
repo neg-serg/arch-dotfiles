@@ -44,8 +44,6 @@ unset MAILCHECK
 
 {
     stty eof  2> /dev/null  # stty eof ''
-    stty ixany
-    stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
 } &!
 
 stty_setup() {
