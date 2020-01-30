@@ -1,5 +1,4 @@
 "--[ Main ]--------------------------------------------------------------------------
-Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'thinca/vim-quickrun' " run a bunch of text
 Plug 'neg-serg/neg' "separated repo for the my own colorscheme
 Plug 'neg-serg/neovim-colorschemes' "all colorschemes in the single repo
@@ -32,7 +31,9 @@ Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 "--[ Search ]------------------------------------------------------------------------
 Plug 'junegunn/fzf' " fzf itself
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
+Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'dyng/ctrlsf.vim' " interactive vim-grep
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'mhinz/vim-grepper' "better grep plugin
 " --[ Docs ]-------------------------------------------------------------------------
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
@@ -48,9 +49,6 @@ Plug 'dense-analysis/ale' " ale as linter
 Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 " --[ LaTeX ]------------------------------------------------------------------------
 Plug 'donRaphaco/neotex' " latex support
-" ----------------[  Tags  ]---------------------------------------------------------
-Plug 'ludovicchabant/vim-gutentags' " A Vim plugin that manages your tag files
-Plug 'skywind3000/gutentags_plus' " handles switching between cscope db
 " ---------------[ Misc syntax ]-----------------------------------------------------
 Plug 'mzlogin/vim-markdown-toc' " plugin to autogenerate table of contents for markdown
 Plug 'sheerun/vim-polyglot' "  language pack collection
