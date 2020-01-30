@@ -313,3 +313,8 @@ let g:rooter_use_lcd = 1 " change directory for the current window only
 " change dir to current if there is no project
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_silent_chdir = 1
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - liuchengxu/vim-clap                                                      │
+" │ https://github.com/liuchengxu/vim-clap                                            │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:clap_theme = 'material_design_dark'
