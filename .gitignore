@@ -372,3 +372,4 @@ nvim/.config/nvim/nvim/.ycm_extra_conf_qt.py
 nvim/.config/nvim/undo
 nvim/.config/nvim/plugged
 nvim/.config/nvim/sessions
+nvim/.config/nvim/session.vim
