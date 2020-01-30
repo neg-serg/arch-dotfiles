@@ -1,5 +1,4 @@
 "--[ Main ]--------------------------------------------------------------------------
-Plug 'thinca/vim-quickrun' " run a bunch of text
 Plug 'neg-serg/neg' "separated repo for the my own colorscheme
 Plug 'neg-serg/neovim-colorschemes' "all colorschemes in the single repo
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " autocomplete
@@ -47,6 +46,7 @@ Plug 'tpope/vim-dispatch' " provide async build via tmux
 Plug 'Vimjas/vim-python-pep8-indent' " python autoindent pep8 compatible
 Plug 'dense-analysis/ale' " ale as linter
 Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
+Plug 'liuchengxu/vista.vim' " lsp-symbols tag searcher
 " --[ LaTeX ]------------------------------------------------------------------------
 Plug 'donRaphaco/neotex' " latex support
 " ---------------[ Misc syntax ]-----------------------------------------------------
@@ -65,9 +65,9 @@ Plug 'xolox/vim-misc' " for vim-session
 Plug 'xolox/vim-session' " rule sessions
 " --[ Misc ]-------------------------------------------------------------------------
 Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
-Plug 'mopp/autodirmake.vim' " automake dir which didnt exists
 Plug 's3rvac/AutoFenc' "  try to autodelect filetype
 Plug 'vim-scripts/ViewOutput' " VO commandline output
+Plug 'dstein64/vim-startuptime' " measuring startuptime
 " ----------------------------------------------------------------------[ Lazy plugins ]---
 " --[ Main ]-------------------------------------------------------------------------------
 Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
