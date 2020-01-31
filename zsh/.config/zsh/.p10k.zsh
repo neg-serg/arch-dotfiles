@@ -265,7 +265,7 @@
   )
   typeset -g POWERLEVEL9K_SHORTEN_FOLDER_MARKER="(${(j:|:)anchor_files})"
   # Don't shorten this many last directory segments. They are anchors.
-  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=0
+  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
   # Shorten directory if it's longer than this even if there is space for it. The value can
   # be either absolute (e.g., '80') or a percentage of terminal width (e.g, '50%'). If empty,
   # directory will be shortened only when prompt doesn't fit or when other parameters demand it
@@ -277,7 +277,7 @@
   typeset -g POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS=80
   # When `dir` segment is on the last prompt line, try to shorten it enough to leave at least
   # COLUMNS * POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT * 0.01 columns for typing commands.
-  typeset -g POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT=80
+  typeset -g POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT=70
   # If set to true, embed a hyperlink into the directory. Useful for quickly
   # opening a directory in the file manager simply by clicking the link.
   # Can also be handy when the directory is shortened, as it allows you to see
