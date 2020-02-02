@@ -341,4 +341,6 @@ selection:
   semantic_escape_chars: ",`|:\"' ()[]{}<>"
 
 shell:
-  program: /bin/zsh 
+  program: /usr/bin/tmux
+  args:
+    - -u # force UTF-8 in tmux
