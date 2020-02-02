@@ -373,3 +373,5 @@ nvim/.config/nvim/undo
 nvim/.config/nvim/plugged
 nvim/.config/nvim/sessions
 nvim/.config/nvim/session.vim
+tmux/.tmux/plugins/tmux-copycat/
+tmux/.tmux/plugins/tmux-fingers/
