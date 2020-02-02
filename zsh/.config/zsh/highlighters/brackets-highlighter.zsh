@@ -31,25 +31,23 @@
 
 # Define default styles.
 : ${ZSH_HIGHLIGHT_STYLES[bracket-error]:=fg=grey}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-1]:=fg=24}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-2]:=fg=23}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-3]:=fg=25}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-4]:=fg=26}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-5]:=fg=30}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-6]:=fg=31}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-7]:=fg=32}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-8]:=fg=33}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-1]:=fg=241}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-2]:=fg=242}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-3]:=fg=243}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-4]:=fg=244}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-5]:=fg=245}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-6]:=fg=246}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-7]:=fg=247}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-8]:=fg=248}
 : ${ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]:=standout}
 
 # Whether the brackets highlighter should be called or not.
-_zsh_highlight_highlighter_brackets_predicate()
-{
+_zsh_highlight_highlighter_brackets_predicate() {
   [[ $WIDGET == zle-line-finish ]] || _zsh_highlight_cursor_moved || _zsh_highlight_buffer_modified
 }
 
 # Brackets highlighting function.
-_zsh_highlight_highlighter_brackets_paint()
-{
+_zsh_highlight_highlighter_brackets_paint() {
   local char style
   local -i bracket_color_size=${#ZSH_HIGHLIGHT_STYLES[(I)bracket-level-*]} buflen=${#BUFFER} level=0 matchingpos pos
   local -A levelpos lastoflevel matching
@@ -99,8 +97,7 @@ _zsh_highlight_highlighter_brackets_paint()
 }
 
 # Helper function to differentiate type 
-_zsh_highlight_brackets_match()
-{
+_zsh_highlight_brackets_match() {
   case $BUFFER[$1] in
     \() [[ $BUFFER[$2] == \) ]];;
     \[) [[ $BUFFER[$2] == \] ]];;
