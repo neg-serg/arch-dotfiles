@@ -1,7 +1,8 @@
 "--[ Main ]--------------------------------------------------------------------------
-Plug 'neg-serg/neg' "separated repo for the my own colorscheme
-Plug 'neg-serg/neovim-colorschemes' "all colorschemes in the single repo
+Plug 'neg-serg/neg' " separated repo for the my own main colorscheme
+Plug 'neg-serg/neovim-colorschemes' " all colorschemes in the single repo
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " autocomplete
+Plug 'easymotion/vim-easymotion' " easymotion
 "--[ Statusline ]--------------------------------------------------------------------
 Plug 'itchyny/lightline.vim' " lightline statusline
 Plug 'maximbaz/lightline-ale' " lightline ale mod
@@ -19,10 +20,6 @@ Plug 'justinmk/vim-dirvish' "minimalistic file manager
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'Valloric/ListToggle' " toggle quickfix and location list
-"--[ QuickFix stuff ]----------------------------------------------------------------
-Plug 'romainl/vim-qf' " better quickfix support
-Plug 'thinca/vim-qfreplace' " visual replace for multiple files
-Plug 'stefandtw/quickfix-reflector.vim' " qf editing
 " --[ Rice ]-------------------------------------------------------------------------
 Plug 'luochen1990/rainbow' " better rainbow parentheses
 Plug 'tpope/vim-abolish' " for different case coersion
@@ -49,7 +46,7 @@ Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 Plug 'liuchengxu/vista.vim' " lsp-symbols tag searcher
 " --[ LaTeX ]------------------------------------------------------------------------
 Plug 'donRaphaco/neotex' " latex support
-" ---------------[ Misc syntax ]-----------------------------------------------------
+" --[ Misc syntax ]------------------------------------------------------------------
 Plug 'mzlogin/vim-markdown-toc' " plugin to autogenerate table of contents for markdown
 Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'tpope/vim-markdown' " markdown vim mode
@@ -58,8 +55,6 @@ Plug 'tpope/vim-fugitive' " Git stuff. Needed for powerline etc
 Plug 'junegunn/gv.vim' " git commit browser
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'APZelos/blamer.nvim' " inline gitblame
-" --[ tmux ]-------------------------------------------------------------------------
-Plug 'christoomey/vim-tmux-navigator' " easy jump between windows
 "--[ Session ]-----------------------------------------------------------------------
 Plug 'xolox/vim-misc' " for vim-session
 Plug 'xolox/vim-session' " rule sessions
@@ -68,6 +63,7 @@ Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
 Plug 's3rvac/AutoFenc' "  try to autodelect filetype
 Plug 'vim-scripts/ViewOutput' " VO commandline output
 Plug 'dstein64/vim-startuptime' " measuring startuptime
+Plug 'christoomey/vim-tmux-navigator' " easy jump between windows
 " ----------------------------------------------------------------------[ Lazy plugins ]---
 " --[ Main ]-------------------------------------------------------------------------------
 Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
