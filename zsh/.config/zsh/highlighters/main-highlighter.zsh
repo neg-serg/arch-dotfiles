@@ -10,7 +10,7 @@ ZSH_HIGHLIGHT_STYLES+=(
     command                         fg=024
 
     precommand                      fg=024,underline 
-    path                            fg=white
+    path                            fg=248
     path_prefix                     none
     path_approx                     fg=white
     # path_pathseparator
@@ -23,14 +23,14 @@ ZSH_HIGHLIGHT_STYLES+=(
     double-hyphen-option             fg=61
     comment                          fg=56
     arg0                             fg=024
-    # named-fd                       none
-    # rc-quote                       cyan
-    # redirection                    none
-    # commandseparator               none
-    # command-substitution           none
-    # command-substitution-delimiter magenta
-    # process-substitution           none
-    # process-substitution-delimiter magenta
+    named-fd                         none
+    rc-quote                         cyan
+    redirection                      none
+    commandseparator                 none
+    command-substitution             none
+    command-substitution-delimiter   magenta
+    process-substitution             none
+    process-substitution-delimiter   magenta
 
     back-quoted-argument            fg=244,bold
     single-quoted-argument          fg=244
