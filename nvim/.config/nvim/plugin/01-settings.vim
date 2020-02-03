@@ -58,8 +58,6 @@ command! -bang Qa qa<bang>
 command! -nargs=0 Sw :SudoWrite
 "----------------------------------------------------------------------------
 set keywordprg=:help
-let $PATH = $PATH . ':' . expand('~/bin/go/bin')
-
 set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
 set noautowrite                             " Don't autowrite by default
