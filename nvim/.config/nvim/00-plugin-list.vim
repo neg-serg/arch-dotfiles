@@ -9,7 +9,6 @@ Plug 'maximbaz/lightline-ale' " lightline ale mod
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'inkarkat/vim-ReplaceWithRegister' " replace with register keybindings
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
-Plug 'machakann/vim-swap' " swap with emacs
 Plug 'jiangmiao/auto-pairs' " autopair for brackets
 Plug 'sbdchd/neoformat' " universal formatter
 Plug 'tpope/vim-repeat' " dot for everything
