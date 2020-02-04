@@ -136,15 +136,15 @@ nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 " └───────────────────────────────────────────────────────────────────────────────────┘
 " A "companion" file is a .cpp file to an .h file and vice versa
 " Opens the companion file in the current window
-nnoremap <Space>fs :FSHere<cr>
+nnoremap [FLeader]fs :FSHere<cr>
 " Opens the companion file in the window to the left (window needs to exist)
 " This is actually a duplicate of the :FSLeft command which for some reason
 " doesn't work.
-nnoremap <Space>sl :call FSwitch('%', 'wincmd l')<cr>
+nnoremap [FLeader]sl :call FSwitch('%', 'wincmd l')<cr>
 " Same as above, only opens it in window to the right
-nnoremap <Space>sr :call FSwitch('%', 'wincmd r')<cr>
+nnoremap [FLeader]sr :call FSwitch('%', 'wincmd r')<cr>
 " Creates a new window on the left and opens the companion file in it
-nnoremap <Space>sv :FSSplitLeft<cr>
+nnoremap [FLeader]sv :FSSplitLeft<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - gregsexton/gitv.git                                                      │
 " │ https://github.com/gregsexton/gitv.git                                            │
@@ -191,8 +191,8 @@ nmap <silent><space>d :GasyncTagsEnable<CR>:GtagsCscope<CR>
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap MK :Make -j9
 nmap MC :Make clean<cr>
-nmap <Space>cc :Make -j10<cr>
-nmap <Space>mc :Make distclean<cr>
+nmap [FLeader]cc :Make -j10<cr>
+nmap [FLeader]mc :Make distclean<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - frazrepo/vim-rainbow                                                     │
 " │ https://github.com/frazrepo/vim-rainbow                                           │
@@ -318,3 +318,12 @@ let g:rooter_silent_chdir = 1
 " │ https://github.com/liuchengxu/vim-clap                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:clap_theme = 'material_design_dark'
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - easymotion/vim-easymotion                                                │
+" │ https://github.com/easymotion/vim-easymotion                                      │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+nmap gs <Plug>(easymotion-overwin-f2)
+" map <NOP> <Plug>(easymotion-prefix)

@@ -11,14 +11,17 @@ let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
 
+nnoremap [FLeader] <Nop>
+nmap f [FLeader]
+
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Right> <Nop>
 noremap <Left> <Nop>
-nnoremap <space> <Nop>
+nnoremap <Space> f
 
 nnoremap <silent> <leader>4 :set cursorline!<CR>
-nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <silent> [FLeader]cd :lcd %:p:h<CR>:pwd<CR>
 
 nnoremap <silent> cow :set wrap!<CR>  
 nnoremap <silent> cop :setlocal paste!<Return>
@@ -29,7 +32,7 @@ nnoremap <silent> zJ o<Esc>k
 nnoremap <silent> zK O<Esc>j
 
 " semicolon magic
-nnoremap <Space>w :w!<cr>
+nnoremap [FLeader]w :w!<cr>
 nnoremap q4 :q<cr>
 
 " Toggle hlsearch for current results, start highlight
@@ -74,10 +77,10 @@ nnoremap <silent> [Quickfix]l :normal :<C-u>clist<CR>
 nnoremap ' `
 nnoremap ` '
 
-nnoremap <Space>- :resize -10<CR>
-nnoremap <Space>+ :resize +10<CR>
-nnoremap <Space>, :vertical resize -10<CR>
-nnoremap <Space>. :vertical resize +10<CR>
+nnoremap [FLeader]- :resize -10<CR>
+nnoremap [FLeader]+ :resize +10<CR>
+nnoremap [FLeader], :vertical resize -10<CR>
+nnoremap [FLeader]. :vertical resize +10<CR>
 
 " Macros editing
 nnoremap <leader>m :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
