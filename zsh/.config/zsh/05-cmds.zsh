@@ -151,6 +151,7 @@ unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
 alias l=ls
 alias ls="ls --color=auto" # do we have GNU ls with color-support?
+alias sort='sort --parallel 8 -S 16M'
 
 alias s="sudo"
 alias x='xargs'
