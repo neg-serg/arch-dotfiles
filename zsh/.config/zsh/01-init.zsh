@@ -141,3 +141,5 @@ limit -s
 # Keeps track of the last used working directory and automatically jumps
 # into it for new shells.
 export ZSH=~/.zsh
+
+eval "$(/usr/bin/direnv hook zsh)"
