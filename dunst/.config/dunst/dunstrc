@@ -37,6 +37,7 @@
     width                 = 0
     ellipsize             = middle
     verbosity             = mesg
+    transparency          = 10
 
 [shortcuts]
     history = mod4+shift+9
