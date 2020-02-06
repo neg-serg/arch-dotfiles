@@ -54,7 +54,6 @@ bindkey . rationalise-dot
 bindkey -M isearch . self-insert
 
 # load the lookup subsystem if it's available on the system
-zrcautoload lookupinit && lookupinit
 zle -N inplace_mk_dirs && bindkey '^xM' inplace_mk_dirs
 
 bindkey -M emacs "^XD" describe-key-briefly

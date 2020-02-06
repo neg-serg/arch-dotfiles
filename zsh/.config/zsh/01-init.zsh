@@ -1,23 +1,3 @@
-# autoload wrapper - use this one instead of autoload directly
-# We need to define this function as early as this, because autoloading
-# 'is-at-least()' needs it.
-zrcautoload() {
-    emulate -L zsh
-    setopt extended_glob
-    local fdir ffile
-    local -i ffound
-
-    ffile=$1
-    (( ffound = 0 ))
-    for fdir in ${fpath} ; do
-        [[ -e ${fdir}/${ffile} ]] && (( ffound = 1 ))
-    done
-
-    (( ffound == 0 )) && return 1
-    autoload -U ${ffile} || return 1
-    return 0
-}
-
 # Speeds up load time
 DISABLE_UPDATE_PROMPT=true
 
@@ -34,7 +14,7 @@ done
 unsetopt EXTENDEDGLOB
 compinit -C
 
-zrcautoload colors && colors
+autoload -Uz colors
 
 eval $(keychain --eval --quiet id_rsa)
 
@@ -117,11 +97,9 @@ watch=(notme root)
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
 
-zrcautoload zmv # who needs mmv or rename?
-zrcautoload history-search-end
-zrcautoload split-shell-arguments
-
-zrcautoload zed # use ZLE editor to edit a file or function
+autoload -Uz history-search-end
+autoload -Uz split-shell-arguments
+autoload -Uz lookupinit
 
 for mod in complist deltochar mathfunc ; do
     zmodload -i zsh/${mod} 2>/dev/null || print "Notice: no ${mod} available :("
