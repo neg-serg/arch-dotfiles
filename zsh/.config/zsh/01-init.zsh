@@ -62,8 +62,6 @@ compinit -C
 
 eval $(keychain --eval --quiet id_rsa)
 
-# Speeds up load time
-DISABLE_UPDATE_PROMPT=true
 autoload -Uz colors
 zle_highlight+=(suffix:fg=blue)
 unset MAILCHECK
