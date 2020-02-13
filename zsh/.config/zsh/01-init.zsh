@@ -1,44 +1,3 @@
-# Speeds up load time
-DISABLE_UPDATE_PROMPT=true
-
-# Perform compinit only once a day.
-autoload -Uz compinit
-
-setopt EXTENDEDGLOB
-for dump in ${HOME}/.zcompdump(#qN.m1); do
-    compinit
-    if [[ -s "${dump}" && (! -s "${dump}.zwc" || "${dump}" -nt "${dump}.zwc") ]]; then
-        zcompile "${dump}"
-    fi
-done
-unsetopt EXTENDEDGLOB
-compinit -C
-
-autoload -Uz colors
-
-eval $(keychain --eval --quiet id_rsa)
-
-zle_highlight+=(suffix:fg=blue)
-
-unset MAILCHECK
-
-{
-    stty eof  2> /dev/null  # stty eof ''
-} &!
-
-stty_setup() {
-    stty time 0 2> /dev/null
-    stty min 0 2> /dev/null
-    stty line 6 2> /dev/null
-    stty speed 38400 &> /dev/null
-}
-
-[[ $- =~ i ]] && stty_setup &!
-
-[[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
-
-ulimit -c 0 # No core dumps for now
-
 setopt append_history # this is default, but set for share_history
 setopt share_history # import new commands from the history file also in other zsh-session
 setopt extended_history # save each command's beginning timestamp and the duration to the history file
@@ -91,6 +50,38 @@ setopt interactivecomments # allow interactive comments after '#' in command lin
 setopt magicequalsubst
 # setopt glob_star_short # */** -> **
 
+# Perform compinit only once a day.
+autoload -Uz compinit
+for dump in ${HOME}/.zcompdump(#qN.m1); do
+    compinit
+    if [[ -s "${dump}" && (! -s "${dump}.zwc" || "${dump}" -nt "${dump}.zwc") ]]; then
+        zcompile "${dump}"
+    fi
+done
+compinit -C
+
+eval $(keychain --eval --quiet id_rsa)
+
+# Speeds up load time
+DISABLE_UPDATE_PROMPT=true
+autoload -Uz colors
+zle_highlight+=(suffix:fg=blue)
+unset MAILCHECK
+{
+    stty eof  2> /dev/null  # stty eof ''
+} &!
+
+stty_setup() {
+    stty time 0 2> /dev/null
+    stty min 0 2> /dev/null
+    stty line 6 2> /dev/null
+    stty speed 38400 &> /dev/null
+}
+
+[[ $- =~ i ]] && stty_setup &!
+
+[[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
+
 # watch for everyone but me and root
 watch=(notme root)
 
@@ -105,13 +96,9 @@ for mod in complist deltochar mathfunc ; do
     zmodload -i zsh/${mod} 2>/dev/null || print "Notice: no ${mod} available :("
 done
 
-# autoload zsh modules when they are referenced
-zmodload -a  zsh/stat    zstat
-zmodload -a  zsh/zpty    zpty
-zmodload -ap zsh/mapfile mapfile
-
 # Use hard limits, except for a smaller stack and no core dumps
 unlimit
+ulimit -c 0 # No core dumps for now
 limit stack 8192
 limit core 0 # important for a live-cd-system
 limit -s
