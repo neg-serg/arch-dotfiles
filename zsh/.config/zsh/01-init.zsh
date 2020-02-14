@@ -102,3 +102,10 @@ limit core 0 # important for a live-cd-system
 limit -s
 
 eval "$(/usr/bin/direnv hook zsh)"
+
+fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
+if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
+    fasd --init auto >| "${fasd_cache}"
+fi
+source "${fasd_cache}"
+unset fasd_cache
