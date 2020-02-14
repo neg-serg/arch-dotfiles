@@ -58,16 +58,7 @@ imv() {
     done
 }
 
-fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
-if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
-    fasd --init auto >| "${fasd_cache}"
-fi
-source "${fasd_cache}"
-unset fasd_cache
-
 dropcache() { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
-
-pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
 ql() {
     if [[ $1 != "" ]]; then
@@ -86,21 +77,6 @@ which() {
         else            
             builtin which "$@"
         fi
-    fi
-}
-
-py23switch() {
-    python_path="$(which python)"
-
-    if [[ $(basename $(readlink /usr/sbin/python)) == python3 ]]; then
-        echo ':: set python (3 to 2) ::'
-        sudo ln -fs /usr/sbin/python2 /usr/sbin/python && \
-            l ${python_path}
-    elif
-        [[ $(basename $(readlink /usr/sbin/python)) == python2 ]]; then
-        echo ':: set python (2 to 3) ::'
-        sudo ln -fs /usr/sbin/python3 /usr/sbin/python && \
-            l ${python_path}
     fi
 }
 
@@ -150,7 +126,7 @@ for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
 alias l=ls
-alias ls="ls --color=auto" # do we have GNU ls with color-support?
+alias ls="ls --color=auto"
 alias sort='sort --parallel 8 -S 16M'
 alias ping='prettyping'
 alias cat='fcat'
@@ -159,8 +135,6 @@ alias s="sudo"
 alias x='xargs'
 alias e="mimeo"
 alias u='umount'
-
-alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 mp(){
     for i; vid_fancy_print "${i}"
@@ -183,15 +157,15 @@ alias pstop='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo &&
 alias '?=bc -l <<<'
 ??() { curl -s cheat.sh/$@ }
 
-alias {z,m}mv="noglob zmv -Wn"
 alias mv="mv -i"
 alias mk="mkdir -p"
 alias rd="rmdir"
 
 alias acpi="acpi -V"
+alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
+
 alias se="patool extract"
 alias pk="patool create"
-alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
 
 if hash git 2>/dev/null; then
     alias gs='git status --short -b'
@@ -211,8 +185,7 @@ if hash git 2>/dev/null; then
     eval "$(hub alias -s)"
 fi
 
-for i in x q Q; eval alias :${i}=\' exit\'
-
+eval 'alias :{x,q,Q}=exit'
 alias iostat='iostat -mtx'
 alias yt="youtube-dl"
 alias ytt='you-get'
@@ -226,7 +199,7 @@ yr() {
 
 alias qe='cd *(/om[1])'
 if hash ccat > /dev/null; then
-    alias {cat,hi}='ccat -G String="_default_" -G Plaintext="white" -G Punctuation="blue" -G Literal="fuscia" -G Keyword="fuscia" 2>/dev/null'
+    alias hi='ccat -G String="_default_" -G Plaintext="white" -G Punctuation="blue" -G Literal="fuscia" -G Keyword="fuscia" 2>/dev/null'
 fi
 
 alias history='history 0'
@@ -236,13 +209,8 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal="task calendar"
 
-if [[ $(whence python) != "" ]]; then
-    urlencode() { python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]))" }
-    urldecode() { python -c "import sys, urllib; print(urllib.unquote_plus(sys.argv[1]))" }
-elif [[ $(whence xxd) != "" ]]; then
-    urlencode() { echo $@ | tr -d "\n" | xxd -plain | sed "s/\(..\)/%\1/g" }
-    urldecode() { printf $(echo -n $@ | sed 's/\\/\\\\/g;s/\(%\)\([0-9a-fA-F][0-9a-fA-F]\)/\\x\2/g')"\n" }
-fi
+urlencode() { python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]))" }
+urldecode() { python -c "import sys, urllib; print(urllib.unquote_plus(sys.argv[1]))" }
 
 zleiab() {
     declare -A abk
