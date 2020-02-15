@@ -4,7 +4,7 @@
 
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
-    rofi -i -no-auto-select "$@"
+    rofi -columns 6 -lines 10 -theme-str '#window { width: 1920; y-offset: -34; location: south west; anchor: south west; }' -i -no-auto-select "$@"
 }
 
 # default command to generate passwords
@@ -54,7 +54,7 @@ BROWSER='xdg-open'
 
 ## Misc settings
 
-default_do='menu' # menu, autotype, copyPass, typeUser, typePass, copyUser, copyUrl, viewEntry, typeMenu, actionMenu, copyMenu, openUrl
+default_do='copyPass' # menu, autotype, copyPass, typeUser, typePass, copyUser, copyUrl, viewEntry, typeMenu, actionMenu, copyMenu, openUrl
 auto_enter='false'
 notify='false'
 default_autotype='user :tab pass'
@@ -67,7 +67,7 @@ help_color="#4872FF"
 # Possible options: primary, clipboard, both
 clip=primary
 
-# Seconds before clearing pass from clipboard 
+# Seconds before clearing pass from clipboard
 clip_clear=45
 
 ## Options for generating new password entries
