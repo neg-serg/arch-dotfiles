@@ -41,3 +41,4 @@ source ~/.config/nvim/04-autocmds.vim
 source ~/.config/nvim/11-vimacs.vim
 source ~/.config/nvim/14-abbr.vim
 source ~/.config/nvim/21-langmap.vim
+source ~/.config/nvim/31-statusline.vim
