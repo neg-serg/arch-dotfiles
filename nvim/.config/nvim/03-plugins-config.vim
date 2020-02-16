@@ -275,11 +275,6 @@ if executable('firefox')
     let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - itchyny/lightline.vim                                                    │
-" │ https://github.com/itchyny/lightline.vim                                          │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-source ~/.config/nvim/10-lightline-config.vim
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - mhinz/vim-grepper                                                        │
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘

@@ -3,9 +3,6 @@ Plug 'neg-serg/neg' " separated repo for the my own main colorscheme
 Plug 'neg-serg/neovim-colorschemes' " all colorschemes in the single repo
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " autocomplete
 Plug 'easymotion/vim-easymotion' " easymotion
-"--[ Statusline ]--------------------------------------------------------------------
-Plug 'itchyny/lightline.vim' " lightline statusline
-Plug 'maximbaz/lightline-ale' " lightline ale mod
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'inkarkat/vim-ReplaceWithRegister' " replace with register keybindings
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
