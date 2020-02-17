@@ -38,7 +38,7 @@ function! GitBranch(git)
     if a:git == ""
         return ''
     else
-        return '  ' . a:git
+        return ' ' . a:git . ' '
     endif
 endfunction
 
