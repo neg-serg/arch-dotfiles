@@ -127,7 +127,7 @@ color83="#55AE24"
 color73="#367CB0"
 color74="#5788B0"
 color75="#7095B0"
-color80="#1E857F"
+color80="#29626E"
 
 color110="#5B5BBB"
 color111="#7778BB"
