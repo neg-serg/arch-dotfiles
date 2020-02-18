@@ -417,3 +417,20 @@ slash-backward-kill-word () {
     zle backward-kill-word
 }
 zle -N slash-backward-kill-word
+
+ap() {
+    local inventory="$(pwd)/ansible/hosts"
+    local lib="$(pwd)/ansible/library"
+    local stdout_opt=""
+    local opt1="${1}"
+    if [[ "${opt1}" == "-V" ]]; then
+        export ANSIBLE_STDOUT_CALLBACK="minimal"
+        shift
+    fi
+    play="${1}"
+    shift
+    local options=""
+    [[ ! -z "${ansible_user}" ]] && options="-u ${ansible_user}"
+    export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
+    ansible-playbook ${options} -i "${inventory}" -M "${lib}" "${play}" "$@"
+}
