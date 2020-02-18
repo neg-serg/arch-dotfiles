@@ -35,6 +35,9 @@ setopt nobeep # get rid of beeps
 setopt noglobdots  # * shouldn't match dotfiles. ever.
 setopt noshwordsplit  # use zsh style word splitting
 setopt noflowcontrol # no c-s/c-q output freezing
+setopt no_bg_nice # don't nice background jobs
+setopt no_notify # do not notify about bg task ending
+setopt no_monitor # do not notify about bg task ending
 
 setopt c_bases  # print $(( [#16] 0xff ))
 setopt prompt_subst # set the prompt
