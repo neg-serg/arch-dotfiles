@@ -1056,6 +1056,9 @@ _zsh_highlight_main_highlighter_highlight_list()
 		*.md5) style=ftype-md5 ;;
 		*.gpg) style=ftype-gpg ;;
 		*.ffp) style=ftype-ffp ;;
+		*.so) style=ftype-so ;;
+		*.dll) style=ftype-dll ;;
+		*.a) style=ftype-a ;;
 		*.yml) style=ftype-yml ;;
 		*.yml) style=ftype-yml ;;
 		*.yaml) style=ftype-yaml ;;
