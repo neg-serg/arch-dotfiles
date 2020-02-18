@@ -129,7 +129,6 @@ alias l=ls
 alias ls="ls --color=auto"
 alias sort='sort --parallel 8 -S 16M'
 alias ping='prettyping'
-alias cat='fcat'
 
 alias s="sudo"
 alias x='xargs'
