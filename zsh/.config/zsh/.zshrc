@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source "${ZDOTDIR}/00-prepare.zsh"
 source "${ZDOTDIR}/01-init.zsh"
 source "${ZDOTDIR}/zsh-defer/zsh-defer.plugin.zsh"
 source "${ZDOTDIR}/03-exports.zsh"
@@ -15,7 +14,6 @@ zsh-defer source "${ZDOTDIR}/13-bindkeys.zsh"
 zsh-defer source /usr/share/fzf/completion.zsh
 zsh-defer source /usr/share/fzf/key-bindings.zsh
 zsh-defer source "${ZDOTDIR}/98-syntax.zsh"
-source "${ZDOTDIR}/99-final.zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+source ${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ${ZDOTDIR}/.p10k.zsh ]] || source ${ZDOTDIR}/.p10k.zsh
