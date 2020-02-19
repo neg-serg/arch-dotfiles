@@ -26,7 +26,7 @@ zc() {
     autoload -U zrecompile
     for z in ${ZDOTDIR}/*.zsh ${ZDOTDIR}/.zshrc; do 
         zrecompile -p ${z}
-        print $(zpref) $(zfwrap "${z}")
+        print "${z}"
         rm -fv "${z}.zwc.old"
     done
     for f in ${zcompdumpfile};
@@ -65,7 +65,7 @@ ql() {
         local file=$(resolve_file "$1")
         local upload_dir=${HOME}/1st_level/upload/
         cp "${file}" "${upload_dir}" && \
-        builtin printf "$(zfwrap ${file})\n"
+        builtin printf "${file}\n"
         xsel -o <<< "${upload_dir}/$(basename ${file})"
     fi
 }
