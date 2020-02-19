@@ -29,10 +29,8 @@ export PATH=${(j_:_)path_dirs}
 
 unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
-
 export AURDEST=$(readlink -f "${HOME}/tmp/pacaur")
 
-export PYTHONIOENCODING='utf-8'
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
@@ -86,31 +84,12 @@ export GOMAXPROCS=8
 export KEYTIMEOUT=5 # allow to use ,<key> more fast
 export ESCDELAY=1
 
-export OSSLIBDIR=/usr/lib/oss
-
 export JAVA_FONTS=/usr/share/fonts/TTF
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
 
-(( 0 != 0 )) && {
-    if which drip > /dev/null 2>&1; then
-        export DRIP_SHUTDOWN=30
-        export JAVACMD=$(which drip)
-    fi
-}
-
 export STEAM_RUNTIME=1
 export AUTOPAIR_INHIBIT_INIT=1
-(){
-    local _home="/mnt/home"
-    local _dev="/one/dev"
-    hash -d q=${_dev}
-    hash -d d="${_home}/doc"
-    hash -d torrent="${_home}/torrent"
-    hash -d v="${_home}/vid/new"
-    hash -d {z,s}="${_dev}/src"
-    hash -d p='/home/neg/pic'
-}
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
