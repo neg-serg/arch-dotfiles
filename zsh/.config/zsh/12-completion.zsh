@@ -129,8 +129,8 @@ zstyle -e ':completion:*' completer '
         fi
     fi'
 
-[[ -d $ZSHDIR/cache ]] && zstyle ':completion:*' use-cache yes && \
-                            zstyle ':completion::complete:*' cache-path $ZSHDIR/cache/
+[[ -d "${ZDOTDIR}/cache" ]] && zstyle ':completion:*' use-cache yes && \
+    zstyle ':completion::complete:*' cache-path "${ZDOTDIR}/cache/"
 # use generic completion system for programs not yet defined; (_gnu_generic works
 # with commands that provide a --help option with "standard" gnu-like output.)
 for compcom in cp deborphan df feh fetchipac head hnb ipacsum mv \

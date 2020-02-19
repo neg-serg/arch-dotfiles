@@ -9,10 +9,6 @@ export XDG_DOCUMENTS_DIR="${HOME}/doc/"
 export XDG_PICTURES_DIR="${HOME}/pic"
 export XDG_VIDEOS_DIR="${HOME}/vid"
 export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
-export ZSHDIR="${ZDOTDIR}"
-export SXHKD_FIFO="/tmp/sxhkd_fifo"
-export SXHKD_SHELL="zsh"
-
 path_dirs=(
     /usr/bin
     ${HOME}/bin
@@ -30,6 +26,9 @@ export PATH=${(j_:_)path_dirs}
 unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export AURDEST=$(readlink -f "${HOME}/tmp/pacaur")
+
+export SXHKD_FIFO="/tmp/sxhkd_fifo"
+export SXHKD_SHELL="zsh"
 
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
@@ -78,9 +77,7 @@ export LS_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 
 export MPV_HOME="${HOME}/.config/mpv"
-export MANWIDTH=${MANWIDTH:-80}
 export GOPATH=/opt/go
-export GOMAXPROCS=8
 export KEYTIMEOUT=5 # allow to use ,<key> more fast
 export ESCDELAY=1
 
