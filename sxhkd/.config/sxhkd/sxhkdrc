@@ -22,6 +22,12 @@ super + u
     udiskie-umount -a
 super + M
     ~/bin/scripts/rofi_mpd
+super + control + m
+    mpc toggle
+super + control + ,
+    mpc prev
+super + control + .
+    mpc next
 alt + grave
     rofi -no-plugins -sort -show run -lines 1 -columns 4 -case-sensitive=false -matching fuzzy \
     -theme-str '* \{ font: "Iosevka Term Medium 12"; \}' \
