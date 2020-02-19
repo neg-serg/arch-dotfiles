@@ -1,5 +1,17 @@
-source "${ZDOTDIR}/03-helpers.zsh"
-source "${ZDOTDIR}/03-xdg_vars.zsh"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DOWNLOAD_DIR="${HOME}/dw"
+export XDG_MUSIC_DIR="${HOME}/music"
+export XDG_DESKTOP_DIR="${HOME}/.local/desktop"
+export XDG_TEMPLATES_DIR="${HOME}/1st_level/templates"
+export XDG_DOCUMENTS_DIR="${HOME}/doc/"
+export XDG_PICTURES_DIR="${HOME}/pic"
+export XDG_VIDEOS_DIR="${HOME}/vid"
+export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
+export ZSHDIR="${ZDOTDIR}"
+export SXHKD_FIFO="/tmp/sxhkd_fifo"
+export SXHKD_SHELL="zsh"
 
 path_dirs=(
     /usr/bin
@@ -62,16 +74,7 @@ export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 export HISTCONTROL=ignoreboth:erasedups # ignoreboth (= ignoredups + ignorespace)
 
-local -a timefmt_=(
-    "$(zwrap "$(zfwrap "%J")")"
-    "$(zwrap "%U")"
-    "$(zwrap "user %S")"
-    "$(zwrap "system %P")"
-    "$(zwrap "cpu %*E total")"
-    "$(zwrap "-||-")"
-    "$(zwrap "Mem: %M kb max")"
-)
-export TIMEFMT="${timefmt_[@]}"
+export TIMEFMT="[34m⟬[37m[34m⟬[37m[37m%J[34m⟭[37m[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 export COLORTERM="yes"
 export LS_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
@@ -97,10 +100,8 @@ _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
     fi
 }
 
-export PULSE_LATENCY_MSEC=60
 export STEAM_RUNTIME=1
 export AUTOPAIR_INHIBIT_INIT=1
-
 (){
     local _home="/mnt/home"
     local _dev="/one/dev"
