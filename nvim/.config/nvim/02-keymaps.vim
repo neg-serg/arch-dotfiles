@@ -98,3 +98,5 @@ nnoremap <silent> <C-w>s :new<CR>
 " fix floating windows
 nnoremap <C-C> <C-[>
 inoremap <C-C> <C-[>
+
+nnoremap <C-l> :Lines<cr>
