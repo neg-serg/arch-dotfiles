@@ -69,8 +69,10 @@ function! ActiveLine()
     let statusline .= '%#StatusLeftDelimiter1# ❯>'
     let statusline .= "%#Modi# %{CheckMod(&modified)}"
     let statusline .= "%#Git# %{GitBranch(fugitive#head())} %)"
+    let statusline .= "%#Decoration#▓▒▒"
     let statusline .= "%3* "
     let statusline .= "%= "
+    let statusline .= "%#Decoration#▒▒▓"
     let statusline .= "%#Filetype#%{CheckFT(&filetype)} "
     let statusline .= "%3*"
     let statusline .= "%#StatusRightDelimiter1#❮"
