@@ -23,11 +23,11 @@ super + u
 super + M
     ~/bin/scripts/rofi_mpd
 super + control + m
-    mpc toggle
-super + control + ,
-    mpc prev
-super + control + .
-    mpc next
+    mpc toggle > /dev/null
+super + comma
+    mpc prev > /dev/null
+super + period
+    mpc next > /dev/null
 alt + grave
     rofi -no-plugins -sort -show run -lines 1 -columns 4 -case-sensitive=false -matching fuzzy \
     -theme-str '* \{ font: "Iosevka Term Medium 12"; \}' \
