@@ -22,6 +22,8 @@ super + u
     udiskie-umount -a
 super + M
     ~/bin/scripts/rofi_mpd
+super + F4
+    gpick -so --no-newline | xsel -b
 super + control + m
     mpc toggle > /dev/null
 super + comma
