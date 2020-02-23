@@ -162,3 +162,7 @@ bind index,pager <right> sidebar-open
 # b toggles sidebar visibility
 macro index b '<enter-command>toggle sidebar_visible<enter>'
 macro pager b '<enter-command>toggle sidebar_visible<enter>'
+
+set nm_default_uri = "notmuch:///home/neg/.local/mail/insales"
+virtual-mailboxes "Neg INBOX" "notmuch://?query=tag:inbox"
+set virtual_spoolfile = yes
