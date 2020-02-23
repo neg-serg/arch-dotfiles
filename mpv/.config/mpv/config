@@ -4,7 +4,7 @@ vo-vdpau-colorkey="#020507"
 #--[Decoding]----------------------------------------------
 hwdec-codecs=all
 vd-lavc-threads=9
-cache=65536
+cache=auto
 scale=ewa_lanczossharp
 cscale=ewa_lanczossharp
 video-sync=display-resample
@@ -37,7 +37,7 @@ sub-font="HelveticaNeue LT CYR 57 Cond"
 
 #--[OSD]---------------------------------------------------
 osd-font="Iosevka Medium"
-osd-font-size=22
+osd-font-size=18
 osd-color='#cc53a6a6'
 osd-border-color='#cc000000'
 osd-border-size=1
