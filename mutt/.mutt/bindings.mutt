@@ -49,8 +49,9 @@ macro index A "<limit>all\n" "show all messages (undo limit)"
 macro index X "|~/.mutt/mimedump"
 macro pager X "|~/.mutt/mimedump"
 
-macro index g/ "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/external/mutt-notmuch-py/mutt-notmuch-py<enter><change-folder-readonly>~/tmp/mutt_results<enter>" \
-          "search mail (using notmuch)"
+bind index,pager g/ vfolder-from-query
+bind index < vfolder-window-backward
+bind index > vfolder-window-forward
 
 macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
 macro index,pager d "<save-message>=[Gmail]/Trash<enter>" "Trash"
