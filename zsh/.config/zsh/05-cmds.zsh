@@ -126,7 +126,14 @@ alias e="mimeo"
 alias u='umount'
 
 mp() {
-    find -print0 | xargs -0n10 -P 10 ~/bin/scripts/vid_info
+    local args=""
+    for arg; do
+        if [[ -d ${arg} ]]; then
+            {find "${arg}" -maxdepth 1 -type f -print0 | xargs -0n10 -P 10 ~/bin/scripts/vid_info} &
+        fi
+    done
+    {for arg; [[ -f "${arg}" ]] && args+="$(printf '%s\0' "${arg}")";
+    xargs -0n10 -P 10 ~/bin/scripts/vid_info <<< "${args}"} &
     mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
 }
 
