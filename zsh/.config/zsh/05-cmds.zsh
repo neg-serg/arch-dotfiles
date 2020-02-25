@@ -24,7 +24,7 @@ unset copepath
 
 zc() {
     autoload -U zrecompile
-    for z in ${ZDOTDIR}/*.zsh ${ZDOTDIR}/.zshrc; do 
+    for z in ${ZDOTDIR}/*.zsh ${ZDOTDIR}/.zshrc; do
         zrecompile -p ${z}
         print "${z}"
         rm -fv "${z}.zwc.old"
@@ -60,21 +60,11 @@ imv() {
 
 dropcache() { sync && command sudo /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' }
 
-ql() {
-    if [[ $1 != "" ]]; then
-        local file=$(resolve_file "$1")
-        local upload_dir=${HOME}/1st_level/upload/
-        cp "${file}" "${upload_dir}" && \
-        builtin printf "${file}\n"
-        xsel -o <<< "${upload_dir}/$(basename ${file})"
-    fi
-}
-
 which() {
     if [[ $# > 0 ]]; then
         if [[ -x /usr/bin/ccat ]]; then
             builtin which "$@" | ccat
-        else            
+        else
             builtin which "$@"
         fi
     fi
@@ -119,7 +109,7 @@ for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
 for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
 for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}";
 for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}";
-    
+
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 
@@ -269,7 +259,7 @@ fi
 alias @r=~/bin/scripts/music_rename
 
 v() { ~/bin/v --remote-silent "$@" }
-gv() { 
+gv() {
     ~/bin/v --remote-silent ./
     ~/bin/v --remote-send ":GV<CR>"
 }
