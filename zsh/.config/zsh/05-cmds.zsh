@@ -126,7 +126,7 @@ alias e="mimeo"
 alias u='umount'
 
 mp() {
-    find -print0 | xargs -0n10 -P 10 ~/bin/scripts/vid_fancy_print
+    find -print0 | xargs -0n10 -P 10 ~/bin/scripts/vid_info
     mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
 }
 
