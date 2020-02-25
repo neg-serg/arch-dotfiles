@@ -126,7 +126,7 @@ alias e="mimeo"
 alias u='umount'
 
 mp() {
-    for i; ~/bin/vid_fancy_print "${i}"
+    for i; ~/bin/scripts/vid_fancy_print "${i}"
     mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
 }
 
