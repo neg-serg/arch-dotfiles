@@ -151,7 +151,6 @@ alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
 
 alias pstop='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
 alias '?=bc -l <<<'
-??() { curl -s cheat.sh/$@ }
 
 alias mv="mv -i"
 alias mk="mkdir -p"
@@ -244,10 +243,7 @@ hash iotop > /dev/null && {
 
 hash nc > /dev/null && alias nyan='nc -v nyancat.dakko.us 23'
 
-alias twitch="streamlink -p mpv twitch.tv/$1 720p60"
-alias recordmydesktop="recordmydesktop --no-frame"
 alias up="rtv -s unixporn"
-
 alias taco='curl -L git.io/taco'
 alias starwars='telnet towel.blinkenlights.nl'
 
