@@ -22,8 +22,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nmap <silent> [Quickfix]c <Plug>(coc-diagnostic-next)
-nmap <silent> [Quickfix]C <Plug>(coc-diagnostic-prev)
+nmap <silent> [Qleader]c <Plug>(coc-diagnostic-next)
+nmap <silent> [Qleader]C <Plug>(coc-diagnostic-prev)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -162,8 +162,8 @@ vnoremap <silent> <leader>gV :Gitv! --all<CR>
 " │ https://github.com/Valloric/ListToggle.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:lt_height = 10
-let g:lt_location_list_toggle_map = '[Quickfix]S-q'
-let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
+let g:lt_location_list_toggle_map = '[Qleader]S-q'
+let g:lt_quickfix_list_toggle_map = '[Qleader]q'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Raimondi/delimitMate.git                                                 │
 " │ https://github.com/Raimondi/delimitMate.git                                       │

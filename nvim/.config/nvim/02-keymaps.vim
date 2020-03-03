@@ -11,17 +11,13 @@ let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
 
-nnoremap [FLeader] <Nop>
-nmap f [FLeader]
-
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Right> <Nop>
 noremap <Left> <Nop>
-nnoremap <Space> f
 
 nnoremap <silent> <leader>4 :set cursorline!<CR>
-nnoremap <silent> [FLeader]cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <silent> [Qleader]cd :lcd %:p:h<CR>:pwd<CR>
 
 nnoremap <silent> cow :set wrap!<CR>  
 nnoremap <silent> cop :setlocal paste!<Return>
@@ -32,7 +28,7 @@ nnoremap <silent> zJ o<Esc>k
 nnoremap <silent> zK O<Esc>j
 
 " semicolon magic
-nnoremap [FLeader]w :w!<cr>
+nnoremap [Qleader]w :w!<cr>
 nnoremap q4 :q<cr>
 
 " Toggle hlsearch for current results, start highlight
@@ -60,16 +56,15 @@ noremap L g_
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
 
-"-------[ Quickfix ]------------------------------------------------
 nnoremap Q q
-nnoremap [Quickfix] <Nop>
-nmap q [Quickfix]
-nnoremap <silent> [Quickfix]n :normal :<C-u>cnext<CR>
-nnoremap <silent> [Quickfix]p :normal :<C-u>cprevious<CR>
-nnoremap <silent> [Quickfix]r :normal :<C-u>crewind<CR>
-nnoremap <silent> [Quickfix]N :normal :<C-u>cfirst<CR>
-nnoremap <silent> [Quickfix]P :normal :<C-u>clast<CR>
-nnoremap <silent> [Quickfix]l :normal :<C-u>clist<CR>
+nnoremap [Qleader] <Nop>
+nmap q [Qleader]
+nnoremap <silent> [Qleader]n :normal :<C-u>cnext<CR>
+nnoremap <silent> [Qleader]p :normal :<C-u>cprevious<CR>
+nnoremap <silent> [Qleader]r :normal :<C-u>crewind<CR>
+nnoremap <silent> [Qleader]N :normal :<C-u>cfirst<CR>
+nnoremap <silent> [Qleader]P :normal :<C-u>clast<CR>
+nnoremap <silent> [Qleader]l :normal :<C-u>clist<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
@@ -77,10 +72,10 @@ nnoremap <silent> [Quickfix]l :normal :<C-u>clist<CR>
 nnoremap ' `
 nnoremap ` '
 
-nnoremap [FLeader]- :resize -10<CR>
-nnoremap [FLeader]+ :resize +10<CR>
-nnoremap [FLeader], :vertical resize -10<CR>
-nnoremap [FLeader]. :vertical resize +10<CR>
+nnoremap [Qleader]- :resize -10<CR>
+nnoremap [Qleader]+ :resize +10<CR>
+nnoremap [Qleader], :vertical resize -10<CR>
+nnoremap [Qleader]. :vertical resize +10<CR>
 
 " Macros editing
 nnoremap <leader>m :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
