@@ -28,7 +28,7 @@ nnoremap <silent> zJ o<Esc>k
 nnoremap <silent> zK O<Esc>j
 
 " semicolon magic
-nnoremap [Qleader]w :w!<cr>
+nnoremap [Qleader]r :w!<cr>
 nnoremap q4 :q<cr>
 
 " Toggle hlsearch for current results, start highlight
@@ -61,7 +61,7 @@ nnoremap [Qleader] <Nop>
 nmap q [Qleader]
 nnoremap <silent> [Qleader]n :normal :<C-u>cnext<CR>
 nnoremap <silent> [Qleader]p :normal :<C-u>cprevious<CR>
-nnoremap <silent> [Qleader]r :normal :<C-u>crewind<CR>
+nnoremap <silent> [Qleader]R :normal :<C-u>crewind<CR>
 nnoremap <silent> [Qleader]N :normal :<C-u>cfirst<CR>
 nnoremap <silent> [Qleader]P :normal :<C-u>clast<CR>
 nnoremap <silent> [Qleader]l :normal :<C-u>clist<CR>
