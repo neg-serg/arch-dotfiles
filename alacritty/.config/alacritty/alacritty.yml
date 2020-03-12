@@ -16,8 +16,6 @@ dpi:
   x: 96.0
   y: 96.0
 
-tabspaces: 4
-
 background_opacity: 0.88
 
 font:
