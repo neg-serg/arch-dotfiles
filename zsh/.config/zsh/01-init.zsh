@@ -1,3 +1,10 @@
+# Use hard limits, except for a smaller stack and no core dumps
+unlimit
+ulimit -c 0 # No core dumps for now
+limit stack 8192
+limit core 0 # important for a live-cd-system
+limit -s
+
 setopt append_history # this is default, but set for share_history
 setopt share_history # import new commands from the history file also in other zsh-session
 setopt extended_history # save each command's beginning timestamp and the duration to the history file
@@ -93,13 +100,6 @@ autoload -Uz lookupinit
 for mod in complist deltochar mathfunc ; do
     zmodload -i zsh/${mod} 2>/dev/null || print "Notice: no ${mod} available :("
 done
-
-# Use hard limits, except for a smaller stack and no core dumps
-unlimit
-ulimit -c 0 # No core dumps for now
-limit stack 8192
-limit core 0 # important for a live-cd-system
-limit -s
 
 eval "$(/usr/bin/direnv hook zsh)"
 
