@@ -23,15 +23,6 @@ for q in nvim vim vis vi; {
 alias less=${PAGER}
 alias zless=${PAGER}
 
-export LESSCHARSET=UTF-8
-export LESS_TERMCAP_mb="$(tput bold; tput setaf 2)" # begin blinking
-export LESS_TERMCAP_md="$(tput bold)"               # begin bold
-export LESS_TERMCAP_me="$(tput sgr0)"               # end mode
-export LESS_TERMCAP_so="$(tput bold; tput setaf 6)" # begin standout - info box
-export LESS_TERMCAP_se="$(tput sgr0)"               # end standout
-export LESS_TERMCAP_us="$(tput bold; tput setaf 2)" # begin underline
-export LESS_TERMCAP_ue="$(tput sgr0)"               # end underline
-
 export HISTFILE=${ZDOTDIR}/zsh_history
 export SAVEHIST=100000 # useful for setopt append_history
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
