@@ -74,7 +74,6 @@ eval $(keychain --eval --quiet id_rsa)
 
 autoload -Uz colors
 zle_highlight+=(suffix:fg=blue)
-unset MAILCHECK
 
 stty_setup() {
     stty time 0 2> /dev/null
