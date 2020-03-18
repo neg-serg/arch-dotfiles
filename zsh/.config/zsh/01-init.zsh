@@ -81,7 +81,7 @@ stty_setup() {
 
 [[ $- =~ i ]] && stty_setup &!
 
-[[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
+[[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
 
 # watch for everyone but me and root
 watch=(notme root)
