@@ -40,7 +40,6 @@ Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'tpope/vim-markdown' " markdown vim mode
 Plug 'donRaphaco/neotex' " latex support
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
-Plug 'jackguo380/vim-lsp-cxx-highlight' " semantic highlighting for C
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive' " Git stuff. Needed for powerline etc
 Plug 'junegunn/gv.vim' " git commit browser
