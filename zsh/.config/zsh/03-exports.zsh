@@ -38,7 +38,7 @@ export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 export HISTCONTROL=ignoreboth:erasedups # ignoreboth (= ignoredups + ignorespace)
 
-export TIMEFMT="[34m⟬[37m[34m⟬[37m[37m%J[34m⟭[37m[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
+export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 
 export LS_COLORS
