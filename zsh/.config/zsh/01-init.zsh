@@ -74,12 +74,15 @@ eval $(keychain --eval --quiet id_rsa)
 
 autoload -Uz colors
 zle_highlight+=(suffix:fg=blue)
+{
+    stty eof  2> /dev/null  # stty eof ''
+} &!
 
 stty_setup() {
     stty time 0 2> /dev/null
     stty min 0 2> /dev/null
-    stty eof  2> /dev/null
-    stty speed 115200 &> /dev/null
+    stty line 6 2> /dev/null
+    stty speed 38400 &> /dev/null
 }
 
 [[ $- =~ i ]] && stty_setup &!
