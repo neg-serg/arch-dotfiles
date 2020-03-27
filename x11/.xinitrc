@@ -7,6 +7,6 @@ test -n "$DESKTOP_AUTOSTART_ID" && {
 } &
 
 keynav &
-sudo cpupower frequency-set -g performance
+sudo cpupower frequency-set -g performance &
 
 exec i3
