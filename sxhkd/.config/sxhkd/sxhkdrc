@@ -4,8 +4,6 @@ super + quotedbl
     i3-msg restart &  systemctl --user restart picom &
 XF86AudioMute
     pactl set-sink-mute 1 toggle
-super + quotedbl
-    i3-msg reload
 XF86Audio{Prev,Next,Play,Stop}
     mpc -q {prev,next,toggle,stop}
 super + control + XF86Audio{Raise,Lower}Volume
@@ -24,12 +22,8 @@ super + M
     ~/bin/scripts/rofi_mpd
 super + F4
     gpick -so --no-newline | xsel -b
-super + control + m
-    mpc toggle > /dev/null
-super + comma
-    mpc prev > /dev/null
-super + period
-    mpc next > /dev/null
+super + {comma,period,control + m}
+    mpc {prev,next,toggle} > /dev/null
 alt + grave
     rofi -no-plugins -sort -show run -lines 1 -columns 4 -case-sensitive=false -matching fuzzy \
     -theme-str '* \{ font: "Iosevka Term Medium 12"; \}' \
