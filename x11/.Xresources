@@ -1,17 +1,3 @@
 #include <xcursor>
 #include <colors/current_colors>
-#include <xscreenserver>
-#include <xfontsel>
-#include <alsamixer>
-#include <emacs>
-#include <xrenoise>
-#include <xterm>
-#include <yeahconsole>
 #include <xmessage>
-#include <ratmenu>
-#include <mpd-pad>
-#include <xv>
-#include <fonts>
-#include <colors/wim.Xresources>
-#include <colors/solarized>
-#include <st_colors>

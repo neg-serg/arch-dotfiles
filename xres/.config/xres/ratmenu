@@ -1,8 +1,0 @@
-! ratmenu {{{
-ratmenu*align: left
-ratmenu*bgcolor: #080808
-ratmenu*fgcolor: #eb122e
-ratmenu*font: PROFONT_HUGE
-ratmenu*persist: false
-ratmenu*style: dreary
-!}}}
