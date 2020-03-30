@@ -63,7 +63,7 @@ function capture() {
   header="tab=insert, enter=copy"
   if [ -n "$open_tool" ]; then header="$header, ctrl-o=open"; fi
   header="$header, ctrl-e=edit"
-  header="$header, ctrl-f=toggle filter [$extrakto_opt], ctrl-l=grab area [$grab_area]"
+  header="$header, ctrl-f=toggle filter [$extrakto_opt], ctrl-g=grab area [$grab_area]"
 
   case $extrakto_opt in
     'path/url') extrakto_flags='pu' ;;
@@ -79,18 +79,19 @@ function capture() {
     (read line && (echo $line; cat) || echo NO MATCH - use a different filter) | \
     $fzf_tool \
       --header="$header" \
-      --expect=tab,enter,ctrl-e,ctrl-f,ctrl-l,ctrl-o,ctrl-c,esc \
+      --expect=tab,enter,ctrl-e,ctrl-f,ctrl-g,ctrl-o,ctrl-c,esc \
       --tiebreak=index)
 
-  if [ $? -gt 0 ]; then
+  res=$?
+  key=$(head -1 <<< "$sel")
+  text=$(tail -n +2 <<< "$sel")
+
+  if [ $res -gt 0 -a "$key" == "" ]; then
     echo "error: unable to extract - check/report errors above"
     echo "You can also set the fzf path in options (see readme)."
     read
     exit
   fi
-
-  key=$(head -1 <<< "$sel")
-  text=$(tail -n +2 <<< "$sel")
 
   case $key in
 
@@ -116,7 +117,7 @@ function capture() {
       capture
       ;;
 
-    ctrl-l)
+    ctrl-g)
       # cycle between options like this:
       # recent -> full -> window recent -> window full -> custom (if any) -> recent ...
       if [[ $grab_area == "recent" ]]; then
