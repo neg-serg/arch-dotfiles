@@ -54,8 +54,7 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **ghc** -- nice prompt for GHC(haskell compiler) and another basic stuff.
     + **git** -- config for git(.gitconfig)
 + Debugging
-    + **gdb** -- debugger.
-    + **cgdb** -- better gdb tui. Probably not better then gdb-dashboard, but it's useful anyway.
+    + **gdb** -- GNU debugger.
 + Music
     + **mpd** -- music player daemon and mpd-notification configs.
     + **ncmpcpp** -- mpd client
@@ -66,13 +65,11 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **dunst** -- my minimalistic notification daemon, which also used for mpd-notification.
     + **polybar** -- my statusbar
     + **keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock rebinded to ctrl, etc.
-    + **x11** -- xinitrc, Xresources, xserverrc
-    + **xinit** -- scripts for .xinitrc to run compositing, custom keybindings, etc.
-    + **xres** -- include files for .Xresources.
+    + **x11** -- various x11 related stuff
+    + **startup** -- scripts for .xinitrc to run compositing, custom keybindings, etc.
     + **wl** -- wallpaper list stuff.
     + **rofi** -- dmenu analogue to run programs, find windows, everything, used very widely.
     + **sxhkd** -- x11-wide keybindings, independent to WM.
-    + **color_profiles** -- custom icm color-profiles, I don't use it a lot, but it's funny.
     + **picom** -- x11 compositing manager.
 + Net
     + **tridactyl** -- Vimperator-like firefox addon. Vim-like keybindings and UX in firefox.
@@ -84,7 +81,6 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
         * https://userstyles.org/styles/126419/vanilla-dark-2-vk
         * https://userstyles.org/styles/166756/yandex-dark-theme
 + IM / Mail / News
-    + **mutt** -- famous cli-based mail-client
     + **newsboat** -- cli newsbeuter-based rss-reader.
 + Media
     + **mpv** -- my minimalistic video player config.
@@ -117,9 +113,8 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **zathura** -- nice and tiny pdf/djvu/whatever viewer with UX similar to vim
 + Misc
     + **neofetch** -- nice fetch with custom config
-    + **npm** -- nothing.
     + **htop** -- basic htop stuff(monochromatic for now)
-    + **imgur, imgur-screenshot** -- imgur uploaders.
+    + **imgur-screenshot** -- imgur uploaders.
     + **misc** -- various stuff, which I don't use a lot as like urlview, keynav, etc.
     + **task** -- basic config for my GTD-like tool taskwarrior.
     + **ranger** -- nice console-based filemanager. I do not using it a lot, but like picture preview feature(in terminal, based on w3m).
