@@ -11,22 +11,18 @@ video-sync=display-resample
 interpolation
 tscale=oversample
 vo=gpu
-
 #--[Volume]------------------------------------------------
 volume=100
 volume-max=100
 ao=pulse,jack
-
 #--[Language]----------------------------------------------
 slang=ru,rus
 alang=en
-
 #--[Geometry]----------------------------------------------
 monitoraspect=16:10
 geometry=100%:100%
 no-border
 fullscreen=yes
-
 #--[Subtitles]---------------------------------------------
 sub-scale=.4
 sub-gauss=.82
@@ -34,7 +30,6 @@ sub-gray=yes
 sub-auto=fuzzy
 sub-font="Helvetica Neue LT Std"
 sub-font="HelveticaNeue LT CYR 57 Cond"
-
 #--[OSD]---------------------------------------------------
 osd-font="Iosevka Medium"
 osd-font-size=18
@@ -46,16 +41,13 @@ osd-bar-h=3
 osd-bar-align-y=0.95
 osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
 cursor-autohide=500
-
 #--[Youtube-DL]--------------------------------------------
 ytdl
 ytdl-format=bestvideo+bestaudio/best
-
 #--[ETC]---------------------------------------------------
 screenshot-template="~/dw/scr-%F_%P"
 quiet
 
-#----------------------------------------------------------
 [extension.flac]
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
