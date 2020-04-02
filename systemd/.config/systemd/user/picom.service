@@ -5,7 +5,7 @@ After=dbus.service
 [Service]
 Type=simple
 ExecStartPre=/bin/sleep 2
-ExecStart=%h/.config/xinit/compositing.zsh
+ExecStart=/usr/bin/picom --experimental-backends --backend glx
 
 [Install]
 WantedBy=default.target
