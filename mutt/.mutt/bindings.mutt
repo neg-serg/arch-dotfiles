@@ -40,39 +40,21 @@ bind pager R group-reply
 bind attach <return> view-mailcap
 bind attach,browser,pager,index ZZ exit
 
-macro index,pager,attach gi "<change-folder>=INBOX<enter>" "Go to inbox"
-macro index,pager,attach ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
-macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
-
-# 'A' shows all messages again (supersedes default <alias> binding)
-macro index A "<limit>all\n" "show all messages (undo limit)"
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
+macro index,pager d "<save-message>=[Gmail]/Trash<enter>" "Trash"
+macro index,pager A "<save-message>=[Gmail]/All Mail<enter>" "Archive"
 macro index X "|~/.mutt/mimedump"
 macro pager X "|~/.mutt/mimedump"
+
+macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>=INBOX<enter>'
+macro index gW '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>!<enter>'
+macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
+bind index G imap-fetch-mail
 
 bind index,pager g/ vfolder-from-query
 bind index < vfolder-window-backward
 bind index > vfolder-window-forward
 
-macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
-macro index,pager d "<save-message>=[Gmail]/Trash<enter>" "Trash"
-macro index,pager A "<save-message>=[Gmail]/All Mail<enter>" "Archive"
-
-bind index G imap-fetch-mail
-
-# Macros for switching accounts
-macro index gh '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>!<enter>'
-macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>!<enter>'
-
-# toggle index display in pager
-macro pager ,@inds "\
-<enter-command> set pager_index_lines=`expr $(tput lines) / 7`; \
-macro pager z ,@indh 'show/hide index'<enter>"
-macro pager ,@indh "\
-<enter-command> set pager_index_lines=0; \
-macro pager z ,@inds 'hide/show index'<enter>"
-macro pager z ,@indh "hide/show index"
-
-# toggle alternative_order
 macro pager ,@aoh= "\
 <enter-command> unalternative_order *; \
 alternative_order text/enriched text/html text/plain text *; \
@@ -86,7 +68,6 @@ macro pager V ,@aoh= 'toggle alternative order'<enter>\
 macro pager V ,@aot= "toggle alternative order"
 
 macro index q '<enter-command>alternative_order text/enriched text/plain text text/html *;<enter><exit>'
-
 bind editor <Tab> complete-query
 
 # vim:ft=muttrc
