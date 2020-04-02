@@ -1,23 +1,51 @@
 {
-  "suggest.noselect": true,
+  "suggest.noselect": false,
+  "suggest.enablePreselect": true,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
   "suggest.timeout": 1000,
   "suggest.minTriggerInputLength": 2,
   "suggest.snippetIndicator": "►",
+  "suggest.detailField": "menu",
+  "suggest.removeDuplicateItems": true,
   "coc.preferences.hoverTarget": "preview",
+  "coc.preferences.bracketEnterImprove": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "scss": "css",
+    "sass": "css"
+  },
+  "emmet.excludeLanguages": [
+    "markdown"
+  ],
+  "javascript.suggest.autoImports": true,
   "diagnostic.messageTarget": "float",
   "signature.target": "float",
   "languageserver": {
-      "ccls": {
-          "command": "ccls",
-          "filetypes": ["c", "cpp", "objc", "objcpp"],
-          "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-          "initializationOptions": {
-              "cache": { "directory": "/tmp/ccls" },
-              "highlight": { "lsRanges" : true }
-          }
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "highlight": {
+          "lsRanges": true
+        }
       }
+    }
   }
 }
-
