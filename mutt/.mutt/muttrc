@@ -1,5 +1,6 @@
 source ~/.mutt/bindings.mutt
 source ~/.mutt/themes/fscety
+source ~/.mutt/pretty.rc
 
 set shell="/bin/zsh"
 set charset=utf-8 # Local charset
