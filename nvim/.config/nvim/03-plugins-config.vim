@@ -13,6 +13,9 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+let g:coc_status_warning_sign = ""
+let g:coc_status_error_sign = ""
+
 let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
@@ -36,8 +39,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-
-" Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
@@ -54,6 +55,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" Try autofix current
+nmap <leader>qf  <Plug>(coc-fix-current)
+" Reformat command
+command! -nargs=0 Format :call CocAction('format')
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - xolox/vim-session                                                        │ 
 " │ https://github.com/xolox/vim-session                                              │ 
