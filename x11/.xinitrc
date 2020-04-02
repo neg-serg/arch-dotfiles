@@ -8,5 +8,6 @@ test -n "$DESKTOP_AUTOSTART_ID" && {
 
 keynav &
 sudo cpupower frequency-set -g performance &
+sudo cpupower idle-set -D 1
 
 exec i3
