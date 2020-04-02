@@ -5,7 +5,7 @@ After=dbus.service
 [Service]
 Type=simple
 ExecStartPre=/bin/sleep 2
-ExecStart=/usr/bin/picom --experimental-backends --backend glx
+ExecStart=/usr/bin/picom --experimental-backends --backend glx --dbus
 
 [Install]
 WantedBy=default.target
