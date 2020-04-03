@@ -85,11 +85,16 @@ highlight SignColumn ctermbg=4
 " │ plugin - w0rp/ale                                                                 │ 
 " │ https://github.com/w0rp/ale                                                       │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:ale_sign_warning = '⚡'
-let g:ale_sign_error = '✖'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_highlight_linenrs = 1
+let g:ale_linters = {'python': ['flake8', 'pylint'], 'rust': ['rls']}
+let g:ale_sign_error = ""
+let g:ale_sign_warning = ""
+let g:formatdef_eslint = '"eslint-formatter"'
+let g:formatters_javascript = ['prettier', 'eslint']
+let g:ale_fixers = {'javascript': ['eslint'], 'json': ['jq'], 'html': ['prettier'], 'scss': ['stylelint'], 'less': ['stylelint'], 'css': ['stylelint'], 'python': ['black', 'yapf'], 'rust': ['rustfmt']}
 
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
@@ -104,12 +109,15 @@ if executable('rg')
         \ ]
     let s:rg_cmd .= " --glob '!{'" . shellescape(join(s:rg_ignore, ',')) . "'}'"
     let &grepprg=s:rg_cmd . ' --vimgrep'
-    let $FZF_DEFAULT_COMMAND = 'rg --files'
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
 nnoremap qe :Files %:p:h<CR>
 nnoremap qE :Files<CR>
-nnoremap ed :Buffers<CR>
+nnoremap [Qleader]d :Buffers<CR>
+
+nnoremap <silent> [Qleader]t :BTags<CR>
 
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
