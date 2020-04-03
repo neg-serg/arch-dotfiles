@@ -54,7 +54,7 @@ vnoremap . :normal .<CR>
 
 nnoremap Q q
 nnoremap [Qleader] <Nop>
-nmap t [Qleader]
+nmap e [Qleader]
 nnoremap <silent> [Qleader]n :normal :<C-u>cnext<CR>
 nnoremap <silent> [Qleader]p :normal :<C-u>cprevious<CR>
 nnoremap <silent> [Qleader]R :normal :<C-u>crewind<CR>
