@@ -1,5 +1,3 @@
-# vim: filetype=muttrc 
-
 # set default
 color normal     default	default
 
@@ -114,3 +112,5 @@ color quoted7    brightcyan    default
 color body      brightgreen    default "^gpg signature OK.*"
 color body      yellow         default "^gpg "
 color body      brightred      default "^gpg signature NOT OK. *"
+
+# vim: filetype=muttrc

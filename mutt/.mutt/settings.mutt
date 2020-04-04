@@ -1,0 +1,69 @@
+set shell="/bin/zsh"
+set charset=utf-8 # Local charset
+set send_charset="utf-8" 
+set use_from=yes
+set attribution="On %d, %n wrote:"
+set editor="nvim %s"
+set markers=no          # don't put '+' at the beginning of wrapped lines
+set delete=yes          # purge deleted messages without asking
+set copy=ask-no         # ask to save a copy of outgoing message?
+set postpone=ask-no     # ask to postpone message if i want to
+set print=ask-yes       # ask for printing message if i want to
+set record=ask-no       # ask to save sent message into 'sent' mailbox
+set include=yes         # include the message in replies (reply quoting)
+set move=no             # gmail does that
+set quit=yes            # Do you REALLY want to exit mutt? :)
+set recall=ask-yes      # ask for working with unsent messages 
+unset confirmappend     # prompt for confirm when appending message to ex. mbox
+set allow_8bit          # encoding
+set check_new           # search for new messages
+set abort_nosubject=no  # Abort, if message has no subject
+set attach_split        # do not merge attaches into one file?
+set fast_reply          # do not asr For:, To:, Subj:, then replying
+set fcc_attach          # keep attaches then doing Fcc:
+set followup_to         # add Mail-Followup-To header, for maillists
+unset metoo             # do not send reply to myself when replyin' to group
+unset reply_self        # do not reply myself after all
+unset read_only         # I wanna r/w access to my mailboxes
+unset collapse_unread   # do not collapse threads with new mail
+unset mark_old          # unread old messages are still unread after quitting
+set suspend             # allow Ctrl-Z to shutdown mutt
+set beep=no             # fuckin' noizy pc-speaker
+set sleep_time = 0      # Speed up folders switch
+set forward_decode      # Decode when forwarding
+set beep_new=no         # Do not use some kind of beep
+set askcc=no            # ask for cc when creating new message?
+set print_command="muttprint" 
+set signature="~/.mutt/scripts/signature"  # This is a script executable
+set forward_format="Fwd: %s"
+set help
+
+set implicit_autoview                # try to understand MIME types
+set mailcap_path="~/.mutt/mailcap"   # see MIME types in mailcap database
+set mailcap_sanitize=yes             # remove mailcap ugly chars
+set menu_scroll
+set narrow_tree         # To make deep threads to fit on the screen
+set user_agent=no       # let them take fake useragent from my_hdr above
+
+set pager=builtin
+set pager_stop             # don't show the next msg after current
+set pager_index_lines=10   # number of index lines to show
+set pager_context=3        # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set sort=reverse-last-date-received  # like gmail
+set sort_re
+set uncollapse_jump # don't collapse on an unread message
+
+set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+
+unlists *
+unsubscribe *
+lists   ruby-talk yesodweb 
+subscribe ruby-talk yesodweb
+
+# vim: filetype=muttrc
