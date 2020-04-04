@@ -1,0 +1,5 @@
+set nm_default_uri = "notmuch:///home/neg/.local/mail/insales"
+virtual-mailboxes "Neg INBOX" "notmuch://?query=tag:inbox"
+set virtual_spoolfile = yes
+
+# vim: filetype=muttrc

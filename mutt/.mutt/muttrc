@@ -4,27 +4,7 @@ source ~/.mutt/themes/fscety.mutt
 source ~/.mutt/pretty.mutt
 source ~/.mutt/sidebar.mutt
 source ~/.mutt/crypt.mutt
+source ~/.mutt/notmuch.mutt
 
 source "gpg -dq $HOME/.mutt/work.gpg |"
-
 folder-hook . 'unset trash'
-
-set ssl_force_tls = yes
-set spoolfile = +INBOX
-unset record
-unset signature
-set imap_check_subscribed
-set mail_check=120
-set timeout=300
-set imap_keepalive=300
-set include
-set auto_tag = yes
-set pgp_autosign = no
-set query_command="goobook query '%s'"
-
-set nm_default_uri = "notmuch:///home/neg/.local/mail/insales"
-virtual-mailboxes "Neg INBOX" "notmuch://?query=tag:inbox"
-set virtual_spoolfile = yes
-
-auto_view text/html
-alternative_order text/plain text/html *

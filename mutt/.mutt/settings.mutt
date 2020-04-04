@@ -58,12 +58,25 @@ set sort=reverse-last-date-received  # like gmail
 set sort_re
 set uncollapse_jump # don't collapse on an unread message
 
+set ssl_force_tls = yes
+set spoolfile = +INBOX
+unset record
+unset signature
+set imap_check_subscribed
+set mail_check=120
+set timeout=300
+set imap_keepalive=300
+set include
+set auto_tag = yes
+set pgp_autosign = no
+set query_command="goobook query '%s'"
+
 set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 
 unlists *
 unsubscribe *
-lists   ruby-talk yesodweb 
-subscribe ruby-talk yesodweb
 
+auto_view text/html
+alternative_order text/plain text/html *
 # vim: filetype=muttrc
