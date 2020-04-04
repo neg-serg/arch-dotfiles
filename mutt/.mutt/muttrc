@@ -7,8 +7,6 @@ source ~/.mutt/crypt.mutt
 
 source "gpg -dq $HOME/.mutt/work.gpg |"
 
-folder-hook 'home.gmail' 'source "gpg -dq $HOME/.mutt/home.gpg |'
-folder-hook 'work.gmail' 'source "gpg -dq $HOME/.mutt/work.gpg |'
 folder-hook . 'unset trash'
 
 set ssl_force_tls = yes
@@ -30,10 +28,3 @@ set virtual_spoolfile = yes
 
 auto_view text/html
 alternative_order text/plain text/html *
-ignore "Authentication-Results:"
-ignore "DomainKey-Signature:"
-ignore "DKIM-Signature:"
-hdr_order Date From To Cc
-my_hdr X-Comment-To: "Sergey Miroshnichenko"
-my_hdr User-Agent: Outluck Express 1.5.6i for MS-DOS 6.22-SMP  # This is too
-my_hdr X-Operating-System: MS-DOS 6.22-CURRENT
