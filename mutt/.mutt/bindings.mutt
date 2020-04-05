@@ -40,16 +40,15 @@ bind pager R group-reply
 bind attach <return> view-mailcap
 bind attach,browser,pager,index ZZ exit
 
-macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
-macro index,pager d "<save-message>=[Gmail]/Trash<enter>" "Trash"
-macro index,pager A "<save-message>=[Gmail]/All Mail<enter>" "Archive"
 macro index X "|~/.mutt/mimedump"
 macro pager X "|~/.mutt/mimedump"
 
-macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>=INBOX<enter>'
+macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>=gmail/Inbox<enter>'
 macro index gW '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>!<enter>'
+
 macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
-bind index G imap-fetch-mail
+macro attach I "<save-entry><kill-line>~/Downloads/<enter>
+macro pager \cl "|urlscan<enter>" "call urlview to open links"
 
 bind index,pager g/ vfolder-from-query
 bind index < vfolder-window-backward
@@ -69,5 +68,4 @@ macro pager V ,@aot= "toggle alternative order"
 
 macro index q '<enter-command>alternative_order text/enriched text/plain text text/html *;<enter><exit>'
 bind editor <Tab> complete-query
-
 # vim:ft=muttrc
