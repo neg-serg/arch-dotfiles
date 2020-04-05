@@ -2,7 +2,7 @@
 
 cmds_=("cp" "mv")
 
-function resolve_file {
+resolve_file() {
     if  [[ ! -L "${1}" && -f "${1}" ]]; then
         echo $(readlink -f "${1}")
     elif [[ -L "${1}" ]]; then
@@ -14,7 +14,7 @@ function resolve_file {
     fi
 }
 
-function resolve_file2 {
+resolve_file2() {
     if [[ -f "${1}" ]]; then
         builtin print "$(cd $(dirname "${1}") && pwd -P)/$(basename "${1}")"
     elif [[ "${1#/}" == "${1}" ]]; then
@@ -41,6 +41,8 @@ readonly width_x11_=$(xrandr -q |awk '/Screen/{print $8}')
 readonly width_="$[${width_x11_}-70]"
 readonly lines_=12
 
+readonly trash_dir="${HOME}/trash/1st-level/pic"
+
 readonly rofi_cmd=(
     rofi -dmenu 
     -opacity "${opacity_}"
@@ -53,11 +55,11 @@ readonly rofi_cmd=(
     -custom
 )
 
-function finish_(){
+finish_() {
     rm -f "${tmp_file}" "${tmp_file2}" "${tmp_imgur}"
 }
 
-function rotate() {
+rotate() {
     local degree="${1}"
     while read file; do
         case "$(file -b -i "${file}")" in
@@ -67,7 +69,7 @@ function rotate() {
     done
 }
 
-function rename() {
+rename() {
     >>"${tmp_file}"
     dest=$(printf "%s" "$(basename "${fp}")" | eval $(echo ${rofi_cmd} -p '"[rem] >> "'))
     [[ -n "${dest}" ]] && \
@@ -76,24 +78,23 @@ function rename() {
     trap finish_ EXIT
 }
 
-function by_rating() { 
+by_rating() { 
     sort -r -t '|' -nk2 "${z_data_file}" \
     | mawk -F '|' '{print $1}' 
 }
 
-function by_fasd_last_use() {
+by_fasd_last_use() {
     _FASD_DATA="${XDG_DATA_HOME}/sxiv_do.data" fasd -tlR
 }
 
-function proc() {
+proc() {
     alias ourcmd_=by_fasd_last_use
     local action="$1"
-
     (( ${cmds_[(I)${action}]} )) && { cmd="${action}"; cmd_w="${action}" }
     >>"${tmp_file}"
     if [[ -z "${dest}" ]] ; then
         dest=$(ourcmd_ | sed 's:^'${HOME}':~:' \
-      | eval $(echo ${rofi_cmd} -p "\"[${cmd}] >> \"") \
+      | eval $(echo ${rofi_cmd} -p "\"⟬${cmd}⟭ ❯> \"") \
       | sed 's:^~:'${HOME}':')
     fi
     [[ -z "${dest}" ]] && exit 0
@@ -113,36 +114,32 @@ function proc() {
     trap finish_ EXIT
 }
 
-function delete() {
+delete() {
     >>"${tmp_file}"
-    local readonly dest="${HOME}/trash/1st-level/pic"
-    [[ -z "${dest}" ]] && exit 0
-    if [[ -d "${dest}" ]]; then
-        while read line; do
-            file_name="$(resolve_file ${line})"
-            eval $(echo mv $(echo \"${file_name}\") ${dest})
-        done < "${tmp_file}"
-        printf "%s\n" "mv "${dest}"" > "${last_action}"
-    fi
+    [[ -z "${trash_dir}" || ! -d "${trash_dir}" ]] && exit 0
+    while read line; do
+        file_name="$(resolve_file ${line})"
+        eval $(echo mv $(echo \"${file_name}\") ${trash_dir})
+    done < "${tmp_file}"
+    printf "%s\n" "mv "${trash_dir}"" > "${last_action}"
     trap finish_ EXIT
 }
 
-function rep() {
+rep() {
     >"${tmp_file}"
     file=($(< "${last_action}"))
     local action=${file[1]} 
     local dest=${file[2]}
-    if [[ -d "${dest}" ]] ; then
-        while read line; do
-            file_name="$(resolve_file ${line})"
-            (( ${cmds_[(I)${action}]} )) && cmd="${action}"
-            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
-        done < ${tmp_file}
-    fi
+    [[ ! -d "${dest}" ]] && exit 0
+    while read line; do
+        file_name="$(resolve_file ${line})"
+        (( ${cmds_[(I)${action}]} )) && cmd="${action}"
+        eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
+    done < ${tmp_file}
     trap finish_ EXIT
 }
 
-function copy_name() {
+copy_name() {
     >>"${tmp_file2}"
     local fp=$(< "${tmp_file2}")
     local fname="$(resolve_file ${fp})"
@@ -151,7 +148,7 @@ function copy_name() {
     trap finish_ EXIT
 }
 
-function imgur_it() {
+imgur_it() {
     >>"${tmp_imgur}"
     while read f; do
         fp="$(resolve_file ${f})"
@@ -161,7 +158,7 @@ function imgur_it() {
     trap finish_ EXIT
 }
 
-function wall(){
+wall(){
     local action="$1"
     local wallarg=()
     local specarg=()
