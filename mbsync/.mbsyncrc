@@ -13,31 +13,15 @@ Account insales
 
 MaildirStore insales-local
 Path ~/.local/mail/insales/
-Inbox ~/.local/mail/insales/INBOX/
+Inbox ~/.local/mail/insales/
 
 Channel insales-inbox
-Master :insales-remote:"INBOX"
-Slave :insales-local:"INBOX"
-Create Both
-Expunge Both
-SyncState *
-
-Channel insales-archive
-Master :insales-remote:"archive"
-Slave :insales-local:"Archive"
-Create Both
-Expunge Both
-
-Channel insales-trash
-Master :insales-remote:"trash"
-Slave :insales-local:"Trash"
-Create Both
-Expunge Both
+Master :insales-remote:
+Slave :insales-local:"Inbox"
+Create Slave
 
 Group insales
 Channel insales-inbox
-Channel insales-archive
-Channel insales-trash
 
 #-- gmail
 IMAPAccount gmail
@@ -55,9 +39,31 @@ Subfolders Verbatim
 Path ~/.local/mail/gmail/
 Inbox ~/.local/mail/gmail/Inbox/
 
-Channel gmail
+Channel gmail-default
 Master :gmail-remote:
 Slave :gmail-local:
+Patterns "INBOX"
+
+Channel gmail-sent
+Master :gmail-remote:"[Gmail]/Sent Mail"
+Slave :gmail-local:sent
 Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
-Create Both
-SyncState *
+Create Slave
+
+Channel gmail-trash
+Master :gmail-remote:"[Gmail]/Trash"
+Slave :gmail-local:trash
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+Create Slave
+
+Channel gmail-all
+Master :gmail-remote:"[Gmail]/All Mail"
+Slave :gmail-local:trash
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+Create Slave
+
+Group gmail
+Channel gmail-default
+Channel gmail-sent
+Channel gmail-trash
+Channel gmail-all
