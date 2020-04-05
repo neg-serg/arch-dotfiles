@@ -7,4 +7,3 @@ source ~/.mutt/crypt.mutt
 source ~/.mutt/notmuch.mutt
 
 source "gpg -dq $HOME/.mutt/work.gpg |"
-folder-hook . 'unset trash'
