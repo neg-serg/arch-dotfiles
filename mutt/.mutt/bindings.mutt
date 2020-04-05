@@ -44,7 +44,7 @@ macro index X "|~/.mutt/mimedump"
 macro pager X "|~/.mutt/mimedump"
 
 macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>=gmail/Inbox<enter>'
-macro index gW '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>=insales/INBOX<enter>'
+macro index gW '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>=insales/Inbox<enter>'
 
 macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
 macro attach I "<save-entry><kill-line>~/Downloads/<enter>
