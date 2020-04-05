@@ -1,0 +1,63 @@
+#-- insales
+IMAPAccount insales
+Host mail.insales.ru
+Port 993
+User sergey.miroshnichenko
+PassCmd "pass show insales/ldap"
+SSLType IMAPS
+SSLVersions TLSv1.2
+AuthMechs PLAIN
+
+IMAPStore insales-remote
+Account insales
+
+MaildirStore insales-local
+Path ~/.local/mail/insales/
+Inbox ~/.local/mail/insales/INBOX/
+
+Channel insales-inbox
+Master :insales-remote:"INBOX"
+Slave :insales-local:"INBOX"
+Create Both
+Expunge Both
+SyncState *
+
+Channel insales-archive
+Master :insales-remote:"archive"
+Slave :insales-local:"Archive"
+Create Both
+Expunge Both
+
+Channel insales-trash
+Master :insales-remote:"trash"
+Slave :insales-local:"Trash"
+Create Both
+Expunge Both
+
+Group insales
+Channel insales-inbox
+Channel insales-archive
+Channel insales-trash
+
+#-- gmail
+IMAPAccount gmail
+Host imap.gmail.com
+User serg.zorg@gmail.com
+Pass bvstijkyejeiqiyz
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Subfolders Verbatim
+Path ~/.local/mail/gmail/
+Inbox ~/.local/mail/gmail/Inbox/
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+Create Both
+SyncState *
