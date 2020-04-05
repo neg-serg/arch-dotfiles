@@ -1,0 +1,36 @@
+#!/bin/zsh
+
+# Download cover for album
+main(){
+    default_coversize=400
+    default_covername=cover.jpg
+    if [[ -d "$1" ]]; then
+        arg1="$1"
+    else
+        arg1="${PWD}"
+    fi
+
+    pushd "$(pwd)"
+
+    cd "${arg1}"
+    data=$(albumdetails ./*)
+    artist=$(echo "${data}"|grep "Artist"| cut -d ':' -f 2-|xargs)
+    album=$(echo "${data}"|grep "Album"| cut -d ':' -f 2-|xargs)
+
+    if [[ $1 == '-i' ]]; then
+        sacad "${artist}" "${album}" "${default_coversize}" "${default_covername}"
+    fi
+
+    {
+        for flac_ in *.flac; do
+            metaflac --import-picture-from="${default_covername}" "${flac_}"
+        done
+        for mp3_ in *.mp3; do
+            eyeD3 --add-image="${default_covername}":FRONT_COVER "${mp3_}"
+        done
+    } 2> /dev/null
+
+    popd
+}
+
+main "$@"

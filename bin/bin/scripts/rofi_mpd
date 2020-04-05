@@ -1,0 +1,63 @@
+#!/bin/zsh
+
+mpd_menu=("title_copy" "artist_copy" "album_copy" "pulseaudio_output" "bit_perfect_output")
+
+blue="<span weight='bold' color='$(xrq color4)'>"
+norm="<span weight='bold' color='$(xrq foreground)'>"
+close="</span>"
+
+generate_menu() {
+    local count=0
+    for item in ${mpd_menu[@]}; do
+        (( count++ ))
+        echo "${count}:${blue}⟬</span>${item}${blue}⟭</span>"
+    done
+}
+
+handler() {
+    local bitperfect_output_name='VMV D1 USB2.0'
+    local timeout="5s"
+    while IFS= read -r arg; do
+        if [[ ${arg} =~ ".*title_copy.*" ]]; then
+            mpc current | xsel -bi
+        elif [[ ${arg} =~ ".*album_copy.*" ]]; then
+            mpc current -f "[%album%]"|xsel -bi
+        elif [[ ${arg} =~ ".*artist_copy.*" ]]; then
+            mpc current -f "[%artist%]"|xsel -bi
+        elif [[ ${arg} =~ ".*pulseaudio_output.*" ]]; then
+            mpc pause
+            mpc enable Pulseaudio
+            mpc disable "${bitperfect_output_name}" && mpc play
+        elif [[ ${arg} =~ ".*bit_perfect_output.*" ]]; then
+            mpc pause
+            mpc enable "${bitperfect_output_name}"
+            mpc disable Pulseaudio
+            mpc play
+            sleep "${timeout}";
+            mpc play
+        fi
+    done
+}
+
+
+local neg_rofi_bg="$(xrq background)"
+local neg_rofi_fg="$(xrq foreground)"
+local neg_rofi_hlfg="#aaaaaa"
+local neg_rofi_hlbg="#194558"
+local neg_rofi_bc="#202020"
+
+local pref="${blue}⟬${close}MPD action${blue}⟭${close}"
+local mon_width=$(xrandr -q |awk '/Screen/{print $8}')
+local rofi_options=(
+    -theme-str "'* { font: \"Iosevka Term Medium 12\"; }'"
+    -theme-str "'#window { width: $(( (${mon_width}) / 2 )); y-offset: -34; location: south west; anchor: south west; }'"
+    -auto-select
+    -markup-rows
+    -b -disable-history -columns 8
+    -lines 1
+    -dmenu
+    -p '"❯>"'
+)
+local rofi_pid=" -pid /run/user/$(id -u)/rofi_mpd.pid"
+
+generate_menu | eval "rofi ${rofi_colors} ${rofi_options} ${rofi_pid}" | handler

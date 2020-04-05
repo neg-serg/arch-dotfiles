@@ -1,0 +1,22 @@
+#!/usr/bin/env perl
+use App::Cope;
+use Regexp::Common;
+
+$App::Cope::color_stack = 1;
+
+sub process {
+  # These are tested with g++ 4.8.2
+  line qr{^(?:(?:In file included |\s+)from )?([^:]+/)?([^:]+):(?!:)(?:(\d+):?)?(?:(\d+):?)?} => 'green', 'green bold', 'green bold', 'green';
+  line qr{^([^:]+:) (In function) (..+.):} => 'green bold', 'green', 'blue bold';
+  line qr{(error:)} => 'red bold';
+  line qr{(warning:)} => 'yellow bold';
+  line qr{(note:)} => 'yellow';
+
+  line qr{\[(?:-W([\w-]+),?)+\]} => 'cyan';
+  line qr{\[(?:-[Wf]([\w-]+),?)+\]} => 'cyan';
+  line qr/\b(const)\b/ => "bold blue";
+  line qr/($RE{balanced}{-parens=>'<>'})/ => "dark blue";
+  line qr/($RE{balanced}{-begin=>"[with"}{-end=>"]"})/ => "italic dark";
+}
+
+run( \&process, real_path, @ARGV );

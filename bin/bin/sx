@@ -1,0 +1,5 @@
+#! /bin/dash
+find "$@" -maxdepth 1 -iregex '.*.\(jpg\|jpe\|jpeg\|png\|gif\|webp\)' -type f -printf '%C@ %p\n' \
+    | sort -rn --parallel 8 -S 16M \
+    | cut -d ' ' -f 2- \
+    | xargs -d '\n' -r sxiv -Zftoa -sd 2>/dev/null

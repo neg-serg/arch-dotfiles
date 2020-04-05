@@ -1,0 +1,4 @@
+#!/usr/bin/env perl
+$ENV{COPE} = 1;
+exec @ARGV;
+

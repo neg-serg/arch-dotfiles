@@ -1,0 +1,4 @@
+#!/bin/dash
+for webcam in /dev/video[0-9]*; do
+    mpv --fullscreen=no --x11-name="webcam" --title="webcam" "av://v4l2:$webcam"
+done

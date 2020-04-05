@@ -1,0 +1,3 @@
+#!/bin/bash
+bridge=virtnet0
+brctl delif "${bridge}" "$1"

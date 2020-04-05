@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+use App::Cope;
+
+sub process {
+    line qr{^(\d+)[\s|K|M|G]} => 'cyan';
+    line qr{^(\d+\.\d+)[\s|K|M|G]} => 'cyan';
+
+    line qr{\d(K)\s} => 'green';
+    line qr{\d(M)\s} => 'blue';
+    line qr{\d(G)\s} => 'white';
+    line qr{\d(T)\s} => 'white bold';
+}
+
+run( \&process, real_path, @ARGV );

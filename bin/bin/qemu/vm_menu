@@ -1,0 +1,70 @@
+#!/bin/zsh
+
+do_if_qemu() {
+    if pidof qemu-system-x86_64 2>/dev/null; then
+        eval "$@"
+    else
+        no_qemu_msg
+    fi
+}
+
+check_qemu() {
+    local cmd=(sudo ~neg/bin/qemu/win10_run)
+    st -c qemu_run dtach -c /tmp/qemu.session -Ez "${cmd[@]}"
+}
+
+start_win10() {
+    os_name=${res:s_Start__}
+    msg "Starting ... ${os_name}"
+    if ! check_qemu; then
+        msg "Start ${os_name} failed" \
+            && exit 1
+    else
+        msg "Done"
+    fi
+}
+
+msg() { notify-send "$@" }
+no_qemu_msg() { msg "There is no QEMU" }
+
+main() {
+    if [[ $1 == 'start_win10' ]]; then
+        start_win10
+        exit
+    fi
+    local -a opts_=(
+        "[Usb :: passthrough add]"
+        "[Usb :: passthrough del]"
+        "[Look at video output]"
+        "[Start <Win10>]"
+    )
+    
+    local width_=800
+    local xoffset_=40
+    local yoffset_=40
+
+    local -a rofi_cmd=(
+        rofi
+        -theme-str "'#window { width:${width_}; x-offset: ${xoffset_}; y-offset: ${yoffset_}; location: north west; anchor: north west; }'"
+        -i -p "'[vm] >> '" -dmenu
+    )
+
+    case $(for opt in ${opts_}; do echo ${opt}; done | eval "${rofi_cmd[@]}") in
+        *"Look"*)
+            do_if_qemu looking-glass-client -s
+        ;;
+        *"Usb"*"pass"*"add"*) 
+            do_if_qemu st -c qemu_usb_pass tmux -S ~/1st_level/vm.socket new -n pass "${HOME}/bin/qemu/passthrough add"
+        ;;
+        *"Usb"*"pass"*"del"*) 
+            do_if_qemu st -c qemu_usb_pass tmux -S ~/1st_level/vm.socket new -n pass "${HOME}/bin/qemu/passthrough del"
+            source ${XDG_CONFIG_HOME}/xinit/xinput.zsh
+        ;;
+        *"Win"*"10"*)
+            start_win10
+        ;;
+    esac
+}
+
+tmux -S ~/1st_level/vm.socket new -s vm
+main "$@"

@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+use App::Cope;
+use Regexp::Common qw[net];
+use Regexp::IPv6 qw($IPv6_re);
+
+sub process {
+  mark qr{^(\S+)} => 'bold';
+
+  # ip addr / ip link
+  line qr{[ ,](UP|DOWN)[ ,]}               => { UP   => 'green bold', 
+                                                DOWN => 'red bold' };
+  line qr{\d: (\w+):}                      => 'bold';
+  line qr{link/(ether|loopback) ([0-9a-fA-F-:]+)} => 'bold', 'blue';
+  line qr{brd ($RE{net}{IPv4})}            => 'cyan';
+  line qr{brd ($IPv6_re)}                  => 'cyan';
+  line qr{inet ($RE{net}{IPv4})/([\d]\d)}  => 'cyan bold underline', 'blue bold';
+  line qr{inet6 ($IPv6_re)/([\d]\d)}       => 'cyan bold', 'blue bold';
+ 
+  # ip neigh
+  line qr{lladdr ([0-9a-fA-F-:]+)}         => 'blue';
+  line qr{($RE{net}{IPv4}) dev}            => 'cyan bold';
+  
+  # ip route
+  line qr{via ($RE{net}{IPv4})}                => 'cyan bold underline';
+  line qr{($RE{net}{IPv4}/([\d]\d)) dev (\w+)} => 'cyan bold', 'blue bold', 'bold';
+  line qr{src ($RE{net}{IPv4})}                => 'cyan';
+}
+
+run( \&process, real_path, @ARGV );

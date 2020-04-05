@@ -1,0 +1,34 @@
+#!/usr/bin/env perl
+use App::Cope;
+
+sub process {
+
+  # make's own commands
+  line qr{^(make\[)(\d+)(\]: .+)} => 'magenta', 'magenta bold', 'magenta';
+  line qr{^(make:)\s?(\**)\s(.+)} => 'magenta', 'red bold', 'magenta';
+  mark qr{^Making .+ in .+} => 'magenta';
+  mark qr{Error \d+} => 'red bold';
+  mark qr{(?:^|\b)([\w\+\-/]*(?:[gc]\+\+|[gc]cc))(?:\s+|$)} => 'white';
+
+  # extract the program name
+  my $line = $_;
+  $line =~ s{^\s+}{};
+  $line =~ s{^if\s}{};
+  $line =~ s{^/bin/sh \.\./libtool --mode=\w+\s}{};
+
+  do {
+    local $_ = $line;
+    if ( m{^g?cc|g\+\+} ) {
+      if ( m{\s-c\s} ) {
+          # object file
+          line qr{\s(-o)\s+(\S+)} => 'blue', 'blue bold'; 
+      } else {
+          # executable file
+          line qr{\s(-o)\s+(\S+)} => 'blue', 'blue bold underline'; 
+      }
+    }
+  }
+
+}
+
+run( \&process, real_path, @ARGV );

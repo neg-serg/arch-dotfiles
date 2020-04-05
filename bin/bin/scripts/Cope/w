@@ -1,0 +1,30 @@
+#!/usr/bin/env perl
+use App::Cope;
+use App::Cope::Extra qw[user];
+
+my @headers = qw[USER TTY FROM LOGIN@ IDLE JCPU PCPU WHAT];
+
+my $what_pos = 0;
+my $using_from = 0;
+
+sub process {
+  if (/^USER/) {
+    for my $h (@headers) { mark $h => 'white underline'; }
+    $what_pos   = $-[0] if /WHAT/;
+    $using_from = 1     if /FROM/;
+  }
+  else {
+    line qr{^(\w+)} => \&{ user 'bold blue' };
+
+    line qr{^\w+\s+(vc)(/\d+)}   => 'blue',    'blue bold';
+    line qr{^\w+\s+(console)}    => 'blue',    'blue bold';
+
+    line qr{^\w+\s+(pts)(/\d+)}      => 'green',   'green bold';
+    line qr{^\w+\s+(ttys?|p|s)(\d+)} => 'magenta', 'magenta bold';
+
+    line qr{^\w+\s+\S+\s+(\S+)} => 'cyan'      if $using_from;
+    line qr{.{$what_pos}(.+)}   => 'cyan bold' if $what_pos != 0;
+  }
+}
+
+run( \&process, real_path, @ARGV );

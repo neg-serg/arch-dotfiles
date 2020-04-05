@@ -1,0 +1,66 @@
+#!/usr/bin/env perl
+use App::Cope;
+use App::Cope::Extra qw[user %permissions %filetypes];
+
+# Regex for ISO date formats, such as 03-23 18:07
+my $iso_re = qr{
+         (?:\d{4}-)?     # year
+         \d{2} - \d{2}   # month-day
+         \s \d{2}:\d{2}  # hour-minute
+         (?::\d{2}.\d+\s # iso time thing
+           \+\d{4})?
+         \b              # end on a boundary
+         }x;
+
+# Regex for common date format, such as Mar 23 18:07
+my $mdt_re = qr{
+         (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \s+
+         \d+ \s+    # day
+         \d\d:?\d\d # year or time
+         }x;
+
+sub size {
+  # Only files have actual file sizes
+  if ( /^-/ ) {
+    return 'blue bold';
+  } else {
+    return 'blue bold';
+  }
+}
+
+my $highlighting = 0;
+
+sub process {
+
+  # Check whether we have to highlight at all
+  if (/^total \d/) {
+    $highlighting = 1;
+    mark qr{^.+} => 'underline';
+  }
+
+  # No highlighting when using the -s switch, though
+  if (/^\s*\d/) {
+    $highlighting = 0;
+  }
+
+  if ($highlighting) {
+    my $ts = join '', keys %filetypes;
+    line qr{^
+             ([-$ts])                    # filetype
+             (.)(.)(.)(.)(.)(.)(.)(.)(.) # permissions (blahg)
+             [ .+@]? \s+                 # SELinux/MacOS ext perm. indicator
+             (\d+) \s+                   # hard links
+             (\S+) \s*                   # owner
+             (\S*) \s+                   # group
+             (?:
+               (\d+,) \s+ (\d+) |        # device files
+               ([0-9,.]+) ([BKMGTP]?)    # ordinary files
+             )
+         }x => \%filetypes, ( \%permissions ) x 9, 'red',
+           \&{ user 'yellow' }, 'yellow', 'magenta bold', 'magenta', \&size, 'blue';
+
+    mark qr{$mdt_re|$iso_re} => 'green';
+  }
+}
+
+run( \&process, real_path(), @ARGV );

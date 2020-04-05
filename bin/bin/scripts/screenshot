@@ -1,0 +1,91 @@
+#!/bin/zsh
+
+select_window_=false
+current_window_=false
+apply_colorpace_=false
+delay_min_=false
+delay_=false
+
+scr_dir=~/tmp/shots
+window='root'
+name="screenshot"
+filename="${name}-$(date +%Y-%m-%d_%H-%M-%S).png"
+size_=200
+colorspace_='0.96,0.5,0.09'
+urgency_=normal
+summary_="${scr_dir}/${filename}"
+
+shot_notify(){
+    ~/bin/scripts/pic_notify "${summary_}"
+}
+
+make_shot(){
+    local -a arglist=()
+    arglist+=( -p 0 )
+
+    [[ ${select_window_} = true ]] && arglist+=( -s )
+    [[ ${current_window_} = true ]] && arglist+=( -i "$(xdotool getactivewindow)" )
+    [[ ${apply_colorpace_} = true ]] && arglist+=( -c "${colorspace_}" )
+    [[ ${delay_min_} = true ]] && arglist+=( -d 0.5 )
+    [[ ${delay_} = true ]] && arglist+=( -d 5 )
+
+    arglist+="${summary_}"
+
+    maim ${arglist[@]} && \
+    shot_notify
+}
+
+[[ ! -d "${scr_dir}" ]] && mkdir "${scr_dir}"
+
+Select(){ select_window_=true; make_shot "$@"; }
+Full(){ make_shot "$@"; }
+Current(){ delay_min_=true; current_window_=true; make_shot "$@"; }
+Delay(){ delay_=true; make_shot "$@"; }
+
+opts=(
+    "Full shot"
+    "Rectangular selection shot"
+    "Current window"
+    "Delayed shot"
+)
+
+Menu(){
+    local x11_width="$(xrandr -q |awk '/Screen/{print $8}')"
+    local width_=$[x11_width-70]
+    local lines_=10
+    local yoffset=-34
+
+    readonly rofi_cmd=(
+        rofi
+        -theme-str "'#window { width:${width_}; y-offset: ${yoffset}; location: south; anchor: south; }'"
+        -theme-str "'#listview { lines:${lines_}; }'"
+        -p "'[screen] >> '"
+        -dmenu
+    )
+    case $(for opt in ${opts}; do echo ${opt}; done | eval ${rofi_cmd[@]}) in
+        -r) Select   "$@" ;;
+        -f) Full     "$@" ;;
+        -c) Current  "$@" ;;
+        -d) Delay    "$@" ;;
+    esac
+}
+
+show_help(){
+echo "Script to create screenshot and show notification.\n" \
+     "\n" \
+     "  -r          run selection mode\n"  \
+     "  -c          screenshot current window\n"  \
+     "  -d          add delay\n" \
+     "  -m          show menu for options\n" \
+     "  -h          display this help and exit\n" \
+}
+
+case "${1}" in
+    -r)        Select   "$@" ;;
+    -c)        Current  "$@" ;;
+    -d)        Delay    "$@" ;;
+    -m)        Menu     "$@" ;;
+    --help)    show_help     ;;
+    -h)        show_help     ;;
+    *)         Full     "$@" ;;
+esac

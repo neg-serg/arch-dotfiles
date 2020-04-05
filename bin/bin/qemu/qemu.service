@@ -1,0 +1,24 @@
+[Unit]
+Description=QEMU virtual machine
+
+[Service]
+Environment="type=system-x86_64" "haltcmd=kill -INT $MAINPID" \
+	    "QEMU_AUDIO_DRV=pa" \
+	    "QEMU_PA_SAMPLES=1024" \
+	    "QEMU_AUDIO_TIMER_PERIOD=150" \
+	    "QEMU_PA_SERVER=localhost" \
+	    "PULSE_SERVER=localhost"
+#EnvironmentFile=/etc/conf.d/qemu.d/%i
+ExecStart=/home/neg/bin/qemu/win10_run
+ExecStop=/bin/sh -c ${haltcmd}
+TimeoutStopSec=30
+KillSignal=SIGCONT
+IOSchedulingClass=realtime
+IOSchedulingPriority=0
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=90
+CPUAffinity=1 2 3 4
+Nice=-10
+
+[Install]
+WantedBy=multi-user.target

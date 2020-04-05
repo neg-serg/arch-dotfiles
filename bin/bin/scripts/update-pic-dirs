@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+case $1 in
+    -a)
+        find "${XDG_PICTURES_DIR}" -maxdepth 3 \
+            -not -path "${XDG_PICTURES_DIR}/.git/*" \
+            -not -path "${XDG_PICTURES_DIR}/.git" -type d -print0 \
+            | _FASD_DATA="${XDG_DATA_HOME}/sxiv_do.data" xargs -0 fasd -A
+    ;;
+    *)
+        while true; do
+            resource="$(inotifywait --recursive --event create --format %w%f "${XDG_PICTURES_DIR}/")"
+            if [[ -d ${resource} ]]; then
+                echo "${resource}" | _FASD_DATA="${XDG_DATA_HOME}/sxiv_do.data" xargs fasd -A
+            fi
+        done
+    ;;
+esac

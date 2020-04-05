@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+group_valid(){
+    for d in /sys/kernel/iommu_groups/*/devices/*; do 
+        n=${d#*/iommu_groups/*}; n=${n%%/*}
+        printf 'IOMMU Group %s ' "$n"
+        lspci -nns "${d##*/}"
+    done;
+}
+
+reset_info(){
+    setopt nullglob
+    for iommu_group in $(find /sys/kernel/iommu_groups/ -maxdepth 1 -mindepth 1 -type d);do
+        echo "IOMMU group $(basename "$iommu_group")";
+        for device in $(\ls -1 "$iommu_group"/devices/); do
+            if [[ -e "$iommu_group"/devices/"$device"/reset ]]; then
+                echo -n "[RESET]"; 
+            fi;
+            echo -n $'\t';lspci -nns "$device";
+        done;
+    done
+}
+
+case ${1} in
+    r*) reset_info ;;
+    *) group_valid ;;
+esac

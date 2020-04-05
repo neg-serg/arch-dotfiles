@@ -1,0 +1,25 @@
+#!/bin/bash
+
+setup_nat(){
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+    iptables -t nat -A POSTROUTING -o enp6s0 -j MASQUERADE
+    iptables -I FORWARD 1 -i tap0 -j ACCEPT
+    iptables -I FORWARD 1 -o tap0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+}
+
+setup_nat
+
+bridge=virtnet0
+ip=192.168.100.1
+netmask=255.255.255.0
+
+# Create the bridge if needed
+br_exsist=$(brctl show | grep -c ${bridge})
+if [[ "${br_exsist}" -eq 0 ]]; then
+    brctl addbr "${bridge}"
+    brctl setfd "${bridge}" 0
+    ifconfig "${bridge}" inet "${ip}" netmask "${netmask}" up
+fi
+
+ifconfig "$1" "0.0.0.0" promisc up
+brctl addif "${bridge}" "$1"

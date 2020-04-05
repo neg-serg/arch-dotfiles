@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+use App::Cope;
+$App::Cope::line_buffered = 0;
+
+my @headers = qw[Device Boot Start End Blocks Id System];
+
+sub process {
+  if (/^\s*Device/) {
+    for my $h (@headers) { mark $h => 'white underline'; }
+  }
+  else {
+    line qr{(?:^|:)(\S+/)(\S+)(?:\s+(\*))?} => 'blue', 'blue bold', 'green bold';
+
+    line qr{^(Disk )(\S+?)(: )(\S+ GB)} =>
+      map { ( "underline", "underline $_" ) } 'yellow bold', 'yellow';
+  }
+}
+
+run( \&process, real_path, @ARGV );

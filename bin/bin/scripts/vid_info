@@ -1,0 +1,125 @@
+#!/usr/bin/python3
+""" Script to rename files to my own pretty naming format.
+
+Usage:
+    ./vid_fancy_print FILES ...
+
+Options:
+    FILES   input file list
+
+Created by :: Neg
+email :: <serg.zorg@gmail.com>
+year :: 2020
+
+"""
+
+import os
+import re
+import subprocess
+import json
+import math
+import datetime
+import enum
+from docopt import docopt
+
+from pretty_printer import pretty_printer
+
+# Enum for size units
+class SIZE_UNIT(enum.Enum):
+    BYTES = 1
+    KiB = 2
+    MiB = 3
+    GiB = 4
+    TiB = 4
+
+def convert_unit(size_in_bytes, unit):
+    """ Convert the size from bytes to other units like KB, MB or GB"""
+    if unit == SIZE_UNIT.KiB:
+        return size_in_bytes/1024
+    if unit == SIZE_UNIT.MiB:
+        return size_in_bytes/(1024*1024)
+    if unit == SIZE_UNIT.GiB:
+        return size_in_bytes/(1024*1024*1024)
+    if unit == SIZE_UNIT.TiB:
+        return size_in_bytes/(1024*1024*1024*1024)
+
+    return size_in_bytes
+
+
+def media_info(filename):
+    try:
+        mediainfo_ret = subprocess.Popen(
+            ['ffprobe', '-hide_banner', '-loglevel', 'fatal', '-show_error',
+            '-show_format', '-show_streams', '-print_format', 'json', str(filename)], stdout=subprocess.PIPE
+        ).communicate()[0]
+
+        if mediainfo_ret is not None:
+            mediainfo_ret = mediainfo_ret.decode().split('\n')
+    except subprocess.CalledProcessError as proc_err:
+        print(proc_err)
+
+    ret = json.loads(''.join(mediainfo_ret))
+    pp = pretty_printer
+    out = ""
+    vid_frame_rate = ""
+    audio_bitrate, audio_sample_rate = "", ""
+    if not ret.get('streams', []):
+        os._exit(0)
+    for stream in ret['streams']:
+        if stream['codec_type'] == 'video':
+            out += pp.wrap(str(stream['width']) + 'x' + str(stream['height']))
+            fr = stream['avg_frame_rate'].split('/')
+            vid_frame_rate = round(float(fr[0]) / float(fr[1]))
+        if stream['codec_type'] == 'audio':
+            if stream.get('bit_rate', ''):
+                audio_bitrate = math.floor(convert_unit(
+                    float(stream['bit_rate']), SIZE_UNIT.KiB
+                ))
+            audio_sample_rate = float(stream['sample_rate']) / 1000
+
+    file_format = ret['format']
+
+    seconds = math.floor(float(file_format['duration']))
+    out += pp.wrap(str(datetime.timedelta(seconds=seconds)))
+
+    size = math.floor(convert_unit(
+        float(file_format['size']), SIZE_UNIT.MiB
+    ))
+    out += pp.size(str(size), 'MiB')
+
+    video_bitrate = math.floor(convert_unit(
+        float(file_format['bit_rate']), SIZE_UNIT.KiB
+    ))
+    out += pp.size(str(video_bitrate), 'kbps', pref='vidbrate')
+    out += pp.wrap(str(vid_frame_rate), postfix='fps')
+
+    out += pp.size(str(audio_sample_rate), 'K', pref=None)
+    out += pp.size(str(audio_bitrate), 'kbps', pref='audbrate')
+
+    print(out)
+
+
+def main():
+    cmd_args = docopt(__doc__, version='1.0')
+    files =  cmd_args['FILES']
+    pp = pretty_printer
+
+    print_cwd = False
+    dir_name = ""
+
+    for fname in files:
+        if not os.path.exists(fname):
+            break
+        if os.path.dirname(fname):
+            dir_name = os.path.dirname(fname)
+        elif print_cwd:
+            dir_name = os.getcwd()
+
+        dir_name_out = ""
+        if dir_name and dir_name != '.':
+            dir_name_out = pp.fancy_file(dir_name)
+        input_name = os.path.basename(fname)
+        print(f'{pp.prefix()}{dir_name_out}{pp.fancy_file(input_name)}', end='')
+        media_info(fname)
+
+main()

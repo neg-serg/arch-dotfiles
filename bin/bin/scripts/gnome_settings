@@ -1,0 +1,68 @@
+#!/bin/zsh
+
+default_font='Iosevka Term 12'
+icon_theme='Compass'
+gtk_theme='Blueberry-breeze-gtk'
+
+gtk_settings(){
+    if [[ $1 == "" ]]; then
+        gsettings set org.gnome.desktop.interface gtk-theme "${gtk_theme}"
+    else
+        gsettings set org.gnome.desktop.interface gtk-theme "$1"
+    fi
+    gsettings set org.gnome.desktop.interface gtk-key-theme Emacs
+
+    gsettings set org.gnome.desktop.interface icon-theme "${icon_theme}"
+    gsettings set org.gnome.desktop.interface cursor-theme 'Bibata_Oil'
+    gsettings set org.gnome.desktop.interface cursor-size 32
+}
+
+gnome_settings(){
+    gsettings set org.gnome.desktop.background show-desktop-icons true
+    gsettings set org.gnome.desktop.interface clock-show-date true
+    gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'grayscale'
+    gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
+    gsettings set org.gnome.desktop.interface text-scaling-factor '1.0'
+}
+
+font_settings(){
+    gsettings set org.gnome.desktop.interface monospace-font-name "${default_font}"
+    gsettings set org.gnome.desktop.interface document-font-name "${default_font}"
+    gsettings set org.gnome.desktop.interface font-name "${default_font}"
+    gsettings set org.gnome.desktop.wm.preferences titlebar-font "${default_font}"
+}
+
+icon_settings(){
+    if [[ $1 == "" ]]; then
+        gsettings set org.gnome.desktop.interface icon-theme "${icon_theme}"
+    else
+        gsettings set org.gnome.desktop.interface icon-theme "$1"
+    fi
+    gsettings set org.gnome.desktop.background show-desktop-icons true
+}
+
+main(){
+    case $1 in
+        '-a')
+            shift
+            font_settings &
+            gtk_settings "$1" &
+            gnome_settings &
+        ;;
+        '-g')
+            shift
+            gtk_settings "$1" &
+            gnome_settings &
+        ;;
+        '-f')
+            shift
+            font_settings &
+        ;;
+        '-i')
+            shift
+            icon_settings "$1" &
+        ;;
+    esac
+}
+
+main "$@"

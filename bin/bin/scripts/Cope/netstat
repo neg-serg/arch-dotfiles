@@ -1,0 +1,129 @@
+#!/usr/bin/env perl
+use App::Cope;
+use App::Cope::Extra qw[user nonzero];
+
+my @headers = (
+
+  # Active Internet connections
+  'Proto', 'Recv-Q', 'Send-Q', 'Local Address', 'Foreign Address', 'State',
+  'PID/Program name', 'User', 'Inode', 'Timer',
+
+  # Active UNIX domain Sockets
+  'RefCnt', 'Flags', 'Type', 'Path', 'Active IPX sockets', 'I-Node',
+  'Active NET/ROM sockets', 'Active AX.25 sockets',
+);
+
+# Distinguish socket states by colour
+
+my %states = (
+  SYN_SENT    => 'yellow',          # establishing...
+  SYN_RECV    => 'yellow',
+  ESTABLISHED => 'green bold',      # established!
+  LISTEN      => 'cyan bold',
+  CLOSING     => 'magenta bold',    # closing...
+  CLOSED      => 'magenta bold',    # closed.
+  FIN_WAIT1   => 'magenta',
+  FIN_WAIT2   => 'magenta',
+  CLOSE_WAIT  => 'magenta',
+  LAST_ACK    => 'magenta bold',
+  TIME_WAIT   => 'yellow',
+
+  FREE          => 'yellow',
+  LISTENING     => 'yellow bold',
+  CONNECTING    => 'green',
+  CONNECTED     => 'green bold',
+  DISCONNECTING => 'magenta',
+  UNKNOWN       => 'white on_red',
+);
+
+# The state of networking timers
+
+my %timers = (
+  on        => 'green',
+  off       => 'red',
+  timewait  => 'yellow',
+  keepalive => 'magenta'
+);
+
+# Socket access types
+
+my %types = (
+  STREAM => 'cyan',
+  DGRAM  => 'magenta',
+  RAW    => 'red',
+);
+
+# A network address, plus a colon, minus its port.
+
+my $address_regex = qr{
+            \*: |   # a single star, or
+            ::: |   # two colons, or
+            \S+?:   # an address
+            }x;
+
+# netstat provides a tricky column-based layout. It's best to
+# highlight each column in turn, based on how many characters come
+# before its entry in the header line.
+
+my %header_offsets;     # list of offsets in the header
+
+# Like line, but matching a specific header.
+
+sub column {
+  my ( $name, $regex, @colours ) = @_;
+  line qr{^} . ( qr{.} x $header_offsets{$name} ) . $regex => @colours
+    if $header_offsets{$name};
+}
+
+sub process {
+
+  # do the headers
+  if (/^Proto/) {
+    for my $h (@headers) {
+      mark $h => 'underline';
+      /$h/;
+      $header_offsets{$h} = $-[0];
+    }
+  }
+
+  # highlight!
+  else {
+
+    # active internet connections
+    line qr{^
+         (tcp|udp|raw) \s+  # Proto
+         (\d+) \s+      # Recv-Q
+         (\d+)      # Send-Q
+     }x => { tcp => 'magenta bold', udp => 'red bold', raw => 'red' }, ( \&{ nonzero 'green' } ) x 2;
+    line qr{^(unix)\s+(\d+)} => 'blue bold', 'green';
+
+    # miscellaneous information
+    column 'State', qr{(\w+)} => \%states;
+    column 'PID/Program name', qr{(\d+/)(\S+)} => qw[cyan blue];
+    column 'Inode', qr{(\d+)} => 'green';
+    column 'User', qr{(\w+)} => \&{ user 'yellow' };
+
+    # addresses
+    column 'Local Address', qr{($address_regex)([^:]+)\s} => 'yellow', 'yellow bold';
+    column 'Foreign Address', qr{($address_regex)([^:]+)\s} => 'blue', 'blue bold';
+
+    # active sockets
+    column 'Flags', qr{(\[)\s(ACC|W|N)?\s?(\])} => 'black bold', 'yellow', 'black bold';
+    column 'Type', qr{([A-Z]+)} => \%types;
+    column 'I-Node', qr{(\d+)} => 'green';
+    column 'Path', qr{(@).+} => 'magenta bold';
+
+    # timers
+    line qr{
+         (on|off|timewait|keepalive) \s \( # timer state
+         [0-9.]+ /       # one
+         [0-9.]+ /       # two
+         [0-9.]+ \)      # three
+     }x => \%timers;
+
+    # ignore boring lines
+    line qr{\s(-)\s} => 'black bold';
+  }
+}
+
+run( \&process, real_path, @ARGV );

@@ -1,0 +1,52 @@
+#!/bin/zsh
+
+print_help(){
+    echo -ne \
+        "Script to create screenshot and show notification.\n" \
+        "\n" \
+        "  -s  <size>  set core size\n"  \
+        "  -m1         use [resize] method\n" \
+        "  -m2         use [sample] method\n" \
+        "  -h          print this message\n"
+}
+
+parse_opts(){
+    case "${1}" in
+        -h|--help) shift; print_help ;;
+        -s) shift
+            size=${1}
+            (( size <= 0 )) && echo "size=${size} must be a positive integer"
+            ;;
+        -m1) shift; mode=1 ;;
+        -m2) shift; mode=2 ;;
+        *) ;;
+    esac
+    in="${1}"; out="${2}"
+}
+
+main() {
+    [[ "${in}" = "" ]] && exit 0
+    [[ "${out}" = "" ]] && exit 0
+
+    # test if image an ordinary, readable and non-zero size
+    if [[ -f ${in} && -r ${in} && -s ${in} ]]; then
+        : 'Do Nothing'
+    else
+        echo "file ${in} does not exist or is not an ordinary file, not readable or has zero size"
+    fi
+
+    # get parameters
+    w=$(convert "${in}" -format "%[fx:w]" info:)
+    h=$(convert "${in}" -format "%[fx:h]" info:)
+    minify=$(convert xc: -format "%[fx:100/${size}]" info:)
+
+    # process image
+    [[ ${mode} == 1 ]] && convert "${in}" -resize "${minify}%" -scale "${w}x${h}"! "${out}"
+    [[ ${mode} == 2 ]] && convert "${in}" -sample "${minify}%" -scale "${w}x${h}"! "${out}"
+}
+
+size=3
+mode=1
+
+parse_opts "$@"
+main "$@"

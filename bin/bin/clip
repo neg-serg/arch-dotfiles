@@ -1,0 +1,112 @@
+#!/bin/zsh
+
+read_command() {
+    readonly rofi_cmd=(
+        rofi -dmenu 
+        -opacity "${opacity_}"
+        -theme-str "'#window { width:${width_}; y-offset: ${yoffset_}; location: south; anchor: south; }'"
+        -theme-str "'#listview { lines:${lines_}; }'"
+        -i -levenshtein-sort -matching glob -dmenu -p '"❯>"'
+    )
+    cmd_=$(echo -n "${cmds}"| tr -s ' ' '\n' | eval ${rofi_cmd[@]})
+    echo ${cmd_}
+}
+
+send_key() {
+    local key="$1"
+    xdotool key --window "${window}" "${key}"
+}
+
+clipboard_pipe() {
+    local cmd=""
+    local selection=""
+    local out=""
+    local paste=false
+
+    local cmds=("sort" "tac")
+    local window=$(xdotool getwindowfocus|tr -d '\n')
+
+    while true; do
+        case "$1" in 
+            -p | --paste) paste=true; shift ;;
+            -c | -e | --command) 
+                if [[ $2 != "" ]]; then
+                    cmd="$2"
+                else
+                    cmd="$(read_command)"
+                fi
+                shift
+            ;;
+            *) cmd="$(read_command)" ;;
+            --) shift; break ;;
+        esac
+        if [[ ${paste} == true ]]; then
+            echo -n | xclip -i # clear clipboard first
+            send_key 'Control_L+c'; send_key 'Control_L+v'
+        fi
+        if [[ ${cmd} != "" ]]; then
+            # read the selection
+            selection=$(xclip -o)
+            if [[ ${selection} == "" && ${paste} ]]; then
+                echo "no input, aborting..."
+                exit 1
+            fi
+
+            # put it into the clipboard (and clear it first so Klipper doesn't interfere)
+            echo -n | xclip -i -sel clipboard
+
+            clipboard=$(xclip -o)
+            out=$(${cmd} <<< "${clipboard}")
+            xclip -i -sel clipboard <<< "${out}"
+
+            exit 0
+        else
+            notify-send "you need to specify a command"
+            exit 1
+        fi
+    done
+}
+
+clip_main() {
+    declare -a rofi_opts_
+    local x11_width="$(xrandr -q |awk '/Screen/{print $8}')"
+    local width_=$[x11_width-70]
+    local lines_=10
+    local yoffset_=-38
+    readonly rofi_cmd=(
+        rofi -dmenu 
+        -no-plugins
+        -opacity "${opacity_}"
+        -theme-str "'#window { width:${width_}; y-offset: ${yoffset_}; location: south; anchor: south; }'"
+        -theme-str "'#listview { lines:${lines_}; }'"
+        -sort -i -matching glob -dmenu -p '"⟬clip⟭ ❯>"'
+    )
+    local gpaste_ret=$(gpaste-client --oneline|eval ${rofi_cmd})
+    local selection=$(echo "${gpaste_ret}" | cut -d ':' -f1)
+    if [[ ${selection} != "" ]]; then
+        gpaste-client select ${selection}
+    fi
+}
+
+yr() {
+    ${XDG_CONFIG_HOME}/i3/bin/send bscratch toggle youtube
+    sleep 1s
+    echo "$@" | xsel -i
+    xdotool key shift+Insert
+}
+
+youtube_url() {
+    gpaste-client \
+        | grep -E 'https.*(youtube|vimeo).com' \
+        | cut -f2- -d ' ' \
+        | rofi -lines 7 -dmenu -p '⟬youtube⟭ ❯>'
+}
+
+case "$1" in
+    pipe) shift; clipboard_pipe "$@" ;;
+    youtube-view) shift; yr "$(xclip -o)" ;;
+    translate) shift; current_clip="$(gpaste-client get 0)"; notify-send "$(transline ${current_clip})" ;;
+    youtube-dw) shift; cd ~/vid/new; youtube-dl "$(xclip -o)" ;;
+    youtube-dw-list) shift; cd ~/vid/new; youtube-dl "$(youtube_url)" ;;
+    *) clip_main ;;
+esac

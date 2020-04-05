@@ -1,0 +1,37 @@
+#!/usr/bin/env perl
+use App::Cope;
+$App::Cope::line_buffered = 0;
+
+sub process {
+
+  # Downloading/unpacking pyrg
+  line qr{^Downloading/unpacking (.*)} => 'blue bold';
+
+  # Downloading pyrg-0.2.6.tar.gz
+  line qr{Downloading (.*)} => 'yellow';
+  
+  #   Running setup.py egg_info for package pyrg
+  line qr{Running setup.py egg_info for package (.*)} => 'blue bold';
+
+  # Installing collected packages: pyrg
+  line qr{^Installing collected packages: (.*)} => 'blue bold';
+  
+  # Running setup.py install for pyrg
+  line qr{Running setup.py install for (.*)} => 'blue bold';
+    
+  # Installing pyrg script to /usr/local/bin
+  line qr{^Running setup.py for package (.*)} => 'blue bold';
+  
+  # Successfully installed pyrg
+  line qr{(Successfully installed) (.*)} => 'green', 'blue bold';
+
+  # Successfully uninstalled pyrg
+  line qr{(Successfully uninstalled) (.*)} => 'white', 'blue bold';
+
+  # Uninstalling pyrg:
+  line qr{^Uninstalling (.*):} => 'blue bold';
+
+  # Proceed (y/n)? y
+  line qr{\(([Yy])/([Nn])\)\?}        => 'green', 'white';
+}
+run( \&process, real_path, @ARGV );

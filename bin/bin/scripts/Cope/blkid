@@ -1,0 +1,31 @@
+#!/usr/bin/env perl
+use App::Cope;
+
+my @headers = qw[NAME LINE TIME IDLE PID COMMENT EXIT];
+
+my $me = (getpwuid( $< ))[0] || "nobody";
+
+my $date_re = qr!(?: \d{4}-\d{2}-\d{2} # 1970-01-01
+         |   \w{3}\s\d{2}      # Jan 01
+         ) \s
+         \d{2}:\d{2}!x;   # time: 12:34
+
+my $idle_re = qr!\d{2}:\d{2} # standard time
+         | [.?]      # or no/unknown time
+         | old       # or "old"
+        !x;
+
+sub process {
+  if (/^NAME/) {
+    for my $h (@headers) { mark $h => 'underline'; }
+  }
+  else {
+    line qr{^([\w\.\-]+)} => 'yellow bold';
+    line qr{^([\w/\.\-]*/)([\w\.-]+)} => 'yellow','yellow bold';
+    line qr{\s(LABEL=")([\w\.\- ]+)(")} => 'red','red bold','red';
+    line qr{\s(UUID=")([\w-]*)(")} => 'cyan','cyan bold','cyan';
+    line qr{\s(TYPE=")([\w-]*)(")} => 'green','green bold','green';
+  }
+}
+
+run( \&process, real_path, @ARGV );

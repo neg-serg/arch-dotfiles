@@ -1,0 +1,12 @@
+#!/bin/zsh
+# Script to run windows 10 with geforce 980gtx gpu ;)
+haltcmd() {
+    haltcmd="echo '{ \"execute\": \"qmp_capabilities\" }{ \"execute\": \"system_powerdown\"}' | nc localhost 4444 && \
+    sleep 9;\
+    echo '{ \"execute\": \"qmp_capabilities\" }{ \"execute\": \"system_powerdown\"}' | nc localhost 4444 && \
+    sleep 1;\
+    echo '{ \"execute\": \"qmp_capabilities\" }{ \"execute\": \"system_powerdown\"}' | nc localhost 4444"
+    eval "${haltcmd}"
+}
+
+haltcmd

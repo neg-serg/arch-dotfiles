@@ -1,0 +1,56 @@
+#!/bin/zsh
+
+img="$1"
+
+conv_image(){ 
+    readonly size=180
+    [[ ! $1 =~ .*gif ]] && ~/bin/scripts/python_img_resizer.py ${size} "$1" "$2"
+}
+
+send_notify(){ 
+    input=${img}
+
+    local c1=$(highlight 4)
+    local c2=$(highlight 200)
+    local c3=$(highlight 4)
+    local b="<span weight='bold'>"
+
+    local clear="</span>"
+
+    local header="⟬${input}⟭"
+    header="$(sed -e "s:${HOME}:~:" \
+                -e "s:\/:${c1}/${clear}:g" \
+                -e "s:\(⟬\|⟭\):${c3}\1${clear}:g" -e "s:~:${c2}~${clear}:g" <<< ${header})"
+
+    local inf=$(/usr/bin/vendor_perl/exiftool -ImageSize -MIMEType -Megapixels ${img})
+
+    output=$(xargs -n4 <<< "${inf}" \
+        | sed -e 's/^/⟬/' -e 's/$/⟭/' \
+        -e "s;\(.*\):;${b}\\1${c3}:${clear}${clear};" \
+        -e "s:\(⟬\|⟭\):${c3}\1${clear}:g"
+    )
+    
+    wait
+    dunstify -h "string:fgcolor:$(xrq foreground)" -a "pic_notify" -i "${new_image}" ' ' "${header}\n${output}"
+}
+
+highlight(){
+    local msg="$(xrq color${1})"
+    builtin print "<span weight='bold' color='${msg}'>"
+}
+
+finish(){
+    (sleep 3s && rm -f "${new_image}") &
+}
+
+main(){
+    local shots_pikz="${HOME}/tmp/shots"
+    [[ ! -d "${shots_pikz}" ]] && mkdir -p "${shots_pikz}"
+    new_image="${HOME}/tmp/$(basename ${img})_new.png"
+    conv_image "${img}" "${new_image}" &
+    xclip <<< "${img}"
+    trap finish EXIT
+    send_notify 
+}
+
+main "$@"

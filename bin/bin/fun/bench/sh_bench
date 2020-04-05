@@ -1,0 +1,57 @@
+#!/bin/bash
+# sdothum - 2016 (c) wtfpl
+# neg - 2017, improved
+# benchmark shells (not applicable to fish)
+# see http://unix.stackexchange.com/questions/148035/is-dash-or-some-other-shell-faster-than-bash/148061#148061
+
+typeset -a shells_=(sh bash zsh dash mksh busybox posh ksh)
+typeset -a shells=()
+
+for sh in ${shells_[@]}; do
+    if hash "${sh}" 2>/dev/null; then
+        shells+="${sh} "
+    fi
+done
+
+sh_bench() (
+    o=-c sh=$(command -v "$1") ; shift
+    [ -z "${sh##*busybox}" ] && o='ash -c'
+    set -- "$sh" $o "'$(cat <&3)'" -- "$@"
+    time env - "$sh" $o "while echo; do echo; done|$*"
+) 3<<-\SCRIPT
+  i="${2:-1}" l="${1:-100}" d="${3:-
+}"
+  set -- "\$((n=\$n\${n:++\$i}))\$d"
+  set -- $1$1$1$1$1$1$1$1$1$1
+  while read m; do
+      [ $(($i*50+${n:=-$i})) -gt "$(($l-$i))" ] || eval echo -n \""$1$1$1$1$1"\"
+      [ $((n=$i+$n)) -gt "$(($l-$i))" ] && echo "$n" && exit
+      echo -n "$n$d"
+  done
+SCRIPT
+
+# sh bench benchmark
+echo "--[ sh bench ]-------------------------------"
+
+for sh in ${shells[@]}; do
+    sh_bench "${sh}" 20 5 "${sh}" 2>/dev/null
+    sh_bench "${sh}" 500000 | wc -l
+done
+
+echo "--[ Strace bench ]---------------------------"
+
+for sh in ${shells[@]}; do
+    echo "--[ Strace ${sh} ]------"
+    strace -cf "${sh}" -c 'for i in $(seq 1 1000); do '${sh}' -c ":"; done' 2>&1 | \
+    egrep -v 'strace: Process [0-9]+ attached'
+done
+
+echo "--[ Size bench ]---------------------------"
+
+for sh in ${shells[@]}; do
+    sh_path="$(readlink -f /bin/${sh})"
+    du -k "${sh_path}"
+    ldd "${sh_path}"
+done
+
+# vim: set ft=sh

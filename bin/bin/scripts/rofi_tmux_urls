@@ -1,0 +1,11 @@
+#!/bin/dash
+term_socket="/dev/shm/tmux_sockets/term.socket"
+tmux -S "$term_socket" 'capture-pane'
+
+buffer_name="$(mktemp -p /dev/shm --suffix tmux_buffer)"
+tmux -S "$term_socket" 'save-buffer' $buffer_name
+
+tmux_clipboard=$(xurls -m '(git@.*|[a-z]+://\w+)' $buffer_name|sort -r|uniq|tac)
+if [ ! -z "$tmux_clipboard" ]; then
+    echo "$tmux_clipboard"|rofi -p '❯>' -dmenu -l 6|xclip
+fi
