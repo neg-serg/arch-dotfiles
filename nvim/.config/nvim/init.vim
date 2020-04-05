@@ -27,12 +27,12 @@ endif
 autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
         \ | redraw | echomsg 'startuptime: ' . reltimestr(g:startuptime)
 
-let &runtimepath = expand('~/.config/nvim/') . ','
-    \ . expand('~/.config/nvim/after/') . ',' . &runtimepath
+let &runtimepath = expand('$XDG_CONFIG_HOME/nvim/') . ','
+    \ . expand('$XDG_CONFIG_HOME/nvim/after/') . ',' . &runtimepath
 set termguicolors
 
 " thx to github.com/ceuk/dotfiles
-let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+let vimplug_exists=expand("$XDG_CONFIG_HOME/nvim/autoload/plug.vim")
 
 if !filereadable(vimplug_exists)
     if !executable("curl")
@@ -47,14 +47,14 @@ if !filereadable(vimplug_exists)
     autocmd VimEnter * PlugInstall
 endif
 
-call plug#begin('~/.config/nvim/plugged')
-source ~/.config/nvim/00-plugin-list.vim
+call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
+source $XDG_CONFIG_HOME/nvim/00-plugin-list.vim
 call plug#end()
 
-source ~/.config/nvim/02-keymaps.vim
-source ~/.config/nvim/03-plugins-config.vim
-source ~/.config/nvim/04-autocmds.vim
-source ~/.config/nvim/11-vimacs.vim
-source ~/.config/nvim/14-abbr.vim
-source ~/.config/nvim/21-langmap.vim
-source ~/.config/nvim/31-statusline.vim
+source $XDG_CONFIG_HOME/nvim/02-keymaps.vim
+source $XDG_CONFIG_HOME/nvim/03-plugins-config.vim
+source $XDG_CONFIG_HOME/nvim/04-autocmds.vim
+source $XDG_CONFIG_HOME/nvim/11-vimacs.vim
+source $XDG_CONFIG_HOME/nvim/14-abbr.vim
+source $XDG_CONFIG_HOME/nvim/21-langmap.vim
+source $XDG_CONFIG_HOME/nvim/31-statusline.vim
