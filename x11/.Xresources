@@ -1,2 +1,3 @@
 #include <xcursor>
+#include <sxiv>
 #include <colors/current_colors>
