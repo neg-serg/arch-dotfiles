@@ -1,4 +1,3 @@
-# vim: filetype=muttrc
 # set new_mail_command="echo \"naughty = require('naughty'); naughty.notification({ message='Email received', title='New Mail' })\" | awesome-client" 
 # Nerd icons via https://github.com/sheoak/neomutt-powerline-nerdfonts/
 set date_format="⟬%d/%m/%y %I:%M⟭"
@@ -74,4 +73,4 @@ tag-formats "replied" "GR" \
             "signed" "GS" \
             "attachment" "GA" \
 
-# -- end nerd icons
+# vim: filetype=muttrc
