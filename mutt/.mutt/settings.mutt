@@ -62,8 +62,8 @@ set sort_re
 set uncollapse_jump # don't collapse on an unread message
 
 set ssl_force_tls = yes
-set mail_check=120
-set timeout=300
+set mail_check=10
+set timeout=10
 set include
 set auto_tag = yes
 set pgp_autosign = no
