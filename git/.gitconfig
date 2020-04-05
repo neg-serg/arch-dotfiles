@@ -34,6 +34,8 @@
     func       = 68
     commit     = 4
     whitespace = 54
+[format]
+    pretty = format:%C(12)%h%C(2)%d %C(11)%<(45,trunc)%s%Creset%n%C(8)%cr %C(17)by %C(8)%cn%C(17) on %C(8)%cd%n
 [man]
     viewer = nvimpager
 [receive]
@@ -52,8 +54,12 @@
     cmd = nvr -s -d $LOCAL $REMOTE
 [merge]
     tool = nvim
+[mergetool]
+  prompt = true
 [mergetool "nvr"]
     cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [credential]
     helper = cache --timeout=28800
 [interactive]
@@ -62,4 +68,4 @@
 	required = true
 	clean    = git-lfs clean -- %f
 	smudge   = git-lfs smudge -- %f
-	process  = git-lfs filter-process
+    process  = git-lfs filter-process
