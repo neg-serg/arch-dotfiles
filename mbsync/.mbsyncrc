@@ -21,8 +21,8 @@ Slave :insales-local:"Inbox"
 Create Slave
 
 Channel insales-archive
-Master :insales-remote:"/archive"
-Slave :insales-local:"archive"
+Master :insales-remote:"archive"
+Slave :insales-local:"all"
 Create Slave
 
 Channel insales-letsencrypt
