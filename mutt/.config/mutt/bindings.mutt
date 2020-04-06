@@ -44,7 +44,6 @@ macro pager X "|$XDG_CONFIG_HOME/mutt/mimedump"
 macro index gw '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/home.cfg<enter><change-folder>=gmail/Inbox<enter>'
 macro index gW '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/work.cfg<enter><change-folder>=insales/Inbox<enter>'
 
-macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
 macro attach I "<save-entry><kill-line>~/dw/<enter>
 macro pager \cl "|urlscan<enter>" "call urlview to open links"
 

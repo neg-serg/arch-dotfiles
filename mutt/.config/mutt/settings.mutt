@@ -65,12 +65,11 @@ set uncollapse_jump # don't collapse on an unread message
 set ssl_force_tls = yes
 set mail_check=10
 set timeout=10
-set include
 set auto_tag = yes
 set pgp_autosign = no
 set imap_keepalive=300
 set imap_check_subscribed
-set query_command="goobook query '%s'"
+set query_command="notmuch-addrlookup --mutt '%s'"
 
 unset spoolfile
 unset record
