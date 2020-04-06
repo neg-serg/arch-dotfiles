@@ -29,6 +29,11 @@ export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 export HISTCONTROL=ignoreboth:erasedups # ignoreboth (= ignoredups + ignorespace)
 
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
+export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
+
 export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 
