@@ -1,5 +1,5 @@
 [global]
-    font                  = Iosevka Nerd Font Mono Medium 14
+    font                  = Iosevka Nerd Font Mono Medium 12
     markup                = full
     plain_text            = false
     format                = "%s\n%b"
@@ -26,13 +26,13 @@
     dmenu                 = /usr/bin/rofi -p dunst:
     browser               = /usr/bin/firefox -new-tab
     icon_position         = left
-    icon_path             = ~/.icons/custom_dunst:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/devices
+    icon_path             = ~/.icons/Compass
     max_icon_size         = 250
     title                 = Dunst
     class                 = Dunst
     stack_duplicates      = true
     hide_duplicate_count  = true
-    frame_width           = 1
+    frame_width           = 4
     frame_color           = "#0C0C0D"
     width                 = 0
     ellipsize             = middle
