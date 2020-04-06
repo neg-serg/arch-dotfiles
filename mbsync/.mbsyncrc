@@ -20,8 +20,38 @@ Master :insales-remote:
 Slave :insales-local:"Inbox"
 Create Slave
 
+Channel insales-archive
+Master :insales-remote:"/archive"
+Slave :insales-local:"archive"
+Create Slave
+
+Channel insales-letsencrypt
+Master :insales-remote:"letsencrypt"
+Slave :insales-local:"letsencrypt"
+Create Slave
+
+Channel insales-roscom
+Master :insales-remote:"roscom"
+Slave :insales-local:"roscom"
+Create Slave
+
+Channel insales-trash
+Master :insales-remote:"Trash"
+Slave :insales-local:"Trash"
+Create Slave
+
+Channel insales-sent
+Master :insales-remote:"Sent"
+Slave :insales-local:"Sent"
+Create Slave
+
 Group insales
 Channel insales-inbox
+Channel insales-archive
+Channel insales-letsencrypt
+Channel insales-roscom
+Channel insales-trash
+Channel insales-sent
 
 #-- gmail
 IMAPAccount gmail
