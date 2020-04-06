@@ -1,0 +1,21 @@
+defaults
+port 587
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account gmail
+host smtp.gmail.com
+from serg.zorg@gmail.com
+auth on
+user serg.zorg@gmail.com
+passwordeval pass show gmail-pass
+
+account insales
+host mail.insales.ru
+port 465
+from sergey.miroshnichenko@insales.ru
+auth on
+user sergey.miroshnichenko@insales.ru
+passwordeval pass show insales/ldap
+
+account default : gmail
