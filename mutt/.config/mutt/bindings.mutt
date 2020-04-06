@@ -38,11 +38,11 @@ bind pager R group-reply
 bind attach <return> view-mailcap
 bind attach,browser,pager,index ZZ exit
 
-macro index X "|$HOME/.mutt/mimedump"
-macro pager X "|$HOME/.mutt/mimedump"
+macro index X "|$XDG_CONFIG_HOME/mutt/mimedump"
+macro pager X "|$XDG_CONFIG_HOME/mutt/mimedump"
 
-macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>=gmail/Inbox<enter>'
-macro index gW '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>=insales/Inbox<enter>'
+macro index gw '<sync-mailbox><enter-command>source "$XDG_CONFIG_HOME/mutt/home.cfg|"<enter><change-folder>=gmail/Inbox<enter>'
+macro index gW '<sync-mailbox><enter-command>source "$XDG_CONFIG_HOME/mutt/work.cfg|"<enter><change-folder>=insales/Inbox<enter>'
 
 macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
 macro attach I "<save-entry><kill-line>~/dw/<enter>

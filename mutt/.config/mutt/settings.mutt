@@ -6,6 +6,7 @@ set attribution="On %d, %n wrote:"
 set editor="nvim %s"
 # #set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
 # set editor="nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
+set folder = "~/.local/mail" # mail folder
 set markers=no          # don't put '+' at the beginning of wrapped lines
 set delete=yes          # purge deleted messages without asking
 set copy=ask-no         # ask to save a copy of outgoing message?

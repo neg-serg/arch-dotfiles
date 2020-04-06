@@ -6,4 +6,4 @@ source $XDG_CONFIG_HOME/mutt/sidebar.mutt
 source $XDG_CONFIG_HOME/mutt/crypt.mutt
 source $XDG_CONFIG_HOME/mutt/notmuch.mutt
 
-source "gpg -dq $XDG_CONFIG_HOME/mutt/work.gpg |"
+source "$XDG_CONFIG_HOME/mutt/work.cfg"
