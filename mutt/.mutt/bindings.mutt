@@ -13,8 +13,6 @@ macro index \w "\
 |urlview\n\
 :set pipe_decode=\$my_tmp_pipe_decode\n\
 :unset my_tmp_pipe_decode\n" \
-'call urlview to extract URLs out of a message'
-macro index S "!~/.mutt/scripts/msgnum.sh\r"
 
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
@@ -40,8 +38,8 @@ bind pager R group-reply
 bind attach <return> view-mailcap
 bind attach,browser,pager,index ZZ exit
 
-macro index X "|~/.mutt/mimedump"
-macro pager X "|~/.mutt/mimedump"
+macro index X "|$HOME/.mutt/mimedump"
+macro pager X "|$HOME/.mutt/mimedump"
 
 macro index gw '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/home.gpg |"<enter><change-folder>=gmail/Inbox<enter>'
 macro index gW '<sync-mailbox><enter-command>source "gpg -dq $HOME/.mutt/work.gpg |"<enter><change-folder>=insales/Inbox<enter>'
