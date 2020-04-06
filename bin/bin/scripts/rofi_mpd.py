@@ -22,8 +22,8 @@ class rofi_options:
     def __init__(self, client):
         self.client = client
         self.mesg = ''
-        self.options = ['rofi', '-selected-row', '1', '-mesg', '',
-                        '-i', '-dmenu', '-p', '~/music/'] + rofi_appearance
+        self.options = ['rofi', '-selected-row', '1', '-mesg', '',
+                        '', '-dmenu', '-p', '~/music/'] + rofi_appearance
 
     def gen_options(self, top_dir='', row_place=2):
         self.mesg = ''
@@ -39,8 +39,9 @@ class rofi_options:
             else:
                 end = self.client.status()['playlistlength']
                 self.options[4] += f'  [Playlist: {end}]'
-        self.options[8] = f'~/Music/{top_dir}'
-        self.options[9] = '-tokenize'
+        self.options[8] = f'~/music/{top_dir}'
+        self.options[9] = '-matching'
+        self.options[10] = 'fuzzy'
 
     def set_mesg(self):
         song_dic = self.client.currentsong()
