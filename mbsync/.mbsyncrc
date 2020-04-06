@@ -27,7 +27,7 @@ Channel insales-inbox
 IMAPAccount gmail
 Host imap.gmail.com
 User serg.zorg@gmail.com
-Pass bvstijkyejeiqiyz
+Pass "pass show gmail-pass"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
