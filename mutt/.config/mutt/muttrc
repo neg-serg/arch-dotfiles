@@ -3,7 +3,6 @@ source $XDG_CONFIG_HOME/mutt/bindings.mutt
 source $XDG_CONFIG_HOME/mutt/themes/fscety.mutt
 source $XDG_CONFIG_HOME/mutt/pretty.mutt
 source $XDG_CONFIG_HOME/mutt/sidebar.mutt
-source $XDG_CONFIG_HOME/mutt/crypt.mutt
 source $XDG_CONFIG_HOME/mutt/notmuch.mutt
 
 source "$XDG_CONFIG_HOME/mutt/work.cfg"
