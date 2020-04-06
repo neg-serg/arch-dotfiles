@@ -1,9 +1,0 @@
-source ~/.mutt/settings.mutt
-source ~/.mutt/bindings.mutt
-source ~/.mutt/themes/fscety.mutt
-source ~/.mutt/pretty.mutt
-source ~/.mutt/sidebar.mutt
-source ~/.mutt/crypt.mutt
-source ~/.mutt/notmuch.mutt
-
-source "gpg -dq $HOME/.mutt/work.gpg |"
