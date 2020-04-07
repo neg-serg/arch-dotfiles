@@ -57,7 +57,7 @@ class rofi_index:
     def __init__(self, client):
         self.client = client
         self.top_dir = ''
-        self.prefix = ''  # for play/pause, back, add all
+        self.prefix = ''   # for play/pause, back, add all
         self.indexes = ''  # music
 
     def gen_index(self, top_dir):
@@ -96,8 +96,8 @@ class rofi_index:
 class rofi_playlist:
     def __init__(self, client):
         self.client = client
-        self.prefix = ''  # for back index, delete mode, pause, back
-        self.indexes = ''  # playlist
+        self.prefix = ''    # for back index, delete mode, pause, back
+        self.indexes = ''   # playlist
         self.playlist = ''  # None: default, Title: detail
 
     def gen_index(self):
