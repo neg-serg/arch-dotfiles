@@ -188,24 +188,13 @@ let g:delimitMate_balance_matchpairs = 1
 imap <Esc>OH <Plug>delimitMateHome
 imap <Esc>OF <Plug>delimitMateEnd
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - dbakker/vim-projectroot.git                                              │
-" │ https://github.com/dbakker/vim-projectroot.git                                    │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <silent> cd :ProjectRootCD<cr>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - bbchung/gasynctags.git                                                   │
-" │ https://github.com/bbchung/gasynctags.git                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:gasynctags_autostart = 0
-nmap <silent><space>d :GasyncTagsEnable<CR>:GtagsCscope<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-dispatch.git                                                   │
 " │ https://github.com/tpope/vim-dispatch.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap MK :Make -j9
 nmap MC :Make clean<cr>
-nmap [FLeader]cc :Make -j10<cr>
-nmap [FLeader]mc :Make distclean<cr>
+nmap [QLeader]cc :Make -j10<cr>
+nmap [QLeader]mc :Make distclean<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - frazrepo/vim-rainbow                                                     │
 " │ https://github.com/frazrepo/vim-rainbow                                           │
