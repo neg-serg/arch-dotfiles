@@ -159,25 +159,6 @@ nnoremap [FLeader]sr :call FSwitch('%', 'wincmd r')<cr>
 " Creates a new window on the left and opens the companion file in it
 nnoremap [FLeader]sv :FSSplitLeft<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - gregsexton/gitv.git                                                      │
-" │ https://github.com/gregsexton/gitv.git                                            │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:Gitv_OpenHorizontal      = 'auto'
-let g:Gitv_OpenPreviewOnLaunch = 1
-let g:Gitv_WipeAllOnClose      = 1
-let g:Gitv_DoNotMapCtrlKey     = 1
-let g:Gitv_CommitStep          = 1024
-nnoremap <silent> <leader>gv :Gitv --all<CR>
-nnoremap <silent> <leader>gV :Gitv! --all<CR>
-vnoremap <silent> <leader>gV :Gitv! --all<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - Valloric/ListToggle.git                                                  │
-" │ https://github.com/Valloric/ListToggle.git                                        │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:lt_height = 10
-let g:lt_location_list_toggle_map = '[Qleader]S-q'
-let g:lt_quickfix_list_toggle_map = '[Qleader]q'
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Raimondi/delimitMate.git                                                 │
 " │ https://github.com/Raimondi/delimitMate.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -268,11 +249,6 @@ let g:markdown_syntax_conceal                     = 0
 let g:markdown_enable_mappings                    = 0
 let g:markdown_enable_insert_mode_leader_mappings = 0
 let g:markdown_enable_spell_checking              = 0
-let g:markdown_quote_syntax_filetypes = {
-    \ "vim" : {
-    \   "start" : "\\%(vim\\|viml\\)",
-    \},
-    \}
 if executable('firefox')
     let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
 endif
@@ -281,11 +257,6 @@ endif
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <A-/> :Grepper -tool rg<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - gregsexton/gitv                                                          │
-" │ https://github.com/gregsexton/gitv                                                │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:Gitv_OpenHorizontal = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - FooSoft/vim-argwrap                                                      │
 " │ https://github.com/FooSoft/vim-argwrap                                            │
@@ -322,8 +293,7 @@ let g:clap_theme = 'material_design_dark'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
-nmap gs <Plug>(easymotion-overwin-f2)
-" map <NOP> <Plug>(easymotion-prefix)
+nmap S <Plug>(easymotion-overwin-f2)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/vim-easy-align                                                  │
 " │ https://github.com/junegunn/vim-easy-align                                        │
