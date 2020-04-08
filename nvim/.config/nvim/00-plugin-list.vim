@@ -15,7 +15,6 @@ Plug 'justinmk/vim-dirvish' "minimalistic file manager
 "--[ Additions ]---------------------------------------------------------------------
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
-Plug 'Valloric/ListToggle' " toggle quickfix and location list
 " --[ Rice ]-------------------------------------------------------------------------
 Plug 'luochen1990/rainbow' " better rainbow parentheses
 Plug 'tpope/vim-abolish' " for different case coersion
