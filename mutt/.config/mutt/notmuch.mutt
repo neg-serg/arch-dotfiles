@@ -1,4 +1,4 @@
 set nm_default_uri = "notmuch:///home/neg/.local/mail/"
-virtual-mailboxes "gmail" "notmuch://?query=to:*gmail.com"
-virtual-mailboxes "insales" "notmuch://?query=to:*insales.ru"
+virtual-mailboxes "gmail" "notmuch://?query=tag:gmail-Inbox"
+virtual-mailboxes "insales" "notmuch://?query=tag:insales-Inbox"
 # vim: filetype=muttrc
