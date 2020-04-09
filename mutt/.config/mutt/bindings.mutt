@@ -50,6 +50,7 @@ macro pager \cl "|urlscan<enter>" "call urlview to open links"
 bind index,pager g/ vfolder-from-query
 bind index < vfolder-window-backward
 bind index > vfolder-window-forward
+bind index,pager b change-vfolder
 
 macro pager ,@aoh= "\
 <enter-command> unalternative_order *; \
