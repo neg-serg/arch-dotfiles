@@ -1,6 +1,8 @@
 set from = "sergey.miroshnichenko@insales.ru"
 set realname = "Sergey Miroshnichenko"
-set spoolfile = "+insales/INBOX"
+
+set spoolfile = "+insales/Inbox"
+set mbox = "+insales/Inbox"
 
 set header_cache="$XDG_CONFIG_HOME/mutt/work.gmail/hcache"
 set certificate_file="$XDG_CONFIG_HOME/mutt/work.gmail/certificates"
