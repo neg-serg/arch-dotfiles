@@ -1,0 +1,16 @@
+#!/bin/dash
+# thx to https://copyninja.info/blog/email_setup.html
+MDIR="insales gmail"
+mbsync -a
+notmuch new
+
+for mdir in $MDIR; do
+    echo "Processing $mdir"
+    for fdir in $(ls -d /home/neg/.local/mail/$mdir/*); do
+      if [ $(basename $fdir) != "INBOX" ]; then
+          echo "Tagging for $(basename $fdir)"
+          notmuch tag +$(basename $fdir) -inbox -- folder:$mdir/$(basename $fdir)
+          notmuch tag +$mdir-$(basename "$fdir") -inbox -- folder:$mdir/$(basename $fdir)
+      fi
+    done
+done
