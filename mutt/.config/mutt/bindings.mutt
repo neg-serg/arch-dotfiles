@@ -2,23 +2,6 @@ bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop 
 
-bind pager p previous-unread # NOT to JUMP to next/prev one!
-bind pager n next-unread # It's better to use p & p for this
-bind pager ,p print-message # Print message when viewing it
-
-macro pager W "|urlscan 2> /dev/null\n"
-macro index \w "\
-:set my_tmp_pipe_decode=\$pipe_decode\n\
-:set pipe_decode\n\
-|urlview\n\
-:set pipe_decode=\$my_tmp_pipe_decode\n\
-:unset my_tmp_pipe_decode\n" \
-
-macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-
-macro index p "<enter-command>set pager_index_lines=30"
-macro index P "<enter-command>set pager_index_lines=0"
-
 bind index g noop
 bind pager g noop
 bind attach g noop
@@ -47,10 +30,17 @@ macro index gw '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/profil
 macro index gW '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/profile_work<enter><change-folder>=insales/Inbox<enter>'
 
 macro attach I "<save-entry><kill-line>~/dw/<enter>
-macro pager \cl "|urlscan<enter>" "call urlview to open links"
 
 bind index < vfolder-window-backward
 bind index > vfolder-window-forward
+
+macro pager W "|urlscan 2> /dev/null\n"
+macro index \w "\
+:set my_tmp_pipe_decode=\$pipe_decode\n\
+:set pipe_decode\n\
+|urlview\n\
+:set pipe_decode=\$my_tmp_pipe_decode\n\
+:unset my_tmp_pipe_decode\n" \
 
 macro pager ,@aoh= "\
 <enter-command> unalternative_order *; \
@@ -63,7 +53,4 @@ alternative_order text/enriched text/plain text/html text *; \
 macro pager V ,@aoh= 'toggle alternative order'<enter>\
 <exit><display-message>"
 macro pager V ,@aot= "toggle alternative order"
-
-macro index q '<enter-command>alternative_order text/enriched text/plain text text/html *;<enter><exit>'
-bind editor <Tab> complete-query
 # vim:ft=muttrc
