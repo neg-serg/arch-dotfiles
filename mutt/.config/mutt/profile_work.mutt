@@ -22,3 +22,5 @@ macro index,pager A \
 macro index,pager I \
   "<save-message>+insales/INBOX<enter>"  \
   "move message to the inbox"
+
+macro index ? '<change-vfolder>notmuch://?query=tag:insales-Inbox and NOT tag:archive and '
