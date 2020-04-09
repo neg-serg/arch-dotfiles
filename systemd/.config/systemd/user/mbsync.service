@@ -3,5 +3,4 @@ Description=Mailbox synchronization service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mbsync -a
-ExecStartPost=/usr/bin/notmuch new
+ExecStart=/bin/dash %h/.config/mutt/sync_mail
