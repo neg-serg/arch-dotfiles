@@ -51,7 +51,7 @@ set user_agent=no       # let them take fake useragent from my_hdr above
 
 set pager=builtin
 set pager_stop             # don't show the next msg after current
-set pager_index_lines=10   # number of index lines to show
+set pager_index_lines=20   # number of index lines to show
 set pager_context=3        # number of context lines to show
 set pager_stop             # don't go to next message automatically
 set menu_scroll            # scroll in menus
