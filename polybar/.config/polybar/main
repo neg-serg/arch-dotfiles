@@ -2,7 +2,6 @@
 include-file = $XDG_CONFIG_HOME/polybar/common.cfg
 include-file = $XDG_CONFIG_HOME/polybar/modules.cfg
 include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
-include-file = $XDG_CONFIG_HOME/polybar/neg_mods.cfg
 include-file = $XDG_CONFIG_HOME/polybar/tray.cfg
 
 [global/wm]
