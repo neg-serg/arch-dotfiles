@@ -5,7 +5,7 @@ After=network.target sound.target
 
 [Service]
 Type=notify
-ExecStart=/usr/bin/mpd --no-daemon %h/.mpd.conf
+ExecStart=/usr/bin/mpd --no-daemon
 
 # allow MPD to use real-time priority 50
 LimitRTPRIO=50
@@ -21,11 +21,6 @@ ProtectControlGroups=yes
 # AF_NETLINK is required by libsmbclient, or it will exit() .. *sigh*
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX AF_NETLINK
 RestrictNamespaces=yes
-
-# Note that "ProtectKernelModules=yes" is missing in the user unit
-# because systemd 232 is unable to reduce its own capabilities
-# ("Failed at step CAPABILITIES spawning /usr/bin/mpd: Operation not
-# permitted")
 
 [Install]
 WantedBy=default.target
