@@ -378,3 +378,7 @@ tmux/.tmux/plugins/tmux-fingers/
 home.gmail/hcache
 mutt/.config/mutt/home.gmail/hcache
 hcache
+mpd/.config/mpd/mpd.db
+mpd/.config/mpd/mpd.pid
+mpd/.config/mpd/mpdstate
+mpd/.config/mpd/sticker.sql
