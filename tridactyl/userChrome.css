@@ -339,3 +339,80 @@ panelmultiview .toolbaritem-combined-buttons>label {
     min-height: calc(0px);
     overflow: hidden;
 }
+
+/* ONE LINE TOOLBAR */
+#navigator-toolbox {
+    display: flex ;
+    flex-direction: row-reverse ;
+    justify-content: flex-end 
+}
+#titlebar {
+    min-width: 40px !important ;
+    flex: 0 ;
+    flex-basis: max-content 
+}
+#nav-bar {
+    background-color: transparent !important ;
+    flex: 1 ;
+    min-width: 1920px !important ;
+    max-width: 1920px !important 
+}
+#PersonalToolbar {
+    flex: 0 
+}
+#tabbrowser-tabs {
+    width: 100vw 
+}
+/* TOOLBAR BELOW PAGE */
+#main-window:not([sizemode="fullscreen"]) body > box:nth-child(8) {
+    position: fixed ;
+    bottom: 0 ;
+    display: block ;
+    z-index: 1 ;
+    background: gray ;
+    width: 100% ;
+    background-color: black;
+    ;
+    background-image: var(--lwt-header-image) !important ;
+    background-repeat: no-repeat ;
+    background-position: right top !important 
+}
+#main-window:not([sizemode="fullscreen"]) #browser {
+    padding-bottom: 30px 
+}
+/* TOOLBAR BALLOONS HAVE TO BECOME VISIBLE AGAIN */
+panel[position^="bottomcenter"] {
+    top: 0px 
+}
+.urlbarView {
+    top: auto !important ;
+    bottom: 40px !important 
+}
+#urlbar[breakout-extend] {
+    top: auto !important ;
+    bottom: 0px !important 
+}
+#urlbar[open] .urlbarView-results {
+    display: flex ;
+    flex-direction: column-reverse 
+}
+#urlbar[open] .urlbarView-body-inner {
+    margin-top: 42px ;
+    border-top: none !important 
+}
+#urlbar[open] #urlbar-input-container {
+    display: flex ;
+    position: absolute !important ;
+    bottom: 0 !important 
+}
+#urlbar-input {
+    min-width: calc(350px + 2 * var(--toolbarbutton-inner-padding)) !important 
+}
+box.panel-viewstack {
+    min-height: min-content ;
+    max-height: none !important 
+}
+/* I'M WITH "SWAYWM", I DON'T NEED THESE */
+#minimize-button, #restore-button {
+    display: none 
+}
