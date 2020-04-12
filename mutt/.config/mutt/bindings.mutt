@@ -34,6 +34,8 @@ macro attach I "<save-entry><kill-line>~/dw/<enter>
 bind index < vfolder-window-backward
 bind index > vfolder-window-forward
 
+macro index,pager,pager	<f5> '<enter-command> set my_status="Reloaded configuration"; source ~/.mutt/muttrc; set ?my_status<enter>'	"reload muttrc"
+
 macro pager W "|urlscan 2> /dev/null\n"
 macro index \w "\
 :set my_tmp_pipe_decode=\$pipe_decode\n\
