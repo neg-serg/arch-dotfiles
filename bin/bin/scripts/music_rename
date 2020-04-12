@@ -81,7 +81,7 @@ apply_rename_() {
     rhs='⟩-'
 
     if [[ ${artist} != "" && ${year} != "" && ${album} != "" ]]; then
-        music_dirname="$(awk '/music_directory/{print $2}' "${HOME}/.mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')"
+        music_dirname="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')"
         result="${music_dirname}/$(basename "$(sed 's;/;·;g' <<< "${artist}${lhs}${year}${rhs}${album}")")"
         if [[ $(readlink -f "${src}") != $(readlink -f "${result}") ]]; then
             mv -i "${src}" "${result}"
@@ -94,7 +94,7 @@ apply_rename_() {
 main(){
     case "${1}" in
         c*)
-            dirname="$(awk '/music_directory/{print $2}' "${HOME}/.mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')/$(dirname "$(mpc -f '%file%'|head -1)")"
+            dirname="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')/$(dirname "$(mpc -f '%file%'|head -1)")"
             apply_rename_dir "${dirname}"
         ;;
         f*)
