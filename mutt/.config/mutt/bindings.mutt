@@ -35,6 +35,11 @@ bind index < vfolder-window-backward
 bind index > vfolder-window-forward
 bind index,pager b change-vfolder
 
+macro index S "|bogofilter -s\ns=junkmail"  "Learn as spam and save to junk"
+macro pager S "|bogofilter -s\ns=junkmail"  "Learn as spam and save to junk"
+macro index H "|bogofilter -n\ns="          "Learn as ham and save"
+macro pager H "|bogofilter -n\ns="          "Learn as ham and save"
+
 macro index,pager,pager	<f5> '<enter-command> set my_status="Reloaded configuration"; source ~/.mutt/muttrc; set ?my_status<enter>'	"reload muttrc"
 
 macro pager W "|urlscan 2> /dev/null\n"
