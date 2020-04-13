@@ -53,7 +53,6 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
 + Dev
     + **vim** -- I am using neovim for now, a lot of nice stuff. Also used as IDE for almost all languages(except of java, scala)
     + **dcvs** -- configs for dcvs, except git.
-    + **ghc** -- nice prompt for GHC(haskell compiler) and another basic stuff.
     + **git** -- config for git(.gitconfig)
 + Debugging
     + **gdb** -- GNU debugger.
