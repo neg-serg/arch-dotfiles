@@ -69,7 +69,6 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock rebinded to ctrl, etc.
     + **x11** -- various x11 related stuff
     + **startup** -- scripts for .xinitrc to run compositing, custom keybindings, etc.
-    + **wl** -- wallpaper list stuff.
     + **rofi** -- dmenu analogue to run programs, find windows, everything, used very widely.
     + **sxhkd** -- x11-wide keybindings, independent to WM.
     + **picom** -- x11 compositing manager.
