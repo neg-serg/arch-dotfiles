@@ -60,9 +60,7 @@ export FZF_DEFAULT_OPTS="
 --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3
 --color=fg:#617287,header:#4779B3,info:#2b768d,pointer:#395573
 --color=marker:#395573,fg+:#e5ebf1,prompt:#2b768d,hl+:#4779B3
---layout=reverse
 --info=inline
---height=80%
 --multi
 --prompt='∼ ' --pointer='▶' --marker='✓'
 --bind 'ctrl-space:select-all'
