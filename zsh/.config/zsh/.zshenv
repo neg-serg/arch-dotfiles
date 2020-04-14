@@ -60,7 +60,16 @@ export FZF_DEFAULT_OPTS="
 --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3
 --color=fg:#617287,header:#4779B3,info:#2b768d,pointer:#395573
 --color=marker:#395573,fg+:#e5ebf1,prompt:#2b768d,hl+:#4779B3
---bind='ctrl-t:execute(~/bin/v {})+abort'"
+--layout=reverse
+--info=inline
+--height=80%
+--multi
+--prompt='∼ ' --pointer='▶' --marker='✓'
+--bind 'ctrl-space:select-all'
+--bind 'ctrl-y:execute-silent(echo {+} | xclip -i)'
+--bind 'ctrl-t:execute(echo {+} | xargs -o ~/bin/v)+abort'
+--bind 'ctrl-j:execute(echo {+} | xargs -o ~/bin/v)+abort'
+--bind 'ctrl-v:execute(echo {+} | xargs -o nvim)'"
 export FZF_TMUX=1
 export FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
