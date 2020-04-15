@@ -1,6 +1,6 @@
 set shell="/bin/zsh"
 set charset=utf-8 # Local charset
-set send_charset="utf-8" 
+set send_charset="utf-8"
 set use_from=yes
 set attribution="On %d, %n wrote:"
 set editor="nvim %s"
@@ -15,7 +15,7 @@ set print=ask-yes       # ask for printing message if i want to
 set record=ask-no       # ask to save sent message into 'sent' mailbox
 set include=yes         # include the message in replies (reply quoting)
 set quit=yes            # Do you REALLY want to exit mutt? :)
-set recall=ask-yes      # ask for working with unsent messages 
+set recall=ask-yes      # ask for working with unsent messages
 unset confirmappend     # prompt for confirm when appending message to ex. mbox
 set allow_8bit          # encoding
 set check_new           # search for new messages
@@ -61,6 +61,7 @@ unset markers              # no ugly plus signs
 set sort=reverse-last-date-received  # like gmail
 set sort_re
 set uncollapse_jump # don't collapse on an unread message
+set new_mail_command="notify-send 'New Email' '%n new messages, %u unread.' &"
 
 set ssl_force_tls = yes
 set mail_check=10

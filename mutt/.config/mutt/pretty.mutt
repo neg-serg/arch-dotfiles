@@ -1,5 +1,3 @@
-# set new_mail_command="echo \"naughty = require('naughty'); naughty.notification({ message='Email received', title='New Mail' })\" | awesome-client" 
-
 set date_format="⟬%d/%m/%y %I:%M⟭"
 set index_format="     %zs %zc %zt %-4c %-19.19L  %?X?& ? %.85s %?M10?(%1M)&? %> %d      "
 set pager_format="\n  %n %T %s%*  %{!%d %b · %H:%M} %?X? %X?%P    \n \n"
