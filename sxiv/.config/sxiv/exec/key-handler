@@ -44,7 +44,7 @@ readonly lines_=12
 readonly trash_dir="${HOME}/trash/1st-level/pic"
 
 readonly rofi_cmd=(
-    rofi -dmenu 
+    rofi -dmenu
     -opacity "${opacity_}"
     -theme-str "'#window { width:${width_}; y-offset: 20; location: north; anchor: north; }'"
     -theme-str "'#listview { lines:${lines_}; }'"
@@ -78,9 +78,9 @@ rename() {
     trap finish_ EXIT
 }
 
-by_rating() { 
+by_rating() {
     sort -r -t '|' -nk2 "${z_data_file}" \
-    | mawk -F '|' '{print $1}' 
+    | mawk -F '|' '{print $1}'
 }
 
 by_fasd_last_use() {
@@ -128,7 +128,7 @@ delete() {
 rep() {
     >"${tmp_file}"
     file=($(< "${last_action}"))
-    local action=${file[1]} 
+    local action=${file[1]}
     local dest=${file[2]}
     [[ ! -d "${dest}" ]] && exit 0
     while read line; do
