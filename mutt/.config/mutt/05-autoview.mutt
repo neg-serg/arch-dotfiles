@@ -27,3 +27,5 @@ auto_view text/x-lisp
 auto_view text/x-diff
 
 alternative_order text/plain text/html *
+
+# vim: syntax=neomuttrc

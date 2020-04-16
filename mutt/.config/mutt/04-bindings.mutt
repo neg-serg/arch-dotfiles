@@ -59,4 +59,5 @@ alternative_order text/enriched text/plain text/html text *; \
 macro pager V ,@aoh= 'toggle alternative order'<enter>\
 <exit><display-message>"
 macro pager V ,@aot= "toggle alternative order"
-# vim:ft=muttrc
+
+# vim: syntax=neomuttrc

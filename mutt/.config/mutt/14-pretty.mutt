@@ -41,4 +41,4 @@ tag-formats "replied" "GR" \
             "signed" "GS" \
             "attachment" "GA" \
 
-# vim: filetype=muttrc
+# vim: syntax=neomuttrc
