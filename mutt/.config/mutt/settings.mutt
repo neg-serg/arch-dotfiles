@@ -3,64 +3,64 @@ set charset=utf-8 # Local charset
 set send_charset="utf-8"
 set use_from=yes
 set attribution="On %d, %n wrote:"
-set editor="nvim %s"
-# #set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
-# set editor="nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
-set folder = "~/.local/mail" # mail folder
-set markers=no          # don't put '+' at the beginning of wrapped lines
-set delete=yes          # purge deleted messages without asking
-set copy=ask-no         # ask to save a copy of outgoing message?
-set postpone=ask-no     # ask to postpone message if i want to
-set print=ask-yes       # ask for printing message if i want to
-set record=ask-no       # ask to save sent message into 'sent' mailbox
-set include=yes         # include the message in replies (reply quoting)
-set quit=yes            # Do you REALLY want to exit mutt? :)
-set recall=ask-yes      # ask for working with unsent messages
-unset confirmappend     # prompt for confirm when appending message to ex. mbox
-set allow_8bit          # encoding
-set check_new           # search for new messages
-set abort_nosubject=no  # Abort, if message has no subject
-set attach_split        # do not merge attaches into one file?
-set fast_reply          # do not asr For:, To:, Subj:, then replying
-set fcc_attach          # keep attaches then doing Fcc:
-set followup_to         # add Mail-Followup-To header, for maillists
-unset metoo             # do not send reply to myself when replyin' to group
-unset reply_self        # do not reply myself after all
-unset read_only         # I wanna r/w access to my mailboxes
-unset collapse_unread   # do not collapse threads with new mail
-unset mark_old          # unread old messages are still unread after quitting
-set suspend             # allow Ctrl-Z to shutdown mutt
-set beep=no             # fuckin' noizy pc-speaker
-set sleep_time = 0      # Speed up folders switch
-set forward_decode      # Decode when forwarding
-set beep_new=no         # Do not use some kind of beep
-set askcc=no            # ask for cc when creating new message?
-set markers=no          # don't put '+' at the beginning of wrapped lines
-set wait_key=no         # shut up, mutt
-unset print_command     # do not use print
-set signature="~/.mutt/scripts/signature"  # This is a script executable
-set forward_format="Fwd: %s"
-set help
-
+set editor="nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
+set folder="~/.local/mail"           # mail folder
+set markers=no                       # don't put '+' at the beginning of wrapped lines
+set delete=yes                       # purge deleted messages without asking
+set copy=ask-no                      # ask to save a copy of outgoing message?
+set postpone=ask-no                  # ask to postpone message if i want to
+set print=ask-yes                    # ask for printing message if i want to
+set record=ask-no                    # ask to save sent message into 'sent' mailbox
+set include=yes                      # include the message in replies (reply quoting)
+set quit=yes                         # Do you REALLY want to exit mutt? :)
+set recall=ask-yes                   # ask for working with unsent messages
+unset confirmappend                  # prompt for confirm when appending message to ex. mbox
+set allow_8bit                       # encoding
+set check_new                        # search for new messages
+set abort_nosubject=no               # Abort, if message has no subject
+set attach_split                     # do not merge attaches into one file?
+set fast_reply                       # do not asr For:, To:, Subj:, then replying
+set fcc_attach                       # keep attaches then doing Fcc:
+set followup_to                      # add Mail-Followup-To header, for maillists
+unset metoo                          # do not send reply to myself when replyin' to group
+unset reply_self                     # do not reply myself after all
+unset read_only                      # I wanna r/w access to my mailboxes
+unset collapse_unread                # do not collapse threads with new mail
+unset mark_old                       # unread old messages are still unread after quitting
+set suspend                          # allow Ctrl-Z to shutdown mutt
+set beep=no                          # fuckin' noizy pc-speaker
+set sleep_time = 0                   # Speed up folders switch
+set forward_decode                   # Decode when forwarding
+set beep_new=no                      # Do not use some kind of beep
+set askcc=no                         # ask for cc when creating new message?
+set markers=no                       # don't put '+' at the beginning of wrapped lines
+set wait_key=no                      # shut up, mutt
+unset print_command                  # do not use print
+set forward_format="Fwd: %s"         # simple forward format
+set help                             # enable keybindings help
 set implicit_autoview                # try to understand MIME types
+
 set mailcap_path="~/.mutt/mailcap"   # see MIME types in mailcap database
 set mailcap_sanitize=yes             # remove mailcap ugly chars
-set menu_scroll
-set narrow_tree         # To make deep threads to fit on the screen
-set user_agent=no       # let them take fake useragent from my_hdr above
+
+set menu_scroll                      # enable menu scrolling
+set narrow_tree                      # To make deep threads to fit on the screen
+set user_agent=no                    # let them take fake useragent from my_hdr above
+set signature="~/.config/mutt/scripts/signature"
 
 set pager=builtin
-set pager_stop             # don't show the next msg after current
-set pager_index_lines=20   # number of index lines to show
-set pager_context=3        # number of context lines to show
-set pager_stop             # don't go to next message automatically
-set menu_scroll            # scroll in menus
-set tilde                  # show tildes like in vim
-unset markers              # no ugly plus signs
+set pager_stop                       # don't show the next msg after current
+set pager_index_lines=20             # number of index lines to show
+set pager_context=3                  # number of context lines to show
+set pager_stop                       # don't go to next message automatically
+set menu_scroll                      # scroll in menus
+set tilde                            # show tildes like in vim
+unset markers                        # no ugly plus signs
 
 set sort=reverse-last-date-received  # like gmail
 set sort_re
-set uncollapse_jump # don't collapse on an unread message
+set uncollapse_jump                  # don't collapse on an unread message
+
 set new_mail_command="notify-send 'New Email' '%n new messages, %u unread.' &"
 
 set ssl_force_tls = yes
