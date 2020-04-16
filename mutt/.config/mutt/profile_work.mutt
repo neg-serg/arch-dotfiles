@@ -24,3 +24,6 @@ macro index,pager I \
   "move message to the inbox"
 
 macro index ? '<change-vfolder>notmuch://?query=tag:insales-Inbox and NOT tag:archive and '
+
+macro index S "|bogofilter -s\ns=insales/Spam"  "Learn as spam and save to junk"
+macro pager S "|bogofilter -s\ns=insales/Spam"  "Learn as spam and save to junk"
