@@ -27,7 +27,7 @@ bind attach,browser,pager,index ZZ exit
 macro index,pager X "|$XDG_CONFIG_HOME/mutt/mimedump"
 
 macro index gw '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/profile_home.mutt<enter><change-folder>=gmail/Inbox<enter>'
-macro index gW '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/profile_work<enter><change-folder>=insales/Inbox<enter>'
+macro index gW '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/profile_work.mutt<enter><change-folder>=insales/Inbox<enter>'
 
 macro attach I "<save-entry><kill-line>~/dw/<enter>
 
