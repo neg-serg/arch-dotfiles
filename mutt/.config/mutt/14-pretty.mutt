@@ -8,20 +8,6 @@ set alias_format="%4n %t %-20a %r"
 set vfolder_format = "%N %?n?%3n&   ?  %8m  · %f"
 set attach_format = "%u%D  %T%-75.75d %?T?%&   ? %5s · %m/%M"
 
-color status white default
-color status color4 color236 '([a-zA-Z0-9]|\[|\])(\s)'
-color status color4 color236 '(\s)([a-zA-Z0-9]|\[|\])'
-color status color4 color236 '( )'
-color status color4 color236 '(\% )'
-color status color4 color236 '(\S)'
-color status color236 default '(|)'
-color status green color236 ''
-color status white color236 ''
-color status yellow color236 ''
-color status red color236 ''
-color tree   color15 color236
-color indicator white color236
-
 # no addressed to me, to me, group, cc, sent by me, mailing list
 set to_chars=""
 # unchanged mailbox, changed, read only, attach mode
