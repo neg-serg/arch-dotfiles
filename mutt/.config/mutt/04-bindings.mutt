@@ -24,7 +24,7 @@ bind attach <return> view-mailcap
 
 bind attach,browser,pager,index ZZ exit
 
-macro index,pager X "|$XDG_CONFIG_HOME/mutt/mimedump"
+macro index,pager X "|$XDG_CONFIG_HOME/mutt/scripts/mimedump"
 
 macro index gw '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/profiles/home.mutt<enter><change-folder>=gmail/Inbox<enter>'
 macro index gW '<sync-mailbox><enter-command>source $XDG_CONFIG_HOME/mutt/profiles/work.mutt<enter><change-folder>=insales/Inbox<enter>'
