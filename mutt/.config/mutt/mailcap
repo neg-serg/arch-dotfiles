@@ -4,10 +4,10 @@ application/gpg; /usr/bin/gpg --decrypt %s; copiousoutput;
 
 # sometimes you should use needsterminal instead of copiousoutput
 text/html; /usr/bin/firefox --new-window --class mutterfox -p mail 2>/dev/null %s; copiousoutput;
-image/jpg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
-image/jpeg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
-image/pjpeg; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s jpg
-image/png; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s png
-image/gif; BROWSER=firefox ~/.mutt/scripts/view_attachment.sh %s gif
+image/jpg; BROWSER=firefox ~/.config/mutt/scripts/view_attachment.sh %s jpg
+image/jpeg; BROWSER=firefox ~/.config/mutt/scripts/view_attachment.sh %s jpg
+image/pjpeg; BROWSER=firefox ~/.config/mutt/scripts/view_attachment.sh %s jpg
+image/png; BROWSER=firefox ~/.config/mutt/scripts/view_attachment.sh %s png
+image/gif; BROWSER=firefox ~/.config/mutt/scripts/view_attachment.sh %s gif
 
 image/*; /usr/local/bin/sxiv -b %s; test=test -n "$DISPLAY";

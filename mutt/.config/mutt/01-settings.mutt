@@ -40,7 +40,7 @@ set forward_format="Fwd: %s"         # simple forward format
 set help                             # enable keybindings help
 set implicit_autoview                # try to understand MIME types
 
-set mailcap_path="~/.mutt/mailcap"   # see MIME types in mailcap database
+set mailcap_path="~/.config/mutt/mailcap" # see MIME types in mailcap database
 set mailcap_sanitize=yes             # remove mailcap ugly chars
 
 set menu_scroll                      # enable menu scrolling
