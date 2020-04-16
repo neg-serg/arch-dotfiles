@@ -4,7 +4,15 @@ color  error      brightred    default
 color  message    brightgreen  default
 color  status     default      black
 color  indicator  default      black
-color  index      cyan         default  "~u"
+
+color  index            cyan      default "~u"
+color  index_author     default   default '.*'
+color  index_flags      default   red '~F'
+color  index_collapsed  default   brightblue  
+color  index_date       color240  default     
+color  index_label      default   color240    
+color  index_number     red       default     
+color  index_size       cyan      default     
 
 uncolor index "~E"
 uncolor index "~P"
