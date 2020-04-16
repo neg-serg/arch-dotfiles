@@ -20,11 +20,17 @@ class rofi_options:
             artist = song_dic['artist']
             self.mesg += f'{song} - {artist}'
         except Exception:
-            self.mesg += song_dic['file'].split('/')[-1]
+            file = song_dic.get('file', '')
+            if file:
+                self.mesg += song_dic['file'].split('/')[-1]
 
         self.options = [
-            'rofi', '-levenshtein-sort', '-mesg', self.mesg, '',
+            'rofi',
+            '-levenshtein-sort',
+            '-mesg', self.mesg,
+            '',
             '-dmenu', '-p', '~/music/',
+
             '-font',    'Iosevka Term 12',
             '-width',   '60',
             '-padding', '10',
@@ -75,26 +81,28 @@ def main():
     while 1:
         option.set_mesg()
         rofi = subprocess.Popen(
-            option.options, stdout=subprocess.PIPE, stdin=subprocess.PIPE
+            option.options,
+            stdout=subprocess.PIPE,
+            stdin=subprocess.PIPE
         )
         index.gen_index(current_dir)
         select = index.indexes
         tmp = rofi.communicate(
-            select.encode())[0].decode().rstrip()
+            select.encode()
+        )[0].decode().rstrip()
         if not tmp:
+            if current_dir:
+                client.add(current_dir)
+                if '/' in current_dir:
+                    current_dir = current_dir[:current_dir.rfind('/')]
+                else:
+                    current_dir = ''
             break
 
-        if tmp == ' Add all':
-            client.add(current_dir)
-            if '/' in current_dir:
-                current_dir = current_dir[:current_dir.rfind('/')]
-            else:
-                current_dir = ''
+        if current_dir:
+            current_dir += '/' + tmp[4:]
         else:
-            if current_dir:
-                current_dir += '/' + tmp[4:]
-            else:
-                current_dir = tmp[4:]
+            current_dir = tmp[4:]
 
 
 if __name__ == '__main__':
