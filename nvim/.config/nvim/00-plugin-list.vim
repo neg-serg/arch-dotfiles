@@ -55,6 +55,7 @@ Plug 's3rvac/AutoFenc' "  try to autodelect filetype
 Plug 'vim-scripts/ViewOutput' " VO commandline output
 Plug 'dstein64/vim-startuptime' " measuring startuptime
 Plug 'segeljakt/vim-silicon' " images of source code
+Plug 'vimwiki/vimwiki' " personal wiki for vim
 " ----------------------------------------------------------------------[ Lazy plugins ]---
 Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
 Plug 'sjbach/lusty', {'on': ['LustyFilesystemExplorer', 'LustyFilesystemExplorerFromHere']} " file/buffer explorer
