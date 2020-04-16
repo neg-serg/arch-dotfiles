@@ -18,24 +18,24 @@ class rofi_options:
         try:
             song = song_dic['title']
             artist = song_dic['artist']
-            self.mesg += f'{song} - {artist}'
+            self.mesg = f'{song} - {artist}'
         except Exception:
             file = song_dic.get('file', '')
             if file:
                 self.mesg += song_dic['file'].split('/')[-1]
 
         self.options = [
-            'rofi',
-            '-levenshtein-sort',
-            '-mesg', self.mesg,
-            '',
+            'rofi', '-i',
+            '-sort',
+            '-mesg', self.mesg, '-auto-select',
             '-dmenu', '-p', '~/music/',
-
-            '-font',    'Iosevka Term 12',
-            '-width',   '60',
-            '-padding', '10',
+            '-matching', 'fuzzy',
             '-lines',   '8',
             '-columns', '2',
+
+            '-theme-str', '* { font: "Iosevka Term Bold 12"; }',
+            '-theme-str', '#window { width:1200; y-offset: -32;'
+            'location: south west; anchor: south west; }',
         ]
 
 
@@ -44,6 +44,7 @@ class rofi_index:
         self.client = client
         self.top_dir = ''
         self.indexes = ''
+        self.show_files = False
 
     def gen_index(self, top_dir):
         self.top_dir = top_dir
@@ -56,18 +57,20 @@ class rofi_index:
         for i in indexes_dic:
             if 'directory' in i:
                 self.indexes += f'   {i["directory"].split("/")[-1]}\n'
-            elif 'title' in i:
-                self.indexes += f'   {count}. {i["title"]}\n'
-                count += 1
-            elif 'file' in i:
-                self.indexes += f'   {count}. {i["file"].split("/")[-1]}\n'
-                count += 1
+
+            if self.show_files:
+                if 'title' in i:
+                    self.indexes += f'   {count}. {i["title"]}\n'
+                    count += 1
+                elif 'file' in i:
+                    self.indexes += f'   {count}. {i["file"].split("/")[-1]}\n'
+                    count += 1
 
 
 def check(client):
     while True:
-        print(client.status())
-        time.sleep(1)
+        client.status()
+        time.sleep(2)
 
 def main():
     client = musicpd.MPDClient()
@@ -78,6 +81,7 @@ def main():
     index = rofi_index(client)
     current_dir = ''
     Thread(target=check, daemon=True, args=(client,)).start()
+
     while 1:
         option.set_mesg()
         rofi = subprocess.Popen(
@@ -87,12 +91,20 @@ def main():
         )
         index.gen_index(current_dir)
         select = index.indexes
-        tmp = rofi.communicate(
+        rofi_input = rofi.communicate(
             select.encode()
         )[0].decode().rstrip()
-        if not tmp:
-            if current_dir:
+        if rofi_input.startswith('..'):
+            if '/' in current_dir:
+                current_dir = current_dir[:current_dir.rfind('/')]
+            else:
+                current_dir = ''
+            continue
+        if not rofi_input:
+            if current_dir and current_dir != 'new':
+                client.clear()
                 client.add(current_dir)
+                client.play()
                 if '/' in current_dir:
                     current_dir = current_dir[:current_dir.rfind('/')]
                 else:
@@ -100,9 +112,9 @@ def main():
             break
 
         if current_dir:
-            current_dir += '/' + tmp[4:]
+            current_dir += '/' + rofi_input[4:]
         else:
-            current_dir = tmp[4:]
+            current_dir = rofi_input[4:]
 
 
 if __name__ == '__main__':
