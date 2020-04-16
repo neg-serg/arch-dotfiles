@@ -28,4 +28,4 @@ auto_view text/x-diff
 
 alternative_order text/plain text/html *
 
-# vim: syntax=neomuttrc
+# vim: ft=muttrc syntax=neomuttrc

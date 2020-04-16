@@ -82,4 +82,4 @@ set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 unlists *
 unsubscribe *
 
-# vim: syntax=neomuttrc
+# vim: ft=muttrc syntax=neomuttrc

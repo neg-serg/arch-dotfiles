@@ -121,4 +121,4 @@ color   body    green           default         "^Merged #.*"
 color   body    red             default         "^Closed #.*"
 color   body    brightblue      default         "^Reply to this email.*"
 
-# vim: syntax=neomuttrc
+# vim: ft=muttrc syntax=neomuttrc

@@ -60,4 +60,4 @@ macro pager V ,@aoh= 'toggle alternative order'<enter>\
 <exit><display-message>"
 macro pager V ,@aot= "toggle alternative order"
 
-# vim: syntax=neomuttrc
+# vim: ft=muttrc syntax=neomuttrc

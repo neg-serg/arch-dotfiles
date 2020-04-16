@@ -6,4 +6,4 @@ my_hdr X-Comment-To: "Sergey Miroshnichenko"
 my_hdr User-Agent: Outluck Express 1.5.6i for MS-DOS 6.22-SMP  # This is too
 my_hdr X-Operating-System: MS-DOS 6.22-CURRENT
 
-# vim: syntax=neomuttrc
+# vim: ft=muttrc syntax=neomuttrc

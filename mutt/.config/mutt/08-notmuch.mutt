@@ -2,4 +2,4 @@ set nm_default_uri = "notmuch:///home/neg/.local/mail/"
 virtual-mailboxes "gmail" "notmuch://?query=tag:gmail-Inbox"
 virtual-mailboxes "insales" "notmuch://?query=tag:insales-Inbox"
 
-# vim: syntax=neomuttrc
+# vim: ft=muttrc syntax=neomuttrc
