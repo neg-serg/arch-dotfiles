@@ -27,3 +27,5 @@ macro index ? '<change-vfolder>notmuch://?query=tag:insales-Inbox and NOT tag:ar
 
 macro index S "|bogofilter -s\ns=insales/Spam"  "Learn as spam and save to junk"
 macro pager S "|bogofilter -s\ns=insales/Spam"  "Learn as spam and save to junk"
+
+# vim: ft=muttrc syntax=neomuttrc

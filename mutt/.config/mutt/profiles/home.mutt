@@ -30,3 +30,5 @@ macro index ? '<change-vfolder>notmuch://?query=tag:gmail-Inbox and NOT tag:arch
 
 macro index S "|bogofilter -s\ns=gmail/Spam"  "Learn as spam and save to junk"
 macro pager S "|bogofilter -s\ns=gmail/Spam"  "Learn as spam and save to junk"
+
+# vim: ft=muttrc syntax=neomuttrc
