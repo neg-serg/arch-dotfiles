@@ -5,9 +5,10 @@ After=dbus.service
 [Service]
 Type=simple
 Restart=on-failure
-RestartSec=2
-Environment="SXHKD_SHELL=dash"
+RestartSec=4
+Environment="SXHKD_SHELL=zsh"
 ExecStart=/usr/bin/sxhkd
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 
 [Install]
 WantedBy=default.target
