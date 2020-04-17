@@ -15,12 +15,6 @@ wm-restack = i3
 ; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
 screenchange-reload = true
 
-; compositing-background = screen
-; compositing-foreground = lighten
-; compositing-overline = lighten
-; compositing-underline = lighten
-; compositing-border = lighten
-
 # Define fallback values used by all module formats
 format-foreground = 
 format-background = 
