@@ -19,7 +19,7 @@ noremap <Left> <Nop>
 nnoremap <silent> <leader>4 :set cursorline!<CR>
 nnoremap <silent> [Qleader]cd :lcd %:p:h<CR>:pwd<CR>
 
-nnoremap <silent> cow :set wrap!<CR>  
+nnoremap <silent> cow :set wrap!<CR>
 nnoremap <silent> cop :setlocal paste!<Return>
 nnoremap <silent> cos :setlocal spell!<Return>
 

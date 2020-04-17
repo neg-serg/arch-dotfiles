@@ -31,7 +31,7 @@ nmap <silent> [Qleader]C <Plug>(coc-diagnostic-prev)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gI <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Highlight symbol under cursor on CursorHold
@@ -60,8 +60,8 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " Reformat command
 command! -nargs=0 Format :call CocAction('format')
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - xolox/vim-session                                                        │ 
-" │ https://github.com/xolox/vim-session                                              │ 
+" │ plugin - xolox/vim-session                                                        │
+" │ https://github.com/xolox/vim-session                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:session_lock_enabled = 0
 let g:session_verbose_messages = 0
@@ -71,8 +71,8 @@ let g:session_autosave_to = 'default'
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - airblade/vim-gitgutter                                                   │ 
-" │ https://github.com/airblade/vim-gitgutter                                         │ 
+" │ plugin - airblade/vim-gitgutter                                                   │
+" │ https://github.com/airblade/vim-gitgutter                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:gitgutter_realtime = 1
 let g:gitgutter_async = 1
@@ -82,8 +82,8 @@ let g:gitgutter_sign_removed = '∙'
 let g:gitgutter_sign_modified_removed = '∙'
 highlight SignColumn ctermbg=4
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - w0rp/ale                                                                 │ 
-" │ https://github.com/w0rp/ale                                                       │ 
+" │ plugin - w0rp/ale                                                                 │
+" │ https://github.com/w0rp/ale                                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -99,8 +99,8 @@ let g:ale_fixers = {'javascript': ['eslint'], 'json': ['jq'], 'html': ['prettier
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - junegunn/fzf.vim                                                         │ 
-" │ https://github.com/junegunn/fzf.vim                                               │ 
+" │ plugin - junegunn/fzf.vim                                                         │
+" │ https://github.com/junegunn/fzf.vim                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if executable('rg')
     let s:rg_cmd = "rg --hidden --follow"
