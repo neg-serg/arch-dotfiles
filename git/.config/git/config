@@ -5,7 +5,7 @@
     pager = # do not use external pager
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
-	editor = "nvr --remote-wait-silent"
+	editor = "~/bin/v"
 [color]
     branch     = auto
     diff       = 1
@@ -48,16 +48,16 @@
 [push]
     default = simple
 [diff]
-    tool = nvr
+    tool = nwim
     algorithm = patience
-[difftool "nvr"]
-    cmd = nvr -s -d $LOCAL $REMOTE
+[difftool "nwim"]
+    cmd = ~/bin/v -d $LOCAL $REMOTE
 [merge]
     tool = nvim
 [mergetool]
   prompt = true
-[mergetool "nvr"]
-    cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
+[mergetool "nwim"]
+    cmd = ~/bin/v -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
 [mergetool "nvim"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [credential]
