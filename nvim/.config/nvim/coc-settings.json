@@ -11,6 +11,7 @@
   "coc.preferences.hoverTarget": "preview",
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.extensionUpdateCheck": "daily",
+  "signature.target": "float",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "scss": "css",
@@ -33,6 +34,7 @@
   },
   "javascript.suggest.autoImports": true,
   "diagnostic.messageTarget": "float",
+  "diagnostic.checkCurrentLine": true,
   "signature.target": "float",
   "languageserver": {
     "ccls": {
