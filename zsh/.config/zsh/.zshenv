@@ -20,6 +20,9 @@ export XDG_PICTURES_DIR="${HOME}/pic"
 export XDG_VIDEOS_DIR="${HOME}/vid"
 export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
 
+export XDG_CURRENT_DESKTOP="KDE"
+export KDE_SESSION_VERSION="5"
+
 unset SSH_ASKPASS
 
 export GREP_COLOR='37;45'
@@ -55,6 +58,11 @@ export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"
 
 export AURDEST=$(readlink -f "${HOME}/tmp/pacaur")
+
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
+export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
 
 export FZF_DEFAULT_OPTS="
 --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3

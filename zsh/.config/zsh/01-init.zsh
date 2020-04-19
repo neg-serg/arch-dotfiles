@@ -111,3 +111,35 @@ if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
 fi
 source "${fasd_cache}"
 unset fasd_cache
+
+path_dirs=(
+    /usr/bin
+    ${HOME}/bin
+    {/usr/local,}/{s,}bin
+	/usr/bin/{site,vendor,core}_perl
+    /opt/go/bin
+    /home/neg/.cargo/bin
+)
+export PATH=${(j_:_)path_dirs}
+
+for q in nvim vim vis vi;
+    { [[ -n ${commands}[(I)${q}] ]] \
+    && export EDITOR=${q}; break }
+
+if which nvimpager >/dev/null; then
+    export PAGER="nvimpager"
+fi
+
+for q in nvim vis vi; {
+    [[ -n ${commands}[(I)${q}] ]] && export VISUAL=${q}; break 
+}
+
+export HISTFILE=${ZDOTDIR}/zsh_history
+export SAVEHIST=10000000
+export HISTSIZE=$(( $SAVEHIST * 1.10 ))
+export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
+
+export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
+
+export LS_COLORS
