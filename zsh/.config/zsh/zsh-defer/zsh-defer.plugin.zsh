@@ -19,7 +19,7 @@
 [[ ! -o 'no_brace_expand' ]] || _zsh_defer_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
-typeset -ga _defer_tasks
+typeset -ga _zsh_defer_tasks
 
 function zsh-defer-reset-autosuggestions_() {
   unsetopt warn_nested_var
@@ -30,10 +30,11 @@ zle -N zsh-defer-reset-autosuggestions_
 
 function _zsh-defer-schedule() {
   local fd
-  if [[ $1 == *[1-9]* ]]; then
-    exec {fd}< <(sleep $1)
-  else
+  if [[ $1 == 0 ]]; then
     exec {fd}</dev/null
+  else
+    zmodload zsh/zselect
+    exec {fd}< <(zselect -t $1)
   fi
   zle -F $fd _zsh-defer-resume
 }
@@ -42,19 +43,19 @@ function _zsh-defer-resume() {
   emulate -L zsh
   zle -F $1
   exec {1}>&-
-  while (( $#_defer_tasks && !KEYS_QUEUED_COUNT && !PENDING )); do
-    local delay=${_defer_tasks[1]%% *}
-    local task=${_defer_tasks[1]#* }
-    if [[ $delay == *[1-9]* ]]; then
-      _zsh-defer-schedule $delay
-      _defer_tasks[1]="0 $task"
-      return 0
-    else
+  while (( $#_zsh_defer_tasks && !KEYS_QUEUED_COUNT && !PENDING )); do
+    local delay=${_zsh_defer_tasks[1]%% *}
+    local task=${_zsh_defer_tasks[1]#* }
+    if [[ $delay == 0 ]]; then
       _zsh-defer-apply $task
-      shift _defer_tasks
+      shift _zsh_defer_tasks
+    else
+      _zsh-defer-schedule $delay
+      _zsh_defer_tasks[1]="0 $task"
+      return 0
     fi
   done
-  (( $#_defer_tasks )) && _zsh-defer-schedule
+  (( $#_zsh_defer_tasks )) && _zsh-defer-schedule 0
   return 0
 }
 zle -N _zsh-defer-resume
@@ -97,41 +98,51 @@ function _zsh-defer-apply() {
 function zsh-defer() {
   emulate -L zsh -o extended_glob
   local all=12dmshpr
-  local opts=$all cmd opt OPTIND OPTARG delay=0
+  local -i delay OPTIND
+  local opts=$all cmd opt OPTARG
   while getopts ":hc:t:a$all" opt; do
     case $opt in
       *h)
-        print -r -- 'zsh-defer [{+|-}'$all'] [-t seconds] -c command
-zsh-defer [{+|-}'$all'] [-t seconds] [command [args]...]
+        print -r -- 'zsh-defer [{+|-}'$all'] [-t delay] word...
+zsh-defer [{+|-}'$all'] [-t delay] -c list
 
-Defer execution of the command until zle is idle. Typically called form ~/.zshrc.
-Deferred commands run in the same order they are queued up. 
+Queues up the specified command for deferred execution. Whenever zle is idle,
+the next command is popped from the queue. If the command has been queued up
+with `-t delay`, execution of the command and all deferred commands after it is
+delayed by the specified number of seconds (non-negative real number) without
+blocking zle. After that the command is executed either as `word...` with every
+word quoted, or, if `-c` is specified, as `eval list`. Commands are executed in
+the same order they are queued up.
 
-  -c command  Run `eval command` instead of `command args...`.
-  -t seconds  Delay execution of deferred commands by this many seconds.
-  -1          Don'\''t redirect stdout to /dev/null.
-  -2          Don'\''t redirect stderr to /dev/null.
-  -d          Don'\''t call chpwd hooks.
-  -m          Don'\''t call precmd hooks.
-  -s          Don'\''t invalidate suggestions from zsh-autosuggestions.
-  -h          Don'\''t invalidate highlighting from zsh-syntax-highlighting.
-  -p          Don'\''t call `zle reset-prompt`.
-  -r          Don'\''t call `zle -R`.
-  -a          The same as -12dmshpra.
+Options can be used to enable (`+x`) or disable (`-x`) extra actions taken
+during and after the execution of the command. By default, all actions are
+enabled. The same option can be enabled or disabled more than once -- the last
+instance wins.
 
-Example ~/.zshrc:
+  Option | Action
+  ------ |-------------------------------------------------------
+       1 | Redirect standard output to `/dev/null`.
+       2 | Redirect standard error to `/dev/null`.
+       d | Call `chpwd` hooks.
+       m | Call `precmd` hooks.
+       s | Invalidate suggestions from zsh-autosuggestions.
+       h | Invalidate highlighting from zsh-syntax-highlighting.
+       p | Call `zle reset-prompt`.
+       r | Call `zle -R`.
+       a | Shorthand for all options: `12dmshpra`.
+
+Example `~/.zshrc`:
 
   source ~/zsh-defer/zsh-defer.plugin.zsh
 
-  PROMPT="%F{12}%~%f "
-  RPROMPT="%F{240}loading%f"
+  PS1="%F{12}%~%f "
+  RPS1="%F{240}loading%f"
   setopt prompt_subst
 
   zsh-defer source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
   zsh-defer source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   zsh-defer source ~/.nvm/nvm.sh
-  zsh-defer -c '\''RPROMPT="%F{2}\$(git rev-parse --abbrev-ref HEAD 2>/dev/null)%f"'\''
-  zsh-defer -a zle -M "zsh: initialization complete"
+  zsh-defer -c '\''RPS1="%F{2}\$(git rev-parse --abbrev-ref HEAD 2>/dev/null)%f"'\''
 
 Full documentation at: <https://github.com/romkatv/zsh-defer>.'
         return 0
@@ -145,19 +156,20 @@ Full documentation at: <https://github.com/romkatv/zsh-defer>.'
         cmd=$OPTARG
       ;;
       t)
-        if [[ $OPTARG == *' '* ]]; then
+        if [[ $OPTARG != (|+)<->(|.<->)(|[eE](|-|+)<->) ]]; then
           print -r -- "zsh-defer: invalid -t argument: $OPTARG" >&2
           return 1
         fi
-        delay=$OPTARG
+        zmodload zsh/mathfunc
+        delay='ceil(100 * OPTARG)'
       ;;
-      +c|+t) print -r -- "zsh-defer: invalid option: $opt" >&2;               return 1;;
-      \?)    print -r -- "zsh-defer: invalid option: $OPTARG" >&2;            return 1;;
-      :)     print -r -- "zsh-defer: missing required argument: $OPTARG" >&2; return 1;;
-      a)  [[ $opts == *c* ]] && opts=c     || opts=;;
-      +a) [[ $opts == *c* ]] && opts=c$all || opts=$all;;
-      +?) [[ $opts == *${opt:1}* ]] || opts+=${opt:1};;
-      ?)  [[ $opts == (#b)(*)$opt(*) ]] && opts=$match[1]$match[2];;
+      +c|+t) >&2 print -r -- "zsh-defer: invalid option: $opt"               ; return 1;;
+      \?)    >&2 print -r -- "zsh-defer: invalid option: $OPTARG"            ; return 1;;
+      :)     >&2 print -r -- "zsh-defer: missing required argument: $OPTARG" ; return 1;;
+      a)  [[ $opts == *c*            ]] && opts=c                  || opts=            ;;
+      +a) [[ $opts == *c*            ]] && opts=c$all              || opts=$all        ;;
+      ?)  [[ $opts == (#b)(*)$opt(*) ]] && opts=$match[1]$match[2]                     ;;
+      +?) [[ $opts != *${opt:1}*     ]] && opts+=${opt:1}                              ;;
     esac
   done
   if [[ $opts != *c* ]]; then
@@ -166,8 +178,9 @@ Full documentation at: <https://github.com/romkatv/zsh-defer>.'
     print -r -- "zsh-defer: unexpected positional argument: ${*[OPTIND]}" >&2
     return 1
   fi
-  (( $#_defer_tasks )) || _zsh-defer-schedule
-  _defer_tasks+="$delay $opts $cmd"
+  [[ $opts == *p* && $+RPS1 == 0 ]] && RPS1=
+  (( $#_zsh_defer_tasks )) || _zsh-defer-schedule 0
+  _zsh_defer_tasks+="$delay $opts $cmd"
 }
 
 (( ${#_zsh_defer_opts} )) && setopt ${_zsh_defer_opts[@]}
