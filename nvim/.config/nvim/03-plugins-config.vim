@@ -300,3 +300,11 @@ nmap S <Plug>(easymotion-overwin-f2)
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - vimwiki/vimwiki                                                          │
+" │ https://github.com/vimwiki/vimwiki                                                │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:vimwiki_ext2syntax = {'.md': 'markdown',
+                  \ '.mkd': 'markdown',
+                  \ '.wiki': 'media'}
+let g:vimwiki_list = [{'path': '~/1st_level/'}]
