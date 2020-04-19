@@ -1,5 +1,4 @@
 #!/bin/dash
-xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc &
 unclutter --fork --timeout 1 &
 # disable mouse acceleration
 xset m 0 0
