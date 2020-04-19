@@ -1,0 +1,12 @@
+[Unit]
+Description=GPaste daemon
+After=dbus.service
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+ExecStart=/usr/bin/keynav
+
+[Install]
+WantedBy=default.target
