@@ -1,5 +1,2 @@
 #!/bin/dash
-rofi -no-plugins -sort -show run -lines 1 -columns 4 -case-sensitive=false -matching fuzzy \
-    -theme-str '* { font: "Iosevka Term Medium 12"; }' \
-    -theme-str '#window { width:400; y-offset: -32; location: south west; anchor: south west; }' \
-    -disable-history
+rofi -no-plugins -show run -lines 1 -columns 4 -disable-history -theme run

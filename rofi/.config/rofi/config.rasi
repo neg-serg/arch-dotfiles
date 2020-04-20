@@ -1,26 +1,17 @@
 configuration {
-    terminal:                      "st";
+    terminal:                      "alacritty";
     run-command:                   "{cmd}";
     run-shell-command:             "alacritty -e {cmd}";
-    levenshtein-sort:              "false";
-    parse-hosts:                   "false";
-    auto-select:                   "false";
-    show-icons:                    "false";
-    drun-icon-theme:               "La Capitaine";
-
-    fuzzy:                         "true";
-    glob:                          "true";
-    tokenize:                      "true";
-    case-sensitive:                "false";
-    fixed-num-lines:               "false";
-
-    separator-style:               "solid";
-    markup-rows:                   "false";
-    fullscreen:                    "false";
-    fake-transparency:             "false";
-    lazy-grab:                     "true";
-    lazy-filter-limit:             "100";
-    theme:                         "~/.config/rofi/neg.rasi";
+    sort:                          true;
+    parse-hosts:                   false;
+    auto-select:                   false;
+    show-icons:                    false;
+    matching:                      "fuzzy";
+    tokenize:                      true;
+    case-sensitive:                false;
+    fixed-num-lines:               false;
+    fullscreen:                    false;
+    threads:                       4;
 
     kb-primary-paste:              "Control+Shift+v,Shift+Insert";
     kb-secondary-paste:            "Control+v,Insert";
@@ -35,7 +26,6 @@ configuration {
     kb-remove-char-back:           "Control+h,BackSpace";
     kb-accept-entry:               "Control+j,Control+m,Return,KP_Enter";
     kb-accept-custom:              "Control+Return";
-    kb-accept-entry-continue:      "Shift+Return";
     kb-row-up:                     "Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k";
     kb-row-down:                   "Down,Control+n,Alt+j";
     kb-row-tab:                    "Tab";
@@ -46,3 +36,5 @@ configuration {
     kb-row-select:                 "Control+space";
     kb-cancel:                     "Control-c,Escape";
 }
+
+@theme "neg"
