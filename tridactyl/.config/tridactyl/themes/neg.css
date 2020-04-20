@@ -78,7 +78,7 @@
 }
 
 #completions .HistoryCompletionSource {    
-    max-height: unset;
+    max-height: 292pt;
     min-height: unset;
 }
 
@@ -91,15 +91,15 @@
 
 /* redundancy 2: redundancy 2: more redundancy */
 #completions .BmarkCompletionSource {    
-    max-height: unset;
+    max-height: 292pt;
     min-height: unset;
 }
 
 #completions .BufferCompletionSource table {    
     width: unset;
-    font-size: unset;
-    border-spacing: unset;
-    table-layout: unset;
+    font-size: 14pt;
+    border-spacing: 0;
+    table-layout: fixed;
 }
 
 #completions table tr .title {    
