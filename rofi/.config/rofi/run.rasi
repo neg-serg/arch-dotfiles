@@ -1,0 +1,135 @@
+* {
+   maincolor:        #005F87;
+   highlight:        bold underline #005FAF;
+   urgentcolor:      #AB1E87;
+
+   blackwidget:      #00000044;
+   mainbg:           #02040444;
+
+   fgwhite:          #849BB8;
+   blackdarkest:     #04090999;
+   selectcolor:      #0a3749;
+   darkgray:         #315C70;
+
+   font: "Iosevka Term Bold 14";
+   background-color: @blackdarkest;
+}
+
+#window {
+   background-color: @blackdarkest;
+   anchor:           south;
+   location:         south;
+}
+
+#message {
+   padding: 6px 6px;
+   background-color:@blackwidget;
+}
+
+#textbox {
+   text-color:       @darkgray;
+   background-color: @blackwidget;
+}
+
+#listview {
+   fixed-height: false;
+   dynamic:      true;
+   scrollbar:    true;
+   spacing:      2px;
+   padding:      6px 6px 6px 6px;
+   margin:       0px 0px 0px 0px;
+   background:   @blackdarkest;
+}
+
+#element {
+   padding: 1px 1px;
+}
+
+#element.normal.normal {
+   padding:          0px 0px;
+   background-color: @mainbg;
+   text-color:       @fgwhite;
+}
+
+#element.normal.urgent {
+   background-color: @mainbg;
+   text-color:       @urgentcolor;
+}
+
+#element.normal.active {
+   background-color: @mainbg;
+   text-color:       @maincolor;
+}
+
+#element.selected.normal {
+    background-color: @selectcolor;
+    text-color:       @fgwhite;
+}
+
+#element.selected.urgent {
+    background-color: @urgentcolor;
+    text-color:       @blackdarkest;
+}
+
+#element.selected.active {
+    background-color: @selectcolor;
+    text-color:       @maincolor;
+}
+
+#element.alternate.normal {
+    background-color: @mainbg;
+    text-color:       @fgwhite;
+}
+
+#element.alternate.urgent {
+    background-color: @mainbg;
+    text-color:       @urgentcolor;
+}
+
+#element.alternate.active {
+    background-color: @mainbg;
+    text-color:       @maincolor;
+}
+
+#scrollbar {
+   background-color:  @blackwidget;
+   handle-color:      @darkgray;
+   handle-width:      2px;
+}
+
+#sidebar {
+   background-color:  @blackwidget;
+}
+
+#button {
+   background-color:  @blackwidget;
+   text-color:        @darkgray;
+}
+
+#button.selected {
+    text-color:        @maincolor;
+}
+
+#inputbar {
+   background-color:  @blackdarkest;
+   spacing:           0px;
+}
+
+#prompt {
+   spacing:           0px;
+   padding:           4px 4px;
+   background-color:  @blackwidget;
+   text-color:        @maincolor;
+}
+
+#entry {
+   padding:           4px 4px;
+   background-color:  @blackwidget;
+   text-color:        @fgwhite;
+}
+
+#case-indicator {
+   padding:          4px 4px;
+   text-color:       @maincolor;
+   background-color: @blackwidget;
+}
