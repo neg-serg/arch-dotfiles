@@ -61,9 +61,6 @@ def_key "0"
 def_key "1"
   show_playlist
 
-def_key "2"
-  show_media_library
-
 def_key "f2"
   show_browser
 
@@ -109,8 +106,8 @@ def_key "backspace"
 def_key "backspace"
   replay_song
 
-def_key "f"
-  seek_forward
+#def_key "f"
+#  seek_forward
 
 def_key "b"
   seek_backward
@@ -126,9 +123,6 @@ def_key "y"
 
 def_key "Y"
   toggle_replay_gain_mode
-
-def_key "t"
-  toggle_add_mode
 
 def_key "|"
   toggle_mouse
@@ -181,17 +175,11 @@ def_key ";"
 def_key "'"
   show_lyrics
 
-def_key "v"
-  reverse_selection
-
 def_key "a"
   add_selected_items
 
 def_key "c"
   clear_main_playlist
-
-def_key "S"
-  save_playlist
 
 def_key "o"
   jump_to_playing_song
@@ -249,3 +237,21 @@ def_key "left"
 
 def_key "right"
   dummy
+
+def_key "2"
+  show_media_library
+
+def_key "t"
+  show_tag_editor
+
+def_key "M"
+  toggle_media_library_columns_mode
+
+def_key "v"
+  show_visualizer
+
+def_key "S"
+  show_search_engine
+
+def_key "f"
+  change_browse_mode
