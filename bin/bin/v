@@ -1,6 +1,6 @@
 #!/bin/zsh    
-~/.config/i3/bin/send circle next nwim
-while ! xdotool search --all --classname '^nwim$' 2>&1 > /dev/null; do
-    sleep 0.1
+${XDG_CONFIG_HOME}/i3/bin/send circle next nwim
+while ! xdotool search --sync --all --classname '^nwim$' 2>&1 > /dev/null; do
+    :;
 done
 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr "$@"
