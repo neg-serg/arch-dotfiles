@@ -56,11 +56,14 @@ Plug 'vim-scripts/ViewOutput' " VO commandline output
 Plug 'dstein64/vim-startuptime' " measuring startuptime
 Plug 'segeljakt/vim-silicon' " images of source code
 Plug 'vimwiki/vimwiki' " personal wiki for vim
+Plug 'meain/vim-automkdir' " Automatically create parent dirs
 " ----------------------------------------------------------------------[ Lazy plugins ]---
 Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
+Plug 'radenling/vim-dispatch-neovim', { 'on': ['Dispatch', 'Start'] } " Neovim support for vim-dispatch
 Plug 'sjbach/lusty', {'on': ['LustyFilesystemExplorer', 'LustyFilesystemExplorerFromHere']} " file/buffer explorer
 Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'} " undo tree
 Plug 'ntpeters/vim-better-whitespace', {'on': 'StripWhitespace'} " delete whitespaces with ease
 Plug 'mattn/emmet-vim', {'on': 'EmmetInstall'} " expanding abbreviations similar to emmet
 Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for indent
 Plug 'baskerville/vim-sxhkdrc', {'for': 'sxhkdrc'} " sxhkd config syntax
+Plug 'chr4/nginx.vim', { 'for': 'nginx' } " Nginx config file syntax
