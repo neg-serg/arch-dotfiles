@@ -1,6 +1,6 @@
 input-ipc-server=/tmp/mpvsocket
 vo-vdpau-colorkey="#020507"
-
+save-position-on-quit
 #--[Decoding]----------------------------------------------
 hwdec-codecs=all
 vd-lavc-threads=9
