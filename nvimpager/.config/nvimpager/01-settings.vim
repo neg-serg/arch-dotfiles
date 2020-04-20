@@ -2,13 +2,9 @@ if bufname('%') == ''
     set bufhidden=wipe
 endif
 
-let g:impact_transbg=1
-let g:enable_cursorline=0
-let g:enable_cursorcolumn=0
-
 set regexpengine=1
-set conceallevel=2
-set concealcursor=i
+set conceallevel=0 "no concealed text
+set concealcursor=
 
 set inccommand=nosplit "interactive substitution
 
@@ -40,7 +36,6 @@ set isfname+={
 set isfname+=}
 
 set background=dark
-colorscheme neg
 
 set timeout ttimeout
 set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
@@ -50,25 +45,18 @@ if exists('+shellslash')
     set shellslash
 endif
 
-if has('user_commands')
-    command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
-    command! -bang -nargs=* -complete=file E e<bang> <args>
-    command! -bang -nargs=* -complete=file W w<bang> <args>
-    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-    command! -bang Wa wa<bang>
-    command! -bang WA wa<bang>
-    command! -bang Q q<bang>
-    command! -bang QA qa<bang>
-    command! -bang Qa qa<bang>
-    command! -nargs=0 Sw :SudoWrite
-    command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-                \ | wincmd p | diffthis
-endif
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+command! -nargs=0 Sw :SudoWrite
 "----------------------------------------------------------------------------
 set keywordprg=:help
-let $PATH = $PATH . ':' . expand('~/bin/go/bin')
-
 set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
 set noautowrite                             " Don't autowrite by default
@@ -84,43 +72,14 @@ else
     set formatprg="fmt -140"  " use fmt as formatter
 endif
 
-" 'fileencodings' contains a list of possible encodings to try when reading
-" a file.  When 'encoding' is a unicode value (such as utf-8), the
-" value of fileencodings defaults to ucs-bom,utf-8,default,latin1.
-"   ucs-bom  Treat as unicode-encoded file if and only if BOM is present
-"   utf-8    Use utf-8 encoding
-"   default  Value from environment LANG
-"   latin1   8-bit encoding typical of DOS
-" Setting this value explicitly, though to the default value.
-set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
-set termencoding=utf8                       " Set termencoding to utf-8
+set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866 
+set termencoding=utf8  " Set termencoding to utf-8
 "--------------------------------------------------------------------------
-" Where file browser's directory should begin:
-"   last    - same directory as last file browser
-"   buffer  - directory of the related buffer
-"   current - current directory (pwd)
-"   {path}  - specified directory
-set browsedir=buffer
+set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
+set clipboard=unnamedplus             " always clipboard all operations
+set shada='256,f1,<128,:256,@256,/128 " enable neovim shada
+set completeopt=menu,menuone,longest  "probably it will increase lusty+gundo speed
 
-" What to do when opening a new buffer. May be empty or may contain
-" comma-separated list of the following words:
-" useopen   - use existing windows if possible.
-" usetab    - like useopen but also checks other tabs
-" split     - split current window before loading a buffer
-" 'useopen' may be useful for re-using QuickFix window.
-set switchbuf=useopen,usetab
-
-set clipboard=unnamedplus
-
-" Protect home directory
-if !empty($SUDO_USER) && $USER !=# $SUDO_USER
-  set viminfo=
-  set directory-=~/trash
-  set backupdir-=~/trash
-endif
-
-set completeopt=menu,menuone,longest
-"probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
@@ -131,9 +90,15 @@ set winminheight=0              " Windows can be 0 line high
 set winminwidth=0               " Windows can be 0 line width
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
-set wildmenu                    " Show list instead of just completing
+set nowildmenu                  " Do not show list instead of just completing
+set wildoptions=pum,tagfile     " wild options
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
+set updatetime=250              " Faster diagnostics
+set pumblend=15                 " Set up pmenu transparency
+set pumheight=8                 " Do not make pmenu too wide
+
+set winblend=15                 " Pseudo-transparency for floating windows
 
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
@@ -151,8 +116,8 @@ set sidescrolloff=10            " min num of scr columns to keep to the left and
                                 " right of the cursor if 'nowrap' is set.
 set virtualedit=onemore,block   " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
-set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')
-" set shortmess+=filmnrxoOtT    " Abbrev. of messages (avoids 'hit enter')
+set shortmess+=a                " Abbrev. of messages (avoids 'hit enter')
+set shortmess+=oOstTWAIcqFS     " Shorting messages for all
 set more                        " probably it should get out 'Press enter' msg
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set nofoldenable                " Disable folds as
@@ -191,16 +156,6 @@ if has('arabic')
     set noarabicshape
 endif
 "--[ change undo file location ]----------------------------------
-if exists('+undofile')
-    " undofile - This allows you to use undos after exiting and restarting
-    " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-    " :help undo-persistence
-    " This is only present in 7.3+
-    silent !mkdir -p ~/trash > /dev/null 2>&1
-    set undodir=~/trash/
-    set undofile
-endif
-
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
@@ -231,11 +186,15 @@ set laststatus=2        " requied by PowerLine/Airline
 
 set nocursorline        " highlight current line is too slow
 set backup              " backuping is good
-
-set backupdir=~/trash
+" Protect home directory
+if !empty($SUDO_USER) && $USER !=# $SUDO_USER
+  set directory-=~/trash
+  set backupdir-=~/trash
+endif
 set directory=~/trash
-
+set backupdir=~/trash
 set undofile            " So is persistent undo ...
+set undodir=~/trash/    " Set up undo dir
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
 set cpoptions=a         " :read with a filename set the alternate filename for window
@@ -253,14 +212,8 @@ set maxmapdepth=1000    " Maximum number of times a mapping is done
                         " without resulting in a character to be used.
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
-if !has('nvim')
-    set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-else
-    set viminfo=
-    set shada=
-endif
 set modeline            " disable modelines
 
 set iminsert=0          " write latin1 characters first
 set imsearch=0          " search with latin1 characters first
-set cmdheight=1         " standard cmdline height
+set cmdheight=2         " standard cmdline height
