@@ -37,7 +37,7 @@ Plug 'dense-analysis/ale' " ale as linter
 Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 Plug 'liuchengxu/vista.vim' " lsp-symbols tag searcher
 Plug 'sheerun/vim-polyglot' "  language pack collection
-Plug 'tpope/vim-markdown' " markdown vim mode
+Plug 'plasticboy/vim-markdown' " markdown vim mode
 Plug 'iamcco/markdown-preview.nvim' " markdown preview
 Plug 'donRaphaco/neotex' " latex support
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
