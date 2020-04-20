@@ -382,3 +382,4 @@ mpd/.config/mpd/mpd.db
 mpd/.config/mpd/mpd.pid
 mpd/.config/mpd/mpdstate
 mpd/.config/mpd/sticker.sql
+mpd/.config/mpd/
