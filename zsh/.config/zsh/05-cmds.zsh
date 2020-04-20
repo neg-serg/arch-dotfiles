@@ -427,3 +427,32 @@ ap() {
     export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
     ansible-playbook ${options} -i "${inventory}" -M "${lib}" "${play}" "$@"
 }
+
+db() {
+    if [[ -z "$1" ]]; then
+        docker build .
+        IMG_ID=$(docker images --format "{{.ID}}" | head -n1)
+        echo "$IMG_ID" | pbcopy
+    else
+        docker build -t "$1" .
+    fi
+}
+
+dr() {
+    if [[ -z "$1" ]]; then
+        docker run -it "$(docker images --format "{{.ID}}\n{{.Repository}}" \
+            | grep -v '<none>' \
+            | fzf)"
+    else
+        docker run -it "$1"
+    fi
+}
+
+dcon() {
+    CONTAINER=$(docker ps --format 'table {{.ID}}\t{{.Status}}\t{{.Command}}' \
+        | tail -n +2 \
+        | grep -v '/portainer' \
+        | fzf \
+        | sed 's/\ .*//g')
+    docker exec -i -t "${CONTAINER}" bash
+}
