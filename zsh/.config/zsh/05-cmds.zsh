@@ -208,24 +208,20 @@ urlencode() { python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]
 urldecode() { python -c "import sys, urllib; print(urllib.unquote_plus(sys.argv[1]))" }
 
 zleiab() {
-    declare -A abk
-    abk=(
+    local -A abk=(
         'G'    '|& rg -i '
         'C'    '| wc -l'
-        'H'    '| head'
+        'E'    '| head'
         'T'    '| tail'
-        'N'    '&>/dev/null'
+        'Q'    '&>/dev/null'
         'S'    '| sort -h '
-        'V'    '|& nvim -'
-        "jk"   "!-2$"
-        "j2"   "!-3$"
-        "j3"   "!-4$"
+        'V'    '|& v -'
+        "e1"   "!-2$"
+        "e2"   "!-3$"
+        "e3"   "!-4$"
     )
 
-    emulate -L zsh
-    setopt extendedglob
     local MATCH
-
     matched_chars='[.-|_a-zA-Z0-9]#'
     LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
     LBUFFER+=${abk[$MATCH]:-$MATCH}
