@@ -11,12 +11,19 @@
   "coc.preferences.hoverTarget": "preview",
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.extensionUpdateCheck": "daily",
-  "signature.target": "float",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "scss": "css",
     "sass": "css"
   },
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
+  "suggest.completionItemKindLabels": {
+    "module": " ",
+    "function": "ﬦ",
+    "variable": "ﮂ"
+  },
+  "diagnostic.errorSign": "◉",
   "emmet.excludeLanguages": [
     "markdown"
   ],
@@ -32,7 +39,6 @@
           "args": ["-i", "2", "-bn", "-ci", "-sr"]
       }
   },
-  "javascript.suggest.autoImports": true,
   "diagnostic.messageTarget": "float",
   "diagnostic.checkCurrentLine": true,
   "signature.target": "float",
@@ -60,6 +66,11 @@
           "lsRanges": true
         }
       }
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
     }
   }
 }
