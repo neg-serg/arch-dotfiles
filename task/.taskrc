@@ -6,6 +6,8 @@ search.case.sensitive=off
 include ~/.config/task/darkblue-256.theme
 include ~/.config/task/holidays.ru-RU.rc
 
+alias.@ = context
+
 calendar.details=sparse
 calendar.details.report=list
 calendar.legend=no
