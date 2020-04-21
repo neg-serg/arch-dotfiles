@@ -82,6 +82,6 @@ set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 unlists *
 unsubscribe *
 
-timeout-hook exec sync-mailbox
+timeout-hook 'exec sync-mailbox'
 
 # vim: ft=muttrc syntax=neomuttrc
