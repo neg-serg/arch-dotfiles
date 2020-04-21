@@ -31,4 +31,9 @@ macro index ? '<change-vfolder>notmuch://?query=tag:gmail-Inbox and NOT tag:arch
 macro index S "|bogofilter -s\ns=gmail/Spam"  "Learn as spam and save to junk"
 macro pager S "|bogofilter -s\ns=gmail/Spam"  "Learn as spam and save to junk"
 
+set nm_default_uri = "notmuch:///home/neg/.local/mail/"
+virtual-mailboxes \
+        "gmail" "notmuch://?query=tag:gmail-Inbox"\
+        "insales" "notmuch://?query=tag:insales-Inbox"
+
 # vim: ft=muttrc syntax=neomuttrc
