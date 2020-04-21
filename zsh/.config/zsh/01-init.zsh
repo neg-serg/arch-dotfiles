@@ -129,6 +129,7 @@ for q in nvim vim vis vi;
 if which nvimpager >/dev/null; then
     export PAGER="nvimpager"
 fi
+export MANPAGER="${PAGER}"
 
 for q in nvim vis vi; {
     [[ -n ${commands}[(I)${q}] ]] && export VISUAL=${q}; break 
