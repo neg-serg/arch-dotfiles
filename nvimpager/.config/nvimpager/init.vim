@@ -5,5 +5,4 @@ set shell=/bin/sh
 set termguicolors
 source ~/.config/nvimpager/01-settings.vim
 source ~/.config/nvimpager/31-statusline.vim
-
-colorscheme neg
+autocmd BufReadPre,FileReadPre * colorscheme neg
