@@ -308,3 +308,19 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown',
                   \ '.mkd': 'markdown',
                   \ '.wiki': 'media'}
 let g:vimwiki_list = [{'path': '~/1st_level/'}]
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - liuchengxu/vista.vim                                                     │
+" │ https://github.com/liuchengxu/vista.vim                                           │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:vista_sidebar_width = 20
+let g:vista_disable_statusline = 1
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+let g:vista_icon_indent = ["▸ ", ""]
+let g:vista#renderer#icons = {
+    \   "function": "ﬦ",
+    \   "module": " ",
+    \   "variable": "\ufb18 ",
+    \   "constant": ""
+    \  }
+let g:vista_default_executive = 'coc'
