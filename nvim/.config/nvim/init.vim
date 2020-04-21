@@ -51,7 +51,7 @@ call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 source $XDG_CONFIG_HOME/nvim/00-plugin-list.vim
 call plug#end()
 
-source $XDG_CONFIG_HOME/nvim/02-keymaps.vim
+source $XDG_CONFIG_HOME/nvim/02-bindkeymaps.vim
 source $XDG_CONFIG_HOME/nvim/03-plugins-config.vim
 source $XDG_CONFIG_HOME/nvim/04-autocmds.vim
 source $XDG_CONFIG_HOME/nvim/11-vimacs.vim
