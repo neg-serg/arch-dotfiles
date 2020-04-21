@@ -27,11 +27,9 @@ STICKY_OTHER_WRITABLE 38;5;86;48;5;234;1  # dir that is sticky and other-writabl
 .com              00;38;5;111
 .exe              00;38;5;111
 
-#winsh
 .bat              00;38;5;31
 .cmd              00;38;5;31
 
-## Archives or compressed (violet + bold for compression)
 .7z               01;38;5;61
 .ace              01;38;5;61
 .alp              01;38;5;61
@@ -92,10 +90,9 @@ PKGBUILD          00;38;5;74
 .vdi              00;38;5;61
 .vmdk             00;38;5;61
 
-# Image formats
 .jpeg             00;38;5;24
 .jpg              00;38;5;24
-.JPG              00;38;5;24 #stupid but needed
+.JPG              00;38;5;24
 .bmp              38;5;110;1
 .indd             38;5;110
 .pbm              38;5;110
@@ -130,12 +127,10 @@ PKGBUILD          00;38;5;74
 .icns             00;38;5;25;1
 .ico              00;38;5;25;1
 
-# keys
-.key              00;38;5;64;1
-.pem              00;38;5;65
-.pub              00;38;5;64
+.key              00;38;5;53;1
+.pem              00;38;5;53
+.pub              00;38;5;53
 
-# "unimportant" files as logs and backups (base01)
 *#                00;38;5;235
 *~                01;38;5;235
 .added            00;38;5;235
@@ -274,8 +269,6 @@ PKGBUILD          00;38;5;74
 .py               01;38;5;30
 .rasi             01;35
 .rb               01;04;38;5;33
-.rc               00;34
-rc                00;34
 .ru               00;34
 .sed              00;34
 .signature        00;34
@@ -335,10 +328,9 @@ zshrc             01;38;5;29;4
 *1                00;38;5;60
 .aux              00;38;5;239
 *build.xml        00;38;5;60
-*config           00;38;5;29
-*wiki             01;38;5;29
 .cfg              00;38;5;29
 .conf             00;38;5;29
+*config           00;38;5;29
 *Dockerfile       00;38;5;60
 .icls             00;38;5;60
 .ini              00;38;5;29
@@ -346,8 +338,8 @@ zshrc             01;38;5;29;4
 .json             01;38;5;29
 .latex            01;04;38;5;73
 *Makefile         00;38;5;60
-*.mk              00;38;5;60
-*.modulemap       00;38;5;60
+.mk               00;38;5;60
+.modulemap        00;38;5;60
 .n3               00;38;5;60
 .nfo              00;38;5;60
 .nix              00;38;5;29
@@ -360,15 +352,16 @@ zshrc             01;38;5;29;4
 .rc               00;38;5;60
 .rdf              00;38;5;60
 .reg              00;38;5;29
-*.sbt             00;38;5;60
+.sbt              00;38;5;60
+.sls              00;38;5;29
 .tex              01;04;38;5;73
 .textile          00;38;5;60
 .toml             00;38;5;29
 .torrent          00;38;5;60
 .ttl              00;38;5;60
+.wiki             01;38;5;29
 .xml              00;38;5;60
 .yaml             00;38;5;60
-.yml              00;38;5;29
 .yml              00;38;5;29
 
 *LICENSE          00;38;5;60
