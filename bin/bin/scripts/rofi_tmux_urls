@@ -1,5 +1,5 @@
 #!/bin/dash
-term_socket="/dev/shm/tmux_sockets/term.socket"
+term_socket="$XDG_CONFIG_HOME/i3/cache/tmux_sockets/term.socket"
 tmux -S "$term_socket" 'capture-pane'
 
 buffer_name="$(mktemp -p /dev/shm --suffix tmux_buffer)"
