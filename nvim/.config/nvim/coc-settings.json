@@ -16,8 +16,8 @@
     "scss": "css",
     "sass": "css"
   },
-  "codeLens.enable": true,
-  "diagnostic.virtualText": true,
+  "codeLens.enable": false,
+  "diagnostic.virtualText": false,
   "suggest.completionItemKindLabels": {
     "module": " ",
     "function": "ﬦ",
