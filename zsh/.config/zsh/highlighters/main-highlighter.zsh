@@ -1060,14 +1060,16 @@ _zsh_highlight_main_highlighter_highlight_list()
 		*.dll) style=ftype-dll ;;
 		*.a) style=ftype-a ;;
 		*.yml) style=ftype-yml ;;
-		*.yml) style=ftype-yml ;;
 		*.yaml) style=ftype-yaml ;;
 		*.xml) style=ftype-xml ;;
+		*.wiki) style=ftype-wiki ;;
 		*.ttl) style=ftype-ttl ;;
 		*.torrent) style=ftype-torrent ;;
 		*.toml) style=ftype-toml ;;
 		*.textile) style=ftype-textile ;;
 		*.tex) style=ftype-tex ;;
+		*.sls) style=ftype-sls ;;
+		*.sbt) style=ftype-sbt ;;
 		*.reg) style=ftype-reg ;;
 		*.rdf) style=ftype-rdf ;;
 		*.rc) style=ftype-rc ;;
@@ -1078,6 +1080,8 @@ _zsh_highlight_main_highlighter_highlight_list()
 		*.nix) style=ftype-nix ;;
 		*.nfo) style=ftype-nfo ;;
 		*.n3) style=ftype-n3 ;;
+		*.modulemap) style=ftype-modulemap ;;
+		*.mk) style=ftype-mk ;;
 		*.latex) style=ftype-latex ;;
 		*.json) style=ftype-json ;;
 		*.jidgo) style=ftype-jidgo ;;
@@ -1134,7 +1138,6 @@ _zsh_highlight_main_highlighter_highlight_list()
 		*.signature) style=ftype-signature ;;
 		*.sed) style=ftype-sed ;;
 		*.ru) style=ftype-ru ;;
-		*.rc) style=ftype-rc ;;
 		*.rb) style=ftype-rb ;;
 		*.rasi) style=ftype-rasi ;;
 		*.py) style=ftype-py ;;
@@ -1156,7 +1159,6 @@ _zsh_highlight_main_highlighter_highlight_list()
 		*.sass) style=ftype-sass ;;
 		*.ps) style=ftype-ps ;;
 		*.pacnew) style=ftype-pacnew ;;
-		*.offlineimaprc) style=ftype-offlineimaprc ;;
 		*.nfo) style=ftype-nfo ;;
 		*.netrc) style=ftype-netrc ;;
 		*.muttrc) style=ftype-muttrc ;;
@@ -1275,6 +1277,8 @@ _zsh_highlight_main_highlighter_highlight_list()
 		*.ico) style=ftype-ico ;;
 		*.icns) style=ftype-icns ;;
 		*.gif) style=ftype-gif ;;
+		*.icm) style=ftype-icm ;;
+		*.icc) style=ftype-icc ;;
 		*.yuv) style=ftype-yuv ;;
 		*.xwd) style=ftype-xwd ;;
 		*.xcf) style=ftype-xcf ;;
@@ -1366,7 +1370,6 @@ _zsh_highlight_main_highlighter_highlight_list()
 		*.com) style=ftype-com ;;
 		*.btm) style=ftype-btm ;;
 		*.bin) style=ftype-bin ;;
-#--[ End of ftype array ]------@@@@
         *)       if false; then
                  elif [[ $arg = $'\x7d' ]] && $right_brace_is_recognised_everywhere; then
                    # Parsing rule: {
