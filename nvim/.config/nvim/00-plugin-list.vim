@@ -21,7 +21,6 @@ Plug 'luochen1990/rainbow' " better rainbow parentheses
 Plug 'tpope/vim-abolish' " for different case coersion
 Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 "--[ Search ]------------------------------------------------------------------------
-Plug 'junegunn/fzf' " fzf itself
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'dyng/ctrlsf.vim' " interactive vim-grep
