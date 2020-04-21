@@ -113,11 +113,10 @@ if executable('rg')
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
-nnoremap qe :Files %:p:h<CR>
-nnoremap qE :Files<CR>
-nnoremap [Qleader]d :Buffers<CR>
-
-nnoremap <silent> [Qleader]t :BTags<CR>
+nnoremap <silent> qE :Files %:p:h<CR>
+nnoremap <silent> qe :Files<CR>
+nnoremap <silent> qt :BTags<CR>
+nnoremap <silent> qc :BCommits<CR>
 
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
@@ -142,6 +141,7 @@ nnoremap <silent> <Leader>. :FZFMru --prompt "❯> "<CR>
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:LustyJugglerDefaultMappings = 0
 let LustyExplorerDefaultMappings  = 0
+let g:LustyExplorerAlwaysShowDotFiles = 1
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
