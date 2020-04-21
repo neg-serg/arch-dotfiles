@@ -1,11 +1,11 @@
 [user]
-	email = serg.zorg@gmail.com
-	name = Neg
+    email = serg.zorg@gmail.com
+    name = Neg
 [core]
     pager = # do not use external pager
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
-	editor = "~/bin/v"
+    editor = "~/bin/v"
 [color]
     branch     = auto
     diff       = 1
@@ -43,8 +43,9 @@
 [alias]
     wtf  = "!~/bin/git/git-wtf"
     undo = checkout --
+    review = !nvim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 [github]
-	user = neg-serg
+    user = neg-serg
 [push]
     default = simple
 [diff]
@@ -55,17 +56,17 @@
 [merge]
     tool = nvim
 [mergetool]
-  prompt = true
+    prompt = true
 [mergetool "nwim"]
     cmd = ~/bin/v -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
 [mergetool "nvim"]
-  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [credential]
     helper = cache --timeout=28800
 [interactive]
-	diffFilter = diff-highlight
+    diffFilter = diff-highlight
 [filter "lfs"]
-	required = true
-	clean    = git-lfs clean -- %f
-	smudge   = git-lfs smudge -- %f
+    required = true
+    clean    = git-lfs clean -- %f
+    smudge   = git-lfs smudge -- %f
     process  = git-lfs filter-process
