@@ -310,6 +310,11 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown',
                   \ '.wiki': 'media'}
 let g:vimwiki_list = [{'path': '~/1st_level/'}]
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - APZelos/blamer.nvim                                                      │
+" │ https://github.com/APZelos/blamer.nvim                                            │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+nnoremap <silent> <F1> :BlamerToggle<CR>
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - liuchengxu/vista.vim                                                     │
 " │ https://github.com/liuchengxu/vista.vim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
