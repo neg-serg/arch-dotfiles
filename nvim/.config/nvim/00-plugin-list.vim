@@ -56,7 +56,6 @@ Plug 'vim-scripts/ViewOutput' " VO commandline output
 Plug 'dstein64/vim-startuptime' " measuring startuptime
 Plug 'segeljakt/vim-silicon' " images of source code
 Plug 'vimwiki/vimwiki' " personal wiki for vim
-Plug 'meain/vim-automkdir' " Automatically create parent dirs
 " ----------------------------------------------------------------------[ Lazy plugins ]---
 Plug 'Shougo/neoinclude.vim' " include completion framework for neocomplete/deoplete
 Plug 'radenling/vim-dispatch-neovim', { 'on': ['Dispatch', 'Start'] } " Neovim support for vim-dispatch
