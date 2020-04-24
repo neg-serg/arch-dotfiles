@@ -4,7 +4,7 @@ zstyle ':completion:*:approximate:' \
     max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
 # don't complete backup files as executables
 zstyle ':completion:*:complete:-command-::commands' \
-                                            ignored-patterns '(aptitude-*|*\~)'
+    ignored-patterns '(aptitude-*|*\~)'
 # start menu completion only if it could find no unambiguous initial string
 zstyle ':completion:*:correct:*'            insert-unambiguous true
 zstyle ':completion:*:corrections'          format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%} - (%{${fg[cyan]}%}errors %e%{${reset_color}%})"
@@ -80,13 +80,12 @@ zstyle ':completion:*:*:*:*:users' list-colors "=*=$color[blue];$color[bg-black]
 
 # Don't complete uninteresting users...
 zstyle ':completion:*:*:*:users' ignored-patterns \
-    adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
-    dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
-    hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
-    mailman mailnull mldonkey mysql nagios \
-    named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
-    operator pcap postfix postgres privoxy pulse pvm quagga radvd \
-    rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
+    adm amanda apache avahi beaglidx bin cacti canna clamav daemon dbus \
+    distcache dovecot fax ftp games gdm gkrellmd gopher hacluster haldaemon \
+    halt hsqldb ident junkbust ldap lp mail mailman mailnull mldonkey mysql \
+    nagios named netdump news nfsnobody nobody nscd ntp nut nx openvpn operator \
+    pcap postfix postgres privoxy pulse pvm quagga radvd rpc rpcuser rpm \
+    shutdown squid sshd sync uucp vcsa xfs '_*'
 zstyle ':completion:*:wine:*'             file-patterns '(#i)*.(exe):exe'
 # highlight parameters with uncommon names
 zstyle ':completion:*:parameters'         list-colors "=[^a-zA-Z]*=$color[cyan]"
@@ -131,56 +130,28 @@ zstyle -e ':completion:*' completer '
 
 [[ -d "${ZDOTDIR}/cache" ]] && zstyle ':completion:*' use-cache yes && \
     zstyle ':completion::complete:*' cache-path "${ZDOTDIR}/cache/"
-# use generic completion system for programs not yet defined; (_gnu_generic works
-# with commands that provide a --help option with "standard" gnu-like output.)
-for compcom in cp deborphan df feh fetchipac head hnb ipacsum mv \
-                pal stow tail uname ; do
-    [[ -z ${_comps[$compcom]} ]] && compdef _gnu_generic ${compcom}
-done; unset compcom
 
 () {
-    local -a coreutils
-    coreutils=(
-        # /bin
+    local -a coreutils=(
         cat chgrp chmod chown cp date dd df dir ln ls mkdir mknod mv readlink
-        rm rmdir vdir sleep stty sync touch uname mktemp
-        # /usr/bin
-        install hostid nice who users pinky stdbuf base64 basename chcon cksum
-        comm csplit cut dircolors dirname du env expand factor fmt fold groups
-        head id join link logname md5sum mkfifo nl nproc nohup od paste pathchk
-        pr printenv ptx runcon seq sha1sum sha224sum sha256sum sha384sum
-        sha512sum shred shuf sort split stat sum tac tail tee timeout tr
-        truncate tsort tty unexpand uniq unlink wc whoami yes arch touch
+        rm rmdir vdir sleep stty sync touch uname mktemp install hostid nice
+        who users pinky stdbuf base64 basename chcon cksum comm csplit cut
+        dircolors dirname du env expand factor fmt fold groups head id join
+        link logname md5sum mkfifo nl nproc nohup od paste pathchk pr printenv
+        ptx runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred
+        shuf sort split stat sum tac tail tee timeout tr truncate tsort tty
+        unexpand uniq unlink wc whoami yes arch touch
     )
-
     for i in $coreutils; do
-        # all which don't already have one
-        # at time of this writing, those are:
-        # /bin
-        #   chgrp chmod chown cp date dd df ln ls mkdir rm rmdir stty sync
-        #   touch uname
-        # /usr/bin
-        #   nice comm cut du env groups id join logname md5sum nohup printenv
-        #   sort stat unexpand uniq whoami
         (( $+_comps[$i] )) || compdef _gnu_generic $i 
     done
 
 }
 
-__archive_or_uri(){
-    _alternative \
-        'files:Archives:_files -g "*.(#l)(tar.bz2|tbz2|tbz|tar.gz|tgz|tar.xz|txz|tar.lzma|tar|rar|lzh|7z|zip|jar|deb|bz2|gz|Z|xz|lzma)"' \
-        '_urls:Remote Archives:_urls'
-}
-_simple_extract(){
-    _arguments \
-        '-d[delete original archivefile after extraction]' \
-        '*:Archive Or Uri:__archive_or_uri'
-}
-compdef _simple_extract simple-extract
-
-autoload -U select-word-style backward-kill-word-match backward-word-match forward-word-match
-select-word-style shell
+autoload -U select-word-style \
+    backward-kill-word-match \
+    backward-word-match forward-word-match \
+    select-word-style shell
 
 zle -N backward-kill-word-match
 zle -N backward-word-match
