@@ -41,6 +41,7 @@ Plug 'iamcco/markdown-preview.nvim' " markdown preview
 Plug 'donRaphaco/neotex' " latex support
 Plug 'thinca/vim-ref' " integrated reference viewer man/perldoc etc
 Plug 'puremourning/vimspector' " vim debugging support
+Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive' " Git stuff. Needed for powerline etc
 Plug 'junegunn/gv.vim' " git commit browser
