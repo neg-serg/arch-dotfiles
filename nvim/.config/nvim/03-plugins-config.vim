@@ -27,6 +27,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nmap <silent> [Qleader]c <Plug>(coc-diagnostic-next)
 nmap <silent> [Qleader]C <Plug>(coc-diagnostic-prev)
+nmap <silent> <M-CR> <Plug>(coc-fix-current)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
