@@ -61,8 +61,6 @@ set sort=reverse-last-date-received  # like gmail
 set sort_re
 set uncollapse_jump                  # don't collapse on an unread message
 
-set new_mail_command="notify-send ' ' '%n new messages' &"
-
 set ssl_force_tls = yes
 set mail_check=10
 set timeout=10
