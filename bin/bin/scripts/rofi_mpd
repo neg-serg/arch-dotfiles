@@ -2,8 +2,8 @@
 
 mpd_menu=("title_copy" "artist_copy" "album_copy" "pulseaudio_output" "bit_perfect_output")
 
-blue="<span weight='bold' color='$(xrq color4)'>"
-norm="<span weight='bold' color='$(xrq foreground)'>"
+blue="<span weight='bold' color='#395573'>"
+norm="<span weight='bold' color='#6C7E96'>"
 close="</span>"
 
 generate_menu() {
@@ -40,8 +40,8 @@ handler() {
 }
 
 
-local neg_rofi_bg="$(xrq background)"
-local neg_rofi_fg="$(xrq foreground)"
+local neg_rofi_bg="#000000"
+local neg_rofi_fg="#6C7E96"
 local neg_rofi_hlfg="#aaaaaa"
 local neg_rofi_hlbg="#194558"
 local neg_rofi_bc="#202020"
@@ -49,7 +49,6 @@ local neg_rofi_bc="#202020"
 local pref="${blue}⟬${close}MPD action${blue}⟭${close}"
 local mon_width=$(xrandr -q |awk '/Screen/{print $8}')
 local rofi_options=(
-    -theme-str "'* { font: \"Iosevka Term Medium 12\"; }'"
     -theme-str "'#window { width: $(( (${mon_width}) / 2 )); y-offset: -34; location: south west; anchor: south west; }'"
     -auto-select
     -markup-rows
