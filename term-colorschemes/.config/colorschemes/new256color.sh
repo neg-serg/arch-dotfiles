@@ -1,134 +1,70 @@
-# very dark blur blue, semi-default
 color16="#040408"
 color17="#01004C"
 color18="#00006C"
 color19="#000090"
 color20="#0000BA"
 color21="#0000FE"
-
-# green
 color22="#002B00"
-color28="#005200"
-color34="#007C00"
-color40="#00AE00"
-color46="#00FF01"
-
-# cyan
 color23="#004E4E"
-color30="#017978"
-color37="#00ACAC"
-color44="#4FFFFF"
-color51="#00FFFF"
-
-# blue
-color24="#005f87" #default
-color25="#005faf" #default
-color26="#005fd7" #default
+color24="#005f87"
+color25="#005faf"
+color26="#005fd7"
 color27="#0090FF"
+color28="#005200"
+color29="#007A51"
+color30="#017978"
+color30="#357B63"
 color31="#285981"
 color32="#367CB0"
 color33="#4FB3FF"
+color34="#007C00"
+color35="#00AE73"
+color36="#3CAF88"
+color37="#00ACAC"
 color38="#7BC6FF"
 color39="#A2D7FF"
-
-# green2
-color29="#007A51"
-color35="#00AE73"
-color30="#357B63"
-color36="#3CAF88"
+color40="#00AE00"
 color41="#00FFA9"
-color47="#50FFC4"
 color42="#7DFF7E"
-color48="#A1FFA1"
 color43="#00d7af"
+color44="#4FFFFF"
+color46="#00FF01"
+color47="#50FFC4"
+color48="#A1FFA1"
 color49="#00ffaf"
 color50="#00ffd7"
-
-# red
+color51="#00FFFF"
 color52="#380001"
-color88="#5C0100"
-color124="#850001"
-color160="#B40001"
-color196="#FE0000"
-
-# malina
 color53="#330021"
-color89="#590038"
-color125="#810052"
-color161="#B20072"
-color197="#FF01A2"
-
-# rose
 color54="#320031"
-color90="#570055"
-color126="#810081"
-color162="#B100B0"
-color198="#FF00FE"
-
-# additional blue
+color55="#260039"
 color56="#245361"
 color57="#0a3749"
-
-# violet
-color55="#260039"
-color91="#3D005D"
-color127="#570083"
-color163="#7700B2"
-color199="#AA00FF"
-
-# orange
-color202="#FF5F01"
-color166="#B04000"
-color130="#7F2E01"
-color94="#531E00"
-
-# golden
-color208="#FFAA01"
-color172="#AC7300"
-color136="#795000"
-color100="#4E3608"
-
-# golden-light
-color209="#FFD37C"
-color173="#FFC44E"
-color137="#AD893F"
-color101="#AC9563"
-
-# light-violet
-color213="#EBC3FF"
-color177="#E1A1FF"
-color141="#DBC3FF"
-color105="#D37CFF"
-color104="#AE7CFF"
-
-# lime
-color154="#C3FF01"
-color155="#FFFF7D"
-color156="#E0FF7D"
-color157="#EAFFA2"
-
-# ultramarine
+color64="#547D55"
+color65="#80AE80"
 color66="#8D74B6"
 color67="#7C59B5"
 color68="#C5A2FE"
 color69="#DBC3FF"
-
-# green3
-color64="#547D55"
-color65="#80AE80"
 color70="#367C36"
 color71="#61AD62"
-color76="#3FAD88"
-color77="#62AE94"
-color82="#86DB24"
-color83="#55AE24"
-
-# blue more dark
 color73="#367CB0"
 color74="#5788B0"
 color75="#7095B0"
+color76="#3FAD88"
+color77="#62AE94"
 color80="#29626E"
-
+color82="#86DB24"
+color83="#55AE24"
+color88="#5C0100"
+color89="#590038"
+color90="#570055"
+color91="#3D005D"
+color94="#531E00"
+color100="#4E3608"
+color101="#AC9563"
+color104="#AE7CFF"
+color105="#D37CFF"
 color110="#5B5BBB"
 color111="#7778BB"
 color112="#95DB18"
@@ -137,7 +73,34 @@ color114="#C7FE40"
 color115="#05C390"
 color116="#7CD6EF"
 color117="#90EAFE"
-
+color124="#850001"
+color125="#810052"
+color126="#810081"
+color127="#570083"
+color130="#7F2E01"
+color136="#795000"
+color137="#AD893F"
+color141="#DBC3FF"
+color154="#C3FF01"
+color155="#FFFF7D"
+color156="#E0FF7D"
+color157="#EAFFA2"
+color160="#B40001"
+color161="#B20072"
+color162="#B100B0"
+color163="#7700B2"
+color166="#B04000"
+color172="#AC7300"
+color173="#FFC44E"
+color177="#E1A1FF"
+color196="#FE0000"
+color197="#FF01A2"
+color198="#FF00FE"
+color199="#AA00FF"
+color202="#FF5F01"
+color208="#FFAA01"
+color209="#FFD37C"
+color213="#EBC3FF"
 color232="#000508"
 color233="#010C12"
 color234="#04141C"
