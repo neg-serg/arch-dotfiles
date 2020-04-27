@@ -75,42 +75,37 @@ colors:
     red:     '0xCF4F88'
     green:   '0x53A6A6'
     yellow:  '0xBF85CC'
-    blue:    '0x4779B3'
+    blue:    '0x477AB3'
     magenta: '0x7E62B3'
     cyan:    '0x6096BF'
     white:   '0x617287'
 
   indexed_colors:
-    # very dark blur blue, semi-default
     - { index: 16, color: '0x040408' }
     - { index: 17, color: '0x01004C' }
     - { index: 18, color: '0x00006C' }
     - { index: 19, color: '0x000090' }
     - { index: 20, color: '0x0000BA' }
     - { index: 21, color: '0x0000FE' }
-    # green
     - { index: 22, color: '0x002B00' }
     - { index: 28, color: '0x005200' }
     - { index: 34, color: '0x007C00' }
     - { index: 40, color: '0x00AE00' }
     - { index: 46, color: '0x00FF01' }
-    # cyan
     - { index: 23, color: '0x004E4E' }
     - { index: 30, color: '0x017978' }
     - { index: 37, color: '0x00ACAC' }
     - { index: 44, color: '0x4FFFFF' }
     - { index: 51, color: '0x00FFFF' }
-    # blue
-    - { index: 24, color: '0x005f87' } # default
-    - { index: 25, color: '0x005faf' } # default
-    - { index: 26, color: '0x005fd7' } # default
+    - { index: 24, color: '0x005f87' }
+    - { index: 25, color: '0x005faf' }
+    - { index: 26, color: '0x005fd7' }
     - { index: 27, color: '0x0090FF' }
     - { index: 31, color: '0x285981' }
     - { index: 32, color: '0x367CB0' }
     - { index: 33, color: '0x4FB3FF' }
     - { index: 38, color: '0x7BC6FF' }
     - { index: 39, color: '0xA2D7FF' }
-    # green2
     - { index: 29, color: '0x007A51' }
     - { index: 35, color: '0x00AE73' }
     - { index: 30, color: '0x357B63' }
@@ -122,65 +117,53 @@ colors:
     - { index: 43, color: '0x00d7af' }
     - { index: 49, color: '0x00ffaf' }
     - { index: 50, color: '0x00ffd7' }
-    # red
     - { index: 52, color: '0x380001' }
     - { index: 88, color: '0x5C0100' }
     - { index: 124, color: '0x850001' }
     - { index: 160, color: '0xB40001' }
     - { index: 196, color: '0xFE0000' }
-    # malina
     - { index: 53, color: '0x330021' }
     - { index: 89, color: '0x590038' }
     - { index: 125, color: '0x810052' }
     - { index: 161, color: '0xB20072' }
     - { index: 197, color: '0xFF01A2' }
-    # rose
     - { index: 54, color: '0x320031' }
     - { index: 90, color: '0x570055' }
     - { index: 126, color: '0x810081' }
     - { index: 162, color: '0xB100B0' }
     - { index: 198, color: '0xFF00FE' }
-    # additional blue
     - { index: 56, color: '0x245361' }
     - { index: 57, color: '0x0a3749' }
-    # violet
     - { index: 55, color: '0x260039' }
     - { index: 91, color: '0x3D005D' }
     - { index: 127, color: '0x570083' }
     - { index: 163, color: '0x7700B2' }
     - { index: 199, color: '0xAA00FF' }
-    # orange
     - { index: 202, color: '0xFF5F01' }
     - { index: 166, color: '0xB04000' }
     - { index: 130, color: '0x7F2E01' }
     - { index: 94, color: '0x531E00' }
-    # golden
     - { index: 208, color: '0xFFAA01' }
     - { index: 172, color: '0xAC7300' }
     - { index: 136, color: '0x795000' }
     - { index: 100, color: '0x4E3608' }
-    # golden-light
     - { index: 209, color: '0xFFD37C' }
     - { index: 173, color: '0xFFC44E' }
     - { index: 137, color: '0xAD893F' }
     - { index: 101, color: '0xAC9563' }
-    # light-violet
     - { index: 213, color: '0xEBC3FF' }
     - { index: 177, color: '0xE1A1FF' }
     - { index: 141, color: '0xDBC3FF' }
     - { index: 105, color: '0xD37CFF' }
     - { index: 104, color: '0xAE7CFF' }
-    # lime
     - { index: 154, color: '0xC3FF01' }
     - { index: 155, color: '0xFFFF7D' }
     - { index: 156, color: '0xE0FF7D' }
     - { index: 157, color: '0xEAFFA2' }
-    # ultramarine
     - { index: 66, color: '0x8D74B6' }
     - { index: 67, color: '0x7C59B5' }
     - { index: 68, color: '0xC5A2FE' }
     - { index: 69, color: '0xDBC3FF' }
-    # green3
     - { index: 64, color: '0x547D55' }
     - { index: 65, color: '0x80AE80' }
     - { index: 70, color: '0x367C36' }
@@ -189,7 +172,6 @@ colors:
     - { index: 77, color: '0x62AE94' }
     - { index: 82, color: '0x86DB24' }
     - { index: 83, color: '0x55AE24' }
-    # blue more dark
     - { index: 73, color: '0x367CB0' }
     - { index: 74, color: '0x5788B0' }
     - { index: 75, color: '0x7095B0' }
