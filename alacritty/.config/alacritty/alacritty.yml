@@ -88,93 +88,65 @@ colors:
     - { index: 20, color: '0x0000BA' }
     - { index: 21, color: '0x0000FE' }
     - { index: 22, color: '0x002B00' }
-    - { index: 28, color: '0x005200' }
-    - { index: 34, color: '0x007C00' }
-    - { index: 40, color: '0x00AE00' }
-    - { index: 46, color: '0x00FF01' }
     - { index: 23, color: '0x004E4E' }
-    - { index: 30, color: '0x017978' }
-    - { index: 37, color: '0x00ACAC' }
-    - { index: 44, color: '0x4FFFFF' }
-    - { index: 51, color: '0x00FFFF' }
     - { index: 24, color: '0x005f87' }
     - { index: 25, color: '0x005faf' }
     - { index: 26, color: '0x005fd7' }
     - { index: 27, color: '0x0090FF' }
+    - { index: 28, color: '0x005200' }
+    - { index: 29, color: '0x007A51' }
+    - { index: 30, color: '0x017978' }
+    - { index: 30, color: '0x357B63' }
     - { index: 31, color: '0x285981' }
     - { index: 32, color: '0x367CB0' }
     - { index: 33, color: '0x4FB3FF' }
+    - { index: 34, color: '0x007C00' }
+    - { index: 35, color: '0x00AE73' }
+    - { index: 36, color: '0x3CAF88' }
+    - { index: 37, color: '0x00ACAC' }
     - { index: 38, color: '0x7BC6FF' }
     - { index: 39, color: '0xA2D7FF' }
-    - { index: 29, color: '0x007A51' }
-    - { index: 35, color: '0x00AE73' }
-    - { index: 30, color: '0x357B63' }
-    - { index: 36, color: '0x3CAF88' }
+    - { index: 40, color: '0x00AE00' }
     - { index: 41, color: '0x00FFA9' }
-    - { index: 47, color: '0x50FFC4' }
     - { index: 42, color: '0x7DFF7E' }
-    - { index: 48, color: '0xA1FFA1' }
     - { index: 43, color: '0x00d7af' }
+    - { index: 44, color: '0x4FFFFF' }
+    - { index: 46, color: '0x00FF01' }
+    - { index: 47, color: '0x50FFC4' }
+    - { index: 48, color: '0xA1FFA1' }
     - { index: 49, color: '0x00ffaf' }
     - { index: 50, color: '0x00ffd7' }
+    - { index: 51, color: '0x00FFFF' }
     - { index: 52, color: '0x380001' }
-    - { index: 88, color: '0x5C0100' }
-    - { index: 124, color: '0x850001' }
-    - { index: 160, color: '0xB40001' }
-    - { index: 196, color: '0xFE0000' }
     - { index: 53, color: '0x330021' }
-    - { index: 89, color: '0x590038' }
-    - { index: 125, color: '0x810052' }
-    - { index: 161, color: '0xB20072' }
-    - { index: 197, color: '0xFF01A2' }
     - { index: 54, color: '0x320031' }
-    - { index: 90, color: '0x570055' }
-    - { index: 126, color: '0x810081' }
-    - { index: 162, color: '0xB100B0' }
-    - { index: 198, color: '0xFF00FE' }
+    - { index: 55, color: '0x260039' }
     - { index: 56, color: '0x245361' }
     - { index: 57, color: '0x0a3749' }
-    - { index: 55, color: '0x260039' }
-    - { index: 91, color: '0x3D005D' }
-    - { index: 127, color: '0x570083' }
-    - { index: 163, color: '0x7700B2' }
-    - { index: 199, color: '0xAA00FF' }
-    - { index: 202, color: '0xFF5F01' }
-    - { index: 166, color: '0xB04000' }
-    - { index: 130, color: '0x7F2E01' }
-    - { index: 94, color: '0x531E00' }
-    - { index: 208, color: '0xFFAA01' }
-    - { index: 172, color: '0xAC7300' }
-    - { index: 136, color: '0x795000' }
-    - { index: 100, color: '0x4E3608' }
-    - { index: 209, color: '0xFFD37C' }
-    - { index: 173, color: '0xFFC44E' }
-    - { index: 137, color: '0xAD893F' }
-    - { index: 101, color: '0xAC9563' }
-    - { index: 213, color: '0xEBC3FF' }
-    - { index: 177, color: '0xE1A1FF' }
-    - { index: 141, color: '0xDBC3FF' }
-    - { index: 105, color: '0xD37CFF' }
-    - { index: 104, color: '0xAE7CFF' }
-    - { index: 154, color: '0xC3FF01' }
-    - { index: 155, color: '0xFFFF7D' }
-    - { index: 156, color: '0xE0FF7D' }
-    - { index: 157, color: '0xEAFFA2' }
+    - { index: 64, color: '0x547D55' }
+    - { index: 65, color: '0x80AE80' }
     - { index: 66, color: '0x8D74B6' }
     - { index: 67, color: '0x7C59B5' }
     - { index: 68, color: '0xC5A2FE' }
     - { index: 69, color: '0xDBC3FF' }
-    - { index: 64, color: '0x547D55' }
-    - { index: 65, color: '0x80AE80' }
     - { index: 70, color: '0x367C36' }
     - { index: 71, color: '0x61AD62' }
+    - { index: 73, color: '0x367CB0' }
+    - { index: 74, color: '0x5788B0' }
+    - { index: 75, color: '0x7095B0' }
     - { index: 76, color: '0x3FAD88' }
     - { index: 77, color: '0x62AE94' }
     - { index: 82, color: '0x86DB24' }
     - { index: 83, color: '0x55AE24' }
-    - { index: 73, color: '0x367CB0' }
-    - { index: 74, color: '0x5788B0' }
-    - { index: 75, color: '0x7095B0' }
+    - { index: 88, color: '0x5C0100' }
+    - { index: 89, color: '0x590038' }
+    - { index: 90, color: '0x570055' }
+    - { index: 91, color: '0x3D005D' }
+    - { index: 94, color: '0x531E00' }
+    - { index: 100, color: '0x4E3608' }
+    - { index: 101, color: '0xAC9563' }
+    - { index: 104, color: '0xAE7CFF' }
+    - { index: 105, color: '0xD37CFF' }
     - { index: 110, color: '0x5B5BBB' }
     - { index: 111, color: '0x7778BB' }
     - { index: 112, color: '0x95DB18' }
@@ -183,6 +155,34 @@ colors:
     - { index: 115, color: '0x05C390' }
     - { index: 116, color: '0x7CD6EF' }
     - { index: 117, color: '0x90EAFE' }
+    - { index: 124, color: '0x850001' }
+    - { index: 125, color: '0x810052' }
+    - { index: 126, color: '0x810081' }
+    - { index: 127, color: '0x570083' }
+    - { index: 130, color: '0x7F2E01' }
+    - { index: 136, color: '0x795000' }
+    - { index: 137, color: '0xAD893F' }
+    - { index: 141, color: '0xDBC3FF' }
+    - { index: 154, color: '0xC3FF01' }
+    - { index: 155, color: '0xFFFF7D' }
+    - { index: 156, color: '0xE0FF7D' }
+    - { index: 157, color: '0xEAFFA2' }
+    - { index: 160, color: '0xB40001' }
+    - { index: 161, color: '0xB20072' }
+    - { index: 162, color: '0xB100B0' }
+    - { index: 163, color: '0x7700B2' }
+    - { index: 166, color: '0xB04000' }
+    - { index: 172, color: '0xAC7300' }
+    - { index: 173, color: '0xFFC44E' }
+    - { index: 177, color: '0xE1A1FF' }
+    - { index: 196, color: '0xFE0000' }
+    - { index: 197, color: '0xFF01A2' }
+    - { index: 198, color: '0xFF00FE' }
+    - { index: 199, color: '0xAA00FF' }
+    - { index: 202, color: '0xFF5F01' }
+    - { index: 208, color: '0xFFAA01' }
+    - { index: 209, color: '0xFFD37C' }
+    - { index: 213, color: '0xEBC3FF' }
     - { index: 232, color: '0x000508' }
     - { index: 233, color: '0x010C12' }
     - { index: 234, color: '0x04141C' }
