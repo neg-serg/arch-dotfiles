@@ -32,12 +32,8 @@ get_lastfm(){
     done
 }
 
-highlight(){
-    print "<span weight='Medium' color='$(xrq color$1)'>"
-}
-
 notify(){
-    local col1=$(highlight 4)
+    local col1="#395573"
 
     local end="</span>"
     local bold="<span weight='bold' color='#88aabb'>"
