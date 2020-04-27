@@ -33,8 +33,7 @@ get_lastfm(){
 }
 
 notify(){
-    local col1="#395573"
-
+    local col1="<span weight='Medium' color='#395573'>"
     local end="</span>"
     local bold="<span weight='bold' color='#88aabb'>"
     local -a bodyarr
