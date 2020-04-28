@@ -7,16 +7,16 @@ read_command() {
 }
 
 send_key() {
-    local key="$1"
+    key="$1"
     xdotool key --window "$window" "$key"
 }
 
 clipboard_pipe() {
-    local cmd=""
-    local selection=""
-    local out=""
-    local paste=false
-    local window=$(xdotool getwindowfocus|tr -d '\n')
+    cmd=""
+    selection=""
+    out=""
+    paste=false
+    window=$(xdotool getwindowfocus|tr -d '\n')
 
     while true; do
         case "$1" in
@@ -61,8 +61,8 @@ clipboard_pipe() {
 
 clip_main() {
     rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip"
-    local gpaste_ret=$(gpaste-client --oneline|eval $rofi_cmd)
-    local selection=$(echo "$gpaste_ret" | cut -d ':' -f1)
+    gpaste_ret=$(gpaste-client --oneline|eval $rofi_cmd)
+    selection=$(echo "$gpaste_ret" | cut -d ':' -f1)
     if [ ! -z $selection ]; then
         gpaste-client select $selection
     fi
