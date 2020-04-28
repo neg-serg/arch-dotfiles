@@ -1,20 +1,14 @@
-#!/bin/zsh
+#!/bin/dash
 
 read_command() {
-    readonly rofi_cmd=(
-        rofi -dmenu 
-        -opacity "${opacity_}"
-        -theme-str "'#window { width:${width_}; y-offset: ${yoffset_}; location: south; anchor: south; }'"
-        -theme-str "'#listview { lines:${lines_}; }'"
-        -i -levenshtein-sort -matching glob -dmenu -p '"❯>"'
-    )
-    cmd_=$(echo -n "${cmds}"| tr -s ' ' '\n' | eval ${rofi_cmd[@]})
-    echo ${cmd_}
+    rofi_cmd="rofi -dmenu -matching glob -dmenu -p ❯>"
+    cmd_=$(echo -n "sort tac"| tr -s ' ' '\n' | eval $rofi_cmd)
+    echo $cmd_
 }
 
 send_key() {
     local key="$1"
-    xdotool key --window "${window}" "${key}"
+    xdotool key --window "$window" "$key"
 }
 
 clipboard_pipe() {
@@ -22,14 +16,12 @@ clipboard_pipe() {
     local selection=""
     local out=""
     local paste=false
-
-    local cmds=("sort" "tac")
     local window=$(xdotool getwindowfocus|tr -d '\n')
 
     while true; do
-        case "$1" in 
+        case "$1" in
             -p | --paste) paste=true; shift ;;
-            -c | -e | --command) 
+            -c | -e | --command)
                 if [[ $2 != "" ]]; then
                     cmd="$2"
                 else
@@ -40,14 +32,14 @@ clipboard_pipe() {
             *) cmd="$(read_command)" ;;
             --) shift; break ;;
         esac
-        if [[ ${paste} == true ]]; then
+        if [[ $paste == true ]]; then
             echo -n | xclip -i # clear clipboard first
             send_key 'Control_L+c'; send_key 'Control_L+v'
         fi
-        if [[ ${cmd} != "" ]]; then
+        if [[ $cmd != "" ]]; then
             # read the selection
             selection=$(xclip -o)
-            if [[ ${selection} == "" && ${paste} ]]; then
+            if [[ $selection == "" && $paste ]]; then
                 echo "no input, aborting..."
                 exit 1
             fi
@@ -56,8 +48,8 @@ clipboard_pipe() {
             echo -n | xclip -i -sel clipboard
 
             clipboard=$(xclip -o)
-            out=$(${cmd} <<< "${clipboard}")
-            xclip -i -sel clipboard <<< "${out}"
+            out=$($clipboard | $cmd )
+            $out | xclip -i -sel clipboard
 
             exit 0
         else
@@ -68,28 +60,16 @@ clipboard_pipe() {
 }
 
 clip_main() {
-    declare -a rofi_opts_
-    local x11_width="$(xrandr -q |awk '/Screen/{print $8}')"
-    local width_=$[x11_width-70]
-    local lines_=10
-    local yoffset_=-38
-    readonly rofi_cmd=(
-        rofi -dmenu 
-        -no-plugins
-        -opacity "${opacity_}"
-        -theme-str "'#window { width:${width_}; y-offset: ${yoffset_}; location: south; anchor: south; }'"
-        -theme-str "'#listview { lines:${lines_}; }'"
-        -sort -i -matching glob -dmenu -p '"⟬clip⟭ ❯>"'
-    )
-    local gpaste_ret=$(gpaste-client --oneline|eval ${rofi_cmd})
-    local selection=$(echo "${gpaste_ret}" | cut -d ':' -f1)
-    if [[ ${selection} != "" ]]; then
-        gpaste-client select ${selection}
+    rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip"
+    local gpaste_ret=$(gpaste-client --oneline|eval $rofi_cmd)
+    local selection=$(echo "$gpaste_ret" | cut -d ':' -f1)
+    if [ ! -z $selection ]; then
+        gpaste-client select $selection
     fi
 }
 
 yr() {
-    ${XDG_CONFIG_HOME}/i3/bin/send bscratch toggle youtube
+    $XDG_CONFIG_HOME/i3/bin/send bscratch toggle youtube
     sleep 1s
     echo "$@" | xsel -i
     xdotool key shift+Insert
@@ -103,10 +83,29 @@ youtube_url() {
 }
 
 case "$1" in
-    pipe) shift; clipboard_pipe "$@" ;;
-    youtube-view) shift; yr "$(xclip -o)" ;;
-    translate) shift; current_clip="$(gpaste-client get 0)"; notify-send "$(transline ${current_clip})" ;;
-    youtube-dw) shift; cd ~/vid/new; youtube-dl "$(xclip -o)" ;;
-    youtube-dw-list) shift; cd ~/vid/new; youtube-dl "$(youtube_url)" ;;
-    *) clip_main ;;
+    pipe)
+        shift
+        clipboard_pipe "$@"
+    ;;
+    youtube-view)
+        shift
+        yr "$(xclip -o)"
+    ;;
+    translate)
+        shift
+        current_clip="$(gpaste-client get 0)"
+        notify-send "$(transline $current_clip)"
+    ;;
+    youtube-dw)
+        shift
+        cd $XDG_VIDEOS_DIR/new
+        youtube-dl "$(xclip -o)"
+    ;;
+    youtube-dw-list)
+        shift
+        cd $XDG_VIDEOS_DIR/new
+        youtube-dl "$(youtube_url)"
+    ;;
+    *) clip_main
+    ;;
 esac
