@@ -331,3 +331,8 @@ let g:vista#renderer#icons = {
     \   "constant": ""
     \  }
 let g:vista_default_executive = 'coc'
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - rhysd/git-messenger.vim                                                  │
+" │ https://github.com/liuchengxu/vista.vim                                           │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+nmap <C-f> <Plug>(git-messenger)
