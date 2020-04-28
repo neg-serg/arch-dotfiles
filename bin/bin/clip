@@ -53,7 +53,7 @@ clipboard_pipe() {
 
             exit 0
         else
-            notify-send "you need to specify a command"
+            dunstify "you need to specify a command"
             exit 1
         fi
     done
@@ -93,8 +93,8 @@ case "$1" in
     ;;
     translate)
         shift
-        current_clip="$(gpaste-client get 0)"
-        notify-send "$(transline $current_clip)"
+        trans_result="$(gpaste-client get 0 | xargs -0n1 transline)"
+        dunstify "$trans_result"
     ;;
     youtube-dw)
         shift
