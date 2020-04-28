@@ -1,36 +1,34 @@
-#!/bin/zsh
-
-mpd_menu=("title_copy" "artist_copy" "album_copy" "pulseaudio_output" "bit_perfect_output")
-
+#!/bin/dash
+mpd_menu='title_copy artist_copy album_copy pulseaudio_output bit_perfect_output'
 blue="<span weight='bold' color='#395573'>"
 norm="<span weight='bold' color='#6C7E96'>"
 close="</span>"
 
 generate_menu() {
-    local count=0
-    for item in ${mpd_menu[@]}; do
-        (( count++ ))
-        echo "${count}:${blue}⟬</span>${item}${blue}⟭</span>"
+    count=0
+    for item in $mpd_menu; do
+        count=$((count+1))
+        echo "$count:$blue⟬</span>$item$blue⟭</span>"
     done
 }
 
 handler() {
-    local bitperfect_output_name='VMV D1 USB2.0'
-    local timeout="5s"
+    bitperfect_output_name='VMV D1 USB2.0'
+    timeout="5s"
     while IFS= read -r arg; do
-        if [[ ${arg} =~ ".*title_copy.*" ]]; then
+        if [[ $arg =~ ".*title_copy.*" ]]; then
             mpc current | xsel -bi
-        elif [[ ${arg} =~ ".*album_copy.*" ]]; then
+        elif [[ $arg =~ ".*album_copy.*" ]]; then
             mpc current -f "[%album%]"|xsel -bi
-        elif [[ ${arg} =~ ".*artist_copy.*" ]]; then
+        elif [[ $arg =~ ".*artist_copy.*" ]]; then
             mpc current -f "[%artist%]"|xsel -bi
-        elif [[ ${arg} =~ ".*pulseaudio_output.*" ]]; then
+        elif [[ $arg =~ ".*pulseaudio_output.*" ]]; then
             mpc pause
             mpc enable Pulseaudio
-            mpc disable "${bitperfect_output_name}" && mpc play
-        elif [[ ${arg} =~ ".*bit_perfect_output.*" ]]; then
+            mpc disable "$bitperfect_output_name" && mpc play
+        elif [[ $arg =~ ".*bit_perfect_output.*" ]]; then
             mpc pause
-            mpc enable "${bitperfect_output_name}"
+            mpc enable "$bitperfect_output_name"
             mpc disable Pulseaudio
             mpc play
             sleep "${timeout}";
@@ -39,24 +37,11 @@ handler() {
     done
 }
 
-
-local neg_rofi_bg="#000000"
-local neg_rofi_fg="#6C7E96"
-local neg_rofi_hlfg="#aaaaaa"
-local neg_rofi_hlbg="#194558"
-local neg_rofi_bc="#202020"
-
-local pref="${blue}⟬${close}MPD action${blue}⟭${close}"
-local mon_width=$(xrandr -q |awk '/Screen/{print $8}')
-local rofi_options=(
-    -theme-str "'#window { width: $(( (${mon_width}) / 2 )); y-offset: -34; location: south west; anchor: south west; }'"
-    -auto-select
-    -markup-rows
-    -b -disable-history -columns 8
-    -lines 1
-    -dmenu
-    -p '"❯>"'
-)
-local rofi_pid=" -pid /run/user/$(id -u)/rofi_mpd.pid"
-
-generate_menu | eval "rofi ${rofi_colors} ${rofi_options} ${rofi_pid}" | handler
+neg_rofi_bg="#000000"
+neg_rofi_fg="#6C7E96"
+neg_rofi_hlfg="#aaaaaa"
+neg_rofi_hlbg="#194558"
+neg_rofi_bc="#202020"
+pref="$blue⟬$closeMPD action$blue⟭$close"
+rofi_options="-auto-select -markup-rows -b -disable-history -columns 8 -lines 1 -dmenu -p '❯>'"
+generate_menu | eval "rofi $rofi_colors $rofi_options" | handler
