@@ -16,22 +16,22 @@ handler() {
     bitperfect_output_name='VMV D1 USB2.0'
     timeout="5s"
     while IFS= read -r arg; do
-        if [[ $arg =~ ".*title_copy.*" ]]; then
+        if echo $arg | grep "title_copy" > /dev/null; then
             mpc current | xsel -bi
-        elif [[ $arg =~ ".*album_copy.*" ]]; then
+        elif echo $arg | grep "album_copy" > /dev/null; then
             mpc current -f "[%album%]"|xsel -bi
-        elif [[ $arg =~ ".*artist_copy.*" ]]; then
+        elif echo $arg | grep "artist_copy" > /dev/null; then
             mpc current -f "[%artist%]"|xsel -bi
-        elif [[ $arg =~ ".*pulseaudio_output.*" ]]; then
+        elif echo $arg | grep "pulseaudio_output" > /dev/null; then
             mpc pause
             mpc enable Pulseaudio
             mpc disable "$bitperfect_output_name" && mpc play
-        elif [[ $arg =~ ".*bit_perfect_output.*" ]]; then
+        elif echo $arg | grep "bit_perfect_output" > /dev/null; then
             mpc pause
             mpc enable "$bitperfect_output_name"
             mpc disable Pulseaudio
             mpc play
-            sleep "${timeout}";
+            sleep "$timeout";
             mpc play
         fi
     done
