@@ -39,6 +39,7 @@ unbindurl mail\.google\.com e
 
 bind --mode=ex <C-c> ex.hide_and_clear
 unbind --mode=ex <C-w>
+unbind <C-o>
 bind --mode=input <C-c> composite unfocus | mode normal
 bind --mode=insert <C-c> composite unfocus | mode normal
 bind --mode=input <C-[> composite unfocus | mode normal
