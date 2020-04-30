@@ -127,7 +127,8 @@ for q in nvim vim vis vi;
     && export EDITOR=${q}; break }
 
 if which nvimpager >/dev/null; then
-    export PAGER="nvimpager"
+    export PAGER="/usr/bin/nvimpager"
+    export READNULLCMD='/usr/bin/nvimpager'
 fi
 export MANPAGER="${PAGER}"
 
