@@ -1,8 +1,25 @@
 # Main beets config
 plugins: >
-  acousticbrainz chroma discogs duplicates edit embedart export fetchart
-  fromfilename ftintitle fuzzy info lastgenre lastimport lyrics mbsync play
-  smartplaylist web mpdstats 
+  acousticbrainz 
+  chroma
+  discogs
+  duplicates
+  edit
+  embedart
+  export
+  fetchart
+  fromfilename
+  ftintitle
+  fuzzy
+  info
+  lastgenre
+  lastimport
+  lyrics
+  mbsync
+  mpdstats 
+  play
+  smartplaylist
+  web
 
 directory: ~/music            # The default library root directory.
 library: ~/music/library.db   # The default library database file to use.
