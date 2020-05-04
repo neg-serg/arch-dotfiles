@@ -1,5 +1,4 @@
 export PATH=/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
-export ZSHDIR=${HOME}/.zsh
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -32,9 +31,6 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
 unset _JAVA_OPTIONS
 
-export FZF_DEFAULT_COMMAND='ag -l -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=16"
 export STEAM_RUNTIME=1
 
 export FZF_DEFAULT_OPTS="
