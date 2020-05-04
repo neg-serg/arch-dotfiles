@@ -1,36 +1,59 @@
-#!/bin/zsh
+#!/bin/dash
 
-# Download cover for album
-main(){
+pushd () {
+	SAVE=$(pwd)
+	if [ "$1" = "" ]; then
+	    if [ "$DSTACK" = "" ]; then
+	        echo "pushd: directory stack empty."
+			return 1
+		fi
+		set $DSTACK
+		cd $1 || return
+		shift 1
+		DSTACK="$*"
+    else
+        cd $1 > /dev/null || return
+	fi
+	DSTACK="$SAVE $DSTACK"
+}
+
+popd () {
+	if [ "$DSTACK" = "" ]; then
+	    echo "popd: directory stack empty."
+		return 1
+	fi
+	set $DSTACK
+	cd $1
+	shift
+	DSTACK=$*
+}
+
+download_cover() {
     default_coversize=400
     default_covername=cover.jpg
-    if [[ -d "$1" ]]; then
+    if [ -d "$1" ]; then
         arg1="$1"
     else
-        arg1="${PWD}"
+        arg1="$PWD"
     fi
 
     pushd "$(pwd)"
-
-    cd "${arg1}"
+    cd "$arg1"
     data=$(albumdetails ./*)
-    artist=$(echo "${data}"|grep "Artist"| cut -d ':' -f 2-|xargs)
-    album=$(echo "${data}"|grep "Album"| cut -d ':' -f 2-|xargs)
+    artist=$(echo "$data" | grep "Artist" | cut -d ':' -f 2- | xargs)
+    album=$(echo "$data" | grep "Album" | cut -d ':' -f 2- | xargs)
 
-    if [[ $1 == '-i' ]]; then
-        sacad "${artist}" "${album}" "${default_coversize}" "${default_covername}"
-    fi
+    [ "$1" = '-i' ] && sacad "$artist" "$album" "$default_coversize" "$default_covername"
 
     {
-        for flac_ in *.flac; do
-            metaflac --import-picture-from="${default_covername}" "${flac_}"
+        for flac in *.flac; do
+            metaflac --import-picture-from="$default_covername" "$flac"
         done
-        for mp3_ in *.mp3; do
-            eyeD3 --add-image="${default_covername}":FRONT_COVER "${mp3_}"
+        for mp3 in *.mp3; do
+            eyeD3 --add-image="$default_covername":FRONT_COVER "$mp3"
         done
     } 2> /dev/null
-
     popd
 }
 
-main "$@"
+download_cover "$@"
