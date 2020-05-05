@@ -3,8 +3,6 @@ sanitize tridactyllocal tridactylsync
 set searchengine g
 colors neg
 set allowautofocus true
-set newtab http://localhost:31831
-set tabopencontaineraware true
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
 set hintnames short
