@@ -3,6 +3,8 @@ sanitize tridactyllocal tridactylsync
 set searchengine g
 colors neg
 set allowautofocus true
+set visualenterauto false
+set newtab google.com
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
 set hintnames short
@@ -26,7 +28,7 @@ setpref xpinstall.signatures.required false
 setpref accessibility.typeaheadfind.flashBar 0
 setpref pdfjs.disabled true
 "setpref browser.display.use_document_fonts 0
-setpref browser.download.dir "/home/neg/dw"
+setpref browser.download.dir "~/dw"
 setpref ui.key.accelKey 18
 
 unbindurl mail\.google\.com j
