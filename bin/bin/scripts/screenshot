@@ -1,24 +1,15 @@
 #!/bin/dash
 scr_dir=~/tmp/shots
-window='root'
-name="screenshot"
-filename="${name}-$(date +%Y-%m-%d_%H-%M-%S).png"
-colorspace_='0.96,0.5,0.09'
-urgency_=normal
+filename="screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
 summary_="$scr_dir/$filename"
-
+[ ! -d "$scr_dir" ] && mkdir "$scr_dir"
 arglist=" -p 0 "
-
-shot_notify() {
-    ~/bin/scripts/pic_notify "$summary_" &
-}
 
 make_shot() {
     arglist="$arglist $summary_"
-    maim -m 1 $arglist && shot_notify
+    maim -m 1 $arglist
+    ~/bin/scripts/pic_notify "$summary_" &
 }
-
-[ ! -d "$scr_dir" ] && mkdir "$scr_dir"
 
 Select() {
     arglist="$arglist -s "
@@ -40,10 +31,9 @@ Full() {
     make_shot "$@"
 }
 
-opts='"Full shot" "Rectangular selection shot" "Current window" "Delayed shot"'
-
 Menu() {
     rofi_cmd="rofi -dmenu -theme clip"
+    opts='"Full shot" "Rectangular selection shot" "Current window" "Delayed shot"'
     case $(for opt in $opts; do echo $opt; done | eval $rofi_cmd) in
         -r) Select "$@" ;;
         -f) Full "$@" ;;
