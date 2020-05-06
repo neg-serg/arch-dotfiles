@@ -10,12 +10,12 @@ summary_="$scr_dir/$filename"
 arglist=" -p 0 "
 
 shot_notify() {
-    ~/bin/scripts/pic_notify "$summary_"
+    ~/bin/scripts/pic_notify "$summary_" &
 }
 
 make_shot() {
     arglist="$arglist $summary_"
-    maim $arglist && shot_notify
+    maim -m 1 $arglist && shot_notify
 }
 
 [ ! -d "$scr_dir" ] && mkdir "$scr_dir"
