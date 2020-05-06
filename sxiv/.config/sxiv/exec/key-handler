@@ -1,59 +1,31 @@
 #!/bin/zsh
 
+opt="$1";
+
+readonly tmpfs="/tmp"
+readonly TAGFILE="${XDG_CONFIG_HOME}/sxiv/tags"
+readonly tmp_file="${tmpfs}/sxiv.$$"
+readonly tmp_file2="${tmpfs}/sxiv2.$$"
+readonly tmp_imgur="${tmpfs}/sxiv_imgur.$$"
+readonly tmp_wall="${tmpfs}/wall_sxiv.$$"
+readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
+readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
+readonly trash_dir="${HOME}/trash/1st-level/pic"
+readonly rofi_cmd="rofi -dmenu -sort -matching fuzzy -no-plugins -no-only-match -theme sxiv -custom"
+
 cmds_=("cp" "mv")
 
 resolve_file() {
     if  [[ ! -L "${1}" && -f "${1}" ]]; then
         echo $(readlink -f "${1}")
     elif [[ -L "${1}" ]]; then
-        builtin print "$(cd $(dirname "${1}") && pwd -P)/$(basename "${1}")"
+        print "$(cd $(dirname "${1}") && pwd -P)/$(basename "${1}")"
     elif [[ "${1#/}" == "${1}" ]]; then
         echo "$(pwd)/${1}"
     else
         echo "${1}"
     fi
 }
-
-resolve_file2() {
-    if [[ -f "${1}" ]]; then
-        builtin print "$(cd $(dirname "${1}") && pwd -P)/$(basename "${1}")"
-    elif [[ "${1#/}" == "${1}" ]]; then
-        builtin print "$(pwd)/${1}"
-    else
-        builtin print "${1}"
-    fi
-}
-
-opt="$1";
-
-readonly tmpfs="/tmp"
-readonly TAGFILE="${XDG_CONFIG_HOME}/sxiv/tags"
-
-readonly tmp_file="${tmpfs}/sxiv.$$"
-readonly tmp_file2="${tmpfs}/sxiv2.$$"
-readonly tmp_imgur="${tmpfs}/sxiv_imgur.$$"
-readonly tmp_wall="${tmpfs}/wall_sxiv.$$"
-
-readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
-readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
-
-readonly width_x11_=$(xrandr -q |awk '/Screen/{print $8}')
-readonly width_="$[${width_x11_}-70]"
-readonly lines_=12
-
-readonly trash_dir="${HOME}/trash/1st-level/pic"
-
-readonly rofi_cmd=(
-    rofi -dmenu
-    -opacity "${opacity_}"
-    -theme-str "'#window { width:${width_}; y-offset: 20; location: north; anchor: north; }'"
-    -theme-str "'#listview { lines:${lines_}; }'"
-    -sort
-    -matching fuzzy
-    -no-plugins
-    -no-only-match
-    -custom
-)
 
 finish_() {
     rm -f "${tmp_file}" "${tmp_file2}" "${tmp_imgur}"
@@ -63,8 +35,12 @@ rotate() {
     local degree="${1}"
     while read file; do
         case "$(file -b -i "${file}")" in
-        image/jpeg*) jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}" ;;
-        *)           mogrify  -rotate "${degree}" "${file}" ;;
+        image/jpeg*) 
+            jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}"
+        ;;
+        *)
+            mogrify  -rotate "${degree}" "${file}"
+        ;;
         esac
     done
 }
@@ -78,22 +54,16 @@ rename() {
     trap finish_ EXIT
 }
 
-by_rating() {
-    sort -r -t '|' -nk2 "${z_data_file}" \
-    | mawk -F '|' '{print $1}'
-}
-
 by_fasd_last_use() {
     _FASD_DATA="${XDG_DATA_HOME}/sxiv_do.data" fasd -tlR
 }
 
 proc() {
-    alias ourcmd_=by_fasd_last_use
     local action="$1"
     (( ${cmds_[(I)${action}]} )) && { cmd="${action}"; cmd_w="${action}" }
     >>"${tmp_file}"
     if [[ -z "${dest}" ]] ; then
-        dest=$(ourcmd_ | sed 's:^'${HOME}':~:' \
+        dest=$(by_fasd_last_use | sed 's:^'${HOME}':~:' \
       | eval $(echo ${rofi_cmd} -p "\"⟬${cmd}⟭ ❯> \"") \
       | sed 's:^~:'${HOME}':')
     fi
@@ -108,9 +78,6 @@ proc() {
     else
         _FASD_DATA="${z_data_file}" fasd -D "${dest}"
     fi
-
-    unalias ourcmd_
-
     trap finish_ EXIT
 }
 
@@ -143,7 +110,7 @@ copy_name() {
     >>"${tmp_file2}"
     local fp=$(< "${tmp_file2}")
     local fname="$(resolve_file ${fp})"
-    xsel -bi <<< "${fname}"
+    echo "${fname}" | xsel -bi
     ~/bin/scripts/pic_notify "${fname}"
     trap finish_ EXIT
 }
@@ -152,13 +119,13 @@ imgur_it() {
     >>"${tmp_imgur}"
     while read f; do
         fp="$(resolve_file ${f})"
-        xsel -i <<< $(~/bin/img "${fp}" |tee -a ~/tmp/imgur_output_)
-        xsel -i <<< $(xsel -o|awk '/original/{print $2}')
+        ~/bin/img "${fp}" | tee -a ~/tmp/imgur_output_ | xsel -i
+        xsel -o | awk '/original/{print $2}' | xsel -i
     done < "${tmp_imgur}"
     trap finish_ EXIT
 }
 
-wall(){
+wall() {
     local action="$1"
     local wallarg=()
     local specarg=()
