@@ -41,55 +41,62 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
 ## Overview
 
 + Terminal
-    + **alacritty** -- nice cross-platform terminal emulator, but I am using suckless
-    terminal for now.
-    + **sh** -- based bourne shell config.
+    + **alacritty** -- a cross-platform, GPU-accelerated terminal emulator,
+      my only option for now.
+    + **sh** -- based bourne shell config/profile, used for *dash*.
     + **bash** -- I don't use bash widely, anyway I have some basic config.
-    + **zsh** -- the best of the best shell for me, pretty complex custom config. Based on GRML many years ago, maybe now it is not.
-    + **cool-retro-term** -- very nice(but slow) terminal emulator a-la "old TV"
-    + **term-colorschemes** -- various dynamic colorschemes, not up-to-date.
+    + **zsh** -- the best of the best shell for me, pretty complex custom
+      config. Based on GRML many years ago, maybe now it is not.
+    + **term-colorschemes** -- dump for my custom 256-colorscheme and other.
     + **dircolors** -- my 256-color filetype-based dircolors.
     + **tmux** -- tmux config
 + Dev
-    + **vim** -- I am using neovim for now, a lot of nice stuff. Also used as IDE for almost all languages(except of java, scala)
-    + **dcvs** -- configs for dcvs, except git.
+    + **vim** -- I am using neovim for now, a lot of nice stuff. Also used as
+      IDE for almost all languages(except of java, scala)
     + **git** -- config for git(.gitconfig)
-+ Debugging
     + **gdb** -- GNU debugger.
 + Music
     + **mpd** -- music player daemon and mpd-notification configs.
     + **ncmpcpp** -- mpd client
     + **beets** -- music library manager
 + Window system / X11
-    + **i3** -- my current WM with a lot of new stuff. I migrated to it after many years of using my fork of Notion WM.
+    + **i3** -- my current WM with a lot of new stuff. I migrated to it after
+      many years of using my fork of Notion WM.
+    + **rofi** -- dmenu analogue to run programs, find windows, everything,
+      used very widely.
     + **gtk** -- gtkrc
-    + **dunst** -- my minimalistic notification daemon, which also used for mpd-notification.
+    + **dunst** -- my minimalistic notification daemon, which also used for
+      mpd-notification.
     + **polybar** -- my statusbar
-    + **keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock rebinded to ctrl, etc.
+    + **keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock
+      rebinded to ctrl, etc.
     + **x11** -- various x11 related stuff
-    + **startup** -- scripts for .xinitrc to run compositing, custom keybindings, etc.
-    + **rofi** -- dmenu analogue to run programs, find windows, everything, used very widely.
-    + **sxhkd** -- x11-wide keybindings, independent to WM.
+    + **startup** -- scripts for .xinitrc to run compositing, custom
+      keybindings, etc.
     + **picom** -- x11 compositing manager.
 + Net
-    + **tridactyl** -- Vimperator-like firefox addon. Vim-like keybindings and UX in firefox.
+    + **tridactyl** -- Vimperator-like firefox addon. Vim-like keybindings
+      and UX in firefox.
     + **stig** -- custom colorscheme for this nice transmission-client
-    + **css**
-        * https://github.com/StylishThemes/GitHub-Dark
-        * https://userstyles.org/styles/144028/google-clean-dark
-        * https://userstyles.org/styles/159026/new-gmail-dark-theme-tweaks-gmail-2018
-        * https://userstyles.org/styles/126419/vanilla-dark-2-vk
-        * https://userstyles.org/styles/166756/yandex-dark-theme
-+ IM / Mail / News
-    + **newsboat** -- cli newsbeuter-based rss-reader.
 + Media
     + **mpv** -- my minimalistic video player config.
     + **sxiv** -- config for my fork of sxiv, image viewer.
 + Emulators
     + **dos** -- configs for dos emulators.
++ Doc
+    + **zathura** -- nice and tiny pdf/djvu/whatever viewer with UX similar
+      to vim
++ Misc
+    + **neofetch** -- nice fetch with custom config
+    + **htop** -- basic htop stuff(monochromatic for now)
+    + **imgur-screenshot** -- imgur uploaders.
+    + **misc** -- various stuff, which I don't use a lot as like urlview,
+      keynav, etc.
+    + **task** -- basic config for my GTD-like tool taskwarrior.
+    + **ranger** -- nice console-based filemanager. I do not using it a lot,
+      but like picture preview feature(in terminal, based on w3m).
 + systemd
     + **systemd** -- user services(for `systemctl --user`)
-        + caddy.service: local webserver for firefox startpage
         + caffeine.service: Prevents the desktop becoming idle in full-screen mode
         + downloads.service: Downloads cleaner and handler
         + picom.service: Compositing manager
@@ -109,12 +116,3 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
         + wallpaper.service: setup wallpaper on startup
         + x11.service: startx as service
         + xinput_settings.service: my xinput settings
-+ Doc
-    + **zathura** -- nice and tiny pdf/djvu/whatever viewer with UX similar to vim
-+ Misc
-    + **neofetch** -- nice fetch with custom config
-    + **htop** -- basic htop stuff(monochromatic for now)
-    + **imgur-screenshot** -- imgur uploaders.
-    + **misc** -- various stuff, which I don't use a lot as like urlview, keynav, etc.
-    + **task** -- basic config for my GTD-like tool taskwarrior.
-    + **ranger** -- nice console-based filemanager. I do not using it a lot, but like picture preview feature(in terminal, based on w3m).
