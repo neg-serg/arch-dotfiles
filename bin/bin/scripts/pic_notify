@@ -1,49 +1,28 @@
-#!/bin/zsh
+#!/bin/dash
 
 img="$1"
-
-conv_image() { 
-    readonly size=180
-    [[ ! $1 =~ .*gif ]] && ~/bin/scripts/python_img_resizer.py ${size} "$1" "$2"
-}
-
 send_notify() { 
-    input=${img}
-
-    local c1="<span weight='bold' color='#395573'>"
-    local c2="<span weight='bold' color='#245361'>"
-    local b="<span weight='bold'>"
-
-    local clear="</span>"
-
-    local header="⟬${input}⟭"
-    header="$(sed -e "s:${HOME}:~:" \
-                -e "s:\/:${c1}/${clear}:g" \
-                -e "s:\(⟬\|⟭\):${c1}\1${clear}:g" -e "s:~:${c2}~${clear}:g" <<< ${header})"
-
-    local inf=$(/usr/bin/vendor_perl/exiftool -ImageSize -MIMEType -Megapixels ${img})
-
-    output=$(xargs -n4 <<< "${inf}" \
+    c1="<span weight='bold' color='#395573'>"
+    c2="<span weight='bold' color='#245361'>"
+    b="<span weight='bold'>"
+    clear="</span>"
+    header="⟬$img⟭"
+    header="$(echo "$header" | sed -e "s:$HOME:~:" \
+                -e "s:\/:$c1/$clear:g" \
+                -e "s:\(⟬\|⟭\):$c1\1$clear:g" -e "s:~:$c2~$clear:g")"
+    inf=$(/usr/bin/vendor_perl/exiftool -ImageSize -MIMEType -Megapixels $img)
+    output=$(echo "$inf" | xargs -n4 \
         | sed -e 's/^/⟬/' -e 's/$/⟭/' \
-        -e "s;\(.*\):;${b}\\1${c1}:${clear}${clear};" \
-        -e "s:\(⟬\|⟭\):${c1}\1${clear}:g"
+        -e "s;\(.*\):;$b\\1$c1:$clear$clear;" \
+        -e "s:\(⟬\|⟭\):$c1\1$clear:g"
     )
-    
-    wait
-    dunstify -h "string:fgcolor:#6C7E96" -a "pic_notify" -i "${new_image}" ' ' "${header}\n${output}"
-}
-
-finish() {
-    (sleep 3s && rm -f "${new_image}") &
+    dunstify -h "string:fgcolor:#6C7E96" -a "pic_notify" -i "$img" ' ' "$header\n$output"
 }
 
 main() {
-    local shots_pikz="${HOME}/tmp/shots"
-    [[ ! -d "${shots_pikz}" ]] && mkdir -p "${shots_pikz}"
-    new_image="${HOME}/tmp/$(basename ${img})_new.png"
-    conv_image "${img}" "${new_image}" &
-    xclip <<< "${img}"
-    trap finish EXIT
+    shots_pikz="$HOME/tmp/shots"
+    [ ! -d "$shots_pikz" ] && mkdir -p "$shots_pikz"
+    echo "${img}" | xclip
     send_notify 
 }
 
