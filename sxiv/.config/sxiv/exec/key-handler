@@ -1,6 +1,4 @@
-#!/bin/zsh
-
-opt="$1";
+#!/bin/dash
 
 tmpfs="/tmp"
 TAGFILE="$XDG_CONFIG_HOME/sxiv/tags"
@@ -13,22 +11,18 @@ last_action="$XDG_DATA_HOME/sxiv_do.last"
 trash_dir="$HOME/trash/1st-level/pic"
 rofi_cmd="rofi -dmenu -sort -matching fuzzy -no-plugins -no-only-match -theme sxiv -custom"
 
-cmds_=("cp" "mv")
-
 resolve_file() {
     if  [ ! -L "$1" ] && [ -f "$1" ]; then
         echo $(readlink -f "$1")
     elif [ -L "$1" ]; then
         print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
-    elif [ "${1#/}" == "$1" ]; then
-        echo "$(pwd)/$1"
     else
         echo "$1"
     fi
 }
 
-finish_() {
-    rm -f "${tmp_file}" "${tmp_file2}" "${tmp_imgur}"
+finish() {
+    rm -f "$tmp_file" "$tmp_file2" "$tmp_imgur"
 }
 
 rotate() {
@@ -46,12 +40,12 @@ rotate() {
 }
 
 rename() {
-    >>"$tmp_file"
-    dest=$(printf "%s" "$(basename "$fp")" | eval $(echo $rofi_cmd -p '"[rem] >> "'))
+    tee "$tmp_file"
+    dest=$(printf "%s" "$(basename "$fp")" | eval $(echo $rofi_cmd -p '"⟬$rem⟭ >> "'))
     [[ -n "$dest" ]] && \
         fp=$(< "$tmp_file") && \
         mv "$fp" "$(dirname "$fp")/$dest"
-    trap finish_ EXIT
+    trap finish EXIT
 }
 
 by_fasd_last_use() {
@@ -59,12 +53,8 @@ by_fasd_last_use() {
 }
 
 proc() {
-    action="$1"
-    (( ${cmds_[${action}]} )) && {
-        cmd="$action";
-        cmd_w="$action" 
-    }
-    >>"$tmp_file"
+    cmd="$1";
+    tee "$tmp_file"
     if [ -z "$dest" ] ; then
         dest=$(by_fasd_last_use | sed 's:^'$HOME':~:' \
       | eval $(echo $rofi_cmd -p "\"⟬$cmd⟭ ❯> \"") \
@@ -73,59 +63,49 @@ proc() {
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ]; then
         while read line; do
-            file_name="$(resolve_file $line)"
-            eval $(echo $cmd \"$file_name\" $dest)
+            eval $cmd \"$(resolve_file $line)\" $dest
         done < "$tmp_file"
         _FASD_DATA="$z_data_file" fasd -RA "$dest"
-        printf "%s\n" "$cmd_w "$dest"" > "$last_action"
+        printf "%s\n" "$cmd "$dest"" > "$last_action"
     else
         _FASD_DATA="$z_data_file" fasd -D "$dest"
     fi
-    trap finish_ EXIT
-}
-
-delete() {
-    >>"$tmp_file"
-    [ -z "$trash_dir" ] || [ ! -d "$trash_dir" ] && exit 0
-    while read line; do
-        file_name="$(resolve_file $line)"
-        eval $(echo mv $(echo \"$file_name\") $trash_dir)
-    done < "$tmp_file"
-    printf "%s\n" "mv "$trash_dir"" > "$last_action"
-    trap finish_ EXIT
+    trap finish EXIT
 }
 
 rep() {
-    >"$tmp_file"
-    file=($(< "$last_action"))
-    action=$file[1]
-    dest=$file[2]
-    [ ! -d "$dest" ] && exit 0
+    tee "$tmp_file"
+    eval "$(cat "$last_action")"
+    trap finish EXIT
+}
+
+delete() {
+    tee "$tmp_file"
+    [ -z "$trash_dir" ] || [ ! -d "$trash_dir" ] && exit 0
     while read line; do
-        file_name="$(resolve_file $line)"
-        (( $cmds_[$action] )) && cmd="$action"
-        eval $(echo $cmd $(echo \"$file_name\") $dest)
-    done < $tmp_file
-    trap finish_ EXIT
+        eval $(echo mv $(echo \"$(resolve_file $line)\") $trash_dir)
+    done < "$tmp_file"
+    printf "%s\n" "mv "$trash_dir"" > "$last_action"
+    trap finish EXIT
 }
 
 copy_name() {
-    >>"$tmp_file2"
+    tee "$tmp_file2"
     fp=$(< "$tmp_file2")
     fname="$(resolve_file $fp)"
     echo "$fname" | xsel -bi
     ~/bin/scripts/pic_notify "$fname"
-    trap finish_ EXIT
+    trap finish EXIT
 }
 
 imgur_it() {
-    >>"$tmp_imgur"
+    tee "$tmp_imgur"
     while read f; do
         fp="$(resolve_file $f)"
         ~/bin/img "$fp" | tee -a ~/tmp/imgur_output_ | xsel -i
         xsel -o | awk '/original/{print $2}' | xsel -i
     done < "$tmp_imgur"
-    trap finish_ EXIT
+    trap finish EXIT
 }
 
 wall() {
@@ -153,22 +133,22 @@ wall() {
     fi
 }
 
-case "${opt}" in
-    "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
-    "C-comma")  rotate 270 ;;
-    "C-period") rotate  90 ;;
-    "C-slash")  rotate 180 ;;
-    "C-less")   rotate -90 ;;
-    "C-d")      delete ;;
-    "v")        proc mv ;;
-    "C-c")      proc cp ;;
-    "C-r")      rename ;;
-    "r")        rep ;;
-    "c")        copy_name ;;
-    "C-q")      wall "center" ;;
-    "C-w")      wall "fill" ;;
-    "C-e")      wall "full" ;;
-    "C-r")      wall "tile" ;;
-    "C-t")      wall "mono" ;;
-    "C-i")      imgur_it ;;
+case "$1" in
+    "C-g") tr '\n' '\0' | xargs -0 gimp & ;;
+    "C-comma") rotate 270 ;;
+    "C-period") rotate 90 ;;
+    "C-slash") rotate 180 ;;
+    "C-less") rotate -90 ;;
+    "C-d") delete ;;
+    "v") proc mv ;;
+    "C-c") proc cp ;;
+    "C-r") rename ;;
+    "r") rep ;;
+    "c") copy_name ;;
+    "C-q") wall "center" ;;
+    "C-w") wall "fill" ;;
+    "C-e") wall "full" ;;
+    "C-r") wall "tile" ;;
+    "C-t") wall "mono" ;;
+    "C-i") imgur_it ;;
 esac
