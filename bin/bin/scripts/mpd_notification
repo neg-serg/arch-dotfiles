@@ -130,7 +130,7 @@ main(){
     [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
     prev="${dunst_pics}/prev.png"
 
-    find "${dunst_pics}" -name prev.png -not -newermt '-900 seconds' -delete
+    fd prev.png --changed-before '12min' -x rm '{}'
     if [[ -f ${image} ]]; then
         [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
 
