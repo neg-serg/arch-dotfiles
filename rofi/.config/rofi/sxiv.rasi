@@ -1,0 +1,7 @@
+#window {
+    width:96%; y-offset: 20; location: north; anchor: north;
+}
+
+#listview { 
+    lines: 12;
+}
