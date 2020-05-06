@@ -51,8 +51,9 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **dircolors** -- my 256-color filetype-based dircolors.
     + **tmux** -- tmux config
 + Dev
-    + **vim** -- I am using neovim for now, a lot of nice stuff. Also used as
-      IDE for almost all languages(except of java, scala)
+    + **vim** -- I am using neovim for now, a lot of nice stuff. Also it's
+      used as my only developement environment for the all programming
+      languages.
     + **git** -- config for git(.gitconfig)
     + **gdb** -- GNU debugger.
 + Music
