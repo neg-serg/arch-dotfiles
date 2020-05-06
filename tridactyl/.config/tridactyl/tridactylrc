@@ -4,7 +4,8 @@ set searchengine g
 colors neg
 set allowautofocus true
 set visualenterauto false
-set newtab google.com
+set tabopencontaineraware false
+set tabopenpos last
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
 set hintnames short
