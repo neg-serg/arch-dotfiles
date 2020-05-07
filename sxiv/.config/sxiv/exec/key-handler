@@ -1,6 +1,5 @@
 #!/bin/dash
 cache="/tmp"
-TAGFILE="$XDG_CONFIG_HOME/sxiv/tags"
 file1="$cache/sxiv1.$$"
 file2="$cache/sxiv2.$$"
 tmp_imgur="$cache/sxiv_imgur.$$"
