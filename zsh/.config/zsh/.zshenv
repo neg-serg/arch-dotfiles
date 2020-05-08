@@ -1,5 +1,3 @@
-[[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
-[[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -13,6 +11,9 @@ export XDG_DOCUMENTS_DIR="${HOME}/doc/"
 export XDG_PICTURES_DIR="${HOME}/pic"
 export XDG_VIDEOS_DIR="${HOME}/vid"
 export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
+
+[[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
+[[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
 
 export XDG_CURRENT_DESKTOP="KDE"
 export KDE_SESSION_VERSION="5"
@@ -42,11 +43,10 @@ export FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
 export MPV_HOME="${XDG_CONFIG_HOME}/mpv"
-export KEYTIMEOUT=5 # allow to use ,<key> more fast
+export KEYTIMEOUT=5
 export ESCDELAY=1
 export GOPATH=/opt/go
 export STEAM_RUNTIME=1
-export AUTOPAIR_INHIBIT_INIT=1
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export AURDEST=$(readlink -f "${HOME}/tmp/pacaur")
 
