@@ -2,9 +2,6 @@
 [[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 
-export XDG_VTNR=1
-systemctl --user set-environment XDG_VTNR=1
-
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CACHE_HOME="${HOME}/.cache"
