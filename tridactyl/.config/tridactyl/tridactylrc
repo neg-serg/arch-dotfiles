@@ -1,18 +1,14 @@
-" reset settings on startup
-sanitize tridactyllocal tridactylsync
-set searchengine g
 colors neg
+set searchengine g
 set allowautofocus true
 set visualenterauto false
 set tabopencontaineraware false
 set tabopenpos last
-" Sane hinting mode
 set hintfiltermode vimperator-reflow
 set hintnames short
 set hintchars 12345
 set incsearch true
 set modeindicatorshowkeys true
-" Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
 set hintdelay 100
 
 set keytranslatemodes.nmaps true
@@ -28,9 +24,7 @@ setpref extensions.webextensions.restrictedDomains ""
 setpref xpinstall.signatures.required false
 setpref accessibility.typeaheadfind.flashBar 0
 setpref pdfjs.disabled true
-"setpref browser.display.use_document_fonts 0
 setpref browser.download.dir "~/dw"
-setpref ui.key.accelKey 18
 
 unbindurl mail\.google\.com j
 unbindurl mail\.google\.com k
@@ -45,7 +39,6 @@ bind --mode=input <C-c> composite unfocus | mode normal
 bind --mode=insert <C-c> composite unfocus | mode normal
 bind --mode=input <C-[> composite unfocus | mode normal
 bind --mode=insert <C-[> composite unfocus | mode normal
-
 bind --mode=normal <C-c> composite unfocus | mode normal
 bind --mode=normal <C-[> composite unfocus | mode normal
 
@@ -66,8 +59,8 @@ bind --mode=ex          <C-u>   text.backward_kill_line
 bind --mode=insert      <C-u>   text.backward_kill_line
 bind --mode=input       <C-u>   text.backward_kill_line
 " Requires custom firefox build: https://github.com/glacambre/firefox-patches
-" or you can make simple modification over 
-" ui.key.accelKey 17(Ctrl) to 18(Alt) in about:config.
+" or you can make simple modification over ui.key.accelKey 17(Ctrl) to 18(Alt)
+" in about:config.
 bind --mode=ex          <C-w>   text.backward_kill_word
 bind --mode=insert      <C-w>   text.backward_kill_word
 bind --mode=input       <C-w>   text.backward_kill_word
@@ -116,7 +109,8 @@ quickmark A https://magazine.artstation.com/
 
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
 " command line, so set an option to move the status bar to the right.
-guiset_quiet hoverlink right
+guiset_quiet hoverlink left
+guiset_quiet statuspanel left
 
 " Cyrillic keymap support
 keymap , ?
