@@ -24,7 +24,6 @@ Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 Plug 'junegunn/fzf', { 'dir': '~/.config/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
-Plug 'dyng/ctrlsf.vim' " interactive vim-grep
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } "better grep plugin
 " --[ Dev ]--------------------------------------------------------------------------
@@ -44,7 +43,6 @@ Plug 'iamcco/markdown-preview.nvim' " markdown previewthinca/vim-ref
 Plug 'mattn/emmet-vim', {'on': 'EmmetInstall'} " expanding abbreviations similar to emmet
 Plug 'vimwiki/vimwiki' " personal wiki for vim
 " --[ Appearance ]-------------------------------------------------------------------
-Plug 's3rvac/AutoFenc' "  try to autodelect filetype
 Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
 Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for indent
