@@ -3,55 +3,53 @@ mpd_host = "localhost"
 mpd_port = 6600
 mpd_music_dir = "~/music"
 mpd_crossfade_time = "0"
-user_interface = "classic"
 ncmpcpp_directory = "~/.config/ncmpcpp"
-#--=[ Visualizer ]=---------------
-visualizer_fifo_path = "/tmp/audio.fifo"
-visualizer_output_name = "my_fifo"
-visualizer_in_stereo = "no"
-visualizer_color = 091,097,108,104,99,105,111
-visualizer_type = ellipse
-
+#--=[ Main ]=-------------------
+autocenter_mode = "yes"
+centered_cursor = "yes"
+user_interface = "classic"
+follow_now_playing_lyrics = "yes"
+locked_screen_width_part = "50"
+display_bitrate = "yes"
+mouse_support = "yes"
+mouse_list_scroll_whole_page = "yes"
+use_console_editor = "yes"
+external_editor = "~/bin/v"
+jump_to_now_playing_song_at_start = "yes"
+ask_before_clearing_playlists = "no"
+song_window_title_format = "ncmpcpp ─╼ {%a - %t} {[%b{%d}]} <{%l}>"
 #--=[ Playlist ]=---------------
 playlist_disable_highlight_delay = "1"
 playlist_show_remaining_time = "yes"
-show_duplicate_tags = "no"
+playlist_shorten_total_times = "yes"
 playlist_display_mode = "classic"
+playlist_editor_display_mode = "columns"
+show_duplicate_tags = "no"
 cyclic_scrolling = "no"
-lines_scrolled = "4"
-mouse_list_scroll_whole_page = "no"
-
-use_console_editor = "yes"
-external_editor = "/home/neg/bin/v"
-
-jump_to_now_playing_song_at_start = "yes"
-
-ask_before_clearing_playlists = "no"
-
+lines_scrolled = "1"
+#--=[ Progressbar ]=--------
+progressbar_look = "─╼ "
+progressbar_color = "white"
+progressbar_elapsed_color = "cyan"
 #--=[ Bars ]=---------------
 song_status_format = "{$8%a} $(25)❯$(26)> {$8%t} $(25)❯$(26)> $b{$8%b}$/b $b({$8%y})$/b"
 song_list_format = " $0$8$8%5n$0$8 $(238)|$7 $7%26a$7 $(238)❯$(238)>$7 $6%44t$(1)$R$(238)❮ $8%5l $(238)| $(8)%28b$(8) "
 song_library_format = "{%n > }{%t}|{%f}"
-now_playing_suffix = "$/b$(24)◂$3"
-progressbar_look = "─╼ "
+now_playing_suffix = "$/b$(24)◂$(25)"
 titles_visibility = "no"
 header_visibility = "no"
 statusbar_visibility = "yes"
-display_bitrate = "yes"
 display_remaining_time = "no"
 clock_display_seconds = "yes"
-
 #--=[ Media library ]=--------
 media_library_primary_tag = "artist"
 media_library_albums_split_by_date = "yes"
-
 #--=[ Browser ]=--------------
 browser_playlist_prefix = "$2plist »$9 "
 browser_display_mode = "classic"
 incremental_seeking = "yes"
 seek_time = "4"
-message_delay_time = "1"
-
+message_delay_time = "3"
 #--=[ Colors ]=---------------
 colors_enabled = "yes"
 discard_colors_if_item_is_selected = "yes"
@@ -63,27 +61,29 @@ state_flags_color = "green"
 main_window_color = "default"
 color1 = "cyan"
 color2 = "default"
-
-progressbar_color = "white"
-progressbar_elapsed_color = "cyan"
-
 statusbar_color = "white"
-
-current_item_prefix = "$(blue)$r"
+current_item_prefix = "$/b$3"
 current_item_suffix = "$/r$(end)"
-current_item_inactive_column_prefix="$(default)$r"
+current_item_inactive_column_prefix="$/b$(25)"
 current_item_inactive_column_suffix="$/r$(end)"
-
-song_window_title_format = "ncmpcpp ─╼ {%a - %t} {[%b{%d}]} <{%l}>"
-search_engine_display_mode = "columns" (classic/columns)
-follow_now_playing_lyrics = "yes"
 default_tag_editor_pattern = "%n - %t"
 default_find_mode = "normal"
 ignore_leading_the = "yes"
 ignore_diacritics = "yes"
+search_engine_display_mode = "classic"
 default_place_to_search_in = "database"
 show_hidden_files_in_local_browser = "no"
 active_window_border = "black"
 empty_tag_marker = "[...]"
 regular_expressions = "extended"
+#--=[ Visualizer ]=---------------
+visualizer_fifo_path = "/tmp/audio.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "no"
+visualizer_color = 091,097,108,104,99,105,111
+visualizer_sync_interval = "10"
+visualizer_look = "▞▋"
+visualizer_type = ellipse
+
+execute_on_song_change="bash -c '~/.ncmpcpp/scripts/notify'"
 #  vim: set ts=2 sw=2 tw=0 :
