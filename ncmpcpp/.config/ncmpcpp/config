@@ -74,7 +74,7 @@ search_engine_display_mode = "classic"
 default_place_to_search_in = "database"
 show_hidden_files_in_local_browser = "no"
 active_window_border = "black"
-empty_tag_marker = "[...]"
+empty_tag_marker = "⟬…⟭"
 regular_expressions = "extended"
 #--=[ Visualizer ]=---------------
 visualizer_fifo_path = "/tmp/audio.fifo"
