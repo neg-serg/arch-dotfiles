@@ -1,6 +1,5 @@
 input-ipc-server=/tmp/mpvsocket
-vo-vdpau-colorkey="#020507"
-
+vo-vdpau-colorkey="#000000"
 #--[Decoding]----------------------------------------------
 hwdec-codecs=all
 vd-lavc-threads=9
@@ -19,7 +18,6 @@ ao=pulse,jack
 slang=ru,rus
 alang=en
 #--[Geometry]----------------------------------------------
-monitoraspect=16:10
 geometry=100%:100%
 no-border
 fullscreen=yes
@@ -31,7 +29,7 @@ sub-auto=fuzzy
 sub-font="Helvetica Neue LT Std"
 sub-font="HelveticaNeue LT CYR 57 Cond"
 #--[OSD]---------------------------------------------------
-osd-font="Iosevka Medium"
+osd-font="Iosevka"
 osd-font-size=18
 osd-color='#cc53a6a6'
 osd-border-color='#cc000000'
@@ -47,11 +45,9 @@ ytdl-format=bestvideo+bestaudio/best
 #--[ETC]---------------------------------------------------
 screenshot-template="~/dw/scr-%F_%P"
 quiet
-
 [extension.flac]
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
-
 [extension.mp3]
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
