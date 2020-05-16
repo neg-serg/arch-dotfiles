@@ -1,0 +1,10 @@
+#!/bin/dash
+main() {
+    if [ -z "$1" ]; then
+        docker build .
+        IMG_ID=$(docker images --format "{{.ID}}" | head -n1)
+        echo "$IMG_ID" | xsel -i
+    else
+        docker build -t "$1" .
+    fi
+}

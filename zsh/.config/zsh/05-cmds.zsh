@@ -27,7 +27,6 @@ alias ls="ls --color=auto"
 alias sort='sort --parallel 8 -S 16M'
 alias ping='prettyping'
 alias s="sudo"
-alias x='xargs'
 alias e="mimeo"
 alias u='umount'
 alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
@@ -104,16 +103,6 @@ any() {
     else
         ps xauwww | grep  --color=auto -i "[${1[1]}]${1[2,-1]}"
     fi
-}
-
-imv() {
-    local src dst
-    for src; do
-        [[ -e ${src} ]] || { print -u2 "${src} does not exist"; continue }
-        dst=${src}
-        vared dst
-        [[ ${src} != ${dst} ]] && mkdir -p ${dst:h} && mv -n ${src} ${dst}
-    done
 }
 
 which() {
@@ -196,6 +185,9 @@ zleiab() {
         "e1"   "!-2$"
         "e2"   "!-3$"
         "e3"   "!-4$"
+        "we"   "!-2$"
+        "wd"   "!-3$"
+        "wc"   "!-4$"
     )
 
     local MATCH
@@ -212,25 +204,10 @@ gv() {
 [[ -x =nvim ]] && alias vim=nvim
 [[ ${DISPLAY} ]] &&  alias nvim=v
 
-fun::fonts() {
-    alias 2023='toilet -f future'
-    alias gaym='toilet --gay -f mono9 -t'
-    alias gayf='toilet --gay -f future -t'
-    alias gayt='toilet --gay -f term -t'
-    alias gayp='toilet --gay -f pagga -t'
-    alias metm='toilet --metal -f mono9 -t'
-    alias metf='toilet --metal -f future -t'
-    alias mett='toilet --metal -f term -t'
-    alias metp='toilet --metal -f pagga -t'
-    alias 3d='figlet -f 3d'
-}
-
 # thx to github.com/MitchWeaver/dots
 75%() { mogrify -resize '75%X75%' "$@" ; }
 50%() { mogrify -resize '50%X50%' "$@" ; }
 25%() { mogrify -resize '25%X25%' "$@" ; }
-
-+strip_trailing_workspaces() { sed ${1:+-i} 's/\s\+$//' "$@" }
 
 inplace_mk_dirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
@@ -264,6 +241,16 @@ inplace_mk_dirs() {
     fi
 }
 
+imv() {
+    local src dst
+    for src; do
+        [[ -e ${src} ]] || { print -u2 "${src} does not exist"; continue }
+        dst=${src}
+        vared dst
+        [[ ${src} != ${dst} ]] && mkdir -p ${dst:h} && mv -n ${src} ${dst}
+    done
+}
+
 # just type '...' to get '../..'
 rationalise-dot() {
     local MATCH
@@ -289,16 +276,6 @@ fg-widget() {
 }
 zle -N fg-widget
 
-__expand-alias() {
-	zle _expand_alias
-	zle self-insert
-}
-
-expand_aliases() {
-    zle -N __expand-alias
-    bindkey -M main ' ' __expand-alias
-}
-
 up-one-dir() { pushd .. 2> /dev/null; zle redisplay; zle -M $(pwd);  }
 back-one-dir() { popd     2> /dev/null; zle redisplay; zle -M $(pwd);  }
 zle -N up-one-dir
@@ -310,7 +287,6 @@ magic-abbrev-expand() {
     LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
     zle self-insert
 }
-
 no-magic-abbrev-expand() { LBUFFER+=' ' }
 
 slash-backward-kill-word () {
@@ -318,49 +294,3 @@ slash-backward-kill-word () {
     zle backward-kill-word
 }
 zle -N slash-backward-kill-word
-
-ap() {
-    local inventory="$(pwd)/ansible/hosts"
-    local lib="$(pwd)/ansible/library"
-    local stdout_opt=""
-    local opt1="${1}"
-    if [[ "${opt1}" == "-V" ]]; then
-        export ANSIBLE_STDOUT_CALLBACK="minimal"
-        shift
-    fi
-    play="${1}"
-    shift
-    local options=""
-    [[ ! -z "${ansible_user}" ]] && options="-u ${ansible_user}"
-    export ANSIBLE_CONFIG="${XDG_CONFIG_HOME}/ansible/ansible.cfg"
-    ansible-playbook ${options} -i "${inventory}" -M "${lib}" "${play}" "$@"
-}
-
-db() {
-    if [[ -z "$1" ]]; then
-        docker build .
-        IMG_ID=$(docker images --format "{{.ID}}" | head -n1)
-        echo "$IMG_ID" | xsel -i
-    else
-        docker build -t "$1" .
-    fi
-}
-
-dr() {
-    if [[ -z "$1" ]]; then
-        docker run -it "$(docker images --format "{{.ID}}\n{{.Repository}}" \
-            | grep -v '<none>' \
-            | fzf)"
-    else
-        docker run -it "$1"
-    fi
-}
-
-dcon() {
-    CONTAINER=$(docker ps --format 'table {{.ID}}\t{{.Status}}\t{{.Command}}' \
-        | tail -n +2 \
-        | grep -v '/portainer' \
-        | fzf \
-        | sed 's/\ .*//g')
-    docker exec -i -t "${CONTAINER}" bash
-}
