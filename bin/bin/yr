@@ -1,0 +1,10 @@
+#!/bin/dash
+
+main() {
+    ${XDG_CONFIG_HOME}/i3/send bscratch toggle youtube
+    sleep 1s
+    echo "$@" | xsel -i
+    xdotool key shift+Insert
+}
+
+main "$@"

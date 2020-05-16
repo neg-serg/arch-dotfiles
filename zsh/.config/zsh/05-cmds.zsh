@@ -171,18 +171,6 @@ for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 
 unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
-mp() {
-    local args=""
-    for arg; do
-        if [[ -d ${arg} ]]; then
-            {find "${arg}" -maxdepth 1 -type f -print0 | xargs -0n10 -P 10 ~/bin/scripts/vid_info} &
-        fi
-    done
-    {for arg; [[ -f "${arg}" ]] && args+="$(printf '%s\0' "${arg}")";
-    xargs -0n10 -P 10 ~/bin/scripts/vid_info <<< "${args}"} &
-    mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
-}
-
 if hash git 2>/dev/null; then
     alias gs='git status --short -b'
     alias gp='git push'
@@ -195,16 +183,6 @@ if hash git 2>/dev/null; then
     alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
     eval "$(hub alias -s)"
 fi
-
-yr() {
-    ${XDG_CONFIG_HOME}/i3/send bscratch toggle youtube
-    sleep 1s
-    echo "$@" | xsel -i
-    xdotool key shift+Insert
-}
-
-urlencode() { python -c "import sys, urllib; print(urllib.quote_plus(sys.argv[1]))" }
-urldecode() { python -c "import sys, urllib; print(urllib.unquote_plus(sys.argv[1]))" }
 
 zleiab() {
     local -A abk=(
