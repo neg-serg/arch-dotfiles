@@ -383,3 +383,4 @@ mpd/.config/mpd/mpd.pid
 mpd/.config/mpd/mpdstate
 mpd/.config/mpd/sticker.sql
 mpd/.config/mpd/
+.zinit
