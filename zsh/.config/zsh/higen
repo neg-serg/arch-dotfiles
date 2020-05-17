@@ -1,9 +1,7 @@
 #!/bin/zsh
-autoload colors && colors
-readonly ftype_pref="ftype-"
+readonly ftype_pref=':\ \$\{FAST_HIGHLIGHT_STYLES\[ftype-'
 readonly dircolors_location="${XDG_CONFIG_HOME}/dircolors/dircolors"
-
-hi_main="${ZDOTDIR}/highlighters/main-highlighter.zsh"
+hi_main="${ZDOTDIR}/.zinit/plugins/neg-serg---fast-syntax-highlighting/fast-highlight"
 
 eat () {
     prog=${0##*/}
@@ -49,25 +47,22 @@ main() {
         -e "s/;/,/g"                       
         -e "/\ 3[0-9][0-9]*/s/3/fg=/"      
         -e "s/, //g"
+        -e 's/  */ /g'
+        -e 's/ /]:=/2'
+        -e 's;$;};'
     )
 
     egrep "^${ftype_pref}" -v "${tmp_file}"
     egrep "^${ftype_pref}" "${tmp_file}" | sed ${sed_args} > "${ftype_arr}"
-
-    sed "s/^${ftype_pref}//" "${ftype_arr}" |awk '{print "*."$1") style=ftype-"$1" ;;"}' > "${ftype_rule}"
-
     for t in "${ftype_arr}" "${ftype_rule}"; eat "${t}"
     rm "${tmp_file}"
 
-    cp -iv "${ftype_arr}" "${ZDOTDIR}/highlighters/ft_list.zsh"
-
-    start_line=$[$(grep -n '#.*Begining of ftype array.*@@@@' "${hi_main}"|cut -f1 -d:)+1]
-    end_line=$[$(grep -n '#.*End of ftype array.*@@@@' "${hi_main}"|cut -f1 -d:)-1]
-
+    cp -v "${ftype_arr}" "${ZDOTDIR}/.zinit/plugins/neg-serg---fast-syntax-highlighting/ftype_hi.zsh"
+    start_line=$[$(grep -n '#.*Begining of ftype array.*@@@@' "${hi_main}" | cut -f1 -d:)+1]
+    end_line=$[$(grep -n '#.*End of ftype array.*@@@@' "${hi_main}" | cut -f1 -d:)-1]
     if [[ "${start_line}" != "" && "${end_line}" != "" ]]; then
         # Delete highlight array from file
         sed -i "${start_line},${end_line}d" "${hi_main}" > /tmp/test
-
         new_start_line=$[$(grep -n '#.*Begining of ftype array.*@@@@' "${hi_main}"|cut -f1 -d:)]
         while read line; do
             sed -i "${new_start_line}a \\\t\t${line}" "${hi_main}"
