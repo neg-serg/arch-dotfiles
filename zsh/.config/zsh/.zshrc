@@ -5,6 +5,6 @@ zsh-defer source "${ZDOTDIR}/12-completion.zsh"
 zsh-defer source "/usr/share/fzf/completion.zsh"
 zsh-defer source "/usr/share/fzf/key-bindings.zsh"
 zsh-defer source "${ZDOTDIR}/13-bindkeys.zsh"
-zsh-defer source "${ZDOTDIR}/98-syntax.zsh"
-source ${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme
-source ${ZDOTDIR}/.p10k.zsh
+zsh-defer source "${ZDOTDIR}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+source "${ZDOTDIR}/powerlevel10k/powerlevel10k.zsh-theme"
+source "${ZDOTDIR}/.p10k.zsh"
