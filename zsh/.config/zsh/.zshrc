@@ -1,24 +1,35 @@
-if [[ ! -d ${ZDOTDIR}/.zinit ]]; then
+if [[ ! -d ${ZDOTDIR}/.zplugin ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 fi
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.config/zsh/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.config/zsh/.zinit" && command chmod g-rwX "$HOME/.config/zsh/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.config/zsh/.zinit/bin" && \
+### Added by zplugin's installer
+if [[ ! -f $HOME/.config/zsh/.zplugin/bin/zplugin.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zplugin%F{220})…%f"
+    command mkdir -p "$HOME/.config/zsh/.zplugin" && command chmod g-rwX "$HOME/.config/zsh/.zplugin"
+    command git clone https://github.com/zdharma/zplugin "$HOME/.config/zsh/.zplugin/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
 
-source "$HOME/.config/zsh/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
+source "$HOME/.config/zsh/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of zplugin's installer chunk
+
+zplugin light-mode for \
+    zplugin-zsh/z-a-bin-gem-node
 
 zplugin ice depth=1; zplugin light romkatv/powerlevel10k
-zplugin light neg-serg/fast-syntax-highlighting
 zplugin light romkatv/zsh-defer
+zplugin ice wait lucid blockf atpull'zplugin creinstall -q .'
+zplugin light zsh-users/zsh-completions
+zplugin light zdharma/zui
+zplugin light zdharma/zbrowse
+zplugin ice silent wait!1 atload"zplugin[COMPINIT_OPTS]=-C; zpcompinit"
+zplugin light neg-serg/fast-syntax-highlighting
+
+zplugin ice as"command" from"github-rel"
+zplugin light junegunn/fzf-bin
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/05-cmds.zsh"
