@@ -59,12 +59,24 @@ setopt interactivecomments # allow interactive comments after '#' in command lin
 setopt magicequalsubst
 # setopt glob_star_short # */** -> **
 
-{
-    eval $(keychain --eval --quiet id_rsa)
-} &!
+export PATH=/usr/bin:~/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/go/bin:/home/neg/.cargo/bin
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="/usr/bin/nvimpager"
+export READNULLCMD='/usr/bin/nvimpager'
+export MANPAGER="${PAGER}"
 
-autoload -Uz colors
-zle_highlight+=(suffix:fg=blue)
+export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+export LS_COLORS
+
+export HISTFILE=${ZDOTDIR}/zsh_history
+export SAVEHIST=10000000
+export HISTSIZE=$(( $SAVEHIST * 1.10 ))
+export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
+
+eval $(keychain --eval --quiet id_rsa)
+
 {
     stty eof  2> /dev/null  # stty eof ''
 } &!
@@ -78,10 +90,8 @@ stty_setup() {
 
 [[ $- =~ i ]] && stty_setup &!
 
-{ 
-    [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
-        eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
-} &!
+[[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
+    zsh-defer eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
 
 # watch for everyone but me and root
 watch=(notme root)
@@ -89,30 +99,19 @@ watch=(notme root)
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
 
-{
+direnv_init() {
     eval "$(/usr/bin/direnv hook zsh)"
+}
+
+fasd_init() {
     fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
     if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
         fasd --init auto >| "${fasd_cache}"
     fi
     source "${fasd_cache}"
     unset fasd_cache
-} &!
+    bindkey '^j' fasd-complete
+}
 
-export PATH=/usr/bin:~/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/go/bin:/home/neg/.cargo/bin
-
-export EDITOR="nvim"
-export VISUAL="nvim"
-
-export PAGER="/usr/bin/nvimpager"
-export READNULLCMD='/usr/bin/nvimpager'
-export MANPAGER="${PAGER}"
-
-export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
-export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-export LS_COLORS
-
-export HISTFILE=${ZDOTDIR}/zsh_history
-export SAVEHIST=10000000
-export HISTSIZE=$(( $SAVEHIST * 1.10 ))
-export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
+zsh-defer source direnv_init 
+zsh-defer source fasd_init
