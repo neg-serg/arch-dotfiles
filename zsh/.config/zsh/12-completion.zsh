@@ -39,25 +39,21 @@ zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.*' insert-sections true
 zstyle ':completion:*:man:*' menu yes select
 zstyle ':completion:*' special-dirs ..
-zstyle ':completion:*:(mv|cp|file|m|mplayer|mp|mpv):*' ignored-patterns '(#i)*.(url|mht)'
-zstyle ':completion:*:*:(mplayer|mp|mpv):*' tag-order files
-zstyle ':completion:*:*:(mplayer|mp|mpv):*' file-sort name
-zstyle ':completion:*:*:(mplayer|mp|mpv):*' menu select auto
-zstyle ':completion:*:*:(mplayer*|mp):*' file-patterns '(#i)*.(rmvb|mkv|vob|ts|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
-zstyle ':completion:*:*:mpg123:*' file-patterns '*.(mp3|MP3):mp3\ files *(-/):directories'
-zstyle ':completion:*:*:mpg321:*' file-patterns '*.(mp3|MP3):mp3\ files *(-/):directories'
-zstyle ':completion:*:*:ogg123:*' file-patterns '*.(ogg|OGG|flac):ogg\ files *(-/):directories'
-zstyle ':completion:*:*:mocp:*' file-patterns '*.(wav|WAV|mp3|MP3|ogg|OGG|flac):ogg\ files *(-/):directories'
-zstyle ':completion:*:default'      \
+zstyle ':completion:*:(mv|cp|file|mp|mpv):*' ignored-patterns '(#i)*.(url|mht)'
+zstyle ':completion:*:*:(mp|mpv):*' tag-order files
+zstyle ':completion:*:*:(mp|mpv):*' file-sort name
+zstyle ':completion:*:*:(mp|mpv):*' menu select auto
+zstyle ':completion:*:*:mp:*' file-patterns '(#i)*.(rmvb|mkv|vob|ts|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
+zstyle ':completion:*:default' \
     select-prompt \
     "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%}  %p%{${reset_color}%}"
-    zstyle ':completion:*:default'      \
-    list-prompt   \
+    zstyle ':completion:*:default' \
+    list-prompt \
     "%{${fg[cyan]}%}Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[cyan]}%}  Continue?%{${reset_color}%}"
-    zstyle ':completion:*:warnings'     \
-    format        \
+    zstyle ':completion:*:warnings' \
+    format \
     "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
-zstyle ':completion:*:default'  list-colors ${${(s.:.)LS_COLORS}%ec=*}
+zstyle ':completion:*:default' list-colors ${${(s.:.)LS_COLORS}%ec=*}
 zstyle ':completion:*' list-colors "ma=48;5;7;38;5;16;1"
 zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;75'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
