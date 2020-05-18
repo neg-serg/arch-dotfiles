@@ -75,7 +75,7 @@ export SAVEHIST=10000000
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 
-eval $(keychain --eval --quiet id_rsa)
+eval $(ssh-agent > /dev/null) 
 
 {
     stty eof  2> /dev/null  # stty eof ''
