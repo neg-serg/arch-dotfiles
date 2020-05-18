@@ -59,17 +59,9 @@ setopt interactivecomments # allow interactive comments after '#' in command lin
 setopt magicequalsubst
 # setopt glob_star_short # */** -> **
 
-# Perform compinit only once a day.
-autoload -Uz compinit
-for dump in ${HOME}/.zcompdump(#qN.m1); do
-    compinit
-    if [[ -s "${dump}" && (! -s "${dump}.zwc" || "${dump}" -nt "${dump}.zwc") ]]; then
-        zcompile "${dump}"
-    fi
-done
-compinit -C
-
-eval $(keychain --eval --quiet id_rsa)
+{
+    eval $(keychain --eval --quiet id_rsa)
+} &!
 
 autoload -Uz colors
 zle_highlight+=(suffix:fg=blue)
@@ -86,7 +78,10 @@ stty_setup() {
 
 [[ $- =~ i ]] && stty_setup &!
 
-[[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
+{ 
+    [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
+        eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
+} &!
 
 # watch for everyone but me and root
 watch=(notme root)
@@ -94,46 +89,24 @@ watch=(notme root)
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
 
-autoload -Uz history-search-end
-autoload -Uz split-shell-arguments
-autoload -Uz lookupinit
+{
+    eval "$(/usr/bin/direnv hook zsh)"
+    fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
+    if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
+        fasd --init auto >| "${fasd_cache}"
+    fi
+    source "${fasd_cache}"
+    unset fasd_cache
+} &!
 
-for mod in complist deltochar mathfunc ; do
-    zmodload -i zsh/${mod} 2>/dev/null || print "Notice: no ${mod} available :("
-done
+export PATH=/usr/bin:~/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/go/bin:/home/neg/.cargo/bin
 
-eval "$(/usr/bin/direnv hook zsh)"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
-fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
-if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
-    fasd --init auto >| "${fasd_cache}"
-fi
-source "${fasd_cache}"
-unset fasd_cache
-
-path_dirs=(
-    /usr/bin
-    ${HOME}/bin
-    {/usr/local,}/{s,}bin
-	/usr/bin/{site,vendor,core}_perl
-    /opt/go/bin
-    /home/neg/.cargo/bin
-)
-export PATH=${(j_:_)path_dirs}
-
-for q in nvim vim vis vi;
-    { [[ -n ${commands}[(I)${q}] ]] \
-    && export EDITOR=${q}; break }
-
-if which nvimpager >/dev/null; then
-    export PAGER="/usr/bin/nvimpager"
-    export READNULLCMD='/usr/bin/nvimpager'
-fi
+export PAGER="/usr/bin/nvimpager"
+export READNULLCMD='/usr/bin/nvimpager'
 export MANPAGER="${PAGER}"
-
-for q in nvim vis vi; {
-    [[ -n ${commands}[(I)${q}] ]] && export VISUAL=${q}; break 
-}
 
 export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
