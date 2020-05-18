@@ -17,8 +17,6 @@ zinit light romkatv/zsh-defer
 zinit wait silent light-mode for zinit-zsh/z-a-bin-gem-node
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit wait silent light-mode for zsh-users/zsh-completions
-zinit wait silent light-mode for zdharma/zui
-zinit wait silent light-mode for zdharma/zbrowse
 zinit ice silent wait!1 atload"zinit[COMPINIT_OPTS]=-C; zpcompinit"
 zinit wait lucid light-mode for atinit"zicompinit; zicdreplay" neg-serg/fast-syntax-highlighting
 zinit ice as"command" from"github-rel"
