@@ -1,4 +1,5 @@
 bindkey -e
+zmodload -i zsh/parameter
 
 bindkey "^[+" up-one-dir
 bindkey "^[=" back-one-dir
@@ -45,8 +46,6 @@ bindkey -M emacs "^XD" describe-key-briefly
 bindkey -M emacs "^Z" fg-widget
 bindkey -M vicmd "^Z" fg-widget
 bindkey -M viins "^Z" fg-widget
-
-bindkey '^j' fasd-complete     # C-x C-a to do fasd-complete (files and directories)
 
 local jump_dirs=( ~/1st_level ~/dw ~/tmp ~/src/1st_level ~/vid/new)
 for index in $(seq 1 $((${#jump_dirs[@]} ))); do
