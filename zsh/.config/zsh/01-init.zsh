@@ -1,8 +1,7 @@
-# Use hard limits, except for a smaller stack and no core dumps
 unlimit
-ulimit -c 0 # No core dumps for now
+ulimit -c 0
 limit stack 8192
-limit core 0 # important for a live-cd-system
+limit core 0
 limit -s
 
 setopt append_history # this is default, but set for share_history
@@ -136,12 +135,11 @@ for q in nvim vis vi; {
     [[ -n ${commands}[(I)${q}] ]] && export VISUAL=${q}; break 
 }
 
+export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
+export LS_COLORS
+
 export HISTFILE=${ZDOTDIR}/zsh_history
 export SAVEHIST=10000000
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
-
-export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
-export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
-
-export LS_COLORS
