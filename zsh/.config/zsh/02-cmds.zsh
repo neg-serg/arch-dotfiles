@@ -258,9 +258,3 @@ magic-abbrev-expand() {
     zle self-insert
 }
 no-magic-abbrev-expand() { LBUFFER+=' ' }
-
-slash-backward-kill-word () {
-    local WORDCHARS="${WORDCHARS:s@/@}"
-    zle backward-kill-word
-}
-zle -N slash-backward-kill-word

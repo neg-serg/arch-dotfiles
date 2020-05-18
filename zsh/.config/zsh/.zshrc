@@ -24,9 +24,9 @@ zinit wait lucid light-mode for atinit"zicompinit; zicdreplay" neg-serg/fast-syn
 zinit ice as"command" from"github-rel"
 
 source "${ZDOTDIR}/01-init.zsh"
-zsh-defer source "${ZDOTDIR}/05-cmds.zsh"
-zsh-defer source "${ZDOTDIR}/12-completion.zsh"
+zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
+zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 zsh-defer source "${XDG_CONFIG_HOME}/fzf/shell/completion.zsh"
 zsh-defer source "${XDG_CONFIG_HOME}/fzf/shell/key-bindings.zsh"
-zsh-defer source "${ZDOTDIR}/13-bindkeys.zsh"
+zsh-defer source "${ZDOTDIR}/04-bindkeys.zsh"
 source "${ZDOTDIR}/.p10k.zsh"
