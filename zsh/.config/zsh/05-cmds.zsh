@@ -15,38 +15,25 @@ else
 fi
 unset copepath
 
-alias mpa="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -mute > ${HOME}/tmp/mpv.log"
-alias mpA="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -fs -ao null > ${HOME}/tmp/mpv.log"
-alias mpi="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu --interpolation=yes --tscale='oversample' --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
-alias love="mpc sendmessage mpdas love"
-alias unlove="mpc sendmessage mpdas unlove"
-alias grep="grep --color=auto"
-alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
 alias l=ls
 alias ls="ls --color=auto"
-alias sort='sort --parallel 8 -S 16M'
-alias ping='prettyping'
-alias s="sudo"
-alias e="mimeo"
-alias u='umount'
-alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
-alias pstop='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
-alias '?=bc -l <<<'
 alias mv="mv -i"
 alias mk="mkdir -p"
 alias rd="rmdir"
-alias acpi="acpi -V"
-alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
+alias ping='prettyping'
+alias s="sudo"
+alias e="mimeo"
+alias grep="grep --color=auto"
+alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
+alias sort='sort --parallel 8 -S 16M'
+
 alias se="patool extract"
 alias pk="patool create"
 alias sp='cdu -idh -s -r -c ":"'
-hash nc > /dev/null && alias nyan='nc -v nyancat.dakko.us 23'
-alias taco='curl -L git.io/taco'
-alias starwars='telnet towel.blinkenlights.nl'
-alias -s Dockerfile="docker build - < "
+alias '?=bc -l <<<'
+alias acpi="acpi -V"
 pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
 alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
-alias img="imgur-screenshot"
 alias @r="~/bin/scripts/music_rename"
 alias v="~/bin/v --remote-silent"
 alias ip='ip -c'
@@ -54,11 +41,22 @@ alias fd='fd -H'
 alias qe='cd *(/om[1])'
 alias history='history 0'
 alias objdump='objdump -M intel -d'
-alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias cal="task calendar"
-eval 'alias :{x,q,Q}=exit'
-alias iostat='iostat -mtx'
+
+alias mpa="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -mute > ${HOME}/tmp/mpv.log"
+alias mpA="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -fs -ao null > ${HOME}/tmp/mpv.log"
+alias mpi="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu --interpolation=yes --tscale='oversample' --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
+alias love="mpc sendmessage mpdas love"
+alias unlove="mpc sendmessage mpdas unlove"
 alias yt="youtube-dl"
+
+alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
+alias img="imgur-screenshot"
+
+alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
+alias iostat='iostat -mtx'
+
+eval 'alias :{x,q,Q}=exit'
 alias куищще='reboot'
 alias учше='exit'
 alias :й=':q'
@@ -105,27 +103,16 @@ any() {
     fi
 }
 
-which() {
-    if [[ $# > 0 ]]; then
-        if [[ -x /usr/bin/ccat ]]; then
-            builtin which "$@" | ccat
-        else
-            builtin which "$@"
-        fi
-    fi
-}
+local rlwrap_list=(bigloo clisp irb guile bb)
+local sudo_list=({u,}mount ch{mod,own} modprobe i7z aircrack-ng)
+local logind_sudo_list=(reboot halt poweroff)
+local nocorrect_commands=(ebuild gist heroku hpodder man mkdir mv mysql sudo)
 
 local noglob_list=(
     fc find {,s,l}ftp history locate rake rsync scp
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer}
     translate links{,2} lynx you-get bower pip task
 )
-
-local rlwrap_list=(
-    bigloo clisp irb guile bb
-)
-
-local sudo_list=({u,}mount ch{mod,own} modprobe i7z aircrack-ng)
 
 local user_commands=(
     list-units is-active status show help list-unit-files
@@ -137,14 +124,6 @@ local systemctl_sudo_commands=(
     reset-failed enable disable reenable preset mask unmask
     link load cancel set-environment unset-environment
     edit
-)
-
-local logind_sudo_list=(
-    reboot halt poweroff
-)
-
-local nocorrect_commands=(
-    ebuild gist heroku hpodder man mkdir mv mysql sudo
 )
 
 for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
@@ -197,17 +176,8 @@ zleiab() {
 }
 zle -N zleiab
 
-gv() {
-    ~/bin/v --remote-silent ./
-    ~/bin/v --remote-send ":GV<CR>"
-}
 [[ -x =nvim ]] && alias vim=nvim
 [[ ${DISPLAY} ]] &&  alias nvim=v
-
-# thx to github.com/MitchWeaver/dots
-75%() { mogrify -resize '75%X75%' "$@" ; }
-50%() { mogrify -resize '50%X50%' "$@" ; }
-25%() { mogrify -resize '25%X25%' "$@" ; }
 
 inplace_mk_dirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
