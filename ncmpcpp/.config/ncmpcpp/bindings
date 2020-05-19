@@ -106,8 +106,8 @@ def_key "backspace"
 def_key "backspace"
   replay_song
 
-#def_key "f"
-#  seek_forward
+def_key "f"
+ seek_forward
 
 def_key "b"
   seek_backward
