@@ -4,7 +4,7 @@ main() {
     lib="$(pwd)/ansible/library"
     stdout_opt=""
     opt1="$1"
-    if [ "$opt1" -eq "-V" ]; then
+    if [ "$opt1" = "-V" ]; then
         export ANSIBLE_STDOUT_CALLBACK="minimal"
         shift
     fi
