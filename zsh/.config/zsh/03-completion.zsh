@@ -59,8 +59,6 @@ zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;75'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
 [[ -r ~/.ssh/known_hosts ]] && _ssh_hosts=(${${${${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}%%:*}#\[}%\]}) ||
 _ssh_hosts=()
-[[ -r ~/.ssh/config ]] && _ssh_config_hosts=($(sed -rn 's/host\s+(.+)/\1/ip' "$HOME/.ssh/config" | grep -v "\*" )) ||
-_ssh_config_hosts=()
 hosts=($HOST "$_ssh_hosts[@]" $_ssh_config_hosts[@] localhost)
 zstyle ':completion:*:hosts' hosts ${hosts}
 # highlight the original input.

@@ -21,9 +21,6 @@ bindkey "^[[B" down-line-or-beginning-search
 bindkey " "             magic-space
 bindkey ",."            zleiab
 
-# accept a completion and try to complete again by using menu
-# completion; very useful with completing directories
-# by using 'undo' one's got a simple file browser
 bindkey -M menuselect '^o'    accept-and-infer-next-history
 bindkey -M menuselect 'h'     vi-backward-char                
 bindkey -M menuselect 'j'     vi-down-line-or-history         
@@ -49,8 +46,9 @@ bindkey -M viins "^Z" fg-widget
 
 local jump_dirs=( ~/1st_level ~/dw ~/tmp ~/src/1st_level ~/vid/new)
 for index in $(seq 1 $((${#jump_dirs[@]} ))); do
-    bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}"
+    bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}\\"
 done
 
 bindkey -M emacs "^[w"  vi-cmd-mode
 bindkey -M emacs "^X^F" vi-find-next-char
+bindkey '^j' fasd-complete

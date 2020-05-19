@@ -59,7 +59,7 @@ setopt interactivecomments # allow interactive comments after '#' in command lin
 setopt magicequalsubst
 # setopt glob_star_short # */** -> **
 
-export PATH=/usr/bin:~/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/go/bin:/home/neg/.cargo/bin
+export PATH=/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/go/bin:/home/neg/.cargo/bin
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="/usr/bin/nvimpager"
@@ -77,6 +77,36 @@ export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 
 eval $(ssh-agent > /dev/null) 
 
+# Perform compinit only once a day.
+autoload -Uz compinit
+compinit -C
+
+zmodload -i zsh/complist
+autoload -Uz history-search-end
+autoload -Uz split-shell-arguments
+autoload -Uz lookupinit
+
+fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
+if [ ! -s "${fasd_cache}" ]; then
+    fasd --init auto >| "${fasd_cache}"
+fi
+source "${fasd_cache}"
+unset fasd_cache
+
+_direnv_hook() {
+    trap -- '' SIGINT;
+    eval "$("/usr/bin/direnv" export zsh)";
+    trap - SIGINT;
+}
+typeset -ag precmd_functions;
+if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
+    precmd_functions=( _direnv_hook ${precmd_functions[@]} )
+fi
+typeset -ag chpwd_functions;
+if [[ -z ${chpwd_functions[(r)_direnv_hook]} ]]; then
+    chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
+fi
+
 {
     stty eof  2> /dev/null  # stty eof ''
 } &!
@@ -91,27 +121,10 @@ stty_setup() {
 [[ $- =~ i ]] && stty_setup &!
 
 [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
-    zsh-defer eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
+    eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
 
 # watch for everyone but me and root
 watch=(notme root)
 
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
-
-direnv_init() {
-    eval "$(/usr/bin/direnv hook zsh)"
-}
-
-fasd_init() {
-    fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
-    if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
-        fasd --init auto >| "${fasd_cache}"
-    fi
-    source "${fasd_cache}"
-    unset fasd_cache
-    bindkey '^j' fasd-complete
-}
-
-zsh-defer source direnv_init 
-zsh-defer source fasd_init

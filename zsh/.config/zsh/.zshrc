@@ -18,7 +18,7 @@ zinit wait silent light-mode for zinit-zsh/z-a-bin-gem-node
 zinit ice wait lucid blockf atpull:'zinit creinstall -q .'
 zinit wait silent light-mode for zsh-users/zsh-completions
 zinit ice silent wait!1 atload:"zinit[COMPINIT_OPTS]=-C; zpcompinit"
-zinit wait lucid light-mode for atinit:"zicompinit; zicdreplay" neg-serg/fast-syntax-highlighting
+zinit wait silent light-mode for neg-serg/fast-syntax-highlighting
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
