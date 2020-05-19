@@ -110,7 +110,6 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
         + mpdas.service: mpdas last.fm scrobbler
         + mpd-notification.service: MPD Notification
         + nm-applet.service: Network manager applet
-        + sxhkd.service: fast hotkey manager
         + transmissiond.service: transmission service
         + udiskie.service: automounter
         + update-pic-dirs.service: Pic dirs notification
