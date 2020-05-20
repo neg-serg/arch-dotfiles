@@ -75,7 +75,8 @@ export SAVEHIST=10000000
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 
-eval $(ssh-agent > /dev/null) 
+envoy ~/.ssh/*
+source <(envoy -p)
 
 _zpcompinit_custom() {
     setopt extendedglob local_options
