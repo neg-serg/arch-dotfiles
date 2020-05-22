@@ -24,7 +24,7 @@ rotate() {
     degree="$1"
     while read file; do
         case "$(file -b -i "$file")" in
-        image/jpeg*) 
+        image/jpeg*)
             jpegtran -rotate "$degree" -copy all -outfile "$file" "$file"
         ;;
         *)
@@ -65,8 +65,16 @@ proc() {
     trap finish EXIT
 }
 
-rep() {
-    eval "$(cat "$last_action" | xargs)"
+repeat_action() {
+    tee "$file2"
+    fp=$(cat "$file2")
+    fname="$(resolve_file $fp)"
+    last_action="$(cat "$last_action" | xargs)"
+    last_action_cmd=$(echo $last_action | awk '{print $1}')
+    last_action_dest=$(echo $last_action | awk '{print $2}')
+    if [ $last_action_cmd = 'mv' ] || [ $last_action_cmd = 'cp' ]; then
+        eval "$last_action_cmd $fname $last_action_dest"
+    fi
     trap finish EXIT
 }
 
@@ -138,7 +146,7 @@ case "$1" in
     "v") proc mv ;;
     "C-c") proc cp ;;
     "C-r") rename ;;
-    "r") rep ;;
+    "r") repeat_action ;;
     "c") copy_name ;;
     "C-q") wall "center" ;;
     "C-w") wall "fill" ;;
