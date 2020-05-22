@@ -10,7 +10,7 @@ BLK                   38;5;24             # block device driver
 CHR                   38;5;24;1           # character device driver
 CAPABILITY            38;5;17             # file with capability
 NORM                  00                  # normal files
-EXEC                  04                  # this is for files with execute permission
+EXEC                  04;03               # this is for files with execute permission
 FIFO                  38;5;126            # named pipe
 DOOR                  38;5;127            # solaris door
 LINK                  38;5;05             # symbolic link
@@ -331,6 +331,7 @@ zshrc             01;38;5;29;4
 .cfg              00;38;5;29
 .conf             00;38;5;29
 *config           00;38;5;29
+.xkb              03;38;5;29
 *Dockerfile       00;38;5;60
 .icls             00;38;5;60
 .ini              00;38;5;29
