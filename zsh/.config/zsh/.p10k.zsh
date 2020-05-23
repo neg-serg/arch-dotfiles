@@ -18,6 +18,53 @@
 [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
+neg_prompt_main() {
+    setopt sh_word_split
+    _neg_full_path="$PWD"
+    if [[ $_neg_full_path = $HOME ]]; then
+        echo -ne ' '
+    else
+        echo -ne ' '
+    fi
+    mainc="%(?.%F{4}.%F{4})"
+    tildac="%(?.%F{2}.%F{4})"
+    prompt_end=" %F{25}❯%B%F{26}>%B%f"
+    neg_user_pretok="%f"
+
+    [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_pretoken="${mainc}%f"
+    [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_token="${mainc}${prompt_end}"
+
+    _neg_dyn_pwd=""
+    _neg_tilda_path=${_neg_full_path/${HOME}/\~}
+    # write the home directory as a tilda
+    [[ ${_neg_tilda_path[2,-1]} == "/" ]] && _neg_tilda_path=${_neg_tilda_path[2,-1]}
+    # otherwise the first element of split_path would be empty.
+    _neg_forwards_in_tilda_path=${_neg_tilda_path//[^["\/"]/}
+    # remove everything that is not a "/"
+    _neg_number_of_elements_in_tilda_path=$(( $#_neg_forwards_in_tilda_path + 1 ))
+    # we removed the first forward slash, so we need one more element than the number of slashes
+    _neg_saveIFS="${IFS}"
+    IFS="/"
+    _neg_split_path=(${_neg_tilda_path})
+    _neg_start_of_loop=1
+    _neg_end_of_loop=${_neg_number_of_elements_in_tilda_path}
+    for i in {$_neg_start_of_loop..$_neg_end_of_loop}; do
+        if [[ $i == $_neg_end_of_loop ]]; then
+            _neg_to_be_added=$_neg_split_path[i]'/'
+            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+        else
+            _neg_to_be_added=${_neg_split_path[i]}
+            _neg_to_be_added=${_neg_to_be_added}"%F{4}/%F{249}"
+            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+        fi
+    done
+    IFS=${_neg_saveIFS}
+    [[ ${_neg_full_path/${HOME}/\~} != ${_neg_full_path} ]] && _neg_dyn_pwd=${_neg_dyn_pwd/\/~/~}
+    # remove the slash in front of ${HOME}
+    neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
+    echo "${neg_user_pretok}%f%40<..<${neg_prompt}"
+}
+
 () {
   emulate -L zsh -o extended_glob
 
@@ -26,14 +73,14 @@
   unset -m 'POWERLEVEL9K_*'
 
   SPROMPT="%F{249}Correct: %F{4}%R%f %F{249}-> %F{2}%r%F{249} [nyae]? %f"
-  PS2="%F{5}❭ %f"
+  PS2="%F{25}❭ %f"
   PS3='?# '
   PS4='+%N:%i:%_> '
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    # os_icon                 # os identifier
-    # dir                     # current directory
+    # os_icon               # os identifier
+    # dir                   # current directory
     prompt_char             # prompt symbol
   )
 
@@ -184,7 +231,7 @@
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=24
   # Default prompt symbol.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='$(${ZDOTDIR}/neg-prompt)'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='$(neg_prompt_main)'
   # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
   # Prompt symbol in visual vi mode.
