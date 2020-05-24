@@ -17,10 +17,10 @@ setopt inc_append_history # add comamnds as they are typed, don't wait until she
 
 # remove command lines from the history list when the first character on the
 # line is a space
-setopt histignorespace 
+setopt histignorespace
 # if a command is issued that can't be executed as a normal command, and the
 # command is the name of a directory, perform the cd command to that directory.
-setopt auto_cd 
+setopt auto_cd
 
 # in order to use #, ~ and ^ for filename generation grep word
 # *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> searches for word not in compressed files
