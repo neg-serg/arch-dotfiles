@@ -49,10 +49,24 @@ negcd-2() { cd ~/dw && z4h-redraw-prompt }
 negcd-3() { cd ~/src/1st_level && z4h-redraw-prompt }
 negcd-4() { cd ~/src/wrk/infrastructure && z4h-redraw-prompt }
 
+special_enter() {
+    if [[ $BUFFER = '..' ]]; then
+        cd ..
+        z4h-redraw-prompt
+        BUFFER=
+    else
+        zle accept-line
+    fi
+}
+
+zle -N special_enter
+
 zle -N negcd-1
 zle -N negcd-2
 zle -N negcd-3
 zle -N negcd-4
+
+bindkey '^M' special_enter
 
 bindkey '^[1' negcd-1
 bindkey '^[2' negcd-2
