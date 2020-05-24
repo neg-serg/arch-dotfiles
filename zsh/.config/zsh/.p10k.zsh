@@ -18,53 +18,6 @@
 [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
-neg_prompt_main() {
-    setopt sh_word_split
-    _neg_full_path="$PWD"
-    if [[ $_neg_full_path = $HOME ]]; then
-        echo -ne ' '
-    else
-        echo -ne ' '
-    fi
-    mainc="%(?.%F{4}.%F{4})"
-    tildac="%(?.%F{2}.%F{4})"
-    prompt_end=" %F{25}❯%B%F{26}>%B%f"
-    neg_user_pretok="%f"
-
-    [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_pretoken="${mainc}%f"
-    [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_token="${mainc}${prompt_end}"
-
-    _neg_dyn_pwd=""
-    _neg_tilda_path=${_neg_full_path/${HOME}/\~}
-    # write the home directory as a tilda
-    [[ ${_neg_tilda_path[2,-1]} == "/" ]] && _neg_tilda_path=${_neg_tilda_path[2,-1]}
-    # otherwise the first element of split_path would be empty.
-    _neg_forwards_in_tilda_path=${_neg_tilda_path//[^["\/"]/}
-    # remove everything that is not a "/"
-    _neg_number_of_elements_in_tilda_path=$(( $#_neg_forwards_in_tilda_path + 1 ))
-    # we removed the first forward slash, so we need one more element than the number of slashes
-    _neg_saveIFS="${IFS}"
-    IFS="/"
-    _neg_split_path=(${_neg_tilda_path})
-    _neg_start_of_loop=1
-    _neg_end_of_loop=${_neg_number_of_elements_in_tilda_path}
-    for i in {$_neg_start_of_loop..$_neg_end_of_loop}; do
-        if [[ $i == $_neg_end_of_loop ]]; then
-            _neg_to_be_added=$_neg_split_path[i]'/'
-            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
-        else
-            _neg_to_be_added=${_neg_split_path[i]}
-            _neg_to_be_added=${_neg_to_be_added}"%F{4}/%F{249}"
-            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
-        fi
-    done
-    IFS=${_neg_saveIFS}
-    [[ ${_neg_full_path/${HOME}/\~} != ${_neg_full_path} ]] && _neg_dyn_pwd=${_neg_dyn_pwd/\/~/~}
-    # remove the slash in front of ${HOME}
-    neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
-    echo "${neg_user_pretok}%f%40<..<${neg_prompt}"
-}
-
 () {
   emulate -L zsh -o extended_glob
 
@@ -81,7 +34,8 @@ neg_prompt_main() {
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # os_icon               # os identifier
     # dir                   # current directory
-    prompt_char             # prompt symbol
+    # prompt_char           # prompt symbol
+    neg
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -231,7 +185,7 @@ neg_prompt_main() {
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=24
   # Default prompt symbol.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='$(neg_prompt_main)'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
   # Prompt symbol in command vi mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
   # Prompt symbol in visual vi mode.
@@ -357,7 +311,8 @@ neg_prompt_main() {
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\uF126 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=''
+  # typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -383,10 +338,10 @@ neg_prompt_main() {
 
     if (( $1 )); then
         # Styling for up-to-date Git status.
-        local       meta='%f'     # default foreground
-        local      clean='%74F'   # green foreground
-        local   modified='%97F'   # yellow foreground
-        local  untracked='%39F'   # blue foreground
+        local meta='%f'           # default foreground
+        local clean='%24F'        # green foreground
+        local modified='%97F'     # yellow foreground
+        local untracked='%24F'    # blue foreground
         local conflicted='%196F'  # red foreground
     else
         # Styling for incomplete and stale Git status.
@@ -451,7 +406,7 @@ neg_prompt_main() {
     # than the number of files in the Git index, or due to bash.showDirtyState being set to false
     # in the repository config. The number of staged and untracked files may also be unknown
     # in this case.
-    (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+=" ${modified}─"
+    (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+="${modified}─"
 
     typeset -g my_git_format=$res
   }
@@ -1469,6 +1424,57 @@ neg_prompt_main() {
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
+  }
+
+  function prompt_neg() {
+    setopt sh_word_split
+    _neg_full_path="$PWD"
+    mainc="%(?.%F{4}.%F{4})"
+    tildac="%(?.%F{2}.%F{4})"
+    prompt_end=" %F{25}❯%B%F{26}>%B%f"
+    neg_user_pretok="%f"
+  
+    [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_pretoken="${mainc}%f"
+    [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_token="${mainc}${prompt_end}"
+  
+    _neg_dyn_pwd=""
+    _neg_tilda_path=${_neg_full_path/${HOME}/\~}
+    # write the home directory as a tilda
+    [[ ${_neg_tilda_path[2,-1]} == "/" ]] && _neg_tilda_path=${_neg_tilda_path[2,-1]}
+    # otherwise the first element of split_path would be empty.
+    _neg_forwards_in_tilda_path=${_neg_tilda_path//[^["\/"]/}
+    # remove everything that is not a "/"
+    _neg_number_of_elements_in_tilda_path=$(( $#_neg_forwards_in_tilda_path + 1 ))
+    # we removed the first forward slash, so we need one more element than the number of slashes
+    _neg_saveIFS="${IFS}"
+    IFS="/"
+    _neg_split_path=(${_neg_tilda_path})
+    _neg_start_of_loop=1
+    _neg_end_of_loop=${_neg_number_of_elements_in_tilda_path}
+    for i in {$_neg_start_of_loop..$_neg_end_of_loop}; do
+        if [[ $i == $_neg_end_of_loop ]]; then
+            _neg_to_be_added=$_neg_split_path[i]'/'
+            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+        else
+            _neg_to_be_added=${_neg_split_path[i]}
+            _neg_to_be_added=${_neg_to_be_added}"%F{4}/%F{249}"
+            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+        fi
+    done
+    IFS=${_neg_saveIFS}
+    [[ ${_neg_full_path/${HOME}/\~} != ${_neg_full_path} ]] && _neg_dyn_pwd=${_neg_dyn_pwd/\/~/~}
+    # remove the slash in front of ${HOME}
+    neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
+
+    output=""
+    if [[ $_neg_full_path = $HOME ]]; then
+        output=" $output"
+    else
+        output=" $output"
+    fi
+
+    output+="${neg_user_pretok}%f%40<..<${neg_prompt}"
+    p10k segment -f 25 -i '' -t "$output"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
