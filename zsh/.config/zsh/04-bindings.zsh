@@ -1,7 +1,7 @@
 bindkey -e
 zmodload -i zsh/parameter
 
-bindkey "^[+" z4h-cd-forward
+bindkey "^[-" z4h-cd-forward
 bindkey "^[=" z4h-cd-back
 
 zle -N magic-abbrev-expand
