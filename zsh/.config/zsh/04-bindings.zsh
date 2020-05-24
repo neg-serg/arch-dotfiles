@@ -46,8 +46,8 @@ bindkey -M viins "^Z" fg-widget
 
 negcd-1() { cd ~/1st_level && z4h-redraw-prompt }
 negcd-2() { cd ~/dw && z4h-redraw-prompt }
-negcd-3() { cd ~/vid/new && z4h-redraw-prompt }
-negcd-4() { cd ~/tmp && z4h-redraw-prompt }
+negcd-3() { cd ~/src/1st_level && z4h-redraw-prompt }
+negcd-4() { cd ~/src/wrk/infrastructure && z4h-redraw-prompt }
 
 zle -N negcd-1
 zle -N negcd-2
