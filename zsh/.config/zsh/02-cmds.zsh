@@ -76,19 +76,6 @@ chpwd() {
     fi
 }
 
-zc() {
-    autoload -U zrecompile
-    for z in ${ZDOTDIR}/*.zsh ${ZDOTDIR}/.zshrc; do
-        zrecompile -p ${z}
-        print "${z}"
-        rm -fv "${z}.zwc.old"
-    done
-    for f in ${zcompdumpfile};
-        zrecompile -p "${f}" && \
-        rm -f "${f}.zwc.old"
-    source ${ZDOTDIR}/.zshrc
-}
-
 # grep for running process, like: 'any vime
 any() {
     emulate -L zsh
