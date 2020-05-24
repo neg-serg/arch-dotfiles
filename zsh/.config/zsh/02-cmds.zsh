@@ -1,19 +1,6 @@
-local readonly use_cope_path=false
-if [[ ${use_cope_path} == true  ]]; then
-    if [[ -x $(which cope_path 2> /dev/null) ]]; then
-        # to prevent slow cope_path evaluation
-        local copepath=$(cope_path)
-        for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
-        alias df="${copepath}/df -hT"
-    else
-        alias df="df -hT"
-    fi
-else
-    local copepath=~/bin/scripts/Cope
-    for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
-    alias df="${copepath}/df -hT"
-fi
-unset copepath
+local copepath=~/bin/scripts/Cope
+for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
+alias df="${copepath}/df -hT"
 
 alias l=ls
 alias ls="ls --color=auto"
@@ -38,7 +25,6 @@ alias v="~/bin/v --remote-silent"
 alias ip='ip -c'
 alias fd='fd -H'
 alias qe='cd *(/om[1])'
-alias history='history 0'
 alias objdump='objdump -M intel -d'
 alias cal="task calendar"
 
@@ -51,8 +37,6 @@ alias mpi="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu --interpolation=yes --
 alias love="mpc sendmessage mpdas love"
 alias unlove="mpc sendmessage mpdas unlove"
 alias yt="youtube-dl"
-
-alias mutt="dtach -A ${HOME}/1st_level/mutt.session neomutt"
 alias img="imgur-screenshot"
 
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
