@@ -29,11 +29,10 @@ alias sort='sort --parallel 8 -S 16M'
 
 alias se="patool extract"
 alias pk="patool create"
+
 alias sp='cdu -idh -s -r -c ":"'
 alias '?=bc -l <<<'
 alias acpi="acpi -V"
-pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
-alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
 alias @r="~/bin/scripts/music_rename"
 alias v="~/bin/v --remote-silent"
 alias ip='ip -c'
@@ -42,6 +41,9 @@ alias qe='cd *(/om[1])'
 alias history='history 0'
 alias objdump='objdump -M intel -d'
 alias cal="task calendar"
+
+pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
+alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
 
 alias mpa="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -mute > ${HOME}/tmp/mpv.log"
 alias mpA="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -fs -ao null > ${HOME}/tmp/mpv.log"
@@ -55,20 +57,42 @@ alias img="imgur-screenshot"
 
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias iostat='iostat -mtx'
+alias log='journalctl -f'
+alias iotop='sudo iotop -oPa'
+alias diskact="sudo iotop -Po"
 
-alias ':q=exit'
-alias куищще='reboot'
-alias учше='exit'
-alias :й=':q'
+local rlwrap_list=(bigloo clisp irb guile bb)
+local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
+local logind_sudo_list=(reboot halt poweroff)
+local nocorrect_commands=(ebuild gist heroku hpodder man mkdir mv mysql sudo)
+local noglob_list=(
+    fc find ftp sftp lftp history locate rake rsync scp eix zmv mmv wget clive
+    clivescan youtube-dl youtube-viewer translate links links2 lynx you-get
+    bower pip task
+)
 
-hash journalctl > /dev/null && {
-    alias log='journalctl -f | ccze -A' #follow log
-}
+for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
+for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
+for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}";
+for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}";
 
-hash iotop > /dev/null && {
-    alias iotop='sudo iotop -oPa'
-    alias diskact="sudo iotop -Po"
-}
+[[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
+for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
+
+unset noglob_list rlwrap_list sudo_list
+
+if hash git 2>/dev/null; then
+    alias gs='git status --short -b'
+    alias gp='git push'
+    alias gc='git commit'
+    # http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
+    intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
+    intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
+    alias gd="${intra_line_less} git diff ${intra_line_diff}"
+    alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
+    alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
+    alias git='hub'
+fi
 
 chpwd() {
     if [[ -x $(which fasd) ]]; then
@@ -88,52 +112,3 @@ any() {
         ps xauwww | grep  --color=auto -i "[${1[1]}]${1[2,-1]}"
     fi
 }
-
-local rlwrap_list=(bigloo clisp irb guile bb)
-local sudo_list=({u,}mount ch{mod,own} modprobe i7z aircrack-ng)
-local logind_sudo_list=(reboot halt poweroff)
-local nocorrect_commands=(ebuild gist heroku hpodder man mkdir mv mysql sudo)
-
-local noglob_list=(
-    fc find {,s,l}ftp history locate rake rsync scp
-    eix {z,m}mv wget clive{,scan} youtube-{dl,viewer}
-    translate links{,2} lynx you-get bower pip task
-)
-
-local user_commands=(
-    list-units is-active status show help list-unit-files
-    is-enabled list-jobs show-environment cat
-)
-
-local systemctl_sudo_commands=(
-    start stop reload restart try-restart isolate kill
-    reset-failed enable disable reenable preset mask unmask
-    link load cancel set-environment unset-environment
-    edit
-)
-
-for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
-for c in ${systemctl_sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
-
-for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
-for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
-for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}";
-for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}";
-
-[[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
-for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
-
-unset noglob_list rlwrap_list sudo_list sys_sudo_list
-
-if hash git 2>/dev/null; then
-    alias gs='git status --short -b'
-    alias gp='git push'
-    alias gc='git commit'
-    # http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
-    intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
-    intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
-    alias gd="${intra_line_less} git diff ${intra_line_diff}"
-    alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
-    alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
-    alias git='hub'
-fi
