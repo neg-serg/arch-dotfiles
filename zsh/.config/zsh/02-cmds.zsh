@@ -74,7 +74,10 @@ chpwd() {
     if [[ -x $(which fasd) ]]; then
         [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
     fi
-    zle && { zle accept-line; zle -R }
+    zle && {
+        zle reset-prompt
+        zle -R
+    }
 }
 
 zc() {
@@ -246,10 +249,31 @@ fg-widget() {
 }
 zle -N fg-widget
 
-up-one-dir() { pushd .. 2> /dev/null }
-back-one-dir() { popd 2> /dev/null; }
-zle -N up-one-dir
-zle -N back-one-dir
+# Widgets for changing current working directory.
+function z4h-redraw-prompt() {
+    emulate -L zsh
+    local f
+    for f in chpwd $chpwd_functions precmd $precmd_functions; do
+        (( $+functions[$f] )) && $f &>/dev/null
+    done
+    zle .reset-prompt
+    zle -R
+}
+
+function z4h-cd-rotate() {
+    emulate -L zsh
+    while (( $#dirstack )) && ! pushd -q $1 &>/dev/null; do
+        popd -q $1
+    done
+    if (( $#dirstack )); then
+        z4h-redraw-prompt
+    fi
+}
+function z4h-cd-back() { z4h-cd-rotate +1 }
+function z4h-cd-forward() { z4h-cd-rotate -0 }
+
+zle -N z4h-cd-back
+zle -N z4h-cd-forward
 
 magic-abbrev-expand() {
     local MATCH

@@ -1,8 +1,8 @@
 bindkey -e
 zmodload -i zsh/parameter
 
-bindkey "^[+" up-one-dir
-bindkey "^[=" back-one-dir
+bindkey "^[+" z4h-cd-forward
+bindkey "^[=" z4h-cd-back
 
 zle -N magic-abbrev-expand
 zle -N no-magic-abbrev-expand
@@ -22,10 +22,10 @@ bindkey " "             magic-space
 bindkey ",."            zleiab
 
 bindkey -M menuselect '^o'    accept-and-infer-next-history
-bindkey -M menuselect 'h'     vi-backward-char                
-bindkey -M menuselect 'j'     vi-down-line-or-history         
-bindkey -M menuselect 'k'     vi-up-line-or-history           
-bindkey -M menuselect 'l'     vi-forward-char                 
+bindkey -M menuselect 'h'     vi-backward-char
+bindkey -M menuselect 'j'     vi-down-line-or-history
+bindkey -M menuselect 'k'     vi-up-line-or-history
+bindkey -M menuselect 'l'     vi-forward-char
 bindkey -M menuselect 'i'     accept-and-menu-complete
 bindkey -M menuselect "+"     accept-and-menu-complete
 bindkey -M menuselect "^[[2~" accept-and-menu-complete
