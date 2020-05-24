@@ -1,0 +1,2 @@
+#!/bin/dash
+[ ! -z "$1" ] && ~/bin/scripts/Cope/ps uwwwp $(pgrep -f "$@")

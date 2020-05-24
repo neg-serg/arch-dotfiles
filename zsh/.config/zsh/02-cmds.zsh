@@ -99,16 +99,3 @@ chpwd() {
         [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
     fi
 }
-
-# grep for running process, like: 'any vime
-any() {
-    emulate -L zsh
-    unsetopt KSH_ARRAYS
-    if [[ -z "$1" ]] ; then
-        if [[ -x $(which fzf-tmux) ]]; then
-            ps xauwww | fzf-tmux
-        fi
-    else
-        ps xauwww | grep  --color=auto -i "[${1[1]}]${1[2,-1]}"
-    fi
-}
