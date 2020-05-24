@@ -44,10 +44,21 @@ bindkey -M emacs "^Z" fg-widget
 bindkey -M vicmd "^Z" fg-widget
 bindkey -M viins "^Z" fg-widget
 
-local jump_dirs=( ~/1st_level ~/dw ~/tmp ~/src/1st_level ~/vid/new)
-for index in $(seq 1 $((${#jump_dirs[@]} ))); do
-    bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}\\"
-done
+negcd-1() { cd ~/1st_level && z4h-redraw-prompt }
+negcd-2() { cd ~/dw && z4h-redraw-prompt }
+negcd-3() { cd ~/vid/new && z4h-redraw-prompt }
+negcd-4() { cd ~/tmp && z4h-redraw-prompt }
+
+zle -N negcd-1
+zle -N negcd-2
+zle -N negcd-3
+zle -N negcd-4
+
+bindkey '^[1' negcd-1
+bindkey '^[2' negcd-2
+bindkey '^[3' negcd-3
+bindkey '^[4' negcd-4
+bindkey '^[5' negcd-5
 
 bindkey -M emacs "^[w"  vi-cmd-mode
 bindkey -M emacs "^X^F" vi-find-next-char
