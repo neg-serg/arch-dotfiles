@@ -44,36 +44,14 @@ bindkey -M emacs "^Z" fg-widget
 bindkey -M vicmd "^Z" fg-widget
 bindkey -M viins "^Z" fg-widget
 
-negcd-1() { cd ~/1st_level && z4h-redraw-prompt }
-negcd-2() { cd ~/dw && z4h-redraw-prompt }
-negcd-3() { cd ~/src/1st_level && z4h-redraw-prompt }
-negcd-4() { cd ~/src/wrk/infrastructure && z4h-redraw-prompt }
-
-special_enter() {
-    if [[ $BUFFER = '..' ]]; then
-        cd ..
-        z4h-redraw-prompt
-        BUFFER=
-    else
-        zle accept-line
-    fi
-}
-
-zle -N special_enter
-
-zle -N negcd-1
-zle -N negcd-2
-zle -N negcd-3
-zle -N negcd-4
-
-bindkey '^M' special_enter
-
 bindkey '^[1' negcd-1
 bindkey '^[2' negcd-2
 bindkey '^[3' negcd-3
 bindkey '^[4' negcd-4
-bindkey '^[5' negcd-5
 
 bindkey -M emacs "^[w"  vi-cmd-mode
 bindkey -M emacs "^X^F" vi-find-next-char
 bindkey '^j' fasd-complete
+
+bindkey "^I" expand-or-complete-with-dots
+bindkey '^M' special-accept-line

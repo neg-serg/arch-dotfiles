@@ -265,3 +265,30 @@ magic-abbrev-expand() {
     zle self-insert
 }
 no-magic-abbrev-expand() { LBUFFER+=' ' }
+
+negcd-1() { cd "${NEGCD1}" && z4h-redraw-prompt }
+negcd-2() { cd "${NEGCD2}" && z4h-redraw-prompt }
+negcd-3() { cd "${NEGCD3}" && z4h-redraw-prompt }
+negcd-4() { cd "${NEGCD4}" && z4h-redraw-prompt }
+zle -N negcd-1
+zle -N negcd-2
+zle -N negcd-3
+zle -N negcd-4
+
+special-accept-line() {
+    if [[ $BUFFER = '..' || $BUFFER = '../' ]]; then
+        cd ..
+        z4h-redraw-prompt
+        BUFFER=
+    else
+        zle accept-line
+    fi
+}
+zle -N special-accept-line
+
+expand-or-complete-with-dots() {
+    echo -n "\e[36m··\e[0m"
+    zle expand-or-complete
+    zle redisplay
+}
+zle -N expand-or-complete-with-dots

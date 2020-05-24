@@ -75,6 +75,11 @@ export SAVEHIST=10000000
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 
+export NEGCD1="${HOME}/1st_level"
+export NEGCD2="${HOME}/dw"
+export NEGCD3="${HOME}/src/1st_level"
+export NEGCD4="${HOME}/src/wrk/infrastructure"
+
 envoy ~/.ssh/*
 source <(envoy -p)
 
