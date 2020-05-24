@@ -74,10 +74,6 @@ chpwd() {
     if [[ -x $(which fasd) ]]; then
         [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
     fi
-    zle && {
-        zle reset-prompt
-        zle -R
-    }
 }
 
 zc() {
