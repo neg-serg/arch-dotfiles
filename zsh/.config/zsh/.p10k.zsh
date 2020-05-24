@@ -770,7 +770,7 @@
   ##############[ taskwarrior: taskwarrior task count (https://taskwarrior.org/) ]##############
   # Taskwarrior color.
   typeset -g POWERLEVEL9K_TASKWARRIOR_FOREGROUND=74
-  
+
   # Taskwarrior segment format. The following parameters are available within the expansion.
   #
   # - P9K_TASKWARRIOR_PENDING_COUNT   The number of pending tasks: `task +PENDING count`.
@@ -1424,10 +1424,10 @@
     tildac="%(?.%F{2}.%F{4})"
     prompt_end=" %F{25}❯%B%F{26}>%B%f"
     neg_user_pretok="%f"
-  
+
     [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_pretoken="${mainc}%f"
     [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_token="${mainc}${prompt_end}"
-  
+
     _neg_dyn_pwd=""
     _neg_tilda_path=${_neg_full_path/${HOME}/\~}
     # write the home directory as a tilda
