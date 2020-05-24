@@ -13,7 +13,8 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
 zinit wait silent light-mode for zinit-zsh/z-a-bin-gem-node
 zinit ice wait lucid blockf atpull:'zinit creinstall -q .'
@@ -26,4 +27,4 @@ zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 zsh-defer source "${XDG_CONFIG_HOME}/fzf/shell/completion.zsh"
 zsh-defer source "${XDG_CONFIG_HOME}/fzf/shell/key-bindings.zsh"
 zsh-defer source "${ZDOTDIR}/04-bindings.zsh"
-source "${ZDOTDIR}/.p10k.zsh"
+source ${ZDOTDIR}/.p10k.zsh
