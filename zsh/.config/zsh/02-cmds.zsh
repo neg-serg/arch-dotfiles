@@ -56,7 +56,7 @@ alias img="imgur-screenshot"
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias iostat='iostat -mtx'
 
-eval 'alias :{x,q,Q}=exit'
+alias ':q=exit'
 alias куищще='reboot'
 alias учше='exit'
 alias :й=':q'
@@ -135,5 +135,5 @@ if hash git 2>/dev/null; then
     alias gd="${intra_line_less} git diff ${intra_line_diff}"
     alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
     alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
-    eval "$(hub alias -s)"
+    alias git='hub'
 fi
