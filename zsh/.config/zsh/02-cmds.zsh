@@ -74,7 +74,7 @@ chpwd() {
     if [[ -x $(which fasd) ]]; then
         [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
     fi
-    hash setup_prompt 2> /dev/null && setup_prompt
+    zle && { zle accept-line; zle -R }
 }
 
 zc() {
@@ -246,8 +246,8 @@ fg-widget() {
 }
 zle -N fg-widget
 
-up-one-dir() { pushd .. 2> /dev/null; zle redisplay; zle -M $(pwd);  }
-back-one-dir() { popd     2> /dev/null; zle redisplay; zle -M $(pwd);  }
+up-one-dir() { pushd .. 2> /dev/null }
+back-one-dir() { popd 2> /dev/null; }
 zle -N up-one-dir
 zle -N back-one-dir
 
