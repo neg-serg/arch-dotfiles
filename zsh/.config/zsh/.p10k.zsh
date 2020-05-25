@@ -343,6 +343,7 @@
         local modified='%63F'     # yellow foreground
         local untracked='%30F'    # blue foreground
         local conflicted='%196F'  # red foreground
+        local new='%25F'
     else
         # Styling for incomplete and stale Git status.
         local meta='%244F'       # grey foreground
@@ -350,6 +351,7 @@
         local modified='%244F'   # grey foreground
         local untracked='%244F'  # grey foreground
         local conflicted='%244F' # grey foreground
+        local new='%244F' # grey foreground
     fi
 
     local res
@@ -378,10 +380,10 @@
     fi
 
     # ⇣42 if behind the remote.
-    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
+    (( VCS_STATUS_COMMITS_BEHIND )) && res+="${new}←${VCS_STATUS_COMMITS_BEHIND}"
     # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
     (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=""
-    (( VCS_STATUS_COMMITS_AHEAD )) && res+=" ${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
+    (( VCS_STATUS_COMMITS_AHEAD )) && res+="${new}→${VCS_STATUS_COMMITS_AHEAD}"
     # ⇠42 if behind the push remote.
     (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
     (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=""
@@ -396,7 +398,7 @@
     # +42 if have staged changes.
     (( VCS_STATUS_NUM_STAGED )) && res+=" ${modified}◈${VCS_STATUS_NUM_STAGED}"
     # !42 if have unstaged changes.
-    (( VCS_STATUS_NUM_UNSTAGED )) && res+=" ${modified}∆${VCS_STATUS_NUM_UNSTAGED}"
+    (( VCS_STATUS_NUM_UNSTAGED )) && res+="${modified}∙${VCS_STATUS_NUM_UNSTAGED}"
     # ?42 if have untracked files. It's really a question mark, your font isn't broken.
     # See POWERLEVEL9K_VCS_UNTRACKED_ICON above if you want to use a different icon.
     # Remove the next line if you don't want to see untracked files at all.
