@@ -11,7 +11,19 @@ alias ping='prettyping'
 alias s="sudo"
 alias e="mimeo"
 alias grep="grep --color=auto"
-alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
+
+local rg_options="--max-columns=0 \
+    --max-columns-preview \
+    --glob=\!git/* \
+    --colors=match:fg:25 \
+    --colors=match:style:underline \
+    --colors=line:fg:cyan \
+    --colors=line:style:bold \
+    --colors=path:fg:249 \
+    --colors=path:style:bold \
+    --smart-case"
+alias rg="rg ${rg_options}"
+alias zrg="rg ${rg_options} -z"
 alias sort='sort --parallel 8 -S 16M'
 
 alias se="patool extract"
