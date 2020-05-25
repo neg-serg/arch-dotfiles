@@ -135,19 +135,13 @@ zle -N negcd-4
 
 special-accept-line() {
     local line=$BUFFER
-    if [[ $line = '..' || $line = '../' ]]; then
-        cd ..
+    line=$(echo "$line" | sed 's:^~:'$HOME':')
+    if [[ -d "$line" ]]; then
+        cd "$line"
         z4h-redraw-prompt
         BUFFER=
     else
-        line=$(echo "$line" | sed 's:^~:'$HOME':')
-        if [[ -d "$line" ]]; then
-            cd "$line"
-            z4h-redraw-prompt
-            BUFFER=
-        else
-            zle accept-line
-        fi
+        zle accept-line
     fi
 }
 zle -N special-accept-line
