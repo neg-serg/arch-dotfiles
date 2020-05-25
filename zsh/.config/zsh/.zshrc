@@ -25,7 +25,6 @@ source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/02-zle-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
-zsh-defer source "${XDG_CONFIG_HOME}/fzf/shell/completion.zsh"
-zsh-defer source "${XDG_CONFIG_HOME}/fzf/shell/key-bindings.zsh"
 zsh-defer source "${ZDOTDIR}/04-bindings.zsh"
+zsh-defer source "${ZDOTDIR}/05-fzf.zsh"
 source ${ZDOTDIR}/.p10k.zsh
