@@ -1,6 +1,7 @@
 zleiab() {
     local -A abk=(
         'G'    '|& rg -i '
+        'Z'    '|& rg -iz '
         'C'    '| wc -l'
         'E'    '| head'
         'T'    '| tail'
