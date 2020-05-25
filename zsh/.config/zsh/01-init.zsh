@@ -80,8 +80,7 @@ export NEGCD2="${HOME}/dw"
 export NEGCD3="${HOME}/src/1st_level"
 export NEGCD4="${HOME}/src/wrk/infrastructure"
 
-envoy ~/.ssh/*
-source <(envoy -p)
+[[ -x =envoy ]] && { envoy ~/.ssh/*; source <(envoy -p) }
 
 _zpcompinit_custom() {
     setopt extendedglob local_options
@@ -105,38 +104,38 @@ autoload -Uz history-search-end
 autoload -Uz split-shell-arguments
 autoload -Uz lookupinit
 
-fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
-if [ ! -s "${fasd_cache}" ]; then
-    fasd --init auto >| "${fasd_cache}"
-fi
-source "${fasd_cache}"
-unset fasd_cache
-
-_direnv_hook() {
-    trap -- '' SIGINT;
-    eval "$("/usr/bin/direnv" export zsh)";
-    trap - SIGINT;
-}
-typeset -ag precmd_functions;
-if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
-    precmd_functions=( _direnv_hook ${precmd_functions[@]} )
-fi
-typeset -ag chpwd_functions;
-if [[ -z ${chpwd_functions[(r)_direnv_hook]} ]]; then
-    chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
+if [[ -x =fasd ]]; then
+    fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
+    if [ ! -s "${fasd_cache}" ]; then
+        fasd --init auto >| "${fasd_cache}"
+    fi
+    source "${fasd_cache}"
+    unset fasd_cache
 fi
 
-{
-    stty eof  2> /dev/null  # stty eof ''
-} &!
+if [[ -x =direnv ]]; then
+    _direnv_hook() {
+        trap -- '' SIGINT;
+        eval "$("/usr/bin/direnv" export zsh)";
+        trap - SIGINT;
+    }
+    typeset -ag precmd_functions;
+    if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
+        precmd_functions=( _direnv_hook ${precmd_functions[@]} )
+    fi
+    typeset -ag chpwd_functions;
+    if [[ -z ${chpwd_functions[(r)_direnv_hook]} ]]; then
+        chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
+    fi
+fi
 
 stty_setup() {
     stty time 0 2> /dev/null
     stty min 0 2> /dev/null
     stty line 6 2> /dev/null
     stty speed 38400 &> /dev/null
+    stty eof  2> /dev/null  # stty eof ''
 }
-
 [[ $- =~ i ]] && stty_setup &!
 
 [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
