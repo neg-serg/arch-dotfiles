@@ -1,5 +1,5 @@
 [global]
-    font                  = Iosevka Nerd Font Mono Medium 14
+    font                  = Iosevka Medium 14
     markup                = full
     plain_text            = false
     format                = "%s\n%b"
@@ -45,23 +45,18 @@
 
 [urgency_low]
     background = "#010204"
-    foreground = "#888888"
+    foreground = "#BFCAD0"
     timeout    = 4
 
 [urgency_normal]
     background = "#000000"
-    foreground = "#ffffff"
+    foreground = "#BFCAD0"
     timeout    = 4
 
 [urgency_critical]
     background = "#010204"
-    foreground = "#cc2222"
+    foreground = "#BFCAD0"
     timeout    = 0
-
-[skype]
-    appname    = skype
-    format     = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
-    urgency    = normal
 
 [pic_notify]
     appname    = screenshot 
