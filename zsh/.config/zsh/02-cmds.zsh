@@ -7,10 +7,12 @@ alias ls="ls --color=auto"
 alias mv="mv -i"
 alias mk="mkdir -p"
 alias rd="rmdir"
+alias grep="grep --color=auto"
+alias sort='sort --parallel 8 -S 16M'
+
 alias ping='prettyping'
 alias s="sudo"
 alias e="mimeo"
-alias grep="grep --color=auto"
 
 local rg_options="--max-columns=0 \
     --max-columns-preview \
@@ -24,7 +26,6 @@ local rg_options="--max-columns=0 \
     --smart-case"
 alias rg="rg ${rg_options}"
 alias zrg="rg ${rg_options} -z"
-alias sort='sort --parallel 8 -S 16M'
 
 alias se="patool extract"
 alias pk="patool create"
@@ -33,12 +34,13 @@ alias sp='cdu -idh -s -r -c ":"'
 alias '?=bc -l <<<'
 alias acpi="acpi -V"
 alias @r="~/bin/scripts/music_rename"
-alias v="~/bin/v --remote-silent"
+alias v="~/bin/v"
 alias ip='ip -c'
 alias fd='fd -H'
-alias qe='cd *(/om[1])'
 alias objdump='objdump -M intel -d'
 alias cal="task calendar"
+
+alias qe='cd *(/om[1])'
 
 pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
 alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
@@ -46,6 +48,7 @@ alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | so
 alias mpa="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -mute > ${HOME}/tmp/mpv.log"
 alias mpA="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -fs -ao null > ${HOME}/tmp/mpv.log"
 alias mpi="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu --interpolation=yes --tscale='oversample' --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
+
 alias love="mpc sendmessage mpdas love"
 alias unlove="mpc sendmessage mpdas unlove"
 alias yt="youtube-dl"
