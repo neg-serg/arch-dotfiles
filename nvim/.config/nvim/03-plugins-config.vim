@@ -119,6 +119,7 @@ nnoremap <silent> qE :Files %:p:h<CR>
 nnoremap <silent> qe :Files<CR>
 nnoremap <silent> qt :BTags<CR>
 nnoremap <silent> qc :BCommits<CR>
+command! -bang -complete=dir -nargs=* Dir call fzf#run(fzf#wrap('fd', {'source': 'fd --full-path -a -t d', 'dir': <q-args>}, <bang>0))
 
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
@@ -130,6 +131,8 @@ autocmd VimEnter * command! Colors
 " Insert mode completion
 imap <c-x><c-f> <Plug>(fzf-complete-path)
 imap <c-x><c-l> <Plug>(fzf-complete-line)
+nnoremap <C-e> :Dir<CR>
+nnoremap <C-S-e> :Dir <C-r>=expand('%:p:h')<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode ruler
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
