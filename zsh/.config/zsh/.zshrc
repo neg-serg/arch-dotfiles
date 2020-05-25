@@ -16,8 +16,6 @@ autoload -Uz _zinit
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
-zinit wait silent light-mode for zinit-zsh/z-a-bin-gem-node
-zinit ice wait lucid blockf atpull:'zinit creinstall -q .'
 zinit wait silent light-mode for zsh-users/zsh-completions
 zinit wait silent light-mode for neg-serg/fast-syntax-highlighting
 
