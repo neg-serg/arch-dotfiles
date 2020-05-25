@@ -63,35 +63,27 @@ alias diskact="sudo iotop -Po"
 local rlwrap_list=(bigloo clisp irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
 local logind_sudo_list=(reboot halt poweroff)
-local nocorrect_commands=(ebuild gist heroku hpodder man mkdir mv mysql sudo)
 local noglob_list=(
     fc find ftp sftp lftp history locate rake rsync scp eix zmv mmv wget clive
     clivescan youtube-dl youtube-viewer translate links links2 lynx you-get
     bower pip task
 )
-
 for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
 for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
 for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}";
 for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}";
-
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
+unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
 
-unset noglob_list rlwrap_list sudo_list
-
-if hash git 2>/dev/null; then
-    alias gs='git status --short -b'
-    alias gp='git push'
-    alias gc='git commit'
-    # http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
-    intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
-    intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
-    alias gd="${intra_line_less} git diff ${intra_line_diff}"
-    alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
-    alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
-    alias git='hub'
-fi
+alias gs='git status --short -b'
+alias gp='git push'
+# http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
+intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
+intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
+alias gd="${intra_line_less} git diff ${intra_line_diff}"
+alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
+alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
 
 chpwd() {
     if [[ -x $(which fasd) ]]; then
