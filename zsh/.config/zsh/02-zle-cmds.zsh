@@ -14,7 +14,6 @@ zleiab() {
         "wd"   "!-3$"
         "wc"   "!-4$"
     )
-
     local MATCH
     matched_chars='[.-|_a-zA-Z0-9]#'
     LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
@@ -93,7 +92,7 @@ fg-widget() {
 zle -N fg-widget
 
 # Widgets for changing current working directory.
-function z4h-redraw-prompt() {
+z4h-redraw-prompt() {
     emulate -L zsh
     local f
     for f in chpwd $chpwd_functions precmd $precmd_functions; do
@@ -103,7 +102,7 @@ function z4h-redraw-prompt() {
     zle -R
 }
 
-function z4h-cd-rotate() {
+z4h-cd-rotate() {
     emulate -L zsh
     while (( $#dirstack )) && ! pushd -q $1 &>/dev/null; do
         popd -q $1
@@ -112,9 +111,8 @@ function z4h-cd-rotate() {
         z4h-redraw-prompt
     fi
 }
-function z4h-cd-back() { z4h-cd-rotate +1 }
-function z4h-cd-forward() { z4h-cd-rotate -0 }
-
+z4h-cd-back() { z4h-cd-rotate +1 }
+z4h-cd-forward() { z4h-cd-rotate -0 }
 zle -N z4h-cd-back
 zle -N z4h-cd-forward
 
