@@ -1458,13 +1458,14 @@
 
     output=""
     if [[ $_neg_full_path = $HOME ]]; then
-        output=" $output"
+        output=""
+        p10k segment -f 25 -t "$output${prompt_end}"
     else
         output=" $output"
+        output+="${neg_user_pretok}%f%40<..<${neg_prompt}"
+        p10k segment -f 25 -t "$output"
     fi
 
-    output+="${neg_user_pretok}%f%40<..<${neg_prompt}"
-    p10k segment -f 25 -t "$output"
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
