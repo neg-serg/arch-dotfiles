@@ -138,6 +138,12 @@ stty_setup() {
 }
 [[ $- =~ i ]] && stty_setup &!
 
+chpwd() {
+    if [[ -x $(which fasd) ]]; then
+        [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
+    fi
+}
+
 [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
     eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
 

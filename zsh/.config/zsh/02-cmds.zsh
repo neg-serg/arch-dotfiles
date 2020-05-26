@@ -54,11 +54,13 @@ alias unlove="mpc sendmessage mpdas unlove"
 alias yt="youtube-dl"
 alias img="imgur-screenshot"
 
+alias vim=nvim
+alias nvim=v
+
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias iostat='iostat -mtx'
 alias log='journalctl -f'
 alias iotop='sudo iotop -oPa'
-alias diskact="sudo iotop -Po"
 
 local rlwrap_list=(bigloo clisp irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
@@ -84,9 +86,3 @@ intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
 alias gd="${intra_line_less} git diff ${intra_line_diff}"
 alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
 alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
-
-chpwd() {
-    if [[ -x $(which fasd) ]]; then
-        [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
-    fi
-}

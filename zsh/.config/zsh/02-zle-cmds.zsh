@@ -22,9 +22,6 @@ zleiab() {
 }
 zle -N zleiab
 
-[[ -x =nvim ]] && alias vim=nvim
-[[ ${DISPLAY} ]] &&  alias nvim=v
-
 inplace_mk_dirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
     # To select an area press ctrl-@ or ctrl-space and use the cursor.
