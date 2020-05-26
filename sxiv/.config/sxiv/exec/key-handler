@@ -118,7 +118,7 @@ wall() {
         fu*) wallarg="-full" ;;
         mono) specarg="plus"
     esac
-    >>"$tmp_wall"
+    tee "$tmp_wall"
     if [ -z $specarg ]; then
         while read wall; do
             hsetroot $wallarg "$wall" &
