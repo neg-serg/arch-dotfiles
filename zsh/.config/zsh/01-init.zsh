@@ -80,7 +80,7 @@ export NEGCD2="${HOME}/dw"
 export NEGCD3="${HOME}/src/1st_level"
 export NEGCD4="${HOME}/src/wrk/infrastructure"
 
-[[ -x =envoy ]] && { envoy ~/.ssh/*; source <(envoy -p) }
+[[ -x =envoy ]] && { envoy ~/.ssh/{id_rsa,id_ecdsa}; source <(envoy -p) }
 
 _zpcompinit_custom() {
     setopt extendedglob local_options
