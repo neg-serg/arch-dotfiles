@@ -8,7 +8,8 @@ set hintfiltermode vimperator-reflow
 set hintnames short
 set hintchars 12345
 set incsearch true
-set modeindicatorshowkeys true
+set modeindicator false
+set modeindicatorshowkeys false
 set hintdelay 100
 
 set keytranslatemodes.nmaps true
@@ -109,8 +110,9 @@ quickmark A https://magazine.artstation.com/
 
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
 " command line, so set an option to move the status bar to the right.
-guiset_quiet hoverlink left
-guiset_quiet statuspanel left
+guiset_quiet hoverlink right
+guiset_quiet statuspanel right
+guiset_quiet tabcounters show
 
 " Cyrillic keymap support
 keymap , ?
