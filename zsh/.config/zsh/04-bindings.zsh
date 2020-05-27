@@ -1,5 +1,4 @@
 bindkey -e
-zmodload -i zsh/parameter
 
 bindkey "^[-" z4h-cd-forward
 bindkey "^[=" z4h-cd-back
@@ -27,31 +26,18 @@ bindkey -M menuselect 'j'     vi-down-line-or-history
 bindkey -M menuselect 'k'     vi-up-line-or-history
 bindkey -M menuselect 'l'     vi-forward-char
 bindkey -M menuselect 'i'     accept-and-menu-complete
-bindkey -M menuselect "+"     accept-and-menu-complete
-bindkey -M menuselect "^[[2~" accept-and-menu-complete
 bindkey -M menuselect 'o'     accept-and-infer-next-history
 bindkey -M menuselect '\e^M'  accept-and-menu-complete
 
 bindkey . rationalise-dot
-# without this, typing a . aborts incremental history search
-bindkey -M isearch . self-insert
-
-# load the lookup subsystem if it's available on the system
-zle -N inplace_mk_dirs && bindkey '^xM' inplace_mk_dirs
+bindkey -M isearch . self-insert # without this, typing a . aborts incremental history search
+zle -N inplace_mk_dirs && bindkey '^xM' inplace_mk_dirs # load the lookup subsystem if it's available on the system
 
 bindkey -M emacs "^XD" describe-key-briefly
 bindkey -M emacs "^Z" fg-widget
-bindkey -M vicmd "^Z" fg-widget
-bindkey -M viins "^Z" fg-widget
 
-bindkey '^[1' negcd-1
-bindkey '^[2' negcd-2
-bindkey '^[3' negcd-3
-bindkey '^[4' negcd-4
+for t in {1..5}; bindkey "^[${t}" negcd-${t}
 
-bindkey -M emacs "^[w"  vi-cmd-mode
-bindkey -M emacs "^X^F" vi-find-next-char
 bindkey '^j' fasd-complete
-
 bindkey "^I" expand-or-complete-with-dots
 bindkey '^M' special-accept-line
