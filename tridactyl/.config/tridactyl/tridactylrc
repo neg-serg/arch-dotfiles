@@ -20,6 +20,12 @@ set keytranslatemodes.ignoremaps true
 
 alias w saveas ~/dw/
 
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,<Space> nohlsearch
+
 setpref general.warnOnAboutConfig false
 setpref extensions.webextensions.restrictedDomains ""
 setpref xpinstall.signatures.required false
