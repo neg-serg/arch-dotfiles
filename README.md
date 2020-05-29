@@ -43,11 +43,9 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
 + Terminal
     + **alacritty** -- a cross-platform, GPU-accelerated terminal emulator,
       my only option for now.
-    + **sh** -- based bourne shell config/profile, used for *dash*.
-    + **bash** -- I don't use bash widely, anyway I have some basic config.
+    + **sh** -- based bourne shell config/profile, used for *dash* and *bash*.
     + **zsh** -- the best of the best shell for me, pretty complex custom
       config. Based on GRML many years ago, maybe now it is not.
-    + **term-colorschemes** -- dump for my custom 256-colorscheme and other.
     + **dircolors** -- my 256-color filetype-based dircolors.
     + **tmux** -- tmux config
 + Dev
@@ -71,9 +69,7 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
     + **polybar** -- my statusbar
     + **keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock
       rebinded to ctrl, etc.
-    + **x11** -- various x11 related stuff
-    + **startup** -- scripts for .xinitrc to run compositing, custom
-      keybindings, etc.
+    + **xinit** -- various x11 related stuff.
     + **picom** -- x11 compositing manager.
 + Net
     + **tridactyl** -- Vimperator-like firefox addon. Vim-like keybindings
