@@ -26,7 +26,7 @@ setopt nonomatch # try to avoid the 'zsh: no matches found...'
 setopt no_notify # do not notify about bg task ending
 setopt noshwordsplit  # use zsh style word splitting
 setopt notify  # report the status of backgrounds jobs immediately
-setopt notransient_rprompt # only show the rprompt on the current prompt
+setopt transient_rprompt # only show the rprompt on the current prompt
 setopt prompt_subst # set the prompt
 setopt pushd_ignore_dups # don't push the same dir twice.
 setopt pushdminus # pushd -N goes to Nth dir in stack
