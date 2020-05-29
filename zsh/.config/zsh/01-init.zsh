@@ -63,10 +63,13 @@ export SAVEHIST=10000000
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 
-export NEGCD1="${HOME}/1st_level"
-export NEGCD2="${HOME}/dw"
-export NEGCD3="${HOME}/src/1st_level"
-export NEGCD4="${HOME}/src/wrk/infrastructure"
+local -U neg_dirs=(
+    "${HOME}/1st_level"
+    "${HOME}/dw"
+    "${HOME}/src/1st_level"
+    "${HOME}/src/wrk/infrastructure"
+)
+for t in {1..5}; export "NEGCD${t}=$neg_dirs[${t}]"
 
 [[ -x =envoy ]] && { envoy ~/.ssh/{id_rsa,id_ecdsa}; source <(envoy -p) }
 
@@ -116,15 +119,6 @@ if [[ -x =direnv ]]; then
         chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
     fi
 fi
-
-stty_setup() {
-    stty time 0 2> /dev/null
-    stty min 0 2> /dev/null
-    stty line 6 2> /dev/null
-    stty speed 38400 &> /dev/null
-    stty eof  2> /dev/null
-}
-[[ $- =~ i ]] && stty_setup &!
 
 chpwd() {
     [[ -x =fasd ]] && {
