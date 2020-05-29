@@ -44,6 +44,9 @@ setopt hist_verify # don't execute, just expand history
 setopt inc_append_history # add comamnds as they are typed, don't wait until shell exit
 setopt share_history # import new commands from the history file also in other zsh-session
 
+watch=(notme root) # watch for everyone but me and root
+typeset -U path cdpath fpath manpath # automatically remove duplicates from these arrays
+
 export PATH=/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/go/bin:/home/neg/.cargo/bin
 export EDITOR="nvim"
 export VISUAL="${EDITOR}"
@@ -124,16 +127,10 @@ stty_setup() {
 [[ $- =~ i ]] && stty_setup &!
 
 chpwd() {
-    if [[ -x $(which fasd) ]]; then
+    [[ -x =fasd ]] && {
         [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
-    fi
+    }
 }
 
 [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
     eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
-
-# watch for everyone but me and root
-watch=(notme root)
-
-# automatically remove duplicates from these arrays
-typeset -U path cdpath fpath manpath
