@@ -1,25 +1,46 @@
-```
+<img src="https://i.imgur.com/RlmtERk.jpg" alt="terminal_new" align="right" height="320px">
 
-░█▀█░█▀▀░█▀▀░░░█▀▄░█▀█░▀█▀░█▀▀░▀█▀░█░░░█▀▀░█▀▀
-░█░█░█▀▀░█░█░░░█░█░█░█░░█░░█▀▀░░█░░█░░░█▀▀░▀▀█
-░▀░▀░▀▀▀░▀▀▀░░░▀▀░░▀▀▀░░▀░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀
+<img src="https://i.imgur.com/Zb7WXjz.jpg" alt="firefox_new" align="right" height="320px">
 
-```
+<img src="https://i.imgur.com/cVMnzUi.jpg" alt="devenv_new" align="right" height="320px">
 
-Of course this dotfiles structure not include everything that I use, like QEMU.
+<img src="https://i.imgur.com/RTEo3vM.jpg" alt="music_new" align="right" height="320px">
 
-## Screenshots
+## Shell and terminal emulators
 
-![terminal_shot](https://i.imgur.com/O08SzU3.png)
-![nvim_shot](https://i.imgur.com/Tqfu65R.png)
-![firefox_shot](https://i.imgur.com/rgq2LcN.png)
-![unixporn_like_shot](https://i.imgur.com/z1arTLh.png)
+[alacritty](https://github.com/alacritty/alacritty) -- a cross-platform,
+GPU-accelerated terminal emulator, my only option for now. Using
+[zsh](https://www.zsh.org/) -- the best of the best shell for me, pretty
+complex custom config. Zsh has pretty compact config with fast startup and
+support of customized [p10k](https://github.com/romkatv/powerlevel10k) and
+[zinit](https://github.com/zdharma/zinit) plugin manager. For noninteractive
+use and scripts use [dash](http://gondor.apana.org.au/~herbert/dash/) the
+Almquist shell direct successor as fast and compact bourne-shell derivative.
+**dircolors** -- my 256-color filetype-based dircolors, it supports a lot of
+filetypes. [tmux](https://github.com/tmux/tmux/wiki) -- most modern terminal
+multiplexor.
 
-## Interesting stuff
+## Dev environment and docs
 
-I have very heavily customized i3-gaps to make it UX similar to good one
+[neovim](https://neovim.io/) -- using neovim as only editor option for now.
+It's used as my only developement environment for the all programming
+languages. I also created a custom [neg](https://github.com/neg-serg/neg)
+neovim colorscheme [git](https://git-scm.com/) -- as vcs system,
+[gdb](https://www.gnu.org/software/gdb/) -- GNU debugger as debugger. Using
+fast and tiny [zathura](https://pwmt.org/projects/zathura/) pdf/djvu/whatever
+viewer with UX similar to vim. [taskwarrior](https://taskwarrior.org/) --
+basic config for my GTD-like tool taskwarrior.
+
+## X11 and UX
+
+[i3-gaps](https://github.com/Airblader/i3) -- my current WM. I migrated to it
+after many years of using my fork of Notion WM. It has extremely
+sophisticated and unusial customization with help of my
+[negi3wm](https://github.com/neg-serg/negi3wm) to make it UX more similar to
 [ion3](https://tuomov.iki.fi/software/) and [notion](https://notionwm.net/),
-you can find it here:
+with a lot of unique features as run of raise over windows tags, multiwindow
+scratchpads, config generator and more, rofi-menu generator and more. Also
+I'm using Gnome integration in i3 with pleasure.
 
 https://github.com/neg-serg/negi3mods
 
@@ -28,87 +49,59 @@ created with the help of these i3ipc tools in the world ever and is also
 a good example of creating some new stuff with i3ipc. Though it python-based
 it's really fast because of client-server architecture.
 
-Also I have some custom config "distribution" of ZSH, Neovim, tmux and
-polybar config are also interesting enough with some more-or-less unique
-features.
+**gtk** -- using custom version of
+[Flat-remix-blue-dark](https://github.com/daniruiz/flat-remix)
 
-If you are vimperator fan like me please try tridactyl, after some patching
-and user-css stuff it become nice enough for daily use. You can find it
-config here:
+[dunst](https://dunst-project.org/) -- my minimalistic notification daemon,
+which also used for mpd-notification.
+[polybar](https://github.com/polybar/polybar) -- my favorite statusbar.
+**keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock
+rebinded to ctrl, etc.
+
+[rofi](https://github.com/davatorium/rofi) -- dmenu analogue to run programs,
+find windows, everything, used very widely. It's definitely my favorite menu
+generator.
+
+[picom-tryone](https://github.com/tryone144/picom/tree/feature/dual_kawase)
+Compositing manager, modern fork of compton with support of very fancy kawase
+blur algorithm and some new experimental backends.
+
+Some stuff from Gnome project:
+
+**gnome-keyring-daemon**: Gnome keyring daemon
+
+**gpaste**: GPaste clipboard manager daemon, using it with help of rofi.
+
+and some misc stuff:
+
+**caffeine** Prevents the desktop becoming idle in full-screen mode.
+
+**udiskie** automounter
+
+## Music and media
+
+For music I am using local storage with MPD Music Player Daemon, ncmpcpp mpd
+client, managing library with picard and beets. Also using mpdas as last.fm
+scrobbler mpd-notification script for fancy MPD Notification with help of
+dunst. For video I am using **mpv** minimalistic, fast and customizable video
+player. For images I am using my fork of **sxiv**. **ranger** -- nice
+console-based filemanager. I do not using it a lot, but like picture preview
+feature(in terminal, based on w3m).
+
+## Web and network stuff
+
+If you are vimperator fan like me please try tridactyl. Vimperator-like
+firefox addon which brings vim-like keybindings and UX in firefox. After some
+patching and user-css stuff it become nice enough for daily use. You can find
+it config here:
 
 https://github.com/neg-serg/dotfiles/tree/master/tridactyl
 
-## Overview
+**stig** -- custom colorscheme for this nice transmission-client for
+transmission-daemon. It's the most beautiful transmission-client as I know.
+**imgur-screenshot** -- command line interface imgur uploader. **nm-applet**:
+Network manager applet
 
-+ Terminal
-    + **alacritty** -- a cross-platform, GPU-accelerated terminal emulator,
-      my only option for now.
-    + **sh** -- based bourne shell config/profile, used for *dash* and *bash*.
-    + **zsh** -- the best of the best shell for me, pretty complex custom
-      config. Based on GRML many years ago, maybe now it is not.
-    + **dircolors** -- my 256-color filetype-based dircolors.
-    + **tmux** -- tmux config
-+ Dev
-    + **vim** -- I am using neovim for now, a lot of nice stuff. Also it's
-      used as my only developement environment for the all programming
-      languages.
-    + **git** -- config for git(.gitconfig)
-    + **gdb** -- GNU debugger.
-+ Music
-    + **mpd** -- music player daemon and mpd-notification configs.
-    + **ncmpcpp** -- mpd client
-    + **beets** -- music library manager
-+ Window system / X11
-    + **i3** -- my current WM with a lot of new stuff. I migrated to it after
-      many years of using my fork of Notion WM.
-    + **rofi** -- dmenu analogue to run programs, find windows, everything,
-      used very widely.
-    + **gtk** -- gtkrc
-    + **dunst** -- my minimalistic notification daemon, which also used for
-      mpd-notification.
-    + **polybar** -- my statusbar
-    + **keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock
-      rebinded to ctrl, etc.
-    + **xinit** -- various x11 related stuff.
-    + **picom** -- x11 compositing manager.
-+ Net
-    + **tridactyl** -- Vimperator-like firefox addon. Vim-like keybindings
-      and UX in firefox.
-    + **stig** -- custom colorscheme for this nice transmission-client
-+ Media
-    + **mpv** -- my minimalistic video player config.
-    + **sxiv** -- config for my fork of sxiv, image viewer.
-+ Emulators
-    + **dos** -- configs for dos emulators.
-+ Doc
-    + **zathura** -- nice and tiny pdf/djvu/whatever viewer with UX similar
-      to vim
-+ Misc
-    + **neofetch** -- nice fetch with custom config
-    + **htop** -- basic htop stuff(monochromatic for now)
-    + **imgur-screenshot** -- imgur uploaders.
-    + **misc** -- various stuff, which I don't use a lot as like urlview,
-      keynav, etc.
-    + **task** -- basic config for my GTD-like tool taskwarrior.
-    + **ranger** -- nice console-based filemanager. I do not using it a lot,
-      but like picture preview feature(in terminal, based on w3m).
-+ systemd
-    + **systemd** -- user services(for `systemctl --user`)
-        + caffeine.service: Prevents the desktop becoming idle in full-screen mode
-        + downloads.service: Downloads cleaner and handler
-        + picom.service: Compositing manager
-        + cursor_swarp.service: cursor swarp
-        + downloads.service: Downloads cleaner and handler
-        + dunst.service: Lightweight and customizable notification daemon
-        + gnome-keyring-daemon.service: Gnome keyring daemon
-        + gpaste.service: GPaste clipboard manager daemon
-        + mpd.service: Music Player Daemon
-        + mpdas.service: mpdas last.fm scrobbler
-        + mpd-notification.service: MPD Notification
-        + nm-applet.service: Network manager applet
-        + transmissiond.service: transmission service
-        + udiskie.service: automounter
-        + update-pic-dirs.service: Pic dirs notification
-        + wallpaper.service: setup wallpaper on startup
-        + x11.service: startx as service
-        + xinput_settings.service: my xinput settings
+## Games
+
+**dos** -- configs for dos emulators.
