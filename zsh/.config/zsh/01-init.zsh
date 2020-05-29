@@ -63,16 +63,6 @@ export SAVEHIST=10000000
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 
-local -U neg_dirs=(
-    "${HOME}/1st_level"
-    "${HOME}/dw"
-    "${HOME}/src/1st_level"
-    "${HOME}/src/wrk/infrastructure"
-)
-for t in {1..5}; export "NEGCD${t}=$neg_dirs[${t}]"
-
-[[ -x =envoy ]] && { envoy ~/.ssh/{id_rsa,id_ecdsa}; source <(envoy -p) }
-
 _zpcompinit_custom() {
     setopt extendedglob local_options
     autoload -Uz compinit

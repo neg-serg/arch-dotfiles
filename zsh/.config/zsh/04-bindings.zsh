@@ -36,8 +36,6 @@ zle -N inplace_mk_dirs && bindkey '^xM' inplace_mk_dirs # load the lookup subsys
 bindkey -M emacs "^XD" describe-key-briefly
 bindkey -M emacs "^Z" fg-widget
 
-for t in {1..5}; bindkey "^[${t}" negcd-${t}
-
 bindkey '^j' fasd-complete
 bindkey "^I" expand-or-complete-with-dots
 bindkey '^M' special-accept-line

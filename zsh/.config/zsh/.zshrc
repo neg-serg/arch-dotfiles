@@ -25,4 +25,5 @@ zsh-defer source "${ZDOTDIR}/02-zle-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 zsh-defer source "${ZDOTDIR}/04-bindings.zsh"
 zsh-defer source "${ZDOTDIR}/05-fzf.zsh"
+zsh-defer source "${ZDOTDIR}/06-neg-dirs.zsh"
 source ${ZDOTDIR}/.p10k.zsh
