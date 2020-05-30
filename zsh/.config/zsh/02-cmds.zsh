@@ -1,6 +1,6 @@
 local copepath=~/bin/scripts/Cope
 for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
-alias df="${copepath}/df -hT"
+alias df="df -hT"
 
 alias l=ls
 alias ls="ls --color=auto"
@@ -57,9 +57,7 @@ alias img="imgur-screenshot"
 alias vim=nvim
 alias nvim=v
 
-alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias iostat='iostat -mtx'
-alias log='journalctl -f'
 alias iotop='sudo iotop -oPa'
 
 local rlwrap_list=(bigloo clisp irb guile bb)
