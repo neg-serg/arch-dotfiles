@@ -86,12 +86,38 @@ autoload -Uz split-shell-arguments
 autoload -Uz lookupinit
 
 if [[ -x =fasd ]]; then
-    fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
-    if [ ! -s "${fasd_cache}" ]; then
-        fasd --init auto >| "${fasd_cache}"
-    fi
-    source "${fasd_cache}"
-    unset fasd_cache
+    (( $+functions[compdef] )) && {
+    # zsh word mode completion
+    _fasd_zsh_word_complete() {
+        [ "$2" ] && local _fasd_cur="$2"
+        [ -z "$_fasd_cur" ] && local _fasd_cur="${words[CURRENT]}"
+        local fnd="${_fasd_cur//,/ }"
+        local typ=${1:-e}
+        fasd --query $typ "$fnd" 2>> "/dev/null" | \
+        sort -nr | sed 's/^[^ ]*[ ]*//' | while read -r line; do
+            compadd -U -V fasd "$line"
+        done
+        compstate[insert]=menu # no expand
+    }
+    _fasd_zsh_word_complete_f() { _fasd_zsh_word_complete f ; }
+    _fasd_zsh_word_complete_d() { _fasd_zsh_word_complete d ; }
+    _fasd_zsh_word_complete_trigger() {
+        local _fasd_cur="${words[CURRENT]}"
+        eval $(fasd --word-complete-trigger _fasd_zsh_word_complete $_fasd_cur)
+    }
+    # define zle widgets
+    zle -C fasd-complete complete-word _generic
+    zstyle ':completion:fasd-complete:*' completer _fasd_zsh_word_complete
+    zstyle ':completion:fasd-complete:*' menu-select
+
+    zle -C fasd-complete-f complete-word _generic
+    zstyle ':completion:fasd-complete-f:*' completer _fasd_zsh_word_complete_f
+    zstyle ':completion:fasd-complete-f:*' menu-select
+
+    zle -C fasd-complete-d complete-word _generic
+    zstyle ':completion:fasd-complete-d:*' completer _fasd_zsh_word_complete_d
+    zstyle ':completion:fasd-complete-d:*' menu-select
+    }
 fi
 
 if [[ -x =direnv ]]; then
