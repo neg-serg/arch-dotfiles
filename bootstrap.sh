@@ -58,7 +58,7 @@ yay -S ncmpcpp mpc mpd mpdas-git mpd-notification-git mpdris2 mpdviz mpvc-git
 yay -S neovim-git neovim-remote vi vis ruby-neovim
 yay -S netctl netstat-nat nftables nmap
 yay -S network-manager-applet networkmanager-openvpn
-yay -S notmuch-addrlookup-c notmuchfs-git notmuch-mutt neomutt
+yay -S notmuch-addrlookup-c notmuchfs-git notmuch-mutt neomutt mbsync
 yay -S ntp
 yay -S nvidia nvidia-dkms nvidia-settings lib32-nvidia-utils
 yay -S nvimpager-git obs-studio 
