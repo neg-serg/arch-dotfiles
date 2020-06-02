@@ -1,18 +1,20 @@
 # Skip the not really helping Ubuntu global compinit
 skip_global_compinit=1
-export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DOWNLOAD_DIR="${HOME}/dw"
-export XDG_MUSIC_DIR="${HOME}/music"
-export XDG_DESKTOP_DIR="${HOME}/.local/desktop"
-export XDG_TEMPLATES_DIR="${HOME}/1st_level/templates"
-export XDG_DOCUMENTS_DIR="${HOME}/doc/"
-export XDG_PICTURES_DIR="${HOME}/pic"
-export XDG_VIDEOS_DIR="${HOME}/vid"
-export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DOWNLOAD_DIR="$HOME/dw"
+export XDG_MUSIC_DIR="$HOME/music"
+export XDG_DESKTOP_DIR="$HOME/.local/desktop"
+export XDG_TEMPLATES_DIR="$HOME/1st_level/templates"
+export XDG_DOCUMENTS_DIR="$HOME/doc/"
+export XDG_PICTURES_DIR="$HOME/pic"
+export XDG_VIDEOS_DIR="$HOME/vid"
+export XDG_PUBLICSHARE_DIR="$HOME/1st_level/upload/share"
+export XINITRC="$XDG_CONFIG_HOME"/xinit/xinitrc
+export XSERVERRC="$XDG_CONFIG_HOME"/xinit/xserverrc
 
 [[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
 [[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }

@@ -1,0 +1,2 @@
+#!/bin/dash
+/usr/bin/xinit -- :1 -nolisten tcp vt$XDG_VTNR
