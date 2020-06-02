@@ -37,11 +37,10 @@ yay -S gcolor3 gdb gimp
 yay -S gita-git gitbatch-bin git-crypt git-extras github-cli git-lfs tig
 yay -S gnome-shell gnome-session
 yay -S go go-tools
-yay -S gpart gparted
-yay -S gpaste
+yay -S gpart gparted hddtemp hdparm
+yay -S gpaste xsel xclip
 yay -S gtk-engine-murrine gtk-engines gtk-engine-unico gtkperf
 yay -S hunspell hunspell-ru
-yay -S hddtemp hdparm
 yay -S i3-gaps i3-gnome-git i3ipc-python-git caffeine unclutter-xfixes-git wmctrl wmname slop hsetroot gllock-git
 yay -S i7z
 yay -S imgur-screenshot-git
@@ -49,14 +48,13 @@ yay -S jdk8-openjdk jdk-openjdk drip-git icedtea-web
 yay -S jq keynav-improved-grid-git kotatogram-desktop-dynamic-bin kvantum-qt5
 yay -S licenses
 yay -S linux-clear linux-clear-bin linux-clear-headers kexec-tools intel-ucode intel-ucode-clear dkms
-yay -S flameshot maim
+yay -S flameshot maim perl-image-exiftool
 yay -S lostfiles
 yay -S mesa mesa-demos
 yay -S modprobed-db
 yay -S llvm lsb-release lvm2 lz4 lzo lzop mawk mcomix mdadm
-yay -S mpd-notification-git mpdris2 mpdviz mpvc-git
 yay -S neofetch inxi
-yay -S ncmpcpp mpc mpd mpdas-git
+yay -S ncmpcpp mpc mpd mpdas-git mpd-notification-git mpdris2 mpdviz mpvc-git
 yay -S neovim-git neovim-remote vi vis ruby-neovim
 yay -S netctl netstat-nat nftables nmap
 yay -S network-manager-applet networkmanager-openvpn
@@ -69,8 +67,7 @@ yay -S openresolv
 yay -S openssh openssh-askpass openssl openvpn
 yay -S optipng jpegoptim
 yay -S p7zip pacgraph
-yay -S cairo-infinality fontforge freetype2-infinality fontconfig-infinality-ultimate pango
-yay -S parallel
+yay -S fontforge cairo-infinality-remix freetype2-infinality-remix fontconfig-infinality-remix pango
 yay -S pass pass-import pass-otp
 yay -S picom-tryone-git
 yay -S polybar-neg-git potrace powerdevil powertop ppi3-git conky-cairo c-lolcat figlet
@@ -80,13 +77,13 @@ yay -S pulseaudio pulseaudio-alsa pulseaudio-jack pulsemixer-git cadence ncpamix
 yay -S pypy3 pypy3-pip pyright pyenv pyprof2calltree
 yay -S python-pip python-pylint python-pynvim
 yay -S qemu qemu-block-iscsi qemu-guest-agent spice-vdagent
-yay -S qt5-base qt5ct
+yay -S qt5ct
 yay -S radare2 radare2-bindings-git
 yay -S ranger
-yay -S recoll
+yay -S xapian recoll
 yay -S rofi rofi-pass-git
 yay -S rsync sdl2 sshfs
-yay -S cdu ripgrep rmlint fd fasd fzf parallel massren mimeo ipython
+yay -S cdu ripgrep rmlint fd fasd fzf parallel massren mimeo ipython parallel
 yay -S steam steamcmd steam-fonts steam-native-runtime
 yay -S stig torrentinfo transmission-cli
 yay -S stone-soup nethack nethack4 angband gzdoom
@@ -103,7 +100,6 @@ yay -S cozette-otb cozette-ttf ttf-code2000 ttf-iosevka ttf-iosevka-term ttf-ms-
 yay -S udiskie
 yay -S util-linux valgrind
 yay -S vulkan-extra-layers vulkan-headers vulkan-html-docs vulkan-mesa-layer vulkan-tools vulkan-trace vulkan-validation-layers
-yay -S xclip
 yay -S xurls urlscan-git urlview
 yay -S youtube-dl you-get straw-viewer-git sprunge 
 yay -S wine wine-mono winetricks dxvk-bin dxvk-cache-server-git vkd3d protontricks-git lib32-vkd3d lutris
