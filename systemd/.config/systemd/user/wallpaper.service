@@ -1,6 +1,6 @@
 [Unit]
 Description=Setup wallpaper on startup
-After=compton.service
+After=picom.service
 
 [Service]
 Type=forking
