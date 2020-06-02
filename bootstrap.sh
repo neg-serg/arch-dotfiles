@@ -1,7 +1,7 @@
 #!/bin/sh
 yay -S stow
 yay -S patchelf patchutils patool pciutils perf
-yay -S bash rlwrap zsh zsh-completions dash mksh babashka-bin
+yay -S bash rlwrap zsh zsh-completions dash mksh babashka-bin inotify-tools
 yay -S ansible ansible-lint mitogen
 yay -S acpi acpid albumdetails-git alsa-firmware alsa-utils ananicy-git alacritty ansilove-git
 yay -S irqbalance
