@@ -64,6 +64,7 @@ set noautowrite                             " Don't autowrite by default
 set autoread                                " Auto reload
 set noautochdir                             " Dont't change pwd automaticly because of problems with plugins
 set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
+set showtabline=0                           " do not show tab line
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
