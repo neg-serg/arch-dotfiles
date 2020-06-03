@@ -120,7 +120,10 @@ magic-abbrev-expand() {
     LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
     zle self-insert
 }
+zle -N magic-abbrev-expand
+
 no-magic-abbrev-expand() { LBUFFER+=' ' }
+zle -N no-magic-abbrev-expand
 
 negcd-1() { cd "${NEGCD1}" && z4h-redraw-prompt }
 negcd-2() { cd "${NEGCD2}" && z4h-redraw-prompt }
