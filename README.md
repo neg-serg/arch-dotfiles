@@ -84,9 +84,8 @@ For music I am using local storage with MPD Music Player Daemon, ncmpcpp mpd
 client, managing library with picard and beets. Also using mpdas as last.fm
 scrobbler mpd-notification script for fancy MPD Notification with help of
 dunst. For video I am using **mpv** minimalistic, fast and customizable video
-player. For images I am using my fork of **sxiv**. **ranger** -- nice
-console-based filemanager. I do not using it a lot, but like picture preview
-feature(in terminal, based on w3m).
+player. For images I am using my fork of **sxiv**. I do not using it a lot,
+but like picture preview feature(in terminal, based on w3m).
 
 ## Web and network stuff
 
@@ -99,8 +98,10 @@ https://github.com/neg-serg/dotfiles/tree/master/tridactyl
 
 **stig** -- custom colorscheme for this nice transmission-client for
 transmission-daemon. It's the most beautiful transmission-client as I know.
-**imgur-screenshot** -- command line interface imgur uploader. **nm-applet**:
-Network manager applet
+
+**imgur-screenshot** -- command line interface imgur uploader.
+
+**nm-applet**: Network manager applet
 
 ## Games
 
