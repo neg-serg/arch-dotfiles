@@ -26,7 +26,8 @@ _exists rg && {
     --colors=line:style:bold \
     --colors=path:fg:249 \
     --colors=path:style:bold \
-    --smart-case"
+    --smart-case
+    --hidden"
     alias rg="rg ${rg_options}"
     alias zrg="rg ${rg_options} -z"
 }
