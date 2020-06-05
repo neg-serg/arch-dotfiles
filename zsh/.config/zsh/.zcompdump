@@ -1,4 +1,4 @@
-#files: 1218	version: 5.8
+#files: 1079	version: 5.8
 
 _comps=(
 '-' '_precommand'
@@ -26,7 +26,6 @@ _comps=(
 'add-zsh-hook' '_add-zsh-hook'
 'admin' '_sccs'
 'afew' '_afew'
-'ag' '_the_silver_searcher'
 'alacritty' '_alacritty'
 'ali' '_mh'
 'alias' '_alias'
@@ -73,8 +72,6 @@ _comps=(
 'atrm' '_at'
 'attr' '_attr'
 'augtool' '_augeas'
-'aur' '_aur'
-'aurvote' '_aurvote'
 'autoload' '_typeset'
 'autorandr' '_autorandr'
 'avahi-browse' '_avahi'
@@ -253,7 +250,6 @@ _comps=(
 'dcopref' '_dcop'
 'dcopstart' '_dcop'
 'dd' '_dd'
-'ddgr' '_ddgr'
 'debuild' '_debuild'
 'declare' '_typeset'
 '-default-' '_default'
@@ -285,9 +281,6 @@ _comps=(
 'dmesg' '_dmesg'
 'dmidecode' '_dmidecode'
 'doas' '_doas'
-'docker' '_docker'
-'docker-compose' '_docker-compose'
-'dockerd' '_docker'
 'docpad' '_docpad'
 'domainname' '_yp'
 'dos2unix' '_dos2unix'
@@ -350,7 +343,6 @@ _comps=(
 'extcheck' '_java'
 'extractres' '_psutils'
 'fab' '_fab'
-'fail2ban-client' '_fail2ban-client'
 'fakeroot' '_fakeroot'
 'false' '_nothing'
 'fast-theme' '_fast-theme'
@@ -384,7 +376,6 @@ _comps=(
 'fixwwps' '_psutils'
 'flac' '_flac'
 'flameshot' '_flameshot'
-'flatpak' '_flatpak'
 'fleetctl' '_fleetctl'
 'flex' '_flex'
 'flex++' '_flex'
@@ -642,7 +633,6 @@ _comps=(
 'hotjava' '_webbrowser'
 'htop' '_htop'
 'http' '_httpie'
-'hyperfine' '_hyperfine'
 'ibus' '_ibus'
 'iceweasel' '_mozilla'
 'icombine' '_ispell'
@@ -655,7 +645,6 @@ _comps=(
 'iftop' '_iftop'
 'ifup' '_net_interfaces'
 'ijoin' '_ispell'
-'img2sixel' '_img2sixel'
 'import' '_imagemagick'
 'inc' '_mh'
 'includeres' '_psutils'
@@ -778,7 +767,6 @@ _comps=(
 'ltrace' '_ltrace'
 'lua' '_lua'
 'luarocks' '_luarocks'
-'luarocks-admin' '_luarocks-admin'
 'lunchy' '_lunchy'
 'lynx' '_lynx'
 'lz4' '_lz4'
@@ -804,7 +792,6 @@ _comps=(
 '-math-' '_math'
 'matlab' '_matlab'
 'mattrib' '_mtools'
-'mc' '_mc'
 'mcd' '_mtools'
 'mcopy' '_mtools'
 'md2' '_cksum'
@@ -904,7 +891,6 @@ _comps=(
 'mysqlshow' '_mysql_utils'
 'nail' '_mail'
 'nano' '_nano'
-'nanoc' '_nanoc'
 'native2ascii' '_java'
 'nautilus' '_nautilus'
 'nawk' '_awk'
@@ -929,7 +915,6 @@ _comps=(
 'nginx' '_nginx'
 'ngrep' '_ngrep'
 'nice' '_nice'
-'nim' '_nim'
 'nkf' '_nkf'
 'nl' '_nl'
 'nm' '_nm'
@@ -1035,7 +1020,6 @@ _comps=(
 'pkcon' '_pkcon'
 'pkgadd' '_pkgadd'
 'pkg-config' '_pkg-config'
-'pkgfile' '_pkgfile'
 'pkginfo' '_pkginfo'
 'pkgrm' '_pkgrm'
 'pkill' '_pgrep'
@@ -1130,7 +1114,6 @@ _comps=(
 'rasm2' '_rasm2'
 'rax2' '_rax2'
 'rc' '_sh'
-'_rclone' '_rclone'
 'rclone' '_rclone'
 'rcp' '_rlogin'
 'rcs' '_rcs'
@@ -2036,35 +2019,7 @@ autoload -Uz _afew _android _archlinux-java _artisan _atach \
             _widgets _zargs _zattr _zcalc _zcalc_line \
             _zcompile _zed _zftp _zle _zmodload \
             _zmv _zparseopts _zpty _zsh-mime-handler _zsocket \
-            _zstyle _ztodo _afew _android _archlinux-java \
-            _artisan _atach _bitcoin-cli _bower _bundle \
-            _caffeinate _cap _cask _ccache _cf \
-            _cheat _choc _chromium _cmake _coffee \
-            _composer _conan _concourse _console _cppcheck \
-            _dad _debuild _dget _dhcpcd _diana \
-            _docpad _drush _ecdsautil _emulator _envdir \
-            _exportfs _fab _fail2ban-client _ffind _flameshot \
-            _fleetctl _flutter _force _fwupdmgr _gas \
-            _ghc _gist _git-flow _git-journal _git-pulls \
-            _git-revise _git-wtf _glances _golang _google \
-            _gtk-launch _hledger _homestead _httpie _ibus \
-            _include-what-you-use _inxi _jmeter _jmeter-plugins _jonas \
-            _jrnl _kak _kitchen _knife _language_codes \
-            _lunchy _mc _middleman _mina _mix \
-            _mussh _mvn _nano _nanoc _nftables \
-            _node _nvm _openssl _optirun _patool \
-            _perf _periscope _pgsql_utils _phing _pixz \
-            _pkcon _play _pm2 _port _protoc \
-            _pygmentize _rails _ralio _redis-cli _rfkill \
-            _rkt _rslsync _rspec _rsvm _rubocop \
-            _sbt _scala _scrub _sdd _setcap \
-            _setup.py _sfdx _showoff _srm _stack \
-            _subl _subliminal _supervisorctl _svm _tarsnap \
-            _teamocil _thor _tmuxinator _tmuxp _tox \
-            _trash-empty _trash-list _trash-put _trash-restore _udisksctl \
-            _ufw _vagrant _virtualbox _vnstat _wemux \
-            _wg-quick _xinput _xsel _yaourt _yarn \
-            _zcash-cli
+            _zstyle _ztodo
 autoload -Uz +X _call_program
 
 typeset -gUa _comp_assocs
