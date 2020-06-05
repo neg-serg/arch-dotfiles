@@ -69,3 +69,5 @@ export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
 export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
+export TASKDATA="$XDG_DATA_HOME"/task
+export TASKRC="$XDG_CONFIG_HOME"/task/taskrc
