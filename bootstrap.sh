@@ -106,4 +106,6 @@ yay -S wine wine-mono winetricks dxvk-bin dxvk-cache-server-git vkd3d protontric
 yay -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps fbless
 yay -S zoom discord
 
+mkdir $XDG_DATA_HOME/ncmpcpp
+
 find -maxdepth 1 -type d -not -path '*/\.*' -printf '%P\n' | xargs stow -v
