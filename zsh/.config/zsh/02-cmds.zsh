@@ -32,21 +32,22 @@ _exists rg && {
     alias zrg="rg ${rg_options} -z"
 }
 
+alias @r="~/bin/scripts/music_rename"
+alias qe='cd *(/om[1])'
+
 _exists patool && {
     alias se="patool extract"
     alias pk="patool create"
 }
 
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
-alias '?=bc -l <<<'
-alias acpi="acpi -V"
-alias @r="~/bin/scripts/music_rename"
-alias ip='ip -c'
+_exists bc && alias '?=bc -l <<<'
+_exists acpi && alias acpi="acpi -V"
+_exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H'
-alias objdump='objdump -M intel -d'
+_exists objdump && alias objdump='objdump -M intel -d'
 _exists task && alias cal="task calendar"
-
-alias qe='cd *(/om[1])'
+_exists gdb && alias gdb="gdb -nh -x "$XDG_CONFIG_HOME"/gdb/gdbinit.gdb"
 
 pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
 
