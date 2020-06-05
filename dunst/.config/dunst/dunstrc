@@ -1,43 +1,43 @@
 [global]
-    font                  = Iosevka Medium 14
-    markup                = full
-    plain_text            = false
-    format                = "%s\n%b"
-    sort                  = true
-    alignment             = left
-    show_age_threshold    = -1
-    ignore_newline        = false
-    geometry              = "610x12-40-35"
-    shrink                = false
-    transparency          = 0
-    idle_threshold        = 8
-    monitor               = 0
-    follow                = mouse
-    sticky_history        = true
-    show_indicators       = false
-    indicate_hidden       = true
-    line_height           = 0
-    separator_height      = 1
-    padding               = 4
-    horizontal_padding    = 4
-    word_wrap             = yes
-    separator_color       = frame
-    startup_notification  = false
-    dmenu                 = /usr/bin/rofi -p dunst:
-    browser               = /usr/bin/firefox -new-tab
-    icon_position         = left
-    icon_path             = ~/.icons/Compass
-    max_icon_size         = 250
-    title                 = Dunst
-    class                 = Dunst
-    stack_duplicates      = true
-    hide_duplicate_count  = true
-    frame_width           = 4
-    frame_color           = "#0C0C0D"
-    width                 = 0
-    ellipsize             = middle
-    verbosity             = mesg
-    transparency          = 10
+    font = Iosevka Medium 13.5
+    markup = full
+    plain_text = false
+    format = "%s\n%b"
+    sort = true
+    alignment = left
+    show_age_threshold = -1
+    ignore_newline = false
+    geometry = "610x12-40-35"
+    shrink = false
+    transparency = 0
+    idle_threshold = 8
+    monitor = 0
+    follow = mouse
+    sticky_history = true
+    show_indicators = false
+    indicate_hidden = true
+    line_height = 0
+    separator_height = 1
+    padding = 2
+    horizontal_padding = 4
+    word_wrap = yes
+    separator_color = frame
+    startup_notification = false
+    dmenu = /usr/bin/rofi -p dunst:
+    browser = /usr/bin/firefox -new-tab
+    icon_position = left
+    icon_path = ~/.icons/Compass
+    max_icon_size = 250
+    title = Dunst
+    class = Dunst
+    stack_duplicates = true
+    hide_duplicate_count = true
+    frame_width = 4
+    frame_color = "#0C0C0D"
+    width = 0
+    ellipsize = middle
+    verbosity = mesg
+    transparency = 10
 
 [shortcuts]
     history = mod4+shift+9
@@ -46,26 +46,26 @@
 [urgency_low]
     background = "#010204"
     foreground = "#BFCAD0"
-    timeout    = 4
+    timeout = 4
 
 [urgency_normal]
     background = "#000000"
     foreground = "#BFCAD0"
-    timeout    = 4
+    timeout = 4
 
 [urgency_critical]
     background = "#010204"
     foreground = "#BFCAD0"
-    timeout    = 0
+    timeout = 0
 
 [pic_notify]
-    appname    = screenshot 
-    format     = ""
-    script     = "~/bin/scripts/pic_notify"
-    urgency    = normal
+    appname = screenshot 
+    format = ""
+    script = "~/bin/scripts/pic_notify"
+    urgency = normal
 
 [mpd]
-    appname    = mpd-notification
-    format     = ""
-    script     = "~/bin/scripts/mpd_notification"
-    urgency    = normal
+    appname = mpd-notification
+    format = ""
+    script = "~/bin/scripts/mpd_notification"
+    urgency = normal
