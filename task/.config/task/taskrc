@@ -17,3 +17,5 @@ taskd.key=~/.local/share/task/freecinc_f54840ad.key.pem
 taskd.certificate=~/.local/share/task/freecinc_f54840ad.cert.pem
 taskd.ca=~/.local/share/task/freecinc_f54840ad.ca.pem
 taskd.credentials=FreeCinc\/freecinc_f54840ad\/521a1d89-fae7-4b6e-9bc2-c9bb65738422
+
+verbose=blank,footnote,label,new-id,affected,edit,special,project,sync,unwait
