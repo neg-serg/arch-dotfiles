@@ -67,3 +67,5 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
 export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
+export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug

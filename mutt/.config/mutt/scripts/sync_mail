@@ -1,5 +1,9 @@
 #!/bin/dash
 # thx to https://copyninja.info/blog/email_setup.html
+
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
+export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
+
 MDIR="insales gmail"
 mbsync -a
 notmuch new

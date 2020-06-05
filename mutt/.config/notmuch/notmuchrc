@@ -1,0 +1,17 @@
+[database]
+path=/home/neg/.local/mail
+
+[user]
+name=Sergey Miroshnichenko
+primary_email=sergey.miroshnichenko@insales.ru
+other_email=serg.zorg@gmail.com;
+
+[new]
+tags=unread;inbox;
+ignore=
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true
