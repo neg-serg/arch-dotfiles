@@ -1,5 +1,3 @@
-data.location=~/.task
-
 color=on
 search.case.sensitive=off
 
@@ -15,7 +13,7 @@ calendar.offset=no
 calendar.holidays=full
 
 taskd.server=freecinc.com:53589
-taskd.key=\/home\/neg\/.task\/freecinc_f54840ad.key.pem
-taskd.certificate=\/home\/neg\/.task\/freecinc_f54840ad.cert.pem
-taskd.ca=\/home\/neg\/.task\/freecinc_f54840ad.ca.pem
+taskd.key=~/.local/share/task/freecinc_f54840ad.key.pem
+taskd.certificate=~/.local/share/task/freecinc_f54840ad.cert.pem
+taskd.ca=~/.local/share/task/freecinc_f54840ad.ca.pem
 taskd.credentials=FreeCinc\/freecinc_f54840ad\/521a1d89-fae7-4b6e-9bc2-c9bb65738422
