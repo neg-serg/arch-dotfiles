@@ -72,3 +72,4 @@ export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
 export TASKDATA="$XDG_DATA_HOME"/task
 export TASKRC="$XDG_CONFIG_HOME"/task/taskrc
 export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+export IRBRC="$XDG_CONFIG_HOME"/irb/irbrc

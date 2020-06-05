@@ -1,13 +1,7 @@
 require "rubygems"
 require "awesome_print"
 
-# Enable purdy hirb output for ActiveRecord things
-#Hirb::View.enable if rails?
-
-#-----------------------------------------------------------------------------
-# identity
-#-----------------------------------------------------------------------------
-
+#-- identity
 interpreter = (RUBY_DESCRIPTION rescue RUBY_VERSION)
 puts "## #{interpreter}"
 
@@ -19,10 +13,7 @@ if RUBY_VERSION < '1.9'
   end
 end
 
-#-----------------------------------------------------------------------------
-# appearance
-#-----------------------------------------------------------------------------
-
+#-- appearance
 require 'pp'
 pretty_printer = 'pp'
 
@@ -38,20 +29,15 @@ IRB::Irb.class_eval do
   end
 end
 
-#-----------------------------------------------------------------------------
-# interaction
-#-----------------------------------------------------------------------------
-
+#-- interaction
 require 'irb/completion'
 IRB.conf[:AUTO_INDENT] = true
 
 require 'irb/ext/save-history'
 IRB.conf[:SAVE_HISTORY] = 10_000
+IRB.conf[:HISTORY_FILE] ||= File.join(ENV["XDG_DATA_HOME"], "irb", "history")
 
-#-----------------------------------------------------------------------------
-# utility
-#-----------------------------------------------------------------------------
-
+#-- utility
 class Object
   # create bang methods to reveal method origins
   methods.grep(/methods$/).each do |plural|
