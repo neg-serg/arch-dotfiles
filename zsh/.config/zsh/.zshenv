@@ -75,3 +75,7 @@ export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export IRBRC="$XDG_CONFIG_HOME"/irb/irbrc
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export PYLINTHOME="$XDG_CONFIG_HOME"/pylint
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
