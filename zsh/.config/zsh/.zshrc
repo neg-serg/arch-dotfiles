@@ -14,10 +14,11 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 zinit ice depth=1
-# zinit light romkatv/powerlevel10k
-# Load within zshrc – for the instant prompt
-zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for \
-    romkatv/powerlevel10k
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+zinit light romkatv/powerlevel10k
+source ${ZDOTDIR}/.p10k.zsh
 zinit light romkatv/zsh-defer
 zinit wait silent light-mode for zsh-users/zsh-completions
 zinit wait silent light-mode for neg-serg/fast-syntax-highlighting
