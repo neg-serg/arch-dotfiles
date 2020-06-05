@@ -73,3 +73,5 @@ export TASKDATA="$XDG_DATA_HOME"/task
 export TASKRC="$XDG_CONFIG_HOME"/task/taskrc
 export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export IRBRC="$XDG_CONFIG_HOME"/irb/irbrc
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
