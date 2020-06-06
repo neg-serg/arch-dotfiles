@@ -173,7 +173,7 @@ def_key ";"
   jump_to_position_in_song
 
 def_key "'"
-  show_lyrics
+  dummy
 
 def_key "a"
   add_selected_items
@@ -197,10 +197,10 @@ def_key "\\"
   dummy
 
 def_key "L"
-  toggle_lyrics_fetcher
+  dummy
 
 def_key "F"
-  toggle_fetching_lyrics_in_background
+  dummy
 
 def_key "ctrl-l"
   toggle_screen_lock
@@ -212,7 +212,7 @@ def_key "`"
   toggle_library_tag_type
 
 def_key "`"
-  refetch_lyrics
+  dummy
 
 def_key "`"
   add_random_items
