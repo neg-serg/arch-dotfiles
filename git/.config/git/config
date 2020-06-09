@@ -2,10 +2,10 @@
     email = serg.zorg@gmail.com
     name = Neg
 [core]
-    pager = nvimpager -c
+    pager = /usr/bin/nvimpager -c
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
-    editor = "~/bin/v"
+    editor = /usr/bin/nvim
 [color]
     diff = 1
     pager = 0
@@ -42,8 +42,6 @@
     denyCurrentBranch = ignore
 [github]
     user = neg-serg
-[push]
-    default = simple
 [diff]
     tool = nwim
     algorithm = patience
@@ -66,5 +64,7 @@
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
+[push]
+    default = simple
 [pull]
 	rebase = true
