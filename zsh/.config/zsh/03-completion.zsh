@@ -57,10 +57,6 @@ zstyle ':completion:*:default' list-colors ${${(s.:.)LS_COLORS}%ec=*}
 zstyle ':completion:*' list-colors "ma=48;5;7;38;5;16;1"
 zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;75'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
-[[ -r ~/.ssh/known_hosts ]] && _ssh_hosts=(${${${${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}%%:*}#\[}%\]}) ||
-_ssh_hosts=()
-hosts=($HOST "$_ssh_hosts[@]" $_ssh_config_hosts[@] localhost)
-zstyle ':completion:*:hosts' hosts ${hosts}
 # highlight the original input.
 zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
 # colorize username completion
@@ -115,9 +111,6 @@ zstyle -e ':completion:*' completer '
             reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
         fi
     fi'
-
-[[ -d "${ZDOTDIR}/cache" ]] && zstyle ':completion:*' use-cache yes && \
-    zstyle ':completion::complete:*' cache-path "${ZDOTDIR}/cache/"
 
 autoload -U select-word-style backward-kill-word-match backward-word-match forward-word-match
 select-word-style shell
