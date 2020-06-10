@@ -40,6 +40,11 @@ _exists patool && {
     alias pk="patool create"
 }
 
+_exists xz && alias xz='xz --threads=0'
+_exists pigz && alias gzip='pigz'
+_exists pbzip2 && alias bzip2='pbzip2'
+_exists zstd && alias zstd="zstd --threads=0"
+
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
 _exists bc && alias '?=bc -l <<<'
 _exists acpi && alias acpi="acpi -V"
