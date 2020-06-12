@@ -1,7 +1,0 @@
-#!/bin/dash
-main() {
-    ~/bin/v --remote-silent ./
-    ~/bin/v --remote-send ":GV<CR>"
-}
-
-main "$@"
