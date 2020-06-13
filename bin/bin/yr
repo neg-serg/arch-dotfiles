@@ -1,7 +1,7 @@
 #!/bin/dash
 
 main() {
-    ${XDG_CONFIG_HOME}/i3/send bscratch toggle youtube
+    ${XDG_CONFIG_HOME}/i3/bin/send bscratch toggle youtube
     echo "$@" | xsel -i
     while ! xdotool search --sync --all --classname '^youtube-get$' 2>&1 > /dev/null; do
         :;
