@@ -1,6 +1,6 @@
 [Unit]
-Description=GPaste daemon
-After=dbus.service
+Description=Ingenious and fast way to move the mouse pointer on the screen with keystrokes
+After=picom.service
 
 [Service]
 Type=simple
