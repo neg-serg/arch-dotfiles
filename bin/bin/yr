@@ -2,8 +2,10 @@
 
 main() {
     ${XDG_CONFIG_HOME}/i3/send bscratch toggle youtube
-    sleep 1s
     echo "$@" | xsel -i
+    while ! xdotool search --sync --all --classname '^youtube-get$' 2>&1 > /dev/null; do
+        :;
+    done
     xdotool key shift+Insert
 }
 
