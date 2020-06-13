@@ -15,3 +15,8 @@ augroup modechange_settings
     autocmd BufReadPre,FileReadPre * let @/ = ''
     autocmd InsertLeave * setlocal nopaste
 augroup END
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 100)
+augroup END
