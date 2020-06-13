@@ -6,7 +6,7 @@ After=picom.service
 Type=simple
 Restart=on-failure
 RestartSec=10
-ExecStart=/usr/bin/keynav
+ExecStart=/usr/bin/keynav "loadconfig ~/.config/keynav/keynavrc"
 
 [Install]
 WantedBy=default.target
