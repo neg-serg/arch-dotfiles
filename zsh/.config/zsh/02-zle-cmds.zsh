@@ -125,15 +125,6 @@ zle -N magic-abbrev-expand
 no-magic-abbrev-expand() { LBUFFER+=' ' }
 zle -N no-magic-abbrev-expand
 
-negcd-1() { cd "${NEGCD1}" && z4h-redraw-prompt }
-negcd-2() { cd "${NEGCD2}" && z4h-redraw-prompt }
-negcd-3() { cd "${NEGCD3}" && z4h-redraw-prompt }
-negcd-4() { cd "${NEGCD4}" && z4h-redraw-prompt }
-zle -N negcd-1
-zle -N negcd-2
-zle -N negcd-3
-zle -N negcd-4
-
 special-accept-line() {
     local line=$BUFFER
     if [[ $line == "../" || $line == ".." ]]; then
