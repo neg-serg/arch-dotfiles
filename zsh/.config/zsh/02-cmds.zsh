@@ -52,14 +52,15 @@ _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H'
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists task && alias cal="task calendar"
-_exists gdb && alias gdb="gdb -nh -x "$XDG_CONFIG_HOME"/gdb/gdbinit.gdb"
+_exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
 
 pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
 
 _exists mpv && {
-    alias mpa="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -mute > ${HOME}/tmp/mpv.log"
-    alias mpA="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" -fs -ao null > ${HOME}/tmp/mpv.log"
-    alias mpi="mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu --interpolation=yes --tscale='oversample' --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
+    local mpv_ipc="--input-ipc-server=/tmp/mpvsocket"
+    alias mpa="mpv ${mpv_ipc} --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
+    alias mpA="mpv ${mpv_ipc} --vo=gpu -fs -ao null "$@" > ${HOME}/tmp/mpv.log"
+    alias mpi="mpv ${mpv_ipc} --vo=gpu --interpolation=yes --tscale='oversample' --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
 }
 
 _exists mpc && {
