@@ -35,4 +35,3 @@ bindkey -M menuselect 'l'     vi-forward-char
 bindkey -M menuselect 'i'     accept-and-menu-complete
 bindkey -M menuselect 'o'     accept-and-infer-next-history
 bindkey -M menuselect '\e^M'  accept-and-menu-complete
-
