@@ -1,5 +1,8 @@
 _exists() { (( $+commands[$1] )) }
 
+alias @r="~/bin/scripts/music_rename"
+alias qe='cd *(/om[1]D)'
+
 local copepath=~/bin/scripts/Cope
 for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
 alias df="df -hT"
@@ -13,6 +16,7 @@ alias grep="grep --color=auto"
 alias sort='sort --parallel 8 -S 16M'
 
 alias s="sudo"
+
 _exists prettyping && alias ping='prettyping'
 _exists mimeo && alias e="mimeo"
 
@@ -32,8 +36,23 @@ _exists rg && {
     alias zrg="rg ${rg_options} -z"
 }
 
-alias @r="~/bin/scripts/music_rename"
-alias qe='cd *(/om[1]D)'
+_exists cdu && alias sp='cdu -idh -s -r -c ":"'
+_exists bc && alias '?=bc -l <<<'
+_exists acpi && alias acpi="acpi -V"
+_exists ip && alias ip='ip -c'
+_exists fd && alias fd='fd -H'
+_exists objdump && alias objdump='objdump -M intel -d'
+_exists task && alias cal="task calendar"
+_exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
+
+_exists nvim && {
+    alias vim=nvim
+    alias nvim=v
+    alias v="~/bin/v"
+}
+
+_exists iostat && alias iostat='iostat -mtx'
+_exists iotop && alias iotop='sudo iotop -oPa'
 
 _exists patool && {
     alias se="patool extract"
@@ -45,39 +64,24 @@ _exists pigz && alias gzip='pigz'
 _exists pbzip2 && alias bzip2='pbzip2'
 _exists zstd && alias zstd="zstd --threads=0"
 
-_exists cdu && alias sp='cdu -idh -s -r -c ":"'
-_exists bc && alias '?=bc -l <<<'
-_exists acpi && alias acpi="acpi -V"
-_exists ip && alias ip='ip -c'
-_exists fd && alias fd='fd -H'
-_exists objdump && alias objdump='objdump -M intel -d'
-_exists task && alias cal="task calendar"
-_exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
-
 pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
 
 _exists mpv && {
     local mpv_ipc="--input-ipc-server=/tmp/mpvsocket"
     alias mpa="mpv ${mpv_ipc} --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
     alias mpA="mpv ${mpv_ipc} --vo=gpu -fs -ao null "$@" > ${HOME}/tmp/mpv.log"
-    alias mpi="mpv ${mpv_ipc} --vo=gpu --interpolation=yes --tscale='oversample' --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
+    alias mpi="mpv ${mpv_ipc} --vo=gpu \
+        --interpolation=yes \
+        --tscale='oversample' \
+        --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
 }
 
 _exists mpc && {
     alias love="mpc sendmessage mpdas love"
     alias unlove="mpc sendmessage mpdas unlove"
 }
-_exists yt && alias yt="youtube-dl"
+_exists youtube-dl && alias yt="youtube-dl"
 _exists imgur_screenshot && alias img="imgur-screenshot"
-
-_exists nvim && {
-    alias vim=nvim
-    alias nvim=v
-    alias v="~/bin/v"
-}
-
-_exists iostat && alias iostat='iostat -mtx'
-_exists iotop && alias iotop='sudo iotop -oPa'
 
 local rlwrap_list=(bigloo clisp irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
