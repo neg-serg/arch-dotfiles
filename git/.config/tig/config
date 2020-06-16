@@ -36,7 +36,6 @@ set vertical-split = auto # Enum: horizontal, vertical, auto; Use auto to
 set editor-line-number = yes # Automatically pass line number to editor? Used
                              # for opening file at specific line e.g. from a diff
 set mouse = no # Enable mouse support?
-set mouse-scroll = 3 # Number of lines to scroll via the mouse
 
 #--[ View switching ]--------
 bind generic m view-main
@@ -52,19 +51,15 @@ bind generic s view-status
 bind generic S view-status # Compat binding to avoid going crazy!
 bind generic c view-stage
 bind generic y view-stash
-bind generic g view-grep
 
 # View manipulation
 bind generic <Enter> enter # Enter and open selected entry
 bind generic <Lt> back # Go back to the previous view state
-bind generic <Down> next # Move to next
 bind generic <C-N> next
-bind generic <Up> previous # Move to previous
 bind generic <C-P> previous
 bind generic , parent # Move to parent
 bind generic <Tab> view-next  # Move focus to the next view
 bind generic R refresh # Reload and refresh view
-bind generic <F5> refresh
 bind generic O maximize # Maximize the current view
 bind generic q view-close # Close the current view
 bind generic Q quit # Close all views and quit
@@ -78,33 +73,19 @@ bind stage 1 stage-update-line # Stage/unstage current line
 bind stage ! status-revert # Revert current diff (c)hunk
 bind stage \ stage-split-chunk # Split current diff (c)hunk
 bind stage @ :/^@@ # Jump to next (c)hunk
-bind stage [ :toggle diff-context -1 # Decrease the diff context
-bind stage ] :toggle diff-context +1 # Increase the diff context
 bind main G :toggle commit-title-graph # Toggle revision graph visualization
 bind main F :toggle commit-title-refs  # Toggle reference display (tags/branches)
 
 #--[ Cursor navigation ]---------------
 bind generic k move-up
 bind generic j move-down
-bind generic <PgDown> move-page-down
 bind generic <C-D> move-page-down
-bind generic <Space> move-page-down
-bind generic <PgUp> move-page-up
 bind generic <C-U> move-page-up
-bind generic - move-page-up
-bind generic <Home> move-first-line
-bind generic <End> move-last-line
+bind generic <Space> move-page-down
 
 #--[ Scrolling ]-------------------------
-bind generic | scroll-first-col
-bind generic <Left> scroll-left
-bind generic <Right> scroll-right
-bind generic <Ins> scroll-line-up
 bind generic <C-Y> scroll-line-up
-bind generic <Del> scroll-line-down
 bind generic <C-E> scroll-line-down
-bind generic <SBack> scroll-page-up
-bind generic <SFwd> scroll-page-down
 
 #--[ Searching ]---------------
 bind generic / search
@@ -127,8 +108,6 @@ bind generic ? :toggle commit-order # Toggle commit ordering
 bind generic e edit # Open in editor
 bind generic : prompt # Open the prompt
 bind generic <C-L> screen-redraw # Redraw the screen
-bind generic z stop-loading # Stop all loading views
-bind generic v show-version # Show Tig version
 
 #--[ Color settings ]----------------------
 color "diff --" blue default
