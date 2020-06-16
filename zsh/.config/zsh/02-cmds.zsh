@@ -33,7 +33,7 @@ _exists rg && {
 }
 
 alias @r="~/bin/scripts/music_rename"
-alias qe='cd *(/om[1])'
+alias qe='cd *(/om[1]D)'
 
 _exists patool && {
     alias se="patool extract"
