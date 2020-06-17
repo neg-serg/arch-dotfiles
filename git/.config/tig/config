@@ -37,26 +37,26 @@ set editor-line-number = yes # Automatically pass line number to editor? Used
                              # for opening file at specific line e.g. from a diff
 set mouse = no # Enable mouse support?
 
-bind generic m view-main
-bind generic d view-diff
-bind generic l view-log
-bind generic t view-tree
-bind generic b view-blame
-bind generic h view-help
-bind generic s view-status
-bind generic y view-stash
+bind main m view-main
+bind main d view-diff
+bind main l view-log
+bind main t view-tree
+bind main b view-blame
+bind main h view-help
+bind main s view-status
+bind main y view-stash
 
 # View manipulation
-bind generic <Enter> enter # Enter and open selected entry
-bind generic <Lt> back # Go back to the previous view state
-bind generic <C-N> next
-bind generic <C-P> previous
-bind generic , parent # Move to parent
-bind generic <Tab> view-next  # Move focus to the next view
-bind generic R refresh # Reload and refresh view
-bind generic O maximize # Maximize the current view
-bind generic q view-close # Close the current view
-bind generic Q quit # Close all views and quit
+bind main <Enter> enter # Enter and open selected entry
+bind main <Lt> back # Go back to the previous view state
+bind main <C-N> next
+bind main <C-P> previous
+bind main , parent # Move to parent
+bind main <Tab> view-next  # Move focus to the next view
+bind main R refresh # Reload and refresh view
+bind main O maximize # Maximize the current view
+bind main q view-close # Close the current view
+bind main Q quit # Close all views and quit
 
 #--[ View specific ]------------------------------------------------------
 bind status u status-update # Stage/unstage changes in file
@@ -88,15 +88,15 @@ bind generic n find-next
 bind generic N find-prev
 
 #--[ Option manipulation ]----------------------------------------------------------
-bind generic o options # Open the options menu
-bind generic I :toggle sort-order # Toggle ascending/descending sort order
-bind generic i :toggle sort-field # Toggle field to sort by
-bind generic D :toggle date # Toggle date display
-bind generic A :toggle author # Toggle author display
-bind generic ~ :toggle line-graphics # Toggle (line) graphics mode
-bind generic F :toggle file-name # Toggle file name display
-bind generic W :toggle ignore-space # Toggle ignoring whitespace in diffs
-bind generic ? :toggle commit-order # Toggle commit ordering
+bind main o options # Open the options menu
+bind main I :toggle sort-order # Toggle ascending/descending sort order
+bind main i :toggle sort-field # Toggle field to sort by
+bind main D :toggle date # Toggle date display
+bind main A :toggle author # Toggle author display
+bind main ~ :toggle line-graphics # Toggle (line) graphics mode
+bind main F :toggle file-name # Toggle file name display
+bind main W :toggle ignore-space # Toggle ignoring whitespace in diffs
+bind main ? :toggle commit-order # Toggle commit ordering
 
 #--[ Misc ]-----------------------------------------------------
 bind generic e edit # Open in editor
