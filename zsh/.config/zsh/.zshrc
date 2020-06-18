@@ -14,8 +14,6 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 zinit ice depth=1
-# zinit light romkatv/powerlevel10k
-# Load within zshrc – for the instant prompt
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for \
     romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
