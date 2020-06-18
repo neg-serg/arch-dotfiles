@@ -90,7 +90,7 @@ fg-widget() {
 zle -N fg-widget
 
 # Widgets for changing current working directory.
-z4h-redraw-prompt() {
+redraw-prompt() {
     emulate -L zsh
     local f
     for f in chpwd $chpwd_functions precmd $precmd_functions; do
@@ -100,19 +100,19 @@ z4h-redraw-prompt() {
     zle -R
 }
 
-z4h-cd-rotate() {
+cd-rotate() {
     emulate -L zsh
     while (( $#dirstack )) && ! pushd -q $1 &>/dev/null; do
         popd -q $1
     done
     if (( $#dirstack )); then
-        z4h-redraw-prompt
+        redraw-prompt
     fi
 }
-z4h-cd-back() { z4h-cd-rotate +1 }
-z4h-cd-forward() { z4h-cd-rotate -0 }
-zle -N z4h-cd-back
-zle -N z4h-cd-forward
+cd-back() { cd-rotate +1 }
+cd-forward() { cd-rotate -0 }
+zle -N cd-back
+zle -N cd-forward
 
 magic-abbrev-expand() {
     local MATCH
@@ -129,7 +129,7 @@ special-accept-line() {
     local line=$BUFFER
     if [[ $line == "../" || $line == ".." ]]; then
         cd "$line"
-        z4h-redraw-prompt
+        redraw-prompt
         BUFFER=
     else
         zle accept-line

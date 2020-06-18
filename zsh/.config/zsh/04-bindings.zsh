@@ -1,7 +1,7 @@
 bindkey -e
 
-bindkey "^[-" z4h-cd-forward
-bindkey "^[=" z4h-cd-back
+bindkey "^[-" cd-forward
+bindkey "^[=" cd-back
 
 autoload up-line-or-beginning-search 
 zle -N up-line-or-beginning-search
