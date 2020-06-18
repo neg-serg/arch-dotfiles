@@ -10,7 +10,6 @@ window:
       y: 2
     decorations: full
     dynamic_padding: false
-    startup_mode: Maximized
 
 dpi:
   x: 96.0
@@ -219,9 +218,9 @@ visual_bell:
   color: '0xffffff'
 
 key_bindings:
-  - { key: V,        mods: Control|Shift,    action: Paste               }
-  - { key: C,        mods: Control|Shift,    action: Copy                }
-  - { key: Insert,   mods: Shift,   action: PasteSelection               }
+  - { key: V,        mods: Control|Shift,    action: Paste }
+  - { key: C,        mods: Control|Shift,    action: Copy  }
+  - { key: Insert,   mods: Shift,   action: PasteSelection }
 
 mouse_bindings:
   - { mouse: Middle, action: PasteSelection }
@@ -238,5 +237,3 @@ selection:
 
 shell:
   program: /usr/bin/tmux
-  args:
-    - -u # force UTF-8 in tmux
