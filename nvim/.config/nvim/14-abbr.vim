@@ -1,10 +1,9 @@
-cnoreabbrev Gd Gvdiff
-cnoreabbrev Gp Gpush
-cnoreabbrev Gci Gcommit -v
-cnoreabbrev Gca Gcommit -a -v
-cnoreabbrev Gcaa Gcommit --amend -a -v
-cnoreabbrev Gco Gcheckout
-cnoreabbrev Grm Gremove
-cnoreabbrev Gmv Gmove
+cnoreabbrev gd Gvdiff
+cnoreabbrev gp Gpush
+cnoreabbrev gc Gcommit -v
+cnoreabbrev gca Gcommit --amend -v
+cnoreabbrev gcheckout Gcheckout
+cnoreabbrev grm Gremove
+cnoreabbrev gmv Gmove
 cnoreabbrev L CocList
 cnoreabbrev U UltiSnipsEdit
