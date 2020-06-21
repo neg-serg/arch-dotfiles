@@ -3,41 +3,35 @@ set database sqlite
 unmap q
 unmap d 
 unmap <C-q>
-set font "PragmataPro for Powerline 17"
-
-set default-bg   "#020202"
-set default-fg   "#617287"
-set statusbar-bg "#020202"
-set statusbar-fg "#617287"
-
-set inputbar-bg "#1d1f21"
-set inputbar-fg "#9f9f9f"
+set font "Iosevka 17"
 
 map ; focus_inputbar ":"
 
+set default-bg "#020202"
+set default-fg "#617287"
+set statusbar-bg "#020202"
+set statusbar-fg "#617287"
+set inputbar-bg "#1d1f21"
+set inputbar-fg "#9f9f9f"
 set inputbar-bg "#000000"
 set inputbar-fg "#cccccc"
-
-set completion-bg "#232323"
-set completion-fg "#bbbbbb"
-
 set completion-group-bg "#101010"
 set completion-group-fg "#eeeeee"
 set completion-highlight-fg "#6A9FB5"
 set completion-highlight-bg "#073642"
-
 set highlight-color "#073642"
 set highlight-active-color "#47A2B9"
-
 set completion-bg "#000000"
 set completion-fg "#666666"
-
-set notification-error-bg "#d554dd"
-set notification-error-fg "#eeeeee"
-set notification-warning-bg "#98a7b6"
-set notification-warning-fg "#000000"
+set notification-error-bg "#AC4142"
+set notification-error-fg "#151515"
+set notification-warning-bg "#AC4142"
+set notification-warning-fg "#151515"
+set notification-bg "#191C21"
+set notification-fg "#6A9FB5"
 
 map <C-[> abort
+map <C-c> abort
 map <F11> toggle_fullscreen
 map <C-l> reload
 map R rotate rotate-ccw
@@ -47,15 +41,6 @@ map <A-1> set "pages-per-row 1"
 map <A-2> set "pages-per-row 2"
 map <C-1> set "first-page-column 1"
 map <C-2> set "first-page-column 2"
-
-set notification-error-bg "#AC4142"
-set notification-error-fg "#151515"
-
-set notification-warning-bg "#AC4142"
-set notification-warning-fg "#151515"
-
-set notification-bg "#191C21"
-set notification-fg "#6A9FB5"
 
 set statusbar-home-tilde true
 set window-title-home-tilde true
