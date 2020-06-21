@@ -6,7 +6,6 @@ tmp_imgur="$cache/sxiv_imgur.$$"
 tmp_wall="$cache/wall_sxiv.$$"
 z_data_file="$XDG_DATA_HOME/sxiv_do.data"
 last_action="$XDG_DATA_HOME/sxiv_do.last"
-
 trash_dir="$HOME/trash/1st-level/pic"
 rofi_cmd="rofi -dmenu -sort -matching fuzzy -no-plugins -no-only-match -theme sxiv -custom"
 
@@ -23,24 +22,8 @@ resolve_file() {
 rotate() {
     degree="$1"
     while read file; do
-        case "$(file -b -i "$file")" in
-        image/jpeg*)
-            jpegtran -rotate "$degree" -copy all -outfile "$file" "$file"
-        ;;
-        *)
-            mogrify  -rotate "$degree" "$file"
-        ;;
-        esac
+        mogrify  -rotate "$degree" "$file"
     done
-}
-
-rename() {
-    tee "$file1"
-    dest=$(printf "%s" "$(basename "$fp")" | eval $(echo $rofi_cmd -p '"⟬$rem⟭ >> "'))
-    [[ -n "$dest" ]] && \
-        fp=$(< "$file1") && \
-        mv "$fp" "$(dirname "$fp")/$dest"
-    trap finish EXIT
 }
 
 proc() {
@@ -137,7 +120,6 @@ finish() {
 }
 
 case "$1" in
-    "C-g") tr '\n' '\0' | xargs -0 gimp & ;;
     "C-comma") rotate 270 ;;
     "C-period") rotate 90 ;;
     "C-slash") rotate 180 ;;
@@ -145,13 +127,12 @@ case "$1" in
     "C-d") delete ;;
     "v") proc mv ;;
     "C-c") proc cp ;;
-    "C-r") rename ;;
     "r") repeat_action ;;
     "c") copy_name ;;
     "C-q") wall "center" ;;
     "C-w") wall "fill" ;;
     "C-e") wall "full" ;;
-    "C-r") wall "tile" ;;
-    "C-t") wall "mono" ;;
+    "C-t") wall "tile" ;;
+    "C-m") wall "mono" ;;
     "C-i") imgur_it ;;
 esac
