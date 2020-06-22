@@ -21,24 +21,24 @@ Plug 'inkarkat/vim-ReplaceWithRegister' " replace with register keybindings
 Plug 'tpope/vim-abolish' " for different case coersion
 Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 "--[ Search ]------------------------------------------------------------------------
-Plug 'junegunn/fzf', { 'dir': '~/.config/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', {'dir': '~/.config/fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] } "better grep plugin
+Plug 'liuchengxu/vim-clap', {'do': ':Clap install-binary'}
+Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']} "better grep plugin
 " --[ Dev ]--------------------------------------------------------------------------
 Plug 'dense-analysis/ale' " async linter with lsp support
 Plug 'tomtom/tcomment_vim' " commenter plugin
 Plug 'liuchengxu/vista.vim' " lsp-symbols tag searcher
 Plug 'Shougo/neoinclude.vim' " include completion framework
 Plug 'puremourning/vimspector' " vim debugging support
-Plug 'tpope/vim-dispatch', { 'on': ['Dispatch', 'Start', 'Make'] } " provide async build
-Plug 'radenling/vim-dispatch-neovim', { 'on': ['Dispatch', 'Start'] } " Neovim support for vim-dispatch
+Plug 'tpope/vim-dispatch', {'on': ['Dispatch', 'Start', 'Make']} " provide async build
+Plug 'radenling/vim-dispatch-neovim', {'on': ['Dispatch', 'Start']} " Neovim support for vim-dispatch
 Plug 'derekwyatt/vim-fswitch' " switching between companion source files e.g. .h and .cpp
 Plug 'plasticboy/vim-markdown' " markdown vim mode
 Plug 'mattn/emmet-vim', {'on': 'EmmetInstall'} " expanding abbreviations similar to emmet
 Plug 'vimwiki/vimwiki' " personal wiki for vim
-Plug 'donRaphaco/neotex' , { 'for': 'tex' } " latex support
+Plug 'donRaphaco/neotex' , {'for': 'tex'} " latex support
 Plug 'thinca/vim-ref' " integrated reference viewer for help with separated window
 Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for indent
 " --[ Appearance ]-------------------------------------------------------------------
