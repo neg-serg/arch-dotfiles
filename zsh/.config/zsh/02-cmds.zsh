@@ -98,10 +98,12 @@ local noglob_list=(
     clivescan youtube-dl youtube-viewer translate links links2 lynx you-get
     bower pip task
 )
-for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
-for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
-for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}";
-for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}";
+local dev_null_list=(tig)
+for i in ${sudo_list[@]}; alias "${i}=sudo ${i}"
+for i in ${noglob_list[@]}; alias "${i}=noglob ${i}"
+for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}"
+for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}"
+for i in ${dev_null_list[@]}; alias "${i}=${i} 2>/dev/null"
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
