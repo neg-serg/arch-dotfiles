@@ -88,6 +88,7 @@ _exists mpc && {
 }
 _exists youtube-dl && alias yt="youtube-dl"
 _exists imgur_screenshot && alias img="imgur-screenshot"
+_exists ffsend && alias ff="ffsend upload"
 
 local rlwrap_list=(bigloo clisp irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
