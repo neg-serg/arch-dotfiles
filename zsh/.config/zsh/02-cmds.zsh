@@ -7,7 +7,13 @@ local copepath=~/bin/scripts/Cope
 for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
 alias df="df -hT"
 
-alias l=ls
+if _exists exa; then
+    alias l="exa --icons"
+    alias ll="exa --icons -L 2 -R"
+else
+    alias l="ls --color=auto"
+    alias ll="l"
+fi
 alias ls="ls --color=auto"
 alias mv="mv -i"
 alias mk="mkdir -p"
