@@ -14,7 +14,7 @@ else
     alias l="ls --color=auto"
     alias ll="l"
 fi
-alias ls="ls --color=auto"
+ls() { [[ $# == 0 ]] && ls --color=auto || l }
 alias mv="mv -i"
 alias mk="mkdir -p"
 alias rd="rmdir"
