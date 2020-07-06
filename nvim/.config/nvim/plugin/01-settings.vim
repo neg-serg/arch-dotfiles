@@ -92,9 +92,9 @@ set winminheight=0              " Windows can be 0 line high
 set winminwidth=0               " Windows can be 0 line width
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
-set nowildmenu                  " Do not show list instead of just completing
 set wildoptions=pum,tagfile     " wild options
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set inccommand=split            " Better live substitution
 set matchtime=2                 " Default time to hi brackets too long for me
 set updatetime=250              " Faster diagnostics
 set pumblend=15                 " Set up pmenu transparency
