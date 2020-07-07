@@ -1,9 +1,3 @@
-unlimit
-ulimit -c 0
-limit stack 8192
-limit core 0
-limit -s
-
 setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
 setopt auto_cd # if a command is issued that can't be executed as a normal command, and the command is the name of a directory, perform the cd command to that directory.
 setopt auto_pushd # make cd push the old directory onto the directory stack.
