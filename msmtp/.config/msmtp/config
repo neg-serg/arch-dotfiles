@@ -10,4 +10,10 @@ auth on
 user serg.zorg@gmail.com
 passwordeval pass show gmail-pass
 
+account insales
+host mail.insales.ru
+from sergey.miroshnichenko@insales.ru
+user sergey.miroshnichenko@insales.ru
+passwordeval pass show insales/gitlab.insales.ru
+
 account default : gmail
