@@ -292,3 +292,4 @@ mpd/.config/mpd/sticker.sql
 mpd/.config/mpd/
 .zinit
 pylint/.config/pylint
+ovmf
