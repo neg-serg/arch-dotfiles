@@ -42,6 +42,9 @@ load-module module-role-cork
 load-module module-filter-heuristics
 load-module module-filter-apply
 
+#load-module module-native-protocol-tcp
+load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;192.168.0.0/24 auth-anonymous=1
+
 # load-module module-native-protocol-unix
 # load-module module-jack-sink channels=2
 # load-module module-jack-source channels=2
