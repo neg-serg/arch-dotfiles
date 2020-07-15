@@ -91,7 +91,7 @@ main(){
         local cores_amount="$(awk -F:   '/per socket/{print $2}' <<< ${lscpu_info[@]} | tr -d '[:space:]')"
         local threads_amount="$(awk -F: '/Thread/{print $2}'     <<< ${lscpu_info[@]} | tr -d '[:space:]')"
 
-        local qemu_bypass_network=true
+        local qemu_bypass_network=false
         local dynamic_usb_bypass=true
         local auto_usb_bypass=false
         local usb_bypass_timeout=40
@@ -159,7 +159,7 @@ main(){
 
         local -a qemu_pass_network=(
             -net none
-            -device vfio-pci,host=00:19.0,bus=root.1
+            -device vfio-pci,host=07:00.0,bus=root.1
         )
 
         local -a qemu_pass_input=()
@@ -208,7 +208,7 @@ main(){
 
         local -a qemu_network=()
         if [[ ${qemu_bypass_network} == true ]]; then
-            vfio_binder "0000:00:19.0"
+            vfio_binder "0000:07:00.0"
             for arg in ${qemu_pass_network[@]}; qemu_network+="${arg}"
         else
             for arg in ${qemu_default_network[@]}; qemu_network+="${arg}"
@@ -233,8 +233,7 @@ main(){
             "${looking_glass[@]}" \
             "${spice[@]}" \
             "${qemu_pass_video[@]}" \
-            "${qemu_pass_input[@]}" \
-            "${qemu_network[@]}"
+            "${qemu_pass_input[@]}" -netdev user,id=network0 -device e1000,netdev=network0
         fi
 
         qemu_run_success=true
