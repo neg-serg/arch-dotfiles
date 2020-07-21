@@ -3,7 +3,6 @@
 $defaultBG=#000
 
 cli         white,bold on $defaultBG
-scrollbar   dark green on $defaultBG
 helptext    light gray on $defaultBG
 
 $tlist_bg.uf = #000
@@ -359,5 +358,3 @@ peerlist.rate-est.highlighted.unfocused            $rate-est_hl                 
 peerlist.eta.header                                $eta_fg,underline              on $plist_bg
 peerlist.eta.unfocused                             $eta_fg                        on $plist_bg
 peerlist.eta.highlighted.unfocused                 $eta_hl                        on $plist_bg
-peerlist.country.header                            $country_fg,underline          on $plist_bg
-peerlist.country.unfocused                         $country_fg                    on $plist_bg
