@@ -15,7 +15,11 @@ main() {
         done
         echo -n "$args" | xargs -0n10 -P 10 ~/bin/scripts/vid_info
     } &
-    mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > $HOME/tmp/mpv.log
+    if lsmod | rg -i nvidia 2>/dev/null; then
+        mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > $HOME/tmp/mpv.log
+    else
+        mpv --input-ipc-server=/tmp/mpvsocket --vo=vdpau "$@" > $HOME/tmp/mpv.log
+    fi
 }
 
 main "$@" 2>/dev/null
