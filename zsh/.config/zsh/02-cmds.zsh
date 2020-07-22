@@ -20,6 +20,7 @@ alias mk="mkdir -p"
 alias rd="rmdir"
 alias grep="grep --color=auto"
 alias sort='sort --parallel 8 -S 16M'
+alias P="patch -p1 <"
 
 alias s="sudo"
 
@@ -86,7 +87,7 @@ _exists mpc && {
     alias love="mpc sendmessage mpdas love"
     alias unlove="mpc sendmessage mpdas unlove"
 }
-_exists youtube-dl && alias yt="youtube-dl"
+_exists youtube-dl && alias yt="youtube-dl -f best"
 _exists imgur_screenshot && alias img="imgur-screenshot"
 _exists ffsend && alias ff="ffsend upload"
 
