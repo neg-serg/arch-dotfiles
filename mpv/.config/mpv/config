@@ -51,3 +51,6 @@ term-osd-bar-chars = "──╼ ·"
 [extension.mp3]
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
+
+[eye-cancer]
+sharpen=5
