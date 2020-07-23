@@ -87,7 +87,7 @@ _exists mpc && {
     alias love="mpc sendmessage mpdas love"
     alias unlove="mpc sendmessage mpdas unlove"
 }
-_exists youtube-dl && alias yt="youtube-dl -f best"
+_exists youtube-dl && alias yt="youtube-dl"
 _exists imgur_screenshot && alias img="imgur-screenshot"
 _exists ffsend && alias ff="ffsend upload"
 
