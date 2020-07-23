@@ -1,4 +1,3 @@
-sanitise tridactyllocal tridactylsync
 colors neg
 set searchengine g
 set allowautofocus true
