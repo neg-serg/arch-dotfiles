@@ -61,7 +61,7 @@ border-left-color = ${color.border_top}
 border-right-color = ${color.border_top}
 
 width = 100%
-height = 62
+height = 52
 
 enable-ipc = true
 
