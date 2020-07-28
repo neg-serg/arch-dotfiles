@@ -108,7 +108,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     border-color: var(--in-content-border-focus) !important;
     font-family: "Iosevka" !important;
     font-weight: Bold !important;
-    font-size: 14pt !important;
+    font-size: 28pt !important;
 }
 
 .ac-url,
@@ -233,7 +233,7 @@ ar-button,
 
 #navigator-toolbox > toolbar {
   padding-top: 1px !important;
-  height: 30px !important;
+  height: 60px !important;
 }
 
 .panel-arrow {
@@ -294,7 +294,7 @@ toolbarseparator {
 #appMenu-popup .panel-arrowcontent,
 panelmultiview .toolbaritem-combined-buttons>label {
 	font-family: Iosevka !important;
-	font-size: 14px !important;
+	font-size: 28pt !important;
 }
 
 #appMenu-zoomReduce-button {
@@ -347,15 +347,15 @@ panelmultiview .toolbaritem-combined-buttons>label {
     justify-content: flex-end 
 }
 #titlebar {
-    min-width: 40px !important ;
+    min-width: 80px !important ;
     flex: 0 ;
     flex-basis: max-content 
 }
 #nav-bar {
     background-color: transparent !important ;
     flex: 1 ;
-    min-width: 1920px !important ;
-    max-width: 1920px !important 
+    min-width: 3880px !important ;
+    max-width: 3880px !important 
 }
 #PersonalToolbar {
     flex: 0 
@@ -378,5 +378,5 @@ panelmultiview .toolbaritem-combined-buttons>label {
     background-position: right top !important 
 }
 #main-window:not([sizemode="fullscreen"]) #browser {
-    padding-bottom: 30px 
+    padding-bottom: 60px 
 }
