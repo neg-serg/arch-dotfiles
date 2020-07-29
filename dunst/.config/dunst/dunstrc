@@ -1,5 +1,5 @@
 [global]
-    font = Iosevka Medium 13.5
+    font = Iosevka Medium 27
     markup = full
     plain_text = false
     format = "%s\n%b"
@@ -7,7 +7,7 @@
     alignment = left
     show_age_threshold = -1
     ignore_newline = false
-    geometry = "610x12-40-35"
+    geometry = "1220x11-40-35"
     shrink = false
     transparency = 0
     idle_threshold = 8
@@ -27,7 +27,7 @@
     browser = /usr/bin/firefox -new-tab
     icon_position = left
     icon_path = ~/.icons/Compass
-    max_icon_size = 250
+    max_icon_size = 500
     title = Dunst
     class = Dunst
     stack_duplicates = true
