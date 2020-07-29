@@ -33,8 +33,8 @@ class rofi_options:
             '-lines',   '8',
             '-columns', '2',
 
-            '-theme-str', '* { font: "Iosevka Term Bold 12"; }',
-            '-theme-str', '#window { width:1200; y-offset: -32;'
+            '-theme-str', '* { font: "Iosevka Term Bold 24"; }',
+            '-theme-str', '#window { width:2400; y-offset: -64;'
             'location: south west; anchor: south west; }',
         ]
 
