@@ -1,36 +1,35 @@
-set from = "sergey.miroshnichenko@insales.ru"
+set from = "sm@didlogic.com"
 set realname = "Sergey Miroshnichenko"
 
-set spoolfile = "+insales/Inbox"
-set mbox = "+insales/Inbox"
+set spoolfile = "+work/Inbox"
+set mbox = "+work/Inbox"
+
+set move=yes
 
 set header_cache="$XDG_CONFIG_HOME/mutt/work.gmail/hcache"
 set certificate_file="$XDG_CONFIG_HOME/mutt/work.gmail/certificates"
 set message_cachedir="$XDG_CONFIG_HOME/mutt/work.gmail/cache"
 set signature = ~/.config/mutt/signatures/work
 
-set postponed = "+insales/drafts"
-set record = "+insales/sent"
-set trash = "+insales/trash"
+set postponed = "+work/drafts"
+set record = "+work/sent"
+set trash = "+work/trash"
 
-set move=yes
-
-macro index o "<shell-escape>mbsync insales<enter>" "run mbsync to sync mail for this account"
+macro index o "<shell-escape>mbsync work<enter>" "run mbsync to sync mail for this account"
 macro index,pager A \
-  "<save-message>+insales/archive<enter>"  \
+  "<save-message>+work/archive<enter>"  \
   "move message to the archive"
 macro index,pager I \
-  "<save-message>+insales/INBOX<enter>"  \
+  "<save-message>+work/INBOX<enter>"  \
   "move message to the inbox"
 
-macro index ? '<change-vfolder>notmuch://?query=tag:insales-Inbox and NOT tag:archive and '
-
-macro index S "|bogofilter -s\ns=insales/Spam"  "Learn as spam and save to junk"
-macro pager S "|bogofilter -s\ns=insales/Spam"  "Learn as spam and save to junk"
+macro index ? '<change-vfolder>notmuch://?query=tag:work-Inbox and NOT tag:archive and '
+macro index S "|bogofilter -s\ns=work/Spam"  "Learn as spam and save to junk"
+macro pager S "|bogofilter -s\ns=work/Spam"  "Learn as spam and save to junk"
 
 set nm_default_uri = "notmuch:///home/neg/.local/mail/"
 virtual-mailboxes \
-        "gmail" "notmuch://?query=tag:gmail-Inbox"\
-        "insales" "notmuch://?query=tag:insales-Inbox"
+    "gmail" "notmuch://?query=tag:gmail-Inbox"\
+    "work" "notmuch://?query=tag:work-Inbox"
 
 # vim: ft=muttrc syntax=neomuttrc

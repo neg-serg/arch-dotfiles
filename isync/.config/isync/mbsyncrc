@@ -1,57 +1,45 @@
-#-- insales
-IMAPAccount insales
-Host mail.insales.ru
+#-- work
+IMAPAccount work
+Host mail.didlogic.com
 Port 993
 User sergey.miroshnichenko
-PassCmd "pass show insales/ldap"
+PassCmd "pass show work/serg"
 SSLType IMAPS
 SSLVersions TLSv1.2
 AuthMechs PLAIN
 
-IMAPStore insales-remote
-Account insales
+IMAPStore work-remote
+Account work
 
-MaildirStore insales-local
-Path ~/.local/mail/insales/
-Inbox ~/.local/mail/insales/
+MaildirStore work-local
+Path ~/.local/mail/work/
+Inbox ~/.local/mail/work/
 
-Channel insales-inbox
-Master :insales-remote:
-Slave :insales-local:"Inbox"
+Channel work-inbox
+Master :work-remote:
+Slave :work-local:"Inbox"
 Create Slave
 
-Channel insales-archive
-Master :insales-remote:"archive"
-Slave :insales-local:"all"
+Channel work-archive
+Master :work-remote:"archive"
+Slave :work-local:"all"
 Create Slave
 
-Channel insales-letsencrypt
-Master :insales-remote:"letsencrypt"
-Slave :insales-local:"letsencrypt"
+Channel work-trash
+Master :work-remote:"Trash"
+Slave :work-local:"Trash"
 Create Slave
 
-Channel insales-roscom
-Master :insales-remote:"roscom"
-Slave :insales-local:"roscom"
+Channel work-sent
+Master :work-remote:"Sent"
+Slave :work-local:"Sent"
 Create Slave
 
-Channel insales-trash
-Master :insales-remote:"Trash"
-Slave :insales-local:"Trash"
-Create Slave
-
-Channel insales-sent
-Master :insales-remote:"Sent"
-Slave :insales-local:"Sent"
-Create Slave
-
-Group insales
-Channel insales-inbox
-Channel insales-archive
-Channel insales-letsencrypt
-Channel insales-roscom
-Channel insales-trash
-Channel insales-sent
+Group work
+Channel work-inbox
+Channel work-archive
+Channel work-trash
+Channel work-sent
 
 #-- gmail
 IMAPAccount gmail
