@@ -208,7 +208,7 @@ cursor:
   style: Block
   unfocused_hollow: true
 
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
