@@ -1,6 +1,6 @@
 * {
-    font: "Iosevka Term Medium 12";
+    font: "Iosevka Term Medium 28";
 }
 #window {
-    width:400; y-offset: -32; location: south west; anchor: south west;
+    width:70%; y-offset: -4%; location: south west; anchor: south west;
 }

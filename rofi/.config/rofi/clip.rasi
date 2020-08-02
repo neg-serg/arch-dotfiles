@@ -1,10 +1,10 @@
 * {
-    font: "Iosevka Term Bold 14";
+    font: "Iosevka Bold 28";
 }
 #window {
     width:80%;
-    x-offset: 3%;
-    y-offset: -38;
+    x-offset: 0%;
+    y-offset: -5%;
     location: south west;
     anchor: south west;
 }

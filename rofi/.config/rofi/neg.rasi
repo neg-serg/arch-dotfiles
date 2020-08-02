@@ -11,7 +11,7 @@
    selectcolor:      #0a3749;
    darkgray:         #315C70;
 
-   font: "Iosevka Term Bold 14";
+   font: "Iosevka Term Bold 28";
    background-color: @blackdarkest;
 }
 
