@@ -2,14 +2,14 @@ env:
   TERM: alacritty
 
 window:
-    dimensions:
-      columns: 0
-      lines: 0
-    padding:
-      x: 2
-      y: 2
-    decorations: full
-    dynamic_padding: false
+  dimensions:
+    columns: 0
+    lines: 0
+  padding:
+    x: 2
+    y: 2
+  decorations: full
+  dynamic_padding: false
 
 background_opacity: 0.88
 
@@ -56,153 +56,153 @@ colors:
     cursor: '0x375BC1'
 
   normal:
-    black:   '0x020202'
-    red:     '0x8A2F58'
-    green:   '0x287373'
-    yellow:  '0x914E89'
-    blue:    '0x395573'
+    black: '0x020202'
+    red: '0x8A2F58'
+    green: '0x287373'
+    yellow: '0x914E89'
+    blue: '0x395573'
     magenta: '0x5E468C'
-    cyan:    '0x31658C'
-    white:   '0x899CA1'
+    cyan: '0x31658C'
+    white: '0x899CA1'
 
   bright:
-    black:   '0x3D3D3D'
-    red:     '0xCF4F88'
-    green:   '0x53A6A6'
-    yellow:  '0xBF85CC'
-    blue:    '0x477AB3'
+    black: '0x3D3D3D'
+    red: '0xCF4F88'
+    green: '0x53A6A6'
+    yellow: '0xBF85CC'
+    blue: '0x477AB3'
     magenta: '0x7E62B3'
-    cyan:    '0x6096BF'
-    white:   '0x617287'
+    cyan: '0x6096BF'
+    white: '0x617287'
 
   indexed_colors:
-    - { index: 16, color: '#040408' }
-    - { index: 17, color: '#01004C' }
-    - { index: 18, color: '#00006C' }
-    - { index: 19, color: '#000090' }
-    - { index: 20, color: '#0000BA' }
-    - { index: 21, color: '#0000FE' }
-    - { index: 22, color: '#002B00' }
-    - { index: 23, color: '#004E4E' }
-    - { index: 24, color: '#005f87' }
-    - { index: 25, color: '#005faf' }
-    - { index: 26, color: '#005fd7' }
-    - { index: 27, color: '#0090FF' }
-    - { index: 28, color: '#005200' }
-    - { index: 29, color: '#007A51' }
-    - { index: 30, color: '#017978' }
-    - { index: 30, color: '#357B63' }
-    - { index: 31, color: '#285981' }
-    - { index: 32, color: '#367CB0' }
-    - { index: 33, color: '#4FB3FF' }
-    - { index: 34, color: '#007C00' }
-    - { index: 35, color: '#00AE73' }
-    - { index: 36, color: '#3CAF88' }
-    - { index: 37, color: '#00ACAC' }
-    - { index: 38, color: '#7BC6FF' }
-    - { index: 39, color: '#A2D7FF' }
-    - { index: 40, color: '#00AE00' }
-    - { index: 41, color: '#00FFA9' }
-    - { index: 42, color: '#7DFF7E' }
-    - { index: 43, color: '#00d7af' }
-    - { index: 44, color: '#4FFFFF' }
-    - { index: 46, color: '#00FF01' }
-    - { index: 47, color: '#50FFC4' }
-    - { index: 48, color: '#A1FFA1' }
-    - { index: 49, color: '#00ffaf' }
-    - { index: 50, color: '#00ffd7' }
-    - { index: 51, color: '#00FFFF' }
-    - { index: 52, color: '#380001' }
-    - { index: 53, color: '#330021' }
-    - { index: 54, color: '#320031' }
-    - { index: 55, color: '#260039' }
-    - { index: 56, color: '#245361' }
-    - { index: 57, color: '#0a3749' }
-    - { index: 64, color: '#547D55' }
-    - { index: 65, color: '#80AE80' }
-    - { index: 66, color: '#8D74B6' }
-    - { index: 67, color: '#7C59B5' }
-    - { index: 68, color: '#C5A2FE' }
-    - { index: 69, color: '#DBC3FF' }
-    - { index: 70, color: '#367C36' }
-    - { index: 71, color: '#61AD62' }
-    - { index: 73, color: '#367CB0' }
-    - { index: 74, color: '#5788B0' }
-    - { index: 75, color: '#7095B0' }
-    - { index: 76, color: '#3FAD88' }
-    - { index: 77, color: '#62AE94' }
-    - { index: 80, color: '#29626E' }
-    - { index: 82, color: '#86DB24' }
-    - { index: 83, color: '#55AE24' }
-    - { index: 88, color: '#5C0100' }
-    - { index: 89, color: '#590038' }
-    - { index: 90, color: '#570055' }
-    - { index: 91, color: '#3D005D' }
-    - { index: 94, color: '#531E00' }
-    - { index: 100, color: '#4E3608' }
-    - { index: 101, color: '#AC9563' }
-    - { index: 104, color: '#AE7CFF' }
-    - { index: 105, color: '#D37CFF' }
-    - { index: 110, color: '#5B5BBB' }
-    - { index: 111, color: '#7778BB' }
-    - { index: 112, color: '#95DB18' }
-    - { index: 113, color: '#9AEF45' }
-    - { index: 114, color: '#C7FE40' }
-    - { index: 115, color: '#05C390' }
-    - { index: 116, color: '#7CD6EF' }
-    - { index: 117, color: '#90EAFE' }
-    - { index: 124, color: '#850001' }
-    - { index: 125, color: '#810052' }
-    - { index: 126, color: '#810081' }
-    - { index: 127, color: '#570083' }
-    - { index: 130, color: '#7F2E01' }
-    - { index: 136, color: '#795000' }
-    - { index: 137, color: '#AD893F' }
-    - { index: 141, color: '#DBC3FF' }
-    - { index: 154, color: '#C3FF01' }
-    - { index: 155, color: '#FFFF7D' }
-    - { index: 156, color: '#E0FF7D' }
-    - { index: 157, color: '#EAFFA2' }
-    - { index: 160, color: '#B40001' }
-    - { index: 161, color: '#B20072' }
-    - { index: 162, color: '#B100B0' }
-    - { index: 163, color: '#7700B2' }
-    - { index: 166, color: '#B04000' }
-    - { index: 172, color: '#AC7300' }
-    - { index: 173, color: '#FFC44E' }
-    - { index: 177, color: '#E1A1FF' }
-    - { index: 196, color: '#FE0000' }
-    - { index: 197, color: '#FF01A2' }
-    - { index: 198, color: '#FF00FE' }
-    - { index: 199, color: '#AA00FF' }
-    - { index: 202, color: '#FF5F01' }
-    - { index: 208, color: '#FFAA01' }
-    - { index: 209, color: '#FFD37C' }
-    - { index: 213, color: '#EBC3FF' }
-    - { index: 232, color: '#000508' }
-    - { index: 233, color: '#010C12' }
-    - { index: 234, color: '#04141C' }
-    - { index: 235, color: '#071B26' }
-    - { index: 236, color: '#0C2430' }
-    - { index: 237, color: '#102C3A' }
-    - { index: 238, color: '#163444' }
-    - { index: 239, color: '#1C3D4E' }
-    - { index: 240, color: '#234758' }
-    - { index: 241, color: '#2B5062' }
-    - { index: 242, color: '#34596C' }
-    - { index: 243, color: '#3F6476' }
-    - { index: 244, color: '#496E80' }
-    - { index: 245, color: '#54788A' }
-    - { index: 246, color: '#608394' }
-    - { index: 247, color: '#6D8E9E' }
-    - { index: 248, color: '#7C99A8' }
-    - { index: 249, color: '#8DA6B2' }
-    - { index: 250, color: '#95AFBC' }
-    - { index: 251, color: '#A4BBC6' }
-    - { index: 252, color: '#B7C8D0' }
-    - { index: 253, color: '#BFCAD0' }
-    - { index: 254, color: '#DBE1E4' }
-    - { index: 255, color: '#EEEEEE' }
+    - {index: 16, color: '#040408'}
+    - {index: 17, color: '#01004C'}
+    - {index: 18, color: '#00006C'}
+    - {index: 19, color: '#000090'}
+    - {index: 20, color: '#0000BA'}
+    - {index: 21, color: '#0000FE'}
+    - {index: 22, color: '#002B00'}
+    - {index: 23, color: '#004E4E'}
+    - {index: 24, color: '#005f87'}
+    - {index: 25, color: '#005faf'}
+    - {index: 26, color: '#005fd7'}
+    - {index: 27, color: '#0090FF'}
+    - {index: 28, color: '#005200'}
+    - {index: 29, color: '#007A51'}
+    - {index: 30, color: '#017978'}
+    - {index: 30, color: '#357B63'}
+    - {index: 31, color: '#285981'}
+    - {index: 32, color: '#367CB0'}
+    - {index: 33, color: '#4FB3FF'}
+    - {index: 34, color: '#007C00'}
+    - {index: 35, color: '#00AE73'}
+    - {index: 36, color: '#3CAF88'}
+    - {index: 37, color: '#00ACAC'}
+    - {index: 38, color: '#7BC6FF'}
+    - {index: 39, color: '#A2D7FF'}
+    - {index: 40, color: '#00AE00'}
+    - {index: 41, color: '#00FFA9'}
+    - {index: 42, color: '#7DFF7E'}
+    - {index: 43, color: '#00d7af'}
+    - {index: 44, color: '#4FFFFF'}
+    - {index: 46, color: '#00FF01'}
+    - {index: 47, color: '#50FFC4'}
+    - {index: 48, color: '#A1FFA1'}
+    - {index: 49, color: '#00ffaf'}
+    - {index: 50, color: '#00ffd7'}
+    - {index: 51, color: '#00FFFF'}
+    - {index: 52, color: '#380001'}
+    - {index: 53, color: '#330021'}
+    - {index: 54, color: '#320031'}
+    - {index: 55, color: '#260039'}
+    - {index: 56, color: '#245361'}
+    - {index: 57, color: '#0a3749'}
+    - {index: 64, color: '#547D55'}
+    - {index: 65, color: '#80AE80'}
+    - {index: 66, color: '#8D74B6'}
+    - {index: 67, color: '#7C59B5'}
+    - {index: 68, color: '#C5A2FE'}
+    - {index: 69, color: '#DBC3FF'}
+    - {index: 70, color: '#367C36'}
+    - {index: 71, color: '#61AD62'}
+    - {index: 73, color: '#367CB0'}
+    - {index: 74, color: '#5788B0'}
+    - {index: 75, color: '#7095B0'}
+    - {index: 76, color: '#3FAD88'}
+    - {index: 77, color: '#62AE94'}
+    - {index: 80, color: '#29626E'}
+    - {index: 82, color: '#86DB24'}
+    - {index: 83, color: '#55AE24'}
+    - {index: 88, color: '#5C0100'}
+    - {index: 89, color: '#590038'}
+    - {index: 90, color: '#570055'}
+    - {index: 91, color: '#3D005D'}
+    - {index: 94, color: '#531E00'}
+    - {index: 100, color: '#4E3608'}
+    - {index: 101, color: '#AC9563'}
+    - {index: 104, color: '#AE7CFF'}
+    - {index: 105, color: '#D37CFF'}
+    - {index: 110, color: '#5B5BBB'}
+    - {index: 111, color: '#7778BB'}
+    - {index: 112, color: '#95DB18'}
+    - {index: 113, color: '#9AEF45'}
+    - {index: 114, color: '#C7FE40'}
+    - {index: 115, color: '#05C390'}
+    - {index: 116, color: '#7CD6EF'}
+    - {index: 117, color: '#90EAFE'}
+    - {index: 124, color: '#850001'}
+    - {index: 125, color: '#810052'}
+    - {index: 126, color: '#810081'}
+    - {index: 127, color: '#570083'}
+    - {index: 130, color: '#7F2E01'}
+    - {index: 136, color: '#795000'}
+    - {index: 137, color: '#AD893F'}
+    - {index: 141, color: '#DBC3FF'}
+    - {index: 154, color: '#C3FF01'}
+    - {index: 155, color: '#FFFF7D'}
+    - {index: 156, color: '#E0FF7D'}
+    - {index: 157, color: '#EAFFA2'}
+    - {index: 160, color: '#B40001'}
+    - {index: 161, color: '#B20072'}
+    - {index: 162, color: '#B100B0'}
+    - {index: 163, color: '#7700B2'}
+    - {index: 166, color: '#B04000'}
+    - {index: 172, color: '#AC7300'}
+    - {index: 173, color: '#FFC44E'}
+    - {index: 177, color: '#E1A1FF'}
+    - {index: 196, color: '#FE0000'}
+    - {index: 197, color: '#FF01A2'}
+    - {index: 198, color: '#FF00FE'}
+    - {index: 199, color: '#AA00FF'}
+    - {index: 202, color: '#FF5F01'}
+    - {index: 208, color: '#FFAA01'}
+    - {index: 209, color: '#FFD37C'}
+    - {index: 213, color: '#EBC3FF'}
+    - {index: 232, color: '#000508'}
+    - {index: 233, color: '#010C12'}
+    - {index: 234, color: '#04141C'}
+    - {index: 235, color: '#071B26'}
+    - {index: 236, color: '#0C2430'}
+    - {index: 237, color: '#102C3A'}
+    - {index: 238, color: '#163444'}
+    - {index: 239, color: '#1C3D4E'}
+    - {index: 240, color: '#234758'}
+    - {index: 241, color: '#2B5062'}
+    - {index: 242, color: '#34596C'}
+    - {index: 243, color: '#3F6476'}
+    - {index: 244, color: '#496E80'}
+    - {index: 245, color: '#54788A'}
+    - {index: 246, color: '#608394'}
+    - {index: 247, color: '#6D8E9E'}
+    - {index: 248, color: '#7C99A8'}
+    - {index: 249, color: '#8DA6B2'}
+    - {index: 250, color: '#95AFBC'}
+    - {index: 251, color: '#A4BBC6'}
+    - {index: 252, color: '#B7C8D0'}
+    - {index: 253, color: '#BFCAD0'}
+    - {index: 254, color: '#DBE1E4'}
+    - {index: 255, color: '#EEEEEE'}
 
 cursor:
   style: Block
@@ -214,16 +214,16 @@ bell:
   color: '0xffffff'
 
 key_bindings:
-  - { key: V,        mods: Control|Shift,    action: Paste }
-  - { key: C,        mods: Control|Shift,    action: Copy  }
-  - { key: Insert,   mods: Shift,   action: PasteSelection }
+  - {key: V, mods: Control|Shift, action: Paste}
+  - {key: C, mods: Control|Shift, action: Copy}
+  - {key: Insert, mods: Shift, action: PasteSelection}
 
 mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+  - {mouse: Middle, action: PasteSelection}
 
 mouse:
-  double_click: { threshold: 300 }
-  triple_click: { threshold: 300 }
+  double_click: {threshold: 300}
+  triple_click: {threshold: 300}
   hide_when_typing: true
 
 draw_bold_text_with_bright_colors: false
