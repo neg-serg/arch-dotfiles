@@ -10,6 +10,7 @@ window:
     y: 2
   decorations: full
   dynamic_padding: false
+  dynamic_title: false
 
 background_opacity: 0.88
 
@@ -44,7 +45,7 @@ debug:
 
 scrolling:
   history: 1000
-  multiplier: 3
+  multiplier: 1
 
 colors:
   primary:
@@ -218,12 +219,9 @@ key_bindings:
   - {key: C, mods: Control|Shift, action: Copy}
   - {key: Insert, mods: Shift, action: PasteSelection}
 
-mouse_bindings:
-  - {mouse: Middle, action: PasteSelection}
-
 mouse:
-  double_click: {threshold: 300}
-  triple_click: {threshold: 300}
+  double_click: {threshold: 200}
+  triple_click: {threshold: 200}
   hide_when_typing: true
 
 draw_bold_text_with_bright_colors: false
