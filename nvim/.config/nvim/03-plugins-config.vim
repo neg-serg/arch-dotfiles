@@ -298,7 +298,8 @@ let g:clap_theme = 'material_design_dark'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
-nmap S <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-f)
+nmap F <Plug>(easymotion-overwin-f2)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/vim-easy-align                                                  │
 " │ https://github.com/junegunn/vim-easy-align                                        │

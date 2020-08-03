@@ -1,16 +1,13 @@
-nnoremap q <NOP>
-nnoremap <Tab> :bnext<cr>
-nnoremap <S-Tab> :bprevious<cr>
-
-" Some helpers to edit mode (http://vimcasts.org/e/14)
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-
-nnoremap Y y$
-nnoremap ; :
-
 let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
+
+nnoremap q <NOP>
+nnoremap <Tab> :bnext<cr>
+nnoremap <S-Tab> :bprevious<cr>
+nnoremap Y y$
+nnoremap ; :
+nnoremap S f
 
 noremap <Up> <nop>
 noremap <Down> <nop>
