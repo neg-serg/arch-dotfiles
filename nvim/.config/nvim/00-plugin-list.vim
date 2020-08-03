@@ -1,3 +1,4 @@
+call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 "--[ Main ]--------------------------------------------------------------------------
 Plug 'neg-serg/neg' " separated repo for the my own main colorscheme
 Plug 'neg-serg/neovim-colorschemes' " all colorschemes in the single repo
@@ -61,3 +62,4 @@ Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
 Plug 'vim-scripts/ViewOutput' " VO commandline output
 Plug 'dstein64/vim-startuptime' " measuring startuptime
 Plug 'ntpeters/vim-better-whitespace', {'on': 'StripWhitespace'} " delete whitespaces with ease
+call plug#end()
