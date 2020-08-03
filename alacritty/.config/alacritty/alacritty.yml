@@ -13,6 +13,7 @@ window:
   decorations: full
   dynamic_padding: false
   dynamic_title: false
+  gtk_theme_variant: dark
 
 background_opacity: 0.88
 
@@ -57,6 +58,14 @@ colors:
   cursor:
     text: '0x000000'
     cursor: '0x375BC1'
+
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+
+  selection:
+    text: CellBackground
+    background: CellForeground
 
   normal:
     black: '0x020202'
@@ -210,6 +219,7 @@ colors:
 cursor:
   style: Block
   unfocused_hollow: true
+  thickness: 0.15
 
 bell:
   animation: EaseOutExpo
@@ -224,7 +234,13 @@ key_bindings:
 mouse:
   double_click: {threshold: 200}
   triple_click: {threshold: 200}
-  hide_when_typing: true
+  hide_when_typing: false
+
+url:
+  launcher:
+    program: xdg-open
+    args: []
+  modifiers: None
 
 draw_bold_text_with_bright_colors: false
 
