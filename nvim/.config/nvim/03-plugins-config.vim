@@ -19,7 +19,7 @@ let g:coc_status_error_sign = ""
 let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-w> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -41,21 +41,21 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> qa  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> qE  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> qC  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> qo  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> qs  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent> qj  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> qk  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> qp  :<C-u>CocListResume<CR>
 " Try autofix current
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Reformat command
@@ -134,18 +134,18 @@ imap <c-x><c-l> <Plug>(fzf-complete-line)
 nnoremap <C-e> :Dir<CR>
 nnoremap <C-S-e> :Dir <C-r>=expand('%:p:h')<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode ruler
+    \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - pbogut/fzf-mru.vim                                                       │
 " │ https://github.com/pbogut/fzf-mru.vim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <silent> <Leader>. :FZFMru --prompt "❯> "<CR>
+nnoremap <silent> <leader>. :FZFMru --prompt "❯> "<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjbach/lusty.git                                                         │
 " │ https://github.com/sjbach/lusty.git                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:LustyJugglerDefaultMappings = 0
-let LustyExplorerDefaultMappings  = 0
+let LustyExplorerDefaultMappings = 0
 let g:LustyExplorerAlwaysShowDotFiles = 1
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -167,9 +167,9 @@ nnoremap [FLeader]sv :FSSplitLeft<cr>
 " │ plugin - Raimondi/delimitMate.git                                                 │
 " │ https://github.com/Raimondi/delimitMate.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:delimitMate_expand_space       = 1
-let g:delimitMate_expand_cr          = 0
-let g:delimitMate_smart_quotes       = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr = 0
+let g:delimitMate_smart_quotes = 1
 let g:delimitMate_balance_matchpairs = 1
 imap <Esc>OH <Plug>delimitMateHome
 imap <Esc>OF <Plug>delimitMateEnd
@@ -249,11 +249,11 @@ let g:rainbow_conf = g:rainbow_conf_defaults
 " │ plugin - tpope/vim-markdown                                                       │
 " │ https://github.com/tpope/vim-markdown                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:markdown_minlines                           = 100
-let g:markdown_syntax_conceal                     = 0
-let g:markdown_enable_mappings                    = 0
+let g:markdown_minlines = 100
+let g:markdown_syntax_conceal = 0
+let g:markdown_enable_mappings = 0
 let g:markdown_enable_insert_mode_leader_mappings = 0
-let g:markdown_enable_spell_checking              = 0
+let g:markdown_enable_spell_checking = 0
 if executable('firefox')
     let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
 endif
@@ -298,7 +298,7 @@ let g:clap_theme = 'material_design_dark'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
-nmap f <Plug>(easymotion-f)
+nmap <Space> <Plug>(easymotion-f)
 nmap F <Plug>(easymotion-overwin-f2)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/vim-easy-align                                                  │
@@ -311,14 +311,9 @@ xmap ga <Plug>(EasyAlign)
 " │ https://github.com/vimwiki/vimwiki                                                │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:vimwiki_ext2syntax = {'.md': 'markdown',
-                  \ '.mkd': 'markdown',
-                  \ '.wiki': 'media'}
+    \ '.mkd': 'markdown',
+    \ '.wiki': 'media'}
 let g:vimwiki_list = [{'path': '~/1st_level/'}]
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - APZelos/blamer.nvim                                                      │
-" │ https://github.com/APZelos/blamer.nvim                                            │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <silent> <F1> :BlamerToggle<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - liuchengxu/vista.vim                                                     │
 " │ https://github.com/liuchengxu/vista.vim                                           │
