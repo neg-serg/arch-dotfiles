@@ -33,14 +33,6 @@ if has('filterpipe')
     set noshelltemp
 endif
 
-set breakindent " enable indentation
-set breakindentopt=shift:2,min:20,sbr " ident by an additional 2 characters on
-                                      " wrapped lines, 
-                                      " when line >= 40 characters, put
-                                      " 'showbreak' at start of line
-set showbreak=>> " append '>>' to indent
-
-
 " Options initiating with ?m?
 " [global] |'magic'| Set 'magic' patterns ;)
 " Examples:
