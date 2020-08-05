@@ -14,6 +14,8 @@ Plug 'justinmk/vim-dirvish' "minimalistic file manager
 Plug 'airblade/vim-rooter' " autochdir for project root or for current dir
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'tpope/vim-surround' " new commands to vim for generic brackets
+Plug 'AndrewRadev/dsf.vim' " surround for function calls
+Plug 'AndrewRadev/splitjoin.vim' "one-liner to multi-liner
 Plug 'wellle/targets.vim' " better text objects
 Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'jiangmiao/auto-pairs' " autopair for brackets
@@ -22,6 +24,7 @@ Plug 'tpope/vim-repeat' " dot for everything
 Plug 'inkarkat/vim-ReplaceWithRegister' " replace with register keybindings
 Plug 'tpope/vim-abolish' " for different case coersion
 Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
+Plug 'haya14busa/vim-asterisk' " smartcase star
 "--[ Search ]------------------------------------------------------------------------
 Plug 'junegunn/fzf', {'dir': '~/.config/fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
@@ -49,11 +52,14 @@ Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
 Plug 'chr4/nginx.vim', { 'for': 'nginx' } " Nginx config file syntax
 Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 Plug 'luochen1990/rainbow' " better rainbow parentheses
+Plug 'arzg/vim-sh' " better sh / zsh highlight
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive' " Git stuff. Needed for powerline etc
 Plug 'junegunn/gv.vim' " git commit browser
 Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'rhysd/git-messenger.vim' " shows git message
+Plug 'rhysd/committia.vim' " better commit message
+Plug 'jreybert/vimagit' " interactive work with git
 "--[ Session ]-----------------------------------------------------------------------
 Plug 'xolox/vim-misc' " for vim-session
 Plug 'xolox/vim-session' " rule sessions

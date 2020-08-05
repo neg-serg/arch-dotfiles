@@ -350,3 +350,15 @@ let g:vista_default_executive = 'coc'
 " │ https://github.com/liuchengxu/vista.vim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap <C-f> <Plug>(git-messenger)
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - haya14busa/vim-asterisk                                                  │
+" │ https://github.com/haya14busa/vim-asterisk                                        │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+map *   <Plug>(asterisk-*)
+map #   <Plug>(asterisk-#)
+map g*  <Plug>(asterisk-g*)
+map g#  <Plug>(asterisk-g#)
+map z*  <Plug>(asterisk-z*)
+map gz* <Plug>(asterisk-gz*)
+map z#  <Plug>(asterisk-z#)
+map gz# <Plug>(asterisk-gz#)
