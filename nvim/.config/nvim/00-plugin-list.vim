@@ -46,6 +46,7 @@ Plug 'vimwiki/vimwiki' " personal wiki for vim
 Plug 'donRaphaco/neotex' , {'for': 'tex'} " latex support
 Plug 'thinca/vim-ref' " integrated reference viewer for help with separated window
 Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for indent
+Plug 'Vimjas/vim-python-pep8-indent' " try new python pep-indent
 " --[ Appearance ]-------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
