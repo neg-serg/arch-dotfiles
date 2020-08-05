@@ -3,8 +3,29 @@ if bufname('%') == ''
 endif
 
 set regexpengine=1
-set conceallevel=0 "no concealed text
-set concealcursor=
+set report=0       "no report on substitution
+set fileformats=unix,dos,mac "file format fallback
+set synmaxcol=2500 "no syntax hi for too long lines
+
+if has('conceal') && v:version >= 703
+	" For snippet_complete marker
+	set conceallevel=2 concealcursor=niv
+	" set conceallevel=0 "no concealed text
+    " set concealcursor=
+endif
+
+if exists('+previewpopup')
+	set previewpopup=height:10,width:60
+endif
+
+if exists('+completepopup')
+	set completeopt+=popup
+	set completepopup=height:4,width:60,highlight:InfoPopup
+endif
+
+if has('nvim-0.5')
+	set jumpoptions=stack
+endif
 
 set inccommand=nosplit "interactive substitution
 
@@ -31,6 +52,7 @@ set magic
 set path+=.,..,./include,../include,/usr/include
 execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
 execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
+set path+=**
 
 set isfname+={
 set isfname+=}
