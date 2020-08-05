@@ -48,7 +48,3 @@ export FZF_DEFAULT_OPTS="
 export FZF_TMUX=1
 export FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-
-export GDK_SCALE=4
-export GDK_DPI_SCALE=1
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
