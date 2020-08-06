@@ -28,7 +28,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
         --theme-highlight-red: #FF7DE9;
         --theme-highlight-yellow: #FFF89E;
         --theme-highlight-bluegrey: #5e88b0;
-        --theme-highlight-lightorange: #d99b28;
+        --theme-highlight-lightorange: #d99b14;
         --theme-highlight-orange: #d96629;
         --theme-highlight-pink: #df80ff;
         --tone-1: var(--grey-10);
@@ -108,7 +108,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
     border-color: var(--in-content-border-focus) !important;
     font-family: "Iosevka" !important;
     font-weight: Bold !important;
-    font-size: 28pt !important;
+    font-size: 14pt !important;
 }
 
 .ac-url,
@@ -233,7 +233,7 @@ ar-button,
 
 #navigator-toolbox > toolbar {
     padding-top: 1pt !important;
-    height: 60px !important;
+    height: 30px !important;
 }
 
 .panel-arrow {
@@ -294,7 +294,7 @@ toolbarseparator {
 #appMenu-popup .panel-arrowcontent,
 panelmultiview .toolbaritem-combined-buttons>label {
     font-family: Iosevka !important;
-    font-size: 28pt !important;
+    font-size: 14pt !important;
 }
 
 #appMenu-zoomReduce-button {
@@ -347,7 +347,7 @@ panelmultiview .toolbaritem-combined-buttons>label {
     justify-content: flex-end
 }
 #titlebar {
-    min-width: 80px !important;
+    min-width: 40px !important;
     flex: 0;
     flex-basis: max-content
 }
@@ -378,5 +378,5 @@ panelmultiview .toolbaritem-combined-buttons>label {
     background-position: right top !important
 }
 #main-window:not([sizemode="fullscreen"]) #browser {
-    padding-bottom: 60px
+    padding-bottom: 30px
 }
