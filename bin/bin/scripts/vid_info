@@ -14,6 +14,7 @@ year :: 2020
 """
 
 import os
+import sys
 import subprocess
 import json
 import math
@@ -41,15 +42,16 @@ def convert_unit(size_in_bytes, unit):
         return size_in_bytes/(1024*1024*1024)
     if unit == SIZE_UNIT.TiB:
         return size_in_bytes/(1024*1024*1024*1024)
-
     return size_in_bytes
 
 
 def media_info(filename):
+    """ Extract media info by filename """
     try:
         mediainfo_ret = subprocess.Popen(
             ['ffprobe', '-hide_banner', '-loglevel', 'fatal', '-show_error',
-            '-show_format', '-show_streams', '-print_format', 'json', str(filename)], stdout=subprocess.PIPE
+             '-show_format', '-show_streams', '-print_format',
+             'json', str(filename)], stdout=subprocess.PIPE
         ).communicate()[0]
 
         if mediainfo_ret is not None:
@@ -63,12 +65,12 @@ def media_info(filename):
     vid_frame_rate = ""
     audio_bitrate, audio_sample_rate = "", ""
     if not ret.get('streams', []):
-        os._exit(0)
+        sys.exit(0)
     for stream in ret['streams']:
         if stream['codec_type'] == 'video':
             out += pp.wrap(str(stream['width']) + 'x' + str(stream['height']))
-            fr = stream['avg_frame_rate'].split('/')
-            vid_frame_rate = round(float(fr[0]) / float(fr[1]))
+            frame_rate = stream['avg_frame_rateame_rate'].split('/')
+            vid_frame_rate = round(float(frame_rate[0]) / float(frame_rate[1]))
         if stream['codec_type'] == 'audio':
             if stream.get('bit_rate', ''):
                 audio_bitrate = math.floor(convert_unit(
@@ -100,12 +102,11 @@ def media_info(filename):
 
 
 def main():
+    """ Entry point """
     cmd_args = docopt(__doc__, version='1.0')
-    files =  cmd_args['FILES']
+    files = cmd_args['FILES']
     pp = pretty_printer
-
-    print_cwd = False
-    dir_name = ""
+    print_cwd, dir_name = False, ""
 
     for fname in files:
         if not os.path.exists(fname):
