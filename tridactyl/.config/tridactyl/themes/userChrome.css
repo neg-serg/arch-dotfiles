@@ -58,7 +58,7 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
         --in-content-border-highlight: var(--accent-1)!important;
         --in-content-border-focus: #147094 !important;
         --in-content-border-color: var(--tone-6)!important;
-        --in-content-category-outline-focus: 1px dotted #0a84ff;
+        --in-content-category-outline-focus: 1pt dotted #0a84ff;
         --in-content-category-text: var(--tone-4)!important;
         --in-content-category-text-active: #0c0c0d;
         --in-content-category-text-selected: var(--accent-1)!important;
@@ -103,8 +103,8 @@ regexp(".*\\.(p|P)(d|D)(f|F).*") {
 
 #urlbar,
 .searchbar-textbox {
-    border: 1px 1px 1px 1px solid var(--in-content-border-focus) !important;
-    box-shadow: 0 1px 4px var(--in-content-border-focus) !important;
+    border: 1pt 1pt 1pt 1pt solid var(--in-content-border-focus) !important;
+    box-shadow: 0 1pt 4pt var(--in-content-border-focus) !important;
     border-color: var(--in-content-border-focus) !important;
     font-family: "Iosevka" !important;
     font-weight: Bold !important;
@@ -163,7 +163,7 @@ browser[type=content] > html {
 }
 
 #nav-bar {
-    margin-bottom: -1px !important;
+    margin-bottom: -1pt !important;
 }
 
 #urlbar[focused="true"],
@@ -195,7 +195,7 @@ browser[type=content] > html {
 /* Hide various elements */
 #minimize-button,
 #restore-button,
-#close-button 
+#close-button
 #appMenu-fxa-container,
 #appMenu-fxa-container+toolbarseparator,
 #appMenuRestoreLastSession,
@@ -224,113 +224,113 @@ ar-button,
 #new-tab-button,
 #pageActionSeparator,
 .urlbar-history-dropmarker.urlbar-icon.chromeclass-toolbar-additional {
-  display: none !important;
+    display: none !important;
 }
 
 #navigator-toolbox {
-  -moz-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
 }
 
 #navigator-toolbox > toolbar {
-  padding-top: 1px !important;
-  height: 60px !important;
+    padding-top: 1pt !important;
+    height: 60px !important;
 }
 
 .panel-arrow {
-	fill: #1f1f1f !important;
+    fill: #1f1f1f !important;
 }
 
 .panel-subview-body {
-	color: #ffffff !important;
-	background: #1f1f1f !important;
-	border-color: #ffffff !important;
+    color: #ffffff !important;
+    background: #1f1f1f !important;
+    border-color: #ffffff !important;
 }
 
 .appMenu-zoomReset-button {
-	color: dodgerblue !important;
-	fill: dodgerblue !important;
-	border-color: dodgerblue !important;
-	border-radius: 0px !important;
-	background-color: #1f1f1f !important;
+    color: dodgerblue !important;
+    fill: dodgerblue !important;
+    border-color: dodgerblue !important;
+    border-radius: 0px !important;
+    background-color: #1f1f1f !important;
 }
 
 .subviewbutton.panel-subview-footer {
-	background-color: #1f1f1f !important;
-	border-top: 0px solid !important;
+    background-color: #1f1f1f !important;
+    border-top: 0px solid !important;
 }
 
 .panel-header {
-	border-bottom: 1px solid #1f1f1f !important;
-	background: #1f1f1f !important;
+    border-bottom: 1pt solid #1f1f1f !important;
+    background: #1f1f1f !important;
 }
 
 .panel-subview-footer,
 [class^="PanelUI-"] {
-	color: #ffffff !important;
-	background: #1f1f1f !important;
+    color: #ffffff !important;
+    background: #1f1f1f !important;
 }
 
 .subviewbutton.panel-subview-footer {
-	background-color: #1f1f1f !important;
-	border-top: 1px solid #1f1f1f !important;
+    background-color: #1f1f1f !important;
+    border-top: 1pt solid #1f1f1f !important;
 }
 
 .appMenu-tp-separator,
 toolbarseparator {
-	display: visible !important;
-	border-color: #404040 !important;
+    display: visible !important;
+    border-color: #404040 !important;
 }
 
 .subviewbutton[shortcut]::after {
-	font-family: Iosevka !important;
-	color: dodgerblue !important;
+    font-family: Iosevka !important;
+    color: dodgerblue !important;
 }
 
 .subviewbutton-nav::after {
-	fill: dodgerblue !important;
+    fill: dodgerblue !important;
 }
 
 #appMenu-popup .subviewbutton .toolbarbutton-text,
 #appMenu-popup .panel-arrowcontent,
 panelmultiview .toolbaritem-combined-buttons>label {
-	font-family: Iosevka !important;
-	font-size: 28pt !important;
+    font-family: Iosevka !important;
+    font-size: 28pt !important;
 }
 
 #appMenu-zoomReduce-button {
-	background: transparent !important;
-	color: dodgerblue !important;
-	border: 0px solid dodgerblue !important;
-	border-radius: 0px !important;
+    background: transparent !important;
+    color: dodgerblue !important;
+    border: 0px solid dodgerblue !important;
+    border-radius: 0px !important;
 }
 
 #appMenu-zoomReset-button label {
-	background: transparent !important;
-	color: dodgerblue !important;
-	border-radius: 0px !important;
-	font-family: "Iosevka" !important;
+    background: transparent !important;
+    color: dodgerblue !important;
+    border-radius: 0px !important;
+    font-family: "Iosevka" !important;
 }
 
 #appMenu-zoomReset-button {
-	background: transparent !important;
-	color: dodgerblue !important;
-	border: 1px solid dodgerblue !important;
-	border-radius: 0px !important;
+    background: transparent !important;
+    color: dodgerblue !important;
+    border: 1pt solid dodgerblue !important;
+    border-radius: 0px !important;
 
 }
 
 #appMenu-fullscreen-button {
-	background: transparent !important;
-	color: dodgerblue !important;
-	border: 0px solid #ffffff !important;
-	border-radius: 0px !important;
+    background: transparent !important;
+    color: dodgerblue !important;
+    border: 0px solid #ffffff !important;
+    border-radius: 0px !important;
 }
 
 #appMenu-zoomEnlarge-button {
-	background: transparent !important;
-	color: dodgerblue !important;
-	border: 0px solid #ffffff !important;
-	border-radius: 0px !important;
+    background: transparent !important;
+    color: dodgerblue !important;
+    border: 0px solid #ffffff !important;
+    border-radius: 0px !important;
 }
 
 :root{ scrollbar-color: rgb(70,70,70) rgb(20,20,20) }
@@ -342,41 +342,41 @@ panelmultiview .toolbaritem-combined-buttons>label {
 
 /* ONE LINE TOOLBAR */
 #navigator-toolbox {
-    display: flex ;
-    flex-direction: row-reverse ;
-    justify-content: flex-end 
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end
 }
 #titlebar {
-    min-width: 80px !important ;
-    flex: 0 ;
-    flex-basis: max-content 
+    min-width: 80px !important;
+    flex: 0;
+    flex-basis: max-content
 }
 #nav-bar {
-    background-color: transparent !important ;
-    flex: 1 ;
-    min-width: 3880px !important ;
-    max-width: 3880px !important 
+    background-color: transparent !important;
+    flex: 1;
+    min-width: 3880px !important;
+    max-width: 3880px !important
 }
 #PersonalToolbar {
-    flex: 0 
+    flex: 0
 }
 #tabbrowser-tabs {
-    width: 100vw 
+    width: 100vw
 }
 /* TOOLBAR BELOW PAGE */
 #main-window:not([sizemode="fullscreen"]) body > box:nth-child(8) {
-    position: fixed ;
-    bottom: 0 ;
-    display: block ;
-    z-index: 1 ;
-    background: gray ;
-    width: 100% ;
+    position: fixed;
+    bottom: 0;
+    display: block;
+    z-index: 1;
+    background: gray;
+    width: 100%;
     background-color: black;
     ;
-    background-image: var(--lwt-header-image) !important ;
-    background-repeat: no-repeat ;
-    background-position: right top !important 
+    background-image: var(--lwt-header-image) !important;
+    background-repeat: no-repeat;
+    background-position: right top !important
 }
 #main-window:not([sizemode="fullscreen"]) #browser {
-    padding-bottom: 60px 
+    padding-bottom: 60px
 }
