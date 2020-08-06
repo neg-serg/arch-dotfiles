@@ -20,11 +20,21 @@ set keytranslatemodes.ignoremaps true
 
 alias w saveas ~/dw/
 
+" thx to: https://github.com/aminroosta/dot-files/blob/master/.tridactylrc
+" Navigate dropdowns in insert mode
+bind --mode=insert <C-n> !s xdotool key Down
+bind --mode=insert <C-p> !s xdotool key Up
+
+unbind <F1>
+
+" thx to: https://github.com/vishes-shell/dotfiles/blob/master/.config/tridactyl/tridactylrc
+" Ctrl-F should use the browser's native 'find' functionality.
+unbind <C-f>
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
-bind ,<Space> nohlsearch
+bind ,, nohlsearch
 
 " GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
 bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
