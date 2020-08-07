@@ -287,26 +287,6 @@ let g:rooter_cd_cmd="lcd" " change directory for the current window only
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_silent_chdir = 1
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - liuchengxu/vim-clap                                                      │
-" │ https://github.com/liuchengxu/vim-clap                                            │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:clap_theme = 'material_design_dark'
-let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
-let g:clap_layout = { 'relative': 'editor' }
-let g:clap_enable_icon = 1
-let g:clap_search_box_border_style = 'curve'
-let g:clap_provider_grep_enable_icon = 1
-let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
-" A funtion to config highlight of ClapSymbol
-" when the background color is opactiy
-function! s:ClapSymbolHL() abort
-    let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
-    if s:current_bgcolor == ''
-        hi ClapSymbol guibg=NONE ctermbg=NONE
-    endif
-endfunction
-autocmd User ClapOnEnter call s:ClapSymbolHL()
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - easymotion/vim-easymotion                                                │
 " │ https://github.com/easymotion/vim-easymotion                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -362,3 +342,8 @@ map z*  <Plug>(asterisk-z*)
 map gz* <Plug>(asterisk-gz*)
 map z#  <Plug>(asterisk-z#)
 map gz# <Plug>(asterisk-gz#)
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - lambdalisue/suda.vim                                                     │
+" │ https://github.com/lambdalisue/suda.vim                                           │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:suda_smart_edit = 1

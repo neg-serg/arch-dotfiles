@@ -23,13 +23,12 @@ Plug 'sbdchd/neoformat' " universal formatter
 Plug 'tpope/vim-repeat' " dot for everything
 Plug 'inkarkat/vim-ReplaceWithRegister' " replace with register keybindings
 Plug 'tpope/vim-abolish' " for different case coersion
-Plug 'tpope/vim-eunuch' " for SudoWrite, Locate, Find etc
 Plug 'haya14busa/vim-asterisk' " smartcase star
+Plug 'lambdalisue/suda.vim' " smart sudo support
 "--[ Search ]------------------------------------------------------------------------
 Plug 'junegunn/fzf', {'dir': '~/.config/fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
-Plug 'liuchengxu/vim-clap', {'do': ':Clap install-binary'}
 Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']} "better grep plugin
 " --[ Dev ]--------------------------------------------------------------------------
 Plug 'dense-analysis/ale' " async linter with lsp support
@@ -46,7 +45,6 @@ Plug 'vimwiki/vimwiki' " personal wiki for vim
 Plug 'donRaphaco/neotex' , {'for': 'tex'} " latex support
 Plug 'thinca/vim-ref' " integrated reference viewer for help with separated window
 Plug 'vim-scripts/IndentConsistencyCop', {'for': 'python'} " autochecks for indent
-Plug 'Vimjas/vim-python-pep8-indent' " try new python pep-indent
 " --[ Appearance ]-------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
