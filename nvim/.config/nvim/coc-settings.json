@@ -11,11 +11,6 @@
   "coc.preferences.hoverTarget": "preview",
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.extensionUpdateCheck": "daily",
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "scss": "css",
-    "sass": "css"
-  },
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
   "suggest.completionItemKindLabels": {
@@ -23,10 +18,15 @@
     "function": "ﬦ",
     "variable": "ﮂ"
   },
-  "diagnostic.errorSign": "◉",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "scss": "css",
+    "sass": "css"
+  },
   "emmet.excludeLanguages": [
     "markdown"
   ],
+  "diagnostic.errorSign": "◉",
   "diagnostic-languageserver.filetypes": {
       "sh": "shellcheck"
   },
