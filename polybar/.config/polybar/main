@@ -5,10 +5,9 @@ include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
 include-file = $XDG_CONFIG_HOME/polybar/tray.cfg
 
 [global/wm]
-monitor = ${env:MONITOR:HDMI-0}
-monitor-fallback = HDMI-0
+monitor = ${env:MONITOR:DisplayPort-0}
+monitor-fallback = DisplayPort-0
 monitor-strict = false
-
 wm-restack = i3
 
 [settings]
