@@ -24,8 +24,8 @@ from docopt import docopt
 
 from pretty_printer import pretty_printer
 
-# Enum for size units
-class SIZE_UNIT(enum.Enum):
+class SizeUnit(enum.Enum):
+    """ Enum for size units """
     BYTES = 1
     KiB = 2
     MiB = 3
@@ -34,35 +34,39 @@ class SIZE_UNIT(enum.Enum):
 
 def convert_unit(size_in_bytes, unit):
     """ Convert the size from bytes to other units like KB, MB or GB"""
-    if unit == SIZE_UNIT.KiB:
+    if unit == SizeUnit.KiB:
         return size_in_bytes/1024
-    if unit == SIZE_UNIT.MiB:
+    if unit == SizeUnit.MiB:
         return size_in_bytes/(1024*1024)
-    if unit == SIZE_UNIT.GiB:
+    if unit == SizeUnit.GiB:
         return size_in_bytes/(1024*1024*1024)
-    if unit == SIZE_UNIT.TiB:
+    if unit == SizeUnit.TiB:
         return size_in_bytes/(1024*1024*1024*1024)
     return size_in_bytes
 
 
 def media_info(filename):
     """ Extract media info by filename """
+    mediainfo_ret = None
     try:
-        mediainfo_ret = subprocess.Popen(
-            ['ffprobe', '-hide_banner', '-loglevel', 'fatal', '-show_error',
-             '-show_format', '-show_streams', '-print_format',
-             'json', str(filename)], stdout=subprocess.PIPE
-        ).communicate()[0]
+        mediainfo_ret = subprocess.Popen([
+            'ffprobe', '-hide_banner', '-loglevel', 'fatal',
+            '-show_error', '-show_format', '-show_streams',
+            '-print_format', 'json',
+            str(filename)], stdout=subprocess.PIPE).communicate()[0]
 
         if mediainfo_ret is not None:
             mediainfo_ret = mediainfo_ret.decode().split('\n')
     except subprocess.CalledProcessError as proc_err:
         print(proc_err)
 
-    ret = json.loads(''.join(mediainfo_ret))
+    if mediainfo_ret is None:
+        return
+
+    mediainfo = ''.join(str(mediainfo_ret))
+    ret = json.loads(mediainfo)
     pp = pretty_printer
-    out = ""
-    vid_frame_rate = ""
+    out, vid_frame_rate  = "", ""
     audio_bitrate, audio_sample_rate = "", ""
     if not ret.get('streams', []):
         sys.exit(0)
@@ -74,7 +78,7 @@ def media_info(filename):
         if stream['codec_type'] == 'audio':
             if stream.get('bit_rate', ''):
                 audio_bitrate = math.floor(convert_unit(
-                    float(stream['bit_rate']), SIZE_UNIT.KiB
+                    float(stream['bit_rate']), SizeUnit.KiB
                 ))
             audio_sample_rate = float(stream['sample_rate']) / 1000
 
@@ -84,12 +88,12 @@ def media_info(filename):
     out += pp.wrap(str(datetime.timedelta(seconds=seconds)))
 
     size = math.floor(convert_unit(
-        float(file_format['size']), SIZE_UNIT.MiB
+        float(file_format['size']), SizeUnit.MiB
     ))
     out += pp.size(str(size), 'MiB')
 
     video_bitrate = math.floor(convert_unit(
-        float(file_format['bit_rate']), SIZE_UNIT.KiB
+        float(file_format['bit_rate']), SizeUnit.KiB
     ))
     out += pp.size(str(video_bitrate), 'kbps', pref='vidbrate')
     out += pp.wrap(str(vid_frame_rate), postfix='fps')
