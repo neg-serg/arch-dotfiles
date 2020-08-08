@@ -5,7 +5,7 @@ from colored import fg
 
 
 class pretty_printer():
-    darkblue = fg(4)
+    darkblue = fg(238)
     darkwhite = fg(7)
     almostgray = fg(243)
     nicecyan = fg(24)
@@ -18,7 +18,7 @@ class pretty_printer():
     @classmethod
     def _wrap(cls, out):
         """ generic string wrapper """
-        return cls.darkblue + "⟬" + cls.darkwhite + out + cls.darkblue + "⟭"
+        return cls.darkblue + "" + cls.darkwhite + out + cls.darkblue + ""
 
     @classmethod
     def wrap(cls, text, delim='', postfix=''):
