@@ -66,7 +66,7 @@ def media_info(filename):
     mediainfo = ''.join(str(mediainfo_ret))
     ret = json.loads(mediainfo)
     pp = pretty_printer
-    out, vid_frame_rate  = "", ""
+    out, vid_frame_rate = "", ""
     audio_bitrate, audio_sample_rate = "", ""
     if not ret.get('streams', []):
         sys.exit(0)
@@ -84,8 +84,9 @@ def media_info(filename):
 
     file_format = ret['format']
 
-    seconds = math.floor(float(file_format['duration']))
-    out += pp.wrap(str(datetime.timedelta(seconds=seconds)))
+    out += pp.wrap(str(datetime.timedelta(
+        seconds=math.floor(float(file_format['duration']))
+    )))
 
     size = math.floor(convert_unit(
         float(file_format['size']), SizeUnit.MiB
@@ -124,7 +125,7 @@ def main():
         if dir_name and dir_name != '.':
             dir_name_out = pp.fancy_file(dir_name)
         input_name = os.path.basename(fname)
-        print(f'{pp.prefix()}{dir_name_out}{pp.fancy_file(input_name)}', end='')
+        print(f'{pp.prefix()}{dir_name_out}{pp.fancy_file(input_name)}')
         media_info(fname)
 
 main()
