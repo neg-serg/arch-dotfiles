@@ -18,7 +18,7 @@ class pretty_printer():
     @classmethod
     def _wrap(cls, out):
         """ generic string wrapper """
-        return cls.darkblue + "" + cls.darkwhite + out + cls.darkblue + ""
+        return cls.darkblue + "⟮" + cls.darkwhite + out + cls.darkblue + "⟯"
 
     @classmethod
     def wrap(cls, text, delim='', postfix=''):
