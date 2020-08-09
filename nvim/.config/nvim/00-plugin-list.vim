@@ -30,6 +30,7 @@ Plug 'junegunn/fzf', {'dir': '~/.config/fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim' "  fzf vim bindings
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']} "better grep plugin
+Plug 'wincent/ferret' " search and replace over many files
 " --[ Dev ]--------------------------------------------------------------------------
 Plug 'dense-analysis/ale' " async linter with lsp support
 Plug 'tomtom/tcomment_vim' " commenter plugin
