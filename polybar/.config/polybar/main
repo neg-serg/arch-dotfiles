@@ -55,9 +55,9 @@ border-left-size = ${border.l}
 border-right-size = ${border.r}
 
 border-top-color = ${color.border}
-border-bottom-color = ${color.border}
-border-left-color = ${color.border}
-border-right-color = ${color.border}
+border-bottom-color = ${color.border_nontransparent}
+border-left-color = ${color.border_nontransparent}
+border-right-color = ${color.border_nontransparent}
 
 width = 100%
 height = 52
