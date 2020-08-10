@@ -69,3 +69,4 @@
     format = ""
     script = "~/bin/scripts/mpd_notification"
     urgency = normal
+    timeout = 20
