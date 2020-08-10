@@ -8,49 +8,27 @@ cover_lock="${dunst_pics}/notify.lock"
 image="/tmp/.mpd-notification-artwork.png"
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
 magic_pie='8143'
+col1="<span weight='Medium' color='#395573'>"
+end="</span>"
+bold="<span weight='bold' color='#88aabb'>"
+max_len=35
+fancy_table=('⚌' '♫' '⟫' '|')
 
-wf(){
-    print "${col1}⟬${end}${bold}$1${end}${col1}⟭${end} "
-}
-
+wf(){ print "${col1}⟬${end}${bold}$1${end}${col1}⟭${end} " }
 nr(){ print "<span weight='Medium' color='#88aabb'>$1${end}" }
-
 delimiter(){ repeat ${len} print -n "◇" }
-
-get_pid(){
-    local mpdsc="$(which mpdscribble) --conf"
-    local mpdas="${XDG_CONFIG_HOME}/mpdas"
-    pgrep -f "${mpdsc} ${XDG_CONFIG_HOME}/mpdscribble/${1}.conf --no-daemon" || \
-    pgrep -f "${mpdas}/${1}.rc"
-}
-
-get_lastfm(){
-    for pid in neg hextrick; do
-        if [[ ! -z $(get_pid "${pid}") ]]; then
-            printf "%s\n" "$(wf "L")$(nr $(sed 's:^.:\U&:g' <<< ${pid}) last.fm)"
-            break
-        fi
-    done
-}
+cmp_img(){ ${HOME}/bin/scripts/compare_images.py "${1}" "${2}" }
 
 notify(){
-    local col1="<span weight='Medium' color='#395573'>"
-    local end="</span>"
-    local bold="<span weight='bold' color='#88aabb'>"
-    local -a bodyarr
-    while read line; do
-        bodyarr+="${line}"
-    done <<< ${body}
-
+    local -a bodyarr=()
     local -a len=()
+    while read line; do bodyarr+="${line}" done <<< ${body}
+
     for i in {1..6}; len+=${#bodyarr[$i]};
     len=($(printf "%s\n" "${len[@]}"|sort -nr))
 
-    local max_len=35
     len=$[${(@)len[1]}]
     [[ ${len} > ${max_len} ]] && len=${max_len}
-
-    local -a fancy_table=('⚌' '♫' '⟫' '|')
 
     for i in {1..$#fancy_table}; do
         if [[ ! -z "${bodyarr[i]}" ]]; then
@@ -94,17 +72,12 @@ notify(){
     for i in ${bodyarr[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
 
-    output="${output}$(get_lastfm)\n$(delimiter)"
     summary="$(delimiter)"
     dunstify -p -a "mpd_notification" -h "string:fgcolor:#17272D" \
         -u "${urgency}" \
         -i "${image}" "${summary}" "${output}" > /tmp/notify_id \
         -r ${magic_pie}
     sed '1d' <<< $(echo -n "${body}") > "${cover_lock}"
-}
-
-cmp_img(){
-    ${HOME}/bin/scripts/compare_images.py "${1}" "${2}"
 }
 
 show_notify(){
@@ -121,7 +94,7 @@ show_notify(){
 zshexit(){
     (
         hashsum1=$(xxh32sum "${image}"|cut -d ' ' -f1)
-        sleep 2s
+        sleep 8s
         hashsum2=$(xxh32sum "${image}"|cut -d ' ' -f1)
         [[ ${hashsum1} = ${hashsum2} ]] && rm -f ${image}
     ) &
@@ -131,11 +104,9 @@ main(){
     dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
     [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
     prev="${dunst_pics}/prev.png"
-
     fd prev.png --changed-before '12min' -x rm '{}'
     if [[ -f ${image} ]]; then
         [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
-
         # send notification with compatible image
         if [[ ! -f "${prev}" ]]; then
             show_notify
