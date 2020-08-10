@@ -73,17 +73,6 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_directory = $XDG_CONFIG_HOME.'/nvim/sessions'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - airblade/vim-gitgutter                                                   │
-" │ https://github.com/airblade/vim-gitgutter                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:gitgutter_realtime = 1
-let g:gitgutter_async = 1
-let g:gitgutter_sign_added = '∙'
-let g:gitgutter_sign_modified = '∙'
-let g:gitgutter_sign_removed = '∙'
-let g:gitgutter_sign_modified_removed = '∙'
-highlight SignColumn ctermbg=4
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - w0rp/ale                                                                 │
 " │ https://github.com/w0rp/ale                                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘

@@ -1,18 +1,44 @@
 {
   "suggest.noselect": false,
+  "suggest.triggerAfterInsertEnter": false,
   "suggest.enablePreselect": true,
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "suggest.timeout": 1000,
+  "suggest.timeout": 500,
   "suggest.minTriggerInputLength": 2,
   "suggest.snippetIndicator": "►",
   "suggest.detailField": "menu",
   "suggest.removeDuplicateItems": true,
+  "suggest.triggerCompletionWait": 100,
   "coc.preferences.hoverTarget": "preview",
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.extensionUpdateCheck": "daily",
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
+  "diagnostic.warningSign": "●",
+  "diagnostic.infoSign": "●",
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.signOffset": 1000000,
+  "git.enableGutters": true,
+  "git.branchCharacter": "\uf418",
+  "git.addGBlameToBufferVar": true,
+  "git.addGBlameToVirtualText": false,
+  "git.virtualTextPrefix": "❯❯❯ ",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.addedSign.text": "▋",
+  "git.changedSign.text": "▋",
+  "git.removedSign.text": "▋",
+  "git.topRemovedSign.text": "▔",
+  "git.changeRemovedSign.text": "▋",
+
+  "list.source.files.defaultOptions": ["--auto-preview"],
+  "list.source.outline.defaultOptions": ["--auto-preview"],
+
   "suggest.completionItemKindLabels": {
     "module": " ",
     "function": "ﬦ",
@@ -20,37 +46,78 @@
   },
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
-    "scss": "css",
+    "vue-html": "html",
+    "typescriptreact": "typescriptreact",
     "sass": "css"
   },
-  "emmet.excludeLanguages": [
-    "markdown"
-  ],
+  "emmet.excludeLanguages": ["markdown"],
   "diagnostic.errorSign": "◉",
   "diagnostic-languageserver.filetypes": {
-      "sh": "shellcheck"
+    "sh": "shellcheck"
   },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "html",
+    "css",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "go",
+    "json"
+  ],
+
+  "explorer.icon.expanded": "▾",
+  "explorer.icon.collapsed": "▸",
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.quitOnOpen": true,
+  "explorer.floating.width": -20,
+  "explorer.floating.height": -10,
+  "explorer.openAction.strategy": "sourceWindow",
+
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "session.directory": "~/.config/nvim/session",
+  "eslint.autoFix": true,
+  "eslint.autoFixOnSave": true,
+  "coc-actions.hideCursor": false,
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": false,
+  "prettier.stylelintIntegration": true,
+  "prettier.disableSuccessMessage": true,
   "diagnostic-languageserver.formatFiletypes": {
-      "sh": "shfmt"
+    "sh": "shfmt"
   },
   "diagnostic-languageserver.formatters": {
-      "shfmt": {
-          "command": "shfmt",
-          "args": ["-i", "2", "-bn", "-ci", "-sr"]
-      }
+    "shfmt": { "command": "shfmt", "args": ["-i", "2", "-bn", "-ci", "-sr"] }
   },
   "diagnostic.messageTarget": "float",
   "diagnostic.checkCurrentLine": true,
   "signature.target": "float",
+  "cSpell.fixSpellingWithRenameProvider": true,
+  "cSpell.showStatus": false,
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "git-commit",
+    "gitcommit",
+    "html",
+    "latex",
+    "less",
+    "markdown",
+    "plaintext",
+    "text",
+    "yaml",
+    "yml"
+  ],
   "languageserver": {
     "ccls": {
       "command": "ccls",
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ],
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
       "rootPatterns": [
         ".ccls",
         "compile_commands.json",
@@ -59,12 +126,8 @@
         ".hg/"
       ],
       "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        },
-        "highlight": {
-          "lsRanges": true
-        }
+        "cache": { "directory": "/tmp/ccls" },
+        "highlight": { "lsRanges": true }
       }
     },
     "dockerfile": {

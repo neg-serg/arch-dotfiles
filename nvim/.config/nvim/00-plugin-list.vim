@@ -56,7 +56,6 @@ Plug 'arzg/vim-sh' " better sh / zsh highlight
 " --[ DCVS ]-------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive' " Git stuff. Needed for powerline etc
 Plug 'junegunn/gv.vim' " git commit browser
-Plug 'airblade/vim-gitgutter' " show last git changes
 Plug 'rhysd/git-messenger.vim' " shows git message
 Plug 'rhysd/committia.vim' " better commit message
 Plug 'jreybert/vimagit' " interactive work with git
