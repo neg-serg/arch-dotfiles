@@ -115,6 +115,7 @@ _exists systemctl && {
     alias log-previous-boot="sudo journalctl --boot=-1"
 }
 _exists lsof && alias ports="sudo lsof -Pni"
+_exists bandwhich && alias nethogs="sudo bandwhich" 
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
 
