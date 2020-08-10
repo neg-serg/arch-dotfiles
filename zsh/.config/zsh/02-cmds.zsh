@@ -105,7 +105,16 @@ for i in ${noglob_list[@]}; alias "${i}=noglob ${i}"
 for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}"
 for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}"
 for i in ${dev_null_list[@]}; alias "${i}=${i} 2>/dev/null"
-[[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
+_exists systemctl && {
+    alias sysctl_pref="systemctl"
+    alias S="sudo systemctl stop"
+    alias R="sudo systemctl restart"
+    alias SU="systemctl stop --user"
+    alias RU="systemctl restart --user"
+    alias log="sudo journalctl --output cat"
+    alias log-previous-boot="sudo journalctl --boot=-1"
+}
+_exists lsof && alias ports="sudo lsof -Pni"
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
 
