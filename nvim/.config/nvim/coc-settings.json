@@ -15,26 +15,26 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
-  "diagnostic.warningSign": "●",
-  "diagnostic.infoSign": "●",
-  "diagnostic.displayByAle": false,
+  "diagnostic.warningSign": "◉",
+  "diagnostic.infoSign": "◉",
+  "diagnostic.displayByAle": true,
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.signOffset": 1000000,
   "git.enableGutters": true,
   "git.branchCharacter": "\uf418",
   "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": false,
-  "git.virtualTextPrefix": "❯❯❯ ",
+  "git.virtualTextPrefix": "❯❯❯",
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
   "git.removedSign.hlGroup": "GitGutterDelete",
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "git.addedSign.text": "▋",
-  "git.changedSign.text": "▋",
-  "git.removedSign.text": "▋",
+  "git.addedSign.text": "▎",
+  "git.changedSign.text": "▎",
+  "git.removedSign.text": "▎",
   "git.topRemovedSign.text": "▔",
-  "git.changeRemovedSign.text": "▋",
+  "git.changeRemovedSign.text": "▎",
 
   "list.source.files.defaultOptions": ["--auto-preview"],
   "list.source.outline.defaultOptions": ["--auto-preview"],
@@ -42,8 +42,29 @@
   "suggest.completionItemKindLabels": {
     "module": " ",
     "function": "ﬦ",
-    "variable": "ﮂ"
+    "variable": "\ue79b",
+    "keyword": "\uf1de",
+    "value": "\uf89f",
+    "reference": "\ufa46",
+    "constant": "\uf8fe",
+    "struct": "\ufb44",
+    "class": "\uf0e8",
+    "interface": "\uf417",
+    "text": "\ue612",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "color": "\ue22b",
+    "property": "\ue624",
+    "field": "\uf9be",
+    "unit": "\uf475",
+    "event": "\ufacd",
+    "file": "\uf15c",
+    "folder": "\uf114",
+    "snippet": "\ue60b",
+    "typeParameter": "\uf728",
+    "default": "\uf29c"
   },
+
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "vue-html": "html",
@@ -82,14 +103,19 @@
     "typescript",
     "typescriptreact"
   ],
-  "session.directory": "~/.config/nvim/session",
   "eslint.autoFix": true,
   "eslint.autoFixOnSave": true,
+
+  "session.directory": "~/.config/nvim/session",
+
   "coc-actions.hideCursor": false,
+
   "prettier.eslintIntegration": true,
   "prettier.tslintIntegration": false,
   "prettier.stylelintIntegration": true,
   "prettier.disableSuccessMessage": true,
+  "prettier.statusItemText": "ⓟ ",
+
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt"
   },
@@ -105,14 +131,11 @@
     "asciidoc",
     "git-commit",
     "gitcommit",
-    "html",
     "latex",
     "less",
     "markdown",
     "plaintext",
-    "text",
-    "yaml",
-    "yml"
+    "text"
   ],
   "languageserver": {
     "ccls": {
