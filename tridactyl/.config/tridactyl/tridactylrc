@@ -48,6 +48,10 @@ setpref xpinstall.signatures.required false
 setpref accessibility.typeaheadfind.flashBar 0
 setpref pdfjs.disabled true
 setpref browser.download.dir "~/dw"
+setpref permissions.default.desktop-notification 2
+setpref gfx.color_management.enabled true
+setpref gfx.color_management.enablev4 true
+gfx.color_management.mode 1
 
 unbindurl mail\.google\.com j
 unbindurl mail\.google\.com k
