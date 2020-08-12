@@ -18,6 +18,8 @@ set keytranslatemodes.inputmaps true
 set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
 
+set newtab https://online.bonjourr.fr/
+
 alias w saveas ~/dw/
 
 " thx to: https://github.com/aminroosta/dot-files/blob/master/.tridactylrc
