@@ -102,7 +102,7 @@ endif
 nnoremap <silent> qE :Files %:p:h<CR>
 nnoremap <silent> qe :Files<CR>
 nnoremap <silent> qt :BTags<CR>
-nnoremap <silent> qc :BCommits<CR>
+nnoremap <silent> qf :Find<CR>
 command! -bang -complete=dir -nargs=* Dir call fzf#run(fzf#wrap('fd', {'source': 'fd --full-path -a -t d', 'dir': <q-args>}, <bang>0))
 
 " This is the default extra key bindings
@@ -132,16 +132,6 @@ let g:LustyJugglerDefaultMappings = 0
 let LustyExplorerDefaultMappings = 0
 let g:LustyExplorerAlwaysShowDotFiles = 1
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - Raimondi/delimitMate.git                                                 │
-" │ https://github.com/Raimondi/delimitMate.git                                       │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:delimitMate_expand_space = 1
-let g:delimitMate_expand_cr = 0
-let g:delimitMate_smart_quotes = 1
-let g:delimitMate_balance_matchpairs = 1
-imap <Esc>OH <Plug>delimitMateHome
-imap <Esc>OF <Plug>delimitMateEnd
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-dispatch.git                                                   │
 " │ https://github.com/tpope/vim-dispatch.git                                         │
@@ -215,22 +205,10 @@ let s:rainbow_royalblue_colors = ['#4169E1', '#3D63D4', '#3B5FCC', '#385AC2', '#
 let g:rainbow_conf_defaults['guifgs'] = s:rainbow_royalblue_colors
 let g:rainbow_conf = g:rainbow_conf_defaults
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - tpope/vim-markdown                                                       │
-" │ https://github.com/tpope/vim-markdown                                             │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:markdown_minlines = 100
-let g:markdown_syntax_conceal = 0
-let g:markdown_enable_mappings = 0
-let g:markdown_enable_insert_mode_leader_mappings = 0
-let g:markdown_enable_spell_checking = 0
-if executable('firefox')
-    let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - mhinz/vim-grepper                                                        │
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <A-/> :Grepper -tool rg<CR>
+nnoremap <M-/> :Grepper -tool rg<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - FooSoft/vim-argwrap                                                      │
 " │ https://github.com/FooSoft/vim-argwrap                                            │
