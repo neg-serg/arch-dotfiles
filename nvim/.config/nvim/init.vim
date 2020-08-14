@@ -43,9 +43,7 @@ Plug 'liuchengxu/vista.vim' " lsp-symbols tag searcher
 Plug 'puremourning/vimspector' " vim debugging support
 Plug 'tpope/vim-dispatch', {'on': ['Dispatch', 'Start', 'Make']} " provide async build
 Plug 'radenling/vim-dispatch-neovim', {'on': ['Dispatch', 'Start']} " Neovim support for vim-dispatch
-Plug 'derekwyatt/vim-fswitch' " switching between companion source files e.g. .h and .cpp
 Plug 'plasticboy/vim-markdown' " markdown vim mode
-Plug 'mattn/emmet-vim', {'on': 'EmmetInstall'} " expanding abbreviations similar to emmet
 Plug 'thinca/vim-ref' " integrated reference viewer for help with separated window
 Plug 'donRaphaco/neotex' , {'for': 'tex'} " latex support
 " --[ Appearance ]-------------------------------------------------------------------
