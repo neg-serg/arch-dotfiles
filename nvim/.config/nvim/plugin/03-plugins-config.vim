@@ -76,17 +76,12 @@ let g:session_directory = $XDG_CONFIG_HOME.'/nvim/sessions'
 " │ plugin - w0rp/ale                                                                 │
 " │ https://github.com/w0rp/ale                                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_highlight_linenrs = 1
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'rust': ['rls']}
 let g:ale_sign_error = ""
 let g:ale_sign_warning = ""
-let g:formatdef_eslint = '"eslint-formatter"'
-let g:formatters_javascript = ['prettier', 'eslint']
 let g:ale_fixers = {'javascript': ['eslint'], 'json': ['jq'], 'html': ['prettier'], 'scss': ['stylelint'], 'less': ['stylelint'], 'css': ['stylelint'], 'python': ['black', 'yapf'], 'rust': ['rustfmt']}
-
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -137,21 +132,6 @@ let g:LustyJugglerDefaultMappings = 0
 let LustyExplorerDefaultMappings = 0
 let g:LustyExplorerAlwaysShowDotFiles = 1
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - derekwyatt/vim-fswitch.git                                               │
-" │ https://github.com/derekwyatt/vim-fswitch.git                                     │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-" A "companion" file is a .cpp file to an .h file and vice versa
-" Opens the companion file in the current window
-nnoremap [FLeader]fs :FSHere<cr>
-" Opens the companion file in the window to the left (window needs to exist)
-" This is actually a duplicate of the :FSLeft command which for some reason
-" doesn't work.
-nnoremap [FLeader]sl :call FSwitch('%', 'wincmd l')<cr>
-" Same as above, only opens it in window to the right
-nnoremap [FLeader]sr :call FSwitch('%', 'wincmd r')<cr>
-" Creates a new window on the left and opens the companion file in it
-nnoremap [FLeader]sv :FSSplitLeft<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Raimondi/delimitMate.git                                                 │
 " │ https://github.com/Raimondi/delimitMate.git                                       │
