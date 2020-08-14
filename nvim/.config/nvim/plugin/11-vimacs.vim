@@ -3,17 +3,17 @@ if exists("g:loaded_vim_like_emacs") || v:version < 700 || &cp
 endif
 let g:loaded_vim_like_emacs = 1
 
-inoremap <expr> <C-B> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
-cnoremap        <C-B> <Left>
-inoremap <expr> <C-D> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
-inoremap <expr> <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
-cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+inoremap <expr> <C-b> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
+cnoremap        <C-b> <Left>
+inoremap <expr> <C-d> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+inoremap <expr> <C-e> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
+inoremap <expr> <C-f> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
+cnoremap <expr> <C-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 
 noremap! <expr> <SID>transposition getcmdpos()>strlen(getcmdline())?"\<Left>":getcmdpos()>1?'':"\<Right>"
 noremap! <expr> <SID>transpose "\<BS>\<Right>".matchstr(getcmdline()[0 : getcmdpos()-2], '.$')
-cmap <script> <C-T> <SID>transposition<SID>transpose
+cmap <script> <C-t> <SID>transposition<SID>transpose
 
 omap <C-b> <Left>
 omap <C-e> <End>
@@ -28,13 +28,13 @@ onoremap <M-f> e<Right>
 
 inoremap <silent> <c-a> <esc>I
 
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
-cnoremap <c-b> <left>
+cnoremap <C-a> <home>
+cnoremap <C-e> <end>
+cnoremap <C-b> <left>
 cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 cnoremap <expr> <C-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
-cnoremap <c-p> <up>
-cnoremap <c-n> <down>
+cnoremap <C-p> <up>
+cnoremap <C-n> <down>
 cnoremap <M-d> <S-Right><C-w>
 cnoremap <C-y> <C-r><C-o>"
 cnoremap <M-f> <S-Right>
@@ -166,11 +166,11 @@ let g:loaded_swap = 1
 let s:savecpo = &cpoptions
 set cpoptions&vim
 
-xmap <silent> <plug>SwapSwapOperands      :call <SID>ttext('v' )<cr>
+xmap <silent> <plug>SwapSwapOperands :call <SID>ttext('v' )<cr>
 xmap <silent> <plug>SwapSwapPivotOperands :call <SID>ttext('vi')<cr>
-nmap <silent> <plug>SwapSwapWithR_WORD    :<c-u>call <SID>ttext('nr')<cr>
-nmap <silent> <plug>SwapSwapWithL_WORD    :<c-u>call <SID>ttext('nl')<cr>
-imap <m-t> <c-o><m-t>
+nmap <silent> <plug>SwapSwapWithR_WORD :<c-u>call <SID>ttext('nr')<cr>
+nmap <silent> <plug>SwapSwapWithL_WORD :<c-u>call <SID>ttext('nl')<cr>
+imap <M-t> <C-o><M-t>
 
 function! s:map(mode, lhs, rhs)
     if !hasmapto(a:rhs, a:mode)
