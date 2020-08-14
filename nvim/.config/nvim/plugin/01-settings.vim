@@ -7,6 +7,8 @@ set report=0       "no report on substitution
 set fileformats=unix,dos,mac "file format fallback
 set synmaxcol=2500 "no syntax hi for too long lines
 
+set keymap=russian-jcukenwin
+
 if has('conceal') && v:version >= 703
 	" For snippet_complete marker
 	set conceallevel=2 concealcursor=niv
