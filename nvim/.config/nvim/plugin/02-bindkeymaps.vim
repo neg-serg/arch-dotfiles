@@ -1,5 +1,4 @@
 let mapleader      = ','
-let maplocalleader = ' '
 let g:mapleader    = ","
 
 nnoremap q <NOP>
@@ -28,19 +27,14 @@ nnoremap <silent> zK O<Esc>j
 " Toggle hlsearch for current results, start highlight
 nnoremap <leader><leader> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 
-map Q gq
-
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
 
 map <C-g> g<C-g>
 
-nnoremap <leader>D "_d
-xnoremap <leader>D "_d
-
 " Toggle last active buffer
-nnoremap <leader><Tab> :b#<CR>
+nnoremap <silent> <leader><Tab> :b#<CR>
 
 " Easier to type, and I never use the default behavior.
 noremap H ^
@@ -69,13 +63,6 @@ nnoremap [Qleader]w :w!<cr>
 nnoremap ' `
 nnoremap ` '
 
-nnoremap [Qleader]- :resize -10<CR>
-nnoremap [Qleader]+ :resize +10<CR>
-nnoremap [Qleader], :vertical resize -10<CR>
-nnoremap [Qleader]. :vertical resize +10<CR>
-
-" Macros editing
-nnoremap <leader>m :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 " use U for redo
 nnoremap U <C-r>
 " like firefox tabs
@@ -84,9 +71,7 @@ nnoremap <silent> <A-w> :bd<CR>
 cmap <C-V> <C-R>+
 exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
 exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
-nnoremap <silent> <C-w>v :vnew<CR>
-nnoremap <silent> <C-w>s :new<CR>
 
-" fix floating windows
-nnoremap <C-C> <C-[>
-inoremap <C-C> <C-[>
+" fix for floating windows
+nnoremap <C-c> <C-[>
+inoremap <C-c> <C-[>
