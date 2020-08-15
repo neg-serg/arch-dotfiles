@@ -48,7 +48,6 @@ Plug 'plasticboy/vim-markdown' " markdown vim mode
 Plug 'thinca/vim-ref' " integrated reference viewer for help with separated window
 " --[ Appearance ]-------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot' " language pack collection
-Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
 Plug 'chr4/nginx.vim', { 'for': 'nginx' } " nginx config file syntax
 Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 Plug 'luochen1990/rainbow' " better rainbow parentheses
