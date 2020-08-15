@@ -5,42 +5,14 @@ if bufname('%') == ''
     set bufhidden=wipe
 endif
 
-set regexpengine=1
-set report=0       "no report on substitution
+set report=0 "no report on substitution
 set fileformats=unix,dos,mac "file format fallback
 set synmaxcol=2500 "no syntax hi for too long lines
-
+set conceallevel=2 concealcursor=niv
 set keymap=russian-jcukenwin
-
-if has('conceal') && v:version >= 703
-	" For snippet_complete marker
-	set conceallevel=2 concealcursor=niv
-	" set conceallevel=0 "no concealed text
-    " set concealcursor=
-endif
-
-if exists('+previewpopup')
-	set previewpopup=height:10,width:60
-endif
-
-if exists('+completepopup')
-	set completeopt+=popup
-	set completepopup=height:4,width:60,highlight:InfoPopup
-endif
-
-if has('nvim-0.5')
-	set jumpoptions=stack
-endif
-
-set inccommand=nosplit "interactive substitution
-
-if has('filterpipe')
-    set noshelltemp
-endif
 
 " Options initiating with ?m?
 " [global] |'magic'| Set 'magic' patterns ;)
-" Examples:
 "  \v       \m       \M       \V         matches ~
 "  $        $        $        \$         matches end-of-line
 "  .        .        \.       \.         matches any character
@@ -65,11 +37,6 @@ set isfname+=}
 set timeout ttimeout
 set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
 
-" convert "\\" to "/" on win32 like environment
-if exists('+shellslash')
-    set shellslash
-endif
-
 command! -bang -nargs=* -complete=file E e<bang> <args>
 command! -bang -nargs=* -complete=file W w<bang> <args>
 command! -bang -nargs=* -complete=file Wq wq<bang> <args>
@@ -78,14 +45,11 @@ command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
 "----------------------------------------------------------------------------
-set keywordprg=:help
-set encoding=utf-8                          " Set default enc to utf-8
-scriptencoding utf-8                        " Encoding used in the script
-set noautowrite                             " Don't autowrite by default
-set autoread                                " Auto reload
-set noautochdir                             " Dont't change pwd automaticly because of problems with plugins
-set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
-set showtabline=0                           " do not show tab line
+set noautowrite     " Don't autowrite by default
+set autoread        " Auto reload
+set noautochdir     " Dont't change pwd automaticly because of problems with plugins
+set showmode        " no show the mode ("-- INSERT --") at the bottom
+set showtabline=0   " do not show tab line
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
@@ -101,7 +65,8 @@ set termencoding=utf8  " Set termencoding to utf-8
 set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
 set clipboard=unnamedplus             " always clipboard all operations
 set shada=
-set completeopt=menu,menuone,longest  "probably it will increase lusty+gundo speed
+set jumpoptions=stack
+set noshelltemp
 
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
@@ -127,7 +92,6 @@ set winblend=15                 " Pseudo-transparency for floating windows
 set gdefault                    " this makes search/replace global by default
 set showcmd                     " Show partial commands in status line and Selected characters/lines in visual mode
 
-" set nowrap                    " Do not wrap lines
 set wrap                        " Wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
@@ -154,10 +118,7 @@ set softtabstop=4               " Let backspace delete indent
 set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set matchpairs+=<:>             " Match, to be used with %
-try
-  set matchpairs+=《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
-catch /^Vim\%((\a\+)\)\=:E474
-endtry
+set matchpairs+=《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
 set wildignore+=*.o,*.so,*.obj,.git,.svn
 set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.mp3
 set wildignore+=*.sw?
@@ -167,16 +128,11 @@ set splitright                  " Puts new vsplit windows to the right of the cu
 set splitbelow                  " Puts new split windows to the bottom of the current
 set equalalways                 " keep windows equal when splitting (default)
 set eadirection=hor             " ver/hor/both - where does equalalways apply
-
-set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
 set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
 set lazyredraw                  " Reduce useless redrawing
 set diffopt+=internal,algorithm:patience " Better diff algorithm
-"--[ change undo file location ]----------------------------------
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
+
 set formatoptions+=t    " auto-wrap using textwidth (not comments)
 set formatoptions+=c    " auto-wrap comments too
 set formatoptions+=r    " continue the comment header automatically on <CR>
@@ -184,12 +140,21 @@ set formatoptions+=q    " allow formatting of comments with gq
 set formatoptions+=n    " recognize numbered lists when autoindenting
 set formatoptions+=l    " don't break long lines in insert mode
 set formatoptions+=1    " don't break lines after one-letter words, if possible
-" -------------------------------------------------------------------
 set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
 set formatoptions-=2    " don't use second line of paragraph when autoindenting
 set formatoptions-=v    " don't worry about vi compatiblity
 set formatoptions-=b    " don't worry about vi compatiblity
 set formatoptions-=j    " delete comment character when joining
+
+set cpoptions=a         " :read with a filename set the alternate filename for window
+set cpoptions+=A        " -- : write --
+set cpoptions+=c        " search -> end of any match at the cursor pos but not start of the next line
+set cpoptions+=e        " :@r adds CR and nonlinewise
+set cpoptions+=F        " :write set name for current buffer if no
+set cpoptions+=s        " set buf opts before it created
+set cpoptions+=B        " a backslash has no special meaning in mappings
+set cpoptions+=d        " make ./ in tags relative to tags file in current dir
+set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
@@ -211,19 +176,14 @@ if !empty($SUDO_USER) && $USER !=# $SUDO_USER
 endif
 set directory=~/trash
 set backupdir=~/trash
+"--[ change undo file location ]----------------------------------
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
 set undofile            " So is persistent undo ...
 set undodir=~/trash/    " Set up undo dir
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
-set cpoptions=a         " :read with a filename set the alternate filename for window
-set cpoptions+=A        " -- : write --
-set cpoptions+=c        " search -> end of any match at the cursor pos but not start of the next line
-set cpoptions+=e        " :@r adds CR and nonlinewise
-set cpoptions+=F        " :write set name for current buffer if no
-set cpoptions+=s        " set buf opts before it created
-set cpoptions+=B        " a backslash has no special meaning in mappings
-set cpoptions+=d        " make ./ in tags relative to tags file in current dir
-set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
 set maxfuncdepth=100    " Maximum depth of function calls for user functions
 set maxmapdepth=1000    " Maximum number of times a mapping is done
