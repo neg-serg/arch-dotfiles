@@ -1,3 +1,6 @@
+set background=dark
+colorscheme neg
+
 if bufname('%') == ''
     set bufhidden=wipe
 endif
@@ -59,9 +62,6 @@ set path+=**
 set isfname+={
 set isfname+=}
 
-set background=dark
-colorscheme neg
-
 set timeout ttimeout
 set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
 
@@ -74,12 +74,9 @@ command! -bang -nargs=* -complete=file E e<bang> <args>
 command! -bang -nargs=* -complete=file W w<bang> <args>
 command! -bang -nargs=* -complete=file Wq wq<bang> <args>
 command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-command! -bang Wa wa<bang>
-command! -bang WA wa<bang>
 command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
-command! -nargs=0 Sw :SudoWrite
 "----------------------------------------------------------------------------
 set keywordprg=:help
 set encoding=utf-8                          " Set default enc to utf-8
@@ -176,11 +173,6 @@ set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
 set lazyredraw                  " Reduce useless redrawing
 set diffopt+=internal,algorithm:patience " Better diff algorithm
-" Avoid command-line redraw on every entered character by turning off Arabic
-" shaping (which is implemented poorly).
-if has('arabic')
-    set noarabicshape
-endif
 "--[ change undo file location ]----------------------------------
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -214,8 +206,8 @@ set nocursorline        " highlight current line is too slow
 set backup              " backuping is good
 " Protect home directory
 if !empty($SUDO_USER) && $USER !=# $SUDO_USER
-  set directory-=~/trash
-  set backupdir-=~/trash
+    set directory-=~/trash
+    set backupdir-=~/trash
 endif
 set directory=~/trash
 set backupdir=~/trash
