@@ -25,9 +25,9 @@ Plug 'tpope/vim-surround' " new commands to vim for generic brackets
 Plug 'AndrewRadev/dsf.vim' " surround for function calls
 Plug 'AndrewRadev/splitjoin.vim' "one-liner to multi-liner
 Plug 'wellle/targets.vim' " better text objects
-Plug 'junegunn/vim-easy-align' " use easy-align, instead of tabular
 Plug 'jiangmiao/auto-pairs' " autopair for brackets
-Plug 'tpope/vim-abolish' " for different case coersion
+Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'} " use easy-align, instead of tabular
+Plug 'tpope/vim-abolish', {'on': 'Abolish'} " for different case coersion
 Plug 'haya14busa/vim-asterisk' " smartcase star
 Plug 'tpope/vim-repeat' " dot for everything
 Plug 'inkarkat/vim-ReplaceWithRegister' " replace with register keybindings
