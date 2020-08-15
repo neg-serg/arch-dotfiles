@@ -18,7 +18,7 @@ Plug 'simnalamburt/vim-mundo', {'on': 'MundoToggle'} " undo tree
 Plug 'sjbach/lusty', {'on': ['LustyFilesystemExplorer', 'LustyFilesystemExplorerFromHere']} " file/buffer explorer
 Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
-Plug 'justinmk/vim-dirvish' "minimalistic file manager
+Plug 'justinmk/vim-dirvish' " minimalistic file manager
 Plug 'airblade/vim-rooter' " autochdir for project root or for current dir
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'tpope/vim-surround' " new commands to vim for generic brackets
@@ -35,7 +35,7 @@ Plug 'lambdalisue/suda.vim' " smart sudo support
 Plug 'tomtom/tcomment_vim' " commenter plugin
 "--[ Search ]------------------------------------------------------------------------
 Plug 'junegunn/fzf', {'dir': '~/.config/fzf', 'do': { -> fzf#install() }}
-Plug 'junegunn/fzf.vim' "  fzf vim bindings
+Plug 'junegunn/fzf.vim' " fzf vim bindings
 Plug 'pbogut/fzf-mru.vim' " fzf mru source
 Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']} "better grep plugin
 " --[ Dev ]--------------------------------------------------------------------------
@@ -47,20 +47,20 @@ Plug 'radenling/vim-dispatch-neovim', {'on': ['Dispatch', 'Start']} " Neovim sup
 Plug 'plasticboy/vim-markdown' " markdown vim mode
 Plug 'thinca/vim-ref' " integrated reference viewer for help with separated window
 " --[ Appearance ]-------------------------------------------------------------------
-Plug 'sheerun/vim-polyglot' "  language pack collection
+Plug 'sheerun/vim-polyglot' " language pack collection
 Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
-Plug 'chr4/nginx.vim', { 'for': 'nginx' } " Nginx config file syntax
+Plug 'chr4/nginx.vim', { 'for': 'nginx' } " nginx config file syntax
 Plug 'norcalli/nvim-colorizer.lua' " fast js/css colorizer
 Plug 'luochen1990/rainbow' " better rainbow parentheses
 Plug 'arzg/vim-sh' " better sh / zsh highlight
 " --[ DCVS ]-------------------------------------------------------------------------
-Plug 'tpope/vim-fugitive' " Git stuff. Needed for powerline etc
+Plug 'tpope/vim-fugitive' " git stuff. Needed for powerline etc
 Plug 'junegunn/gv.vim' " git commit browser
 Plug 'rhysd/git-messenger.vim' " shows git message
 Plug 'rhysd/committia.vim' " better commit message
 Plug 'jreybert/vimagit' " interactive work with git
 " --[ Misc ]-------------------------------------------------------------------------
-Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
+Plug 'jamessan/vim-gnupg' " transparent work with gpg-encrypted files
 Plug 'ntpeters/vim-better-whitespace', {'on': 'StripWhitespace'} " delete whitespaces with ease
 Plug 'vimwiki/vimwiki' " personal wiki for vim
 call plug#end()
