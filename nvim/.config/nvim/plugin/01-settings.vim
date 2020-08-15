@@ -37,13 +37,6 @@ set isfname+=}
 set timeout ttimeout
 set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
 
-command! -bang -nargs=* -complete=file E e<bang> <args>
-command! -bang -nargs=* -complete=file W w<bang> <args>
-command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-command! -bang Q q<bang>
-command! -bang QA qa<bang>
-command! -bang Qa qa<bang>
 "----------------------------------------------------------------------------
 set noautowrite     " Don't autowrite by default
 set autoread        " Auto reload
