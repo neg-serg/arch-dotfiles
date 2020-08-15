@@ -9,7 +9,8 @@ call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 "--[ Main ]--------------------------------------------------------------------------
 Plug 'neg-serg/neg' " separated repo for the my own main colorscheme
 Plug 'neg-serg/neovim-colorschemes' " all colorschemes in the single repo
-Plug 'norcalli/nvim-colorizer.lua' "high-performance color highlighter for Neovim
+Plug 'neg-serg/neovim-autoload-session' " session autosave
+Plug 'norcalli/nvim-colorizer.lua' " high-performance color highlighter for Neovim
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'} " autocomplete
 Plug 'easymotion/vim-easymotion' " easymotion
 Plug 'honza/vim-snippets' " vim-snippets
@@ -45,7 +46,6 @@ Plug 'tpope/vim-dispatch', {'on': ['Dispatch', 'Start', 'Make']} " provide async
 Plug 'radenling/vim-dispatch-neovim', {'on': ['Dispatch', 'Start']} " Neovim support for vim-dispatch
 Plug 'plasticboy/vim-markdown' " markdown vim mode
 Plug 'thinca/vim-ref' " integrated reference viewer for help with separated window
-Plug 'donRaphaco/neotex' , {'for': 'tex'} " latex support
 " --[ Appearance ]-------------------------------------------------------------------
 Plug 'sheerun/vim-polyglot' "  language pack collection
 Plug 'nvim-treesitter/nvim-treesitter' " better syntax highlight
@@ -59,9 +59,6 @@ Plug 'junegunn/gv.vim' " git commit browser
 Plug 'rhysd/git-messenger.vim' " shows git message
 Plug 'rhysd/committia.vim' " better commit message
 Plug 'jreybert/vimagit' " interactive work with git
-"--[ Session ]-----------------------------------------------------------------------
-Plug 'xolox/vim-misc' " for vim-session
-Plug 'xolox/vim-session' " rule sessions
 " --[ Misc ]-------------------------------------------------------------------------
 Plug 'jamessan/vim-gnupg' " Transparent work with gpg-encrypted files
 Plug 'ntpeters/vim-better-whitespace', {'on': 'StripWhitespace'} " delete whitespaces with ease
