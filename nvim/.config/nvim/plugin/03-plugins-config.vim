@@ -82,8 +82,6 @@ let g:ale_linters = {'python': ['flake8', 'pylint'], 'rust': ['rls']}
 let g:ale_sign_error = ""
 let g:ale_sign_warning = ""
 let g:ale_fixers = {'javascript': ['eslint'], 'json': ['jq'], 'html': ['prettier'], 'scss': ['stylelint'], 'less': ['stylelint'], 'css': ['stylelint'], 'python': ['black', 'yapf'], 'rust': ['rustfmt']}
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/fzf.vim                                                         │
 " │ https://github.com/junegunn/fzf.vim                                               │
