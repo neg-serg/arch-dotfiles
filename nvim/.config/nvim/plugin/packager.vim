@@ -20,7 +20,7 @@ function! PackInit() abort
     call packager#add('justinmk/vim-dirvish') " minimalistic file manager
     call packager#add('airblade/vim-rooter') " autochdir for project root or for current dir
     call packager#add('simnalamburt/vim-mundo', { 'type': 'opt' }) " undo tree
-    call packager#add('sjbach/lusty') " file/buffer explorer
+    call packager#add('neg-serg/lusty') " file/buffer explorer
     call packager#add('bounceme/remote-viewer', { 'type': 'opt' }) " better ssh support
     " --[ Edit ]-------------------------------------------------------------------------
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
