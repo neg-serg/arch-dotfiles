@@ -20,6 +20,7 @@ Plug 'FooSoft/vim-argwrap' " vim arg wrapper
 Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'justinmk/vim-dirvish' " minimalistic file manager
 Plug 'airblade/vim-rooter' " autochdir for project root or for current dir
+Plug 'ms-jpq/chadtree' " new filemanager
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'tpope/vim-surround' " new commands to vim for generic brackets
 Plug 'AndrewRadev/dsf.vim' " surround for function calls
