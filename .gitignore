@@ -293,3 +293,5 @@ mpd/.config/mpd/
 .zinit
 pylint/.config/pylint
 ovmf
+pack
+session
