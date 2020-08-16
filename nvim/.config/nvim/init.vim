@@ -62,4 +62,5 @@ Plug 'jreybert/vimagit' " interactive work with git
 Plug 'jamessan/vim-gnupg' " transparent work with gpg-encrypted files
 Plug 'ntpeters/vim-better-whitespace', {'on': 'StripWhitespace'} " delete whitespaces with ease
 Plug 'vimwiki/vimwiki' " personal wiki for vim
+Plug 'pbrisbin/vim-mkdir" " auto make dir without asking
 call plug#end()
