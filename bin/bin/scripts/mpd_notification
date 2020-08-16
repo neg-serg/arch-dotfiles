@@ -71,7 +71,8 @@ notify(){
     local output
     for i in ${bodyarr[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
-
+        
+    output="${output}$(delimiter)"
     summary="$(delimiter)"
     dunstify -p -a "mpd_notification" -h "string:fgcolor:#17272D" \
         -u "${urgency}" \
