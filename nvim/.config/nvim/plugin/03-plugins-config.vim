@@ -292,3 +292,14 @@ map gz# <Plug>(asterisk-gz#)
 " │ https://github.com/lambdalisue/suda.vim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:suda_smart_edit = 1
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - mcchrish/nnn.vim                                                         │
+" │ https://github.com/mcchrish/nnn.vim                                               │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+" Disable default mappings
+let g:nnn#set_default_mappings = 0
+" Start nnn in the current file's directory
+nnoremap <C-S-a> :NnnPicker<CR>
+nnoremap <C-a> :NnnPicker '%:p:h'<CR>
+let g:nnn#command = 'nnn -n -o'
+let g:nnn#layout = { 'left': '~20%' } " or right, up, down

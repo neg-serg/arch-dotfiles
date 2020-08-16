@@ -21,6 +21,7 @@ Plug 'kopischke/vim-fetch' " vim path/to/file.ext:12:3
 Plug 'justinmk/vim-dirvish' " minimalistic file manager
 Plug 'bounceme/remote-viewer' " better ssh support
 Plug 'airblade/vim-rooter' " autochdir for project root or for current dir
+Plug 'mcchrish/nnn.vim' " add nnn fm support
 " --[ Edit ]-------------------------------------------------------------------------
 Plug 'tpope/vim-surround' " new commands to vim for generic brackets
 Plug 'AndrewRadev/dsf.vim' " surround for function calls
