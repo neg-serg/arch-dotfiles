@@ -13,7 +13,6 @@ wm-restack = i3
 [settings]
 throttle-output = 5
 throttle-output-for = 10
-throttle-input-for = 30
 
 [bar/main]
 ; Tell the Window Manager not to configure the window.
