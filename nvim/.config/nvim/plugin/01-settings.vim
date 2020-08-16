@@ -52,7 +52,7 @@ else
     set formatprg="fmt -140"  " use fmt as formatter
 endif
 
-set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866 
+set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
 set termencoding=utf8  " Set termencoding to utf-8
 "--------------------------------------------------------------------------
 set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
