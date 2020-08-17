@@ -27,7 +27,7 @@
     browser = /usr/bin/firefox -new-tab
     icon_position = left
     icon_path = ~/.icons/Compass
-    max_icon_size = 500
+    max_icon_size = 400
     title = Dunst
     class = Dunst
     stack_duplicates = true
