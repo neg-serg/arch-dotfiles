@@ -129,7 +129,7 @@ nnoremap <silent> <leader>. :FZFMru --prompt "❯> "<CR>
 let g:LustyJugglerDefaultMappings = 0
 let LustyExplorerDefaultMappings = 0
 let g:LustyExplorerAlwaysShowDotFiles = 1
-nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
+nmap <silent> <leader>l :packadd lusty<CR>:LustyFilesystemExplorerFromHere<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tpope/vim-dispatch.git                                                   │
 " │ https://github.com/tpope/vim-dispatch.git                                         │
