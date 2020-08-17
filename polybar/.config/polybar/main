@@ -23,7 +23,7 @@ override-redirect = false
 ; When false, the center position will be based on the size of the other blocks.
 fixed-center = true
 bottom = true
-height = 52
+height = 48
 enable-ipc = false
 
 border-top-size = ${border.t}
