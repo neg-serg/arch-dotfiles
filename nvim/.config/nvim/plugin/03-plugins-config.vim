@@ -292,3 +292,10 @@ map gz# <Plug>(asterisk-gz#)
 " │ https://github.com/lambdalisue/suda.vim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:suda_smart_edit = 1
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - andymass/vim-matchup                                                     │
+" │ https://github.com/andymass/vim-matchup                                           │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:matchup_matchparen_enabled = 0
+let g:matchup_motion_enabled = 1
+let g:matchup_text_obj_enabled = 1
