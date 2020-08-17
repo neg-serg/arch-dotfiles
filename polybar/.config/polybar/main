@@ -21,10 +21,10 @@ override-redirect = false
 
 ; Prefer fixed center position for the `modules-center` block
 ; When false, the center position will be based on the size of the other blocks.
-fixed-center = true
+fixed-center = false
 bottom = true
 height = 48
-enable-ipc = false
+enable-ipc = true
 
 border-top-size = ${border.t}
 border-bottom-size = ${border.b}
