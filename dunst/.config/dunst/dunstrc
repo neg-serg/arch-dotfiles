@@ -7,7 +7,7 @@
     alignment = left
     show_age_threshold = -1
     ignore_newline = false
-    geometry = "1220x11-40-35"
+    geometry = "1220x11-20-52"
     shrink = false
     transparency = 0
     idle_threshold = 8
