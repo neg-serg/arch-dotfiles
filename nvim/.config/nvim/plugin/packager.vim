@@ -9,9 +9,11 @@ function! PackInit() abort
     call packager#add('kristijanhusak/vim-packager', { 'type': 'opt' })
     "--[ Main ]--------------------------------------------------------------------------
     call packager#add('neg-serg/neg') " dedicated repo for the my own main colorscheme
-    call packager#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}) " autocomplete
     call packager#add('neg-serg/neovim-colorschemes') " all colorschemes in the single repo
     call packager#add('neg-serg/neovim-autoload-session') " session autosave
+    call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
+    call packager#add('tyrannicaltoucan/vim-deep-space') " deep-space colorscheme
+    call packager#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}) " autocomplete
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
     call packager#add('easymotion/vim-easymotion') " easymotion
     call packager#add('honza/vim-snippets') " vim-snippets
