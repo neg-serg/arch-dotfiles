@@ -53,6 +53,7 @@ function! PackInit() abort
     " --[ Appearance ]-------------------------------------------------------------------
     call packager#add('sheerun/vim-polyglot') " language pack collection
     call packager#add('chr4/nginx.vim', { 'type': 'opt' }) " nginx config file syntax
+    call packager#add('pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' })
     call packager#add('norcalli/nvim-colorizer.lua') " fast js/css colorizer
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
     call packager#add('arzg/vim-sh') " better sh / zsh highlight

@@ -299,3 +299,12 @@ let g:suda_smart_edit = 1
 let g:matchup_matchparen_enabled = 0
 let g:matchup_motion_enabled = 1
 let g:matchup_text_obj_enabled = 1
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - pearofducks/ansible-vim                                                  │
+" │ https://github.com/pearofducks/ansible-vim                                        │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+augroup ansible_vim_fthosts
+    autocmd!
+    autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
+augroup END
