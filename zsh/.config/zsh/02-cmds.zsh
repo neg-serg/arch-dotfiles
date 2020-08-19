@@ -21,7 +21,7 @@ alias rd="rmdir"
 alias grep="grep --color=auto"
 alias sort='sort --parallel 8 -S 16M'
 alias P="patch -p1 <"
-alias U="yay -Su --devel --confirm --timeupdate"
+alias U="yay -Su --devel --noconfirm --timeupdate"
 
 alias s="sudo"
 
