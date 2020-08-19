@@ -10,7 +10,7 @@ function! PackInit() abort
     "--[ Main ]--------------------------------------------------------------------------
     call packager#add('neg-serg/neg') " dedicated repo for the my own main colorscheme
     call packager#add('neg-serg/neovim-colorschemes') " all colorschemes in the single repo
-    call packager#add('neg-serg/neovim-autoload-session') " session autosave
+    call packager#add('neg-serg/neovim-autoload-session', { 'type': 'opt' }) " session autosave
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('tyrannicaltoucan/vim-deep-space') " deep-space colorscheme
     call packager#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}) " autocomplete
