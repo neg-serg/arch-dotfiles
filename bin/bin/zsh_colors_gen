@@ -14,7 +14,7 @@ readonly uline_regex="/${is_uline}/"
 readonly ftype_arr="/tmp/ftype_arr"
 readonly ftype_rule="/tmp/ftype_rule"
 
-readonly fg_eq="38;5;" 
+readonly fg_eq="38;5;"
 readonly bg_eq="48;5;"
 
 readonly tmp_file="$(mktemp)"
@@ -33,17 +33,17 @@ main() {
         | sed "s/^\.\W*/${ftype_pref}/" > "${tmp_file}"
 
     local -a sed_args=(
-        -e "s/${fg_eq}/fg=/"               
-        -e "s/${bg_eq}/bg=/g"              
-        -e "${bold_regex}s/$/,bold/"       
-        -e "${italic_regex}s/$/,italic/"       
-        -e "${uline_regex}s/$/,underline/" 
-        -e "s/00;//"                       
-        -e "s/${is_bold}//"                
-        -e "s/${is_uline}//"               
-        -e "s/${is_italic}//"               
-        -e "s/;/,/g"                       
-        -e "/\ 3[0-9][0-9]*/s/3/fg=/"      
+        -e "s/${fg_eq}/fg=/"
+        -e "s/${bg_eq}/bg=/g"
+        -e "${bold_regex}s/$/,bold/"
+        -e "${italic_regex}s/$/,italic/"
+        -e "${uline_regex}s/$/,underline/"
+        -e "s/00;//"
+        -e "s/${is_bold}//"
+        -e "s/${is_uline}//"
+        -e "s/${is_italic}//"
+        -e "s/;/,/g"
+        -e "/\ 3[0-9][0-9]*/s/3/fg=/"
         -e "s/, //g"
         -e 's/  */ /g'
         -e 's/ /]:=/2'
