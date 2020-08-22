@@ -15,16 +15,19 @@ throttle-output = 5
 throttle-output-for = 10
 
 [bar/main]
-; Tell the Window Manager not to configure the window.
-; Use this to detach the bar if your WM is locking its size/position.
-override-redirect = false
+modules-left = start time start-dark ws right start-br xkeyboard right start-br networkeno1 networkenp6s0 networkenp7s0 right-end-top
+modules-right = left-end-top start-mpd mpd volume end
 
-; Prefer fixed center position for the `modules-center` block
-; When false, the center position will be based on the size of the other blocks.
 fixed-center = false
 bottom = true
 height = 48
 enable-ipc = true
+
+radius-top = 18.0
+radius-bottom = 18.0
+
+background = ${color.background}
+foreground = ${color.foreground}
 
 border-top-size = ${border.t}
 border-bottom-size = ${border.b}
@@ -35,15 +38,6 @@ border-top-color = ${color.border}
 border-bottom-color = ${color.border_nontransparent}
 border-left-color = ${color.border_nontransparent}
 border-right-color = ${color.border_nontransparent}
-
-radius-top = 18.0
-radius-bottom = 18.0
-
-modules-left = start time start-dark ws right start-br xkeyboard right start-br networkeno1 networkenp6s0 networkenp7s0 right-end-top
-modules-right = left-end-top start-mpd mpd volume end
-
-background = ${color.background}
-foreground = ${color.foreground}
 
 ; Framerate in milliseconds
 poll-interval = 4
