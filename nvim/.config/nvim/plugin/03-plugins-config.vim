@@ -206,7 +206,7 @@ let g:rainbow_conf = g:rainbow_conf_defaults
 " │ plugin - mhinz/vim-grepper                                                        │
 " │ https://github.com/mhinz/vim-grepper                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <M-/> :Grepper -tool rg<CR>
+nnoremap <M-/> :packadd vim-grepper<CR>:Grepper -tool rg<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - FooSoft/vim-argwrap                                                      │
 " │ https://github.com/FooSoft/vim-argwrap                                            │
