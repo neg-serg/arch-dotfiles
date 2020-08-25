@@ -1,3 +1,4 @@
+set packpath=~/.config/nvim,/usr/share/nvim/runtime,~/.config/nvim/after
 if has('vim_starting') && has('reltime')
     let g:startuptime = reltime()
     augroup vimrc-startuptime
