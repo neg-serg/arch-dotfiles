@@ -1,5 +1,9 @@
 #!/bin/dash
 
+if [ -z "${XDG_PICTURES_DIR}" ]; then
+    XDG_PICTURES_DIR="$HOME/pic"
+fi
+
 case $1 in
     -a)
         find "$XDG_PICTURES_DIR" -maxdepth 3 \
