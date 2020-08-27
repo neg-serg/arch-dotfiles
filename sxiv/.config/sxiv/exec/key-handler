@@ -1,4 +1,6 @@
 #!/bin/dash
+. $ENV
+
 cache="/tmp"
 file1="$cache/sxiv1.$$"
 file2="$cache/sxiv2.$$"
