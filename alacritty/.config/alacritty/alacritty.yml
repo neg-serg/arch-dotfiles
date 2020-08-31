@@ -230,6 +230,16 @@ key_bindings:
   - {key: V, mods: Control|Shift, action: Paste}
   - {key: C, mods: Control|Shift, action: Copy}
   - {key: Insert, mods: Shift, action: PasteSelection}
+  - {key: Key1, mods: Control, chars: "\x1b[1;2P"}
+  - {key: Key2, mods: Control, chars: "\x1b[1;2Q"}
+  - {key: Key3, mods: Control, chars: "\x1b[1;2R"}
+  - {key: Key4, mods: Control, chars: "\x1b[1;2S"}
+  - {key: Key5, mods: Control, chars: "\x1b[15;2~"}
+  - {key: Key6, mods: Control, chars: "\x1b[17;2~"}
+  - {key: Key7, mods: Control, chars: "\x1b[18;2~"}
+  - {key: Key8, mods: Control, chars: "\x1b[19;2~"}
+  - {key: Key9, mods: Control, chars: "\x1b[20;2~"}
+  - {key: Key0, mods: Control, chars: "\x1b[21;2~"}
 
 mouse:
   double_click: {threshold: 200}
