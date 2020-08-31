@@ -41,6 +41,7 @@ function! PackInit() abort
     "--[ Search ]------------------------------------------------------------------------
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
+    call packager#add('wsdjeg/FlyGrep.vim' " better grepper alternative
     call packager#add('mhinz/vim-grepper', {'type': 'opt'}) " async grep search
     "--[ Dev ]--------------------------------------------------------------------------
     call packager#add('dense-analysis/ale') " async linter with lsp support
