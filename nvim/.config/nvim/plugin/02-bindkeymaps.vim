@@ -8,6 +8,12 @@ nnoremap Y y$
 nnoremap ; :
 nnoremap S f
 
+noremap <expr> G &wrap ? "G$g0" : "G"
+noremap <expr> 0 &wrap ? 'g0' : '0'
+noremap <expr> $ &wrap ? "g$" : "$"
+noremap <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <expr> k (v:count == 0 ? 'gk' : 'k')
+
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Right> <Nop>
@@ -23,6 +29,11 @@ nnoremap <silent> cos :setlocal spell!<Return>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zJ o<Esc>k
 nnoremap <silent> zK O<Esc>j
+
+" thx to ralismark.xyz/2020/08/29/how-i-use-vim-1.html
+" Fixed I/A for visual
+xnoremap <expr> I mode() ==# 'v' ? "\<c-v>I" : mode() ==# 'V' ? "\<c-v>^o^I" : "I"
+xnoremap <expr> A mode() ==# 'v' ? "\<c-v>A" : mode() ==# 'V' ? "\<c-v>Oo$A" : "A"
 
 " Toggle hlsearch for current results, start highlight
 nnoremap <leader><leader> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
@@ -63,6 +74,9 @@ nnoremap [Qleader]w :w!<cr>
 nnoremap ' `
 nnoremap ` '
 
+nnoremap x "_x
+noremap X "_d
+
 " use U for redo
 nnoremap U <C-r>
 " like firefox tabs
@@ -75,3 +89,6 @@ exe 'vnoremap <script> <C-V> ' . paste#paste_cmd['v']
 " fix for floating windows
 nnoremap <C-c> <C-[>
 inoremap <C-c> <C-[>
+
+" Escape as normal
+tnoremap <esc> <c-\><c-n>
