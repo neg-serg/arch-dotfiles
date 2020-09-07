@@ -232,15 +232,6 @@ let g:rooter_cd_cmd="lcd" " change directory for the current window only
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_silent_chdir = 1
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - easymotion/vim-easymotion                                                │
-" │ https://github.com/easymotion/vim-easymotion                                      │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_use_smartsign_us = 1
-nmap <Space> <Plug>(easymotion-f)
-nmap F <Plug>(easymotion-overwin-f2)
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/vim-easy-align                                                  │
 " │ https://github.com/junegunn/vim-easy-align                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
