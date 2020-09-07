@@ -15,7 +15,6 @@ function! PackInit() abort
     call packager#add('tyrannicaltoucan/vim-deep-space') " deep-space colorscheme
     call packager#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}) " autocomplete
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
-    call packager#add('easymotion/vim-easymotion') " easymotion
     call packager#add('honza/vim-snippets') " vim-snippets
     call packager#add('FooSoft/vim-argwrap') " vim arg wrapper
     call packager#add('kopischke/vim-fetch') " vim path/to/file.ext:12:3
@@ -34,6 +33,7 @@ function! PackInit() abort
     call packager#add('tpope/vim-abolish') " for different case coersion
     call packager#add('haya14busa/vim-asterisk') " smartcase star
     call packager#add('tpope/vim-repeat') " dot for everything
+	call packager#add('svermeulen/vim-NotableFt') "better ft
     call packager#add('inkarkat/vim-ReplaceWithRegister') " replace with register keybindings
     call packager#add('lambdalisue/suda.vim') " smart sudo support
     call packager#add('tomtom/tcomment_vim') " commenter plugin
@@ -41,8 +41,8 @@ function! PackInit() abort
     "--[ Search ]------------------------------------------------------------------------
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
-    call packager#add('wsdjeg/FlyGrep.vim') " better grepper alternative
     call packager#add('mhinz/vim-grepper', {'type': 'opt'}) " async grep search
+    call packager#add('pechorin/any-jump.vim') " ide-like jump madness
     "--[ Dev ]--------------------------------------------------------------------------
     call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('tpope/vim-dispatch') " provide async build
@@ -69,8 +69,8 @@ function! PackInit() abort
     call packager#add('ntpeters/vim-better-whitespace') " delete whitespaces with ease
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
     call packager#add('pbrisbin/vim-mkdir') " auto make dir without asking
-    call packager#add('Olical/aniseed', {'tag': 'v3.6.1'})
-    call packager#add('bakpakin/fennel.vim')
+    call packager#add('bakpakin/fennel.vim') " fennel support
+    call packager#add('Olical/aniseed', {'tag': 'v3.6.1'}) " fennel neovim support
 endfunction
 
 command! PackInstall call PackInit() | call packager#install()
