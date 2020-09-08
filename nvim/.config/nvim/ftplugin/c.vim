@@ -59,3 +59,7 @@ let b:man_default_sects = '3,2'
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
+
+let b:ale_fixers = ['clang-format']
+let b:ale_linters = ['cquery', 'clang']
+let b:source_ft = ['c']
