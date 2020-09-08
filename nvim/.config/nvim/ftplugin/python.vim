@@ -38,7 +38,7 @@ setlocal comments=b:#,fb:-
 setlocal commentstring=#\ %s
 
 if has('python3')
-  setlocal omnifunc=python3complete#Complete 
+  setlocal omnifunc=python3complete#Complete
 elseif has('python')
   setlocal omnifunc=pythoncomplete#Complete
 endif
@@ -140,7 +140,7 @@ endif
 " If "pydoc" was found use it for keywordprg.
 if g:pydoc_executable
     if has('win32') || has('win64')
-        setlocal keywordprg=python\ -m\ pydoc\ 
+        setlocal keywordprg=python\ -m\ pydoc\
     else
         setlocal keywordprg=pydoc
     endif
@@ -203,3 +203,6 @@ let b:undo_ftplugin = 'setlocal cinkeys<'
 
 let &cpo = s:keepcpo
 unlet s:keepcpo
+
+let b:ale_linters = ['flake8', 'pylint']
+let python_highlight_all = 1
