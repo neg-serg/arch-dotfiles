@@ -15,14 +15,10 @@ function! PackInit() abort
     call packager#add('kopischke/vim-fetch') " vim path/to/file.ext:12:3
     call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
     call packager#add('neg-serg/lusty', {'type': 'opt'}) " file/buffer explorer
-    call packager#add('neg-serg/neg') " dedicated repo for the my own main colorscheme
-    call packager#add('neg-serg/neovim-autoload-session', {'type': 'opt'}) " session autosave
-    call packager#add('neg-serg/neovim-colorschemes') " all colorschemes in the single repo
     call packager#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}) " autocomplete
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
-    call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
-    call packager#add('tyrannicaltoucan/vim-deep-space') " deep-space colorscheme
+    call packager#add('neg-serg/neovim-autoload-session', {'type': 'opt'}) " session autosave
     "--[ Edit ]-------------------------------------------------------------------------
     call packager#add('AndrewRadev/dsf.vim') " surround for function calls
     call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
@@ -38,18 +34,27 @@ function! PackInit() abort
     call packager#add('tpope/vim-repeat') " dot for everything
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
     call packager#add('wellle/targets.vim') " better text objects
+    call packager#add('reedes/vim-wordy', {'type': 'opt'}) " style check for english
+    "--[ Colorschemes ]------------------------------------------------------------------
+    call packager#add('neg-serg/neg') " dedicated repo for the my own main colorscheme
+    call packager#add('neg-serg/neovim-colorschemes') " all colorschemes in the single repo
+    call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
+    call packager#add('tyrannicaltoucan/vim-deep-space') " deep-space colorscheme
+    call packager#add('wadackel/vim-dogrun') " new colorscheme
     "--[ Search ]------------------------------------------------------------------------
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('mhinz/vim-grepper', {'type': 'opt'}) " async grep search
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
-    call packager#add('pechorin/any-jump.vim') " ide-like jump madness
     "--[ Dev ]--------------------------------------------------------------------------
     call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
+	call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'})
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
     call packager#add('puremourning/vimspector', {'type': 'opt'}) " vim debugging support
-    call packager#add('radenling/vim-dispatch-neovim') " Neovim support for vim-dispatch
+    call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
+    call packager#add('rhysd/conflict-marker.vim') " good conflict marker
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
+    call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
     " --[ Appearance ]-------------------------------------------------------------------
     call packager#add('arzg/vim-sh') " better sh / zsh highlight
