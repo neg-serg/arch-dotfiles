@@ -92,3 +92,11 @@ inoremap <C-c> <C-[>
 
 " Escape as normal
 tnoremap <esc> <c-\><c-n>
+
+" Blocks, thx to jamestthompson3/vimConfig
+vnoremap <silent><up>    :m '<-2<cr>gv=gv
+vnoremap <silent><down>  :m '>+1<cr>gv=gv
+nnoremap <silent><up>    :m .-2<cr>==
+nnoremap <silent><down>  :m .+1<cr>==
+xnoremap <expr> I (mode()=~#'[vV]'?'<C-v>^o^I':'I')
+xnoremap <expr> A (mode()=~#'[vV]'?'<C-v>0o$A':'A')
