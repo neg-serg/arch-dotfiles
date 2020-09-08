@@ -35,7 +35,7 @@ function! ModeCurrent() abort
 endfunction
 
 function! GitBranch(git)
-    if a:git == ""
+    if a:git ==# ""
         return ''
     else
         return ' ' . a:git . ' '
@@ -43,7 +43,7 @@ function! GitBranch(git)
 endfunction
 
 function! CheckFT(filetype)
-    if a:filetype == ''
+    if a:filetype ==# ''
         return ''
     else
         return tolower(a:filetype)
@@ -76,32 +76,32 @@ function! StatusDiagnostic() abort
 endfunction
 
 function! ActiveLine()
-    let statusline = ""
-    let statusline .= "%#Base#"
-    let statusline .= "%#Mode# %{ModeCurrent()}"
+    let statusline = ''
+    let statusline .= '%#Base#'
+    let statusline .= '%#Mode# %{ModeCurrent()}'
     let statusline .= '%#StatusLeftDelimiter1# ❯>'
-    let statusline .= "%#Modi# %{CheckMod(&modified)}"
-    let statusline .= "%#Git# %{GitBranch(fugitive#head())} %)"
-    let statusline .= "%#Decoration#▓▒▒"
-    let statusline .= "%3* "
-    let statusline .= "%= "
-    let statusline .= "%#Decoration#▒▒▓"
-    let statusline .= "%#Filetype#%{CheckFT(&filetype)} "
-    let statusline .= "%{StatusDiagnostic()}"
-    let statusline .= "%3*"
-    let statusline .= "%#StatusRightDelimiter1#❮"
-    let statusline .= "%1*"
-    let statusline .= "%#StatusRight# %02l%#StatusRightDelimiter1#/%#StatusRight#%02v"
-    let statusline .= "%#StatusRightDelimiter1# ❮ "
-    let statusline .= "%#StatusRight#%2p%% "
+    let statusline .= '%#Modi# %{CheckMod(&modified)}'
+    let statusline .= '%#Git# %{GitBranch(fugitive#head())} %)'
+    let statusline .= '%#Decoration#▓▒▒'
+    let statusline .= '%3* '
+    let statusline .= '%= '
+    let statusline .= '%#Decoration#▒▒▓'
+    let statusline .= '%#Filetype#%{CheckFT(&filetype)} '
+    let statusline .= '%{StatusDiagnostic()}'
+    let statusline .= '%3*'
+    let statusline .= '%#StatusRightDelimiter1#❮'
+    let statusline .= '%1*'
+    let statusline .= '%#StatusRight# %02l%#StatusRightDelimiter1#/%#StatusRight#%02v'
+    let statusline .= '%#StatusRightDelimiter1# ❮ '
+    let statusline .= '%#StatusRight#%2p%% '
 
     return statusline
 endfunction
 
 function! InactiveLine()
-    let statusline = ""
-    let statusline .= "%#Base#"
-    let statusline .= "%#Filename# %F "
+    let statusline = ''
+    let statusline .= '%#Base#'
+    let statusline .= '%#Filename# %F '
     return statusline
 endfunction
 

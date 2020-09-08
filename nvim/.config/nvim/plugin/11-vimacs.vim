@@ -1,4 +1,4 @@
-if exists("g:loaded_vim_like_emacs") || v:version < 700 || &cp
+if exists('g:loaded_vim_like_emacs') || v:version < 700 || &compatible
     finish
 endif
 let g:loaded_vim_like_emacs = 1
@@ -53,10 +53,10 @@ endfunction
 
 function! <SID>ttext(mode) range
     let last_search = histget('search', -1)
-    if a:mode =~ 'v'
+    if a:mode =~? 'v'
         let save_cursor = getpos("'>")
         " visual interactive :)
-        if 'vi' == a:mode
+        if 'vi' ==? a:mode
             let operators = input('Pivot: ')
         else
             let comparison_ops = ['===', '!==',  '<>', '==#', '!=#',  '>#',
@@ -123,10 +123,10 @@ function! <SID>ttext(mode) range
                         \'\ze[[:space:]]*\%'     . col_end   . 'c/\3\2\1/e'
         endif
         " Swap Words
-    elseif a:mode =~ 'n'
+    elseif a:mode =~? 'n'
         let save_cursor = getpos(".")
         " swap with Word on the left
-        if 'nl' == a:mode
+        if 'nl' ==? a:mode
             call search('[^[:space:]]\+'  .
                         \'\_[[:space:]]\+'  .
                         \ '[^[:space:]]*\%#', 'bW')
@@ -140,9 +140,9 @@ function! <SID>ttext(mode) range
     " Repeat
     let virtualedit_bak = &virtualedit
     set virtualedit=
-    if 'nr' == a:mode
+    if 'nr' ==? a:mode
         silent! call repeat#set("\<plug>SwapSwapWithR_WORD")
-    elseif 'nl' == a:mode
+    elseif 'nl' ==? a:mode
         silent! call repeat#set("\<plug>SwapSwapWithL_WORD")
     endif
     " Restore saved values
@@ -150,7 +150,7 @@ function! <SID>ttext(mode) range
     if histget('search', -1) != last_search
         call histdel('search', -1)
     endif
-    if &virtualedit == 'all' && a:mode =~ 'v'
+    if &virtualedit ==? 'all' && a:mode =~? 'v'
         " wrong cursor position is better than crash
         " https://groups.google.com/forum/#!topic/vim_dev/AK_HZ-5TeuU
         set virtualedit=
@@ -187,14 +187,14 @@ unlet s:savecpo
 " Get the current cursor position on the edit line. This differs from
 " getcmdpos in that it counts chars intead of bytes and starts counting at 0.
 function! s:getcur()
-    return strchars((getcmdline() . " ")[:getcmdpos() - 1]) - 1
+    return strchars((getcmdline() . ' ')[:getcmdpos() - 1]) - 1
 endfunction
 
 " Get mapping to delete from cursor to position. Argument x is the position to
 " delete to. Argument y represents the current cursor position (note that this
 " _must_ be in sync with the real cursor position).
 function! s:delete_to(x, y)
-    let cmd = ""
+    let cmd = ''
     let s = getcmdline()
     let y = a:y
     if y < a:x

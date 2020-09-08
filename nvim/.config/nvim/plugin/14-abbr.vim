@@ -1,6 +1,6 @@
 cnoreabbrev gd Gvdiff
 cnoreabbrev gp Gpush
-cnoreabbrev gc Gcommit -v -m 
+cnoreabbrev gc Gcommit -v -m
 cnoreabbrev gca Gcommit --amend -v
 cnoreabbrev gcheckout Gcheckout
 cnoreabbrev grm Gremove

@@ -1,7 +1,7 @@
 set background=dark
 colorscheme neg
 
-if bufname('%') == ''
+if bufname('%') ==? ''
     set bufhidden=wipe
 endif
 

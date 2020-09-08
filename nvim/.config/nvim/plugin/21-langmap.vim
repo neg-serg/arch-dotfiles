@@ -11,6 +11,8 @@ function MapHighlight()
     endif
 endfunction
 call MapHighlight()
-au WinEnter * :call MapHighlight()
+augroup map_highlight
+    au WinEnter * :call MapHighlight()
+augroup end
 imap <silent> <C-s> <C-^>X<Esc>:call MapHighlight()<CR>a<C-H>
 nmap <silent> <C-s> a<C-^><Esc>:call MapHighlight()<CR>

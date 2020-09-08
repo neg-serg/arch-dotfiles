@@ -1,5 +1,5 @@
 let mapleader      = ','
-let g:mapleader    = ","
+let g:mapleader    = ','
 
 nnoremap q <NOP>
 nnoremap <Tab> :bnext<cr>

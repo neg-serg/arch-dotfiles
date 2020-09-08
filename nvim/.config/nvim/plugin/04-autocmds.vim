@@ -1,10 +1,14 @@
-au StdinReadPost * set buftype=nofile
+augroup fix_stdin
+    autocmd StdinReadPost * set buftype=nofile
+augroup end
 
-" Return to last edit position (You want this!) *N*
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+augroup continue_buf
+    " Return to last edit position (You want this!) *N*
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+augroup end
 
 augroup modechange_settings
     autocmd!

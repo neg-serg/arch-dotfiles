@@ -13,8 +13,8 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_status_warning_sign = ""
-let g:coc_status_error_sign = ""
+let g:coc_status_warning_sign = ''
+let g:coc_status_error_sign = ''
 
 let g:coc_snippet_next = '<tab>'
 
@@ -35,8 +35,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gI <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup coc
+    " Highlight symbol under cursor on CursorHold
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -78,16 +80,15 @@ let g:session_directory = $XDG_CONFIG_HOME.'/nvim/sessions'
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_highlight_linenrs = 1
-let g:ale_linters = {'python': ['flake8', 'pylint'], 'rust': ['rls']}
-let g:ale_sign_error = ""
-let g:ale_sign_warning = ""
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
 let g:ale_fixers = {'javascript': ['eslint'], 'json': ['jq'], 'html': ['prettier'], 'scss': ['stylelint'], 'less': ['stylelint'], 'css': ['stylelint'], 'python': ['black', 'yapf'], 'rust': ['rustfmt']}
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/fzf.vim                                                         │
 " │ https://github.com/junegunn/fzf.vim                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if executable('rg')
-    let s:rg_cmd = "rg --hidden --follow"
+    let s:rg_cmd = 'rg --hidden --follow'
     let s:rg_ignore = split(&wildignore, ',') + [
         \ 'node_modules', 'target', 'build', 'dist', '.stack-work'
         \ ]
@@ -106,17 +107,18 @@ command! -bang -complete=dir -nargs=* Dir call fzf#run(fzf#wrap('fd', {'source':
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 
-" Advanced customization using autoload functions
-autocmd VimEnter * command! Colors
-    \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
-
 " Insert mode completion
 imap <c-x><c-f> <Plug>(fzf-complete-path)
 imap <c-x><c-l> <Plug>(fzf-complete-line)
 nnoremap <C-e> :Dir<CR>
 nnoremap <C-S-e> :Dir <C-r>=expand('%:p:h')<CR>
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode
+augroup fzf
+    autocmd! FileType fzf set laststatus=0 noshowmode noruler
+        \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode
+    " Advanced customization using autoload functions
+    autocmd VimEnter * command! Colors
+        \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+augroup end
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - pbogut/fzf-mru.vim                                                       │
 " │ https://github.com/pbogut/fzf-mru.vim                                             │
@@ -198,7 +200,7 @@ let g:rainbow_conf_defaults = {
 \		'sh': 0,
 \	}
 \ }
-let s:rainbow_darkblue_colors = ["#2A4769", "#264263", "#223E5E"]
+let s:rainbow_darkblue_colors = ['#2A4769', '#264263', '#223E5E']
 let s:rainbow_royalblue_colors = ['#4169E1', '#3D63D4', '#3B5FCC', '#385AC2', '#3454B5']
 let g:rainbow_conf_defaults['guifgs'] = s:rainbow_royalblue_colors
 let g:rainbow_conf = g:rainbow_conf_defaults
@@ -227,7 +229,7 @@ let g:AutoPairsShortcutBackInsert = ''
 " │ https://github.com/airblade/vim-rooter                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rooter_targets = '/,*' " directories and all files (default)
-let g:rooter_cd_cmd="lcd" " change directory for the current window only
+let g:rooter_cd_cmd='lcd' " change directory for the current window only
 " change dir to current if there is no project
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_silent_chdir = 1
@@ -253,12 +255,12 @@ let g:vista_sidebar_width = 20
 let g:vista_disable_statusline = 1
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
-let g:vista_icon_indent = ["▸ ", ""]
+let g:vista_icon_indent = ['▸ ', '']
 let g:vista#renderer#icons = {
-    \   "function": "ﬦ",
-    \   "module": " ",
-    \   "variable": "\ufb18 ",
-    \   "constant": ""
+    \   'function': 'ﬦ',
+    \   'module': ' ',
+    \   'variable': '\ufb18 ',
+    \   'constant': ''
     \  }
 let g:vista_default_executive = 'coc'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -294,8 +296,8 @@ let g:matchup_text_obj_enabled = 1
 " │ plugin - pearofducks/ansible-vim                                                  │
 " │ https://github.com/pearofducks/ansible-vim                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 augroup ansible_vim_fthosts
     autocmd!
     autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
+    autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 augroup END
