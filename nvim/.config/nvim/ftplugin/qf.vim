@@ -39,3 +39,6 @@ augroup qf_toc
   autocmd!
   autocmd Syntax <buffer> call s:setup_toc()
 augroup END
+
+nnoremap <buffer> <Left> :call quickfixed#history(0)<CR>
+nnoremap <buffer> <Right> :call quickfixed#history(1)<CR>
