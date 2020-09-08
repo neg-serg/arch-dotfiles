@@ -102,5 +102,7 @@ endif
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
+let b:ale_linters = ['vint']
+
 " removed this, because 'cpoptions' is a global option.
 " setlocal cpo+=M		" makes \%( match \)
