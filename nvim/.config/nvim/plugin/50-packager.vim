@@ -75,6 +75,7 @@ function! PackInit() abort
     call packager#add('ntpeters/vim-better-whitespace') " delete whitespaces with ease
     call packager#add('Olical/aniseed', {'tag': 'v3.6.1'}) " fennel neovim support
     call packager#add('pbrisbin/vim-mkdir') " auto make dir without asking
+    call packager#add('reedes/vim-pencil') " better text support
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
 endfunction
 
