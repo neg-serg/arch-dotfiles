@@ -9,7 +9,7 @@
     ignore_newline = false
     geometry = "1220x11-20-52"
     shrink = false
-    transparency = 0
+    transparency = 10
     idle_threshold = 8
     monitor = 0
     follow = mouse
@@ -17,7 +17,7 @@
     show_indicators = false
     indicate_hidden = true
     line_height = 0
-    separator_height = 1
+    separator_height = 2
     padding = 2
     horizontal_padding = 4
     word_wrap = yes
@@ -38,6 +38,12 @@
     ellipsize = middle
     verbosity = mesg
     transparency = 10
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[fullscreen_delay_everything]
+    fullscreen = delay
 
 [shortcuts]
     history = mod4+shift+9
@@ -59,7 +65,7 @@
     timeout = 0
 
 [pic_notify]
-    appname = screenshot 
+    appname = screenshot
     format = ""
     script = "~/bin/scripts/pic_notify"
     urgency = normal
@@ -70,3 +76,5 @@
     script = "~/bin/scripts/mpd_notification"
     urgency = normal
     timeout = 20
+
+# vim: ft=cfg
