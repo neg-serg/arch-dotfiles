@@ -69,11 +69,14 @@ function! PackInit() abort
     call packager#add('rhysd/committia.vim') " better commit message
     call packager#add('rhysd/git-messenger.vim') " shows git message
     call packager#add('tpope/vim-fugitive') " git stuff. Needed for powerline etc
-    "--[ Misc ]-------------------------------------------------------------------------
+    "--[ Neovim lua support ]-----------------------------------------------------------
     call packager#add('bakpakin/fennel.vim') " fennel support
+    call packager#add('Olical/aniseed', {'tag': 'v3.6.1'}) " fennel neovim support
+    call packager#add('svermeulen/nvim-moonmaker')
+	call packager#add('svermeulen/vimpeccable')
+    "--[ Misc ]-------------------------------------------------------------------------
     call packager#add('jamessan/vim-gnupg') " transparent work with gpg-encrypted files
     call packager#add('ntpeters/vim-better-whitespace') " delete whitespaces with ease
-    call packager#add('Olical/aniseed', {'tag': 'v3.6.1'}) " fennel neovim support
     call packager#add('pbrisbin/vim-mkdir') " auto make dir without asking
     call packager#add('reedes/vim-pencil') " better text support
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
