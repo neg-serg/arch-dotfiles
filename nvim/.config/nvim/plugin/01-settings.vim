@@ -54,7 +54,7 @@ endif
 set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
 "--------------------------------------------------------------------------
 set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
-set clipboard=unnamedplus             " always clipboard all operations
+set clipboard+=unnamedplus            " always clipboard all operations
 set shada=
 set jumpoptions=stack
 set linespace=0                 " No extra spaces between rows
