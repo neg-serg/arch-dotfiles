@@ -26,9 +26,11 @@ set keymap=russian-jcukenwin
 set magic
 
 set path+=.,..,./include,../include,/usr/include
-execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
-execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
 set path+=**
+if 0
+    execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
+    execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
+endif
 
 set isfname+={
 set isfname+=}
@@ -88,7 +90,6 @@ set virtualedit=onemore,block   " Allow for cursor beyond last character
 set shortmess+=a                " Abbrev. of messages (avoids 'hit enter')
 set shortmess+=oOstTWAIcqFS     " Shorting messages for all
 set nofoldenable                " Disable folds as
-set spell                       " Spell checking off
 set shiftwidth=4                " spaces for autoindents
 set shiftround                  " makes indenting a multiple of shiftwidth
 set expandtab                   " Tabs are spaces, not tabs
@@ -126,14 +127,10 @@ set cpoptions+=B        " a backslash has no special meaning in mappings
 set cpoptions+=d        " make ./ in tags relative to tags file in current dir
 set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
-" this can cause problems with other filetypes
-" see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
-set nosmartindent       " disable smart auto indenting, I think it should be deprecated
+set nospell             " disable spell checking by default
 set copyindent          " copy the previous indentation on autoindenting
 set cindent             " smart indenting for c-like code
 set cinoptions=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
-set cinkeys-=0#         " better support for
-set indentkeys-=0#      " tcomment
 set nocursorline        " highlight current line is too slow
 set backup              " backuping is good
 " Protect home directory
@@ -152,13 +149,10 @@ set undodir=~/trash/    " Set up undo dir
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
 
-" set maxfuncdepth=100    " Maximum depth of function calls for user functions
-" set maxmapdepth=1000    " Maximum number of times a mapping is done
-"                         " without resulting in a character to be used.
-" set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
-
-set modeline            " disable modelines
+set maxfuncdepth=100    " Maximum depth of function calls for user functions
+set maxmapdepth=1000    " Maximum number of times a mapping is done
+                        " without resulting in a character to be used.
+set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
 set iminsert=0          " write latin1 characters first
 set imsearch=0          " search with latin1 characters first
-set cmdheight=1         " standard cmdline height
