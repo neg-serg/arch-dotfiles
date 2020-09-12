@@ -1,4 +1,3 @@
-set background=dark
 colorscheme neg
 
 if bufname('%') ==? ''
@@ -35,11 +34,11 @@ set isfname+={
 set isfname+=}
 
 set timeout ttimeout
-set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
+set timeoutlen=2000
+set ttimeoutlen=30 " Very fast and also you shouldn't make combination too fast
 
 "----------------------------------------------------------------------------
 set noautowrite     " Don't autowrite by default
-set autoread        " Auto reload
 set noautochdir     " Dont't change pwd automaticly because of problems with plugins
 set showmode        " no show the mode ("-- INSERT --") at the bottom
 set showtabline=0   " do not show tab line
@@ -61,12 +60,9 @@ set shada=
 set jumpoptions=stack
 set noshelltemp
 
-set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 set noshowmatch                 " Show matching brackets/parenthesis
-set incsearch                   " Find as you type search
-set hlsearch                    " Highlight search terms
 set winminheight=0              " Windows can be 0 line high
 set winminwidth=0               " Windows can be 0 line width
 set ignorecase                  " Case insensitive search
@@ -83,7 +79,6 @@ set winblend=15                 " Pseudo-transparency for floating windows
 
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
-set showcmd                     " Show partial commands in status line and Selected characters/lines in visual mode
 
 set wrap                        " Wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
@@ -91,24 +86,19 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 
 set scrolljump=1                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
-set sidescroll=1                " The minimal number of columns to scroll horizontally.
 set sidescrolloff=10            " min num of scr columns to keep to the left and to the
                                 " right of the cursor if 'nowrap' is set.
 set virtualedit=onemore,block   " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess+=a                " Abbrev. of messages (avoids 'hit enter')
 set shortmess+=oOstTWAIcqFS     " Shorting messages for all
-set more                        " probably it should get out 'Press enter' msg
-set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set nofoldenable                " Disable folds as
-set history=1000                " Store a ton of history (default is 20)
 set nospell                     " Spell checking off
 set shiftwidth=4                " spaces for autoindents
 set shiftround                  " makes indenting a multiple of shiftwidth
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
-set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set matchpairs+=<:>             " Match, to be used with %
 set matchpairs+=《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
@@ -151,15 +141,12 @@ set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
-set autoindent          " on new lines, match indent of previous line
 set nosmartindent       " disable smart auto indenting, I think it should be deprecated
 set copyindent          " copy the previous indentation on autoindenting
 set cindent             " smart indenting for c-like code
 set cinoptions=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
 set cinkeys-=0#         " better support for
 set indentkeys-=0#      " tcomment
-set laststatus=2        " requied by PowerLine/Airline
-
 set nocursorline        " highlight current line is too slow
 set backup              " backuping is good
 " Protect home directory
