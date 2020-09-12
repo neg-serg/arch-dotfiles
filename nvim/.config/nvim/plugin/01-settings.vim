@@ -50,11 +50,10 @@ if executable(resolve(expand('par')))
 else
     set formatprg="fmt -140"  " use fmt as formatter
 endif
-
 set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
 "--------------------------------------------------------------------------
-set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
-set clipboard+=unnamedplus            " always clipboard all operations
+set switchbuf=useopen,usetab    " 'useopen' may be useful for re-using QuickFix window.
+set clipboard=unnamedplus       " always clipboard all operations
 set shada=
 set jumpoptions=stack
 set linespace=0                 " No extra spaces between rows
@@ -86,29 +85,20 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set sidescrolloff=10            " min num of scr columns to keep to the left and to the
                                 " right of the cursor if 'nowrap' is set.
 set virtualedit=onemore,block   " Allow for cursor beyond last character
-set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess+=a                " Abbrev. of messages (avoids 'hit enter')
 set shortmess+=oOstTWAIcqFS     " Shorting messages for all
 set nofoldenable                " Disable folds as
-set nospell                     " Spell checking off
+set spell                       " Spell checking off
 set shiftwidth=4                " spaces for autoindents
 set shiftround                  " makes indenting a multiple of shiftwidth
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-set matchpairs+=<:>             " Match, to be used with %
-set matchpairs+=《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
-set wildignore+=*.o,*.so,*.obj,.git,.svn
-set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.mp3
-set wildignore+=*.sw?
-set wildignore+=*.pyc
-set wildignore+=__pycache__
+set matchpairs+=<:>,《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-set equalalways                 " keep windows equal when splitting (default)
 set eadirection=hor             " ver/hor/both - where does equalalways apply
-set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
 set lazyredraw                  " Reduce useless redrawing
 set diffopt+=internal,algorithm:patience " Better diff algorithm
