@@ -15,7 +15,7 @@ throttle-output = 5
 throttle-output-for = 10
 
 [bar/main]
-modules-left = start time start-dark ws right start-br xkeyboard right start-br networkeno1 networkenp6s0 networkenp7s0 right-end-top
+modules-left = start time start-dark ws right start-br xkeyboard right start-br networkeno1 networkenp6s0 networkenp7s0 start-dark right-end-top
 modules-right = left-end-top start-mpd mpd volume end
 
 fixed-center = false
@@ -46,5 +46,6 @@ font-0 = ${font.font-0}
 font-1 = ${font.font-1}
 font-2 = ${font.font-2}
 font-3 = ${font.font-3}
+font-4 = ${font.font-4}
 
 ; vim: set ft=dosini:
