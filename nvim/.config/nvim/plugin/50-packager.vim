@@ -15,7 +15,7 @@ function! PackInit() abort
     call packager#add('kopischke/vim-fetch') " vim path/to/file.ext:12:3
     call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
     call packager#add('neg-serg/lusty', {'type': 'opt'}) " file/buffer explorer
-    call packager#add('neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}) " autocomplete
+    call packager#add('neoclide/coc.nvim') " autocomplete
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     call packager#add('neg-serg/neovim-autoload-session', {'type': 'opt'}) " session autosave
