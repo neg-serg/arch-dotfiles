@@ -52,14 +52,11 @@ else
 endif
 
 set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
-set termencoding=utf8  " Set termencoding to utf-8
 "--------------------------------------------------------------------------
 set switchbuf=useopen,usetab          " 'useopen' may be useful for re-using QuickFix window.
 set clipboard=unnamedplus             " always clipboard all operations
 set shada=
 set jumpoptions=stack
-set noshelltemp
-
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 set noshowmatch                 " Show matching brackets/parenthesis
@@ -67,7 +64,7 @@ set winminheight=0              " Windows can be 0 line high
 set winminwidth=0               " Windows can be 0 line width
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
-set wildoptions=pum,tagfile     " wild options
+set wildoptions=pum             " wild options
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set inccommand=split            " Better live substitution
 set matchtime=2                 " Default time to hi brackets too long for me
@@ -165,10 +162,10 @@ set undodir=~/trash/    " Set up undo dir
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
 
-set maxfuncdepth=100    " Maximum depth of function calls for user functions
-set maxmapdepth=1000    " Maximum number of times a mapping is done
-                        " without resulting in a character to be used.
-set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
+" set maxfuncdepth=100    " Maximum depth of function calls for user functions
+" set maxmapdepth=1000    " Maximum number of times a mapping is done
+"                         " without resulting in a character to be used.
+" set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
 set modeline            " disable modelines
 
