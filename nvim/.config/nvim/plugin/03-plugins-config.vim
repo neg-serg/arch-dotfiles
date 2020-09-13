@@ -97,13 +97,9 @@ if executable('rg')
     let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
-
 nnoremap <silent> qE :Files %:p:h<CR>
 nnoremap <silent> qe :Files<CR>
-nnoremap <silent> qt :BTags<CR>
-nnoremap <silent> qf :Find<CR>
 command! -bang -complete=dir -nargs=* Dir call fzf#run(fzf#wrap('fd', {'source': 'fd --full-path -a -t d', 'dir': <q-args>}, <bang>0))
-
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 
@@ -205,11 +201,6 @@ let s:rainbow_royalblue_colors = ['#4169E1', '#3D63D4', '#3B5FCC', '#385AC2', '#
 let g:rainbow_conf_defaults['guifgs'] = s:rainbow_royalblue_colors
 let g:rainbow_conf = g:rainbow_conf_defaults
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - mhinz/vim-grepper                                                        │
-" │ https://github.com/mhinz/vim-grepper                                              │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <M-/> :packadd vim-grepper<CR>:Grepper -tool rg<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - FooSoft/vim-argwrap                                                      │
 " │ https://github.com/FooSoft/vim-argwrap                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -301,3 +292,36 @@ augroup ansible_vim_fthosts
     autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
     autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 augroup END
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - eugen0329/vim-esearch                                                    │
+" │ https://github.com/eugen0329/vim-esearch                                          │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+" Use <c-f><c-f> to start the prompt, use <c-f>iw to pre-fill with the current word
+" or other text-objects. Try <Plug>(esearch-exec) to start a search instantly.
+nmap <A-/><A-/> <Plug>(esearch)
+map  <A-/>      <Plug>(esearch-prefill)
+
+let g:esearch = {}
+" Use regex matching with the smart case mode by default and avoid matching text-objects.
+let g:esearch.regex = 1
+let g:esearch.textobj = 0
+let g:esearch.case = 'smart'
+
+" Set the initial pattern content using the highlighted search pattern (if
+" v:hlsearch is true), the last searched pattern or the clipboard content.
+let g:esearch.prefill = ['hlsearch', 'last', 'clipboard']
+
+" Override the default files and directories to determine your project root. Set
+" to blank to always use the current working directory.
+let g:esearch.root_markers = ['.git', 'Makefile', 'node_modules']
+
+" Prevent esearch from adding any default keymaps.
+let g:esearch.default_mappings = 0
+
+" Open the search window in a vertical split and reuse it for all searches.
+let g:esearch.win_new = {-> esearch#buf#goto_or_open('[Search]', 'vnew') }
+" " Redefine the default highlights (see :help highlight and :help esearch-appearance)
+hi esearchHeader gui=bold
+hi link esearchStatistics esearchFilename
+hi link esearchFilename Label
+hi esearchMatch gui=underline,italic,bold guifg=#6C7E96 guibg=#002D59

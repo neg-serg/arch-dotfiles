@@ -40,7 +40,7 @@ function! PackInit() abort
 	call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('wadackel/vim-dogrun') " new colorscheme
     "--[ Search ]------------------------------------------------------------------------
-    call packager#add('eugen0329/vim-esearch')
+    call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
     "--[ Dev ]--------------------------------------------------------------------------
