@@ -54,7 +54,6 @@ function! PackInit() abort
     call packager#add('tpope/vim-dispatch') " provide async build
     " --[ Appearance ]-------------------------------------------------------------------
     call packager#add('arzg/vim-sh') " better sh / zsh highlight
-    call packager#add('chr4/nginx.vim', {'type': 'opt'}) " nginx config file syntax
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
     call packager#add('norcalli/nvim-colorizer.lua') " fast js/css colorizer
     call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
