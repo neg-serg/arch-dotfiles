@@ -40,8 +40,8 @@ function! PackInit() abort
 	call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('wadackel/vim-dogrun') " new colorscheme
     "--[ Search ]------------------------------------------------------------------------
+    call packager#add('eugen0329/vim-esearch')
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
-    call packager#add('mhinz/vim-grepper', {'type': 'opt'}) " async grep search
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
     "--[ Dev ]--------------------------------------------------------------------------
     call packager#add('dense-analysis/ale') " async linter with lsp support
