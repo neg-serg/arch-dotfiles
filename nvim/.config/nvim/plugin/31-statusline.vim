@@ -62,19 +62,6 @@ function! CheckMod(modi)
     endif
 endfunction
 
-function! StatusDiagnostic() abort
-    let info = get(b:, 'coc_diagnostic_info', {})
-    if empty(info) | return '' | endif
-    let msgs = []
-    if get(info, 'error', 0)
-        call add(msgs, 'E' . info['error'])
-    endif
-    if get(info, 'warning', 0)
-        call add(msgs, 'W' . info['warning'])
-    endif
-    return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
-endfunction
-
 function! ActiveLine()
     let statusline = ''
     let statusline .= '%#Base#'
@@ -87,19 +74,17 @@ function! ActiveLine()
     let statusline .= '%= '
     let statusline .= '%#Decoration#▒▒▓'
     let statusline .= '%#Filetype#%{CheckFT(&filetype)} '
-    let statusline .= '%{StatusDiagnostic()}'
+    " thx to github.com/VaughnValle/elektropunk
+    " Add (Neo)Vim's native statusline support.
+    " NOTE: Please see `:h coc-status` for integrations with external plugins that
+    " provide custom statusline: lightline.vim, vim-airline.
+    let statusline .= '%{coc#status()}' . "%{get(b:,'coc_current_function','')}"
     let statusline .= '%3*'
     let statusline .= '%#StatusRightDelimiter1#❮'
     let statusline .= '%1*'
     let statusline .= '%#StatusRight# %02l%#StatusRightDelimiter1#/%#StatusRight#%02v'
     let statusline .= '%#StatusRightDelimiter1# ❮ '
     let statusline .= '%#StatusRight#%2p%% '
-
-    " thx to github.com/VaughnValle/elektropunk
-    " Add (Neo)Vim's native statusline support.
-    " NOTE: Please see `:h coc-status` for integrations with external plugins that
-    " provide custom statusline: lightline.vim, vim-airline.
-    let statusline .= '%{coc#status()}' . "%{get(b:,'coc_current_function','')}"
 
     return statusline
 endfunction
