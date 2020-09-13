@@ -35,7 +35,7 @@ function! ModeCurrent() abort
 endfunction
 
 function! GitBranch(git)
-    if a:git ==# ""
+    if a:git ==# ''
         return ''
     else
         return ' ' . a:git . ' '
@@ -90,9 +90,7 @@ function! ActiveLine()
 endfunction
 
 function! InactiveLine()
-    let statusline = ''
-    let statusline .= '%#Base#'
-    let statusline .= '%#Filename# %F '
+    let statusline = '' . '%#Base#' . '%#Filename# %F '
     return statusline
 endfunction
 
