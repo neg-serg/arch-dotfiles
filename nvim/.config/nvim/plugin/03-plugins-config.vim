@@ -119,6 +119,7 @@ augroup end
 " │ plugin - pbogut/fzf-mru.vim                                                       │
 " │ https://github.com/pbogut/fzf-mru.vim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
+let g:fzf_mru_no_sort = 1
 nnoremap <silent> <leader>. :FZFMru --prompt "❯> "<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjbach/lusty.git                                                         │
