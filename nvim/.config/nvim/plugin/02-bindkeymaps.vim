@@ -6,21 +6,12 @@ nnoremap <Tab> :bnext<cr>
 nnoremap <S-Tab> :bprevious<cr>
 nnoremap Y y$
 nnoremap ; :
-nnoremap S f
 
 noremap <expr> G &wrap ? "G$g0" : "G"
 noremap <expr> 0 &wrap ? 'g0' : '0'
 noremap <expr> $ &wrap ? "g$" : "$"
 noremap <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <expr> k (v:count == 0 ? 'gk' : 'k')
-
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Right> <Nop>
-noremap <Left> <Nop>
-
-nnoremap <silent> <leader>4 :set cursorline!<CR>
-nnoremap <silent> [Qleader]cd :lcd %:p:h<CR>:pwd<CR>
 
 nnoremap <silent> cow :set wrap!<CR>
 nnoremap <silent> cop :setlocal paste!<Return>
@@ -77,10 +68,8 @@ nnoremap ` '
 nnoremap x "_x
 noremap X "_d
 
-" use U for redo
-nnoremap U <C-r>
 " like firefox tabs
-nnoremap <silent> <A-w> :bd<CR>
+nnoremap <silent> <M-w> :bd<CR>
 
 cmap <C-V> <C-R>+
 exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
