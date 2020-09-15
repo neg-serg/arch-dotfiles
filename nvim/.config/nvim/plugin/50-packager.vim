@@ -33,6 +33,7 @@ function! PackInit() abort
     call packager#add('tomtom/tcomment_vim') " commenter plugin
     call packager#add('tpope/vim-abolish') " different case coersion
     call packager#add('tpope/vim-repeat') " better dot
+    call packager#add('tpope/vim-sleuth') " autoindent
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
     call packager#add('wellle/targets.vim') " better text objects
     "--[ Colorschemes ]------------------------------------------------------------------
