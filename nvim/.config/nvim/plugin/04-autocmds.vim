@@ -24,3 +24,13 @@ augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})
 augroup END
+
+augroup configgroup_nvim
+  autocmd!
+  " fix terminal display
+  autocmd TermOpen *
+        \  :exec('silent! normal! <c-\><c-n>a')
+        \| :startinsert
+  " \| setlocal nocursorline
+  " \| setlocal nocursorcolumn
+augroup END
