@@ -18,7 +18,7 @@ function! PackInit() abort
     call packager#add('neg-serg/neovim-autoload-session', {'type': 'opt'}) " session autosave
     call packager#add('neoclide/coc.nvim') " autocomplete
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
-	call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
+    call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     "--[ Edit ]-------------------------------------------------------------------------
     call packager#add('AndrewRadev/dsf.vim') " surround for function calls
@@ -29,7 +29,7 @@ function! PackInit() abort
     call packager#add('jiangmiao/auto-pairs') " autopair for brackets
     call packager#add('junegunn/vim-easy-align') " use easy-align, instead of tabular
     call packager#add('lambdalisue/suda.vim') " smart sudo support
-	call packager#add('svermeulen/vim-NotableFt') "better ft
+    call packager#add('svermeulen/vim-NotableFt') "better ft
     call packager#add('tomtom/tcomment_vim') " commenter plugin
     call packager#add('tpope/vim-abolish') " different case coersion
     call packager#add('tpope/vim-repeat') " better dot
@@ -39,7 +39,7 @@ function! PackInit() abort
     "--[ Colorschemes ]------------------------------------------------------------------
     call packager#add('neg-serg/neg') " my colorscheme
     call packager#add('kyazdani42/blue-moon') " yet another dark colorscheme
-	call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
+    call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('wadackel/vim-dogrun') " new colorscheme
     "--[ Search ]------------------------------------------------------------------------
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
@@ -69,7 +69,7 @@ function! PackInit() abort
     "--[ Neovim lua support ]-----------------------------------------------------------
     call packager#add('bakpakin/fennel.vim') " fennel support
     call packager#add('Olical/aniseed', {'tag': 'v3.6.1'}) " fennel neovim support
-	call packager#add('svermeulen/vimpeccable') " config with lua
+    call packager#add('svermeulen/vimpeccable') " config with lua
     "--[ Misc ]-------------------------------------------------------------------------
     call packager#add('jamessan/vim-gnupg') " transparent work with gpg-encrypted files
     call packager#add('ntpeters/vim-better-whitespace') " delete whitespaces with ease
