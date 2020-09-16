@@ -38,6 +38,7 @@ function! PackInit() abort
     call packager#add('wellle/targets.vim') " better text objects
     "--[ Colorschemes ]------------------------------------------------------------------
     call packager#add('neg-serg/neg') " my colorscheme
+    call packager#add('kyazdani42/blue-moon') " yet another dark colorscheme
 	call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('wadackel/vim-dogrun') " new colorscheme
     "--[ Search ]------------------------------------------------------------------------
