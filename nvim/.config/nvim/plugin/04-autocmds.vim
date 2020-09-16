@@ -34,3 +34,9 @@ augroup configgroup_nvim
   " \| setlocal nocursorline
   " \| setlocal nocursorcolumn
 augroup END
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter,BufEnter * setlocal cursorline
+  au BufLeave,WinLeave * setlocal nocursorline
+augroup END
