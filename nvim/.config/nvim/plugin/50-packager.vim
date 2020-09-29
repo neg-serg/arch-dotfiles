@@ -21,7 +21,6 @@ function! PackInit() abort
     call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     "--[ Edit ]-------------------------------------------------------------------------
-    call packager#add('AndrewRadev/dsf.vim') " surround for function calls
     call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
     call packager#add('andymass/vim-matchup') " generic matcher
     call packager#add('haya14busa/vim-asterisk') " smartcase star
@@ -41,6 +40,8 @@ function! PackInit() abort
     call packager#add('kyazdani42/blue-moon') " yet another dark colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('wadackel/vim-dogrun') " new colorscheme
+    call packager#add('cormacrelf/vim-colors-github') " github-inspired colorscheme
+    call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse
     "--[ Search ]------------------------------------------------------------------------
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
