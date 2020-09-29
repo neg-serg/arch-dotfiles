@@ -19,6 +19,8 @@ zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for \
 zinit light romkatv/zsh-defer
 zinit wait silent light-mode for zsh-users/zsh-completions
 zinit wait silent light-mode for neg-serg/fast-syntax-highlighting
+zinit ice as"command" from"gh-r" mv"tldr-linux-x86\_64-musl -> tldr" pick"tldr"
+zinit light dbrgn/tealdeer
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
