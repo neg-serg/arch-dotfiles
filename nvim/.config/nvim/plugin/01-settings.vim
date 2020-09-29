@@ -35,6 +35,9 @@ if executable(resolve(expand('par')))
 else
     set formatprg="fmt -140"    " use fmt as formatter
 endif
+if executable(resolve(expand('perltidy')))
+    set equalprg="perltidy"
+endif
 set backup                      " backuping is good
 set cindent                     " smart indenting for c-like code
 set cinoptions=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
