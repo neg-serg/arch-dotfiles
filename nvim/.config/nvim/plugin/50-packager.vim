@@ -20,6 +20,7 @@ function! PackInit() abort
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
     call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
+    call packager#add('wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'})
     "--[ Edit ]-------------------------------------------------------------------------
     call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
     call packager#add('andymass/vim-matchup') " generic matcher
