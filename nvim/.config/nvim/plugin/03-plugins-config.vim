@@ -46,9 +46,7 @@ nmap <leader>rn <Plug>(coc-rename)
 nnoremap <silent> qa  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> qE  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> qC  :<C-u>CocList commands<cr>
-" Find symbol of current document
+" Show commands, find symbol of current document
 nnoremap <silent> qo  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> qs  :<C-u>CocList -I symbols<cr>
@@ -58,8 +56,6 @@ nnoremap <silent> qj  :<C-u>CocNext<CR>
 nnoremap <silent> qk  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> qp  :<C-u>CocListResume<CR>
-" Try autofix current
-nmap <leader>qf  <Plug>(coc-fix-current)
 " Reformat command
 command! -nargs=0 Format :call CocAction('format')
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -74,32 +70,40 @@ let g:session_autosave_to = 'default'
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 let g:session_directory = $XDG_CONFIG_HOME.'/nvim/sessions'
+nnoremap <silent> qC  :<C-u>CocList commands<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - w0rp/ale                                                                 │
 " │ https://github.com/w0rp/ale                                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
+let g:ale_fixers = {
+    \ 'javascript': ['eslint'],
+    \ 'json': ['jq'],
+    \ 'html': ['prettier'],
+    \ 'scss': ['stylelint'],
+    \ 'less': ['stylelint'],
+    \ 'css': ['stylelint'],
+    \ 'python': ['black', 'yapf'],
+    \ 'rust': ['rustfmt']
+\ }
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_sign_highlight_linenrs = 1
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
-let g:ale_fixers = {'javascript': ['eslint'], 'json': ['jq'], 'html': ['prettier'], 'scss': ['stylelint'], 'less': ['stylelint'], 'css': ['stylelint'], 'python': ['black', 'yapf'], 'rust': ['rustfmt']}
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/fzf.vim                                                         │
 " │ https://github.com/junegunn/fzf.vim                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if executable('rg')
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
     let s:rg_cmd = 'rg --hidden --follow'
+    let &grepprg=s:rg_cmd . ' --vimgrep'
     let s:rg_ignore = split(&wildignore, ',') + [
         \ 'node_modules', 'target', 'build', 'dist', '.stack-work'
         \ ]
     let s:rg_cmd .= " --glob '!{'" . shellescape(join(s:rg_ignore, ',')) . "'}'"
-    let &grepprg=s:rg_cmd . ' --vimgrep'
-    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 nnoremap <silent> qE :Files %:p:h<CR>
 nnoremap <silent> qe :Files<CR>
-command! -bang -complete=dir -nargs=* Dir call fzf#run(fzf#wrap('fd', {'source': 'fd --full-path -a -t d', 'dir': <q-args>}, <bang>0))
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 
@@ -264,11 +268,11 @@ let g:vista_disable_statusline = 1
 let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ['▸ ', '']
 let g:vista#renderer#icons = {
-    \   'function': 'ﬦ',
-    \   'module': ' ',
-    \   'variable': '\ufb18 ',
-    \   'constant': ''
-    \  }
+    \ 'function': 'ﬦ',
+    \ 'module': ' ',
+    \ 'variable': '\ufb18 ',
+    \ 'constant': ''
+    \ }
 let g:vista_default_executive = 'coc'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - rhysd/git-messenger.vim                                                  │
@@ -279,14 +283,14 @@ nmap <C-f> <Plug>(git-messenger)
 " │ plugin - haya14busa/vim-asterisk                                                  │
 " │ https://github.com/haya14busa/vim-asterisk                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-map *   <Plug>(asterisk-*)
-map #   <Plug>(asterisk-#)
-map g*  <Plug>(asterisk-g*)
-map g#  <Plug>(asterisk-g#)
-map z*  <Plug>(asterisk-z*)
-map gz* <Plug>(asterisk-gz*)
-map z#  <Plug>(asterisk-z#)
-map gz# <Plug>(asterisk-gz#)
+map *   <Plug>(asterisk-#)
+map #   <Plug>(asterisk-*)
+map g*  <Plug>(asterisk-g#)
+map g#  <Plug>(asterisk-g*)
+map z*  <Plug>(asterisk-z#)
+map gz* <Plug>(asterisk-gz#)
+map z#  <Plug>(asterisk-z*)
+map gz# <Plug>(asterisk-gz*)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - lambdalisue/suda.vim                                                     │
 " │ https://github.com/lambdalisue/suda.vim                                           │
@@ -322,18 +326,14 @@ let g:esearch = {}
 let g:esearch.regex = 1
 let g:esearch.textobj = 0
 let g:esearch.case = 'smart'
-
 " Set the initial pattern content using the highlighted search pattern (if
 " v:hlsearch is true), the last searched pattern or the clipboard content.
 let g:esearch.prefill = ['hlsearch', 'last', 'clipboard']
-
 " Override the default files and directories to determine your project root. Set
 " to blank to always use the current working directory.
 let g:esearch.root_markers = ['.git', 'Makefile', 'node_modules']
-
 " Prevent esearch from adding any default keymaps.
 let g:esearch.default_mappings = 0
-
 " Open the search window in a vertical split and reuse it for all searches.
 let g:esearch.win_new = {-> esearch#buf#goto_or_open('[Search]', 'vnew') }
 " " Redefine the default highlights (see :help highlight and :help esearch-appearance)
