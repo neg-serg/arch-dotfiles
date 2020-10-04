@@ -43,6 +43,7 @@ function! PackInit() abort
     call packager#add('wadackel/vim-dogrun') " new colorscheme
     call packager#add('cormacrelf/vim-colors-github') " github-inspired colorscheme
     call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse
+    call packager#add('bluz71/vim-nightfly-guicolors') " nightfly new colorscheme
     "--[ Search ]------------------------------------------------------------------------
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
