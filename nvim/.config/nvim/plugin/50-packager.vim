@@ -10,6 +10,7 @@ function! PackInit() abort
     source ../pack-cfg/52-pack-appearance.vim
     source ../pack-cfg/53-pack-dev.vim
     source ../pack-cfg/54-pack-misc.vim
+    source ../pack-cfg/55-pack-jupiter.vim
 endfunction
 
 command! PackInstall call PackInit() | call packager#install()
