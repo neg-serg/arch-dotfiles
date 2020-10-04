@@ -6,11 +6,11 @@ let g:loaded_packager = 1
 function! PackInit() abort
     packadd vim-packager
     call packager#init({'jobs': 0})
-    source ../pack-cfg/51-pack-main.vim
-    source ../pack-cfg/52-pack-appearance.vim
-    source ../pack-cfg/53-pack-dev.vim
-    source ../pack-cfg/54-pack-misc.vim
-    source ../pack-cfg/55-pack-jupiter.vim
+    source $XDG_CONFIG_HOME/nvim/pack-cfg/51-pack-main.vim
+    source $XDG_CONFIG_HOME/nvim/pack-cfg/52-pack-appearance.vim
+    source $XDG_CONFIG_HOME/nvim/pack-cfg/53-pack-dev.vim
+    source $XDG_CONFIG_HOME/nvim/pack-cfg/54-pack-misc.vim
+    source $XDG_CONFIG_HOME/nvim/pack-cfg/55-pack-jupiter.vim
 endfunction
 
 command! PackInstall call PackInit() | call packager#install()
