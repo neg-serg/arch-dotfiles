@@ -294,7 +294,7 @@ map gz# <Plug>(asterisk-gz*)
 " │ plugin - lambdalisue/suda.vim                                                     │
 " │ https://github.com/lambdalisue/suda.vim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:suda_smart_edit = 1
+let g:suda_smart_edit = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - andymass/vim-matchup                                                     │
 " │ https://github.com/andymass/vim-matchup                                           │
