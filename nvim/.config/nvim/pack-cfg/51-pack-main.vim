@@ -1,6 +1,7 @@
 "--[ Main ]--------------------------------------------------------------------------
 call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
 call packager#add('neoclide/coc.nvim') " autocomplete
+call packager#add('antoinemadec/coc-fzf', {'branch': 'release'})
 call packager#add('neg-serg/lusty', {'type': 'opt'}) " file/buffer explorer
 call packager#add('justinmk/vim-dirvish') " minimalistic file manager
 call packager#add('airblade/vim-rooter') " autochdir for project root or for current dir

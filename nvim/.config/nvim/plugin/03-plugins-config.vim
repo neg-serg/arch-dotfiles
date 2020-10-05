@@ -15,7 +15,6 @@ endfunction
 
 let g:coc_status_warning_sign = ''
 let g:coc_status_error_sign = ''
-
 let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
@@ -43,19 +42,19 @@ augroup END
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 " Show all diagnostics
-nnoremap <silent> qa  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> qa  :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> qE  :<C-u>CocList extensions<cr>
+nnoremap <silent> qE  :<C-u>CocFzfList extensions<cr>
 " Show commands, find symbol of current document
-nnoremap <silent> qo  :<C-u>CocList outline<cr>
+nnoremap <silent> qo  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols
-nnoremap <silent> qs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> qs  :<C-u>CocFzfList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> qj  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> qk  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> qp  :<C-u>CocListResume<CR>
+nnoremap <silent> qp  :<C-u>CocFzfListResume<CR>
 " Reformat command
 command! -nargs=0 Format :call CocAction('format')
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
