@@ -1,3 +1,4 @@
+scriptencoding=utf-8
 let g:currentmode={
       \ 'n'  : 'N',
       \ 'no' : 'Normal·Operator Pending',
