@@ -61,10 +61,12 @@ clipboard_pipe() {
 
 clip_main() {
     rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip"
-    gpaste_ret=$(gpaste-client --oneline|eval $rofi_cmd)
-    selection=$(echo "$gpaste_ret" | cut -d ':' -f1)
+    selection=$(gpaste-client --oneline --raw \
+        | nl -s ': ' -n rz -w 2 \
+        | eval $rofi_cmd \
+        | awk -F ': ' '{for (i=2; i<=NF; i++) print $i}')
     if [ ! -z $selection ]; then
-        gpaste-client select $selection
+        echo "$selection" | xsel
     fi
 }
 
