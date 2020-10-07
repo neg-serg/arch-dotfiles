@@ -1,6 +1,33 @@
 * {
-    font: "Iosevka Term Medium 28";
+    font: "Iosevka Term Medium 22";
 }
-#window {
-    width:70%; y-offset: -4%; location: south west; anchor: south west;
+
+window {
+    width:      96%;
+    padding:    0.1em;
+    children:   [ horibox ];
+    location: south east;
+    anchor: south east;
+    y-offset: -2.5%;
+    x-offset: -2%;
+}
+
+horibox {
+    children:   [ prompt, entry, listview ];
+    orientation: horizontal;
+}
+
+listview {
+    layout:     horizontal;
+    spacing:    5px;
+    lines:      100;
+}
+
+entry {
+    expand:     false;
+    width:      10em;
+}
+
+element {
+    padding: 0 4mm;
 }
