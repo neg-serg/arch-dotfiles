@@ -61,12 +61,9 @@ clipboard_pipe() {
 
 clip_main() {
     rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip"
-    selection=$(gpaste-client --oneline --raw \
-        | nl -s ': ' -n rz -w 2 \
-        | eval $rofi_cmd \
-        | awk -F ': ' '{for (i=2; i<=NF; i++) print $i}')
-    if [ ! -z $selection ]; then
-        echo "$selection" | xsel
+    selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval $rofi_cmd | cut -c5-)"
+    if [ ! -z "$selection" ]; then
+        echo "$selection" | xclip
     fi
 }
 
@@ -79,7 +76,7 @@ yr() {
 
 youtube_url() {
     gpaste-client \
-        | grep -E 'https.*(youtube|vimeo).com' \
+        | rg -E 'https.*(youtube|vimeo).com' \
         | cut -f2- -d ' ' \
         | rofi -lines 7 -dmenu -p '⟬youtube⟭ ❯>'
 }
