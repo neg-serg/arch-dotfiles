@@ -16,17 +16,17 @@ handler() {
     bitperfect_output_name='VMV D1 USB2.0'
     timeout="5s"
     while IFS= read -r arg; do
-        if echo $arg | grep "title_copy" > /dev/null; then
+        if echo $arg | rg "title_copy" > /dev/null; then
             mpc current | xsel -bi
-        elif echo $arg | grep "album_copy" > /dev/null; then
+        elif echo $arg | rg "album_copy" > /dev/null; then
             mpc current -f "[%album%]"|xsel -bi
-        elif echo $arg | grep "artist_copy" > /dev/null; then
+        elif echo $arg | rg "artist_copy" > /dev/null; then
             mpc current -f "[%artist%]"|xsel -bi
-        elif echo $arg | grep "pulseaudio_output" > /dev/null; then
+        elif echo $arg | rg "pulseaudio_output" > /dev/null; then
             mpc pause
             mpc enable Pulseaudio
             mpc disable "$bitperfect_output_name" && mpc play
-        elif echo $arg | grep "bit_perfect_output" > /dev/null; then
+        elif echo $arg | rg "bit_perfect_output" > /dev/null; then
             mpc pause
             mpc enable "$bitperfect_output_name"
             mpc disable Pulseaudio
@@ -43,5 +43,5 @@ neg_rofi_hlfg="#aaaaaa"
 neg_rofi_hlbg="#194558"
 neg_rofi_bc="#202020"
 pref="$blue⟬$closeMPD action$blue⟭$close"
-rofi_options="-auto-select -markup-rows -b -disable-history -columns 8 -lines 1 -dmenu -p '❯>'"
+rofi_options="-auto-select -markup-rows -b -lines 1 -theme run -dmenu -p '❯>'"
 generate_menu | eval "rofi $rofi_colors $rofi_options" | handler
