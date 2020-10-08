@@ -2,7 +2,7 @@
 
 size=${2:-200}
 pref="$(basename $PWD)"
-filecount=$(find . ! -name . -prune -print | grep -c /)
+filecount=$(find . ! -name . -prune -print | rg -c /)
 
 for i in {1..$(( (filecount / size) + 1))}; do
     if $(head -n ${size} <<<  echo *(.)|awk 1 ORS=' '>/dev/null); then

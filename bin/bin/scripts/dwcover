@@ -40,8 +40,8 @@ download_cover() {
     pushd "$(pwd)"
     cd "$arg1"
     data=$(albumdetails ./*)
-    artist=$(echo "$data" | grep "Artist" | cut -d ':' -f 2- | xargs)
-    album=$(echo "$data" | grep "Album" | cut -d ':' -f 2- | xargs)
+    artist=$(echo "$data" | rg "Artist" | cut -d ':' -f 2- | xargs)
+    album=$(echo "$data" | rg "Album" | cut -d ':' -f 2- | xargs)
 
     [ "$1" = '-i' ] && sacad "$artist" "$album" "$default_coversize" "$default_covername"
 
