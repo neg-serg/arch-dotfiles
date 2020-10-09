@@ -42,34 +42,21 @@ augroup END
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 " Show all diagnostics
-nnoremap <silent> qa  :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent> qa :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> qE  :<C-u>CocFzfList extensions<cr>
+nnoremap <silent> qE :<C-u>CocFzfList extensions<cr>
 " Show commands, find symbol of current document
-nnoremap <silent> qo  :<C-u>CocFzfList outline<cr>
+nnoremap <silent> qo :<C-u>CocFzfList outline<cr>
 " Search workspace symbols
-nnoremap <silent> qs  :<C-u>CocFzfList -I symbols<cr>
+nnoremap <silent> qs :<C-u>CocFzfList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> qj  :<C-u>CocNext<CR>
+nnoremap <silent> qj :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> qk  :<C-u>CocPrev<CR>
+nnoremap <silent> qk :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> qp  :<C-u>CocFzfListResume<CR>
+nnoremap <silent> qp :<C-u>CocFzfListResume<CR>
 " Reformat command
 command! -nargs=0 Format :call CocAction('format')
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - xolox/vim-session                                                        │
-" │ https://github.com/xolox/vim-session                                              │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:session_lock_enabled = 0
-let g:session_verbose_messages = 0
-let g:session_autosave_silent = 1
-let g:session_default_to_last = 1
-let g:session_autosave_to = 'default'
-let g:session_autoload = 'yes'
-let g:session_autosave = 'yes'
-let g:session_directory = $XDG_CONFIG_HOME.'/nvim/sessions'
-nnoremap <silent> qC  :<C-u>CocList commands<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - w0rp/ale                                                                 │
 " │ https://github.com/w0rp/ale                                                       │
@@ -105,7 +92,6 @@ nnoremap <silent> qE :Files %:p:h<CR>
 nnoremap <silent> qe :Files<CR>
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -125,8 +111,6 @@ let g:fzf_colors =
 " Insert mode completion
 imap <c-x><c-f> <Plug>(fzf-complete-path)
 imap <c-x><c-l> <Plug>(fzf-complete-line)
-nnoremap <C-e> :Dir<CR>
-nnoremap <C-S-e> :Dir <C-r>=expand('%:p:h')<CR>
 augroup fzf
     autocmd! FileType fzf set laststatus=0 noshowmode noruler
         \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode
@@ -268,7 +252,7 @@ let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ['▸ ', '']
 let g:vista#renderer#icons = {
     \ 'function': 'ﬦ',
-    \ 'module': ' ',
+    \ 'module': '',
     \ 'variable': '\ufb18 ',
     \ 'constant': ''
     \ }
