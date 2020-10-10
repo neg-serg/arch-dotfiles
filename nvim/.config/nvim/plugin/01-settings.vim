@@ -23,7 +23,7 @@ set keymap=russian-jcukenwin
 "  \{       {        {        {          literal '{'
 "  a        a        a        a          literal 'a'
 set magic
-set path+=.,..,./include,../include,/usr/include,**
+set path+=.,..,**,/usr/include,./include,../include
 if 0
     execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
     execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
