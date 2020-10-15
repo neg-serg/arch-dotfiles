@@ -298,21 +298,18 @@ panelmultiview .toolbaritem-combined-buttons>label {
 }
 
 #appMenu-zoomReduce-button {
-    background: transparent !important;
     color: dodgerblue !important;
     border: 0px solid dodgerblue !important;
     border-radius: 0px !important;
 }
 
 #appMenu-zoomReset-button label {
-    background: transparent !important;
     color: dodgerblue !important;
     border-radius: 0px !important;
     font-family: "Iosevka" !important;
 }
 
 #appMenu-zoomReset-button {
-    background: transparent !important;
     color: dodgerblue !important;
     border: 1pt solid dodgerblue !important;
     border-radius: 0px !important;
@@ -320,14 +317,12 @@ panelmultiview .toolbaritem-combined-buttons>label {
 }
 
 #appMenu-fullscreen-button {
-    background: transparent !important;
     color: dodgerblue !important;
     border: 0px solid #ffffff !important;
     border-radius: 0px !important;
 }
 
 #appMenu-zoomEnlarge-button {
-    background: transparent !important;
     color: dodgerblue !important;
     border: 0px solid #ffffff !important;
     border-radius: 0px !important;
@@ -352,7 +347,6 @@ panelmultiview .toolbaritem-combined-buttons>label {
     flex-basis: max-content
 }
 #nav-bar {
-    background-color: transparent !important;
     flex: 1;
     min-width: 3880px !important;
     max-width: 3880px !important
@@ -372,7 +366,6 @@ panelmultiview .toolbaritem-combined-buttons>label {
     background: gray;
     width: 100%;
     background-color: black;
-    ;
     background-image: var(--lwt-header-image) !important;
     background-repeat: no-repeat;
     background-position: right top !important
