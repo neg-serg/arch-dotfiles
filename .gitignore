@@ -294,3 +294,4 @@ pylint/.config/pylint
 ovmf
 pack
 session
+sys/.config/tmux/plugin/
