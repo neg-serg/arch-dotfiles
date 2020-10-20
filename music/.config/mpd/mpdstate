@@ -1,0 +1,28 @@
+sw_volume: 100
+audio_device_state:1:Pulseaudio
+audio_device_state:0:VMV D1 USB2.0
+audio_device_state:1:FIFO
+state: play
+current: 11
+time: 4.183000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/01. You Worship Me.flac
+1:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/02. Atavism.flac
+2:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/03. Sew Your Face To My Face.flac
+3:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/04. The Demon Inside Me.flac
+4:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/05. Praying On The White Mountain.flac
+5:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/06. Among The Lemic Ones.flac
+6:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/07. Washing Blood-Stained Hands Under The Rain.flac
+7:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/08. Dark Sun.flac
+8:new/2012, [Na-Hag] Obscurant (Album, Web) (line047)/09. Ninth Fragment Of My Body.flac
+9:Na-Hag-⟨2xK⟩-Howl·of·Nature/Na-Hag - Howl of Nature - 03 Amazement.flac
+10:Na-Hag-⟨2xK⟩-Howl·of·Nature/Na-Hag - Howl of Nature - 03 Amazement.flac
+11:Na-Hag-⟨2xK⟩-Howl·of·Nature/Na-Hag - Howl of Nature - 03 Amazement.flac
+playlist_end
