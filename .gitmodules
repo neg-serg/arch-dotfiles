@@ -7,3 +7,6 @@
 [submodule "zsh/.config/zsh/powerlevel10k"]
     path = zsh/.config/zsh/powerlevel10k
     url = git@github.com:romkatv/powerlevel10k.git
+[submodule "negi3wm/.config/i3"]
+	path = negi3wm/.config/i3
+	url = https://github.com/neg-serg/negi3wm
