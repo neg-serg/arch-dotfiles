@@ -6,7 +6,7 @@ yay -S ansible ansible-lint mitogen
 yay -S acpi acpid albumdetails-git alsa-firmware alsa-utils ananicy-git alacritty ansilove-git
 yay -S irqbalance
 yay -S tizen-sdb android-file-transfer
-yay -S antiword asciinema catdoc unrtf 
+yay -S antiword asciinema catdoc unrtf
 yay -S adobe-icc arandr argyllcms autorandr sampleicc xcalib
 yay -S asp pacman-contrib pacvis-git downgrade
 yay -S atop htop vmtouch vnstat pv blktrace glances itop pycoinmon smartmontools traceroute tiptop mtr-git fio dmidecode httpflow-git httpie ioping iotop nethogs gptfdisk lm_sensors lshw lsof lsscsi
@@ -27,7 +27,7 @@ yay -S docker docker-compose
 yay -S dos2unix dosbox-staging dosemu dosfstools
 yay -S ffmpeg x264 x265
 yay -S easy-rsa efibootmgr
-yay -S exiv2 
+yay -S exiv2
 yay -S etckeeper
 yay -S dunst
 yay -S earlyoom
@@ -61,7 +61,7 @@ yay -S network-manager-applet networkmanager-openvpn
 yay -S notmuch-addrlookup-c notmuchfs-git notmuch-mutt neomutt mbsync
 yay -S ntp
 yay -S nvidia nvidia-dkms nvidia-settings lib32-nvidia-utils
-yay -S nvimpager-git obs-studio 
+yay -S nvimpager-git obs-studio
 yay -S openbsd-netcat
 yay -S openresolv
 yay -S openssh openssh-askpass openssl openvpn
@@ -101,7 +101,7 @@ yay -S udiskie
 yay -S util-linux valgrind
 yay -S vulkan-extra-layers vulkan-headers vulkan-html-docs vulkan-mesa-layer vulkan-tools vulkan-trace vulkan-validation-layers
 yay -S xurls urlscan-git urlview
-yay -S youtube-dl you-get straw-viewer-git sprunge 
+yay -S youtube-dl you-get straw-viewer-git sprunge
 yay -S wine wine-mono winetricks dxvk-bin dxvk-cache-server-git vkd3d protontricks-git lib32-vkd3d lutris
 yay -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps fbless
 yay -S zoom discord
