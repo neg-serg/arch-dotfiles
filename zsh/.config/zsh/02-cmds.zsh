@@ -45,6 +45,7 @@ _exists rg && {
 }
 
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
+_exists lfs && alias df='lfs'
 _exists bc && alias '?=bc -l <<<'
 _exists acpi && alias acpi="acpi -V"
 _exists ip && alias ip='ip -c'
