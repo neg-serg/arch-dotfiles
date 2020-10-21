@@ -2,13 +2,15 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/.dotfiles/nvim/.config/nvim/pack-cfg
+cd ~/
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
+badd +0 .dotfiles/.git/config
 argglobal
 %argdel
+edit .dotfiles/.git/config
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -16,7 +18,6 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-enew
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -25,6 +26,13 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
+silent! normal! zE
+let s:l = 7 - ((6 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+7
+normal! 025|
 lcd ~/.dotfiles
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
