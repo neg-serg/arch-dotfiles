@@ -31,8 +31,6 @@ augroup configgroup_nvim
   autocmd TermOpen *
         \  :exec('silent! normal! <c-\><c-n>a')
         \| :startinsert
-  " \| setlocal nocursorline
-  " \| setlocal nocursorcolumn
 augroup END
 
 augroup CursorLine
