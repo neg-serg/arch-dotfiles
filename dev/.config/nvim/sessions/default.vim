@@ -31,7 +31,7 @@ if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
 unlet! s:wipebuf
-set winheight=1 winwidth=20 winminheight=0 winminwidth=0 shortmess=filnxaoOstTWAIcqS
+set winheight=1 winwidth=20 winminheight=0 winminwidth=0 shortmess=filnxaoOstTWAIcqFS
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
