@@ -12,6 +12,4 @@ set secure
 set termguicolors
 if !1 | finish | endif
 
-if ! $NVIMPAGER
-    packadd neovim-autoload-session
-endif
+packadd neovim-autoload-session
