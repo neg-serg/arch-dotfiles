@@ -14,18 +14,15 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 zinit ice depth=1
-zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for \
-    romkatv/powerlevel10k
+zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
 zinit wait silent light-mode for zsh-users/zsh-completions
 zinit wait silent light-mode for neg-serg/fast-syntax-highlighting
-zinit ice as"command" from"gh-r" mv"tldr-linux-x86\_64-musl -> tldr" pick"tldr"
-zinit light dbrgn/tealdeer
 
 source "${ZDOTDIR}/01-init.zsh"
-source "${ZDOTDIR}/02-cmds.zsh"
-source "${ZDOTDIR}/02-zle-cmds.zsh"
-source "${ZDOTDIR}/03-completion.zsh"
-source "${ZDOTDIR}/04-bindings.zsh"
-source "${ZDOTDIR}/05-fzf.zsh"
-source "${ZDOTDIR}/06-neg-dirs.zsh"
+zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
+zsh-defer source "${ZDOTDIR}/02-zle-cmds.zsh"
+zsh-defer source "${ZDOTDIR}/03-completion.zsh"
+zsh-defer source "${ZDOTDIR}/04-bindings.zsh"
+zsh-defer source "${ZDOTDIR}/05-fzf.zsh"
+zsh-defer source "${ZDOTDIR}/06-neg-dirs.zsh"

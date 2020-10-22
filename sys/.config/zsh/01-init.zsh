@@ -127,6 +127,6 @@ chpwd() {
     }
 }
 
-_zpcompinit_custom
-fasd_init
-dircolors_init
+zsh-defer _zpcompinit_custom
+zsh-defer fasd_init
+zsh-defer dircolors_init
