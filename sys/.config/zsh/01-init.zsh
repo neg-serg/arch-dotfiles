@@ -116,24 +116,6 @@ fasd_init() {
     fi
 }
 
-direnv_init() {
-    if [[ -x =direnv ]]; then
-        _direnv_hook() {
-            trap -- '' SIGINT;
-            eval "$("/usr/bin/direnv" export zsh)";
-            trap - SIGINT;
-        }
-        typeset -ag precmd_functions;
-        if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
-            precmd_functions=( _direnv_hook ${precmd_functions[@]} )
-        fi
-        typeset -ag chpwd_functions;
-        if [[ -z ${chpwd_functions[(r)_direnv_hook]} ]]; then
-            chpwd_functions=( _direnv_hook ${chpwd_functions[@]} )
-        fi
-    fi
-}
-
 dircolors_init() {
     [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
     eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
@@ -147,5 +129,4 @@ chpwd() {
 
 _zpcompinit_custom
 fasd_init
-direnv_init
 dircolors_init
