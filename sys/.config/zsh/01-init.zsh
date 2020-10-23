@@ -45,7 +45,7 @@ export PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt
 export EDITOR="nvim"
 export VISUAL="${EDITOR}"
 export PAGER="page -q 90000"
-export READNULLCMD=${PAGER}
+export READNULLCMD="$HOME/bin/scripts/highlight"
 export MANPAGER="page -C -e 'au User PageDisconnect sleep 100m|%y p|enew! |bd! #|pu p|set ft=man'"
 export MANWIDTH=999
 
