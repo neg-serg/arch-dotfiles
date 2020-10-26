@@ -41,7 +41,7 @@ setopt share_history # import new commands from the history file also in other z
 watch=(notme root) # watch for everyone but me and root
 typeset -U path cdpath fpath manpath # automatically remove duplicates from these arrays
 
-export PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin
+export PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin:/opt/cuda/bin
 export EDITOR="nvim"
 export VISUAL="${EDITOR}"
 export PAGER="page -q 90000"
