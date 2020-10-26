@@ -33,3 +33,4 @@ call packager#add('wellle/targets.vim') " better text objects
 call packager#add('junegunn/fzf.vim') " fzf vim bindings
 call packager#add('pbogut/fzf-mru.vim') " fzf mru source
 call packager#add('eugen0329/vim-esearch') " the best of the best way to search
+call packager#add('romgrk/searchReplace.vim') " better search and replace
