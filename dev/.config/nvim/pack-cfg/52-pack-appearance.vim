@@ -15,6 +15,6 @@ call packager#add('luochen1990/rainbow') " better rainbow parentheses
 call packager#add('norcalli/nvim-colorizer.lua') " fast js/css colorizer
 call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
 call packager#add('sheerun/vim-polyglot') " language pack collection
-call packager#add('kyazdani42/nvim-web-devicons')
-call packager#add('romgrk/lib.kom')
-call packager#add('romgrk/barbar.nvim')
+call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
+call packager#add('romgrk/lib.kom') " lib for barbar
+call packager#add('romgrk/barbar.nvim') " barbar tab statusline
