@@ -342,11 +342,11 @@ let bg_current = get(nvim_get_hl_by_name('Normal', 1), 'background', '#000000')
 let bg_visible = get(nvim_get_hl_by_name('TabLineSel', 1), 'background', '#000000')
 let bg_inactive = get(nvim_get_hl_by_name('TabLine', 1), 'background', '#000000')
 " For the current active buffer
-hi default link BufferCurrent Normal
+hi default link BufferCurrent Search
 " For the current active buffer when modified
-hi default link BufferCurrentMod Normal
+hi default link BufferCurrentMod Search
 " For the current active buffer icon
-hi default link BufferCurrentSign Normal
+hi default link BufferCurrentSign Search
 " For the current active buffer target when buffer-picking
 exe 'hi default BufferCurrentTarget guifg=red gui=bold guibg=' . bg_current
 " For buffers visible but not the current one
@@ -370,7 +370,6 @@ let bufferline.icons = v:true
 " Enables/disable clickable tabs
 "  - left-click: go to buffer
 "  - middle-click: delete buffer
-"
 " NOTE disabled by default because this might cause E541 (too many items)
 "      if you have many tabs open
 let bufferline.clickable = v:false
