@@ -100,6 +100,7 @@ set winblend=15                 " Pseudo-transparency for floating windows
 set winminheight=0              " Windows can be 0 line high
 set winminwidth=0               " Windows can be 0 line width
 set wrap                        " Wrap lines
+set mouse=a                     " Add mouse support
 
 set formatoptions+=t            " auto-wrap using textwidth (not comments)
 set formatoptions+=c            " auto-wrap comments too
