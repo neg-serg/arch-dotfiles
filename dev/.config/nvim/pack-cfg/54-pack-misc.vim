@@ -5,3 +5,4 @@ call packager#add('pbrisbin/vim-mkdir') " auto make dir without asking
 call packager#add('reedes/vim-pencil') " better text support
 call packager#add('reedes/vim-wordy', {'type': 'opt'}) " style check for english
 call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
+call packager#add('romgrk/todoist.nvim', { 'do': ':TodoistInstall' }') " todoist support
