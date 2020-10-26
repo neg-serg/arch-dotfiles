@@ -2,7 +2,7 @@
     email = serg.zorg@gmail.com
     name = Neg
 [core]
-    pager = diff-so-fancy
+	pager = diff-so-fancy | less --tabs=4 -RFX
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
     editor = /usr/bin/nvim
@@ -45,6 +45,8 @@
 [diff]
     tool = nwim
     algorithm = patience
+[alias]
+    patch = !git --no-pager diff --no-color
 [difftool "nwim"]
     cmd = ~/bin/v -d $LOCAL $REMOTE
 [merge]
@@ -68,3 +70,5 @@
     default = simple
 [pull]
 	rebase = true
+[diff-so-fancy]
+	stripLeadingSymbols = false
