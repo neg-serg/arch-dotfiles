@@ -2,7 +2,7 @@
     email = serg.zorg@gmail.com
     name = Neg
 [core]
-    pager =
+    pager = diff-so-fancy
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
     editor = /usr/bin/nvim
