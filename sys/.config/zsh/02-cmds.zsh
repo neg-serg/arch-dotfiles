@@ -52,7 +52,14 @@ _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists task && alias cal="task calendar"
-_exists todoist && alias t="todoist"
+_exists todoist && {
+    alias t="todoist"
+    alias ta="todoist add"
+    alias tm="todoist modify"
+    alias tl="todoist list"
+    alias td="todoist close"
+    alias ts="todoist show"
+}
 _exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
 
 _exists nvim && {
@@ -68,7 +75,6 @@ _exists patool && {
     alias se="patool extract"
     alias pk="patool create"
 }
-
 _exists xz && alias xz='xz --threads=0'
 _exists pigz && alias gzip='pigz'
 _exists pbzip2 && alias bzip2='pbzip2'
