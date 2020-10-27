@@ -1,44 +1,43 @@
 {
-  "suggest.noselect": false,
-  "suggest.triggerAfterInsertEnter": false,
-  "suggest.enablePreselect": true,
-  "suggest.echodocSupport": true,
-  "suggest.maxCompleteItemCount": 20,
-  "suggest.timeout": 500,
-  "suggest.minTriggerInputLength": 2,
-  "suggest.snippetIndicator": "►",
-  "suggest.detailField": "menu",
-  "suggest.removeDuplicateItems": true,
-  "suggest.triggerCompletionWait": 100,
-  "coc.preferences.hoverTarget": "preview",
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.hoverTarget": "preview",
   "codeLens.enable": false,
+  "diagnostic.displayByAle": true,
+  "diagnostic.infoSign": "◉",
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.signOffset": 100,
   "diagnostic.virtualText": false,
   "diagnostic.warningSign": "◉",
-  "diagnostic.infoSign": "◉",
-  "diagnostic.displayByAle": true,
-  "diagnostic.refreshOnInsertMode": true,
-  "diagnostic.signOffset": 1000000,
-  "git.enableGutters": true,
-  "git.branchCharacter": "\uf418",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.addedSign.text": "▎",
   "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": false,
-  "git.virtualTextPrefix": "❯❯❯",
-  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.branchCharacter": "\uf418",
   "git.changedSign.hlGroup": "GitGutterChange",
-  "git.removedSign.hlGroup": "GitGutterDelete",
-  "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "git.addedSign.text": "▎",
   "git.changedSign.text": "▎",
-  "git.removedSign.text": "▎",
-  "git.topRemovedSign.text": "▔",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "git.changeRemovedSign.text": "▎",
-
+  "git.enableGutters": true,
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.removedSign.text": "▎",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.text": "▔",
+  "git.virtualTextPrefix": "❯❯❯",
+  "suggest.detailField": "menu",
+  "suggest.echodocSupport": true,
+  "suggest.enablePreselect": false,
+  "suggest.enablePreview": true,
+  "suggest.maxCompleteItemCount": 20,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.noselect": false,
+  "suggest.removeDuplicateItems": true,
+  "suggest.snippetIndicator": "►",
+  "suggest.timeout": 500,
+  "suggest.triggerAfterInsertEnter": false,
+  "suggest.triggerCompletionWait": 30,
   "list.source.files.defaultOptions": ["--auto-preview"],
   "list.source.outline.defaultOptions": ["--auto-preview"],
-
   "suggest.completionItemKindLabels": {
     "module": " ",
     "function": "ﬦ",
@@ -64,63 +63,26 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
-
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "vue-html": "html",
-    "typescriptreact": "typescriptreact",
-    "sass": "css"
-  },
-  "emmet.excludeLanguages": ["markdown"],
   "diagnostic.errorSign": "◉",
-  "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
-  },
   "coc.preferences.formatOnSaveFiletypes": [
     "html",
     "css",
     "markdown",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
     "go",
     "json"
   ],
-
-  "explorer.icon.expanded": "▾",
-  "explorer.icon.collapsed": "▸",
-  "explorer.width": 30,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.quitOnOpen": true,
-  "explorer.floating.width": -20,
-  "explorer.floating.height": -10,
-  "explorer.openAction.strategy": "sourceWindow",
-
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "eslint.autoFix": true,
-  "eslint.autoFixOnSave": true,
-
   "session.directory": "~/.config/nvim/session",
-
   "coc-actions.hideCursor": false,
-
-  "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": false,
-  "prettier.stylelintIntegration": true,
-  "prettier.disableSuccessMessage": true,
   "prettier.statusItemText": "ⓟ ",
-
   "diagnostic-languageserver.formatFiletypes": {
-    "sh": "shfmt"
+    "sh": "shfmt",
+    "lua": "lua-format"
   },
   "diagnostic-languageserver.formatters": {
-    "shfmt": { "command": "shfmt", "args": ["-i", "2", "-bn", "-ci", "-sr"] }
+    "shfmt": {
+      "command": "shfmt",
+      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+    }
   },
   "diagnostic.messageTarget": "float",
   "diagnostic.checkCurrentLine": true,
@@ -133,7 +95,6 @@
     "gitcommit",
     "latex",
     "less",
-    "markdown",
     "plaintext",
     "text"
   ],
@@ -149,9 +110,18 @@
         ".hg/"
       ],
       "initializationOptions": {
-        "cache": { "directory": "/tmp/ccls" },
-        "highlight": { "lsRanges": true }
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "highlight": {
+          "lsRanges": true
+        }
       }
+    },
+    "python": {
+      "command": "pyls",
+      "args": [],
+      "filetypes": ["python"]
     },
     "dockerfile": {
       "command": "docker-langserver",
