@@ -31,6 +31,8 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
 unset _JAVA_OPTIONS
 
+export TODOIST_API_KEY=a90db957033648e8216d95791401d7fbf1503bdd
+
 export STEAM_RUNTIME=1
 
 export FZF_DEFAULT_OPTS="
