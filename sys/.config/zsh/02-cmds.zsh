@@ -52,6 +52,7 @@ _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists task && alias cal="task calendar"
+_exists todoist && alias t="todoist"
 _exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
 
 _exists nvim && {

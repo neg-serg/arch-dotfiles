@@ -48,6 +48,7 @@ export PAGER="page -q 90000"
 export READNULLCMD="$HOME/bin/scripts/highlight"
 export MANPAGER="page -C -e 'au User PageDisconnect sleep 100m|%y p|enew! |bd! #|pu p|set ft=man'"
 export MANWIDTH=999
+export TODOIST_API_KEY=a90db957033648e8216d95791401d7fbf1503bdd
 
 export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
