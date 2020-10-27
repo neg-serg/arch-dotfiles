@@ -383,3 +383,15 @@ let bufferline.semantic_letters = v:true
 " for other layouts.
 let bufferline.letters =
   \ 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP'
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - romgrk/todoist.nvim                                                      │
+" │ https://github.com/romgrk/todoist.nvim                                            │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let todoist = {
+\ 'icons': {
+\   'unchecked': '  ',
+\   'checked':   '  ',
+\   'loading':   '  ',
+\   'error':     '  ',
+\ },
+\}
