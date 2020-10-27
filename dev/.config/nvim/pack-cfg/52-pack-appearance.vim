@@ -9,6 +9,8 @@ call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse
 call packager#add('bluz71/vim-nightfly-guicolors') " nightfly new colorscheme
 call packager#add('Th3Whit3Wolf/space-nvim-theme') " spacemacs colorscheme port
 call packager#add('romgrk/doom-one.vim') " doom colorscheme
+call packager#add('blaketeres/deep-forest.vim') " deep forest colorscheme
+call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
 " --[ Appearance ]-------------------------------------------------------------------
 call packager#add('arzg/vim-sh') " better sh / zsh highlight
 call packager#add('luochen1990/rainbow') " better rainbow parentheses
