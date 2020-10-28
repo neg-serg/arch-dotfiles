@@ -79,6 +79,7 @@ function! PackInit() abort
     call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
+    call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('puremourning/vimspector', {'type': 'opt'}) " vim debugging support
     call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
@@ -102,6 +103,7 @@ function! PackInit() abort
     call packager#add('reedes/vim-wordy', {'type': 'opt'}) " style check for english
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
     call packager#add('romgrk/todoist.nvim') " todoist support
+    call packager#add('vim-voom/VOoM') " two-pane outliner
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Jupiter                                                                           │
     " └───────────────────────────────────────────────────────────────────────────────────┘
