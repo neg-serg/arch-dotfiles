@@ -1,5 +1,0 @@
-call packager#add('hkupty/iron.nvim')
-call packager#add('kana/vim-textobj-user')
-call packager#add('kana/vim-textobj-line')
-call packager#add('GCBallesteros/vim-textobj-hydrogen')
-call packager#add('GCBallesteros/jupytext.vim')
