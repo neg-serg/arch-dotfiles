@@ -25,7 +25,8 @@ setopt prompt_subst # set the prompt
 setopt pushd_ignore_dups # don't push the same dir twice.
 setopt pushdminus # pushd -N goes to Nth dir in stack
 setopt pushdsilent # do not print dirstack after each cd/pushd
-setopt pushdtohome #pushd with no args pushes to home
+setopt pushdtohome # pushd with no args pushes to home
+setopt multios # support multiple redirections
 
 setopt append_history # this is default, but set for share_history
 setopt extended_history # save each command's beginning timestamp and the duration to the history file
