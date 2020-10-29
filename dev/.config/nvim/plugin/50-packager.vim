@@ -73,7 +73,6 @@ function! PackInit() abort
     call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
     call packager#add('sheerun/vim-polyglot') " language pack collection
     call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
-    call packager#add('romgrk/lib.kom') " lib for barbar
     call packager#add('romgrk/barbar.nvim') " barbar tab statusline
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Dev                                                                               │
@@ -110,8 +109,11 @@ endfunction
 
 function! InstallCoc(plugin) abort
     exe '!cd '.a:plugin.dir.' && yarn install'
+    exe '!cd '.a:plugin.dir.' && npm install coc-diagnostic' . \
+    'coc-git coc-actions coc-json coc-translator coc-sql' . \
+    'coc-spell-checker coc-solargraph coc-snippets' . \
+    'coc-stylelint coc-julia coc-marketplace'
 endfunction
-" ':CocInstall coc-diagnostic coc-git coc-actions coc-json coc-translator coc-sql coc-spell-checker coc-solargraph coc-snippets coc-stylelint coc-julia'
 command! PackInstall call PackInit() | call packager#install()
 command! -bang PackUpdate call PackInit() | call packager#update({ 'force_hooks': '<bang>' })
 command! PackClean call PackInit() | call packager#clean()
