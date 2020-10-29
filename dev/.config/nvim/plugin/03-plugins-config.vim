@@ -115,6 +115,13 @@ augroup fzf
     autocmd VimEnter * command! Colors
         \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
 augroup end
+function! Dir(dir)
+  let tf = tempname()
+  call writefile(['.'], tf)
+  call fzf#vim#files(a:dir, {'source': 'fd -p -t d', 'options': ['--bind', printf('ctrl-w:reload:base="$(cat %s)"/..; echo "$base" > %s; fd -p -t d . "$base"', shellescape(tf), shellescape(tf))]})
+endfunction
+command! -nargs=* Dir call Dir('.')
+nnoremap <silent> <C-e> :Dir<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │  pbogut/fzf-mru.vim                                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
