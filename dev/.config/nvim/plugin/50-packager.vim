@@ -5,11 +5,12 @@ let g:loaded_packager = 1
 
 function! PackInit() abort
     packadd vim-packager
+    call packager#init({'jobs': 0})
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Main                                                                              │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
-    call packager#add('neoclide/coc.nvim') " autocomplete
+    call packager#add('neoclide/coc.nvim', { 'do': function('InstallCoc') }) " lsp autocomplete
     call packager#add('antoinemadec/coc-fzf', {'branch': 'release'})
     call packager#add('neg-serg/lusty', {'type': 'opt'}) " file/buffer explorer
     call packager#add('justinmk/vim-dirvish') " minimalistic file manager
@@ -17,7 +18,6 @@ function! PackInit() abort
     call packager#add('FooSoft/vim-argwrap') " vim arg wrapper
     call packager#add('honza/vim-snippets') " vim-snippets
     call packager#add('kopischke/vim-fetch') " vim path/to/file.ext:12:3
-    call packager#add('wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'})
     call packager#add('neg-serg/neovim-autoload-session', {'type': 'opt'}) " session autosave
     call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
@@ -43,6 +43,7 @@ function! PackInit() abort
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Search                                                                            │
     " └───────────────────────────────────────────────────────────────────────────────────┘
+    call packager#add('junegunn/fzf', { 'do': './install --all && ln -s $(pwd) ~/.fzf'})
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
@@ -76,7 +77,7 @@ function! PackInit() abort
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Dev                                                                               │
     " └───────────────────────────────────────────────────────────────────────────────────┘
-    call packager#add('dense-analysis/ale') " async linter with lsp support
+    " call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
     call packager#add('junegunn/goyo.vim') " make neovim window more readable
@@ -112,7 +113,11 @@ function! PackInit() abort
     call packager#add('kana/vim-textobj-line')
     call packager#add('GCBallesteros/vim-textobj-hydrogen')
     call packager#add('GCBallesteros/jupytext.vim')
-    call packager#init({'jobs': 0})
+endfunction
+
+function! InstallCoc(plugin) abort
+    exe '!cd '.a:plugin.dir.' && yarn install'
+    call coc#add_extension('coc-pyls')
 endfunction
 
 command! PackInstall call PackInit() | call packager#install()
