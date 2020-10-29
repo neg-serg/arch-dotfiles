@@ -118,11 +118,7 @@
         }
       }
     },
-    "python": {
-      "command": "pyls",
-      "args": [],
-      "filetypes": ["python"]
-    },
+    "python.jediEnabled": false,
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": ["dockerfile"],
