@@ -1,4 +1,4 @@
-#files: 1099	version: 5.8
+#files: 1105	version: 5.8
 
 _comps=(
 '-' '_precommand'
@@ -795,6 +795,8 @@ _comps=(
 'make' '_make'
 'makeinfo' '_texinfo'
 'makepkg' '_pacman'
+'mako' '_mako'
+'makoctl' '_makoctl'
 'man' '_man'
 'manage.py' '_django'
 'manila' '_openstack'
@@ -1330,6 +1332,8 @@ _comps=(
 'svnlite' '_subversion'
 'swaks' '_swaks'
 'swanctl' '_swanctl'
+'swayidle' '_swayidle'
+'swaylock' '_swaylock'
 'swift' '_swift'
 'swiftc' '_swift'
 'sync' '_nothing'
@@ -1357,6 +1361,7 @@ _comps=(
 'tar' '_tar'
 'tardy' '_tardy'
 'tarsnap' '_tarsnap'
+'task' '_task'
 'tcpdump' '_tcpdump'
 'tcp_open' '_tcpsys'
 'tcptraceroute' '_tcptraceroute'
@@ -1867,25 +1872,26 @@ autoload -Uz _afew _android _archlinux-java _artisan _atach \
             _inxi _jmeter _jmeter-plugins _jonas _journalctl \
             _jrnl _kak _kernel-install _kitchen _knife \
             _language_codes _libinput _localectl _loginctl _luarocks \
-            _luarocks-admin _lunchy _machinectl _mc _meson \
-            _middleman _mina _mix _mkinitcpio _modprobed-db \
-            _mpdviz _mpv _mussh _mvn _nano \
-            _netctl _networkctl _nftables _ninja _node \
-            _notmuch _nvm _nvme _openssl _optirun \
-            _pacman _page _pass _patool _perf \
-            _periscope _pgsql_utils _phing _pixz _pkcon \
-            _play _pm2 _polybar _polybar_msg _port \
-            _protoc _pulseaudio _pygmentize _qpdf _r2 \
-            _rabin2 _radiff2 _rafind2 _ragg2 _rahash2 \
-            _rails _ralio _rasm2 _rax2 _redis-cli \
-            _resolvectl _rfkill _rg _rkt _rslsync \
-            _rspec _rsvm _rubocop _sbt _scala \
-            _scrub _sdd _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes \
-            _sd_unit_files _setcap _setup.py _sfdx _showoff \
-            _snap _srm _stack _subl _subliminal \
-            _supervisorctl _svm _systemctl _systemd _systemd-analyze \
-            _systemd-delta _systemd-inhibit _systemd-nspawn _systemd-run _systemd-tmpfiles \
-            _tarsnap _teamocil _thor _timedatectl _tmatrix \
+            _luarocks-admin _lunchy _machinectl _mako _makoctl \
+            _mc _meson _middleman _mina _mix \
+            _mkinitcpio _modprobed-db _mpdviz _mpv _mussh \
+            _mvn _nano _netctl _networkctl _nftables \
+            _ninja _node _notmuch _nvm _nvme \
+            _openssl _optirun _pacman _page _pass \
+            _patool _perf _periscope _pgsql_utils _phing \
+            _pixz _pkcon _play _pm2 _polybar \
+            _polybar_msg _port _protoc _pulseaudio _pygmentize \
+            _qpdf _r2 _rabin2 _radiff2 _rafind2 \
+            _ragg2 _rahash2 _rails _ralio _rasm2 \
+            _rax2 _redis-cli _resolvectl _rfkill _rg \
+            _rkt _rslsync _rspec _rsvm _rubocop \
+            _sbt _scala _scrub _sdd _sd_hosts_or_user_at_host \
+            _sd_machines _sd_outputmodes _sd_unit_files _setcap _setup.py \
+            _sfdx _showoff _snap _srm _stack \
+            _subl _subliminal _supervisorctl _svm _swayidle \
+            _swaylock _systemctl _systemd _systemd-analyze _systemd-delta \
+            _systemd-inhibit _systemd-nspawn _systemd-run _systemd-tmpfiles _tarsnap \
+            _task _teamocil _thor _timedatectl _tmatrix \
             _tmuxinator _tmuxp _tox _trash-empty _trash-list \
             _trash-put _trash-restore _udevadm _udiskie _udiskie-mount \
             _udiskie-umount _udisksctl _ufw _vagrant _virtualbox \
