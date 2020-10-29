@@ -345,6 +345,7 @@ let bufferline = {}
 let bufferline.shadow = v:false
 let bufferline.icons = v:true
 let bufferline.clickable = v:false
+let bufferline.closable = v:false
 let bufferline.semantic_letters = v:true
 let bufferline.letters = 'aqwert'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
