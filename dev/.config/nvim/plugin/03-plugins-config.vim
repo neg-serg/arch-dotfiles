@@ -2,10 +2,10 @@
 " │  neoclide/coc.nvim                                                                │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? coc#_select_confirm() :
+    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -308,15 +308,13 @@ hi esearchMatch gui=underline,italic,bold guifg=#6C7E96 guibg=#002D59
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ romgrk/barbar.nvim                                                                │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <silent> v :BufferPick<CR>
-nnoremap <silent> <M-,> :BufferPrevious<CR>
-nnoremap <silent> <M-.> :BufferNext<CR>
+nnoremap <Tab> :BufferNext<CR>
+nnoremap <S-Tab> :BufferPrevious<CR>
 nnoremap <silent> <M-1> :BufferGoto 1<CR>
 nnoremap <silent> <M-2> :BufferGoto 2<CR>
 nnoremap <silent> <M-3> :BufferGoto 3<CR>
 nnoremap <silent> <M-4> :BufferGoto 4<CR>
 nnoremap <silent> <M-5> :BufferGoto 5<CR>
-nnoremap <silent> <M-6> :BufferLast<CR>
 " Colorscheme settings
 let bg_current = get(nvim_get_hl_by_name('Normal', 1), 'background', '#000000')
 let bg_visible = get(nvim_get_hl_by_name('TabLineSel', 1), 'background', '#000000')

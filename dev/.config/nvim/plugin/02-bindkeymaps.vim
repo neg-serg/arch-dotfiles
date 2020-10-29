@@ -2,8 +2,6 @@ let mapleader = ','
 let g:mapleader = ','
 
 nnoremap q <NOP>
-nnoremap <Tab> :bnext<cr>
-nnoremap <S-Tab> :bprevious<cr>
 nnoremap Y y$
 nnoremap ; :
 
