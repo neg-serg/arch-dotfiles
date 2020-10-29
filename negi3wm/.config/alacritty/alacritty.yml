@@ -4,13 +4,10 @@ env:
   TERM: alacritty
 
 window:
-  dimensions:
-    columns: 0
-    lines: 0
   padding:
     x: 2
     y: 2
-  decorations: full
+  decorations: none
   dynamic_padding: false
   dynamic_title: false
   gtk_theme_variant: dark
