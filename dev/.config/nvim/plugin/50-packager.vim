@@ -93,7 +93,7 @@ function! PackInit() abort
     call packager#add('rhysd/committia.vim') " better commit message
     call packager#add('rhysd/conflict-marker.vim') " good conflict marker
     call packager#add('rhysd/git-messenger.vim') " shows git message
-    call packager#add('tpope/vim-fugitive') " git stuff
+    call packager#add('lambdalisue/gina.vim') " git stuff
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Misc                                                                              │
     " └───────────────────────────────────────────────────────────────────────────────────┘
