@@ -77,7 +77,7 @@ function! PackInit() abort
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Dev                                                                               │
     " └───────────────────────────────────────────────────────────────────────────────────┘
-    " call packager#add('dense-analysis/ale') " async linter with lsp support
+    call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
     call packager#add('junegunn/goyo.vim') " make neovim window more readable
