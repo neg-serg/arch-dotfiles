@@ -1,10 +1,11 @@
 [global]
-    font = Iosevka Medium 27
+    font = mplus nerd font 9
+    format = "<span size='x-large' font_desc='mplus nerd font 7' weight='bold' foreground='#ffa366'>%s</span>\n%b"
     markup = full
     plain_text = false
-    format = "%s\n%b"
     sort = true
-    alignment = left
+    alignment = bottom
+    vertical_alignment = top
     show_age_threshold = -1
     ignore_newline = false
     geometry = "1220x11-20-52"
@@ -26,7 +27,7 @@
     dmenu = /usr/bin/rofi -p dunst:
     browser = /usr/bin/firefox -new-tab
     icon_position = left
-    icon_path = ~/.icons/Compass
+    icon_path = ~/.local/share/icons/SpaceKCursors
     max_icon_size = 400
     title = Dunst
     class = Dunst
