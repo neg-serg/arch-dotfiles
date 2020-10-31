@@ -1,5 +1,4 @@
 ---
-
 env:
   TERM: alacritty
 
@@ -7,6 +6,9 @@ window:
   padding:
     x: 2
     y: 2
+  dimensions:
+    columns: 80
+    lines: 24
   decorations: none
   dynamic_padding: false
   dynamic_title: false
