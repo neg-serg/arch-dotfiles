@@ -1,12 +1,10 @@
 colorscheme neg
-
 if bufname('%') ==? ''
     set bufhidden=wipe
 endif
-
 set report=0 "no report on substitution
 set fileformats=unix,dos,mac "file format fallback
-set synmaxcol=2500 "no syntax hi for too long lines
+set synmaxcol=1000 "no syntax hi for too long lines
 set conceallevel=2 concealcursor=niv
 set keymap=russian-jcukenwin
 set magic
@@ -37,8 +35,8 @@ set ignorecase                      " Case insensitive search
 set iminsert=0                      " Write latin1 characters first
 set imsearch=0                      " Search with latin1 characters first
 set inccommand=split                " Better live substitution
-set isfname+={,}
-set jumpoptions=stack
+set isfname+={,}                    " Scan in filenames in such brackets
+set jumpoptions=stack               " Jumplist behave like tagstack
 set linespace=0                     " No extra spaces between rows
 set matchtime=0                     " Default time to hi brackets too long for me
 set matchpairs+=<:>,《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
