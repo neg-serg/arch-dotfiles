@@ -42,7 +42,7 @@ function! PackInit() abort
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Search                                                                            │
     " └───────────────────────────────────────────────────────────────────────────────────┘
-    call packager#add('junegunn/fzf', { 'do': './install --all && ln -s $(pwd) ~/.fzf'})
+    call packager#add('junegunn/fzf', { 'do': './install --all', 'merged': 0 })
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
     call packager#add('yuki-ycino/fzf-preview.vim', {'do': ':UpdateRemotePlugins', 'branch': 'release'}) " integration fzf preview with coc
@@ -111,7 +111,7 @@ function! InstallCoc(plugin) abort
     exe '!cd '.a:plugin.dir.' && npm install coc-diagnostic' . \
     'coc-git coc-actions coc-json coc-translator coc-sql' . \
     'coc-spell-checker coc-solargraph coc-snippets' . \
-    'coc-stylelint coc-julia coc-marketplace'
+    'coc-stylelint'
 endfunction
 command! PackInstall call PackInit() | call packager#install()
 command! -bang PackUpdate call PackInit() | call packager#update({ 'force_hooks': '<bang>' })
