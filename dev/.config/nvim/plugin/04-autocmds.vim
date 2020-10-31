@@ -2,14 +2,6 @@ augroup fix_stdin
     autocmd StdinReadPost * set buftype=nofile
 augroup end
 
-augroup continue_buf
-    " Return to last edit position (You want this!) *N*
-    autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-augroup end
-
 augroup modechange_settings
     autocmd!
     " Clear search context when entering insert mode, which implicitly stops the
@@ -25,16 +17,17 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})
 augroup END
 
-augroup configgroup_nvim
-  autocmd!
-  " fix terminal display
-  autocmd TermOpen *
-        \  :exec('silent! normal! <c-\><c-n>a')
-        \| :startinsert
+augroup CursorLine
+    au!
+    au VimEnter,WinEnter,BufWinEnter,BufEnter * setlocal cursorline
+    au BufLeave,WinLeave * setlocal nocursorline
 augroup END
 
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter,BufEnter * setlocal cursorline
-  au BufLeave,WinLeave * setlocal nocursorline
-augroup END
+function! RestoreCursorPosition()
+    if &filetype !~ 'svn\|commit\c'
+        if line("'\"") > 1 && line("'\"") <= line("$") |
+            execute 'normal! g`"zvzz' |
+        endif
+    end
+endfunction
+autocmd BufReadPost * call RestoreCursorPosition()
