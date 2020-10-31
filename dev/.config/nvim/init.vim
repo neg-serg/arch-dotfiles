@@ -11,5 +11,3 @@ set noexrc
 set secure
 set termguicolors
 if !1 | finish | endif
-
-packadd neovim-autoload-session
