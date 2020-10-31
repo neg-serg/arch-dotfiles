@@ -1,6 +1,6 @@
 [global]
-    font = mplus nerd font 9
-    format = "<span size='x-large' font_desc='mplus nerd font 7' weight='bold' foreground='#ffa366'>%s</span>\n%b"
+    font = Iosevka Medium 25
+    format = "<span size='large' font_desc='Iosevka Medium 25' weight='Italic' foreground='#2e72ac'>%s</span>\n%b"
     markup = full
     plain_text = false
     sort = true
@@ -10,7 +10,7 @@
     ignore_newline = false
     geometry = "1220x11-20-52"
     shrink = false
-    transparency = 10
+    transparency = 14
     idle_threshold = 8
     monitor = 0
     follow = mouse
@@ -28,7 +28,7 @@
     browser = /usr/bin/firefox -new-tab
     icon_position = left
     icon_path = ~/.local/share/icons/SpaceKCursors
-    max_icon_size = 400
+    max_icon_size = 600
     title = Dunst
     class = Dunst
     stack_duplicates = true
