@@ -31,3 +31,5 @@ function! RestoreCursorPosition()
     end
 endfunction
 autocmd BufReadPost * call RestoreCursorPosition()
+
+au FocusGained,BufEnter,FileChangedShell,WinEnter * checktime
