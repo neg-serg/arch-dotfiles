@@ -1,5 +1,5 @@
-let mapleader = ')'
-let g:mapleader = ')'
+let mapleader = ','
+let g:mapleader = ','
 nnoremap Y y$
 noremap <expr> G &wrap ? "G$g0" : "G"
 noremap <expr> 0 &wrap ? 'g0' : '0'
