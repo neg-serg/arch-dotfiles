@@ -75,6 +75,7 @@ set pumblend=15                 " Set up pmenu transparency
 set pumheight=8                 " Do not make pmenu too wide
 set scrolljump=1                " Lines to scroll when cursor leaves screen
 set scrolloff=1                 " Minimum lines to keep above and below cursor
+set scrollback=1                " Disable scrollback
 set shiftround                  " makes indenting a multiple of shiftwidth
 set shiftwidth=4                " spaces for autoindents
 set shortmess+=a                " Abbrev. of messages (avoids 'hit enter')
