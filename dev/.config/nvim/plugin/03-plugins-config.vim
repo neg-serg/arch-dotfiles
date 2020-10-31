@@ -6,54 +6,28 @@ inoremap <silent><expr> <TAB>
     \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
-
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 let g:coc_status_warning_sign = ''
 let g:coc_status_error_sign = ''
 let g:coc_snippet_next = '<tab>'
-
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
+inoremap <silent><expr> <C-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 nmap <silent> [Qleader]c <Plug>(coc-diagnostic-next)
 nmap <silent> [Qleader]C <Plug>(coc-diagnostic-prev)
 nmap <silent> <M-CR> <Plug>(coc-fix-current)
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gI <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-augroup coc
-    " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
-
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gy :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
+nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-" Show all diagnostics
-nnoremap <silent> qa :<C-u>CocFzfList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> qE :<C-u>CocFzfList extensions<cr>
-" Show commands, find symbol of current document
-nnoremap <silent> qo :<C-u>CocFzfList outline<cr>
-" Search workspace symbols
-nnoremap <silent> qs :<C-u>CocFzfList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> qj :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> qk :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> qp :<C-u>CocFzfListResume<CR>
+nmap <silent> [Qleader]r <Plug>(coc-rename)
 " Reformat command
 command! -nargs=0 Format :call CocAction('format')
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -85,8 +59,8 @@ if executable('rg')
         \ ]
     let s:rg_cmd .= " --glob '!{'" . shellescape(join(s:rg_ignore, ',')) . "'}'"
 endif
-nnoremap <silent> qE :Files %:p:h<CR>
-nnoremap <silent> qe :Files<CR>
+nnoremap <silent> [Qleader]E :Files %:p:h<CR>
+nnoremap <silent> [Qleader]e :Files<CR>
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 " Customize fzf colors to match your color scheme
@@ -106,8 +80,8 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Insert mode completion
-imap <c-x><c-f> <Plug>(fzf-complete-path)
-imap <c-x><c-l> <Plug>(fzf-complete-line)
+imap <C-x><C-f> <Plug>(fzf-complete-path)
+imap <C-x><C-l> <Plug>(fzf-complete-line)
 augroup fzf
     autocmd! FileType fzf set laststatus=0 noshowmode noruler
         \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode
@@ -287,11 +261,8 @@ augroup END
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ eugen0329/vim-esearch                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-" Use <c-f><c-f> to start the prompt, use <c-f>iw to pre-fill with the current word
-" or other text-objects. Try <Plug>(esearch-exec) to start a search instantly.
-nmap <A-/><A-/> <Plug>(esearch)
-map  <A-/>      <Plug>(esearch-prefill)
-
+nmap <M-/><M-/> <Plug>(esearch)
+map  <M-/>      <Plug>(esearch-prefill)
 let g:esearch = {}
 " Use regex matching with the smart case mode by default and avoid matching text-objects.
 let g:esearch.regex = 1
