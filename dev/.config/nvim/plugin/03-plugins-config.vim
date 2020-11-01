@@ -324,6 +324,8 @@ let bufferline.clickable = v:false
 let bufferline.closable = v:false
 let bufferline.semantic_letters = v:true
 let bufferline.letters = 'aqwert'
+let bufferline.animation = v:false
+let bufferline.maximum_padding = 1
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ romgrk/todoist.nvim                                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
