@@ -19,6 +19,7 @@ endif
 if executable(resolve(expand('perltidy')))
     set equalprg="perltidy"
 endif
+set hidden                          " It hides buffers instead of closing them
 set lazyredraw                      " Reduce useless redrawing
 set backup                          " Backuping is good
 set cindent                         " Smart indenting for c-like code
@@ -28,13 +29,12 @@ set copyindent                      " Copy the previous indentation on autoinden
 set diffopt+=internal,algorithm:patience " Better diff algorithm
 set eadirection=hor                 " Ver/hor/both - where does equalalways apply
 set expandtab                       " tabs are spaces, not tabs
-set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
+set fileencodings=utf-8,default     " less file encodings
 set gdefault                        " This makes search/replace global by default
-set hidden                          " It hides buffers instead of closing them
 set ignorecase                      " Case insensitive search
 set iminsert=0                      " Write latin1 characters first
 set imsearch=0                      " Search with latin1 characters first
-set inccommand=split                " Better live substitution
+set inccommand=nosplit              " Better live substitution
 set isfname+={,}                    " Scan in filenames in such brackets
 set jumpoptions=stack               " Jumplist behave like tagstack
 set linespace=0                     " No extra spaces between rows
@@ -45,15 +45,13 @@ set maxmapdepth=1000                " Maximum number of times a mapping is done 
 set maxmempattern=1000              " Maximum amount of memory (in Kbyte) to use for pattern matching.
 set noautochdir                     " Dont't change pwd automaticly because of problems with plugins
 set noautowrite                     " Don't autowrite by default
-set nocursorline                    " Highlight current line is too slow
 set nofoldenable                    " Disable folds as
-set nojoinspaces                    " Prevents inserting two spaces after punctuation on a join (J)
 set nojoinspaces                    " Prevents inserting two spaces after punctuation on a join (J)
 set noshowmatch                     " Show matching brackets/parenthesis
 set nospell                         " Disable spell checking by default
 set number                          " Line numbers on
 set pumblend=15                     " Set up pmenu transparency
-set pumheight=8                     " Do not make pmenu too wide
+set pumheight=12                    " Do not make pmenu too wide
 set scrolljump=1                    " Lines to scroll when cursor leaves screen
 set scrolloff=1                     " Minimum lines to keep above and below cursor
 set scrollback=1                    " Disable scrollback
@@ -70,18 +68,17 @@ set splitbelow                      " Puts new split windows to the bottom of th
 set splitright                      " Puts new vsplit windows to the right of the current
 set switchbuf=useopen,usetab        " 'useopen' may be useful for re-using QuickFix window.
 set tabstop=4                       " An indentation every four columns
-set timeoutlen=2000
-set timeout ttimeout
-set ttimeoutlen=30                  " Very fast and also you shouldn't make combination too fast
+set timeoutlen=2000                 " 2 seconds wait to sequence complete
+set ttimeoutlen=20                  " Very fast and also you shouldn't make combination too fast
 set updatetime=250                  " Faster diagnostics
 set virtualedit=onemore,block       " Allow for cursor beyond last character
 set whichwrap=b,s,h,l,<,>,[,]       " Backspace and cursor keys wrap too
-set wildmode=list:longest,full      " Command <Tab> completion, list matches, then longest common part, then all.
+set wildmode=full                   " Command <Tab> completion, list matches, then longest common part, then all.
 set wildoptions=pum                 " Wild options
 set winblend=15                     " Pseudo-transparency for floating windows
 set winminheight=0                  " Windows can be 0 line high
 set winminwidth=0                   " Windows can be 0 line width
-set wrap                            " Wrap lines
+set nowrap                          " Do not wrap lines by default
 set mouse=a                         " Add mouse support
 
 set formatoptions+=t                " Auto-wrap using textwidth (not comments)
@@ -106,6 +103,7 @@ set cpoptions+=s                    " Set buf opts before it created
 set cpoptions+=B                    " A backslash has no special meaning in mappings
 set cpoptions+=d                    " Make ./ in tags relative to tags file in current dir
 set cpoptions+=$                    " No line redisplay -> put a '$' at the end
+
 set backupdir=~/trash               " Set up backupdir
 set directory=~/trash               " Directory for swap files
 set undodir=~/trash/                " Set up undo dir
