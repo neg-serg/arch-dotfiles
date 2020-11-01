@@ -12,11 +12,6 @@ augroup modechange_settings
     autocmd InsertLeave * setlocal nopaste
 augroup END
 
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})
-augroup END
-
 augroup CursorLine
     au!
     au VimEnter,WinEnter,BufWinEnter,BufEnter * setlocal cursorline
