@@ -44,6 +44,7 @@ set maxfuncdepth=100                " Maximum depth of function calls for user f
 set maxmapdepth=1000                " Maximum number of times a mapping is done without resulting in a character to be used.
 set maxmempattern=1000              " Maximum amount of memory (in Kbyte) to use for pattern matching.
 set noautochdir                     " Dont't change pwd automaticly because of problems with plugins
+set autoread                        " Autoread file on change
 set noautowrite                     " Don't autowrite by default
 set nofoldenable                    " Disable folds as
 set nojoinspaces                    " Prevents inserting two spaces after punctuation on a join (J)
