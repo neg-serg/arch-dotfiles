@@ -22,6 +22,7 @@ function! PackInit() abort
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     call packager#add('bounceme/remote-viewer') " better ssh support
+    call packager#add('romgrk/winteract.vim') " interactive window resize
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Edit                                                                              │
     " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -68,23 +69,24 @@ function! PackInit() abort
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('arzg/vim-sh') " better sh / zsh highlight
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
-    call packager#add('norcalli/nvim-colorizer.lua') " fast js/css colorizer
+    call packager#add('RRethy/vim-hexokinase') " best color highlighting
     call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
     call packager#add('sheerun/vim-polyglot') " language pack collection
     call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
     call packager#add('romgrk/barbar.nvim') " barbar tab statusline
+    call packager#add('justinmk/vim-syntax-extra') " better syntax for some langs
+    call packager#add('cespare/vim-toml') " better toml syntax
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Dev                                                                               │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
-    call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('puremourning/vimspector', {'type': 'opt'}) " vim debugging support
     call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
-    call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
     call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
+    call packager#add('Yggdroot/indentLine') " beautiful indentLine
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ DCVS                                                                              │
     " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -104,6 +106,9 @@ function! PackInit() abort
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
     call packager#add('romgrk/todoist.nvim') " todoist support
     call packager#add('vim-voom/VOoM') " two-pane outliner
+    call packager#add('junegunn/goyo.vim') " make neovim window more readable
+    call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
+    call packager#add('romgrk/pp.vim') " pretty printer with colors
 endfunction
 
 function! InstallCoc(plugin) abort
