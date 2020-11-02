@@ -90,3 +90,8 @@ endfunction
 
 setlocal includeexpr=PyInclude(v:fname)
 setlocal define=^\\s*\\<(def\\\|class\\)\\>
+
+setl foldmethod=expr
+
+iabbrev <buffer> false False
+iabbrev <buffer> true True
