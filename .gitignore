@@ -298,3 +298,4 @@ zsh/.zsh/zcomp-sanctum
 *.zwc
 music/.config/mpd/mpd.pid
 dev/.config/nvim/sessions/default.vim
+sys/.config/bpytop/error.log
