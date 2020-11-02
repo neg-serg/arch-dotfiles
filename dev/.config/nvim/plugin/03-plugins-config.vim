@@ -215,15 +215,47 @@ let g:vimwiki_list = [{'path': '~/1st_level/'}]
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:vista_sidebar_width = 20
 let g:vista_disable_statusline = 1
-" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ['▸ ', '']
-let g:vista#renderer#icons = {
-    \ 'function': 'ﬦ',
-    \ 'module': '',
-    \ 'variable': '\ufb18 ',
-    \ 'constant': ''
-    \ }
+let     g:vista#renderer#icons = {
+      \ 'func':           "ﬦ",
+      \ 'function':       "ﬦ",
+      \ 'functions':      "ﬦ",
+      \ 'module':         '',
+      \ 'variable':       '\ufb18 ',
+      \ 'constant':       '',
+      \ 'var':            "\ufb18",
+      \ 'variable':       "\ufb18",
+      \ 'variables':      "\ufb18",
+      \ 'method':         "",
+      \ 'package':        "",
+      \ 'packages':       "",
+      \ 'enum':           "",
+      \ 'enumerator':     "",
+      \ 'module':         "",
+      \ 'modules':        "",
+      \ 'type':           "",
+      \ 'typedef':        "",
+      \ 'types':          "",
+      \ 'field':          "",
+      \ 'fields':         "",
+      \ 'macro':          "",
+      \ 'macros':         "",
+      \ 'map':            "פּ",
+      \ 'class':          "",
+      \ 'augroup':        "פּ",
+      \ 'struct':         "",
+      \ 'union':          "鬒",
+      \ 'member':         "",
+      \ 'target':         "",
+      \ 'property':       "襁",
+      \ 'interface':      "",
+      \ 'namespace':      "",
+      \ 'subroutine':     "羚",
+      \ 'implementation': "",
+      \ 'typeParameter':  "",
+      \ 'default':        ""
+      \ }
 let g:vista_default_executive = 'coc'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │  rhysd/git-messenger.vim                                                          │
@@ -254,9 +286,9 @@ let g:matchup_text_obj_enabled = 1
 " │  pearofducks/ansible-vim                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 augroup ansible_vim_fthosts
-    autocmd!
-    autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
-    autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+  autocmd!
+  autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
+  autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 augroup END
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ eugen0329/vim-esearch                                                             │
@@ -330,13 +362,13 @@ let bufferline.maximum_padding = 1
 " │ romgrk/todoist.nvim                                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let todoist = {
-\ 'icons': {
-\   'unchecked': '  ',
-\   'checked':   '  ',
-\   'loading':   '  ',
-\   'error':     '  ',
-\ },
-\}
+      \ 'icons': {
+      \   'unchecked': '  ',
+      \   'checked':   '  ',
+      \   'loading':   '  ',
+      \   'error':     '  ',
+      \ },
+      \}
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ romgrk/nvim-web-devicons                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -357,3 +389,12 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.json'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.lock.json'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['node_modules'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['webpack\.'] = 'ﰩ'
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ Yggdroot/indentLine                                                               │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let indentLine_char = '│' " | ┆
+let indentLine_leadingSpaceChar = '·'
+let indentLine_leadingSpaceEnabled = 0
+let indentLine_showFirstIndentLevel = 0
+let indentLine_setColors = 0
+let indentLine_setConceal = 0
