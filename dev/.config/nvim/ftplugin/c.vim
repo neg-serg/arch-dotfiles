@@ -63,3 +63,29 @@ unlet s:cpo_save
 let b:ale_fixers = ['clang-format']
 let b:ale_linters = ['cquery', 'clang']
 let b:source_ft = ['c']
+
+nnoremap <buffer> gh   :call ToggleHeader()<CR>
+nnoremap <buffer> <F4> :call ToggleHeader()<CR>
+
+if !exists('*ToggleHeader')
+  function! ToggleHeader ()
+      if expand('%:e') == 'h'
+          let fname = expand('%<') . '.cc'
+          if filereadable(fname)
+              call Edit(fname)
+              return | end
+          let fname = expand('%<') . '.cpp'
+          if filereadable(fname)
+              call Edit(fname)
+              return | end
+          call Warn('Couldnt find source.')
+      else
+          let hname = expand('%<') . '.h'
+          if filereadable(hname)
+              exe 'Edit ' . hname
+          else
+              call Warn(hname . ' doesnt exist.')
+          end
+      end
+  endfunction
+end
