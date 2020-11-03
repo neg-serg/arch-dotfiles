@@ -68,9 +68,12 @@ snippet here "here document (here)"
 ${1/['"`](.+)['"`]/$1/}
 endsnippet
 
-snippet if "if ... then (if)"
-if ${2:[[ ${1:condition} ]]}; then
-	${0:#statements}
+snippet dirname "current directory name" b
+__dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+endsnippet
+
+snippet if "if [[ ]]"
+if [[ ${1:expr} ]]; then
 fi
 endsnippet
 
