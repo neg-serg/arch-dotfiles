@@ -3,9 +3,9 @@ bindkey -e
 bindkey "^[-" cd-forward
 bindkey "^[=" cd-back
 
-autoload up-line-or-beginning-search 
+autoload up-line-or-beginning-search
 zle -N up-line-or-beginning-search
-autoload down-line-or-beginning-search 
+autoload down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 bindkey "^[[A" up-line-or-beginning-search
