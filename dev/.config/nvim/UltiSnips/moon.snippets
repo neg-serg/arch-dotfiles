@@ -1,0 +1,69 @@
+
+# GENERAL
+
+snippet fileinfo "File header"
+-- File: `!v expand('%:t') `
+-- Author: romgrk
+-- Description: ${1:here}
+-- Date: `!v system("date '+%d %b %Y'")`
+-- ::moon [.]
+
+endsnippet
+
+# UTILS
+
+snippet p "print" b
+print ${1:'${2:hello}'}
+endsnippet
+
+snippet l "log.pp"
+log.pp ${1:'${2:hello}'}
+endsnippet
+
+snippet d "log.debug" b
+log.debug ${1:'${2:hello}'}
+endsnippet
+
+snippet i "log.info" b
+log.info ${1:'${2:hello}'}
+endsnippet
+
+snippet ass "assert"
+assert(${1:var} ${2:~= nil})
+endsnippet
+
+snippet req "mod = require" b
+${1:module} = require '${2:$1}'
+endsnippet
+
+snippet req "require" "snip.buffer[snip.line]!='req'" e
+require '$1'
+endsnippet
+
+# LANG
+
+snippet ii "do if" b
+${1:return} if ${2:condition}
+endsnippet
+
+snippet if "do if" b
+if ${1:condition}
+    ${2:return}
+endsnippet
+
+snippet "(\w+)?\s*-(-)?" "func = () ->" r
+`!p if match.group(1):
+    snip.rv = match.group(1)+' = '
+` (${1:args}) `!p
+snip.rv = '=' if match.group(2) else '-'`> $2
+endsnippet
+
+snippet : "key: value" b
+${1:key}: ${2:'${3:value}'}
+endsnippet
+
+snippet c "class" b
+class ${1:Name}
+    new: $2
+endsnippet
+
