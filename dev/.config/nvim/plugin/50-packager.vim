@@ -64,6 +64,7 @@ function! PackInit() abort
     call packager#add('romgrk/doom-one.vim') " doom colorscheme
     call packager#add('blaketeres/deep-forest.vim') " deep forest colorscheme
     call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
+    call packager#add('kyazdani42/blue-moon') " dark colorscheme with treesitter support
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Appearance                                                                        │
     " └───────────────────────────────────────────────────────────────────────────────────┘
