@@ -20,23 +20,11 @@ snippet modeline "Vim modeline"
 vim`!v ':set '. (&expandtab ? printf('et sw=%i ts=%i', &sw, &ts) : printf('noet sts=%i sw=%i ts=%i', &sts, &sw, &ts)) . (&tw ? ' tw='. &tw : '') . ':'`
 endsnippet
 
-snippet sympy "sympy block " w
-sympy $1 sympy$0
+snippet !date "current date"
+`!v system("date '+%d %b %Y'")`
 endsnippet
 
-priority 10000
-snippet 'sympy(.*)sympy' "evaluate sympy" wr
-`!p
-from sympy import *
-x, y, z, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer=True)
-f, g, h = symbols('f g h', cls=Function)
-init_printing()
-snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
-    .replace('^', '**') \
-    .replace('{', '(') \
-    .replace('}', ')') + ')')
-`
+snippet !now "current time"
+`!v system("date +%T")`
 endsnippet
-
 # vim:ft=snippets:
