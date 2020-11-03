@@ -316,8 +316,9 @@ hi esearchMatch gui=underline,italic,bold guifg=#6C7E96 guibg=#002D59
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ romgrk/barbar.nvim                                                                │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <Tab> :BufferNext<CR>
-nnoremap <S-Tab> :BufferPrevious<CR>
+nnoremap <silent> <Tab> :BufferNext<CR>
+nnoremap <silent> <S-Tab> :BufferPrevious<CR>
+nnoremap <silent> <leader><Tab> :b#<CR>
 nnoremap <silent> <M-1> :BufferGoto 1<CR>
 nnoremap <silent> <M-2> :BufferGoto 2<CR>
 nnoremap <silent> <M-3> :BufferGoto 3<CR>
