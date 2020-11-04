@@ -48,7 +48,7 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 
 export MPV_HOME="${XDG_CONFIG_HOME}/mpv"
 export KEYTIMEOUT=1
-export ESCDELAY=1
+export ESCDELAY=3
 export GOPATH=/opt/go
 export STEAM_RUNTIME=1
 export QT_QPA_PLATFORMTHEME="qt5ct"
