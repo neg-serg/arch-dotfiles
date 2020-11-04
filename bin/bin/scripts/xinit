@@ -1,5 +1,4 @@
 #!/bin/dash
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 /usr/bin/xinit -- :1 -nolisten tcp vt$XDG_VTNR
-
 # vim: set ftype=sh
