@@ -1,7 +1,5 @@
 colorscheme neg
-if bufname('%') ==? ''
-    set bufhidden=wipe
-endif
+set bufhidden=hide
 set report=0 "no report on substitution
 set fileformats=unix,dos,mac "file format fallback
 set synmaxcol=1000 "no syntax hi for too long lines
