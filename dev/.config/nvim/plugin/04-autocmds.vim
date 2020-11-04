@@ -19,6 +19,12 @@ augroup CursorLine
     autocmd BufLeave,WinLeave * setlocal nocursorline
 augroup END
 
+augroup cocgroup
+    autocmd!
+    " Update signature help on jump placeholder
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
 function! RestoreCursorPosition()
     if &filetype !~ 'svn\|commit\c'
         if line("'\"") > 1 && line("'\"") <= line("$") |
