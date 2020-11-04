@@ -105,6 +105,7 @@ function! PackInit() abort
     call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
     call packager#add('romgrk/pp.vim') " pretty printer with colors
+    call packager#add('ahmadie/workspace.vim') " experimental neovim workspaces support
 endfunction
 
 function! InstallCoc(plugin) abort
