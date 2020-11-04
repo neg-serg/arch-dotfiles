@@ -63,25 +63,6 @@ nnoremap <silent> [Qleader]E :Files %:p:h<CR>
 nnoremap <silent> [Qleader]e :Files<CR>
 " This is the default extra key bindings
 let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-" Insert mode completion
-imap <C-x><C-f> <Plug>(fzf-complete-path)
-imap <C-x><C-l> <Plug>(fzf-complete-line)
 augroup fzf
     autocmd! FileType fzf set laststatus=0 noshowmode noruler
         \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode
@@ -89,13 +70,20 @@ augroup fzf
     autocmd VimEnter * command! Colors
         \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
 augroup end
+
 function! Dir(dir)
-  let tf = tempname()
-  call writefile(['.'], tf)
-  call fzf#vim#files(a:dir, {'source': 'fd -p -t d', 'options': ['--bind', printf('ctrl-w:reload:base="$(cat %s)"/..; echo "$base" > %s; fd -p -t d . "$base"', shellescape(tf), shellescape(tf))]})
+    let tf = tempname()
+    call writefile(['.'], tf)
+    call fzf#vim#files(a:dir, {'source': 'fd -p -t d', 'options': ['--bind', printf('ctrl-w:reload:base="$(cat %s)"/..; echo "$base" > %s; fd -p -t d . "$base"', shellescape(tf), shellescape(tf))]})
 endfunction
+
+command! -bang -nargs=? -complete=dir Files
+
 command! -nargs=* Dir call Dir('.')
 nnoremap <silent> <C-e> :Dir<CR>
+" Insert mode completion
+imap <C-x><C-f> <Plug>(fzf-complete-path)
+imap <C-x><C-l> <Plug>(fzf-complete-line)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │  pbogut/fzf-mru.vim                                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
