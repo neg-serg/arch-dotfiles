@@ -2,25 +2,26 @@ COLOR all
 OPTIONS -F -b -T 0
 EIGHTBIT 1
 
-RESET                 0                   # reset to "normal" color
-FILE                  00                  # normal file
-DIR                   00;34               # directory
-SOCK                  01;38;5;075         # socket
-BLK                   38;5;24             # block device driver
-CHR                   38;5;24;1           # character device driver
-CAPABILITY            38;5;17             # file with capability
-NORM                  00                  # normal files
-EXEC                  04;03               # this is for files with execute permission
-FIFO                  38;5;126            # named pipe
-DOOR                  38;5;127            # solaris door
-LINK                  38;5;05             # symbolic link
-ORPHAN                40;31;01            # symbolic link to nonexistent file
-MULTIHARDLINK         48;5;233;38;5;7;1;3 # regular file with more than one link
-OTHER_WRITABLE        48;5;233;38;5;7;1;3 # dir that is other-writable o+w and not sticky
-SETGID                38;5;37;1           # file that is setgid: g+s
-SETUID                38;5;37             # file that is setgid: u+s
-STICKY                38;5;86;48;5;234    # dir with the sticky bit set +t and not other-writable
-STICKY_OTHER_WRITABLE 38;5;86;48;5;234;1  # dir that is sticky and other-writable
+NORMAL                00                     # No color code at all
+FILE                  00                     # Regular file: use no color at all
+RESET                 00                     # Reset to "normal" color
+DIR                   01;38;5;04             # Directory
+SOCK                  01;38;5;075            # Socket
+BLK                   38;5;24                # Block device driver
+CHR                   38;5;24;1              # Character device driver
+CAPABILITY            38;5;17                # File with capability
+NORM                  00                     # Normal files
+EXEC                  04;03                  # This is for files with execute permission
+FIFO                  38;5;126               # Named pipe
+DOOR                  38;5;127               # Solaris door
+LINK                  03;38;5;05             # Symbolic link
+ORPHAN                01;03;38;5;196;48;5;52 # Symbolic link to nonexistent file
+MULTIHARDLINK         48;5;233;38;5;7;1;3    # Regular file with more than one link
+OTHER_WRITABLE        48;5;233;38;5;7;1;3    # Dir that is other-writable o+w and not sticky
+SETGID                38;5;37;1              # File that is setgid: g+s
+SETUID                38;5;37                # File that is setgid: u+s
+STICKY                38;5;86;48;5;234       # Dir with the sticky bit set +t and not other-writable
+STICKY_OTHER_WRITABLE 38;5;86;48;5;234;1     # Dir that is sticky and other-writable
 
 .bin              00;38;5;249
 .btm              00;38;5;111
@@ -388,38 +389,38 @@ zshrc             01;04;38;5;29
 .sha1             00;38;5;69
 .st5              00;38;5;69
 
-# Audio formats (orange)
-.aac              00;38;5;62
-.aiff             01;38;5;62
-.alac             01;38;5;62
-.ape              01;38;5;62
-.au               00;38;5;62
-.axa              00;38;5;62
-.dff              01;38;5;62
-.dsf              01;38;5;62
-.flac             01;38;5;62
-.m4a              00;38;5;62
-.m4b              00;38;5;62
-.m4r              00;38;5;62
-.mid              00;38;5;62
-.midi             00;38;5;62
-.mka              00;38;5;62
-.mp2              00;38;5;62
-.mp3              00;38;5;62
-.mpc              00;38;5;62
-.oga              00;38;5;62
-.ogg              00;38;5;62
-.ra               00;38;5;62
-.spx              00;38;5;62
-.wav              01;38;5;62
-.wma              00;38;5;62
+# Audio formats
+.aac              03;38;5;37
+.aiff             01;03;38;5;37
+.alac             01;03;38;5;37
+.ape              01;03;38;5;37
+.au               03;38;5;37
+.axa              03;38;5;37
+.dff              01;03;38;5;37
+.dsf              01;03;38;5;37
+.flac             01;03;38;5;37
+.m4a              03;38;5;37
+.m4b              03;38;5;37
+.m4r              03;38;5;37
+.mid              03;38;5;37
+.midi             03;38;5;37
+.mka              03;38;5;37
+.mp2              03;38;5;37
+.mp3              03;38;5;37
+.mpc              03;38;5;37
+.oga              03;38;5;37
+.ogg              03;38;5;37
+.ra               03;38;5;37
+.spx              03;38;5;37
+.wav              03;38;5;37
+.wma              03;38;5;37
 
 # sheets
-.cue              00;38;5;28
-.m3u              00;38;5;28
-.m3u8             00;38;5;28
-.pls              00;38;5;28
-.xspf             00;38;5;28
+.cue              04;03;38;5;28
+.m3u              04;03;38;5;28
+.m3u8             04;03;38;5;28
+.pls              04;03;38;5;28
+.xspf             04;03;38;5;28
 
 # another audio formats
 .dat              00;38;5;5
@@ -435,37 +436,37 @@ zshrc             01;04;38;5;29
 .wvc              00;38;5;5
 
 # Video formats (as audio + bold)
-.asf              01;38;5;12
-.avi              01;38;5;12
-.AVI              01;38;5;12
-.divx             01;38;5;12
-.flc              01;38;5;12
-.fli              01;38;5;12
-.flv              01;38;5;12
-.gl               01;38;5;12
-.m2ts             01;38;5;12
-.m2v              01;38;5;12
-.m4v              01;38;5;12
-.mkv              01;38;5;12
-.mov              01;38;5;12
-.MOV              01;38;5;12
-.mp4              01;38;5;12
-.mp4v             01;38;5;12
-.mpeg             01;38;5;12
-.mjpeg            01;38;5;12
-.mpg              01;38;5;12
-.nuv              01;38;5;12
-.ogm              01;38;5;12
-.ogv              01;38;5;12
-.qt               01;38;5;12
-.rm               01;38;5;12
-.rmvb             01;38;5;12
-.sample           01;38;5;12
-.ts               00;38;5;12
-.vob              01;38;5;12
-.VOB              01;38;5;12
-.webm             01;38;5;12
-.wmv              01;38;5;12
+.asf              01;38;5;75
+.avi              01;38;5;75
+.AVI              01;38;5;75
+.divx             01;38;5;75
+.flc              01;38;5;75
+.fli              01;38;5;75
+.flv              01;38;5;75
+.gl               01;38;5;75
+.m2ts             01;38;5;75
+.m2v              01;38;5;75
+.m4v              01;38;5;75
+.mkv              01;38;5;75
+.mov              01;38;5;75
+.MOV              01;38;5;75
+.mp4              01;38;5;75
+.mp4v             01;38;5;75
+.mpeg             01;38;5;75
+.mjpeg            01;38;5;75
+.mpg              01;38;5;75
+.nuv              01;38;5;75
+.ogm              01;38;5;75
+.ogv              01;38;5;75
+.qt               01;38;5;75
+.rm               01;38;5;75
+.rmvb             01;38;5;75
+.sample           01;38;5;75
+.ts               00;38;5;75
+.vob              01;38;5;75
+.VOB              01;38;5;75
+.webm             01;38;5;75
+.wmv              01;38;5;75
 
 # http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 .anx              01;38;5;13
