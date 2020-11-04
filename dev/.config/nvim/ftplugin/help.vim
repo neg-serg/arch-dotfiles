@@ -99,8 +99,6 @@ unlet s:cpo_save
 setlocal nonu
 setlocal nolist
 setlocal signcolumn=no
-call BookmarkLastHelp()
-
 
 nnoremap <buffer> q          :wincmd c<CR>
 nnoremap <buffer> <esc><esc> :wincmd c<CR>
