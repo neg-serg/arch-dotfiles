@@ -1,8 +1,4 @@
-augroup fix_stdin
-    autocmd StdinReadPost * set buftype=nofile
-augroup end
-
-augroup modechange_settings
+augroup ModeChangeSettings
     autocmd!
     " Clear search context when entering insert mode, which implicitly stops the
     " highlighting of whatever was searched for with hlsearch on. It should also
@@ -12,15 +8,15 @@ augroup modechange_settings
     autocmd InsertLeave * setlocal nopaste
 augroup END
 
-augroup highlight_yank
+augroup HighlightYank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})
 augroup END
 
 augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter,BufEnter * setlocal cursorline
-    au BufLeave,WinLeave * setlocal nocursorline
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter,BufEnter * setlocal cursorline
+    autocmd BufLeave,WinLeave * setlocal nocursorline
 augroup END
 
 function! RestoreCursorPosition()
@@ -32,4 +28,4 @@ function! RestoreCursorPosition()
 endfunction
 autocmd BufReadPost * call RestoreCursorPosition()
 
-au FocusGained,BufEnter,FileChangedShell,WinEnter * checktime
+autocmd FocusGained,BufEnter,FileChangedShell,WinEnter * checktime
