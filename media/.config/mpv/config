@@ -1,16 +1,38 @@
 input-ipc-server=/tmp/mpvsocket
 vo-vdpau-colorkey="#000000"
 icc-profile-auto
+target-prim=auto
+gamma-auto
+vf=format=colorlevels=full:colormatrix=auto
+video-output-levels=full
 #--[Decoding]----------------------------------------------
-hwdec-codecs=all
-vd-lavc-threads=9
 cache=auto
 scale=ewa_lanczossharp
 cscale=ewa_lanczossharp
-video-sync=display-resample
-interpolation
+sigmoid-upscaling=true
+dscale=mitchell
+dither-depth=auto
+correct-downscaling
+linear-downscaling=yes
+hwdec-codecs=all
+hwdec=cuda
+vd-lavc-threads=32
+opengl-pbo
+opengl-swapinterval=0
+vo=opengl
+vulkan-swap-mode=immediate
+osd-msg1="FPS: ${estimated-display-fps}"
+#--[ Time scaling ]----------------------------------------
+interpolation=yes
 tscale=oversample
-vo=gpu
+# tscale=box
+# tscale-window=quadric
+# tscale-clamp=0.0
+# tscale-radius=1.025
+#--[Antiringing]-------------------------------------------
+scale-antiring=0.7 # luma upscale deringing
+dscale-antiring=0.7 # luma downscale deringing
+cscale-antiring=0.7 # chroma upscale deringing
 #--[Volume]------------------------------------------------
 volume=100
 volume-max=100
@@ -46,12 +68,43 @@ ytdl-format=bestvideo+bestaudio/best
 #--[ETC]---------------------------------------------------
 screenshot-template="~/dw/scr-%F_%P"
 quiet
+
 [extension.flac]
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
+
 [extension.mp3]
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
 
-[eye-cancer]
-sharpen=5
+[4k60] # 4K @ 60fps (3840x2160 UHDTV)
+profile-desc=cond:((p["video-params/w"]>1920 and p["video-params/h"]>1080) and p["estimated-vf-fps"]>=31)
+deband=no # turn off debanding because presume wide color gamut
+interpolation=no # turn off interpolation because already 60fps
+
+[4k30] # 4K @ 30fps (3840x2160 UHDTV)
+profile-desc=cond:((p["video-params/w"]>1920 and p["video-params/h"]>1080) and p["estimated-vf-fps"]<31)
+deband=no # turn off debanding because presume wide color gamut
+
+[full-hd60] # 1920x1080 @ 60fps (progressive ATSC)
+profile-desc=cond:((p["video-params/w"]==1920 and p["video-params/h"]==1080) and not p["video-frame-info/interlaced"] and p["estimated-vf-fps"]>=31)
+interpolation=no # turn off interpolation because already 60fps
+
+[full-hd30] # 1920x1080 @ 30fps (progressive Blu-ray)
+profile-desc=cond:((p["video-params/w"]==1920 and p["video-params/h"]==1080) and not p["video-frame-info/interlaced"] and p["estimated-vf-fps"]<31)
+
+[full-hd-interlaced] # 1920x1080i @ 30fps (HDTV, interlaced Blu-rays)
+profile-desc=cond:((p["video-params/w"]==1920 and p["video-params/h"]==1080) and p["video-frame-info/interlaced"])
+vf=bwdif # apply FFMPEG's bwdif deinterlacer
+
+[hd] # 1280x720 @ 60 fps (HDTV, Blu-ray - progressive)
+profile-desc=cond:(p["video-params/w"]==1280 and p["video-params/h"] == 720)
+interpolation=no # turn off interpolation because already 60fps
+
+[sdtv-pal] # 352x576, 480x576, 544x576, 720x576 @ 30fps (PAL broadcast or DVD - interlaced)
+profile-desc=cond:((p["video-params/w"]==352 or p["video-params/w"]==480 or p["video-params/w"]==544 or p["video-params/w"]==720) and p["video-params/h"] == 576)
+vf=bwdif # apply FFMPEG's bwdif deinterlacer
+
+[sdtv-ntsc] # 640x480, 704x480, 720x480 @ 30fps (NTSC DVD - interlaced)
+profile-desc=cond:((p["video-params/w"]==640 or p["video-params/w"]==704 or p["video-params/w"]==720) and p["video-params/h"]==480)
+vf=bwdif # apply FFMPEG's bwdif deinterlacer
