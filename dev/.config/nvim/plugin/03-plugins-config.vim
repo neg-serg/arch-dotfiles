@@ -71,15 +71,19 @@ augroup fzf
         \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
 augroup end
 
-function! Dir(dir)
+function! DirFZF(dir)
     let tf = tempname()
+    let l:fd_cmd = 'fd -p -t d -H'
+    let l:src = l:fd_cmd
+    let l:dots = shellescape(tf)
+    let l:opts = ['--filepath-word', '--bind', printf('ctrl-w:reload:base="$(readlink -f $(cat %s)/..)"; echo "$base" > %s;' . l:fd_cmd . ' . "$base"', l:dots, l:dots)]
     call writefile(['.'], tf)
-    call fzf#vim#files(a:dir, {'source': 'fd -p -t d', 'options': ['--bind', printf('ctrl-w:reload:base="$(cat %s)"/..; echo "$base" > %s; fd -p -t d . "$base"', shellescape(tf), shellescape(tf))]})
+    call fzf#vim#files(a:dir, {'source': l:src, 'options': l:opts})
 endfunction
 
 command! -bang -nargs=? -complete=dir Files
 
-command! -nargs=* Dir call Dir('.')
+command! -nargs=* Dir call DirFZF('.')
 nnoremap <silent> <C-e> :Dir<CR>
 " Insert mode completion
 imap <C-x><C-f> <Plug>(fzf-complete-path)
