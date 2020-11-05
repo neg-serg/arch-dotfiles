@@ -2,50 +2,47 @@
     font = Iosevka Medium 25
     format = "<span size='large' font_desc='Iosevka Medium 25' foreground='#2e72ac'>%s</span>\n%b"
     markup = full
-    plain_text = false
-    sort = true
-    alignment = bottom
-    vertical_alignment = bottom
+    alignment = left
+    vertical_alignment = center
     show_age_threshold = -1
-    ignore_newline = false
-    geometry = "1220x11-20-52"
-    shrink = false
+    geometry = "1220x11-0-52"
     transparency = 14
     idle_threshold = 0
     corner_radius = 4
     monitor = 0
     follow = mouse
-    sticky_history = true
-    show_indicators = false
-    indicate_hidden = true
-    line_height = 0
+    line_height = 4
     separator_height = 4
-    padding = 4
-    horizontal_padding = 8
-    word_wrap = false
+    padding = 0
+    horizontal_padding = 20
     separator_color = frame
-    startup_notification = false
     dmenu = /usr/bin/rofi -p dunst:
     browser = /usr/bin/firefox -new-tab
     icon_position = left
     icon_path = ~/.local/share/icons/SpaceKCursors
-    max_icon_size = 500
-    max_icon_size = 64
-    stack_duplicates = true
-    hide_duplicate_count = true
+    max_icon_size = 480
+    min_icon_size = 480
     frame_width = 4
     frame_color = "#0C0C0D"
     width = 0
+    notification_height = 400
     ellipsize = end
     verbosity = mesg
     transparency = 10
+    startup_notification = false
+    word_wrap = false
+    plain_text = false
+    sort = true
+    ignore_newline = false
+    shrink = false
+    sticky_history = true
+    show_indicators = false
+    indicate_hidden = true
+    stack_duplicates = true
+    hide_duplicate_count = true
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
-
-[shortcuts]
-    history = mod4+shift+9
-    close_all = mod4+space
 
 [urgency_low]
     background = "#010204"
@@ -55,7 +52,6 @@
 [urgency_normal]
     background = "#000000"
     foreground = "#BFCAD0"
-    timeout = 4
 
 [urgency_critical]
     background = "#010204"
@@ -69,10 +65,12 @@
     urgency = normal
 
 [mpd]
+    alignment = left
     appname = mpd-notification
     format = ""
     script = "~/bin/scripts/mpd_notification"
+    vertical_alignment = center
+    timeout = 10
     urgency = normal
-    timeout = 20
 
 # vim: ft=cfg
