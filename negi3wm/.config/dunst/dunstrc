@@ -29,8 +29,8 @@
     browser = /usr/bin/firefox -new-tab
     icon_position = left
     icon_path = ~/.local/share/icons/SpaceKCursors
-    max_icon_size = 64
     max_icon_size = 500
+    max_icon_size = 64
     stack_duplicates = true
     hide_duplicate_count = true
     frame_width = 4
