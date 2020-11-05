@@ -10,12 +10,12 @@ mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.co
 magic_pie='8143'
 col1="<span weight='Medium' color='#395573'>"
 end="</span>"
-bold="<span weight='bold' color='#88aabb'>"
+bold="<span weight='bold' color='#4FB3FF'>"
 max_len=35
 fancy_table=('⚌' '♫' '⟫' '|')
 
 wf(){ print "${col1}⟬${end}${bold}$1${end}${col1}⟭${end} " }
-nr(){ print "<span weight='Medium' color='#88aabb'>$1${end}" }
+nr(){ print "<span weight='Medium' color='#b8c5d9'>$1${end}" }
 delimiter(){ repeat ${len} print -n "◇" }
 cmp_img(){ ${HOME}/bin/scripts/compare_images.py "${1}" "${2}" }
 
@@ -71,9 +71,9 @@ notify(){
     local output
     for i in ${bodyarr[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
-        
-    output="${output}$(delimiter)"
-    summary="$(delimiter)"
+
+    output="$(delimiter)\n${output}$(delimiter)\n​"
+    summary=""
     dunstify -p -a "mpd_notification" -h "string:fgcolor:#17272D" \
         -u "${urgency}" \
         -i "${image}" "${summary}" "${output}" > /tmp/notify_id \
