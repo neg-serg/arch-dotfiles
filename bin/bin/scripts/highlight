@@ -1,2 +1,0 @@
-#!/bin/dash
-highlight -O ansi --force "$@"
