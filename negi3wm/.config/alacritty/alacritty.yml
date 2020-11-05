@@ -228,7 +228,7 @@ bell:
 key_bindings:
   - {key: V, mods: Control|Shift, action: Paste}
   - {key: C, mods: Control|Shift, action: Copy}
-  - {key: Insert, mods: Shift, action: PasteSelection}
+  - {key: Insert, action: PasteSelection}
   - {key: Key1, mods: Control, chars: "\x1b[1;2P"}
   - {key: Key2, mods: Control, chars: "\x1b[1;2Q"}
   - {key: Key3, mods: Control, chars: "\x1b[1;2R"}
