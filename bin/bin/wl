@@ -82,7 +82,7 @@ class WallpaperManager():
     def execute_hsetroot(self):
         """ Execute hsetroot to set wallpape """
         img_to_set = random.choice(self.images)
-        subprocess.Popen(['hsetroot', '-full', img_to_set])
+        subprocess.Popen(['hsetroot', '-cover', img_to_set])
         return img_to_set
 
     def print_wall_history(self, history):
