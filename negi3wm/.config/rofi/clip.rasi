@@ -1,11 +1,2 @@
-* {
-    font: "Iosevka Term Bold 22";
-}
+@theme "/home/neg/.config/rofi/vertical_neg.rasi"
 
-#window {
-    width: 40%;
-    x-offset: 0%;
-    y-offset: -3%;
-    location: south west;
-    anchor: south west;
-}
