@@ -16,9 +16,15 @@
 }
 
 #window {
-   background-color: @blackdarkest;
-   anchor:           south;
-   location:         south;
+    background-color: @blackdarkest;
+    location:         south;
+    children:   [ horibox ];
+    width:      96%;
+    padding:    0.1em;
+    location: south east;
+    anchor: south east;
+    y-offset: -2.5%;
+    x-offset: -2%;
 }
 
 #message {
@@ -59,16 +65,6 @@ entry {
 horibox {
     children:   [ prompt, entry, listview ];
     orientation: horizontal;
-}
-
-window {
-    width:      96%;
-    padding:    0.1em;
-    children:   [ horibox ];
-    location: south east;
-    anchor: south east;
-    y-offset: -2.5%;
-    x-offset: -2%;
 }
 
 #element.normal.normal {
