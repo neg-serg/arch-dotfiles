@@ -20,8 +20,8 @@
     browser = /usr/bin/firefox -new-tab
     icon_position = left
     icon_path = ~/.local/share/icons/SpaceKCursors
-    max_icon_size = 480
-    min_icon_size = 480
+    min_icon_size = 64
+    max_icon_size = 380
     frame_width = 4
     frame_color = "#0C0C0D"
     width = 0
