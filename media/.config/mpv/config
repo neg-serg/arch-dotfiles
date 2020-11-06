@@ -9,7 +9,7 @@ video-output-levels=full
 cache=auto
 scale=ewa_lanczossharp
 cscale=ewa_lanczossharp
-sigmoid-upscaling=true
+sigmoid-upscaling=yes
 dscale=mitchell
 dither-depth=auto
 correct-downscaling
@@ -19,16 +19,16 @@ hwdec=cuda
 vd-lavc-threads=32
 opengl-pbo
 opengl-swapinterval=0
-vo=opengl
+vo=gpu
 vulkan-swap-mode=immediate
-osd-msg1="FPS: ${estimated-display-fps}"
-#--[ Time scaling ]----------------------------------------
-interpolation=yes
-tscale=oversample
+# --[ Time scaling ]----------------------------------------
+# interpolation=yes
+# tscale=oversample
 # tscale=box
 # tscale-window=quadric
 # tscale-clamp=0.0
 # tscale-radius=1.025
+# osd-msg1="FPS: ${estimated-display-fps}
 #--[Antiringing]-------------------------------------------
 scale-antiring=0.7 # luma upscale deringing
 dscale-antiring=0.7 # luma downscale deringing
