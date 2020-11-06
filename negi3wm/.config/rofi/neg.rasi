@@ -6,12 +6,12 @@
    blackwidget:      #00000044;
    mainbg:           #02040444;
 
-   fgwhite:          #849BB8;
+   fgwhite:          #b8c5d9;
    blackdarkest:     #04090999;
-   selectcolor:      #0a3749;
+   selectcolor:      #002d59;
    darkgray:         #315C70;
 
-   font: "Iosevka Term Bold 28";
+   font: "Iosevka Medium 24";
    background-color: @blackdarkest;
 }
 
@@ -42,11 +42,36 @@
 }
 
 #element {
-   padding: 1px 1px;
+   padding: 0 4mm;
+}
+
+listview {
+    layout:     horizontal;
+    spacing:    5px;
+    lines:      100;
+}
+
+entry {
+    expand:     false;
+    width:      8em;
+}
+
+horibox {
+    children:   [ prompt, entry, listview ];
+    orientation: horizontal;
+}
+
+window {
+    width:      96%;
+    padding:    0.1em;
+    children:   [ horibox ];
+    location: south east;
+    anchor: south east;
+    y-offset: -2.5%;
+    x-offset: -2%;
 }
 
 #element.normal.normal {
-   padding:          0px 0px;
    background-color: @mainbg;
    text-color:       @fgwhite;
 }
@@ -117,19 +142,19 @@
 
 #prompt {
    spacing:           0px;
-   padding:           4px 4px;
+   padding:           8px 8px;
    background-color:  @blackwidget;
    text-color:        @maincolor;
 }
 
 #entry {
-   padding:           4px 4px;
+   padding:           8px 8px;
    background-color:  @blackwidget;
    text-color:        @fgwhite;
 }
 
 #case-indicator {
-   padding:          4px 4px;
+   padding:          8px 8px;
    text-color:       @maincolor;
    background-color: @blackwidget;
 }
