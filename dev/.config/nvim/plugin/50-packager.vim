@@ -61,6 +61,7 @@ function! PackInit() abort
     call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
     call packager#add('rakr/vim-one') " add vim-one colorscheme
     call packager#add('yuttie/hydrangea-vim') " quite nice colorscheme
+    call packager#add('protesilaos/prot16-vim') " yet another colorscheme
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Appearance                                                                        │
     " └───────────────────────────────────────────────────────────────────────────────────┘
