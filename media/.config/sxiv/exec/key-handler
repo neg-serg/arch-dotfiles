@@ -1,21 +1,22 @@
 #!/bin/dash
 . $ENV
 
-cache="/tmp"
+cache="$HOME/tmp"
 file1="$cache/sxiv1.$$"
 file2="$cache/sxiv2.$$"
-tmp_imgur="$cache/sxiv_imgur.$$"
 tmp_wall="$cache/wall_sxiv.$$"
-z_data_file="$XDG_DATA_HOME/sxiv_do.data"
-last_action="$XDG_DATA_HOME/sxiv_do.last"
-trash_dir="$HOME/trash/1st-level/pic"
+
+z="$XDG_DATA_HOME/sxiv/data"
+last="$XDG_DATA_HOME/sxiv/last"
+trash="$HOME/trash/1st-level/pic"
+
 rofi_cmd="rofi -dmenu -sort -matching fuzzy -no-plugins -no-only-match -theme sxiv -custom"
 
 resolve_file() {
-    if  [ ! -L "$1" ] && [ -f "$1" ]; then
-        echo $(readlink -f "$1")
+    if [ ! -L "$1" ] && [ -f "$1" ]; then
+        echo "$(readlink -f $1)"
     elif [ -L "$1" ]; then
-        print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
+        print "$(cd $(dirname $1) && pwd -P)/$(basename $1)"
     else
         echo "$1"
     fi
@@ -24,7 +25,7 @@ resolve_file() {
 rotate() {
     degree="$1"
     while read file; do
-        mogrify  -rotate "$degree" "$file"
+        mogrify -rotate "$degree" "$file"
     done
 }
 
@@ -32,20 +33,20 @@ proc() {
     cmd="$1";
     tee "$file1"
     if [ -z "$dest" ] ; then
-        dest=$(_FASD_DATA="$XDG_DATA_HOME/sxiv_do.data" \
-               fasd -tlR | sed 's:^'$HOME':~:' \
+        dest=$(_FASD_DATA="$z" fasd -tlR \
+            | sed 's:^'$HOME':~:' \
             | eval $rofi_cmd -p "\"⟬$cmd⟭ ❯> \"" \
             | sed 's:^~:'$HOME':')
     fi
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ]; then
         while read line; do
-            eval $cmd \"$(resolve_file $line)\" $dest
+            eval $cmd "$(resolve_file $line)" $dest
         done < "$file1"
-        _FASD_DATA="$z_data_file" fasd -RA "$dest"
-        printf "%s\n" "$cmd "$dest"" > "$last_action"
+        _FASD_DATA="$z" fasd -RA "$dest"
+        printf "%s\n" "$cmd "$dest"" > "$last"
     else
-        _FASD_DATA="$z_data_file" fasd -D "$dest"
+        _FASD_DATA="$z" fasd -D "$dest"
     fi
     trap finish EXIT
 }
@@ -54,22 +55,22 @@ repeat_action() {
     tee "$file2"
     fp=$(cat "$file2")
     fname="$(resolve_file $fp)"
-    last_action="$(cat "$last_action" | xargs)"
-    last_action_cmd=$(echo $last_action | awk '{print $1}')
-    last_action_dest=$(echo $last_action | awk '{print $2}')
-    if [ $last_action_cmd = 'mv' ] || [ $last_action_cmd = 'cp' ]; then
-        eval "$last_action_cmd $fname $last_action_dest"
+    last="$(cat "$last" | xargs)"
+    cmd=$(echo $last | awk '{print $1}')
+    dest=$(echo $last | awk '{print $2}')
+    if [ $cmd = 'mv' ] || [ $cmd = 'cp' ]; then
+        eval "$cmd $fname $dest"
     fi
     trap finish EXIT
 }
 
 delete() {
     tee "$file1"
-    [ -z "$trash_dir" ] || [ ! -d "$trash_dir" ] && exit 0
+    [ -z "$trash" ] || [ ! -d "$trash" ] && exit 0
     while read line; do
-        eval $(echo mv $(echo \"$(resolve_file $line)\") $trash_dir)
+        eval $(echo mv $(echo \"$(resolve_file $line)\") $trash)
     done < "$file1"
-    printf "%s\n" "mv "$trash_dir"" > "$last_action"
+    printf "%s\n" "mv "$trash"" > "$last"
     trap finish EXIT
 }
 
@@ -79,16 +80,6 @@ copy_name() {
     fname="$(resolve_file $fp)"
     echo "$fname" | xsel -bi
     ~/bin/scripts/pic_notify "$fname"
-    trap finish EXIT
-}
-
-imgur_it() {
-    tee "$tmp_imgur"
-    while read f; do
-        fp="$(resolve_file $f)"
-        ~/bin/img "$fp" | tee -a ~/tmp/imgur_output_ | xsel -i
-        xsel -o | awk '/original/{print $2}' | xsel -i
-    done < "$tmp_imgur"
     trap finish EXIT
 }
 
@@ -118,23 +109,22 @@ wall() {
 }
 
 finish() {
-    rm -f "$file1" "$file2" "$tmp_imgur"
+    rm -f "$file1" "$file2"
 }
 
 case "$1" in
     "C-comma") rotate 270 ;;
+    "C-less") rotate -90 ;;
     "C-period") rotate 90 ;;
     "C-slash") rotate 180 ;;
-    "C-less") rotate -90 ;;
-    "C-d") delete ;;
+    "c") copy_name ;;
+    "r") repeat_action ;;
     "v") proc mv ;;
     "C-c") proc cp ;;
-    "r") repeat_action ;;
-    "c") copy_name ;;
-    "C-q") wall "center" ;;
-    "C-w") wall "fill" ;;
+    "C-d") delete ;;
     "C-e") wall "full" ;;
-    "C-t") wall "tile" ;;
     "C-m") wall "mono" ;;
-    "C-i") imgur_it ;;
+    "C-q") wall "center" ;;
+    "C-t") wall "tile" ;;
+    "C-w") wall "fill" ;;
 esac
