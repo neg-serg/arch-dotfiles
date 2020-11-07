@@ -1,156 +1,157 @@
 * {
-   maincolor:        #005F87;
-   highlight:        bold underline #005FAF;
-   urgentcolor:      #AB1E87;
+  maincolor: #005f87;
+  highlight: bold underline #005faf;
+  urgentcolor: #ab1e87;
 
-   blackwidget:      #00000044;
-   mainbg:           #02040444;
+  blackwidget: #00000044;
+  mainbg: #02040444;
 
-   fgwhite:          #b8c5d9;
-   blackdarkest:     #04090999;
-   selectcolor:      #002d59;
-   darkgray:         #315C70;
+  fgwhite: #b8c5d9;
+  fggrey: #828b99;
+  blackdarkest: #04090999;
+  selectcolor: #002d59;
+  darkgray: #315c70;
+  ultra: #005faf55;
 
-   font: "Iosevka Medium 24";
-   background-color: @blackdarkest;
+  font: "Iosevka Medium 24";
+  background-color: @blackdarkest;
 }
 
 #window {
-    background-color: @blackdarkest;
-    location:         south;
-    children:   [ horibox ];
-    width:      96%;
-    padding:    0.1em;
-    location: south east;
-    anchor: south east;
-    y-offset: -2.5%;
-    x-offset: -2%;
+  background-color: @blackdarkest;
+  location: south;
+  children: [ horibox ];
+  width: 96%;
+  padding: 0.1em;
+  location: south east;
+  anchor: south east;
+  y-offset: -2.5%;
+  x-offset: -2%;
 }
 
 #message {
-   padding: 6px 6px;
-   background-color:@blackwidget;
+  padding: 6px 6px;
+  background-color: @blackwidget;
 }
 
 #textbox {
-   text-color:       @darkgray;
-   background-color: @blackwidget;
+  text-color: @darkgray;
+  background-color: @blackwidget;
 }
 
 #listview {
-   fixed-height: false;
-   dynamic:      true;
-   scrollbar:    true;
-   spacing:      2px;
-   padding:      6px 6px 6px 6px;
-   margin:       0px 0px 0px 0px;
-   background:   @blackdarkest;
+  fixed-height: false;
+  scrollbar: false;
+  dynamic: true;
+  padding: 6px 6px 6px 6px;
+  margin: 0px 0px 0px 0px;
+  background: @blackdarkest;
 }
 
 #element {
-   padding: 0 4mm;
-}
-
-listview {
-    layout:     horizontal;
-    spacing:    5px;
-    lines:      100;
-}
-
-entry {
-    expand:     false;
-    width:      8em;
-}
-
-horibox {
-    children:   [ prompt, entry, listview ];
-    orientation: horizontal;
+  padding: 0 4mm;
+  border-color: @ultra;
+  border-radius: 8px 8px 8px 8px;
+  border: 2px 0px 2px 0px;
 }
 
 #element.normal.normal {
-   background-color: @mainbg;
-   text-color:       @fgwhite;
-}
-
-#element.normal.urgent {
-   background-color: @mainbg;
-   text-color:       @urgentcolor;
-}
-
-#element.normal.active {
-   background-color: @mainbg;
-   text-color:       @maincolor;
-}
-
-#element.selected.normal {
-    background-color: @selectcolor;
-    text-color:       @fgwhite;
-}
-
-#element.selected.urgent {
-    background-color: @urgentcolor;
-    text-color:       @blackdarkest;
-}
-
-#element.selected.active {
-    background-color: @selectcolor;
-    text-color:       @maincolor;
+  background-color: @mainbg;
+  text-color: @fggrey;
 }
 
 #element.alternate.normal {
-    background-color: @mainbg;
-    text-color:       @fgwhite;
+  background-color: @mainbg;
+  text-color: @fggrey;
+}
+
+#element.normal.urgent {
+  background-color: @mainbg;
+  text-color: @urgentcolor;
+}
+
+#element.normal.active {
+  background-color: @mainbg;
+  text-color: @maincolor;
+}
+
+#element.selected.normal {
+  background-color: @selectcolor;
+  text-color: @fgwhite;
+}
+
+#element.selected.urgent {
+  background-color: @urgentcolor;
+  text-color: @blackdarkest;
+}
+
+#element.selected.active {
+  background-color: @selectcolor;
+  text-color: @maincolor;
 }
 
 #element.alternate.urgent {
-    background-color: @mainbg;
-    text-color:       @urgentcolor;
+  background-color: @mainbg;
+  text-color: @urgentcolor;
 }
 
 #element.alternate.active {
-    background-color: @mainbg;
-    text-color:       @maincolor;
+  background-color: @mainbg;
+  text-color: @maincolor;
+}
+
+listview {
+  layout: horizontal;
+  spacing: 5px;
+  lines: 100;
+}
+
+entry {
+  expand: false;
+  width: 8em;
+  padding: 8px 8px;
+  background-color: @blackwidget;
+  text-color: @fgwhite;
+}
+
+horibox {
+  children: [ prompt, entry, listview ];
+  orientation: horizontal;
 }
 
 #scrollbar {
-   background-color:  @blackwidget;
-   handle-color:      @darkgray;
-   handle-width:      2px;
+  background-color: @blackwidget;
+  handle-color: @darkgray;
+  handle-width: 2px;
 }
 
 #sidebar {
-   background-color:  @blackwidget;
+  background-color: @blackwidget;
 }
 
 #button {
-   background-color:  @blackwidget;
-   text-color:        @darkgray;
+  background-color: @blackwidget;
+  text-color: @darkgray;
 }
 
 #button.selected {
-    text-color:        @maincolor;
+  text-color: @maincolor;
 }
 
 #inputbar {
-   background-color:  @blackdarkest;
-   spacing:           0px;
+  background-color: @blackdarkest;
+  spacing: 0px;
 }
 
 #prompt {
-   spacing:           0px;
-   padding:           8px 8px;
-   background-color:  @blackwidget;
-   text-color:        @maincolor;
-}
-
-#entry {
-   padding:           8px 8px;
-   background-color:  @blackwidget;
-   text-color:        @fgwhite;
+  spacing: 0px;
+  padding: 8px 8px;
+  background-color: @blackwidget;
+  text-color: @maincolor;
 }
 
 #case-indicator {
-   padding:          8px 8px;
-   text-color:       @maincolor;
-   background-color: @blackwidget;
+  padding: 8px 8px;
+  text-color: @maincolor;
+  background-color: @blackwidget;
 }
