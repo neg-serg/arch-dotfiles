@@ -13,6 +13,7 @@ window:
   dynamic_padding: false
   dynamic_title: false
   gtk_theme_variant: dark
+  startup_mode: Maximized
 
 background_opacity: 0.88
 
@@ -258,3 +259,5 @@ selection:
 
 shell:
   program: /usr/bin/tmux
+  args:
+    - -u # force UTF-8 in tmux
