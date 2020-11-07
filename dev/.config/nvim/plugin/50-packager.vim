@@ -49,6 +49,7 @@ function! PackInit() abort
     call packager#add('yuki-ycino/fzf-preview.vim', {'do': ':UpdateRemotePlugins', 'branch': 'release'}) " integration fzf preview with coc
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('romgrk/searchReplace.vim') " better search and replace
+    call packager#add('inkarkat/vim-PatternsOnText') " fancy search and replace
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ Colorschemes                                                                      │
     " └───────────────────────────────────────────────────────────────────────────────────┘
