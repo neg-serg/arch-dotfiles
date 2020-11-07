@@ -9,8 +9,8 @@ image="/tmp/.mpd-notification-artwork.png"
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
 magic_pie='8143'
 col1="<span weight='Medium' color='#395573'>"
-end="</span>"
 bold="<span weight='bold' color='#4FB3FF'>"
+end="</span>"
 max_len=35
 fancy_table=('⚌' '♫' '⟫' '|')
 
@@ -86,7 +86,7 @@ show_notify(){
     if [[ ! -f "${cover_lock}" ]]; then
         notify
     elif [[ -s "${cover_lock}" ]]; then
-        if [[ "$(< "${cover_lock}")" !=  "$(sed '1d' <<< $(echo -n "${body}"))" ]]; then
+        if [[ "$(< "${cover_lock}")" != "$(sed '1d' <<< $(echo -n "${body}"))" ]]; then
             notify
         fi
     fi
