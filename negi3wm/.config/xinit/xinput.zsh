@@ -6,4 +6,4 @@ setxkbmap \
     -option keypad:pointerkeys \
     -option ctrl:nocaps \
     -variant altgr-intl &
-unclutter --fork --timeout 1
+unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
