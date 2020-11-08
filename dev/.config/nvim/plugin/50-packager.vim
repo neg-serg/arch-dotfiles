@@ -7,7 +7,7 @@ function! PackInit() abort
     packadd vim-packager
     call packager#init({'jobs': 0})
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ Main                                                                              │
+    " │ █▓▒░ Main                                                                         │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
     call packager#add('neoclide/coc.nvim', { 'do': function('InstallCoc') }) " lsp autocomplete
@@ -24,7 +24,7 @@ function! PackInit() abort
     call packager#add('bounceme/remote-viewer') " better ssh support
     call packager#add('romgrk/winteract.vim') " interactive window resize
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ Edit                                                                              │
+    " │ █▓▒░ Edit                                                                         │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
     call packager#add('andymass/vim-matchup') " generic matcher
@@ -41,7 +41,7 @@ function! PackInit() abort
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
     call packager#add('wellle/targets.vim') " better text objects
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ Search                                                                            │
+    " │ █▓▒░ Search                                                                       │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('junegunn/fzf', { 'do': './install --all', 'merged': 0 })
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
@@ -51,7 +51,7 @@ function! PackInit() abort
     call packager#add('romgrk/searchReplace.vim') " better search and replace
     call packager#add('inkarkat/vim-PatternsOnText') " fancy search and replace
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ Colorschemes                                                                      │
+    " │ █▓▒░ Colorschemes                                                                 │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('neg-serg/neg') " my colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
@@ -63,7 +63,7 @@ function! PackInit() abort
     call packager#add('rakr/vim-one') " add vim-one colorscheme
     call packager#add('yuttie/hydrangea-vim') " quite nice colorscheme
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ Appearance                                                                        │
+    " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('arzg/vim-sh') " better sh / zsh highlight
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
@@ -75,7 +75,7 @@ function! PackInit() abort
     call packager#add('justinmk/vim-syntax-extra') " better syntax for some langs
     call packager#add('cespare/vim-toml') " better toml syntax
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ Dev                                                                               │
+    " │ █▓▒░ Dev                                                                          │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
@@ -85,7 +85,7 @@ function! PackInit() abort
     call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ DCVS                                                                              │
+    " │ █▓▒░ DCVS                                                                         │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('jreybert/vimagit') " interactive work with git
     call packager#add('rhysd/committia.vim') " better commit message
@@ -93,7 +93,7 @@ function! PackInit() abort
     call packager#add('rhysd/git-messenger.vim') " shows git message
     call packager#add('lambdalisue/gina.vim') " git stuff
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ Misc                                                                              │
+    " │ █▓▒░ Misc                                                                         │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('jamessan/vim-gnupg') " transparent work with gpg-encrypted files
     call packager#add('ntpeters/vim-better-whitespace') " delete whitespaces with ease

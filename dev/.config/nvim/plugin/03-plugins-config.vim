@@ -1,5 +1,5 @@
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  neoclide/coc.nvim                                                                │
+" │ █▓▒░ neoclide/coc.nvim                                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? coc#_select_confirm() :
@@ -31,7 +31,7 @@ nmap <silent> [Qleader]r <Plug>(coc-rename)
 " Reformat command
 command! -nargs=0 Format :call CocAction('format')
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  w0rp/ale                                                                         │
+" │ █▓▒░ w0rp/ale                                                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:ale_fixers = {
     \ 'javascript': ['eslint'],
@@ -48,7 +48,7 @@ let g:ale_sign_highlight_linenrs = 1
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  junegunn/fzf.vim                                                                 │
+" │ █▓▒░ junegunn/fzf.vim                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if executable('rg')
     let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
@@ -75,25 +75,25 @@ augroup end
 imap <C-x><C-f> <Plug>(fzf-complete-path)
 imap <C-x><C-l> <Plug>(fzf-complete-line)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  pbogut/fzf-mru.vim                                                               │
+" │ █▓▒░ pbogut/fzf-mru.vim                                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <leader>. :FZFMru --prompt "❯> "<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  sjbach/lusty.git                                                                 │
+" │  █▓▒░ sjbach/lusty.git                                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:LustyJugglerDefaultMappings = 0
 let LustyExplorerDefaultMappings = 0
 let g:LustyExplorerAlwaysShowDotFiles = 1
 nmap <silent> <leader>l :packadd lusty<CR>:LustyFilesystemExplorerFromHere<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  tpope/vim-dispatch.git                                                           │
+" │ █▓▒░ tpope/vim-dispatch.git                                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap MK :Make -j9
 nmap MC :Make clean<cr>
 nmap [QLeader]cc :Make -j10<cr>
 nmap [QLeader]mc :Make distclean<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  frazrepo/vim-rainbow                                                             │
+" │ █▓▒░ frazrepo/vim-rainbow                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf_defaults = {
@@ -156,11 +156,11 @@ let s:rainbow_royalblue_colors = ['#4169E1', '#3D63D4', '#3B5FCC', '#385AC2', '#
 let g:rainbow_conf_defaults['guifgs'] = s:rainbow_royalblue_colors
 let g:rainbow_conf = g:rainbow_conf_defaults
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  FooSoft/vim-argwrap                                                              │
+" │ █▓▒░ FooSoft/vim-argwrap                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <leader>a :ArgWrap<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  jiangmiao/auto-pairs                                                             │
+" │ █▓▒░ jiangmiao/auto-pairs                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:AutoPairs =  {'(':')', '[':']', '{':'}', '<':'>'}
 let g:AutoPairsFlyMode = 0
@@ -169,7 +169,7 @@ let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutJump = ''
 let g:AutoPairsShortcutBackInsert = ''
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  airblade/vim-rooter                                                              │
+" │ █▓▒░ airblade/vim-rooter                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rooter_targets = '/,*' " directories and all files (default)
 let g:rooter_cd_cmd='lcd' " change directory for the current window only
@@ -177,19 +177,19 @@ let g:rooter_cd_cmd='lcd' " change directory for the current window only
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_silent_chdir = 1
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  junegunn/vim-easy-align                                                          │
+" │ █▓▒░ junegunn/vim-easy-align                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  vimwiki/vimwiki                                                                  │
+" │ █▓▒░ vimwiki/vimwiki                                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:vimwiki_ext2syntax = {'.md': 'markdown',
     \ '.mkd': 'markdown',
     \ '.wiki': 'media'}
 let g:vimwiki_list = [{'path': '~/1st_level/'}]
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  liuchengxu/vista.vim                                                             │
+" │ █▓▒░ liuchengxu/vista.vim                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:vista_sidebar_width = 20
 let g:vista_disable_statusline = 1
@@ -234,11 +234,11 @@ let     g:vista#renderer#icons = {
 \ }
 let g:vista_default_executive = 'coc'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  rhysd/git-messenger.vim                                                          │
+" │ █▓▒░ rhysd/git-messenger.vim                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap <C-f> <Plug>(git-messenger)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  haya14busa/vim-asterisk                                                          │
+" │ █▓▒░ haya14busa/vim-asterisk                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 map *   <Plug>(asterisk-#)
 map #   <Plug>(asterisk-*)
@@ -249,17 +249,17 @@ map gz* <Plug>(asterisk-gz#)
 map z#  <Plug>(asterisk-z*)
 map gz# <Plug>(asterisk-gz*)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  lambdalisue/suda.vim                                                             │
+" │ █▓▒░ lambdalisue/suda.vim                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:suda_smart_edit = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  andymass/vim-matchup                                                             │
+" │ █▓▒░ andymass/vim-matchup                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:matchup_matchparen_enabled = 0
 let g:matchup_motion_enabled = 1
 let g:matchup_text_obj_enabled = 1
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  pearofducks/ansible-vim                                                          │
+" │ █▓▒░ pearofducks/ansible-vim                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 augroup ansible_vim_fthosts
   autocmd!
@@ -267,7 +267,7 @@ augroup ansible_vim_fthosts
   autocmd BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 augroup END
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ eugen0329/vim-esearch                                                             │
+" │ █▓▒░ eugen0329/vim-esearch                                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap <M-/><M-/> <Plug>(esearch)
 map  <M-/>      <Plug>(esearch-prefill)
@@ -292,7 +292,7 @@ hi link esearchStatistics esearchFilename
 hi link esearchFilename Label
 hi esearchMatch gui=underline,italic,bold guifg=#6C7E96 guibg=#002D59
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ romgrk/barbar.nvim                                                                │
+" │ █▓▒░ romgrk/barbar.nvim                                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <Tab> :BufferNext<CR>
 nnoremap <silent> <S-Tab> :BufferPrevious<CR>
@@ -336,7 +336,7 @@ let bufferline.letters = 'aqwert'
 let bufferline.animation = v:false
 let bufferline.maximum_padding = 1
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ romgrk/todoist.nvim                                                               │
+" │ █▓▒░ romgrk/todoist.nvim                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let todoist = {
       \ 'icons': {
@@ -347,7 +347,7 @@ let todoist = {
       \ },
       \}
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ romgrk/nvim-web-devicons                                                          │
+" │ █▓▒░ romgrk/nvim-web-devicons                                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
