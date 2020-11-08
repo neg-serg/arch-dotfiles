@@ -2,12 +2,6 @@
 Description=startx as service
 
 [Service]
-Environment="QT_QPA_PLATFORMTHEME=qt5ct"
-Environment="QT_PLUGIN_PATH=$HOME/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/"
-Environment="XDG_CURRENT_DESKTOP=KDE"
-Environment="XDG_SESSION_TYPE=x11"
-Environment="GDK_BACKEND=x11"
-Environment="DESKTOP_SESSION=kde"
 Environment="XINITRC=%h/.config/xinit/xinitrc"
 Environment="XSERVERRC=%h/.config/xinit/xserverrc"
 ExecStart=%h/bin/scripts/xinit
