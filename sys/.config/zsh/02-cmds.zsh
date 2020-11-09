@@ -7,13 +7,15 @@ local copepath=~/bin/scripts/Cope
 for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
 
 if _exists exa; then
-    alias l='exa --icons'
-    alias ll='exa --icons -L 2 -R'
+    alias la='exa --icons -a --group-directories-first'
+    alias ll='exa --icons -al --group-directories-first'
+    alias ls='exa --icons --group-directories-first'
+    alias lr='exa -s modified --icons --group-directories-first'
 else
-    alias l='ls --color=auto'
-    alias ll='l'
+    alias ls='ls --color=auto'
 fi
-alias ls='ls --color=auto'
+alias l='ls'
+
 alias mv='mv -i'
 alias mk='mkdir -p'
 alias rd='rmdir'
