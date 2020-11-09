@@ -13,6 +13,12 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
+fpath=(
+    ${HOME}/.zinit/completions
+    /usr/share/zsh/site-functions
+    /usr/share/zsh/functions/{Misc,Zle,Completion}
+    /usr/share/zsh/functions/Completion/*
+)
 zinit ice depth=1
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
