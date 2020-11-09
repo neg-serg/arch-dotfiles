@@ -14,14 +14,14 @@ zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
 zstyle ':completion:*:history-words' list false
-# activate menu                            
+# activate menu
 zstyle ':completion:*:history-words' menu yes
-# ignore duplicate entries                 
+# ignore duplicate entries
 zstyle ':completion:*:history-words' remove-all-dups yes
 zstyle ':completion:*:history-words' stop yes
-# match uppercase from lowercase           
+# match uppercase from lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# separate matches into groups          
+# separate matches into groups
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=5
@@ -73,7 +73,7 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 zstyle ':completion:*:wine:*' file-patterns '(#i)*.(exe):exe'
 # highlight parameters with uncommon names
 zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[cyan]"
-# highlight aliases 
+# highlight aliases
 zstyle ':completion:*:aliases' list-colors "=*=$color[green]"
 # highlight the original input.
 zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
