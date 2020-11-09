@@ -21,6 +21,9 @@ zstyle ':completion:*:history-words' remove-all-dups yes
 zstyle ':completion:*:history-words' stop yes
 # match uppercase from lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# automatically load bash completion functions
+autoload -Uz bashcompinit && bashcompinit
+
 # separate matches into groups
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' group-name ''
@@ -92,25 +95,9 @@ zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u' # taskwarrior
 zstyle ':completion:*:*:task:*' group-name '' # taskwarrior
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro'
-
-# run rehash on completion so new installed program are found automatically:
-_force_rehash() {
-    (( CURRENT == 1 )) && rehash
-    return 1
-}
-## correction
-setopt correct
-zstyle -e ':completion:*' completer '
-    if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
-        _last_try="$HISTNO$BUFFER$CURSOR"
-        reply=(_complete _match _ignored _prefix _files)
-    else
-        if [[ $words[1] == (rm|mv) ]] ; then
-            reply=(_complete _files)
-        else
-            reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
-        fi
-    fi'
+# Use caching so that commands like apt and dpkg complete are useable
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 
 autoload -U select-word-style backward-kill-word-match backward-word-match forward-word-match
 select-word-style shell
