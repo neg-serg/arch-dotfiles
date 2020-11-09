@@ -27,7 +27,7 @@ alias U='yay -Su --devel --noconfirm --timeupdate'
 alias s='sudo'
 
 _exists prettyping && alias ping='prettyping'
-_exists mimeo && alias e='mimeo'
+_exists handlr && alias e='handlr open'
 
 _exists rg && {
     local rg_options='--max-columns=0 \
