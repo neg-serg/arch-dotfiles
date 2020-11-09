@@ -371,3 +371,4 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['webpack\.'] = 'ﰩ'
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_color_gui = '#18263d'
+let g:indentLine_enabled = 0
