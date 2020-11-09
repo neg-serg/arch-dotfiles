@@ -366,3 +366,8 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.json'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.lock.json'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['node_modules'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['webpack\.'] = 'ﰩ'
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Yggdroot/indentLine                                                          │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_color_gui = '#18263d'

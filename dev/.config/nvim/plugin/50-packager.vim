@@ -84,6 +84,7 @@ function! PackInit() abort
     call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
     call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
+    call packager#add('Yggdroot/indentLine') " try indentline again
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ DCVS                                                                         │
     " └───────────────────────────────────────────────────────────────────────────────────┘
