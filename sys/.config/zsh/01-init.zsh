@@ -30,6 +30,7 @@ setopt multios # support multiple redirections
 setopt rm_star_wait # most Massively Useful Option ever! protects you from "you shoot yourself in the foot".
 setopt pushd_silent # do not print directory stack
 setopt short_loops # short loops support
+setopt correct # use autocorrection
 
 setopt append_history # this is default, but set for share_history
 setopt extended_history # save each command's beginning timestamp and the duration to the history file
