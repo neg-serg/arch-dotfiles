@@ -11,3 +11,5 @@ set noexrc
 set secure
 set termguicolors
 if !1 | finish | endif
+
+lua require 'init'
