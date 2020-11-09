@@ -6,6 +6,7 @@ set synmaxcol=1000 "no syntax hi for too long lines
 set conceallevel=2 concealcursor=niv
 set keymap=russian-jcukenwin
 set magic
+set listchars=
 set path+=.,..,**,/usr/include,./include,../include
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
