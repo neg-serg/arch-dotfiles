@@ -101,7 +101,7 @@ function! PackInit() abort
     call packager#add('reedes/vim-pencil') " better text support
     call packager#add('reedes/vim-wordy', {'type': 'opt'}) " style check for english
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
-    call packager#add('romgrk/todoist.nvim') " todoist support
+    call packager#add('romgrk/todoist.nvim', {'type': 'opt'}) " todoist support
     call packager#add('vim-voom/VOoM') " two-pane outliner
     call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
