@@ -1,9 +1,3 @@
 #!/bin/dash
-xset -b r rate 250 50 # fast keyboard rate
-setxkbmap \
-    -layout 'us,ru' \
-    -option 'grp:alt_shift_toggle' \
-    -option keypad:pointerkeys \
-    -option ctrl:nocaps \
-    -variant altgr-intl &
+# localectl set-x11-keymap us,ru "" altgr-intl 'grp:alt_shift_toggle,keypad:pointerkeys,ctrl:nocaps'
 unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
