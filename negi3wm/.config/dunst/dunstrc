@@ -73,6 +73,13 @@
     urgency = normal
     timeout = 10
 
+[im_by_category]
+    format = ""
+    category = "im"
+    script = "~/bin/scripts/im_notification"
+    urgency = normal
+    timeout = 4
+
 [im]
     format = ""
     desktop_entry = "kotatogramdesktop"
