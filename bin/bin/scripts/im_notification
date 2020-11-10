@@ -2,11 +2,11 @@
 appname="$1"
 summary="$2"
 body="$3"
-icon="/home/neg/pic/meow/07saq_QzaP4.jpg"
+image="$4"
 urgency="normal"
 
 main(){
-    body="$(par 60 <<< $body)"
+    body="$(par 70 <<< $body)"
     dunstify -p -a "instant-message" -u "${urgency}" -i "${image}" "${summary}" "${body}"
 }
 
