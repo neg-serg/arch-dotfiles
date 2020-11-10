@@ -6,10 +6,7 @@ icon="/home/neg/pic/meow/07saq_QzaP4.jpg"
 urgency="normal"
 
 main(){
-    tmp=$(mktemp)
-    echo "$body" > $tmp
-    body="$(fmt $tmp)"
-    rm -v $tmp
+    body="$(par 60 <<< $body)"
     dunstify -p -a "instant-message" -u "${urgency}" -i "${image}" "${summary}" "${body}"
 }
 
