@@ -16,7 +16,6 @@ function! PackInit() abort
     call packager#add('justinmk/vim-dirvish') " minimalistic file manager
     call packager#add('airblade/vim-rooter') " autochdir for project root or for current dir
     call packager#add('FooSoft/vim-argwrap') " vim arg wrapper
-    call packager#add('honza/vim-snippets') " vim-snippets
     call packager#add('kopischke/vim-fetch') " vim path/to/file.ext:12:3
     call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
