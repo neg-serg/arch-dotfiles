@@ -1,2 +1,1 @@
-#!/bin/dash
-exec /usr/bin/Xorg -nolisten tcp "$@" vt$XDG_VTNR
+exec /usr/bin/Xorg -ardelay 250 -arinterval 20 -nolisten tcp "$@" vt$XDG_VTNR
