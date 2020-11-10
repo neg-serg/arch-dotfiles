@@ -30,9 +30,9 @@ rotate() {
 }
 
 proc() {
-    cmd="$1";
+    cmd="$1"
     tee "$file1"
-    if [ -z "$dest" ] ; then
+    if [ -z "$dest" ]; then
         dest=$(_FASD_DATA="$z" fasd -tlR \
             | sed 's:^'$HOME':~:' \
             | eval $rofi_cmd -p "\"⟬$cmd⟭ ❯> \"" \
@@ -77,7 +77,7 @@ delete() {
 copy_name() {
     tee "$file2"
     fp=$(cat "$file2")
-    fname="$(resolve_file $fp)"
+    fname="$fp"
     echo "$fname" | xsel -bi
     ~/bin/scripts/pic_notify "$fname"
     trap finish EXIT
