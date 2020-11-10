@@ -74,7 +74,6 @@
     timeout = 10
 
 [im]
-    category = im
     format = ""
     desktop_entry = "kotatogramdesktop"
     script = "~/bin/scripts/im_notification"
