@@ -1,0 +1,16 @@
+#!/bin/zsh
+appname="$1"
+summary="$2"
+body="$3"
+icon="/home/neg/pic/meow/07saq_QzaP4.jpg"
+urgency="normal"
+
+main(){
+    tmp=$(mktemp)
+    echo "$body" > $tmp
+    body="$(fmt $tmp)"
+    rm -v $tmp
+    dunstify -p -a "instant-message" -u "${urgency}" -i "${image}" "${summary}" "${body}"
+}
+
+main "$@"
