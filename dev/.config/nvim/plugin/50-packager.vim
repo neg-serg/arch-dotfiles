@@ -52,10 +52,12 @@ function! PackInit() abort
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Colorschemes                                                                 │
     " └───────────────────────────────────────────────────────────────────────────────────┘
+    call packager#add('tjdevries/colorbuddy.nvim') " colorscheme create helper
     call packager#add('neg-serg/neg') " my colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse(semantic highlighting)
     call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
+    call packager#add('Th3Whit3Wolf/space-nvim-theme') " example to upgrade my own by colorbuddy
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
