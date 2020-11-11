@@ -61,13 +61,13 @@ function! PackInit() abort
     call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
     call packager#add('rakr/vim-one') " add vim-one colorscheme
     call packager#add('yuttie/hydrangea-vim') " quite nice colorscheme
+    call packager#add('cocopon/iceberg.vim') " experiment with iceberg
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('arzg/vim-sh') " better sh / zsh highlight
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
     call packager#add('RRethy/vim-hexokinase') " best color highlighting
-    call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
     call packager#add('sheerun/vim-polyglot') " language pack collection
     call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
     call packager#add('romgrk/barbar.nvim') " barbar tab statusline
@@ -83,7 +83,10 @@ function! PackInit() abort
     call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
     call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
+    call packager#add('michaelb/sniprun') " run some lines of code, jupyter like
     call packager#add('Yggdroot/indentLine') " try indentline again
+    call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
+    call packager#add('arouene/vim-ansible-vault') " ansible-vault support
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ DCVS                                                                         │
     " └───────────────────────────────────────────────────────────────────────────────────┘
