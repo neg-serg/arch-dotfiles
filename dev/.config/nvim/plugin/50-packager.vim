@@ -54,14 +54,8 @@ function! PackInit() abort
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('neg-serg/neg') " my colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
-    call packager#add('wadackel/vim-dogrun') " new colorscheme
-    call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse
-    call packager#add('Th3Whit3Wolf/space-nvim-theme') " spacemacs colorscheme port
-    call packager#add('romgrk/doom-one.vim') " doom colorscheme
+    call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse(semantic highlighting)
     call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
-    call packager#add('rakr/vim-one') " add vim-one colorscheme
-    call packager#add('yuttie/hydrangea-vim') " quite nice colorscheme
-    call packager#add('cocopon/iceberg.vim') " experiment with iceberg
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -80,17 +74,16 @@ function! PackInit() abort
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
     call packager#add('puremourning/vimspector', {'type': 'opt'}) " vim debugging support
-    call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
     call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
-    call packager#add('michaelb/sniprun') " run some lines of code, jupyter like
-    call packager#add('Yggdroot/indentLine') " try indentline again
+    call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
+    call packager#add('michaelb/sniprun', {'type': 'opt'}) " run some lines of code, jupyter like
+    call packager#add('Yggdroot/indentLine', {'type': 'opt'}) " try indentline again
     call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
-    call packager#add('arouene/vim-ansible-vault') " ansible-vault support
+    call packager#add('arouene/vim-ansible-vault', {'type': 'opt'}) " ansible-vault support
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ DCVS                                                                         │
     " └───────────────────────────────────────────────────────────────────────────────────┘
-    call packager#add('jreybert/vimagit') " interactive work with git
     call packager#add('rhysd/committia.vim') " better commit message
     call packager#add('rhysd/conflict-marker.vim') " good conflict marker
     call packager#add('rhysd/git-messenger.vim') " shows git message
