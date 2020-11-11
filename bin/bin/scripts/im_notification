@@ -7,7 +7,7 @@ urgency="normal"
 
 main(){
     body="$(par 70 <<< $body)"
-    dunstify -p -a "instant-message" -u "${urgency}" -i "${image}" "${summary}" "${body}"
+    dunstify -u "${urgency}" -i "${image}" "${summary}" "${body}"
 }
 
 main "$@"
