@@ -1,11 +1,11 @@
 [global]
     font = Iosevka Medium 25
-    format = "<span size='large' font_desc='Iosevka Medium 25' foreground='#2e72ac'>%s</span>\n%b"
+    format = "<span size='large' font_desc='Iosevka Medium 23' foreground='#2e72ac'>%s</span>\n%b"
     markup = full
     alignment = left
     vertical_alignment = center
     show_age_threshold = -1
-    geometry = "1220x11-0-52"
+    geometry = "1120x11-0-52"
     transparency = 14
     idle_threshold = 0
     corner_radius = 4
@@ -16,10 +16,9 @@
     padding = 0
     horizontal_padding = 20
     separator_color = frame
-    dmenu = /usr/bin/rofi -p dunst:
     browser = /usr/bin/firefox -new-tab
     icon_position = left
-    icon_path = ~/.local/share/icons/SpaceKCursors
+    icon_path = ~/.local/share/icons/korla
     max_icon_size = 400
     frame_width = 4
     frame_color = "#0C0C0D"
@@ -28,7 +27,7 @@
     verbosity = mesg
     transparency = 10
     startup_notification = false
-    word_wrap = false
+    word_wrap = true
     plain_text = false
     sort = true
     ignore_newline = false
@@ -39,9 +38,6 @@
     stack_duplicates = true
     hide_duplicate_count = true
     ignore_dbusclose = true
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
 
 [urgency_low]
     background = "#010204"
@@ -68,22 +64,6 @@
     appname = mpd-notification
     format = ""
     script = "~/bin/scripts/mpd_notification"
-    vertical_alignment = center
-    urgency = normal
     timeout = 10
-
-[im_by_category]
-    format = ""
-    category = "im"
-    script = "~/bin/scripts/im_notification"
-    urgency = normal
-    timeout = 4
-
-[im]
-    format = ""
-    desktop_entry = "kotatogramdesktop"
-    script = "~/bin/scripts/im_notification"
-    urgency = normal
-    timeout = 4
 
 # vim: ft=cfg
