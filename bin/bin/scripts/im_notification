@@ -3,11 +3,9 @@ appname="$1"
 summary="$2"
 body="$3"
 image="$4"
-urgency="normal"
-
 main(){
     body="$(par 70 <<< $body)"
-    dunstify -u "${urgency}" -i "${image}" "${summary}" "${body}"
+    dunstify -a "im" "${summary}" "${body}"
 }
 
 main "$@"
