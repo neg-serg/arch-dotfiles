@@ -1,5 +1,5 @@
 [global]
-    font = Iosevka Medium 22
+    font = Iosevka Medium 23
     format = "<span font_desc='Iosevka Bold 23' foreground='#2e72ac'>%s</span>\n%b"
     markup = full
     alignment = left
