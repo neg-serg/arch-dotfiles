@@ -58,6 +58,7 @@ function! PackInit() abort
     call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse(semantic highlighting)
     call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
     call packager#add('Th3Whit3Wolf/space-nvim-theme') " example to upgrade my own by colorbuddy
+    call packager#add('ryuta69/elly.vim') " brown colorscheme
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
