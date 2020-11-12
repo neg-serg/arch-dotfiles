@@ -14,7 +14,7 @@
     line_height = 4
     separator_height = 4
     padding = 0
-    horizontal_padding = 10
+    horizontal_padding = 6
     separator_color = frame
     browser = /usr/bin/firefox -new-tab
     icon_position = left
