@@ -1,2 +1,0 @@
-#!/bin/dash
-rofi -no-plugins -show run -lines 1 -columns 4 -disable-history -theme run
