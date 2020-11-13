@@ -3,7 +3,7 @@
 body="$3"
 urgency="$5"
 
-dunst_pics="$(readlink -f ${HOME}/tmp/dunst-images)"
+dunst_pics="$(realpath ${HOME}/tmp/dunst-images)"
 cover_lock="${dunst_pics}/notify.lock"
 image="/tmp/.mpd-notification-artwork.png"
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
