@@ -5,7 +5,7 @@
     pager = PAGER= delta
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
-    editor = /usr/bin/nvim
+	editor = nvr --remote-wait-silent
 [color]
     diff = 1
     pager = 0
