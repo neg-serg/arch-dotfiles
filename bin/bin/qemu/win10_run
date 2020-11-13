@@ -54,7 +54,7 @@ main(){
     fi
 
     zmodload -aF zsh/system b:zsystem
-    lockfile="$(readlink -f ~neg/tmp/)$(basename $0).lock"
+    lockfile="$(realpath ~neg/tmp/)$(basename $0).lock"
 
     if [[ -f ${lockfile} ]]; then
         if pgrep qemu 2>/dev/null; then

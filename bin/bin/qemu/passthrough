@@ -99,4 +99,4 @@ main() {
 prepare "$@"
 main "$@"
 
-source "$(readlink -f ${XDG_CONFIG_HOME}/xinit/xinput.zsh)"
+source "$(realpath ${XDG_CONFIG_HOME}/xinit/xinput.zsh)"
