@@ -299,3 +299,4 @@ zsh/.zsh/zcomp-sanctum
 music/.config/mpd/mpd.pid
 dev/.config/nvim/sessions/default.vim
 sys/.config/bpytop/error.log
+dev/.config/pylint/
