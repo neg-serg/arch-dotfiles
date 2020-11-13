@@ -5,22 +5,10 @@ cache="$HOME/tmp"
 file1="$cache/sxiv1.$$"
 file2="$cache/sxiv2.$$"
 tmp_wall="$cache/wall_sxiv.$$"
-
 z="$XDG_DATA_HOME/sxiv/data"
 last="$XDG_DATA_HOME/sxiv/last"
 trash="$HOME/trash/1st-level/pic"
-
 rofi_cmd="rofi -dmenu -sort -matching fuzzy -no-plugins -no-only-match -theme sxiv -custom"
-
-resolve_file() {
-    if [ ! -L "$1" ] && [ -f "$1" ]; then
-        echo "$(readlink -f $1)"
-    elif [ -L "$1" ]; then
-        print "$(cd $(dirname $1) && pwd -P)/$(basename $1)"
-    else
-        echo "$1"
-    fi
-}
 
 rotate() {
     degree="$1"
@@ -41,7 +29,7 @@ proc() {
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ]; then
         while read line; do
-            eval $cmd "$(resolve_file $line)" $dest
+            eval $cmd "$(realpath $line)" $dest
         done < "$file1"
         _FASD_DATA="$z" fasd -RA "$dest"
         printf "%s\n" "$cmd "$dest"" > "$last"
@@ -53,8 +41,7 @@ proc() {
 
 repeat_action() {
     tee "$file2"
-    fp=$(cat "$file2")
-    fname="$(resolve_file $fp)"
+    fname="$(realpath $(cat "$file2"))"
     last="$(cat "$last" | xargs)"
     cmd=$(echo $last | awk '{print $1}')
     dest=$(echo $last | awk '{print $2}')
@@ -76,8 +63,7 @@ delete() {
 
 copy_name() {
     tee "$file2"
-    fp=$(cat "$file2")
-    fname="$fp"
+    fname="$(realpath $(cat "$file2"))"
     echo "$fname" | xsel -bi
     ~/bin/scripts/pic_notify "$fname"
     trap finish EXIT
@@ -88,10 +74,11 @@ wall() {
     wallarg=""
     specarg=""
     case $action in
-        c*) wallarg="-center" ;;
-        t*) wallarg="-tile" ;;
-        fi*) wallarg="-fill" ;;
-        fu*) wallarg="-full" ;;
+        center) wallarg="-center" ;;
+        tile) wallarg="-tile" ;;
+        fill) wallarg="-fill" ;;
+        full) wallarg="-full" ;;
+        cover) wallarg="-full" ;;
         mono) specarg="plus"
     esac
     tee "$tmp_wall"
@@ -122,9 +109,10 @@ case "$1" in
     "v") proc mv ;;
     "C-c") proc cp ;;
     "C-d") delete ;;
-    "C-e") wall "full" ;;
-    "C-m") wall "mono" ;;
-    "C-q") wall "center" ;;
-    "C-t") wall "tile" ;;
-    "C-w") wall "fill" ;;
+    "C-1") wall "full" ;;
+    "C-2") wall "mono" ;;
+    "C-3") wall "center" ;;
+    "C-4") wall "tile" ;;
+    "C-5") wall "fill" ;;
+    "C-w") wall "cover" ;;
 esac
