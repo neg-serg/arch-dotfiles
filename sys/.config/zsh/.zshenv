@@ -47,8 +47,8 @@ export FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
 export MPV_HOME="${XDG_CONFIG_HOME}/mpv"
-export KEYTIMEOUT=1
-export ESCDELAY=5
+export KEYTIMEOUT=4
+export ESCDELAY=1
 export GOPATH=/opt/go
 export STEAM_RUNTIME=1
 export QT_QPA_PLATFORMTHEME="qt5ct"
