@@ -16,19 +16,35 @@ export XDG_PUBLICSHARE_DIR="$HOME/1st_level/upload/share"
 export XINITRC="$XDG_CONFIG_HOME"/xinit/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/xinit/xserverrc
 
-[[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
-[[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
+export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
+export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
+export TASKDATA="$XDG_DATA_HOME"/task
+export TASKRC="$XDG_CONFIG_HOME"/task/taskrc
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+export PYLINTHOME="$XDG_CONFIG_HOME"/pylint
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 
-export XDG_CURRENT_DESKTOP="KDE"
-export KDE_SESSION_VERSION="5"
-
-unset SSH_ASKPASS
+export MPV_HOME="${XDG_CONFIG_HOME}/mpv"
+export GOPATH=/opt/go
+export AURDEST=$(readlink -f "${HOME}/src/1st_level/pacaur")
 
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
 export BROWSER="firefox"
+
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
+export KEYTIMEOUT=4
+export ESCDELAY=1
+
+[[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
+[[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
 
 export FZF_DEFAULT_OPTS="
 --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3
@@ -45,37 +61,3 @@ export FZF_DEFAULT_OPTS="
 export FZF_TMUX=1
 export FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-
-export MPV_HOME="${XDG_CONFIG_HOME}/mpv"
-export KEYTIMEOUT=4
-export ESCDELAY=1
-export GOPATH=/opt/go
-export STEAM_RUNTIME=1
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export AURDEST=$(readlink -f "${HOME}/tmp/pacaur")
-
-export JAVA_FONTS=/usr/share/fonts/TTF
-export _JAVA_AWT_WM_NONREPARENTING=1
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on
--Dswing.aatext=true
--Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel
--Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-_SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
-unset _JAVA_OPTIONS
-
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
-export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
-export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
-export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
-export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
-export TASKDATA="$XDG_DATA_HOME"/task
-export TASKRC="$XDG_CONFIG_HOME"/task/taskrc
-export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
-export IRBRC="$XDG_CONFIG_HOME"/irb/irbrc
-export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
-export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
-export PYLINTHOME="$XDG_CONFIG_HOME"/pylint
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
