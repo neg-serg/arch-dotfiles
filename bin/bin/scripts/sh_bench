@@ -49,7 +49,7 @@ done
 echo "--[ Size bench ]---------------------------"
 
 for sh in ${shells[@]}; do
-    sh_path="$(readlink -f /bin/${sh})"
+    sh_path="$(realpath /bin/${sh})"
     du -k "${sh_path}"
     ldd "${sh_path}"
 done
