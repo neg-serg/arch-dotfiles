@@ -63,7 +63,7 @@ delete() {
 
 copy_name() {
     tee "$file2"
-    fname="$(realpath $(cat "$file2"))"
+    fname="$(realpath "$(cat "$file2")")"
     echo "$fname" | xsel -bi
     ~/bin/scripts/pic_notify "$fname"
     trap finish EXIT
