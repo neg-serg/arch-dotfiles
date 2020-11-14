@@ -56,8 +56,6 @@ function! PackInit() abort
     call packager#add('neg-serg/neg') " my colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse(semantic highlighting)
-    call packager#add('vimoxide/vim-cinnabar') " nice black colorscheme
-    call packager#add('Th3Whit3Wolf/space-nvim-theme') " example to upgrade my own by colorbuddy
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -104,7 +102,6 @@ function! PackInit() abort
     call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
     call packager#add('romgrk/pp.vim') " pretty printer with colors
-    call packager#add('ahmadie/workspace.vim') " experimental neovim workspaces support
 endfunction
 
 function! InstallCoc(plugin) abort
