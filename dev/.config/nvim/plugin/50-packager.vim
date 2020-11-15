@@ -42,7 +42,7 @@ function! PackInit() abort
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Search                                                                       │
     " └───────────────────────────────────────────────────────────────────────────────────┘
-    call packager#add('junegunn/fzf', { 'do': './install --all', 'merged': 0 })
+    call packager#add('junegunn/fzf') " fzf binary
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
     call packager#add('yuki-ycino/fzf-preview.vim', {'do': ':UpdateRemotePlugins', 'branch': 'release'}) " integration fzf preview with coc
