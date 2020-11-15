@@ -7,24 +7,20 @@ augroup ModeChangeSettings
     autocmd BufReadPre,FileReadPre * let @/ = ''
     autocmd InsertLeave * setlocal nopaste
 augroup END
-
 augroup HighlightYank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})
 augroup END
-
 augroup CursorLine
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter,BufEnter * setlocal cursorline
     autocmd BufLeave,WinLeave * setlocal nocursorline
 augroup END
-
 augroup cocgroup
     autocmd!
     " Update signature help on jump placeholder
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
 function! RestoreCursorPosition()
     if &filetype !~ 'svn\|commit\c'
         if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -33,5 +29,4 @@ function! RestoreCursorPosition()
     end
 endfunction
 autocmd BufReadPost * call RestoreCursorPosition()
-
 autocmd FocusGained,BufEnter,FileChangedShell,WinEnter * checktime
