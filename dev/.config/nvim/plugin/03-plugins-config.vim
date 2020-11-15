@@ -30,6 +30,7 @@ nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
 nmap <silent> [Qleader]r <Plug>(coc-rename)
 " Reformat command
 command! -nargs=0 Format :call CocAction('format')
+let g:coc_global_extensions = ['coc-actions', 'coc-browser', 'coc-clangd', 'coc-diagnostic', 'coc-git', 'coc-json', 'coc-lists', 'coc-prettier', 'coc-python', 'coc-rust-analyzer', 'coc-snippets', 'coc-solargraph', 'coc-stylelint', 'coc-translator', 'coc-yaml']
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ w0rp/ale                                                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
