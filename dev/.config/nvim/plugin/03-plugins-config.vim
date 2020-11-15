@@ -71,7 +71,6 @@ augroup fzf
     autocmd VimEnter * command! Colors
         \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
 augroup end
-
 " Insert mode completion
 imap <C-x><C-f> <Plug>(fzf-complete-path)
 imap <C-x><C-l> <Plug>(fzf-complete-line)
@@ -175,6 +174,7 @@ let g:AutoPairsShortcutBackInsert = ''
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rooter_targets = '/,*' " directories and all files (default)
 let g:rooter_cd_cmd='lcd' " change directory for the current window only
+let g:rooter_manual_only = 1 " change dir manually
 " change dir to current if there is no project
 let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_silent_chdir = 1
@@ -197,7 +197,7 @@ let g:vista_sidebar_width = 20
 let g:vista_disable_statusline = 1
 let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ['▸ ', '']
-let     g:vista#renderer#icons = {
+let g:vista#renderer#icons = {
       \ 'augroup':        "פּ",
       \ 'class':          "",
       \ 'constant':       '',
@@ -238,7 +238,7 @@ let g:vista_default_executive = 'coc'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ rhysd/git-messenger.vim                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nmap <C-f> <Plug>(git-messenger)
+nmap <C-Space> <Plug>(git-messenger)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ haya14busa/vim-asterisk                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -271,24 +271,36 @@ augroup END
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ eugen0329/vim-esearch                                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-nmap <M-/><M-/> <Plug>(esearch)
-map  <M-/>      <Plug>(esearch-prefill)
+nmap <C-f>f <Plug>(esearch)
+map <C-f> <Plug>(esearch-prefill)
 let g:esearch = {}
 " Use regex matching with the smart case mode by default and avoid matching text-objects.
-let g:esearch.regex = 1
+let g:esearch.default_mappings = 0
+let g:esearch.regex = 'auto'
 let g:esearch.textobj = 0
+let g:esearch.adapter = 'ag'
 let g:esearch.case = 'smart'
+let g:esearch.win_contexts_syntax = 0
 " Set the initial pattern content using the highlighted search pattern (if
 " v:hlsearch is true), the last searched pattern or the clipboard content.
-let g:esearch.prefill = ['hlsearch', 'last', 'clipboard']
-" Override the default files and directories to determine your project root. Set
-" to blank to always use the current working directory.
-let g:esearch.root_markers = ['.git', 'Makefile', 'node_modules']
-" Prevent esearch from adding any default keymaps.
-let g:esearch.default_mappings = 0
+let g:esearch.prefill = ['hlsearch', 'clipboard']
 " Open the search window in a vertical split and reuse it for all searches.
 let g:esearch.win_new = {-> esearch#buf#goto_or_open('[Search]', 'vnew') }
-" " Redefine the default highlights (see :help highlight and :help esearch-appearance)
+" Try to jump into the opened floating window or open a new one.
+" let g:esearch.win_new = {esearch ->
+"   \ esearch#buf#goto_or_open(esearch.name, {name ->
+"   \   nvim_open_win(bufadd(name), v:true, {
+"   \     'relative': 'editor',
+"   \     'row': &lines / 10,
+"   \     'col': &columns / 10,
+"   \     'width': &columns * 8 / 10,
+"   \     'height': &lines * 8 / 10
+"   \   })
+"   \ })
+"   \}
+" " Close the floating window when opening an entry.
+" autocmd User esearch_win_config autocmd BufLeave <buffer> quit
+" Redefine the default highlights (see :help highlight and :help esearch-appearance)
 hi esearchHeader gui=bold
 hi link esearchStatistics esearchFilename
 hi link esearchFilename Label
