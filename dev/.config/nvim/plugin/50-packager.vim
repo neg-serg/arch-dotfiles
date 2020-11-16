@@ -36,7 +36,6 @@ function! PackInit() abort
     call packager#add('tomtom/tcomment_vim') " commenter plugin
     call packager#add('tpope/vim-abolish') " different case coersion
     call packager#add('tpope/vim-repeat') " better dot
-    call packager#add('tpope/vim-sleuth') " autoindent
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
     call packager#add('wellle/targets.vim') " better text objects
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -48,7 +47,6 @@ function! PackInit() abort
     call packager#add('yuki-ycino/fzf-preview.vim', {'do': ':UpdateRemotePlugins', 'branch': 'release'}) " integration fzf preview with coc
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('romgrk/searchReplace.vim') " better search and replace
-    call packager#add('inkarkat/vim-PatternsOnText') " fancy search and replace
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Colorschemes                                                                 │
     " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -59,14 +57,12 @@ function! PackInit() abort
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
-    call packager#add('arzg/vim-sh') " better sh / zsh highlight
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
     call packager#add('RRethy/vim-hexokinase') " best color highlighting
     call packager#add('sheerun/vim-polyglot') " language pack collection
     call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
     call packager#add('romgrk/barbar.nvim') " barbar tab statusline
     call packager#add('justinmk/vim-syntax-extra') " better syntax for some langs
-    call packager#add('cespare/vim-toml') " better toml syntax
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Dev                                                                          │
     " └───────────────────────────────────────────────────────────────────────────────────┘
