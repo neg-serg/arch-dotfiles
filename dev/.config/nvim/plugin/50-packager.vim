@@ -106,7 +106,6 @@ endfunction
 
 function! InstallCoc(plugin) abort
     exe '!cd '.a:plugin.dir.' && yarn install'
-    exe '!cd '.a:plugin.dir.' && yarn install coc-diagnostic coc-git coc-actions coc-json coc-translator coc-sql coc-spell-checker coc-solargraph coc-snippets coc-stylelint'
 endfunction
 command! PackInstall call PackInit() | call packager#install()
 command! -bang PackUpdate call PackInit() | call packager#update({ 'force_hooks': '<bang>' })
