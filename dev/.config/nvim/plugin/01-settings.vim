@@ -2,12 +2,13 @@ colorscheme neg
 set bufhidden=hide
 set report=0 "no report on substitution
 set fileformats=unix,dos,mac "file format fallback
-set synmaxcol=1000 "no syntax hi for too long lines
+set synmaxcol=256 "no syntax hi for too long lines
+set regexpengine=0
 set conceallevel=2 concealcursor=niv
 set keymap=russian-jcukenwin
 set magic
-set listchars=
 set nolist
+set listchars=
 set path+=.,..,**,/usr/include,./include,../include
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
