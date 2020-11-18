@@ -38,6 +38,7 @@ function! PackInit() abort
     call packager#add('tpope/vim-repeat') " better dot
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
     call packager#add('wellle/targets.vim') " better text objects
+    call packager#add('tommcdo/vim-exchange') " add exchange operator
     " ┌───────────────────────────────────────────────────────────────────────────────────┐
     " │ █▓▒░ Search                                                                       │
     " └───────────────────────────────────────────────────────────────────────────────────┘
