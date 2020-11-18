@@ -58,7 +58,7 @@ function! PackInit() abort
     " │ █▓▒░ Appearance                                                                   │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
-    call packager#add('RRethy/vim-hexokinase') " best color highlighting
+    call packager#add('RRethy/vim-hexokinase', {'do': 'git submodule init && git submodule update && cd hexokinase/ && go build'}) " best color highlighting
     call packager#add('sheerun/vim-polyglot') " language pack collection
     call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
     call packager#add('romgrk/barbar.nvim') " barbar tab statusline
@@ -97,6 +97,7 @@ function! PackInit() abort
     call packager#add('vim-voom/VOoM') " two-pane outliner
     call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
+    call packager#add('romainl/vim-devdocs') " add devdocs help support with :DD
     call packager#add('romgrk/pp.vim') " pretty printer with colors
 endfunction
 
