@@ -174,10 +174,11 @@ let g:AutoPairsShortcutBackInsert = ''
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rooter_targets = '/,*' " directories and all files (default)
 let g:rooter_cd_cmd='lcd' " change directory for the current window only
-let g:rooter_manual_only = 1 " change dir manually
+let g:rooter_manual_only = 0 " change dir manually
+let g:rooter_resolve_links = 1 " resolve symlinks
 " change dir to current if there is no project
 let g:rooter_change_directory_for_non_project_files = 'current'
-let g:rooter_silent_chdir = 1
+let g:rooter_silent_chdir = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ junegunn/vim-easy-align                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -286,20 +287,6 @@ let g:esearch.win_contexts_syntax = 0
 let g:esearch.prefill = ['hlsearch', 'clipboard']
 " Open the search window in a vertical split and reuse it for all searches.
 let g:esearch.win_new = {-> esearch#buf#goto_or_open('[Search]', 'vnew') }
-" Try to jump into the opened floating window or open a new one.
-" let g:esearch.win_new = {esearch ->
-"   \ esearch#buf#goto_or_open(esearch.name, {name ->
-"   \   nvim_open_win(bufadd(name), v:true, {
-"   \     'relative': 'editor',
-"   \     'row': &lines / 10,
-"   \     'col': &columns / 10,
-"   \     'width': &columns * 8 / 10,
-"   \     'height': &lines * 8 / 10
-"   \   })
-"   \ })
-"   \}
-" " Close the floating window when opening an entry.
-" autocmd User esearch_win_config autocmd BufLeave <buffer> quit
 " Redefine the default highlights (see :help highlight and :help esearch-appearance)
 hi esearchHeader gui=bold
 hi link esearchStatistics esearchFilename
