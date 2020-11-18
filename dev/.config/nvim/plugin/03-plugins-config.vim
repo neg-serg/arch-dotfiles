@@ -178,7 +178,7 @@ let g:rooter_manual_only = 0 " change dir manually
 let g:rooter_resolve_links = 1 " resolve symlinks
 " change dir to current if there is no project
 let g:rooter_change_directory_for_non_project_files = 'current'
-let g:rooter_silent_chdir = 0
+let g:rooter_silent_chdir = 1 " silent chdir
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ junegunn/vim-easy-align                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
