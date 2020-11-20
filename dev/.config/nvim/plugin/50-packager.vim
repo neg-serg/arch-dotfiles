@@ -52,6 +52,7 @@ function! PackInit() abort
     " │ █▓▒░ Colorschemes                                                                 │
     " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('tjdevries/colorbuddy.nvim') " colorscheme create helper
+    call packager#add('lifepillar/vim-colortemplate') " colortemplate generator
     call packager#add('neg-serg/neg') " my colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse(semantic highlighting)
