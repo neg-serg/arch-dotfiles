@@ -6,9 +6,9 @@ let g:loaded_packager = 1
 function! PackInit() abort
     packadd vim-packager
     call packager#init({'jobs': 0})
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ Main                                                                         │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Main                                                                         │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
     call packager#add('neoclide/coc.nvim', { 'do': function('InstallCoc') }) " lsp autocomplete
     call packager#add('antoinemadec/coc-fzf', {'branch': 'release'})
@@ -22,9 +22,9 @@ function! PackInit() abort
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     call packager#add('bounceme/remote-viewer') " better ssh support
     call packager#add('romgrk/winteract.vim') " interactive window resize
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ Edit                                                                         │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Edit                                                                         │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
     call packager#add('andymass/vim-matchup') " generic matcher
     call packager#add('haya14busa/vim-asterisk') " smartcase star
@@ -39,35 +39,35 @@ function! PackInit() abort
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
     call packager#add('wellle/targets.vim') " better text objects
     call packager#add('tommcdo/vim-exchange') " add exchange operator
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ Search                                                                       │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Search                                                                       │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('junegunn/fzf') " fzf binary
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
     call packager#add('yuki-ycino/fzf-preview.vim', {'do': ':UpdateRemotePlugins', 'branch': 'release'}) " integration fzf preview with coc
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('romgrk/searchReplace.vim') " better search and replace
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ Colorschemes                                                                 │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Colorschemes                                                                 │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('tjdevries/colorbuddy.nvim') " colorscheme create helper
     call packager#add('lifepillar/vim-colortemplate') " colortemplate generator
     call packager#add('neg-serg/neg') " my colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
     call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse(semantic highlighting)
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ Appearance                                                                   │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Appearance                                                                   │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
     call packager#add('RRethy/vim-hexokinase', {'do': 'git submodule init && git submodule update && cd hexokinase/ && go build'}) " best color highlighting
     call packager#add('sheerun/vim-polyglot') " language pack collection
     call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
     call packager#add('romgrk/barbar.nvim') " barbar tab statusline
     call packager#add('justinmk/vim-syntax-extra') " better syntax for some langs
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ Dev                                                                          │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Dev                                                                          │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
@@ -79,16 +79,16 @@ function! PackInit() abort
     call packager#add('Yggdroot/indentLine', {'type': 'opt'}) " try indentline again
     call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
     call packager#add('arouene/vim-ansible-vault', {'type': 'opt'}) " ansible-vault support
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ DCVS                                                                         │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ DCVS                                                                         │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('rhysd/committia.vim') " better commit message
     call packager#add('rhysd/conflict-marker.vim') " good conflict marker
     call packager#add('rhysd/git-messenger.vim') " shows git message
     call packager#add('lambdalisue/gina.vim') " git stuff
-    " ┌───────────────────────────────────────────────────────────────────────────────────┐
-    " │ █▓▒░ Misc                                                                         │
-    " └───────────────────────────────────────────────────────────────────────────────────┘
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Misc                                                                         │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('jamessan/vim-gnupg') " transparent work with gpg-encrypted files
     call packager#add('ntpeters/vim-better-whitespace') " delete whitespaces with ease
     call packager#add('pbrisbin/vim-mkdir') " auto make dir without asking
