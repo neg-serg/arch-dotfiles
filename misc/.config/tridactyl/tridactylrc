@@ -8,19 +8,23 @@ set tabopenpos last
 set incsearch true
 set modeindicator false
 set modeindicatorshowkeys false
+set findresults 40
+set downloadsskiphistory true
+set minincsearchlen true
+set newtab https://online.bonjourr.fr/
 
 set hintdelay 80
 set hintfiltermode vimperator-reflow
 set hintnames short
-set hintchars qwerty
+set hintshift true
+set hintchars wersdfa
+set hintuppercase true
 
 set keytranslatemodes.nmaps true
 set keytranslatemodes.imaps true
 set keytranslatemodes.inputmaps true
 set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
-
-set newtab https://online.bonjourr.fr/
 
 alias w saveas ~/dw/
 
