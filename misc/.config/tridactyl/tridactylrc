@@ -254,7 +254,7 @@ fixamo_quiet
 " You may not wish to run this. Mozilla strongly feels that you shouldn't.
 "
 " It allows Tridactyl to function on more pages, e.g. raw GitHub pages.
-" 
+"
 " We remove the sandbox directive
 " https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox
 " which allows our iframe to run (and anyone else's) on any website.
