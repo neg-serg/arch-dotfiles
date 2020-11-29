@@ -1,16 +1,18 @@
 colors neg
+
 set searchengine g
 set allowautofocus true
 set visualenterauto false
 set tabopencontaineraware false
 set tabopenpos last
-set hintfiltermode vimperator-reflow
-set hintnames short
-set hintchars 12345
 set incsearch true
 set modeindicator false
 set modeindicatorshowkeys false
-set hintdelay 100
+
+set hintdelay 80
+set hintfiltermode vimperator-reflow
+set hintnames short
+set hintchars qwerty
 
 set keytranslatemodes.nmaps true
 set keytranslatemodes.imaps true
@@ -22,12 +24,24 @@ set newtab https://online.bonjourr.fr/
 
 alias w saveas ~/dw/
 
+set auconcreatecontainer true
+autocontain facebook\.com facebook
+autocontain vk\.com vk
+
 " thx to: https://github.com/aminroosta/dot-files/blob/master/.tridactylrc
 " Navigate dropdowns in insert mode
 bind --mode=insert <C-n> !s xdotool key Down
 bind --mode=insert <C-p> !s xdotool key Up
 
 unbind <F1>
+
+" Comment toggler for Reddit, Hacker News and Lobste.rs
+bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
+
+" Add helper commands that Mozillians think make Firefox irredeemably
+" insecure. For details, read the comment at the top of this file.
+command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+command fixamo js tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""').then(tri.excmds.fillcmdline_tmp(3000, "Permissions added to user.js. Please restart Firefox to make them take affect.")))
 
 " thx to: https://github.com/vishes-shell/dotfiles/blob/master/.config/tridactyl/tridactylrc
 " Ctrl-F should use the browser's native 'find' functionality.
@@ -42,6 +56,8 @@ bind ,, nohlsearch
 bind zp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
 " Git{Hub,Lab} git clone via SSH yank
 bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+" As above but execute it and open terminal in folder
+bind zG js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
 setpref general.warnOnAboutConfig false
 setpref extensions.webextensions.restrictedDomains ""
@@ -52,6 +68,11 @@ setpref browser.download.dir "~/dw"
 setpref permissions.default.desktop-notification 2
 setpref gfx.color_management.enabled true
 setpref gfx.color_management.enablev4 true
+" setpref mousewheel.min_line_scroll_amount: 25
+" setpref general.smoothScroll.mouseWheel.durationMaxMS	250
+" setpref general.smoothScroll.mouseWheel.durationMinMS	200
+" setpref general.smoothScroll.stopDecelerationWeighting 0.6
+
 gfx.color_management.mode 1
 
 unbindurl mail\.google\.com j
@@ -63,6 +84,7 @@ unbindurl mail\.google\.com e
 bind --mode=ex <C-c> ex.hide_and_clear
 unbind --mode=ex <C-w>
 unbind <C-o>
+
 bind --mode=input <C-c> composite unfocus | mode normal
 bind --mode=insert <C-c> composite unfocus | mode normal
 bind --mode=input <C-[> composite unfocus | mode normal
@@ -71,33 +93,33 @@ bind --mode=normal <C-c> composite unfocus | mode normal
 bind --mode=normal <C-[> composite unfocus | mode normal
 
 " thx to: https://github.com/glacambre/.dotfiles/blob/master/default/.config/tridactyl/tridactylrc
-bind --mode=ex          <C-a>   text.beginning_of_line
-bind --mode=insert      <C-a>   text.beginning_of_line
-bind --mode=input       <C-a>   text.beginning_of_line
-bind --mode=ex          <C-e>   text.end_of_line
-bind --mode=insert      <C-e>   text.end_of_line
-bind --mode=input       <C-e>   text.end_of_line
-bind --mode=ex          <C-f>   text.forward_word
-bind --mode=insert      <C-f>   text.forward_word
-bind --mode=input       <C-f>   text.forward_word
-bind --mode=ex          <C-k>   text.kill_line
-bind --mode=insert      <C-k>   text.kill_line
-bind --mode=input       <C-k>   text.kill_line
-bind --mode=ex          <C-u>   text.backward_kill_line
-bind --mode=insert      <C-u>   text.backward_kill_line
-bind --mode=input       <C-u>   text.backward_kill_line
+bind --mode=ex <C-a> text.beginning_of_line
+bind --mode=insert <C-a> text.beginning_of_line
+bind --mode=input <C-a> text.beginning_of_line
+bind --mode=ex <C-e> text.end_of_line
+bind --mode=insert <C-e> text.end_of_line
+bind --mode=input <C-e> text.end_of_line
+bind --mode=ex <C-f> text.forward_word
+bind --mode=insert <C-f> text.forward_word
+bind --mode=input <C-f> text.forward_word
+bind --mode=ex <C-k> text.kill_line
+bind --mode=insert <C-k> text.kill_line
+bind --mode=input <C-k> text.kill_line
+bind --mode=ex <C-u> text.backward_kill_line
+bind --mode=insert <C-u> text.backward_kill_line
+bind --mode=input <C-u> text.backward_kill_line
 " Requires custom firefox build: https://github.com/glacambre/firefox-patches
 " or you can make simple modification over ui.key.accelKey 17(Ctrl) to 18(Alt)
 " in about:config.
-bind --mode=ex          <C-w>   text.backward_kill_word
-bind --mode=insert      <C-w>   text.backward_kill_word
-bind --mode=input       <C-w>   text.backward_kill_word
+bind --mode=ex <C-w> text.backward_kill_word
+bind --mode=insert <C-w> text.backward_kill_word
+bind --mode=input <C-w> text.backward_kill_word
 
-bind --mode=ex          <C-n>   ex.next_completion
-bind --mode=ex          <C-p>   ex.prev_completion
-bind --mode=ex          <C-y>   ex.insert_completion
-bind --mode=ex          <C-e>   ex.deselect_completion
-bind --mode=ex          <C-g>   composite text.beginning_of_line ; text.forward_word ; text.kill_word
+bind --mode=ex <C-n> ex.next_completion
+bind --mode=ex <C-p> ex.prev_completion
+bind --mode=ex <C-y> ex.insert_completion
+bind --mode=ex <C-e> ex.deselect_completion
+bind --mode=ex <C-g> composite text.beginning_of_line ; text.forward_word ; text.kill_word
 
 bind w fillcmdline tab
 bind e tabnext_gt
@@ -115,7 +137,8 @@ bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 bind j scrollline 3
 bind k scrollline -3
 
-bind --mode=normal y composite get_current_url | yank
+bind --mode=normal Y composite get_current_url | yank
+bind --mode=normal y clipboard yankcanon
 
 " thx to: https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc
 " Stupid workaround to let hint -; be used with composite which steals semi-colons
@@ -142,6 +165,7 @@ quickmark A https://magazine.artstation.com/
 guiset_quiet hoverlink right
 guiset_quiet statuspanel right
 guiset_quiet tabcounters show
+guiset_quiet tabs autohide
 
 " Cyrillic keymap support
 keymap , ?
@@ -218,4 +242,36 @@ keymap Ю >
 keymap я z
 keymap Я Z
 
-" vim: set filetype=vim:
+" Make Tridactyl work on more sites at the expense of some security. For
+" details, read the comment at the top of this file.
+fixamo_quiet
+
+" Equivalent to `set csp clobber` before it was removed. This weakens your
+" defences against cross-site-scripting attacks and other types of
+" code-injection by reducing the strictness of Content Security Policy on
+" every site in a couple of ways.
+"
+" You may not wish to run this. Mozilla strongly feels that you shouldn't.
+"
+" It allows Tridactyl to function on more pages, e.g. raw GitHub pages.
+" 
+" We remove the sandbox directive
+" https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/sandbox
+" which allows our iframe to run (and anyone else's) on any website.
+"
+" We weaken the style-src directive
+" https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
+" to allow us to theme our elements. This exposes you to 'cross site styling'
+" attacks.
+"
+" Read https://wiki.mozilla.org/Security/CSP#Goals for more information.
+jsb browser.webRequest.onHeadersReceived.addListener(tri.request.clobberCSP,{urls:["<all_urls>"],types:["main_frame"]},["blocking","responseHeaders"])
+
+" Inject Google Translate
+" This (clearly) is remotely hosted code. Google will be sent the whole
+" contents of the page you are on if you run `:translate`
+" From https://github.com/jeremiahlee/page-translator
+command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
+
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
