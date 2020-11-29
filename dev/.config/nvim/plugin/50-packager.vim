@@ -66,6 +66,7 @@ function! PackInit() abort
     call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
     call packager#add('romgrk/barbar.nvim') " barbar tab statusline
     call packager#add('justinmk/vim-syntax-extra') " better syntax for some langs
+    call packager#add('tridactyl/vim-tridactyl') " tridactyl support
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Dev                                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
