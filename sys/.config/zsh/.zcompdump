@@ -1273,7 +1273,6 @@ _comps=(
 'smbclient' '_samba'
 'smbcontrol' '_samba'
 'smbstatus' '_samba'
-'snap' '_snap'
 'soa' '_hosts'
 'socket' '_socket'
 'sort' '_sort'
@@ -1347,6 +1346,7 @@ _comps=(
 'systemd-machine-id-setup' '_systemd'
 'systemd-notify' '_systemd'
 'systemd-nspawn' '_systemd-nspawn'
+'systemd-path' '_systemd-path'
 'systemd-resolve' '_resolvectl'
 'systemd-run' '_systemd-run'
 'systemd-tmpfiles' '_systemd-tmpfiles'
@@ -1882,10 +1882,10 @@ autoload -Uz _afew _android _archlinux-java _artisan _atach \
             _rkt _rslsync _rspec _rsvm _rubocop \
             _sbt _scala _scrub _sdd _sd_hosts_or_user_at_host \
             _sd_machines _sd_outputmodes _sd_unit_files _setcap _setup.py \
-            _sfdx _showoff _snap _srm _stack \
-            _subl _subliminal _supervisorctl _svm _swayidle \
-            _swaylock _systemctl _systemd _systemd-analyze _systemd-delta \
-            _systemd-inhibit _systemd-nspawn _systemd-run _systemd-tmpfiles _tarsnap \
+            _sfdx _showoff _srm _stack _subl \
+            _subliminal _supervisorctl _svm _swayidle _swaylock \
+            _systemctl _systemd _systemd-analyze _systemd-delta _systemd-inhibit \
+            _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles _tarsnap \
             _task _teamocil _the_silver_searcher _thor _timedatectl \
             _tmatrix _tmuxinator _tmuxp _tox _trash-empty \
             _trash-list _trash-put _trash-restore _udevadm _udiskie \
