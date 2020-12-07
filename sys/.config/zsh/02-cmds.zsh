@@ -45,6 +45,8 @@ _exists rg && {
     alias zrg="rg ${rg_options} -z"
 }
 
+_exists bpython && alias python='bpython'
+
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
 _exists lfs && alias df='lfs'
 _exists bc && alias '?=bc -l <<<'
