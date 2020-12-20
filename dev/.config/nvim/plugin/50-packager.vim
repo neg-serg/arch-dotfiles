@@ -87,6 +87,8 @@ function! PackInit() abort
     call packager#add('saltstack/salt-vim') " salt sls support
     call packager#add('rodjek/vim-puppet') " puppet support
     call packager#add('mfussenegger/nvim-dap') " neovim debugger protocol support
+    call packager#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}) " for virtual text
+    call packager#add('theHamsta/nvim-dap-virtual-text') " virtual debugging text support
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ DCVS                                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
