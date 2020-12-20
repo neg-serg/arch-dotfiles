@@ -15,7 +15,7 @@ throttle-output = 5
 throttle-output-for = 10
 
 [bar/main]
-modules-left = start time start-dark ws right start-br xkeyboard right start-br networkeno1 networkenp6s0 networkenp7s0 start-dark right-end-top
+modules-left = start time start-dark ws right start-br xkeyboard right start-br networkenp5s0 start-dark right-end-top
 modules-right = left-end-top start-mpd mpd volume end
 
 fixed-center = false
