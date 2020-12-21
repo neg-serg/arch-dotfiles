@@ -32,6 +32,7 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 
 export MPV_HOME="${XDG_CONFIG_HOME}/mpv"
 export GOPATH=/opt/go
+[[ -z "${HOME}/src/1st_level/pacaur" ]] && mkdir -p "${HOME}/src/1st_level/pacaur"
 export AURDEST=$(realpath "${HOME}/src/1st_level/pacaur")
 
 export GREP_COLOR='37;45'
