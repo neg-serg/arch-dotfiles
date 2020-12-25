@@ -22,6 +22,9 @@ function! PackInit() abort
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     call packager#add('bounceme/remote-viewer') " better ssh support
     call packager#add('romgrk/winteract.vim') " interactive window resize
+    call packager#add('nvim-lua/popup.nvim') " neovim popup support
+    call packager#add('nvim-lua/plenary.nvim') " lua neovim library for plugins
+    call packager#add('nvim-telescope/telescope.nvim') " new fuzzy finder over lists
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Edit                                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
