@@ -179,6 +179,8 @@ h() {
     esac
 }
 
+zle_highlight=(region:bg=228)
+
 zsh-defer _zpcompinit_custom
 zsh-defer fasd_init
 zsh-defer dircolors_init
