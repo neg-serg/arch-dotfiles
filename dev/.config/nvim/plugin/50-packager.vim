@@ -81,6 +81,8 @@ function! PackInit() abort
     call packager#add('Yggdroot/indentLine', {'type': 'opt'}) " try indentline again
     call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
     call packager#add('arouene/vim-ansible-vault', {'type': 'opt'}) " ansible-vault support
+    call packager#add('saltstack/salt-vim') " salt sls support
+    call packager#add('rodjek/vim-puppet') " puppet support
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ DCVS                                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
