@@ -293,50 +293,6 @@ hi link esearchStatistics esearchFilename
 hi link esearchFilename Label
 hi esearchMatch gui=underline,italic,bold guifg=#6C7E96 guibg=#002D59
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ romgrk/barbar.nvim                                                           │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nnoremap <silent> <Tab> :BufferNext<CR>
-nnoremap <silent> <S-Tab> :BufferPrevious<CR>
-nnoremap <silent> <leader><Tab> :b#<CR>
-nnoremap <silent> <M-1> :BufferGoto 1<CR>
-nnoremap <silent> <M-2> :BufferGoto 2<CR>
-nnoremap <silent> <M-3> :BufferGoto 3<CR>
-nnoremap <silent> <M-4> :BufferGoto 4<CR>
-nnoremap <silent> <M-5> :BufferGoto 5<CR>
-" Colorscheme settings
-let bg_current = get(nvim_get_hl_by_name('Normal', 1), 'background', '#000000')
-let bg_visible = get(nvim_get_hl_by_name('TabLineSel', 1), 'background', '#000000')
-let bg_inactive = get(nvim_get_hl_by_name('TabLine', 1), 'background', '#000000')
-" For the current active buffer
-hi default link BufferCurrent Search
-" For the current active buffer when modified
-hi default link BufferCurrentMod Search
-" For the current active buffer icon
-hi default link BufferCurrentSign Search
-" For the current active buffer target when buffer-picking
-exe 'hi default BufferCurrentTarget guifg=red gui=bold guibg=' . bg_current
-" For buffers visible but not the current one
-hi default link BufferVisible TabLineSel
-hi default link BufferVisibleMod TabLineSel
-hi default link BufferVisibleSign TabLineSel
-exe 'hi default BufferVisibleTarget guifg=red gui=bold guibg=' . bg_visible
-" For buffers invisible buffers
-hi default link BufferInactive TabLine
-hi default link BufferInactiveMod TabLine
-hi default link BufferInactiveSign TabLine
-exe 'hi default BufferInactiveTarget guifg=red gui=bold guibg=' . bg_inactive
-" For the shadow in buffer-picking mode
-hi default BufferShadow guifg=#000000 guibg=#000000
-let bufferline = {}
-let bufferline.shadow = v:false
-let bufferline.icons = v:false
-let bufferline.clickable = v:false
-let bufferline.closable = v:false
-let bufferline.semantic_letters = v:true
-let bufferline.letters = 'aqwert'
-let bufferline.animation = v:false
-let bufferline.maximum_padding = 1
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ romgrk/todoist.nvim                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let todoist = {
