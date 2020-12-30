@@ -19,26 +19,21 @@ proc() {
     if [ -z "$dest" ]; then
         dest=$(_FASD_DATA="$z" fasd -tlR \
             | sed 's:^'$HOME':~:' \
-            | $rofi_cmd -p "\"⟬$cmd⟭ ❯> \"" \
+            | $rofi_cmd -p "⟬$cmd⟭ ❯>"  \
             | sed 's:^~:'$HOME':')
     fi
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ]; then
         while read line; do
+            echo line=$line
             $cmd "$(realpath $line)" $dest
-        done < "$(realpath $(cat "$ff"))"
+        done < "$(realpath "$ff")"
         _FASD_DATA="$z" fasd -RA "$dest"
-        printf "%s\n" "$cmd "$dest"" > "$last"
+        printf "%s\n" "$cmd \"$dest\"" > "$last"
     else
         _FASD_DATA="$z" fasd -D "$dest"
     fi
     trap finish EXIT
-}
-
-delete() {
-    dest="~/trash/1st-level/pic"
-    proc mv
-    unset dest
 }
 
 repeat_action() {
@@ -48,7 +43,7 @@ repeat_action() {
     cmd=$(echo $last | awk '{print $1}')
     dest=$(echo $last | awk '{print $2}')
     if [ $cmd = 'mv' ] || [ $cmd = 'cp' ]; then
-        "$cmd $fname $dest"
+        $cmd "$fname" "$dest"
     fi
     trap finish EXIT
 }
@@ -100,7 +95,7 @@ case "$1" in
     "r") repeat_action ;;
     "v") proc mv ;;
     "C-c") proc cp ;;
-    "C-d") delete ;;
+    "C-d") dest="$HOME/trash/1st-level/pic"  proc mv ;;
     "C-1") wall "full" ;;
     "C-2") wall "mono" ;;
     "C-3") wall "center" ;;
