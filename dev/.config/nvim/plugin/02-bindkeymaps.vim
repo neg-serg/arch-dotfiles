@@ -47,3 +47,11 @@ nnoremap <C-c> <C-[>
 inoremap <C-c> <C-[>
 " Escape as normal
 tnoremap <Esc> <C-\><C-n>
+nnoremap <silent> <Tab> :bn<CR>
+nnoremap <silent> <S-Tab> :bp<CR>
+nnoremap <silent> <leader><Tab> :b#<CR>
+nnoremap <silent> <M-1> :b 1<CR>
+nnoremap <silent> <M-2> :b 2<CR>
+nnoremap <silent> <M-3> :b 3<CR>
+nnoremap <silent> <M-4> :b 4<CR>
+nnoremap <silent> <M-5> :b 5<CR>
