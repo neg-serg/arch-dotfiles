@@ -25,7 +25,6 @@ proc() {
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ]; then
         while read line; do
-            echo line=$line
             $cmd "$(realpath $line)" $dest
         done < "$(realpath "$ff")"
         _FASD_DATA="$z" fasd -RA "$dest"
