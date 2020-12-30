@@ -66,8 +66,7 @@ function! PackInit() abort
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
     call packager#add('RRethy/vim-hexokinase', {'do': 'git submodule init && git submodule update && cd hexokinase/ && go build'}) " best color highlighting
     call packager#add('sheerun/vim-polyglot') " language pack collection
-    call packager#add('romgrk/nvim-web-devicons') " better devicons support with color
-    call packager#add('romgrk/barbar.nvim') " barbar tab statusline
+    call packager#add('kyazdani42/nvim-web-devicons') " better devicons support with color
     call packager#add('justinmk/vim-syntax-extra') " better syntax for some langs
     call packager#add('tridactyl/vim-tridactyl') " tridactyl support
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
