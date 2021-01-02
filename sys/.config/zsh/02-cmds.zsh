@@ -118,7 +118,7 @@ for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}"
 for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}"
 for i in ${dev_null_list[@]}; alias "${i}=${i} 2>/dev/null"
 _exists systemctl && {
-    alias sysctl_pref='systemctl'
+    sysctl_pref='systemctl'
     alias S='sudo systemctl stop'
     alias R='sudo systemctl restart'
     alias SU='systemctl stop --user'
