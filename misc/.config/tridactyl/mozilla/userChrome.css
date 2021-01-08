@@ -1,0 +1,222 @@
+#urlbar-background {
+  display: none !important;
+}
+
+/* Icons */
+#PanelUI-menu-button {
+  list-style-image: url(image/Fx-Browser-icon-oneColor-white.png) !important;
+}
+#PanelUI-button {
+  background: #1b1e2b;
+}
+#PanelUI-button #PanelUI-menu-button .toolbarbutton-icon {
+  opacity: 0.7 !important;
+}
+#home-button,
+#sidebar-button {
+  display: none;
+}
+#forward-button {
+  list-style-image: url(image/right-arrow.svg) !important;
+}
+#back-button {
+  list-style-image: url(image/left-arrow.svg) !important;
+}
+
+#nav-bar-customization-target {
+  background-color: #1b1e2b !important;
+}
+
+#urlbar-container {
+  max-height: 24px !important;
+}
+#urlbar-input-container {
+  max-height: 24px !important;
+  /* Fixing icons right and left padding inside search bar for hovering  */
+  padding-left: 7px;
+  padding-right: 7px;
+}
+#urlbar {
+  max-height: 24px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #ffffff30 !important;
+  border-radius: 10px 10px 10px 10px !important;
+  background-image: none !important;
+  background-color: #0000004d !important;
+  box-shadow: none !important;
+  text-align: center !important;
+}
+#urlbar[open="true"] {
+  max-height: 24px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #ffffff30 !important;
+  border-radius: 10px 10px 10px 10px !important;
+  background-image: none !important;
+  background-color: #0000004d !important;
+  max-height: 24px !important;
+  box-shadow: none !important;
+  text-align: center !important;
+}
+
+/* New tab icon size (16 is default) Important to not change the rest of calc */
+#tabs-newtab-button .toolbarbutton-icon {
+  width: calc(2 * var(--toolbarbutton-inner-padding) + 12px) !important;
+  height: calc(2 * var(--toolbarbutton-inner-padding) + 12px) !important;
+}
+/* Main BAR */
+#navigator-toolbox {
+  background-color: #1b1e2b !important;
+  --tabs-border-color: none !important;
+  --my-tab-min-width: 36px !important;
+  --tabs-navbar-shadow-size: 0px !important;
+  /*border: 0 !important; */
+}
+#TabsToolbar {
+  padding-top: 0px !important;
+  padding-bottom: 1px !important;
+}
+/* Seperate tabs and make them smaller */
+#TabsToolbar .tabbrowser-tab {
+  padding-right: 4px !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+/* Remove the fill when loading on the tab which 
+isnt formated for different border radius */
+#tabbrowser-tabs {
+  --tab-loading-fill: #1b1e2b;
+  padding-left: 2px !important; /* fix the left tab being too close to the edge */
+  background-color: #1b1e2b;
+}
+
+/* Width of the tabs. Important to have Fadein or it breaks fonctionality */
+.tabbrowser-tab[fadein]:not([pinned]) {
+  max-width: 135px !important;
+}
+
+/* Remove the line between the tabs / seperators */
+#tabbrowser-tabs .tabbrowser-tab::before,
+#tabbrowser-tabs .tabbrowser-tab::after {
+  border: 0 !important;
+}
+
+/* Selected tabs design */
+.tabbrowser-tab[selected="true"] {
+  border: 0 !important;
+  background: #1b1e2b !important;
+}
+
+.tab-background[selected="true"] {
+  background: #1b1e2b !important;
+}
+
+.tab-content[selected="true"] {
+  background: #32374d !important;
+}
+
+/* Normal tabs design on hover */
+.tab-content:not([selected="true"]):hover {
+  background-color: #89bbdd !important;
+  color: #1b1e2b;
+}
+
+/* Design of the plus/newtab button */
+toolbar
+  #tabs-newtab-button:not([disabled="true"]):not([checked]):not([open]):not(:active):hover
+  > .toolbarbutton-icon {
+  border: 0 !important;
+  border-radius: 3px !important;
+  background-color: #292d3e !important;
+  padding: 20px;
+}
+
+toolbar
+  #tabs-newtab-button:not([disabled="true"]):-moz-any([open], [checked], :hover:active)
+  > .toolbarbutton-icon {
+  border: 0 !important;
+  border-radius: 3px !important;
+  background-color: #292d3e !important;
+  padding: 20px;
+}
+
+/* Show Tab close button on hover */
+.tabbrowser-tab:not([pinned]) .tab-close-button {
+  display: -moz-box !important;
+  opacity: 0;
+  visibility: collapse !important;
+  transition: opacity 0.25s, visibility 0.25s ease-in !important;
+}
+.tabbrowser-tab:not([pinned]):hover .tab-close-button {
+  opacity: 1;
+  visibility: visible !important;
+}
+
+/* bar on the bottom */
+#mainPopupSet ~ box {
+  -moz-box-ordinal-group: 10;
+}
+#titlebar {
+  -moz-box-ordinal-group: 10;
+}
+#urlbar {
+  top: unset !important;
+  bottom: calc(
+    (var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2
+  ) !important;
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+#urlbar > * {
+  max-height: var(--urlbar-height) !important;
+}
+#urlbar[breakout][breakout-extend] {
+  max-height: var(--urlbar-height) !important;
+}
+#urlbar[breakout][breakout-extend] > * {
+  max-height: var(--urlbar-height) !important;
+}
+#urlbar-input-container {
+  height: 100%;
+  order: 2;
+}
+#urlbar > .urlbarView {
+  order: 1;
+}
+#urlbar-results {
+  position: fixed;
+  left: 0;
+  bottom: 66px !important;
+  width: 100%;
+  background-color: #1b1e2b;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.panel-arrowbox {
+  display: none;
+}
+.search-one-offs {
+  display: none !important;
+}
+.tab-background {
+  border-top: none !important;
+}
+#navigator-toolbox::after {
+  border: none;
+}
+#TabsToolbar .tabbrowser-arrowscrollbox,
+#tabbrowser-tabs,
+.tab-stack {
+  min-height: 28px !important;
+}
+.tabbrowser-tab {
+  font-size: 80%;
+}
+.tab-content {
+  padding: 0 5px;
+}
+.tab-close-button .toolbarbutton-icon {
+  width: 12px !important;
+  height: 12px !important;
+}
