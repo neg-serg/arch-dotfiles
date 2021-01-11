@@ -1,6 +1,6 @@
 _exists() { (( $+commands[$1] )) }
 
-alias @r='~/bin/scripts/music_rename'
+alias @r='~/bin/scripts/music-rename'
 alias qe='cd *(/om[1]D)'
 
 local copepath=~/bin/scripts/Cope
