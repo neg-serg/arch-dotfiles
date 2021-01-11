@@ -5,7 +5,7 @@ After=sockets.target
 [Service]
 Type=simple
 Restart=always
-ExecStart=/home/neg/bin/scripts/update-pic-dirs
+ExecStart=/home/neg/bin/scripts/pic-dirs-list
 
 [Install]
 WantedBy=default.target
