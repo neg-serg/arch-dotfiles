@@ -4,7 +4,7 @@ main() {
         if [ -d "$arg" ]; then
             {
                 find "$arg" -maxdepth 1 -type f -print0 | \
-                    xargs -0n10 -P 10 ~/bin/scripts/vid_info
+                    xargs -0n10 -P 10 ~/bin/scripts/vid-info
             } &
         fi
     done
@@ -13,7 +13,7 @@ main() {
         for arg in "$@"; do
             [ -f "$arg" ] && args="$args$(printf '%s\0' "$arg")";
         done
-        echo -n "$args" | xargs -0n10 -P 10 ~/bin/scripts/vid_info
+        echo -n "$args" | xargs -0n10 -P 10 ~/bin/scripts/vid-info
     } &
     if lsmod | rg -i nvidia >/dev/null 2>&1; then
         mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > $HOME/tmp/mpv.log
