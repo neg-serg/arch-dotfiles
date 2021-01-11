@@ -17,7 +17,7 @@ fancy_table=('⚌' '♫' '⟫' '|')
 wf(){ print "${col1}⟬${end}${bold}$1${end}${col1}⟭${end} " }
 nr(){ print "<span weight='Medium' color='#b8c5d9'>$1${end}" }
 delimiter(){ repeat ${len} print -n "◇" }
-cmp_img(){ ${HOME}/bin/scripts/compare_images.py "${1}" "${2}" }
+cmp_img(){ ${HOME}/bin/scripts/cmp-imgs.py "${1}" "${2}" }
 
 notify(){
     local -a bodyarr=()
