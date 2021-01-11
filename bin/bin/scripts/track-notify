@@ -74,7 +74,7 @@ notify(){
 
     output="$(delimiter)\n${output}$(delimiter)\n​"
     summary=""
-    dunstify -p -a "track_notify" -h "string:fgcolor:#17272D" \
+    dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
         -u "${urgency}" \
         -i "${image}" "${summary}" "${output}" > /tmp/notify_id \
         -r ${magic_pie}

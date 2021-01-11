@@ -63,7 +63,7 @@
     alignment = left
     appname = mpd-notification
     format = ""
-    script = "~/bin/scripts/track_notify"
+    script = "~/bin/scripts/track-notify"
     timeout = 10
 
 # vim: ft=cfg
