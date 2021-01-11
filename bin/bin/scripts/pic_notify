@@ -16,7 +16,7 @@ send_notify() {
         -e "s;\(.*\):;$b\\1$c1:$clear$clear;" \
         -e "s:\(⟬\|⟭\):$c1\1$clear:g"
     )
-    dunstify -h "string:fgcolor:#6C7E96" -a "pic_notify" -i "$img" ' ' "$header\n$output"
+    dunstify -h "string:fgcolor:#6C7E96" -a "pic" -i "$img" ' ' "$header\n$output"
 }
 
 main() {

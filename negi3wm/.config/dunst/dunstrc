@@ -53,10 +53,10 @@
     foreground = "#BFCAD0"
     timeout = 0
 
-[pic_notify]
+[pic]
     appname = screenshot
     format = "%s\n%b"
-    script = "~/bin/scripts/pic_notify"
+    script = "~/bin/scripts/pic-notify"
     urgency = normal
 
 [mpd]

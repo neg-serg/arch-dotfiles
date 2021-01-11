@@ -8,7 +8,7 @@ arglist=" -p 0 "
 make_shot() {
     arglist="$arglist $summary_"
     maim -m 1 $arglist
-    ~/bin/scripts/pic_notify "$summary_" &
+    ~/bin/scripts/pic-notify "$summary_" &
 }
 
 Select() {
