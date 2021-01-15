@@ -3,9 +3,6 @@ _exists() { (( $+commands[$1] )) }
 alias @r='~/bin/scripts/music-rename'
 alias qe='cd *(/om[1]D)'
 
-local copepath=~/bin/scripts/Cope
-for i in "${copepath}"/*; alias $(basename ${i})=\"$i\"
-
 if _exists exa; then
     alias la='exa --icons -a --group-directories-first'
     alias ll='exa --icons -al --group-directories-first'
