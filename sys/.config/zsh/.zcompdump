@@ -1,4 +1,4 @@
-#files: 1247	version: 5.8
+#files: 968	version: 5.8
 
 _comps=(
 '-' '_precommand'
@@ -157,6 +157,7 @@ _comps=(
 'cd' '_cd'
 'cdc' '_sccs'
 'cdcd' '_cdcd'
+'cdr' '_cdr'
 'cdrdao' '_cdrdao'
 'cdrecord' '_cdrecord'
 'ceilometer' '_openstack'
@@ -354,7 +355,6 @@ _comps=(
 'fail2ban-client' '_fail2ban-client'
 'fakeroot' '_fakeroot'
 'false' '_nothing'
-'fast-theme' '_fast-theme'
 'fc' '_fc'
 'fc-list' '_xft_fonts'
 'fc-match' '_xft_fonts'
@@ -875,7 +875,6 @@ _comps=(
 'mread' '_mtools'
 'mren' '_mtools'
 'msgchk' '_mh'
-'mssh' '_mssh'
 'mt' '_mt'
 'mtn' '_monotone'
 'mtoolstest' '_mtools'
@@ -901,7 +900,6 @@ _comps=(
 'mysqlshow' '_mysql_utils'
 'nail' '_mail'
 'nano' '_nano'
-'nanoc' '_nanoc'
 'native2ascii' '_java'
 'nautilus' '_nautilus'
 'nawk' '_awk'
@@ -1681,7 +1679,6 @@ _comps=(
 'zfs' '_zfs'
 'zgetattr' '_zattr'
 'zgrep' '_grep'
-'zinit' '_zinit'
 'zip' '_zip'
 'zipinfo' '_zip'
 'zle' '_zle'
@@ -1810,44 +1807,19 @@ bindkey '^X^R' _read_comp
 bindkey '^X?' _complete_debug
 bindkey '^XC' _correct_filename
 bindkey '^Xa' _expand_alias
+bindkey '^Xc' _correct_word
+bindkey '^Xd' _list_expansions
 bindkey '^Xe' _expand_word
 bindkey '^Xh' _complete_help
 bindkey '^Xm' _most_recent_file
 bindkey '^Xn' _next_tags
+bindkey '^Xt' _complete_tag
 bindkey '^X~' _bash_list-choices
 bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _afew _android _archlinux-java _artisan _atach \
-            _bitcoin-cli _bower _bundle _caffeinate _cap \
-            _cask _ccache _cf _cheat _choc \
-            _chromium _cmake _coffee _composer _conan \
-            _concourse _console _cppcheck _dad _debuild \
-            _dget _dhcpcd _diana _docpad _drush \
-            _ecdsautil _emulator _envdir _exportfs _fab \
-            _fail2ban-client _fast-theme _ffind _fleetctl _flutter \
-            _force _fwupdmgr _gas _ghc _gist \
-            _git-flow _git-journal _git-pulls _git-revise _git-wtf \
-            _glances _golang _google _gtk-launch _hledger \
-            _homestead _httpie _ibus _include-what-you-use _inxi \
-            _jmeter _jmeter-plugins _jonas _jrnl _kak \
-            _kitchen _knife _language_codes _lunchy _mc \
-            _middleman _mina _mix _mussh _mvn \
-            _nano _nanoc _nftables _node _nvm \
-            _openssl _optirun _patool _perf _periscope \
-            _pgsql_utils _phing _pixz _pkcon _play \
-            _pm2 _port _protoc _pygmentize _rails \
-            _ralio _redis-cli _rfkill _rkt _rslsync \
-            _rspec _rsvm _rubocop _sbt _scala \
-            _scrub _sdd _setcap _setup.py _sfdx \
-            _showoff _srm _stack _subl _subliminal \
-            _supervisorctl _svm _tarsnap _teamocil _thor \
-            _tmuxinator _tmuxp _tox _trash-empty _trash-list \
-            _trash-put _trash-restore _udisksctl _ufw _vagrant \
-            _virtualbox _vnstat _wemux _wg-quick _xinput \
-            _xsel _yaourt _yarn _zcash-cli _zinit \
-            _afew _alacritty _android _archlinux-java _artisan \
+autoload -Uz _afew _alacritty _android _archlinux-java _artisan \
             _asp _atach _auto-auto-complete _bat _beet \
             _bitcoin-cli _bootctl _bower _btm _bundle \
             _busctl _caffeinate _cap _cargo _cask \
@@ -2039,35 +2011,7 @@ autoload -Uz _afew _android _archlinux-java _artisan _atach \
             _wait _which _widgets _zargs _zattr \
             _zcalc _zcalc_line _zcompile _zed _zftp \
             _zle _zmodload _zmv _zparseopts _zpty \
-            _zsh-mime-handler _zsocket _zstyle _ztodo _afew \
-            _android _archlinux-java _artisan _atach _bitcoin-cli \
-            _bower _bundle _caffeinate _cap _cask \
-            _ccache _cf _cheat _choc _chromium \
-            _cmake _coffee _composer _conan _concourse \
-            _console _cppcheck _dad _debuild _dget \
-            _dhcpcd _diana _docpad _drush _ecdsautil \
-            _emulator _envdir _exportfs _fab _fail2ban-client \
-            _ffind _fleetctl _flutter _force _fwupdmgr \
-            _gas _ghc _gist _git-flow _git-journal \
-            _git-pulls _git-revise _git-wtf _glances _golang \
-            _google _gtk-launch _hledger _homestead _httpie \
-            _ibus _include-what-you-use _inxi _jmeter _jmeter-plugins \
-            _jonas _jrnl _kak _kitchen _knife \
-            _language_codes _lunchy _mc _middleman _mina \
-            _mix _mssh _mussh _mvn _nano \
-            _nanoc _nftables _node _nvm _openssl \
-            _optirun _patool _perf _periscope _pgsql_utils \
-            _phing _pixz _pkcon _play _pm2 \
-            _port _protoc _pygmentize _rails _ralio \
-            _redis-cli _rfkill _rkt _rslsync _rspec \
-            _rsvm _rubocop _sbt _scala _scrub \
-            _sdd _setcap _setup.py _sfdx _showoff \
-            _srm _stack _subl _subliminal _supervisorctl \
-            _svm _tarsnap _teamocil _thor _tmuxinator \
-            _tmuxp _tox _trash-empty _trash-list _trash-put \
-            _trash-restore _udisksctl _ufw _vagrant _virtualbox \
-            _vnstat _wemux _wg-quick _xinput _xsel \
-            _yaourt _yarn _zcash-cli
+            _zsh-mime-handler _zsocket _zstyle _ztodo
 autoload -Uz +X _call_program
 
 typeset -gUa _comp_assocs
