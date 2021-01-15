@@ -1,8 +1,0 @@
-#!/usr/bin/env perl
-use App::Cope;
-
-sub process {
-  line qr{(\d+)\((\w+)\)} => 'white', 'blue bold';
-}
-
-run( \&process, real_path, @ARGV );
