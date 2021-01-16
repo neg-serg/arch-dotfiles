@@ -86,7 +86,7 @@ apply_rename_() {
         if [[ $(realpath "${src}") != $(realpath "${result}") ]]; then
             mv -i "${src}" "${result}"
         fi
-        fix_names -i "${result}"
+        ren -i "${result}"
         rmdir "${src}" 2> /dev/null
     fi
 }
