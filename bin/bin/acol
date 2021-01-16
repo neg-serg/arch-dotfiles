@@ -1,0 +1,60 @@
+#!/usr/bin/bash
+in=0
+unbuffer=0
+confs=("$HOME/bin/scripts/acol/")
+while getopts 'ie:o:O:uUhH' o; do
+	case "$o" in
+		i) in=1 ;;
+		e) espec="$OPTARG" ;;
+		o) ospec="$OPTARG" ;;
+		O) ospec="$OPTARG"; espec="$OPTARG" ;;
+		u) unbuffer=2 ;;
+		U) unbuffer=0 ;;
+	esac
+done
+shift "$(( OPTIND - 1 ))"
+if ! (( $# | in )); then
+	exit 1
+fi
+
+shopt -s nullglob
+getf(){ # cmd postfix spec
+	local d f arg
+	if [[ "$3" = */* ]]; then
+		REPLY="$3"
+		return
+	elif [[ -n "$3" ]]; then
+		# Test [spec].[fd] [prog].[spec].[fd] [spec]
+		set -- "$3.$2" "$1.$3.$2" "$3"
+	else
+		set -- "$1.$2"
+	fi
+	IFS=':'
+	for arg; do
+		for d in "${confs[@]}"; do
+			for f in "$d/$arg"*; do
+				if [[ -x "$f" ]]; then
+					REPLY="$f"
+					return
+				fi
+			done
+		done
+	done
+	return 1
+}
+
+getf "$1" 1 "$ospec"
+stdout_cmd="$REPLY"
+getf "$1" 2 "$espec"
+stderr_cmd="$REPLY"
+
+if (( in )); then
+	exec 2> >("$stderr_cmd" >&2)
+	exec "$stdout_cmd"
+fi
+# no colorizer found, just exec
+(( ${#stdout_cmd} + ${#stderr_cmd} )) || exec "$@"
+
+# set COMMAND to the command being run (quoted)
+export COMMAND="${*@Q}"
+"$@" 2> >("$stderr_cmd" >&2) | "$stdout_cmd"
