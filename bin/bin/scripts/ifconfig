@@ -1,0 +1,37 @@
+#!/usr/bin/env perl
+use App::Cope;
+use Regexp::Common qw[net];
+
+# things that can go wrong (green/red)
+my $things = join '|', qw[errors dropped overruns frame carrier collisions];
+
+sub process {
+  mark qr{^(\S+)} => 'bold';
+
+  # status
+  # green=good, red=bad, yellow=info
+  line qr{(UP|DOWN)} => { UP => 'green bold', DOWN => 'red bold' };
+  line qr{(RX|TX|mtu|netmask|loop)} => { 
+    RX => 'white',
+    mtu => 'white',
+    netmask => 'white',
+    loop => 'white',
+    TX => 'white' 
+  };
+  line qr{(inet6?)} => 'white';
+
+  line qr{($things)\s+(0)\b}                      => 'green',  'green bold';
+  line qr{($things)\s+([^0]\d*)\b}                => 'red',    'red bold';
+  line qr{[RT]X (packets|txqueuelen)\s*(\d+)}     => 'cyan', 'cyan bold';
+  line qr{[RT]X.*?\s+(bytes)\s*(\d+) \(([^)]+)\)} => 'cyan', 'cyan bold', 'yellow bold';
+
+  # addresses and such
+  line qr{^(\w+)(:)}                                => 'bold cyan', 'white';
+  line qr{(ether)\s*([0-9a-fA-F-:]+)}               => 'white',  'blue';
+  line qr{(?:broadcast|netmask)\s*($RE{net}{IPv4})} => 'blue bold';
+  line qr{inet\s*($RE{net}{IPv4})}                  => 'blue bold underline';
+  line qr{inet6 (\S+)}                              => 'blue';
+
+}
+
+run( \&process, real_path, @ARGV );

@@ -1,0 +1,74 @@
+#!/usr/bin/env perl
+use App::Cope;
+use App::Cope::Extra qw[percent_b];
+
+my @headers = (
+  'Filesystem', 
+  '1K-blocks',
+  '1M-blocks',
+  'Used',
+  qr/Avail(?:able)?/, 
+  'Use%', 
+  'Mounted on',
+  'Size', 
+  'Type',
+  'Inodes',
+  'IUsed',
+  'IFree',
+  'IUse%',
+);
+
+my $system_fs = join '|', qw[
+    none
+    devtmpfs
+    tmpfs
+    udev
+    proc
+    devpts
+    sysfs
+    procbususb
+    rpc_pipefs
+];
+my $non_system_fs = join '|', qw[
+    btrfs
+    cramfs
+    exfat
+    ext2
+    ext3
+    ext4
+    ext4dev
+    fat
+    jfs
+    minix
+    msdos
+    reiserfs
+    vfat
+    xfs
+];
+
+sub process {
+  if (/^Filesystem/) {
+    for my $h (@headers) { mark $h => 'white underline'; }
+  }
+  else {
+    line qr{(\d+%)\s+(\S+)$} => \&{ percent_b 10, 25, 50, 75 }, 'bold';
+    line qr{(\d+\.?\d+)(K)} => 'bold blue', 'white';
+    line qr{(\d+\.?\d+)(M)} => 'bold blue', 'cyan';
+    line qr{(\d+\.?\d+)(G)} => 'bold blue', 'yellow';
+    line qr{(\d+\.?\d+)(T)} => 'bold blue', 'yellow bold';
+    line qr{[^\s]+[^\d]+\s+(\d+)\s} => 'blue';
+    line qr{[^\s]+[^\d]+\s+\d+\s+(\d+)\s} => 'blue';
+
+    line qr{(/)*?} => 'blue';
+    line qr{(/)(\w+)(/)*?} => 'blue', 'white', 'blue';
+    line qr{($system_fs)*} => 'magenta';
+    line qr{($non_system_fs)*} => 'white';
+
+    mark qr{^(?:$system_fs)\b} => 'magenta'
+      or line qr{(?:^|:)(\S+/)(\S+)} => 'blue', 'blue bold'
+      or line qr{(\S+:)(\S*)} => 'blue', 'blue bold'
+      or line qr{^(automount\()(\S+)(\))} => 'red', 'magenta', 'red';
+ }
+}
+
+run( \&process, real_path, @ARGV );

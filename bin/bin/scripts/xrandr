@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+use App::Cope;
+
+sub process {
+  line qr{^(Screen \d+)} => 'cyan bold';
+
+  line qr{^(\S+) ((?:dis)?connected) (?:(\d+x\d+)(\+\d+\+\d+))?} =>
+    'blue', { connected => 'green bold', disconnected => 'red' },
+      'yellow bold', 'yellow';
+
+  line qr{^\s*(\d+x\d+)\s+(\S+?)\*} => 'white underline', '';
+}
+
+run( \&process, real_path, @ARGV );

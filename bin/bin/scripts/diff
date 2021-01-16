@@ -1,0 +1,123 @@
+#!/usr/bin/env perl
+use App::Cope;
+
+no warnings 'experimental';
+
+my $patch_type = \&diff_normal;
+
+my $expand_tabs = 0;
+my $tabsize = 8;
+my $width = 130;
+
+my $COLOR_REMOVED  = "red";
+my $COLOR_ADDED    = "green";
+my $COLOR_MODIFIED = "yellow";
+my $COLOR_OTHER    = "blue";
+my $COLOR_SEP      = "bright_white";
+my $COLOR_FILE     = "bold";
+
+my $RE_RANGE       = '\d+(?:,\d+)?';
+
+# Don't need to worry about there being two different styles
+# diff will complain
+my $c = 0;
+for (@ARGV) {
+    last if /^--$/;
+    $patch_type = \&diff_context    if /^--context|^-(?!-).*?[cC]/;
+    $patch_type = \&diff_unified    if /^--unified|^-(?!-).*?[uU]/;
+    $patch_type = \&diff_side       if /^--side-by-side|^-(?!-).*?y/;
+
+    $width = 0 + $1                 if /^--width=(\d+)$/ or /^-(?!-).*?W(\d+)$/;
+    if (/^--width$/ && $c < $#ARGV) {
+        $width = 0 + $ARGV[$c+1]
+    }
+
+    $tabsize = 0 + $1               if /^--tabstop=(\d+)$/;
+    if (/^--tabstop$/ && $c < $#ARGV) {
+        $tabsize = 0 + $ARGV[$c+1]
+    }
+
+    $expand_tabs = 1                if /^--expand-tabs|^-(?!-).*?t/;
+
+    $c++;
+}
+
+my ($sdiff_half_width, $sdiff_column2_offset, $sdiff_separator_position) = (0,0,0);
+my $GUTTER_WIDTH_MINIMUM = 3;
+{
+    # based of source for GNU Diff 3.3
+    my $t = $tabsize;
+    $t = 1 if $expand_tabs;
+    my $off = int(($width + $t + $GUTTER_WIDTH_MINIMUM) / (2 * $t))  *  $t;
+    $sdiff_half_width = $off - $GUTTER_WIDTH_MINIMUM;
+    $sdiff_half_width = $width - $off if $sdiff_half_width > $width - $off;
+    $sdiff_half_width = 0 if $sdiff_half_width < 0;
+    $sdiff_column2_offset = $width;
+    $sdiff_column2_offset = $off if $sdiff_half_width;
+    $sdiff_separator_position = (($sdiff_column2_offset+$sdiff_half_width)/2);
+}
+
+sub diff_normal {
+    line qr{^(\d+(?:,\d+)?[acd]\d+(?:,\d+)?)} => $COLOR_OTHER;
+    line qr{^(<.*)$} => $COLOR_REMOVED;
+    line qr{^(>.*)$} => $COLOR_ADDED;
+    line qr{^(---)$} => $COLOR_SEP;
+}
+
+sub diff_context {
+    line qr{^(\*{3} )(.*?)\t} => $COLOR_ADDED, $COLOR_FILE;
+    line qr{^(-{3} )(.*?)\t} => $COLOR_REMOVED, $COLOR_FILE;
+    line qr{^(\*{15})$} => $COLOR_SEP;
+    line qr{^(\*{3}\s*)(${RE_RANGE})(\s*\*{4})$} => $COLOR_ADDED, "bold ${COLOR_ADDED}", "clear $COLOR_ADDED";
+    line qr{^(\-{3}\s*)(${RE_RANGE})(\s*\-{4})$} => $COLOR_REMOVED, "bold ${COLOR_REMOVED}", "clear $COLOR_REMOVED";
+    line qr{^(\- .*)$} => $COLOR_REMOVED;
+    line qr{^(\+ .*)$} => $COLOR_ADDED;
+    line qr{^(\! .*)$} => $COLOR_MODIFIED;
+}
+
+sub diff_unified {
+    line qr{^(\+{3} )(.*?)\t} => $COLOR_ADDED, $COLOR_FILE;
+    line qr{^(-{3} )(.*?)\t} => $COLOR_REMOVED, $COLOR_FILE;
+    line qr{^(@@\s*(?:-${RE_RANGE})?\s*(?:\+${RE_RANGE})?\s*@@)$} => $COLOR_OTHER;
+    line qr{^(\*{3}\s*)(${RE_RANGE})(\s*\*{4})$} => $COLOR_ADDED, "bold ${COLOR_ADDED}", "clear $COLOR_ADDED";
+    line qr{^(\-{3}\s*)(${RE_RANGE})(\s*\-{4})$} => $COLOR_REMOVED, "bold ${COLOR_REMOVED}", "clear $COLOR_REMOVED";
+    line qr{^(\-.*)$} => $COLOR_REMOVED;
+    line qr{^(\+.*)$} => $COLOR_ADDED;
+    line qr{^(\!.*)$} => $COLOR_MODIFIED;
+}
+
+sub diff_side {
+    my ($c,$col) = (0,0);
+    my $char = '';
+
+    # Find the correct column
+    do {
+        $char = substr($_, $c, 1);
+        if ($char eq "\t") {
+            $col = $tabsize*(int($col/$tabsize)+1)
+        } elsif ($char eq "\b") {
+            $col -= 1;
+        } else {
+            $col ++;
+        }
+        $c ++;
+    } until ($col >= ($sdiff_separator_position) || $c > length($_));
+
+    $char = '' if $c > length($_);
+
+    if ($char eq '>' || $char eq '(') {
+        line qr{^(.*)$} => $COLOR_ADDED;
+    } elsif ($char eq '<' || $char eq ')') {
+        line qr{^(.*)$} => $COLOR_REMOVED;
+    } elsif ($char eq '|') {
+        line qr{^(.*)$} => $COLOR_MODIFIED;
+    }
+
+}
+
+sub process {
+  line qr{^(diff .*)$} => 'white';
+  &$patch_type;
+}
+
+run( \&process, real_path, @ARGV );
