@@ -139,6 +139,8 @@ _exists git && {
     alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
 }
 
+_exists fzf && bindings() { bindkey -L | fzf }
+
 _exists tmux && {
     # Copy from remote tmux buffer to local clipboard
     cpb() { ssh "$1" "tmux saveb -" | xclip -sel c }
