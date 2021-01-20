@@ -32,7 +32,7 @@ function! PackInit() abort
     call packager#add('andymass/vim-matchup') " generic matcher
     call packager#add('haya14busa/vim-asterisk') " smartcase star
     call packager#add('svermeulen/vim-subversive') " fast substitute
-    call packager#add('jiangmiao/auto-pairs') " autopair for brackets
+    call packager#add('cohama/lexima.vim') " better autopairs
     call packager#add('junegunn/vim-easy-align') " use easy-align, instead of tabular
     call packager#add('lambdalisue/suda.vim') " smart sudo support
     call packager#add('svermeulen/vim-NotableFt') "better ft
