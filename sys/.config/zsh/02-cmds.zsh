@@ -147,5 +147,4 @@ _exists tmux && {
     # Copy from remote tmux buffer to local tmux clipboard
     cpt() { ssh "$1" "tmux saveb -" | tmux loadb - }
 }
-
 unfunction _exists
