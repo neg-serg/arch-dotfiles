@@ -11,7 +11,7 @@ function! PackInit() abort
 " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
     call packager#add('neoclide/coc.nvim', { 'do': function('InstallCoc') }) " lsp autocomplete
-    call packager#add('antoinemadec/coc-fzf', {'branch': 'release'})
+    call packager#add('antoinemadec/coc-fzf', {'branch': 'release'}) " coc fzf support
     call packager#add('neg-serg/lusty', {'type': 'opt'}) " file/buffer explorer
     call packager#add('justinmk/vim-dirvish') " minimalistic file manager
     call packager#add('airblade/vim-rooter') " autochdir for project root or for current dir
@@ -31,24 +31,22 @@ function! PackInit() abort
     call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
     call packager#add('andymass/vim-matchup') " generic matcher
     call packager#add('haya14busa/vim-asterisk') " smartcase star
-    call packager#add('inkarkat/vim-ReplaceWithRegister') " replace with register keybindings
+    call packager#add('svermeulen/vim-subversive') " fast substitute
     call packager#add('jiangmiao/auto-pairs') " autopair for brackets
     call packager#add('junegunn/vim-easy-align') " use easy-align, instead of tabular
     call packager#add('lambdalisue/suda.vim') " smart sudo support
     call packager#add('svermeulen/vim-NotableFt') "better ft
     call packager#add('tomtom/tcomment_vim') " commenter plugin
-    call packager#add('tpope/vim-abolish') " different case coersion
     call packager#add('tpope/vim-repeat') " better dot
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
     call packager#add('wellle/targets.vim') " better text objects
-    call packager#add('tommcdo/vim-exchange') " add exchange operator
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Search                                                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('junegunn/fzf') " fzf binary
     call packager#add('junegunn/fzf.vim') " fzf vim bindings
     call packager#add('pbogut/fzf-mru.vim') " fzf mru source
-    call packager#add('yuki-ycino/fzf-preview.vim', {'do': ':UpdateRemotePlugins', 'branch': 'release'}) " integration fzf preview with coc
+    call packager#add('yuki-ycino/fzf-preview.vim') " integration fzf preview with coc
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('romgrk/searchReplace.vim') " better search and replace
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -57,9 +55,7 @@ function! PackInit() abort
     call packager#add('tjdevries/colorbuddy.nvim') " colorscheme create helper
     call packager#add('lifepillar/vim-colortemplate') " colortemplate generator
     call packager#add('neg-serg/neg') " my colorscheme
-    call packager#add('ulwlu/abyss.vim') " blue colorscheme
     call packager#add('overcache/NeoSolarized') " neosolarized colorscheme
-    call packager#add('Iron-E/nvim-highlite') " colorscheme add for future reuse(semantic highlighting)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Appearance                                                                   │
 " └───────────────────────────────────────────────────────────────────────────────────┘
