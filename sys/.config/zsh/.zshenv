@@ -42,7 +42,7 @@ export BROWSER="firefox"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
-export KEYTIMEOUT=4
+export KEYTIMEOUT=6
 export ESCDELAY=1
 
 [[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
