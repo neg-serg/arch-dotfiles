@@ -37,9 +37,9 @@ export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 export KEYTIMEOUT=6
 export ESCDELAY=1
 export FZF_DEFAULT_OPTS="
---color=bg+:#080808,bg:#000000,spinner:#395573,hl:#4779B3
---color=fg:#617287,header:#4779B3,info:#34596C,pointer:#395573
---color=marker:#04141C,fg+:#005f87,prompt:#2b768d,hl+:#367C36
+--color=bg+:#080808,bg:#000000,spinner:#395573,hl:#496E80
+--color=fg:#617287,header:#4779B3,info:#34596C,pointer:#ff3070
+--color=marker:#04141C,fg+:#8DA6B2,prompt:#2b768d,hl+:#005faf
 --info=inline
 --multi
 --prompt='>' --pointer='>' --marker='✓'
