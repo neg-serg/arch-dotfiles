@@ -2,9 +2,8 @@ sw_volume: 0
 audio_device_state:1:Pulseaudio
 audio_device_state:0:VMV D1 USB2.0
 audio_device_state:0:FIFO
-state: play
-current: 2
-time: 119.979000
+state: stop
+current: 25
 random: 0
 repeat: 0
 single: 0
@@ -13,13 +12,35 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:Opeth-⟨2x5⟩-Ghost·Reveries/01 Ghost Of Perdition.flac
-1:Opeth-⟨2x3⟩-Damnation/1-01 Windowpane.flac
-2:Opeth-⟨2x3⟩-Damnation/1-02 In My Time Of Need.flac
-3:Opeth-⟨2x3⟩-Damnation/1-03 Death Whispered A Lullaby.flac
-4:Opeth-⟨2x3⟩-Damnation/1-04 Closure.flac
-5:Opeth-⟨2x3⟩-Damnation/2-01 Hope Leaves.flac
-6:Opeth-⟨2x3⟩-Damnation/2-02 To Rid The Disease.flac
-7:Opeth-⟨2x3⟩-Damnation/2-03 Ending Credits.flac
-8:Opeth-⟨2x3⟩-Damnation/2-04 Weakness.flac
+0:Phelios-⟨2xK⟩-Spirits·of·Rhea/01 Spirits of Rhea.flac
+1:Phelios-⟨2xK⟩-Spirits·of·Rhea/02 Rings.flac
+2:Phelios-⟨2xK⟩-Spirits·of·Rhea/03 The Deep Sea.flac
+3:Phelios-⟨2xK⟩-Spirits·of·Rhea/04 Hyperion.flac
+4:Phelios-⟨2xK⟩-Spirits·of·Rhea/05 Saturn Emissions.flac
+5:Phelios-⟨2xK⟩-Spirits·of·Rhea/06 Enceladus Emissions.flac
+6:Phelios-⟨2xK⟩-Spirits·of·Rhea/07 Through the Gates of the Silver Key.flac
+7:Phelios-⟨2xK⟩-Spirits·of·Rhea/08 Signal.flac
+8:Сумеречный·Сад-⟨2xJ⟩-Беги/01 Двойник.mp3
+9:Сумеречный·Сад-⟨2xJ⟩-Беги/02 Инанна.mp3
+10:Сумеречный·Сад-⟨2xJ⟩-Беги/04 Выйди Из Воды.mp3
+11:Сумеречный·Сад-⟨2xJ⟩-Беги/05 Беги.mp3
+12:Сумеречный·Сад-⟨2xJ⟩-Беги/06 Дождь-9.mp3
+13:Сумеречный·Сад-⟨2xJ⟩-Беги/07 Гори.mp3
+14:Сумеречный·Сад-⟨2xJ⟩-Беги/08 Сен-Жермен.mp3
+15:Zoät-Aon-⟨2x5⟩-Star·Autopsy/01 - Totem Owl.flac
+16:Zoät-Aon-⟨2x5⟩-Star·Autopsy/02 - Tellus Sinks.flac
+17:Zoät-Aon-⟨2x5⟩-Star·Autopsy/03 - Infra-Saturn.flac
+18:Zoät-Aon-⟨2x5⟩-Star·Autopsy/04 - Exo.flac
+19:Zoät-Aon-⟨2x5⟩-Star·Autopsy/05 - Flesh Treasury.flac
+20:Zoät-Aon-⟨2x5⟩-Star·Autopsy/06 - Dark Grammar.flac
+21:Zoät-Aon-⟨2x5⟩-Star·Autopsy/07 - Possessed Constellation.flac
+22:Zoät-Aon-⟨2x5⟩-Star·Autopsy/08 - Theriomorphic Heralds.flac
+23:Zoät-Aon-⟨2x5⟩-Star·Autopsy/09 - Skeletal Sphinx.flac
+24:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/01 - (R).flac
+25:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/02 - (fp).flac
+26:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/03 - (ne).flac
+27:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/04 - (fl).flac
+28:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/05 - (fj).flac
+29:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/06 - (fc).flac
+30:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/07 - (L).flac
 playlist_end
