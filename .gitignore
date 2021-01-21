@@ -297,3 +297,4 @@ sys/.config/bpytop/error.log
 dev/.config/pylint/
 music/.config/beets/state.pickle
 music/.config/beets/discogs_token.json
+mpdstate

@@ -1,9 +1,10 @@
-sw_volume: 0
+sw_volume: 100
 audio_device_state:1:Pulseaudio
 audio_device_state:0:VMV D1 USB2.0
 audio_device_state:0:FIFO
-state: stop
-current: 25
+state: play
+current: 39
+time: 113.786000
 random: 0
 repeat: 0
 single: 0
@@ -43,4 +44,13 @@ playlist_begin
 28:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/05 - (fj).flac
 29:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/06 - (fc).flac
 30:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/07 - (L).flac
+31:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/01 - (R).flac
+32:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/02 - (fp).flac
+33:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/03 - (ne).flac
+34:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/04 - (fl).flac
+35:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/05 - (fj).flac
+36:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/06 - (fc).flac
+37:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/07 - (L).flac
+38:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/06 - (fc).flac
+39:This·Morn=·Omina-⟨2xH⟩-Kundalini·Rising/01 - Ayahuasca.flac
 playlist_end
