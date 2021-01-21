@@ -19,15 +19,15 @@ background_opacity: 0.88
 
 font:
   normal:
-    family: "Iosevka Term"
+    family: "Iosevka"
     style: Medium
 
   bold:
-    family: "Iosevka Term"
+    family: "Iosevka"
     style: Bold
 
   italic:
-    family: "Iosevka Term"
+    family: "Iosevka"
     style: Italic
 
   size: 36.0
