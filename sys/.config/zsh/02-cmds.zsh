@@ -1,8 +1,6 @@
 _exists() { (( $+commands[$1] )) }
-
 alias @r='~/bin/scripts/music-rename'
 alias qe='cd *(/om[1]D)'
-
 if _exists exa; then
     alias la='exa --icons -a --group-directories-first'
     alias ll='exa --icons -al --group-directories-first'
@@ -12,7 +10,6 @@ else
     alias ls='ls --color=auto'
 fi
 alias l='ls'
-
 alias mv='mv -i'
 alias mk='mkdir -p'
 alias rd='rmdir'
@@ -20,12 +17,9 @@ alias grep='grep --color=auto'
 alias sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
 alias U='yay -Su --devel --noconfirm --timeupdate'
-
 alias s='sudo'
-
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias e='handlr open'
-
 _exists rg && {
     local rg_options='--max-columns=0 \
     --max-columns-preview \
@@ -41,9 +35,7 @@ _exists rg && {
     alias rg="rg ${rg_options}"
     alias zrg="rg ${rg_options} -z"
 }
-
 _exists bpython && alias python='bpython'
-
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
 _exists lfs && alias df='lfs'
 _exists bc && alias '?=bc -l <<<'
@@ -51,26 +43,20 @@ _exists acpi && alias acpi='acpi -V'
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
 _exists objdump && alias objdump='objdump -M intel -d'
-_exists task && alias cal='task calendar'
 _exists todoist && {
     alias t='todoist'
     alias ta='todoist add'
-    alias tm='todoist modify'
     alias tl='todoist list'
-    alias td='todoist close'
     alias ts='todoist show'
 }
 _exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
-
 _exists nvim && {
     alias vim=nvim
     alias nvim=v
     alias v='~/bin/v'
 }
-
 _exists iostat && alias iostat='iostat -mtx'
 _exists iotop && alias iotop='sudo iotop -oPa'
-
 _exists patool && {
     alias se='patool extract'
     alias pk='patool create'
@@ -79,9 +65,6 @@ _exists xz && alias xz='xz --threads=0'
 _exists pigz && alias gzip='pigz'
 _exists pbzip2 && alias bzip2='pbzip2'
 _exists zstd && alias zstd='zstd --threads=0'
-
-pacnews() { sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//' }
-
 _exists mpv && {
     local mpv_ipc='--input-ipc-server=/tmp/mpvsocket'
     alias mpa="mpv ${mpv_ipc} --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
@@ -91,7 +74,6 @@ _exists mpv && {
         --tscale='oversample' \
         --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
 }
-
 _exists mpc && {
     alias love='mpc sendmessage mpdas love'
     alias unlove='mpc sendmessage mpdas unlove'
@@ -99,7 +81,6 @@ _exists mpc && {
 _exists youtube-dl && alias yt='youtube-dl'
 _exists imgur_screenshot && alias img='imgur-screenshot'
 _exists ffsend && alias ff='ffsend upload'
-
 local rlwrap_list=(bigloo clisp irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
 local logind_sudo_list=(reboot halt poweroff)
@@ -127,7 +108,6 @@ _exists lsof && alias ports='sudo lsof -Pni'
 _exists bandwhich && alias nethogs='sudo bandwhich'
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
-
 _exists git && {
     alias gs='git status --short -b'
     alias gp='git push'
@@ -138,9 +118,7 @@ _exists git && {
     alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
     alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
 }
-
 _exists fzf && bindings() { bindkey -L | fzf }
-
 _exists tmux && {
     # Copy from remote tmux buffer to local clipboard
     cpb() { ssh "$1" "tmux saveb -" | xclip -sel c }
