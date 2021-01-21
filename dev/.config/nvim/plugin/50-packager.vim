@@ -11,7 +11,7 @@ function! PackInit() abort
 " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('kristijanhusak/vim-packager', {'type': 'opt'})
     call packager#add('neoclide/coc.nvim', { 'do': function('InstallCoc') }) " lsp autocomplete
-    call packager#add('antoinemadec/coc-fzf', {'branch': 'release'}) " coc fzf support
+    call packager#add('antoinemadec/coc-fzf') " coc fzf support
     call packager#add('neg-serg/lusty', {'type': 'opt'}) " file/buffer explorer
     call packager#add('justinmk/vim-dirvish') " minimalistic file manager
     call packager#add('airblade/vim-rooter') " autochdir for project root or for current dir
@@ -20,11 +20,7 @@ function! PackInit() abort
     call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
-    call packager#add('bounceme/remote-viewer') " better ssh support
     call packager#add('romgrk/winteract.vim') " interactive window resize
-    call packager#add('nvim-lua/popup.nvim') " neovim popup support
-    call packager#add('nvim-lua/plenary.nvim') " lua neovim library for plugins
-    call packager#add('nvim-telescope/telescope.nvim') " new fuzzy finder over lists
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Edit                                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
