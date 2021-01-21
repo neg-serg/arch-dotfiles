@@ -4,12 +4,6 @@ include-file = $XDG_CONFIG_HOME/polybar/modules.cfg
 include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
 include-file = $XDG_CONFIG_HOME/polybar/tray.cfg
 
-[global/wm]
-monitor = ${env:MONITOR:DisplayPort-0}
-monitor-fallback = DisplayPort-0
-monitor-strict = true
-wm-restack = i3
-
 [settings]
 throttle-output = 5
 throttle-output-for = 10
@@ -17,34 +11,27 @@ throttle-output-for = 10
 [bar/main]
 modules-left = start time start-dark ws right start-br xkeyboard right start-br network start-dark right-end-top
 modules-right = left-end-top start-mpd mpd volume end
-
+monitor = DP-2
 fixed-center = false
 bottom = true
 height = 48
 enable-ipc = true
-
 radius-top = 18.0
 radius-bottom = 18.0
-
 background = ${color.background}
 foreground = ${color.foreground}
-
 border-top-size = ${border.t}
 border-bottom-size = ${border.b}
 border-left-size = ${border.l}
 border-right-size = ${border.r}
-
 border-top-color = ${color.border}
 border-bottom-color = ${color.border_nontransparent}
 border-left-color = ${color.border_nontransparent}
 border-right-color = ${color.border_nontransparent}
-
 ; Framerate in milliseconds
 poll-interval = 4
-
 font-0 = ${font.font-0}
 font-1 = ${font.font-1}
 font-2 = ${font.font-2}
 font-3 = ${font.font-3}
-
 ; vim: set ft=dosini:
