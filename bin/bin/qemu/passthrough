@@ -13,7 +13,7 @@ reset_usb3() {
 
 handle_all_devices() {
     USB_DEVICES+=(
-        "046d:c083" 
+        "046d:c083"
         "046d:c32b"
         "05ac:12a8"
         "05ac:1392"
@@ -21,8 +21,8 @@ handle_all_devices() {
         "1532:0227"
     )
 
-    # G403 Prodigy Gaming Mouse 
-    # Logitech G910 [Keyboard]  
+    # G403 Prodigy Gaming Mouse
+    # Logitech G910 [Keyboard]
     # Apple, Inc. iPhone5/5C/5S/6/7
 
     # 1038:1702 # SteelSeries ApS [ Mouse ]
@@ -99,4 +99,4 @@ main() {
 prepare "$@"
 main "$@"
 
-source "$(realpath ${XDG_CONFIG_HOME}/xinit/xinput.zsh)"
+source "$(realpath ${XDG_CONFIG_HOME}/xinit/kbd-conf)"

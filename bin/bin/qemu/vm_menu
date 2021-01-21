@@ -38,7 +38,7 @@ main() {
         "[Look at video output]"
         "[Start <Win10>]"
     )
-    
+
     local width_=800
     local xoffset_=40
     local yoffset_=40
@@ -53,12 +53,12 @@ main() {
         *"Look"*)
             do_if_qemu looking-glass-client -s
         ;;
-        *"Usb"*"pass"*"add"*) 
+        *"Usb"*"pass"*"add"*)
             do_if_qemu st -c qemu_usb_pass tmux -S ~/1st_level/vm.socket new -n pass "${HOME}/bin/qemu/passthrough add"
         ;;
-        *"Usb"*"pass"*"del"*) 
+        *"Usb"*"pass"*"del"*)
             do_if_qemu st -c qemu_usb_pass tmux -S ~/1st_level/vm.socket new -n pass "${HOME}/bin/qemu/passthrough del"
-            source ${XDG_CONFIG_HOME}/xinit/xinput.zsh
+            source ${XDG_CONFIG_HOME}/xinit/kbd-conf
         ;;
         *"Win"*"10"*)
             start_win10
