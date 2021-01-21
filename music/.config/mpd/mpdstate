@@ -3,8 +3,8 @@ audio_device_state:1:Pulseaudio
 audio_device_state:0:VMV D1 USB2.0
 audio_device_state:0:FIFO
 state: play
-current: 19
-time: 120.161000
+current: 1
+time: 100.399000
 random: 0
 repeat: 0
 single: 0
@@ -13,28 +13,13 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:Phelios·.and.·False·Mirror-⟨2x9⟩-Entropy·Reversed/01 Entropy Reversed.mp3
-1:Phelios·.and.·False·Mirror-⟨2x9⟩-Entropy·Reversed/02 Entropy Reversed (Mandelbrot Remix).mp3
-2:Esoteric-⟨2xB⟩-Paragon·of·Dissonance/1-03 Cipher.flac
-3:Esoteric-⟨2xB⟩-Paragon·of·Dissonance/1-03 Cipher.flac
-4:Phelios-⟨2xK⟩-Spirits·of·Rhea/01 Spirits of Rhea.flac
-5:Phelios-⟨2xK⟩-Spirits·of·Rhea/02 Rings.flac
-6:Phelios-⟨2xK⟩-Spirits·of·Rhea/03 The Deep Sea.flac
-7:Phelios-⟨2xK⟩-Spirits·of·Rhea/04 Hyperion.flac
-8:Phelios-⟨2xK⟩-Spirits·of·Rhea/05 Saturn Emissions.flac
-9:Phelios-⟨2xK⟩-Spirits·of·Rhea/06 Enceladus Emissions.flac
-10:Phelios-⟨2xK⟩-Spirits·of·Rhea/07 Through the Gates of the Silver Key.flac
-11:Phelios-⟨2xK⟩-Spirits·of·Rhea/08 Signal.flac
-12:Esoteric-⟨2xJ⟩-A·Pyrrhic·Existence/03 Antim Yatra.flac
-13:Esoteric-⟨2xJ⟩-A·Pyrrhic·Existence/04 Consuming Lies.flac
-14:Esoteric-⟨2xJ⟩-A·Pyrrhic·Existence/01 Descent.flac
-15:Esoteric-⟨2xJ⟩-A·Pyrrhic·Existence/02 Rotting In Dereliction.flac
-16:Phelios-⟨2xK⟩-Spirits·of·Rhea/01 Spirits of Rhea.flac
-17:Phelios-⟨2xK⟩-Spirits·of·Rhea/02 Rings.flac
-18:Phelios-⟨2xK⟩-Spirits·of·Rhea/03 The Deep Sea.flac
-19:Phelios-⟨2xK⟩-Spirits·of·Rhea/04 Hyperion.flac
-20:Phelios-⟨2xK⟩-Spirits·of·Rhea/05 Saturn Emissions.flac
-21:Phelios-⟨2xK⟩-Spirits·of·Rhea/06 Enceladus Emissions.flac
-22:Phelios-⟨2xK⟩-Spirits·of·Rhea/07 Through the Gates of the Silver Key.flac
-23:Phelios-⟨2xK⟩-Spirits·of·Rhea/08 Signal.flac
+0:Opeth-⟨2x5⟩-Ghost·Reveries/01 Ghost Of Perdition.flac
+1:Opeth-⟨2x3⟩-Damnation/1-01 Windowpane.flac
+2:Opeth-⟨2x3⟩-Damnation/1-02 In My Time Of Need.flac
+3:Opeth-⟨2x3⟩-Damnation/1-03 Death Whispered A Lullaby.flac
+4:Opeth-⟨2x3⟩-Damnation/1-04 Closure.flac
+5:Opeth-⟨2x3⟩-Damnation/2-01 Hope Leaves.flac
+6:Opeth-⟨2x3⟩-Damnation/2-02 To Rid The Disease.flac
+7:Opeth-⟨2x3⟩-Damnation/2-03 Ending Credits.flac
+8:Opeth-⟨2x3⟩-Damnation/2-04 Weakness.flac
 playlist_end
