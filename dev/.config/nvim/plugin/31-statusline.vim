@@ -51,11 +51,32 @@ function! CheckFT(filetype)
     endif
 endfunction
 
+function! VisualSelectionSize()
+    if mode() == "v"
+        " Exit and re-enter visual mode, because the marks
+        " ('< and '>) have not been updated yet.
+        exe "normal \<ESC>gv"
+        if line("'<") != line("'>")
+            return (line("'>") - line("'<") + 1) . ' lines'
+        else
+            return (col("'>") - col("'<") + 1) . ' chars'
+        endif
+    elseif mode() == "V"
+        exe "normal \<ESC>gv"
+        return (line("'>") - line("'<") + 1) . ' lines'
+    elseif mode() == "\<C-V>"
+        exe "normal \<ESC>gv"
+        return (line("'>") - line("'<") + 1) . 'x' . (abs(col("'>") - col("'<")) + 1) . ' block'
+    else
+        return ''
+    endif
+endfunction
+
 function! CheckMod(modi)
     if a:modi == 1
         hi Modi guifg=#6C7E96 guibg=#010C12
         hi Filename guifg=#6C7E96 guibg=#010C12
-        return expand('%:t').' '
+        return expand('%:t').' 􏅋 '
     else
         hi Modi guifg=#4A6383 guibg=#010C12
         hi Filename guifg=#617287 guibg=#010C12
@@ -67,6 +88,7 @@ function! ActiveLine()
     let statusline = ''
     let statusline .= '%#Base#'
     let statusline .= '%#Mode# %{ModeCurrent()}'
+    let statusline .= ' %{VisualSelectionSize()}'
     let statusline .= '%#StatusLeftDelimiter1# ❯>'
     let statusline .= '%#Modi# %{CheckMod(&modified)}'
     let statusline .= "%#Git# %{get(g:,'coc_git_status','')}"
@@ -79,7 +101,9 @@ function! ActiveLine()
     " Add (Neo)Vim's native statusline support.
     " NOTE: Please see `:h coc-status` for integrations with external plugins that
     " provide custom statusline: lightline.vim, vim-airline.
-    let statusline .= '%{coc#status()}' . "%{get(b:,'coc_current_function','')}"
+    if exists("*coc#status")
+        let statusline .= '%{coc#status()}' . "%{get(b:,'coc_current_function','')}"
+    endif
     let statusline .= '%3*'
     let statusline .= '%#StatusRightDelimiter1#❮'
     let statusline .= '%1*'
