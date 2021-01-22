@@ -17,7 +17,7 @@ function! PackInit() abort
     call packager#add('airblade/vim-rooter') " autochdir for project root or for current dir
     call packager#add('FooSoft/vim-argwrap') " vim arg wrapper
     call packager#add('kopischke/vim-fetch') " vim path/to/file.ext:12:3
-    call packager#add('nvim-treesitter/nvim-treesitter') " better highlight
+    call packager#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}) " better highlight
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     call packager#add('romgrk/winteract.vim') " interactive window resize
@@ -26,10 +26,8 @@ function! PackInit() abort
 " └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
     call packager#add('andymass/vim-matchup') " generic matcher
-    call packager#add('haya14busa/vim-asterisk') " smartcase star
-    call packager#add('svermeulen/vim-subversive') " fast substitute
-    call packager#add('cohama/lexima.vim') " better autopairs
     call packager#add('junegunn/vim-easy-align') " use easy-align, instead of tabular
+    call packager#add('jiangmiao/auto-pairs') " auto-pairs
     call packager#add('lambdalisue/suda.vim') " smart sudo support
     call packager#add('svermeulen/vim-NotableFt') "better ft
     call packager#add('tomtom/tcomment_vim') " commenter plugin
@@ -45,6 +43,8 @@ function! PackInit() abort
     call packager#add('yuki-ycino/fzf-preview.vim') " integration fzf preview with coc
     call packager#add('eugen0329/vim-esearch') " the best of the best way to search
     call packager#add('romgrk/searchReplace.vim') " better search and replace
+    call packager#add('svermeulen/vim-subversive') " fast substitute
+    call packager#add('haya14busa/vim-asterisk') " smartcase star
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Colorschemes                                                                 │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -78,7 +78,6 @@ function! PackInit() abort
     call packager#add('saltstack/salt-vim') " salt sls support
     call packager#add('rodjek/vim-puppet') " puppet support
     call packager#add('mfussenegger/nvim-dap') " neovim debugger protocol support
-    call packager#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}) " for virtual text
     call packager#add('theHamsta/nvim-dap-virtual-text') " virtual debugging text support
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ DCVS                                                                         │
@@ -97,11 +96,8 @@ function! PackInit() abort
     call packager#add('reedes/vim-wordy', {'type': 'opt'}) " style check for english
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
     call packager#add('romgrk/todoist.nvim', {'type': 'opt'}) " todoist support
-    call packager#add('vim-voom/VOoM') " two-pane outliner
     call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
-    call packager#add('romainl/vim-devdocs') " add devdocs help support with :DD
-    call packager#add('romgrk/pp.vim') " pretty printer with colors
 endfunction
 
 function! InstallCoc(plugin) abort
