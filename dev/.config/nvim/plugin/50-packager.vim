@@ -17,7 +17,7 @@ function! PackInit() abort
     call packager#add('airblade/vim-rooter') " autochdir for project root or for current dir
     call packager#add('FooSoft/vim-argwrap') " vim arg wrapper
     call packager#add('kopischke/vim-fetch') " vim path/to/file.ext:12:3
-    call packager#add('nvim-treesitter/nvim-treesitter', {'type': 'opt'}) " better highlight
+    call packager#add('nvim-treesitter/nvim-treesitter') " better highlight
     call packager#add('norcalli/nvim-colorizer.lua') " high-performance color highlighter for Neovim
     call packager#add('simnalamburt/vim-mundo', {'type': 'opt'}) " undo tree
     call packager#add('romgrk/winteract.vim') " interactive window resize
