@@ -10,7 +10,7 @@ throttle-output-for = 10
 
 [bar/main]
 modules-left = start time start-dark ws right start-br xkeyboard right start-br network right-end-top
-modules-right = mpd volume end
+modules-right = left-end-top mpd end
 monitor = DP-2
 fixed-center = false
 bottom = true
