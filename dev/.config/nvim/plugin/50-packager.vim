@@ -28,7 +28,6 @@ function! PackInit() abort
     call packager#add('andymass/vim-matchup') " generic matcher
     call packager#add('junegunn/vim-easy-align') " use easy-align, instead of tabular
     call packager#add('jiangmiao/auto-pairs') " auto-pairs
-    call packager#add('lambdalisue/suda.vim') " smart sudo support
     call packager#add('svermeulen/vim-NotableFt') "better ft
     call packager#add('tomtom/tcomment_vim') " commenter plugin
     call packager#add('tpope/vim-repeat') " dot for surround
