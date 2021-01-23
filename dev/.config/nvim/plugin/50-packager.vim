@@ -28,10 +28,10 @@ function! PackInit() abort
     call packager#add('andymass/vim-matchup') " generic matcher
     call packager#add('junegunn/vim-easy-align') " use easy-align, instead of tabular
     call packager#add('jiangmiao/auto-pairs') " auto-pairs
-    call packager#add('svermeulen/vim-NotableFt') "better ft
+    call packager#add('svermeulen/vim-NotableFt') " better ft
     call packager#add('tomtom/tcomment_vim') " commenter plugin
-    call packager#add('tpope/vim-repeat') " dot for surround
     call packager#add('tpope/vim-surround') " new commands to vim for generic brackets
+    call packager#add('tpope/vim-repeat') " dot for surround
     call packager#add('wellle/targets.vim') " better text objects
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Search                                                                       │
@@ -66,18 +66,20 @@ function! PackInit() abort
     call packager#add('dense-analysis/ale') " async linter with lsp support
     call packager#add('liuchengxu/vista.vim', {'type': 'opt'}) " lsp-symbols tag searcher
     call packager#add('plasticboy/vim-markdown', {'type': 'opt'}) " markdown vim mode
-    call packager#add('puremourning/vimspector', {'type': 'opt'}) " vim debugging support
     call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
     call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
     call packager#add('michaelb/sniprun', {'type': 'opt'}) " run some lines of code, jupyter like
     call packager#add('Yggdroot/indentLine', {'type': 'opt'}) " try indentline again
+    call packager#add('mfussenegger/nvim-dap') " neovim debugger protocol support
+    call packager#add('theHamsta/nvim-dap-virtual-text') " virtual debugging text support
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ Ops                                                                          │
+" └───────────────────────────────────────────────────────────────────────────────────┘
     call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
     call packager#add('arouene/vim-ansible-vault', {'type': 'opt'}) " ansible-vault support
     call packager#add('saltstack/salt-vim') " salt sls support
     call packager#add('rodjek/vim-puppet') " puppet support
-    call packager#add('mfussenegger/nvim-dap') " neovim debugger protocol support
-    call packager#add('theHamsta/nvim-dap-virtual-text') " virtual debugging text support
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ DCVS                                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -95,7 +97,6 @@ function! PackInit() abort
     call packager#add('reedes/vim-wordy', {'type': 'opt'}) " style check for english
     call packager#add('vimwiki/vimwiki', {'type': 'opt'}) " personal wiki for vim
     call packager#add('romgrk/todoist.nvim', {'type': 'opt'}) " todoist support
-    call packager#add('junegunn/goyo.vim') " make neovim window more readable
     call packager#add('thinca/vim-ref') " integrated reference viewer for help with separated window
 endfunction
 
