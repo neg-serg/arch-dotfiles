@@ -31,7 +31,8 @@ nnoremap <silent> [Qleader]R :normal :<C-u>crewind<CR>
 nnoremap <silent> [Qleader]N :normal :<C-u>cfirst<CR>
 nnoremap <silent> [Qleader]P :normal :<C-u>clast<CR>
 nnoremap <silent> [Qleader]l :normal :<C-u>clist<CR>
-nnoremap [Qleader]w :w!<cr>
+nnoremap <silent> [Qleader]w :w!<cr>
+nnoremap <silent> [Qleader]W :SudoWrite<cr>
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them

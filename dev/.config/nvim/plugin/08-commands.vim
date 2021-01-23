@@ -5,3 +5,4 @@ command! -bang -nargs=* -complete=file WQ wq<bang> <args>
 command! -bang Q q<bang>
 command! -bang QA qa<bang>
 command! -bang Qa qa<bang>
+command! -bar SudoWrite exe 'w !sudo tee >/dev/null %:p:S' | setl nomod
