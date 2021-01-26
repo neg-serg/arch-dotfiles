@@ -1,11 +1,6 @@
 [section/base]
-include-file = $XDG_CONFIG_HOME/polybar/common.cfg
 include-file = $XDG_CONFIG_HOME/polybar/modules.cfg
 include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
-
-[settings]
-throttle-output = 5
-throttle-output-for = 10
 
 [bar/main]
 modules-left = start time start-dark ws right start-br xkeyboard right start-br network right-end-top
@@ -27,10 +22,36 @@ border-top-color = ${color.border}
 border-bottom-color = ${color.border_nontransparent}
 border-left-color = ${color.border_nontransparent}
 border-right-color = ${color.border_nontransparent}
-; Framerate in milliseconds
-poll-interval = 4
+poll-interval = 10
 font-0 = ${font.font-0}
 font-1 = ${font.font-1}
 font-2 = ${font.font-2}
 font-3 = ${font.font-3}
+
+[color]
+ac = "#D26273"
+mgf = "#dd020209"
+background = "#77020209"
+foreground = "#ffCFCFDB"
+border = "#66005F87"
+border_nontransparent = "#66005F87"
+green = "#287373"
+blue = "#395573"
+delimiter = "#005F87"
+start_end = "#005F87"
+
+[border]
+t = 1
+b = 1
+l = 1
+r = 1
+
+[templates]
+network = " %{T4 F#8BAAC7}%{T- F-} %downspeed%%{F#395573}/%{F-}%upspeed% "
+
+[font]
+font-0 = Iosevka:style=Medium:size=28.5;6
+font-1 = Iosevka:style=Bold:size=32;7
+font-2 = Iosevka:style=Bold:size=28;7
+font-3 = Font Awesome 6 Pro Regular:size=22;6
 ; vim: set ft=dosini:
