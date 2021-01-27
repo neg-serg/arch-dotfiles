@@ -90,6 +90,8 @@ chromium
 cycle_settings.pyc
 .dbus
 dev/.config/nvim/sessions/
+dev/.config/nvim/sessions/default.vim
+dev/.config/pylint/
 doc
 doom-emacs/.doom.d/init.elc
 .drip
@@ -150,14 +152,8 @@ imgur-screenshot/
 .mime.types
 misc/.slit/history
 .mozilla
-mpd/.config/mpd/
-mpd/.config/mpd/mpd.db
-mpd/.config/mpd/mpd.pid
-mpd/.config/mpd/mpdstate
-mpd/.config/mpd/sticker.sql
-mpd/.mpd/mpd.db
-mpd/.mpd/mpd.pid
-mpd/.mpd/mpdstate
+music/.config/beets/discogs_token.json
+music/.config/beets/state.pickle
 music/.config/mpd/mpdstate
 .mutt_certificates
 mutt/.config/mutt/home.gmail/hcache
@@ -254,6 +250,7 @@ state_vim.vim
 .surf
 surf
 .swt
+sys/.config/bpytop/error.log
 sys/.config/tmux/plugin/
 .task
 .TelegramDesktop
@@ -291,10 +288,3 @@ zsh_history
 zsh/.zsh/.zcompdump
 zsh/.zsh/zcomp-sanctum
 *.zwc
-music/.config/mpd/mpd.pid
-dev/.config/nvim/sessions/default.vim
-sys/.config/bpytop/error.log
-dev/.config/pylint/
-music/.config/beets/state.pickle
-music/.config/beets/discogs_token.json
-mpdstate
