@@ -124,7 +124,6 @@ augroup Statusline
     autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
 augroup END
 
-hi LineNr guifg=#202022 guibg=NONE gui=italic
 hi StatusLine guifg=black guibg=NONE
 hi StatusLineNC guifg=black guibg=cyan
 hi Base guibg=NONE guifg=#929dcb
