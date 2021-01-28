@@ -123,3 +123,17 @@ augroup Statusline
     autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
     autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
 augroup END
+
+hi LineNr guifg=#202022 guibg=NONE gui=italic
+hi StatusLine guifg=black guibg=NONE
+hi StatusLineNC guifg=black guibg=cyan
+hi Base guibg=NONE guifg=#929dcb
+hi Decoration guibg=NONE guifg=NONE
+hi Git guibg=NONE guifg=#005faf
+hi LineCol guibg=NONE guifg=#929dcb
+hi Mode guibg=NONE guifg=#007fb5
+hi Filetype guibg=NONE guifg=#007fb5
+hi PowerlineMode guibg=NONE guifg=NONE
+hi StatusLeftDelimiter1 guibg=NONE guifg=#326e8c
+hi StatusRightDelimiter1 guibg=NONE guifg=#326e8c
+hi StatusRight guibg=NONE guifg=#007fb5
