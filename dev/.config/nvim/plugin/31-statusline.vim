@@ -74,12 +74,12 @@ endfunction
 
 function! CheckMod(modi)
     if a:modi == 1
-        hi Modi guifg=#6C7E96 guibg=#010C12
-        hi Filename guifg=#6C7E96 guibg=#010C12
+        hi Modi guifg=#8fa7c7 guibg=NONE
+        hi Filename guifg=#8fa7c7 guibg=NONE
         return expand('%:t').' 􏅋 '
     else
-        hi Modi guifg=#4A6383 guibg=#010C12
-        hi Filename guifg=#617287 guibg=#010C12
+        hi Modi guifg=#6587b3 guibg=NONE
+        hi Filename guifg=#8fa7c7 guibg=NONE
         return expand('%:t')
     endif
 endfunction
@@ -92,10 +92,10 @@ function! ActiveLine()
     let statusline .= '%#StatusLeftDelimiter1# ❯>'
     let statusline .= '%#Modi# %{CheckMod(&modified)}'
     let statusline .= "%#Git# %{get(g:,'coc_git_status','')}"
-    let statusline .= '%#Decoration#▓▒▒'
+    let statusline .= '%#Decoration# '
     let statusline .= '%3* '
     let statusline .= '%= '
-    let statusline .= '%#Decoration#▒▒▓'
+    let statusline .= '%#Decoration# '
     let statusline .= '%#Filetype#%{CheckFT(&filetype)} '
     " thx to github.com/VaughnValle/elektropunk
     " Add (Neo)Vim's native statusline support.
