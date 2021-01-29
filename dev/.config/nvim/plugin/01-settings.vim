@@ -8,7 +8,7 @@ set concealcursor=niv                                           " conceal cursor
 set keymap=russian-jcukenwin                                    " add ru keymap
 set magic                                                       " use magic
 set listchars=                                                  " disable listchars
-set path+=.,..,**,/usr/include,./include,../include             " add path settings
+set path+=.,..,/usr/include,./include,../include,**             " add path settings
 if executable(resolve(expand('par')))
     set formatprg="par -140"                                    " use par as formatter
 else
