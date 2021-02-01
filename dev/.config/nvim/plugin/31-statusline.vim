@@ -28,14 +28,7 @@ function! ModeCurrent() abort
     return l:current_status_mode
 endfunction
 
-function! ModeCurrent() abort
-    let l:modecurrent = mode()
-    let l:modelist = toupper(get(g:currentmode, l:modecurrent, 'V·Block '))
-    let l:current_status_mode = l:modelist
-    return l:current_status_mode
-endfunction
-
-function! GitBranch(git)
+function! GitBranch(git) abort
     if a:git ==# ''
         return ''
     else
@@ -43,7 +36,7 @@ function! GitBranch(git)
     endif
 endfunction
 
-function! CheckFT(filetype)
+function! CheckFT(filetype) abort
     if a:filetype ==# ''
         return ''
     else
@@ -51,7 +44,7 @@ function! CheckFT(filetype)
     endif
 endfunction
 
-function! VisualSelectionSize()
+function! VisualSelectionSize() abort
     if mode() == "v"
         " Exit and re-enter visual mode, because the marks
         " ('< and '>) have not been updated yet.
@@ -72,7 +65,7 @@ function! VisualSelectionSize()
     endif
 endfunction
 
-function! CheckMod(modi)
+function! CheckMod(modi) abort
     if a:modi == 1
         hi Modi guifg=#8fa7c7 guibg=NONE
         hi Filename guifg=#8fa7c7 guibg=NONE
@@ -84,7 +77,7 @@ function! CheckMod(modi)
     endif
 endfunction
 
-function! ActiveLine()
+function! ActiveLine() abort
     let statusline = ''
     let statusline .= '%#Base#   '
     let statusline .= '%{VisualSelectionSize()}'
@@ -117,25 +110,19 @@ function! ActiveLine()
     return statusline
 endfunction
 
-function! InactiveLine()
+function! InactiveLine() abort
     let statusline = '%#Base# %#Filename# %.20%F '
     return statusline
 endfunction
 
-augroup Statusline
-    autocmd!
-    autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
-    autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
-augroup END
-
-function! StatusLinePWD()
+function! StatusLinePWD() abort
     if !exists('b:statusline_pwd')
         let b:statusline_pwd = fnamemodify(getcwd(), ':t')
     endif
     return b:statusline_pwd
 endfunction
 
-function! StatusLineFileName()
+function! StatusLineFileName() abort
     let pre = ''
     let pat = '://'
     let name = expand('%:~:.')
@@ -175,6 +162,120 @@ function! StatusLineALE() abort
     endif
     return ''
 endfunction
+
+function! Neghi_group() abort
+    return '> ' . synIDattr(synID(line('.'), col('.'), 1), 'name') . ' <'
+endfun
+
+function! Negcolumn_and_percent() abort
+    " The percent part was inspired by vim-line-no-indicator plugin.
+    let chars = ['꜒', '꜓', '꜔', '꜕', '꜖',]
+    let [c_l, l_l] = [line('.'), line('$')]
+    let index = float2nr(ceil((c_l * len(chars) * 1.0) / l_l)) - 1
+    let perc = chars[index]
+    return winwidth(0) ># 55 ? printf('%s%2d', perc, col('.')) : ''
+endfun
+
+function! Negjobs() abort
+    let n_jobs = exists('g:jobs') ? len(g:jobs) : 0
+    return winwidth(0) <# 55
+                \ ? ''
+                \ : n_jobs
+                \ ? ' ' . n_jobs
+                \ : ''
+endfun
+
+function! Negqf() abort
+    return printf('[q:%d l:%d]',
+                \ len(getqflist()),
+                \ len(getloclist(bufnr('%')))
+                \ )
+endfun
+
+function! NegALE(mode) abort
+    " a:mode: 1/0 = errors/ok
+    if !exists('g:loaded_ale')
+        return ''
+    endif
+    if !g:loaded_ale
+        return ''
+    endif
+    if !g:ale_enabled || empty(ale#linter#Get(&ft))
+        return ''
+    endif
+    let counts = ale#statusline#Count(bufnr('%'))
+    let total = counts.total
+    let errors = counts.error + counts.style_error
+    let warnings = counts.warning + counts.style_warning
+    return s:get_parsed_linting_str(errors, warnings, total, a:mode)
+endfun
+
+function! s:get_parsed_linting_str(errors, warnings, total, mode) abort
+    let errors_str = a:errors isnot# 0
+                \ ? printf('%s %s', s:sl.checker.error_sign, a:errors)
+                \ : ''
+    let warnings_str = a:warnings isnot# 0
+                \ ? printf('%s %s', s:sl.checker.warning_sign, a:warnings)
+                \ : ''
+
+    let def_str = printf('%s %s', errors_str, warnings_str)
+    " Trim spaces
+    let def_str = substitute(def_str, '^\s*\(.\{-}\)\s*$', '\1', '')
+    let success_str = s:sl.checker.success_sign
+    if a:mode
+        return a:total is# 0 ? '' : def_str
+    else
+        return a:total is# 0 ? success_str : ''
+    endif
+endfun
+
+function! Negcoc_diagnostic(mode) abort
+    if !exists('g:coc_enabled')
+        return ''
+    endif
+    if !g:coc_enabled
+        return ''
+    endif
+    let infos = get(b:, 'coc_diagnostic_info', {})
+    if empty(infos) | return '' | endif
+    let errors = get(infos, 'error', 0)
+    let warnings = get(infos, 'warning', 0)
+    let total = errors + warnings
+    return s:get_parsed_linting_str(errors, warnings, total, a:mode)
+endfun
+
+function! Negcoc_status() abort
+    " No linting involved
+    let status = get(g:, 'coc_status', '')
+    let first_word = matchstr(status, '^\s*\zs\S*')
+    " Replace the long strings by some fancy characters
+    return empty(status)
+                \ ? '' : first_word is# 'Python'
+                \ ? '' : first_word is# 'TSC'
+                \ ? '' : first_word
+endfun
+
+function! Get_SL(...) abort
+    let sl = ''
+    let sl .= '%1*%( %{Negpreviewwindow()} %)'
+    " ALE (1st group for no errors)
+    let sl .= '%6*%(%{NegALE(0)} %)'
+    let sl .= '%7*%([%{NegALE(1)}] %)'
+    " or coc (1st group for no errors)
+    let sl .= '%6*%(%{Negcoc_diagnostic(0)} %)'
+    let sl .= '%7*%([%{Negcoc_diagnostic(1)}] %)'
+    " Jobs
+    let sl .= '%( %{Negjobs()} %)'
+    " coc status
+    let sl .= '%( %{Negcoc_status()} %)'
+    return sl
+endfun
+
+augroup Statusline
+    autocmd!
+    autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
+    autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
+augroup END
 
 set rulerformat=%-30(%=%t%{&mod?'\ +':''}\ %p%%%)
 set rulerformat+=%{&readonly?'\ [RO]':''}
