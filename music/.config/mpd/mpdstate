@@ -2,9 +2,8 @@ sw_volume: 100
 audio_device_state:1:Pulseaudio
 audio_device_state:0:VMV D1 USB2.0
 audio_device_state:0:FIFO
-state: play
-current: 39
-time: 113.786000
+state: stop
+current: 0
 random: 0
 repeat: 0
 single: 0
@@ -13,44 +12,20 @@ crossfade: 0
 mixrampdb: 0.000000
 mixrampdelay: -1.000000
 playlist_begin
-0:Phelios-⟨2xK⟩-Spirits·of·Rhea/01 Spirits of Rhea.flac
-1:Phelios-⟨2xK⟩-Spirits·of·Rhea/02 Rings.flac
-2:Phelios-⟨2xK⟩-Spirits·of·Rhea/03 The Deep Sea.flac
-3:Phelios-⟨2xK⟩-Spirits·of·Rhea/04 Hyperion.flac
-4:Phelios-⟨2xK⟩-Spirits·of·Rhea/05 Saturn Emissions.flac
-5:Phelios-⟨2xK⟩-Spirits·of·Rhea/06 Enceladus Emissions.flac
-6:Phelios-⟨2xK⟩-Spirits·of·Rhea/07 Through the Gates of the Silver Key.flac
-7:Phelios-⟨2xK⟩-Spirits·of·Rhea/08 Signal.flac
-8:Сумеречный·Сад-⟨2xJ⟩-Беги/01 Двойник.mp3
-9:Сумеречный·Сад-⟨2xJ⟩-Беги/02 Инанна.mp3
-10:Сумеречный·Сад-⟨2xJ⟩-Беги/04 Выйди Из Воды.mp3
-11:Сумеречный·Сад-⟨2xJ⟩-Беги/05 Беги.mp3
-12:Сумеречный·Сад-⟨2xJ⟩-Беги/06 Дождь-9.mp3
-13:Сумеречный·Сад-⟨2xJ⟩-Беги/07 Гори.mp3
-14:Сумеречный·Сад-⟨2xJ⟩-Беги/08 Сен-Жермен.mp3
-15:Zoät-Aon-⟨2x5⟩-Star·Autopsy/01 - Totem Owl.flac
-16:Zoät-Aon-⟨2x5⟩-Star·Autopsy/02 - Tellus Sinks.flac
-17:Zoät-Aon-⟨2x5⟩-Star·Autopsy/03 - Infra-Saturn.flac
-18:Zoät-Aon-⟨2x5⟩-Star·Autopsy/04 - Exo.flac
-19:Zoät-Aon-⟨2x5⟩-Star·Autopsy/05 - Flesh Treasury.flac
-20:Zoät-Aon-⟨2x5⟩-Star·Autopsy/06 - Dark Grammar.flac
-21:Zoät-Aon-⟨2x5⟩-Star·Autopsy/07 - Possessed Constellation.flac
-22:Zoät-Aon-⟨2x5⟩-Star·Autopsy/08 - Theriomorphic Heralds.flac
-23:Zoät-Aon-⟨2x5⟩-Star·Autopsy/09 - Skeletal Sphinx.flac
-24:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/01 - (R).flac
-25:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/02 - (fp).flac
-26:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/03 - (ne).flac
-27:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/04 - (fl).flac
-28:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/05 - (fj).flac
-29:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/06 - (fc).flac
-30:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/07 - (L).flac
-31:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/01 - (R).flac
-32:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/02 - (fp).flac
-33:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/03 - (ne).flac
-34:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/04 - (fl).flac
-35:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/05 - (fj).flac
-36:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/06 - (fc).flac
-37:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/07 - (L).flac
-38:This·Morn=·Omina-⟨2x4⟩-The·Drake·Equation·⟨ecf⟩/06 - (fc).flac
-39:This·Morn=·Omina-⟨2xH⟩-Kundalini·Rising/01 - Ayahuasca.flac
+0:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/01 Time Crystal.flac
+1:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/02 Industry Of Silence.flac
+2:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/03 Dream Devourer.flac
+3:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/04 The Future Code.flac
+4:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/05 End Of Time.flac
+5:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/06 Howling Earth.flac
+6:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/07 Sandstorm.flac
+7:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/08 Carpe Noctem.flac
+8:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/09 Above The Remnants.flac
+9:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/10 Rendition.flac
+10:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/11 The Cleansing.flac
+11:Triangular·Ascension-⟨2xD⟩-The·Chronos·Anomaly/12 Final Movement.flac
+12:Opeth-⟨2x2⟩-Deliverance/02 - Deliverance.flac
+13:Opeth-⟨2x3⟩-Damnation/1-01 Windowpane.flac
+14:Луна-⟨2xK⟩-Fata·Morgana/02 - Жанна д'Арк.flac
+15:Луна-⟨2xK⟩-Fata·Morgana/05 - Суть.flac
 playlist_end
