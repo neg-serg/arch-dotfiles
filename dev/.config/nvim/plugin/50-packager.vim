@@ -24,7 +24,6 @@ function! PackInit() abort
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Edit                                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-    call packager#add('AndrewRadev/splitjoin.vim') "one-liner to multi-liner
     call packager#add('andymass/vim-matchup') " generic matcher
     call packager#add('junegunn/vim-easy-align') " use easy-align, instead of tabular
     call packager#add('jiangmiao/auto-pairs') " auto-pairs
@@ -76,10 +75,10 @@ function! PackInit() abort
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Ops                                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-    call packager#add('pearofducks/ansible-vim', {'do': './UltiSnips/generate.sh'})
+    call packager#add('pearofducks/ansible-vim', {'type': 'opt', 'do': './UltiSnips/generate.sh'})
     call packager#add('arouene/vim-ansible-vault', {'type': 'opt'}) " ansible-vault support
     call packager#add('saltstack/salt-vim') " salt sls support
-    call packager#add('rodjek/vim-puppet') " puppet support
+    call packager#add('rodjek/vim-puppet', {'type': 'opt'}) " puppet support
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ DCVS                                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
