@@ -1,9 +1,9 @@
 #!/bin/dash
 find "$@" \
-    -maxdepth 1 \
-    -iregex '.*.\(jpg\|jpe\|jpeg\|png\|gif\|webp\)' \
     -type f \
+    -iregex '.*.\(jpg\|jpe\|jpeg\|png\|gif\|webp\)' \
     -printf '%C@ %p\n' \
     | sort -rn --parallel 8 -S 16M \
     | cut -d ' ' -f 2- \
+    | xargs file --mime-type 2> /dev/null | grep -F 'image/' | cut -d ':' -f 1 \
     | xargs -d '\n' -r sxiv -Zftoa -sd 2> ~/tmp/sxiv.log
