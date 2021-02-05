@@ -92,9 +92,10 @@ function! ActiveLine() abort
     let statusline .= '%#Decoration# '
     let statusline .= '%#StatusRight#  %{StatusLinePWD()}'
     if exists("*coc#status")
-        let statusline .= '%{coc#status()}' . "%{get(b:,'coc_current_function','')}"
         if coc#status() ==? ''
             let statusline .= ' %#Filetype#%{CheckFT(&filetype)}'
+        else
+            let statusline .= ' ❮ %{coc#status()}' . "%{get(b:,'coc_current_function','')}"
         endif
     endif
     let statusline .= '%3*'
