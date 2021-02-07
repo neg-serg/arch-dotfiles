@@ -1,23 +1,21 @@
 local o = vim.o
 local g = vim.g
 local a = vim.api
-
 local execute = vim.api.nvim_command
 local fn = vim.fn
-
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-  execute 'packadd packer.nvim'
+  execute('packadd packer.nvim')
 end
 require 'plugins'
 
-o.updatetime = 800
+o.updatetime = 250
 o.termguicolors = true
 o.mouse= 'n' -- Enable mouse
 o.ignorecase = true -- Ignore case
 o.confirm = true -- Disable 'no write'
-o.scrolloff = 8 -- Lines from the cursor
+o.scrolloff = 1 -- Lines from the cursor
 o.incsearch = true -- Move cursor during search
 o.splitright = true -- Splits open on the right
 o.splitbelow = true -- Splits open on the bottom
@@ -31,59 +29,77 @@ o.clipboard = 'unnamedplus' -- Use system clipboard
 o.shortmess = vim.o.shortmess .. 'c'
 
 function _G.dump(...)
-  local objects = vim.tbl_map(vim.inspect, {...})
-  print(unpack(objects))
+    local objects = vim.tbl_map(vim.inspect, {...})
+    print(unpack(objects))
 end
-
-local function nvim_set_au(au_type, where, dispatch)
-  vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
-end
-
--- nvim_set_au("BufWinEnter", "*", [[exec "normal! g'\""]])
--- nvim_set_au("FileType", "scheme", "set ft=query")
--- nvim_set_au("FileType", "c,cpp", "set tabstop=8 shiftwidth=4 noexpandtab")
--- nvim_set_au("FileType", "python", "set tabstop=4 shiftwidth=4 noexpandtab")
--- nvim_set_au("FileType", "markdown", "set tabstop=4 shiftwidth=4 conceallevel=2")
--- nvim_set_au("FileType", "typescriptreact,typescript,javascript,javascriptreact,lua", "set tabstop=2 shiftwidth=2")
--- nvim_set_au("TextYankPost", "*",  [[silent! lua require'vim.highlight'.on_yank({ timeout=500 })]])
-
-vim.cmd "cabbrev W w"
-
--- a.nvim_exec([[
---   " we have to set these local options here because vim.o won't accept them and vim.bo wont set for each buffer automatically
---   " and binding to and au will mess with buffers that need to change those settings
---   set formatoptions-=cro
---   set smartindent " auto indent on new line (brackets for instance) BO
---   set expandtab " expand tab into space by default
---   set shiftwidth=4 " Number of space for autoindent BO
---   set tabstop=4 " Tabs are 4 spaces long BO
---
---   " we have to set these window options here because vim.o won't accept them and vim.wo wont set for each window automatically
---   " and binding to an autocmd will mess with window that change those settings
---   set relativenumber
---   set cursorline
---   set linebreak
---   set foldmethod=expr
---   set foldexpr=nvim_treesitter#foldexpr()
---   ]], '')
 
 local function map(mod, lhs, rhs, opt)
   a.nvim_set_keymap(mod, lhs, rhs, opt or {})
 end
 
+local function nvim_set_au(au_type, where, dispatch)
+    vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
+end
+
+vim.cmd "cabbrev W w"
+
 map('', '<C-j>', '', { nowait = true })
 map('i', '<C-j>', '<ESC>', { nowait = true })
 map('v', '<C-j>', '<ESC>', { nowait = true })
-
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
 map('n', '<C-h>', '<C-w>h')
-
 map('n', '<leader>v', ':noh<CR>', { silent=true })
 map('n', '<space><space>', '<c-^>')
-map('n', 'Q', '')
+map('n', 'q', '<NOP>')
+map('n', 'Q', 'q')
 map('n', '<F1>', '')
 map('i', '<F1>', '')
-map('n', '++', ':TComment<cr>', { silent = true }) -- Ctrl + / is outputing ++ (term configuration)
-map('v', '++', ':TComment<cr>', { silent = true })
+
+-- Escape as normal
+map('t', '<Esc>', '<C-\\><C-n>', {silent=true})
+map('n', '<Tab>', ':bn<CR>', {silent=true})
+map('n', '<S-Tab>', ':bp<CR>', {silent=true})
+map('n', '<leader><Tab>', ':b#<CR>', {silent=true})
+map('n', '<M-1>', ':b 1<CR>', {silent=true})
+map('n', '<M-2>', ':b 2<CR>', {silent=true})
+map('n', '<M-3>', ':b 3<CR>', {silent=true})
+map('n', '<M-4>', ':b 4<CR>', {silent=true})
+map('n', '<M-5>', ':b 5<CR>', {silent=true})
+
+map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
+map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
+map('n', '[Qleader]R', ':normal :<C-u>crewind<CR>', {silent=true})
+map('n', '[Qleader]N', ':normal :<C-u>cfirst<CR>', {silent=true})
+map('n', '[Qleader]P', ':normal :<C-u>clast<CR>', {silent=true})
+map('n', '[Qleader]l', ':normal :<C-u>clist<CR>', {silent=true})
+map('n', '[Qleader]w', ':w!<cr>', {silent=true})
+map('n', '[Qleader]W', ':SudoWrite<cr>', {silent=true})
+
+-- Fix for floating windows
+map('n', '<C-c>', '<C-[>')
+map('i', '<C-c>', '<C-[>')
+-- These create newlines like o and O but stay in normal mode
+map('n', 'zJ', 'o<Esc>k', {silent=true})
+map('n', 'zK', 'O<Esc>j', {silent=true})
+-- Toggle hlsearch for current results, start highlight
+map('n', '<Leader><Leader>', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<CR><C-l>')
+-- Visual shifting (does not exit Visual mode)
+map('v', '<', '<gv')
+map('v', '>', '>gv')
+map('n', '<C-g>', 'g<C-g>')
+-- Easier to type, and I never use the default behavior.
+map('n', 'H', '^')
+map('n', 'L', 'g_')
+map('n', 'e', '[Qleader]')
+-- Swap implementations of ` and ' jump to markers
+-- By default, ' jumps to the marked line, ` jumps to the marked line and
+-- column, so swap them
+map('n', "'", "`")
+map('n', "`", "'")
+-- like firefox tabs
+map('n', '<M-w>', ':bd<CR>', {silent=true})
+-- cmap <C-V> <C-R>+
+-- exe 'inoremap <script> <C-v> <C-g>u' . paste#paste_cmd['i']
+-- exe 'vnoremap <script> <C-v> ' . paste#paste_cmd['v']
