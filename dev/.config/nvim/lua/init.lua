@@ -2,7 +2,15 @@ local o = vim.o
 local g = vim.g
 local a = vim.api
 
--- g.mapleader = '\\'
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  execute 'packadd packer.nvim'
+end
+require 'plugins'
 
 o.updatetime = 800
 o.termguicolors = true
@@ -31,7 +39,6 @@ local function nvim_set_au(au_type, where, dispatch)
   vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
 end
 
--- -- Disable autocommenting on newline and retrieve last position
 -- nvim_set_au("BufWinEnter", "*", [[exec "normal! g'\""]])
 -- nvim_set_au("FileType", "scheme", "set ft=query")
 -- nvim_set_au("FileType", "c,cpp", "set tabstop=8 shiftwidth=4 noexpandtab")
@@ -59,8 +66,6 @@ vim.cmd "cabbrev W w"
 --   set foldmethod=expr
 --   set foldexpr=nvim_treesitter#foldexpr()
 --   ]], '')
-
-require 'plugins'
 
 local function map(mod, lhs, rhs, opt)
   a.nvim_set_keymap(mod, lhs, rhs, opt or {})
