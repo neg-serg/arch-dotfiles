@@ -23,8 +23,7 @@ proc() {
     fi
     [ -z "$dest" ] && exit 0
     old_ifs=$IFS
-    IFS='
-    '
+    IFS="$(echo)"
     if [ -d "$dest" ]; then
         while read line; do
             $cmd "$(realpath $line)" $dest
@@ -40,6 +39,8 @@ proc() {
 
 repeat_action() {
     tee "$ff"
+    old_ifs=$IFS
+    IFS="$(echo)"
     fname="$(realpath $(cat "$ff"))"
     last="$(cat "$last" | xargs)"
     cmd=$(echo $last | awk '{print $1}')
@@ -47,6 +48,7 @@ repeat_action() {
     if [ $cmd = 'mv' ] || [ $cmd = 'cp' ]; then
         $cmd "$fname" "$dest"
     fi
+    IFS=$old_ifs
     trap finish EXIT
 }
 
