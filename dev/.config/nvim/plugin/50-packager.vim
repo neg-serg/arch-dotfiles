@@ -56,9 +56,9 @@ function! PackInit() abort
     call packager#add('luochen1990/rainbow') " better rainbow parentheses
     call packager#add('RRethy/vim-hexokinase', {'do': 'git submodule init && git submodule update && cd hexokinase/ && go build'}) " best color highlighting
     call packager#add('sheerun/vim-polyglot') " language pack collection
-    call packager#add('kyazdani42/nvim-web-devicons') " better devicons support with color
     call packager#add('justinmk/vim-syntax-extra') " better syntax for some langs
-    call packager#add('tridactyl/vim-tridactyl') " tridactyl support
+    call packager#add('tridactyl/vim-tridactyl', {'type': 'opt'}) " tridactyl support
+    call packager#add('kyazdani42/nvim-web-devicons') " better devicons support with color
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ Dev                                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -68,7 +68,6 @@ function! PackInit() abort
     call packager#add('tpope/vim-apathy') " better include jump
     call packager#add('tpope/vim-dispatch') " provide async build
     call packager#add('radenling/vim-dispatch-neovim') " neovim support for vim-dispatch
-    call packager#add('michaelb/sniprun', {'type': 'opt'}) " run some lines of code, jupyter like
     call packager#add('Yggdroot/indentLine', {'type': 'opt'}) " try indentline again
     call packager#add('mfussenegger/nvim-dap') " neovim debugger protocol support
     call packager#add('theHamsta/nvim-dap-virtual-text') " virtual debugging text support
