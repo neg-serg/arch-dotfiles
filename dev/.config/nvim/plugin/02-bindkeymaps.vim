@@ -10,3 +10,5 @@ noremap <expr> k (v:count == 0 ? 'gk' : 'k')
 " Fixed I/A for visual
 xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
 xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
+exe 'inoremap <script> <C-v> <C-g>u' . paste#paste_cmd['i']
+exe 'vnoremap <script> <C-v> ' . paste#paste_cmd['v']
