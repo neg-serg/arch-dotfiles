@@ -37,19 +37,19 @@ export SUDO_ASKPASS="/usr/bin/xaskpass"
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 export KEYTIMEOUT=6
 export ESCDELAY=1
+export FZF_TMUX=1
 export FZF_DEFAULT_OPTS="
---color=bg+:#080808,bg:#000000,spinner:#395573,hl:#496E80
---color=fg:#617287,header:#4779B3,info:#34596C,pointer:#ff3070
---color=marker:#04141C,fg+:#8DA6B2,prompt:#2b768d,hl+:#005faf
+--color=bg+:#000000,bg:#000000,spinner:#395573,hl:#496E80
+--color=fg:#4f5d78,header:#4779B3,info:#34596C,pointer:#444090
+--color=marker:#04141C,fg+:#8DA6B2,prompt:#005faf,hl+:#005faf
 --info=inline
 --multi
---prompt='>' --pointer='>' --marker='✓'
+--prompt='❯> ' --pointer='•' --marker='✓'
 --bind 'ctrl-space:select-all'
 --bind 'ctrl-y:execute-silent(echo {+} | xclip -i)'
 --bind 'ctrl-t:execute(echo {+} | xargs -o ~/bin/v)+abort'
 --bind 'ctrl-j:execute(echo {+} | xargs -o ~/bin/v)+abort'
 --bind 'ctrl-v:execute(echo {+} | xargs -o nvim)'"
-export FZF_TMUX=1
 export FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 [[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
