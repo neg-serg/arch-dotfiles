@@ -114,9 +114,9 @@ opt('o','formatoptions', 'n1jcroql')                            -- -------------
 -- cpoptions+=s                                                 -- opt('o', buf opts before it created
 -- cpoptions+=a                                                 -- :read with a filename opt('o', the alternate filename for window
 opt('o', 'cpoptions', '_$ABFWcdesa')                            -- ----------------------------------------
-opt('o', 'backupdir', '~/trash')                                -- opt('o', up backupdir
-opt('o', 'directory', '~/trash')                                -- Directory for swap files
-opt('o', 'undodir', '~/trash/')                                 -- opt('o', up undo dir
+opt('o', 'backupdir', '/home/neg/trash')                        -- opt('o', up backupdir
+opt('o', 'directory', '/home/neg/trash')                        -- Directory for swap files
+opt('o', 'undodir', '/home/neg/trash/')                         -- opt('o', up undo dir
 opt('o', 'undofile', false)                                     -- So is persistent undo ...
 opt('o', 'undolevels', 1000)                                    -- Maximum number of changes that can be undone
 opt('o', 'undoreload', 10000)                                   -- Maximum number lines to save for undo on a buffer reload
