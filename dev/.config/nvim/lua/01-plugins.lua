@@ -1,3 +1,11 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local execute = vim.api.nvim_command
+if fn.empty(fn.glob(install_path)) > 0 then
+  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  execute('packadd packer.nvim')
+end
+
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
