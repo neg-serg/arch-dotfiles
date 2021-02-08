@@ -18,6 +18,7 @@ return require('packer').startup(function()
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
     use {'romgrk/winteract.vim'} -- interactive window resize
+    -- Plug 'nvim-lua/plenary.nvim'
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
