@@ -6,16 +6,11 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 require 'plugins'
 
-function _G.dump(...)
-    local objects = vim.tbl_map(vim.inspect, {...})
-    print(unpack(objects))
-end
-
 local function nvim_set_au(au_type, where, dispatch)
     vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
 end
 
 vim.cmd "cabbrev W w"
+vim.cmd "colorscheme neg"
 require '01-settings'
 require '02-bindings'
-vim.cmd "colorscheme neg"
