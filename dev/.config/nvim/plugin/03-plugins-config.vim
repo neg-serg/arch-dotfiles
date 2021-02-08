@@ -1,37 +1,4 @@
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ neoclide/coc.nvim                                                            │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? coc#_select_confirm() :
-    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_status_warning_sign = ''
-let g:coc_status_error_sign = ''
-let g:coc_snippet_next = '<tab>'
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <C-space> coc#refresh()
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-nmap <silent> [Qleader]c <Plug>(coc-diagnostic-next)
-nmap <silent> [Qleader]C <Plug>(coc-diagnostic-prev)
-nmap <silent> <M-CR> <Plug>(coc-fix-current)
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gy :<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>
-nmap <silent> gr :<C-u>CocCommand fzf-preview.CocReferences<CR>
-" Remap for rename current word
-nmap <silent> [Qleader]r <Plug>(coc-rename)
-" Reformat command
-command! -nargs=0 Format :call CocAction('format')
-let g:coc_global_extensions = ['coc-actions', 'coc-browser', 'coc-clangd', 'coc-diagnostic', 'coc-git', 'coc-json', 'coc-lists', 'coc-prettier', 'coc-python', 'coc-rust-analyzer', 'coc-snippets', 'coc-solargraph', 'coc-stylelint', 'coc-translator', 'coc-yaml']
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ w0rp/ale                                                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:ale_fixers = {

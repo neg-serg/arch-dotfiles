@@ -1,3 +1,4 @@
+vim.api.nvim_exec([[ 
 augroup ModeChangeSettings
     autocmd!
     " Clear search context when entering insert mode, which implicitly stops the
@@ -30,3 +31,4 @@ function! RestoreCursorPosition()
 endfunction
 autocmd BufReadPost * call RestoreCursorPosition()
 autocmd FocusGained,BufEnter,FileChangedShell,WinEnter * checktime
+]], true)

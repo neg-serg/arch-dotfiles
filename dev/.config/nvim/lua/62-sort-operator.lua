@@ -1,3 +1,4 @@
+vim.api.nvim_exec([[
 " usage: <key>ip <key>G
 function! Sort(type, ...)
     '[,']sort
@@ -11,3 +12,4 @@ function! Align()
 	normal gv=
 endfunction
 xnoremap <silent> <leader><S-a> :<C-u>silent call Align()<CR>
+]], true)

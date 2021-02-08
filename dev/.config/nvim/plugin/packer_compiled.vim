@@ -211,6 +211,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-gnupg"
   },
+  ["vim-hexokinase"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-hexokinase"
+  },
   ["vim-markdown"] = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-markdown"
