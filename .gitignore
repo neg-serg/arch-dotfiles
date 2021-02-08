@@ -289,3 +289,5 @@ zsh/.zsh/.zcompdump
 zsh/.zsh/zcomp-sanctum
 *.zwc
 sys/.config/zsh/.zcompdump
+music/.config/mpd
+neg-dark.tdesktop-theme
