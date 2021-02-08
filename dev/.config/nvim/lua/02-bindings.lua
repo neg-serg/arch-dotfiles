@@ -66,4 +66,4 @@ map('n', "'", "`")
 map('n', "`", "'")
 -- like firefox tabs
 map('n', '<M-w>', ':bd<CR>', {silent=true})
-map('', '<C-V>', '<C-R>+')
+map('i', '<C-V>', '<C-R>+')
