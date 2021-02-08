@@ -40,7 +40,7 @@ function! CheckFT(filetype) abort
     if a:filetype ==# ''
         return ''
     else
-        return '❮ ' . tolower(a:filetype)
+        return '• ' . tolower(a:filetype)
     endif
 endfunction
 
@@ -95,25 +95,24 @@ function! ActiveLine() abort
         if coc#status() ==? ''
             let statusline .= ' %#Filetype#%{CheckFT(&filetype)}'
         else
-            let statusline .= ' ❮ %{coc#status()}' . "%{get(b:,'coc_current_function','')}"
+            let statusline .= ' • %{coc#status()}' . "%{get(b:,'coc_current_function','')}"
         endif
     endif
     let statusline .= '%3*'
-    let statusline .= '%#StatusRightDelimiter1# ❮'
+    let statusline .= '%#StatusRightDelimiter1# •'
     let statusline .= " %{&modifiable?(&expandtab?' ':' ').&shiftwidth:''}"
-    let statusline .= '%#StatusRightDelimiter1# ❮'
+    let statusline .= '%#StatusRightDelimiter1# •'
     let statusline .= '%1*'
     let statusline .= '%#StatusRight# %02l%#StatusRightDelimiter1#/%#StatusRight#%02v'
-    let statusline .= '%#StatusRightDelimiter1# ❮ '
+    let statusline .= '%#StatusRightDelimiter1# • '
     let statusline .= '%#StatusRight#%2p%% '
-    let statusline .= '%#StatusRightDelimiter1#❮'
+    let statusline .= '%#StatusRightDelimiter1#•'
     let statusline .= '%#Mode# %{ModeCurrent()}'
     return statusline
 endfunction
 
 function! InactiveLine() abort
-    let statusline = '%#Base# %#Filename# %.20%F '
-    return statusline
+    return '%#Base# %#Filename# %.20%F '
 endfunction
 
 function! StatusLinePWD() abort
@@ -150,16 +149,16 @@ function! StatusLineALE() abort
     let l:s = []
     let ale = ale#statusline#Count(bufnr('%'))
     if ale['error'] > 0
-        call add(l:s, 'E: ' . ale['error'])
+        call add(l:s, 'e:' . ale['error'])
     endif
     if ale['warning'] > 0
-        call add(l:s, 'W: ' . ale['warning'])
+        call add(l:s, 'w:' . ale['warning'])
     endif
     if ale['total'] > 0
-        call add(l:s, 'T: ' . ale['total'])
+        call add(l:s, 't:' . ale['total'])
     endif
     if !empty(l:s)
-        return '[ALE '.join(l:s, ',').']'
+        return '❰ALE '.join(l:s, ',').'❱'
     endif
     return ''
 endfunction
@@ -180,17 +179,17 @@ endfun
 function! Negjobs() abort
     let n_jobs = exists('g:jobs') ? len(g:jobs) : 0
     return winwidth(0) <# 55
-                \ ? ''
-                \ : n_jobs
-                \ ? ' ' . n_jobs
-                \ : ''
+        \ ? ''
+        \ : n_jobs
+        \ ? ' ' . n_jobs
+        \ : ''
 endfun
 
 function! Negqf() abort
     return printf('[q:%d l:%d]',
-                \ len(getqflist()),
-                \ len(getloclist(bufnr('%')))
-                \ )
+        \ len(getqflist()),
+        \ len(getloclist(bufnr('%')))
+        \ )
 endfun
 
 function! NegALE(mode) abort
@@ -218,7 +217,6 @@ function! s:get_parsed_linting_str(errors, warnings, total, mode) abort
     let warnings_str = a:warnings isnot# 0
                 \ ? printf('%s %s', s:sl.checker.warning_sign, a:warnings)
                 \ : ''
-
     let def_str = printf('%s %s', errors_str, warnings_str)
     " Trim spaces
     let def_str = substitute(def_str, '^\s*\(.\{-}\)\s*$', '\1', '')
@@ -259,15 +257,11 @@ endfun
 function! Get_SL(...) abort
     let sl = ''
     let sl .= '%1*%( %{Negpreviewwindow()} %)'
-    " ALE (1st group for no errors)
     let sl .= '%6*%(%{NegALE(0)} %)'
     let sl .= '%7*%([%{NegALE(1)}] %)'
-    " or coc (1st group for no errors)
     let sl .= '%6*%(%{Negcoc_diagnostic(0)} %)'
     let sl .= '%7*%([%{Negcoc_diagnostic(1)}] %)'
-    " Jobs
     let sl .= '%( %{Negjobs()} %)'
-    " coc status
     let sl .= '%( %{Negcoc_status()} %)'
     return sl
 endfun
