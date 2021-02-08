@@ -6,6 +6,10 @@ local function opt(scope, key, value)
   scopes[scope][key] = value
   if scope ~= 'o' then scopes['o'][key] = value end
 end
+opt('o', 'exrc', false)
+opt('o', 'secure', true)
+opt('o', 'termguicolors', true)
+opt('o', 'packpath', '/home/neg/.config/nvim,/home/neg/.config/nvim/after,/home/neg/.local/share/nvim/site/')
 opt('o', 'report', 0)                        -- no report on substitution
 opt('o', 'fileformats', 'unix,dos,mac')      -- file format fallback
 opt('o', 'synmaxcol', 256)                   -- no syntax hi for too long lines
