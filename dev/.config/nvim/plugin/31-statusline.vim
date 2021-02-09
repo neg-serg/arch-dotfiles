@@ -1,25 +1,25 @@
 scriptencoding=utf-8
 let g:currentmode={
-      \ 'n'  : 'N',
-      \ 'no' : 'Normal·Operator Pending',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V·Line',
-      \ '^V' : 'V·Block',
-      \ 's'  : 'S',
-      \ 'S'  : 'S·Line',
-      \ '^S' : 'S·Block',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'Rv' : 'V·Replace',
-      \ 'c'  : 'C',
-      \ 'cv' : 'Vim Ex',
-      \ 'ce' : 'Ex',
-      \ 'r'  : 'Prompt',
-      \ 'rm' : 'More',
-      \ 'r?' : 'Confirm',
-      \ '!'  : '!',
-      \ 't'  : 'T'
-      \}
+    \ 'n'  : 'N',
+    \ 'no' : 'Normal·Operator Pending',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V·Line',
+    \ '^V' : 'V·Block',
+    \ 's'  : 'S',
+    \ 'S'  : 'S·Line',
+    \ '^S' : 'S·Block',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'C',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : '!',
+    \ 't'  : 'T'
+\}
 
 function! ModeCurrent() abort
     let l:modecurrent = mode()
@@ -40,7 +40,7 @@ function! CheckFT(filetype) abort
     if a:filetype ==# ''
         return ''
     else
-        return '•' . tolower(a:filetype)
+        return '  '.tolower(a:filetype)
     endif
 endfunction
 
@@ -81,7 +81,7 @@ function! ActiveLine() abort
     let statusline = ''
     let statusline .= '%#Base#   '
     let statusline .= '%{VisualSelectionSize()}'
-    let statusline .= '%#StatusLeftDelimiter1#❯>'
+    let statusline .= '%#StatusDelimiter#❯>'
     let statusline .= '%#Modi# %{CheckMod(&modified)}'
     let statusline .= "%#Modi# %{&readonly?'\ ':''}"
     let statusline .= '%(%{StatusLineALE()}%)%*'
@@ -95,19 +95,18 @@ function! ActiveLine() abort
         if coc#status() ==? ''
             let statusline .= '%#Filetype#%{CheckFT(&filetype)}'
         else
-            let statusline .= '•%{coc#status()}' . "%{get(b:,'coc_current_function','')}"
+            let statusline .= ' %{coc#status()}' . "%{get(b:,'coc_current_function','')}"
         endif
     endif
     let statusline .= '%3*'
-    let statusline .= '%#StatusRightDelimiter1#•'
-    let statusline .= "%{&modifiable?(&expandtab?' ':' ').&shiftwidth:''}"
-    let statusline .= '%#StatusRightDelimiter1#•'
+    let statusline .= '%#StatusDelimiter#'
+    let statusline .= "%{&modifiable?(&expandtab?'   ':'• ').&shiftwidth:''}"
+    let statusline .= "%#StatusDelimiter# "
     let statusline .= '%1*'
-    let statusline .= '%#StatusRight#%02l%#StatusRightDelimiter1#/%#StatusRight#%02v'
-    let statusline .= '%#StatusRightDelimiter1#•'
-    let statusline .= '%#StatusRight#%2p%%'
-    let statusline .= '%#StatusRightDelimiter1#•'
+    let statusline .= '%#StatusRight#%02l%#StatusDelimiter#/%#StatusRight#%02v'
+    let statusline .= '%#StatusDelimiter# '
     let statusline .= '%#Mode#%{ModeCurrent()}'
+    let statusline .= ' %#StatusRight#%2p%%'
     return statusline
 endfunction
 
@@ -277,15 +276,12 @@ set rulerformat+=%{&readonly?'\ [RO]':''}
 set rulerformat+=%{&ff!='unix'?'\ ['.&ff.']':''}
 set rulerformat+=%{(&fenc!='utf-8'&&&fenc!='')?'\ ['.&fenc.']':''}
 
-hi StatusLine guifg=black guibg=NONE
-hi StatusLineNC guifg=black guibg=cyan
 hi Base guibg=NONE guifg=#929dcb
 hi Decoration guibg=NONE guifg=NONE
-hi Git guibg=NONE guifg=#005faf
-hi LineCol guibg=NONE guifg=#929dcb
-hi Mode guibg=NONE guifg=#007fb5
 hi Filetype guibg=NONE guifg=#007fb5
-hi PowerlineMode guibg=NONE guifg=NONE
-hi StatusLeftDelimiter1 guibg=NONE guifg=#326e8c
-hi StatusRightDelimiter1 guibg=NONE guifg=#326e8c
-hi StatusRight guibg=NONE guifg=#007fb5
+hi Git guibg=NONE guifg=#005faf
+hi StatusDelimiter guibg=NONE guifg=#326e8c
+hi StatusLine guifg=black guibg=NONE
+hi StatusLineNC guifg=black guibg=cyan
+hi StatusRight guibg=NONE guifg=#6c7e96
+hi Mode guibg=NONE guifg=#007fb5
