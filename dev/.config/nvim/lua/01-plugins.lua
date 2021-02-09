@@ -25,6 +25,9 @@ return require('packer').startup(function()
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
     use {'romgrk/winteract.vim'} -- interactive window resize
     use {'nvim-lua/plenary.nvim'} -- lua helpers
+    use {'hoob3rt/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true} }
+    use {'voldikss/vim-floaterm'} -- experiments with floaterm
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -57,7 +60,6 @@ return require('packer').startup(function()
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'justinmk/vim-syntax-extra'} -- better syntax for some langs
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
-    use {'kyazdani42/nvim-web-devicons'} -- better devicons support with color
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
