@@ -24,8 +24,6 @@ return require('packer').startup(function()
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
     use {'romgrk/winteract.vim'} -- interactive window resize
-    use {'nvim-lua/plenary.nvim'} -- lua helpers
-    use {'kyazdani42/nvim-web-devicons'}
     use {'voldikss/vim-floaterm'} -- experiments with floaterm
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
@@ -59,6 +57,7 @@ return require('packer').startup(function()
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'justinmk/vim-syntax-extra'} -- better syntax for some langs
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
+    use {'kyazdani42/nvim-web-devicons'} -- fancy webicons
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -68,7 +67,6 @@ return require('packer').startup(function()
     use {'tpope/vim-apathy'} -- better include jump
     use {'tpope/vim-dispatch'} -- provide async build
     use {'radenling/vim-dispatch-neovim'} -- neovim support for vim-dispatch
-    use {'Yggdroot/indentLine', opt=true} -- try indentline again
     use {'mfussenegger/nvim-dap'} -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text'} -- virtual debugging text support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -83,7 +81,6 @@ return require('packer').startup(function()
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'rhysd/committia.vim'} -- better commit message
     use {'rhysd/conflict-marker.vim'} -- good conflict marker
-    use {'rhysd/git-messenger.vim'} -- shows git message
     use {'lambdalisue/gina.vim'} -- git stuff new
     use {'tpope/vim-fugitive'} -- git stuff old
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -95,6 +92,10 @@ return require('packer').startup(function()
     use {'reedes/vim-pencil'} -- better text support
     use {'reedes/vim-wordy', opt=true} -- style check for english
     use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
-    use {'romgrk/todoist.nvim', opt=true} -- todoist support
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
+    use {'nvim-lua/plenary.nvim'} -- lua helpers
+    use {'svermeulen/nvim-moonmaker'} -- moonscript neovim extensions
+    use {'svermeulen/vimpeccable'} -- neovim lua extensions
+    use {'ojroques/nvim-bufdel'} -- better buffer delete
+    use {'tjdevries/nlua.nvim'} -- neovim lua autocompletion
 end)
