@@ -237,10 +237,6 @@ let g:vista#renderer#icons = {
 \ }
 let g:vista_default_executive = 'coc'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ rhysd/git-messenger.vim                                                      │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nmap <C-Space> <Plug>(git-messenger)
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ haya14busa/vim-asterisk                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 map *   <Plug>(asterisk-#)
@@ -251,10 +247,6 @@ map z*  <Plug>(asterisk-z#)
 map gz* <Plug>(asterisk-gz#)
 map z#  <Plug>(asterisk-z*)
 map gz# <Plug>(asterisk-gz*)
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ lambdalisue/suda.vim                                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:suda_smart_edit = 1
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ andymass/vim-matchup                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -293,17 +285,6 @@ hi link esearchStatistics esearchFilename
 hi link esearchFilename Label
 hi esearchMatch gui=underline,italic,bold guifg=#6C7E96 guibg=#002D59
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ romgrk/todoist.nvim                                                          │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let todoist = {
-      \ 'icons': {
-      \   'unchecked': '  ',
-      \   'checked':   '  ',
-      \   'loading':   '  ',
-      \   'error':     '  ',
-      \ },
-      \}
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ romgrk/nvim-web-devicons                                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:DevIconsEnableFoldersOpenClose = 1
@@ -323,12 +304,6 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.json'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.lock.json'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['node_modules'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['webpack\.'] = 'ﰩ'
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ Yggdroot/indentLine                                                          │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_color_gui = '#18263d'
-let g:indentLine_enabled = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ romgrk/winteract.vim                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
