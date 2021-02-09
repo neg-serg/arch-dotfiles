@@ -308,3 +308,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['webpack\.'] = 'ﰩ'
 " │ █▓▒░ romgrk/winteract.vim                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap gw :InteractiveWindow<CR>
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ █▓▒░ ojroques/vim-oscyank                                                         │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif

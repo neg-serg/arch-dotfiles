@@ -25,6 +25,7 @@ return require('packer').startup(function()
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
     use {'romgrk/winteract.vim'} -- interactive window resize
     use {'voldikss/vim-floaterm'} -- experiments with floaterm
+    use {'ojroques/vim-oscyank'} -- cross-server yank
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
