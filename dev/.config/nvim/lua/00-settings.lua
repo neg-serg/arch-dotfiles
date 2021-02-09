@@ -127,4 +127,4 @@ opt('o', 'undofile', false)                                     -- So is persist
 opt('o', 'undolevels', 1000)                                    -- Maximum number of changes that can be undone
 opt('o', 'undoreload', 10000)                                   -- Maximum number lines to save for undo on a buffer reload
 opt('o', 'shada', "!,'100,<50,s100,h,:100,%,/100")              -- shada settings
-vim.cmd("colorscheme neg")
+opt('o', 'background', "dark")                                  -- shada settings

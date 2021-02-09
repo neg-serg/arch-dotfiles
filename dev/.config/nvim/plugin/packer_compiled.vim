@@ -31,10 +31,6 @@ local function try_loadstring(s, component, name)
 end
 
 _G.packer_plugins = {
-  NeoSolarized = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/NeoSolarized"
-  },
   ale = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/ale"
@@ -54,10 +50,6 @@ _G.packer_plugins = {
   ["coc.nvim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc.nvim"
-  },
-  ["colorbuddy.nvim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
   },
   ["committia.vim"] = {
     loaded = true,
@@ -99,6 +91,10 @@ _G.packer_plugins = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/lusty"
   },
+  neg = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/neg"
+  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
@@ -118,10 +114,6 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
-  },
-  onebuddy = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/onebuddy"
   },
   ["packer.nvim"] = {
     loaded = false,

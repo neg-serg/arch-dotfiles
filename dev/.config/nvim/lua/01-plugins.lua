@@ -48,15 +48,9 @@ return require('packer').startup(function()
     use {'svermeulen/vim-subversive'} -- fast substitute
     use {'haya14busa/vim-asterisk'} -- smartcase star
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Colorschemes                                                                 │
--- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'tjdevries/colorbuddy.nvim'} -- colorscheme create helper
-    use {'neg-serg/neg'} -- my colorscheme
-    use {'Th3Whit3Wolf/onebuddy'} -- try colorbuddy
-    use {'overcache/NeoSolarized'} -- neosolarized colorscheme
--- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'neg-serg/neg'} -- my colorscheme
     use {'luochen1990/rainbow'} -- better rainbow parentheses
     -- best color highlighting
     use {'RRethy/vim-hexokinase', run = 'git submodule init && git submodule update && cd hexokinase/ && go build'}
