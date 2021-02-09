@@ -99,10 +99,6 @@ _G.packer_plugins = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/lusty"
   },
-  neg = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/neg"
-  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
@@ -123,9 +119,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
+  onebuddy = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/onebuddy"
+  },
   ["packer.nvim"] = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   rainbow = {
     loaded = true,
@@ -174,10 +178,6 @@ _G.packer_plugins = {
   ["vim-better-whitespace"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-better-whitespace"
-  },
-  ["vim-colortemplate"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-colortemplate"
   },
   ["vim-dirvish"] = {
     loaded = true,

@@ -8,7 +8,6 @@ vim.cmd "cnoreabbrev grm Gremove"
 vim.cmd "cnoreabbrev gmv Gmove"
 vim.cmd "cnoreabbrev L CocList"
 vim.cmd "cnoreabbrev U UltiSnipsEdit"
-vim.cmd "colorscheme neg"
 vim.api.nvim_exec([[
 function! CCR()
     let cmdline = getcmdline()

@@ -5,12 +5,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
   execute('packadd packer.nvim')
 end
-
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
-  -- Packer can manage itself as an optional plugin
-  use {'wbthomason/packer.nvim', opt = true}
+    -- Packer can manage itself as an optional plugin
+    use {'wbthomason/packer.nvim', opt = true}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Main                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -26,7 +24,7 @@ return require('packer').startup(function()
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
     use {'romgrk/winteract.vim'} -- interactive window resize
-    -- Plug 'nvim-lua/plenary.nvim'
+    use {'nvim-lua/plenary.nvim'} -- lua helpers
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -53,8 +51,8 @@ return require('packer').startup(function()
 -- │ █▓▒░ Colorschemes                                                                 │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'tjdevries/colorbuddy.nvim'} -- colorscheme create helper
-    use {'lifepillar/vim-colortemplate'} -- colortemplate generator
     use {'neg-serg/neg'} -- my colorscheme
+    use {'Th3Whit3Wolf/onebuddy'} -- try colorbuddy
     use {'overcache/NeoSolarized'} -- neosolarized colorscheme
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │

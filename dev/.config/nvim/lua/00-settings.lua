@@ -20,14 +20,16 @@ opt('o', 'keymap', 'russian-jcukenwin')      -- add ru keymap
 opt('o', 'magic', true)                      -- use magic
 opt('o', 'listchars', '')                    -- disable listchars
 opt('o', 'path', vim.o.path .. ',.,..,/usr/include,./include,../include,**') -- add path settings
--- if executable(resolve(expand('par')))
---     set formatprg="par -140"                                  -- use par as formatter
--- else
---     set formatprg="fmt -140"                                  -- use fmt as formatter
--- endif
--- if executable(resolve(expand('perltidy')))
---     set equalprg="perltidy"
--- endif
+vim.api.nvim_exec([[
+if executable(resolve(expand('par')))
+    set formatprg="par -140"                                  -- use par as formatter
+else
+    set formatprg="fmt -140"                                  -- use fmt as formatter
+endif
+if executable(resolve(expand('perltidy')))
+    set equalprg="perltidy"
+endif
+]], true)
 opt('o', 'hidden', true)                                          -- It hides buffers instead of closing them
 opt('o', 'lazyredraw', true)                                      -- Reduce useless redrawing
 opt('o', 'backup', true)                                          -- Backuping is good
@@ -94,30 +96,30 @@ opt('o', 'winminheight', 0)                                     -- Windows can b
 opt('o', 'winminwidth', 0)                                      -- Windows can be 0 line width
 opt('w', 'wrap', false)                                         -- Do not wrap lines by default
 opt('o', 'mouse', 'a')                                          -- Add mouse support
--- formatoptions+=t                                             -- Auto-wrap using textwidth (not comments)
--- formatoptions+=c                                             -- Auto-wrap comments too
--- formatoptions+=r                                             -- Continue the comment header automatically on <CR>
--- formatoptions+=q                                             -- Allow formatting of comments with gq
--- formatoptions+=n                                             -- Recognize numbered lists when autoindenting
--- formatoptions+=l                                             -- Don't break long lines in insert mode
--- formatoptions+=1                                             -- Don't break lines after one-letter words, if possible
--- formatoptions-=o                                             -- Don't insert comment leader with 'o' or 'O'
--- formatoptions-=2                                             -- Don't use second line of paragraph when autoindenting
--- formatoptions-=v                                             -- Don't worry about vi compatiblity
--- formatoptions-=b                                             -- Don't worry about vi compatiblity
--- formatoptions-=j                                             -- Delete comment character when joining
-opt('o','formatoptions', 'n1jcroql')                            -- -------------------------------------
--- cpoptions+=$                                                 -- No line redisplay -> put a '$' at the end
--- cpoptions+=A                                                 -- -- : write --
--- cpoptions+=B                                                 -- A backslash has no special meaning in mappings
--- cpoptions+=F                                                 -- :write opt('o', name for current buffer if no
--- cpoptions+=W                                                 -- Overwrite file when possible
--- cpoptions+=c                                                 -- Search -> end of any match at the cursor pos but not start of the next line
--- cpoptions+=d                                                 -- Make ./ in tags relative to tags file in current dir
--- cpoptions+=e                                                 -- :@r adds CR and nonlinewise
--- cpoptions+=s                                                 -- opt('o', buf opts before it created
--- cpoptions+=a                                                 -- :read with a filename opt('o', the alternate filename for window
-opt('o', 'cpoptions', '_$ABFWcdesa')                            -- ----------------------------------------
+-- formatoptions+=t -- Auto-wrap using textwidth (not comments)
+-- formatoptions+=c -- Auto-wrap comments too
+-- formatoptions+=r -- Continue the comment header automatically on <CR>
+-- formatoptions+=q -- Allow formatting of comments with gq
+-- formatoptions+=n -- Recognize numbered lists when autoindenting
+-- formatoptions+=l -- Don't break long lines in insert mode
+-- formatoptions+=1 -- Don't break lines after one-letter words, if possible
+-- formatoptions-=o -- Don't insert comment leader with 'o' or 'O'
+-- formatoptions-=2 -- Don't use second line of paragraph when autoindenting
+-- formatoptions-=v -- Don't worry about vi compatiblity
+-- formatoptions-=b -- Don't worry about vi compatiblity
+-- formatoptions-=j -- Delete comment character when joining
+opt('o','formatoptions', 'n1jcroql')
+-- cpoptions+=$ -- No line redisplay -> put a '$' at the end
+-- cpoptions+=A -- -- : write --
+-- cpoptions+=B -- A backslash has no special meaning in mappings
+-- cpoptions+=F -- :write opt('o', name for current buffer if no
+-- cpoptions+=W -- Overwrite file when possible
+-- cpoptions+=c -- Search -> end of any match at the cursor pos but not start of the next line
+-- cpoptions+=d -- Make ./ in tags relative to tags file in current dir
+-- cpoptions+=e -- :@r adds CR and nonlinewise
+-- cpoptions+=s -- opt('o', buf opts before it created
+-- cpoptions+=a -- :read with a filename opt('o', the alternate filename for window
+opt('o', 'cpoptions', '_$ABFWcdesa')
 opt('o', 'backupdir', '/home/neg/trash')                        -- opt('o', up backupdir
 opt('o', 'directory', '/home/neg/trash')                        -- Directory for swap files
 opt('o', 'undodir', '/home/neg/trash/')                         -- opt('o', up undo dir
@@ -125,3 +127,4 @@ opt('o', 'undofile', false)                                     -- So is persist
 opt('o', 'undolevels', 1000)                                    -- Maximum number of changes that can be undone
 opt('o', 'undoreload', 10000)                                   -- Maximum number lines to save for undo on a buffer reload
 opt('o', 'shada', "!,'100,<50,s100,h,:100,%,/100")              -- shada settings
+vim.cmd("colorscheme neg")
