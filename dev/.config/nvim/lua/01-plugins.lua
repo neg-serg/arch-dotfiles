@@ -25,8 +25,7 @@ return require('packer').startup(function()
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
     use {'romgrk/winteract.vim'} -- interactive window resize
     use {'nvim-lua/plenary.nvim'} -- lua helpers
-    use {'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true} }
+    use {'kyazdani42/nvim-web-devicons'}
     use {'voldikss/vim-floaterm'} -- experiments with floaterm
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
