@@ -40,7 +40,7 @@ function! CheckFT(filetype) abort
     if a:filetype ==# ''
         return ''
     else
-        return '• ' . tolower(a:filetype)
+        return '•' . tolower(a:filetype)
     endif
 endfunction
 
@@ -93,21 +93,21 @@ function! ActiveLine() abort
     let statusline .= '%#StatusRight#  %{StatusLinePWD()}'
     if exists("*coc#status")
         if coc#status() ==? ''
-            let statusline .= ' %#Filetype#%{CheckFT(&filetype)}'
+            let statusline .= '%#Filetype#%{CheckFT(&filetype)}'
         else
-            let statusline .= ' • %{coc#status()}' . "%{get(b:,'coc_current_function','')}"
+            let statusline .= '•%{coc#status()}' . "%{get(b:,'coc_current_function','')}"
         endif
     endif
     let statusline .= '%3*'
-    let statusline .= '%#StatusRightDelimiter1# •'
-    let statusline .= " %{&modifiable?(&expandtab?' ':' ').&shiftwidth:''}"
-    let statusline .= '%#StatusRightDelimiter1# •'
-    let statusline .= '%1*'
-    let statusline .= '%#StatusRight# %02l%#StatusRightDelimiter1#/%#StatusRight#%02v'
-    let statusline .= '%#StatusRightDelimiter1# • '
-    let statusline .= '%#StatusRight#%2p%% '
     let statusline .= '%#StatusRightDelimiter1#•'
-    let statusline .= '%#Mode# %{ModeCurrent()}'
+    let statusline .= "%{&modifiable?(&expandtab?' ':' ').&shiftwidth:''}"
+    let statusline .= '%#StatusRightDelimiter1#•'
+    let statusline .= '%1*'
+    let statusline .= '%#StatusRight#%02l%#StatusRightDelimiter1#/%#StatusRight#%02v'
+    let statusline .= '%#StatusRightDelimiter1#•'
+    let statusline .= '%#StatusRight#%2p%%'
+    let statusline .= '%#StatusRightDelimiter1#•'
+    let statusline .= '%#Mode#%{ModeCurrent()}'
     return statusline
 endfunction
 
