@@ -84,7 +84,7 @@ function! ActiveLine() abort
     let statusline .= '%#StatusDelimiter#❯>'
     let statusline .= '%#Modi# %{CheckMod(&modified)}'
     let statusline .= "%#Modi# %{&readonly?'\ ':''}"
-    let statusline .= '%(%{StatusLineALE()}%)%*'
+    let statusline .= '%(%{StatusErrors()}%)%*'
     let statusline .= "%#Git# %{get(g:,'coc_git_status','')}"
     let statusline .= '%#Decoration# '
     let statusline .= '%3* '
@@ -100,7 +100,9 @@ function! ActiveLine() abort
     endif
     let statusline .= '%3*'
     let statusline .= '%#StatusDelimiter#'
-    let statusline .= "%{&modifiable?(&expandtab?'   ':'• ').&shiftwidth:''}"
+    let statusline .= "%{&modifiable?(&expandtab?'   ':' ').&shiftwidth:''}"
+    let statusline .= '%(%{NegJobs()}%)'
+    let statusline .= '%(%{CocStatus()}%)'
     let statusline .= "%#StatusDelimiter# "
     let statusline .= '%1*'
     let statusline .= '%#StatusRight#%02l%#StatusDelimiter#/%#StatusRight#%02v'
@@ -141,41 +143,29 @@ function! StatusLineFileName() abort
     return pre . name
 endfunction
 
-function! StatusLineALE() abort
+function! StatusErrors() abort
     if !exists(':ALE*')
         return ''
     endif
     let l:s = []
     let ale = ale#statusline#Count(bufnr('%'))
     if ale['error'] > 0
-        call add(l:s, 'e:' . ale['error'])
+        call add(l:s, '' . ale['error'])
     endif
     if ale['warning'] > 0
-        call add(l:s, 'w:' . ale['warning'])
-    endif
-    if ale['total'] > 0
-        call add(l:s, 't:' . ale['total'])
+        call add(l:s, '' . ale['warning'])
     endif
     if !empty(l:s)
-        return '❰ALE '.join(l:s, ',').'❱'
+        return join(l:s, '')
     endif
     return ''
 endfunction
 
-function! Neghi_group() abort
+function! HighlightGr() abort
     return '> ' . synIDattr(synID(line('.'), col('.'), 1), 'name') . ' <'
 endfun
 
-function! Negcolumn_and_percent() abort
-    " The percent part was inspired by vim-line-no-indicator plugin.
-    let chars = ['꜒', '꜓', '꜔', '꜕', '꜖',]
-    let [c_l, l_l] = [line('.'), line('$')]
-    let index = float2nr(ceil((c_l * len(chars) * 1.0) / l_l)) - 1
-    let perc = chars[index]
-    return winwidth(0) ># 55 ? printf('%s%2d', perc, col('.')) : ''
-endfun
-
-function! Negjobs() abort
+function! NegJobs() abort
     let n_jobs = exists('g:jobs') ? len(g:jobs) : 0
     return winwidth(0) <# 55
         \ ? ''
@@ -184,65 +174,14 @@ function! Negjobs() abort
         \ : ''
 endfun
 
-function! Negqf() abort
-    return printf('[q:%d l:%d]',
+function! NegQF() abort
+    return printf('q:%d l:%d',
         \ len(getqflist()),
         \ len(getloclist(bufnr('%')))
         \ )
 endfun
 
-function! NegALE(mode) abort
-    " a:mode: 1/0 = errors/ok
-    if !exists('g:loaded_ale')
-        return ''
-    endif
-    if !g:loaded_ale
-        return ''
-    endif
-    if !g:ale_enabled || empty(ale#linter#Get(&ft))
-        return ''
-    endif
-    let counts = ale#statusline#Count(bufnr('%'))
-    let total = counts.total
-    let errors = counts.error + counts.style_error
-    let warnings = counts.warning + counts.style_warning
-    return s:get_parsed_linting_str(errors, warnings, total, a:mode)
-endfun
-
-function! s:get_parsed_linting_str(errors, warnings, total, mode) abort
-    let errors_str = a:errors isnot# 0
-                \ ? printf('%s %s', s:sl.checker.error_sign, a:errors)
-                \ : ''
-    let warnings_str = a:warnings isnot# 0
-                \ ? printf('%s %s', s:sl.checker.warning_sign, a:warnings)
-                \ : ''
-    let def_str = printf('%s %s', errors_str, warnings_str)
-    " Trim spaces
-    let def_str = substitute(def_str, '^\s*\(.\{-}\)\s*$', '\1', '')
-    let success_str = s:sl.checker.success_sign
-    if a:mode
-        return a:total is# 0 ? '' : def_str
-    else
-        return a:total is# 0 ? success_str : ''
-    endif
-endfun
-
-function! Negcoc_diagnostic(mode) abort
-    if !exists('g:coc_enabled')
-        return ''
-    endif
-    if !g:coc_enabled
-        return ''
-    endif
-    let infos = get(b:, 'coc_diagnostic_info', {})
-    if empty(infos) | return '' | endif
-    let errors = get(infos, 'error', 0)
-    let warnings = get(infos, 'warning', 0)
-    let total = errors + warnings
-    return s:get_parsed_linting_str(errors, warnings, total, a:mode)
-endfun
-
-function! Negcoc_status() abort
+function! CocStatus() abort
     " No linting involved
     let status = get(g:, 'coc_status', '')
     let first_word = matchstr(status, '^\s*\zs\S*')
@@ -251,18 +190,6 @@ function! Negcoc_status() abort
                 \ ? '' : first_word is# 'Python'
                 \ ? '' : first_word is# 'TSC'
                 \ ? '' : first_word
-endfun
-
-function! Get_SL(...) abort
-    let sl = ''
-    let sl .= '%1*%( %{Negpreviewwindow()} %)'
-    let sl .= '%6*%(%{NegALE(0)} %)'
-    let sl .= '%7*%([%{NegALE(1)}] %)'
-    let sl .= '%6*%(%{Negcoc_diagnostic(0)} %)'
-    let sl .= '%7*%([%{Negcoc_diagnostic(1)}] %)'
-    let sl .= '%( %{Negjobs()} %)'
-    let sl .= '%( %{Negcoc_status()} %)'
-    return sl
 endfun
 
 augroup Statusline
