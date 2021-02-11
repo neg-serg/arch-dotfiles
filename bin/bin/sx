@@ -1,7 +1,6 @@
 #!/bin/dash
 find "$@" \
     -type f \
-    -iregex '.*.\(jpg\|jpe\|jpeg\|png\|gif\|webp\)' \
     -printf '%C@ %p\n' \
     | sort -rn --parallel 8 -S 16M \
     | cut -d ' ' -f 2- \
