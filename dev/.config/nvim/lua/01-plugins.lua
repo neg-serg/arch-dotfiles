@@ -10,22 +10,44 @@ return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Main                                                                         │
+-- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'kristijanhusak/vim-packager', opt=true}
-    use {'neoclide/coc.nvim' } -- lsp autocomplete
-    use {'antoinemadec/coc-fzf'} -- coc fzf support
-    use {'neg-serg/lusty', opt=true} -- file/buffer explorer
-    use {'justinmk/vim-dirvish'} -- minimalistic file manager
     use {'airblade/vim-rooter'} -- autochdir for project root or for current dir
     use {'FooSoft/vim-argwrap'} -- vim arg wrapper
+    use {'jamessan/vim-gnupg'} -- transparent work with gpg-encrypted files
+    use {'justinmk/vim-dirvish'} -- minimalistic file manager
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- better highlight
+    use {'kristijanhusak/vim-packager', opt=true}
+    use {'neg-serg/lusty', opt=true} -- file/buffer explorer
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
-    use {'simnalamburt/vim-mundo', opt=true} -- undo tree
-    use {'romgrk/winteract.vim'} -- interactive window resize
-    use {'voldikss/vim-floaterm'} -- experiments with floaterm
+    use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
+    use {'nvim-lua/plenary.nvim'} -- lua helpers
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- better highlight
+    use {'ojroques/nvim-bufdel'} -- better buffer delete
     use {'ojroques/vim-oscyank'} -- cross-server yank
+    use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
+    use {'reedes/vim-pencil'} -- better text support
+    use {'reedes/vim-wordy', opt=true} -- style check for english
+    use {'romgrk/winteract.vim'} -- interactive window resize
+    use {'simnalamburt/vim-mundo', opt=true} -- undo tree
+    use {'svermeulen/nvim-moonmaker'} -- moonscript neovim extensions
+    use {'svermeulen/vimpeccable'} -- neovim lua extensions
+    use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
+    use {'tjdevries/nlua.nvim'} -- neovim lua autocompletion
+    use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Dev                                                                          │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'neoclide/coc.nvim'} -- lsp autocomplete
+    use {'antoinemadec/coc-fzf'} -- coc fzf support
+    use {'dense-analysis/ale'} -- async linter with lsp support
+    use {'liuchengxu/vista.vim', opt=true} -- lsp-symbols tag searcher
+    use {'mfussenegger/nvim-dap'} -- neovim debugger protocol support
+    use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
+    use {'radenling/vim-dispatch-neovim'} -- neovim support for vim-dispatch
+    use {'theHamsta/nvim-dap-virtual-text'} -- virtual debugging text support
+    use {'tpope/vim-apathy'} -- better include jump
+    use {'tpope/vim-dispatch'} -- provide async build
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -60,17 +82,6 @@ return require('packer').startup(function()
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons'} -- fancy webicons
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Dev                                                                          │
--- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'dense-analysis/ale'} -- async linter with lsp support
-    use {'liuchengxu/vista.vim', opt=true} -- lsp-symbols tag searcher
-    use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
-    use {'tpope/vim-apathy'} -- better include jump
-    use {'tpope/vim-dispatch'} -- provide async build
-    use {'radenling/vim-dispatch-neovim'} -- neovim support for vim-dispatch
-    use {'mfussenegger/nvim-dap'} -- neovim debugger protocol support
-    use {'theHamsta/nvim-dap-virtual-text'} -- virtual debugging text support
--- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'pearofducks/ansible-vim', opt=true, run = './UltiSnips/generate.sh'}
@@ -84,19 +95,4 @@ return require('packer').startup(function()
     use {'rhysd/conflict-marker.vim'} -- good conflict marker
     use {'lambdalisue/gina.vim'} -- git stuff new
     use {'tpope/vim-fugitive'} -- git stuff old
--- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Misc                                                                         │
--- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'jamessan/vim-gnupg'} -- transparent work with gpg-encrypted files
-    use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
-    use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
-    use {'reedes/vim-pencil'} -- better text support
-    use {'reedes/vim-wordy', opt=true} -- style check for english
-    use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
-    use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
-    use {'nvim-lua/plenary.nvim'} -- lua helpers
-    use {'svermeulen/nvim-moonmaker'} -- moonscript neovim extensions
-    use {'svermeulen/vimpeccable'} -- neovim lua extensions
-    use {'ojroques/nvim-bufdel'} -- better buffer delete
-    use {'tjdevries/nlua.nvim'} -- neovim lua autocompletion
 end)
