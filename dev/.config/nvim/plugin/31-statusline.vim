@@ -100,7 +100,7 @@ function! ActiveLine() abort
     endif
     let statusline .= '%3*'
     let statusline .= '%#StatusDelimiter#'
-    let statusline .= "%{&modifiable?(&expandtab?'   ':' ').&shiftwidth:''}"
+    let statusline .= "%{&modifiable?(&expandtab?'   ':'    ').&shiftwidth:''}"
     let statusline .= '%(%{NegJobs()}%)'
     let statusline .= '%(%{CocStatus()}%)'
     let statusline .= "%#StatusDelimiter# "
@@ -198,12 +198,7 @@ augroup Statusline
     autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
 augroup END
 
-set rulerformat=%-30(%=%t%{&mod?'\ +':''}\ %p%%%)
-set rulerformat+=%{&readonly?'\ [RO]':''}
-set rulerformat+=%{&ff!='unix'?'\ ['.&ff.']':''}
-set rulerformat+=%{(&fenc!='utf-8'&&&fenc!='')?'\ ['.&fenc.']':''}
-
-hi Base guibg=NONE guifg=#929dcb
+hi Base guibg=NONE guifg=#234758
 hi Decoration guibg=NONE guifg=NONE
 hi Filetype guibg=NONE guifg=#007fb5
 hi Git guibg=NONE guifg=#005faf
