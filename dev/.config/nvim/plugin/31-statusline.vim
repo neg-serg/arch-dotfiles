@@ -1,121 +1,3 @@
-scriptencoding=utf-8
-let g:currentmode={
-    \ 'n'  : 'N',
-    \ 'no' : 'Normal·Operator Pending',
-    \ 'v'  : 'V',
-    \ 'V'  : 'V·Line',
-    \ '^V' : 'V·Block',
-    \ 's'  : 'S',
-    \ 'S'  : 'S·Line',
-    \ '^S' : 'S·Block',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'Rv' : 'V·Replace',
-    \ 'c'  : 'C',
-    \ 'cv' : 'Vim Ex',
-    \ 'ce' : 'Ex',
-    \ 'r'  : 'Prompt',
-    \ 'rm' : 'More',
-    \ 'r?' : 'Confirm',
-    \ '!'  : '!',
-    \ 't'  : 'T'
-\}
-
-function! ModeCurrent() abort
-    let l:modecurrent = mode()
-    let l:modelist = toupper(get(g:currentmode, l:modecurrent, 'V·Block '))
-    let l:current_status_mode = l:modelist
-    return l:current_status_mode
-endfunction
-
-function! GitBranch(git) abort
-    if a:git ==# ''
-        return ''
-    else
-        return ' ' . a:git . ' '
-    endif
-endfunction
-
-function! CheckFT(filetype) abort
-    if a:filetype ==# ''
-        return ''
-    else
-        return '  '.tolower(a:filetype)
-    endif
-endfunction
-
-function! VisualSelectionSize() abort
-    if mode() == "v"
-        " Exit and re-enter visual mode, because the marks
-        " ('< and '>) have not been updated yet.
-        exe "normal \<ESC>gv"
-        if line("'<") != line("'>")
-            return (line("'>") - line("'<") + 1) . ' lines'
-        else
-            return (col("'>") - col("'<") + 1) . ' chars'
-        endif
-    elseif mode() == "V"
-        exe "normal \<ESC>gv"
-        return (line("'>") - line("'<") + 1) . ' lines'
-    elseif mode() == "\<C-V>"
-        exe "normal \<ESC>gv"
-        return (line("'>") - line("'<") + 1) . 'x' . (abs(col("'>") - col("'<")) + 1) . ' block'
-    else
-        return ''
-    endif
-endfunction
-
-function! CheckMod(modi) abort
-    if a:modi == 1
-        hi Modi guifg=#8fa7c7 guibg=NONE
-        hi Filename guifg=#8fa7c7 guibg=NONE
-        return StatusLineFileName().'  '
-    else
-        hi Modi guifg=#6587b3 guibg=NONE
-        hi Filename guifg=#8fa7c7 guibg=NONE
-        return StatusLineFileName()
-    endif
-endfunction
-
-function! ActiveLine() abort
-    let statusline = ''
-    let statusline .= '%#Base#   '
-    let statusline .= '%{VisualSelectionSize()}'
-    let statusline .= '%#StatusDelimiter#❯>'
-    let statusline .= '%#Modi# %{CheckMod(&modified)}'
-    let statusline .= "%#Modi# %{&readonly?'\ ':''}"
-    let statusline .= '%(%{StatusErrors()}%)%*'
-    let statusline .= "%#Git# %{get(g:,'coc_git_status','')}"
-    let statusline .= '%#Decoration# '
-    let statusline .= '%3* '
-    let statusline .= '%= '
-    let statusline .= '%#Decoration# '
-    let statusline .= '%#StatusRight#  %{StatusLinePWD()}'
-    if exists("*coc#status")
-        if coc#status() ==? ''
-            let statusline .= '%#Filetype#%{CheckFT(&filetype)}'
-        else
-            let statusline .= ' %{coc#status()}' . "%{get(b:,'coc_current_function','')}"
-        endif
-    endif
-    let statusline .= '%3*'
-    let statusline .= '%#StatusDelimiter#'
-    let statusline .= "%{&modifiable?(&expandtab?'   ':'    ').&shiftwidth:''}"
-    let statusline .= '%(%{NegJobs()}%)'
-    let statusline .= '%(%{CocStatus()}%)'
-    let statusline .= "%#StatusDelimiter# "
-    let statusline .= '%1*'
-    let statusline .= '%#StatusRight#%02l%#StatusDelimiter#/%#StatusRight#%02v'
-    let statusline .= '%#StatusDelimiter# '
-    let statusline .= '%#Mode#%{ModeCurrent()}'
-    let statusline .= ' %#StatusRight#%2p%%'
-    return statusline
-endfunction
-
-function! InactiveLine() abort
-    return '%#Base# %#Filename# %.20%F '
-endfunction
-
 function! StatusLinePWD() abort
     if !exists('b:statusline_pwd')
         let b:statusline_pwd = fnamemodify(getcwd(), ':t')
@@ -181,6 +63,40 @@ function! NegQF() abort
         \ )
 endfun
 
+function! GitBranch(git) abort
+    if a:git ==# ''
+        return ''
+    else
+        return ' ' . a:git . ' '
+    endif
+endfunction
+
+function! CheckFT(filetype) abort
+    if a:filetype ==# ''
+        return ''
+    else
+        return '  '.tolower(a:filetype)
+    endif
+endfunction
+
+augroup Statusline
+    autocmd!
+    autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
+    autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
+augroup END
+
+function! InactiveLine()
+    return luaeval("require'31-statusline'.inActiveLine()")
+endfunction
+
+function! ActiveLine()
+    return luaeval("require'31-statusline'.activeLine()")
+endfunction
+
+function! FancyMode() abort
+    return luaeval("require'31-statusline'.FancyMode()")
+endfunction
+
 function! CocStatus() abort
     " No linting involved
     let status = get(g:, 'coc_status', '')
@@ -192,18 +108,39 @@ function! CocStatus() abort
                 \ ? '' : first_word
 endfun
 
-augroup Statusline
-    autocmd!
-    autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
-    autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
-augroup END
+function! VisualSelectionSize() abort
+    if mode() == "v"
+        " Exit and re-enter visual mode, because the marks
+        " ('< and '>) have not been updated yet.
+        exe "normal \<ESC>gv"
+        if line("'<") != line("'>")
+            return (line("'>") - line("'<") + 1) . ' lines'
+        else
+            return (col("'>") - col("'<") + 1) . ' chars'
+        endif
+    elseif mode() == "V"
+        exe "normal \<ESC>gv"
+        return (line("'>") - line("'<") + 1) . ' lines'
+    elseif mode() == "\<C-V>"
+        exe "normal \<ESC>gv"
+        return (line("'>") - line("'<") + 1) . 'x' . (abs(col("'>") - col("'<")) + 1) . ' block'
+    else
+        return ''
+    endif
+endfunction
 
-hi Base guibg=NONE guifg=#234758
-hi Decoration guibg=NONE guifg=NONE
-hi Filetype guibg=NONE guifg=#007fb5
-hi Git guibg=NONE guifg=#005faf
-hi StatusDelimiter guibg=NONE guifg=#326e8c
-hi StatusLine guifg=black guibg=NONE
-hi StatusLineNC guifg=black guibg=cyan
-hi StatusRight guibg=NONE guifg=#6c7e96
-hi Mode guibg=NONE guifg=#007fb5
+function! CheckMod(modi) abort
+    if a:modi == 1
+        hi Modi guifg=#8fa7c7 guibg=NONE
+        hi Filename guifg=#8fa7c7 guibg=NONE
+        return StatusLineFileName().'  '
+    else
+        hi Modi guifg=#6587b3 guibg=NONE
+        hi Filename guifg=#8fa7c7 guibg=NONE
+        return StatusLineFileName()
+    endif
+endfunction
+
+"function! InactiveLine() abort
+"    return '%#Base# %#Filename# %.20%F '
+"endfunction

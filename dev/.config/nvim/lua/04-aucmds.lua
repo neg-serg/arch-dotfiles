@@ -1,4 +1,4 @@
-vim.api.nvim_exec([[ 
+vim.api.nvim_exec([[
 augroup ModeChangeSettings
     autocmd!
     " Clear search context when entering insert mode, which implicitly stops the
