@@ -33,6 +33,7 @@ endif
 opt('o', 'hidden', true)                                          -- It hides buffers instead of closing them
 opt('o', 'lazyredraw', true)                                      -- Reduce useless redrawing
 opt('o', 'backup', true)                                          -- Backuping is good
+opt('o', 'writebackup', true)                                     -- Backuping is good for write
 opt('o', 'cindent', true)                                         -- Smart indenting for c-like code
 opt('o', 'cinoptions', 'b1,g0,N-s,t0,(0,W4')                      -- See :h cinoptions-values
 opt('o', 'clipboard', 'unnamedplus')                              -- Always clipboard all operations

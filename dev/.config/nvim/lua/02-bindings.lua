@@ -67,6 +67,13 @@ map('n', "`", "'")
 -- like firefox tabs
 map('n', '<M-w>', ':bd<CR>', {silent=true})
 map('i', '<C-V>', '<C-R>+')
+map('i', '<C-Space>', 'coc#refresh()', {silent=true})
+map('i', '<CR>', 'complete_info()["selected"] != "-1" ? "<C-y>" : "<C-g>u<CR>"', {silent=true})
+map('n', '<leader>d', '<Plug>(coc-diagnostic-prev)', {silent=true})
+map('n', '<leader>s', '<Plug>(coc-diagnostic-next)', {silent=true})
+map('n', 'gd', '<Plug>(coc-definition)', {silent=true})
+map('n', 'gr', '<Plug>(coc-references)', {silent=true})
+map('n', 'K', ":call CocActionAsync('doHover')<CR>", {silent=true})
 
 local result = vim.api.nvim_exec(
 [[
