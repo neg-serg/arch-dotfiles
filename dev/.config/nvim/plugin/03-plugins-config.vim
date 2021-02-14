@@ -32,23 +32,6 @@ nmap <silent> [Qleader]r <Plug>(coc-rename)
 command! -nargs=0 Format :call CocAction('format')
 let g:coc_global_extensions = ['coc-actions', 'coc-browser', 'coc-clangd', 'coc-diagnostic', 'coc-git', 'coc-json', 'coc-lists', 'coc-prettier', 'coc-python', 'coc-rust-analyzer', 'coc-snippets', 'coc-solargraph', 'coc-stylelint', 'coc-translator', 'coc-yaml']
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ w0rp/ale                                                                     │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:ale_fixers = {
-    \ 'javascript': ['eslint'],
-    \ 'json': ['jq'],
-    \ 'html': ['prettier'],
-    \ 'scss': ['stylelint'],
-    \ 'less': ['stylelint'],
-    \ 'css': ['stylelint'],
-    \ 'python': ['black', 'yapf'],
-    \ 'rust': ['rustfmt']
-\ }
-let g:ale_echo_msg_format = '%linter% %s %severity%'
-let g:ale_sign_highlight_linenrs = 1
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ junegunn/fzf.vim                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if executable('rg')
@@ -82,16 +65,9 @@ nnoremap <silent> <leader>. :FZFMru --prompt "❯> "<CR>
 " │  █▓▒░ sjbach/lusty.git                                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:LustyJugglerDefaultMappings = 0
-let LustyExplorerDefaultMappings = 0
+let g:LustyExplorerDefaultMappings = 0
 let g:LustyExplorerAlwaysShowDotFiles = 1
 nmap <silent> <leader>l :packadd lusty<CR>:LustyFilesystemExplorerFromHere<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ tpope/vim-dispatch.git                                                       │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nmap MK :Make -j9
-nmap MC :Make clean<cr>
-nmap [QLeader]cc :Make -j10<cr>
-nmap [QLeader]mc :Make distclean<cr>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ frazrepo/vim-rainbow                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -236,17 +212,6 @@ let g:vista#renderer#icons = {
       \ 'var':            "\ufb18"
 \ }
 let g:vista_default_executive = 'coc'
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ haya14busa/vim-asterisk                                                      │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-map *   <Plug>(asterisk-#)
-map #   <Plug>(asterisk-*)
-map g*  <Plug>(asterisk-g#)
-map g#  <Plug>(asterisk-g*)
-map z*  <Plug>(asterisk-z#)
-map gz* <Plug>(asterisk-gz#)
-map z#  <Plug>(asterisk-z*)
-map gz# <Plug>(asterisk-gz*)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ andymass/vim-matchup                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
