@@ -7,7 +7,7 @@
 [log]
     decorate = short
 [core]
-    pager = PAGER= delta
+    pager = PAGER= delta --keep-plus-minus-markers --dark
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
     editor = nvr --remote-wait-silent
@@ -82,14 +82,16 @@
     pushInsteadOf = "git://github.com/"
 [delta]
     inspect-raw-lines = true
-    side-by-side = true
+    side-by-side = false
     decorations = true
     line-numbers-left-format = ""
     line-numbers-right-format = ""
     syntax-theme = "ansi-dark"
     zero-style = "#6C7E96"
-    minus-style = "#d7c6f3" italic "#2f1b4f"
+    minus-style = "#781f34" "#1a0010"
+    minus-emph-style = "#781f34" bold "#1a0010"
     plus-style = "#6C7E96" "#072530"
+    plus-emph-style = "#6C7E96" bold "#072530"
     whitespace-error-style = 22 reverse
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
