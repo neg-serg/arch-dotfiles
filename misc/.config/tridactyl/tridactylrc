@@ -1,8 +1,10 @@
+reloaddead
 colors neg
 
 set searchengine g
 set allowautofocus true
 set visualenterauto false
+set wordpattern [^\s\/]+
 set tabopencontaineraware false
 set tabopenpos last
 set incsearch true
@@ -26,55 +28,58 @@ set keytranslatemodes.inputmaps true
 set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
 
-alias w saveas ~/dw/
+alias w saveas
+alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
+alias gitclone jsb -p tri.native.run("git clone --depth=1 '" + JS_ARG + "' /home/me/prog/" + JS_ARG.split("/").slice(-1))
+alias tn jsb let a = str.join("").split("/" + "/").slice(-1)[0]; tri.excmds.tabopen(a ? `https://intranet.adacore.com/crm/#/tn/${a}` : `https://intranet.adacore.com/crm/#/Tickets/myTNs`) //
+alias mktn js tri.native.run(`mkdir -v "$HOME/prog/${document.location.href.split("/").slice(-1)[0]}"`).then(r=>Array.from(document.querySelectorAll("#Files a")).forEach(a=>fetch(a.href).then(r=>r.text()).then(t=>tri.native.write(`${r.content.match(/'.*'\n/)[0].slice(1,-2)}/${a.href.split("/").slice(-1)[0]}`,t))))
+
+bind u undo tab
+bind U undo tab
+
+bind gc composite js window.location.href | gitclone
+bind ;gc hint -qW gitclone
 
 set auconcreatecontainer true
 autocontain facebook\.com facebook
 autocontain vk\.com vk
+autocontain youtube.com youtube
 
 " thx to: https://github.com/aminroosta/dot-files/blob/master/.tridactylrc
 " Navigate dropdowns in insert mode
 bind --mode=insert <C-n> !s xdotool key Down
 bind --mode=insert <C-p> !s xdotool key Up
 
+" Disable <C-q>
+bind --mode=insert <C-q> js alert("<C-q> is for quitters.")
+bind --mode=input  <C-q> js alert("<C-q> is for quitters.")
+bind --mode=normal <C-q> js alert("<C-q> is for quitters.")
+bind --mode=ex     <C-q> js alert("<C-q> is for quitters.")
+bind --mode=hint   <C-q> js alert("<C-q> is for quitters.")
+
 unbind <F1>
 
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
-
 " Hacker News hinting
 bindurl news.ycombinator.com f hint -Jc span.pagetop > a,td.title > a,td.subtext > a:last-of-type
 bindurl news.ycombinator.com F hint -Jtc span.pagetop > a,td.title > a,td.subtext > a:last-of-type
 bindurl news.ycombinator.com gF hint -Jqbc span.pagetop > a,td.title > a,td.subtext > a:last-of-type
-
 bindurl news.ycombinator.com/item f hint -Jc span.pagetop > a,a.storylink,a.hnuser,div.comment a
 bindurl news.ycombinator.com/item F hint -Jtc span.pagetop > a,a.storylink,a.hnuser,div.comment a
 bindurl news.ycombinator.com/item gF hint -Jqbc span.pagetop > a,a.storylink,a.hnuser,div.comment a
-
 " Reddit hinting
 bindurl www.reddit.com f hint -Jc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 bindurl www.reddit.com F hint -Jtc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 bindurl www.reddit.com F hint -Jqbc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 
-" Old reddit hinting
-bindurl old.reddit.com f hint -Jc a[data-event-action="title"],a.subreddit,span.user > a,a.comments,div[id="srDropdownContainer"] > a,tr > td > a,ul.tabmenu > li > a,div.dropdown,div.drop-choices > form > a
-bindurl old.reddit.com F hint -Jtc a[data-event-action="title"],a.subreddit,span.user > a,a.comments,div.md > p > a,span.redditname > a,ul.tabmenu > li > a
-bindurl old.reddit.com gF hint -Jqbc a[data-event-action="title"],a.subreddit,span.user > a,a.comments,div.md > p > a,span.redditname > a,ul.tabmenu > li > a
-
-bindurl old\.reddit\.com\/r\/.*\/comments f hint -Jc a
-bindurl old\.reddit\.com\/r\/.*\/comments F hint -Jtc a
-bindurl old\.reddit\.com\/r\/.*\/comments gF hint -Jqbc a
-
 " Add helper commands that Mozillians think make Firefox irredeemably
 " insecure. For details, read the comment at the top of this file.
 command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
-command fixamo js tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""').then(tri.excmds.fillcmdline_tmp(3000, "Permissions added to user.js. Please restart Firefox to make them take affect.")))
 " Make Tridactyl work on more sites at the expense of some security. For
 " details, read the comment at the top of this file.
 " set csp clobber
 fixamo_quiet
-
-autocontain youtube.com youtube
 
 " thx to: https://github.com/vishes-shell/dotfiles/blob/master/.config/tridactyl/tridactylrc
 " Ctrl-F should use the browser's native 'find' functionality.
@@ -83,7 +88,6 @@ bind --mode=normal ,. fillcmdline find
 bind --mode=normal <Tab> findnext 1
 bind --mode=normal <S-Tab> findnext -1
 bind ,, nohlsearch
-
 " GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
 bind zp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
 " Git{Hub,Lab} git clone via SSH yank
@@ -91,29 +95,23 @@ bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//
 " As above but execute it and open terminal in folder
 bind zG js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
-setpref general.warnOnAboutConfig false
-setpref extensions.webextensions.restrictedDomains ""
-setpref xpinstall.signatures.required false
-setpref accessibility.typeaheadfind.flashBar 0
-setpref pdfjs.disabled true
-setpref browser.download.dir "~/dw"
-setpref permissions.default.desktop-notification 2
-setpref gfx.color_management.enabled true
-setpref gfx.color_management.enablev4 true
-" setpref mousewheel.min_line_scroll_amount: 25
-" setpref general.smoothScroll.mouseWheel.durationMaxMS	250
-" setpref general.smoothScroll.mouseWheel.durationMinMS	200
-" setpref general.smoothScroll.stopDecelerationWeighting 0.6
-
-gfx.color_management.mode 1
+" setpref general.warnOnAboutConfig false
+" setpref extensions.webextensions.restrictedDomains ""
+" setpref xpinstall.signatures.required false
+" setpref accessibility.typeaheadfind.flashBar 0
+" setpref pdfjs.disabled true
+" setpref browser.download.dir "~/dw"
+" setpref permissions.default.desktop-notification 2
+" setpref gfx.color_management.enabled true
+" setpref gfx.color_management.enablev4 true
+" setpref gfx.color_management.mode 1
+" set searchurls.!aw https://wiki.archlinux.org/index.php?title=Special:Search&search=
 
 unbindurl mail\.google\.com j
 unbindurl mail\.google\.com k
 unbindurl mail\.google\.com o
 unbindurl mail\.google\.com x
 unbindurl mail\.google\.com e
-
-set searchurls.!aw https://wiki.archlinux.org/index.php?title=Special:Search&search=
 
 bind --mode=ex <C-c> ex.hide_and_clear
 unbind --mode=ex <C-w>
@@ -158,31 +156,27 @@ bind --mode=ex <C-g> composite text.beginning_of_line ; text.forward_word ; text
 bind w fillcmdline tab
 bind e tabnext_gt
 bind E tabprev
-
 bind f hint -c input:not([type=hidden]):not([disabled]), a, area, iframe, textarea, button, select, summary, [onclick], [onmouseover], [onmousedown], [onmouseup], [oncommand], [role='link'], [role='button'], [role='checkbox'], [role='combobox'], [role='listbox'], [role='listitem'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='scrollbar'], [role='slider'], [role='spinbutton'], [role='tab'], [role='textbox'], [role='treeitem'], [class*='button'], [tabindex]
 bind F hint -tc  input:not([type=hidden]):not([disabled]), a, area, iframe, textarea, button, select, summary, [onclick], [onmouseover], [onmousedown], [onmouseup], [oncommand], [role='link'], [role='button'], [role='checkbox'], [role='combobox'], [role='listbox'], [role='listitem'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='scrollbar'], [role='slider'], [role='spinbutton'], [role='tab'], [role='textbox'], [role='treeitem'], [class*='button'], [tabindex]
-
-bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
-bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
-
 bind j scrollline 3
 bind k scrollline -3
-
 bind --mode=normal Y composite get_current_url | yank
 bind --mode=normal y clipboard yankcanon
 bind d composite tab #; tabclose #
 bind D tabclose
 bind s hint -S
 bind ;S hint -s
-
 " thx to: https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc
 " Stupid workaround to let hint -; be used with composite which steals semi-colons
 command hint_focus hint -;
 " Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
+
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
+bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 
 quickmark c https://www.twitch.tv/cooller
 quickmark e http://www.ektoplazm.com/
@@ -315,7 +309,198 @@ blacklistadd keep.google.com
 blacklistadd mail.google.com
 blacklistadd mattermost.galois.com
 
-reloaddead
+" " Native messenger stuff
+" guiset_quiet hoverlink right
+" guiset_quiet tabs count
+" setpref accessibility.typeaheadfind.autostart false
+" setpref accessibility.typeaheadfind.flashBar 0
+" setpref app.normandy.api_url ""
+" setpref app.normandy.enabled false
+" setpref app.normandy.first_run false
+" setpref app.shield.optoutstudies.enabled false
+" setpref app.update.enabled false
+" setpref beacon.enabled false
+" setpref beacon.enabled false
+" setpref browser.autofocus false
+" setpref browser.aboutHomeSnippets.updateUrl "data:,"
+" setpref browser.display.use_document_fonts 0
+" setpref browser.download.dir "/home/me/downloads"
+" setpref browser.download.folderList 2
+" setpref browser.download.manager.addToRecentDocs false
+" setpref browser.download.useDownloadDir false
+" setpref browser.eme.ui.enabled false
+" setpref browser.feeds.handler.default "client"
+" setpref browser.feeds.handlers.application "/home/me/bin/add_rss_feed"
+" setpref browser.formfill.enable false
+" setpref browser.helperApps.deleteTempFileOnExit true
+" setpref browser.library.activity-stream.enabled false
+" setpref browser.messaging-system.whatsNewPanel.enabled false
+" setpref browser.newtab.preload false
+" setpref browser.newtab.url "about:blank"
+" setpref browser.newtabpage.enabled false
+" setpref browser.newtabtabpage.enabled false
+" setpref browser.newtabtabpage.enhanced false
+" setpref browser.onboarding.enabled false
+" setpref browser.pagethumbnails.capturing_disabled true
+" setpref browser.ping-centre.telemetry false
+" setpref browser.pocket.api ""
+" setpref browser.pocket.oAuthConsumerKey ""
+" setpref browser.pocket.site ""
+" setpref browser.safebrowsing.appRepURL ""
+" setpref browser.safebrowsing.blockedURIs.enabled false
+" setpref browser.safebrowsing.downloads.remote.enabled false
+" setpref browser.safebrowsing.downloads.remote.url ""
+" setpref browser.safebrowsing.gethashURL ""
+" setpref browser.safebrowsing.malware.enabled false
+" setpref browser.safebrowsing.malware.reportURL ""
+" setpref browser.safebrowsing.phishing.enabled false
+" setpref browser.safebrowsing.provider.google.gethashURL ""
+" setpref browser.safebrowsing.provider.google.lists ""
+" setpref browser.safebrowsing.provider.google.reportMalwareMistakeURL ""
+" setpref browser.safebrowsing.provider.google.reportPhishMistakeURL ""
+" setpref browser.safebrowsing.provider.google.reportURL ""
+" setpref browser.safebrowsing.provider.google.updateURL ""
+" setpref browser.safebrowsing.provider.google4.dataSharing.enabled false
+" setpref browser.safebrowsing.provider.google4.dataSharingURL ""
+" setpref browser.safebrowsing.provider.google4.reportMalwareMistakeURL ""
+" setpref browser.safebrowsing.provider.google4.reportPhishMistakeURL ""
+" setpref browser.safebrowsing.provider.google4.reportURL ""
+" setpref browser.safebrowsing.provider.mozilla.gethashURL ""
+" setpref browser.safebrowsing.provider.mozilla.updateURL ""
+" setpref browser.safebrowsing.reportPhishURL ""
+" setpref browser.safebrowsing.reportURL ""
+" setpref browser.safebrowsing.updateURL ""
+" setpref browser.search.region "US"
+" setpref browser.search.suggest.enabled false
+" setpref browser.send_pings false
+" setpref browser.send_pings.require_same_host true
+" setpref browser.sessionstore.restore_on_demand false
+" setpref browser.shell.checkDefaultBrowser false
+" setpref browser.startup.homepage "about:blank"
+" setpref browser.startup.homepage_override.mstone "ignore"
+" setpref browser.startup.page 3
+" setpref browser.tabs.closeWindowWithLastTab false
+" setpref browser.tabs.remote.autostart.2 true
+" setpref browser.uidensity 1
+" setpref browser.urlbar.placeholderName ""
+" setpref browser.urlbar.trimURLs false
+" setpref datareporting.healthreport.uploadEnabled false
+" setpref datareporting.policy.dataSubmissionEnabled false
+" setpref devtools.gcli.hideIntro true
+" setpref devtools.scratchpad.enabled true
+" setpref devtools.scratchpad.wrapText true
+" setpref devtools.webide.autoinstallADBHelper false
+" setpref devtools.webide.enabled false
+" setpref extensions.formautofill.addresses.enabled false
+" setpref extensions.formautofill.available "off"
+" setpref extensions.formautofill.creditCards.enabled false
+" setpref extensions.formautofill.heuristics.enabled false
+" setpref extensions.pocket.enabled false
+" setpref extensions.screenshots.disabled true
+" setpref extensions.screenshots.upload-disabled true
+" setpref extensions.webcompat-reporter.enabled false
+" setpref extensions.webextensions.restrictedDomains ""
+" setpref font.blacklist.underline_offset ""
+" setpref general.warnOnAboutConfig false
+" setpref geo.enabled false
+" setpref geo.wifi.uri ""
+" setpref intl.accept_languages "en-US, en"
+" setpref intl.locale.requested "en-US"
+" setpref intl.regional_prefs.use_os_locales false
+" setpref javascript.use_us_english_locale true
+" setpref layout.css.font-loading-api.enabled false
+" setpref media.autoplay.default 1
+" setpref media.eme.enabled false
+" setpref media.gmp-gmpopenh264.autoupdate false
+" setpref media.gmp-gmpopenh264.enabled false
+" setpref media.gmp-manager.updateEnabled false
+" setpref media.gmp-manager.url "data:text/plain,"
+" setpref media.gmp-manager.url.override "data:text/plain,"
+" setpref media.gmp-provider.enabled false
+" setpref media.gmp-widevinecdm.autoupdate false
+" setpref media.gmp-widevinecdm.enabled false
+" setpref media.gmp-widevinecdm.visible false
+" setpref media.gmp.trial-create.enabled false
+" " WebRTC. Might need to re-enable some day
+" setpref media.peerconnection.enabled false
+" setpref network.IDN_show_punycode true
+" setpref network.allow-experiments false
+" setpref network.http.referer.XOriginPolicy 1
+" setpref network.http.referer.defaultPolicy 3
+" setpref network.http.referer.defaultPolicy.pbmode 2
+" setpref network.http.referer.spoofSource false
+" setpref pdfjs.disabled true
+" setpref permissions.default.geo 0
+" setpref plugin.default.state 0
+" setpref plugin.defaultXpi.state 0
+" setpref plugin.sessionPermissionNow.intervalInMinutes 0
+" setpref plugins.click_to_play true
+" setpref privacy.firstparty.isolate true
+" " Disabled until https://bugzilla.mozilla.org/show_bug.cgi?id=1450398 is fixed
+" setpref privacy.resistFingerprinting false
+" setpref privacy.resistFingerprinting.block_mozAddonManager true
+" setpref privacy.userContext.enabled true
+" setpref privacy.userContext.ui.enabled true
+" setpref privacy.usercontext.about_newtab_segregation.enabled true
+" setpref reader.parse-on-load.enabled false
+" setpref security.dialog_enable_delay 500
+" setpref security.insecure_field_warning.contextual.enabled true
+" setpref signon.autofillForms false
+" setpref signon.rememberSignons false
+" setpref toolkit.cosmeticAnimations.enabled false
+" setpref toolkit.telemetry.archive.enabled false
+" setpref toolkit.telemetry.bhrPing.enabled false
+" setpref toolkit.telemetry.cachedClientID ""
+" setpref toolkit.telemetry.enabled false
+" setpref toolkit.telemetry.firstShutdownPing.enabled false
+" setpref toolkit.telemetry.hybridContent.enabled false
+" setpref toolkit.telemetry.newProfilePing.enabled false
+" setpref toolkit.telemetry.server "data:,"
+" setpref toolkit.telemetry.shutdownPingSender.enabled false
+" setpref toolkit.telemetry.unified false
+" setpref toolkit.telemetry.updatePing.enabled false
+" setpref ui.key.menuAccessKeyFocuses false
+" setpref xpinstall.signatures.required false
+
+" bind y clipboard yankshort
+" bind Y hint -p
+" bind v composite hint -pipe a href | js -p tri.excmds.shellescape(JS_ARG) | exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
+" bind V js tri.excmds.shellescape(document.location.href).then(url => tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${url}'`))
+" bind ;v composite hint -qpipe a href | js -p JS_ARG.map(h => `'${h}'`).join(" ") | ! mpv
+" bind e hint -W js -p tri.native.run(`$HOME/bin/add-magnet '${JS_ARG}'`)
+" bind <A-v> playAllVideos
+" " Bind <A-&..à> to `buffer 1..$` and <A-1..0> to `tabmove 1..$`
+" jsb ["&", "é", '"', "'", "(", "-", "è", "_", "ç", "à"].forEach((l, i) => { i = (i == 9 ? 0 : (i + 1)); ["--mode=insert", "--mode=input", "--mode=normal"].forEach(mode => { tri.excmds.bind(mode, `<A-${l}>`, `buffer ${i}`) ; tri.excmds.bind(mode, `<A-${i}>`, `tabmove ${i}`) })})
+" jsb ["--mode=insert", "--mode=input", "--mode=normal"].forEach(mode => { tri.excmds.bind(mode, `<A-H>`, `tabmove -1`) ; tri.excmds.bind(mode, `<A-L>`, `tabmove +1`) ; })
+" bind --mode=normal <C-P> winopen -private
+
+" " Requires custom firefox build: https://github.com/glacambre/firefox-patches
+" bind --mode=ex     <C-n> ex.next_completion
+" bind --mode=ex     <C-p> ex.prev_completion
+" bind --mode=ex     <C-y> ex.insert_completion
+" bind --mode=ex     <C-e> ex.deselect_completion
+" bind --mode=ex     <Tab> ex.complete
+" bind --mode=ex     <C-g> composite text.beginning_of_line ; text.forward_word ; text.kill_word
+
+" unbind yy
+" unbind ys
+" unbind yc
+" unbind ym
+" unbind yt
+" unbind --mode=ex <C-c>
+" unbind --mode=ex <Space>
+" unbind <SA-ArrowUp><SA-ArrowUp><SA-ArrowDown><SA-ArrowDown><SA-ArrowLeft><SA-ArrowRight><SA-ArrowLeft><SA-ArrowRight>ba
+
+" bindurl reddit.com <Space><Space> urlmodify -t www old
+" bindurl https://github.com/.*/.*/blob f hint -c .blob-num,a
+" bindurl https://github.com/notifications <Space><Space> openGithubNotifications
+" bindurl youtu((\.be)|(be\.com)) f hint -J
+" bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+" bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+" bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
+" bindurl lkml.org/lkml gl js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) + 1].querySelector("a").href
+" bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) - 1].querySelector("a").href
+
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
