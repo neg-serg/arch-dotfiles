@@ -137,36 +137,10 @@ let g:rainbow_conf = g:rainbow_conf_defaults
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <leader>a :ArgWrap<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ jiangmiao/auto-pairs                                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:AutoPairs =  {'(':')', '[':']', '{':'}', '<':'>'}
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutToggle = ''
-let g:AutoPairsShortcutFastWrap = ''
-let g:AutoPairsShortcutJump = ''
-let g:AutoPairsShortcutBackInsert = ''
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ airblade/vim-rooter                                                          │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:rooter_targets = '/,*' " directories and all files (default)
-let g:rooter_cd_cmd='lcd' " change directory for the current window only
-let g:rooter_manual_only = 0 " change dir manually
-let g:rooter_resolve_links = 1 " resolve symlinks
-" change dir to current if there is no project
-let g:rooter_change_directory_for_non_project_files = 'current'
-let g:rooter_silent_chdir = 1 " silent chdir
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ junegunn/vim-easy-align                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ vimwiki/vimwiki                                                              │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:vimwiki_ext2syntax = {'.md': 'markdown',
-    \ '.mkd': 'markdown',
-    \ '.wiki': 'media'}
-let g:vimwiki_list = [{'path': '~/1st_level/'}]
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ liuchengxu/vista.vim                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -213,12 +187,6 @@ let g:vista#renderer#icons = {
 \ }
 let g:vista_default_executive = 'coc'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ andymass/vim-matchup                                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:matchup_matchparen_enabled = 0
-let g:matchup_motion_enabled = 1
-let g:matchup_text_obj_enabled = 1
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ pearofducks/ansible-vim                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 augroup ansible_vim_fthosts
@@ -249,30 +217,6 @@ hi esearchHeader gui=bold
 hi link esearchStatistics esearchFilename
 hi link esearchFilename Label
 hi esearchMatch gui=underline,italic,bold guifg=#6C7E96 guibg=#002D59
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ romgrk/nvim-web-devicons                                                     │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['json'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jsx'] = 'ﰆ'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vim'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yaml'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.*vimrc.*'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.gitignore'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.json'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['package.lock.json'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['node_modules'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['webpack\.'] = 'ﰩ'
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ romgrk/winteract.vim                                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nmap gw :InteractiveWindow<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ ojroques/vim-oscyank                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
