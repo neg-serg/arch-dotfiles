@@ -62,13 +62,6 @@ imap <C-x><C-l> <Plug>(fzf-complete-line)
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <leader>. :FZFMru --prompt "❯> "<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │  █▓▒░ sjbach/lusty.git                                                            │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:LustyJugglerDefaultMappings = 0
-let g:LustyExplorerDefaultMappings = 0
-let g:LustyExplorerAlwaysShowDotFiles = 1
-nmap <silent> <leader>l :packadd lusty<CR>:LustyFilesystemExplorerFromHere<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ frazrepo/vim-rainbow                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
@@ -136,11 +129,6 @@ let g:rainbow_conf = g:rainbow_conf_defaults
 " │ █▓▒░ FooSoft/vim-argwrap                                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <leader>a :ArgWrap<CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ junegunn/vim-easy-align                                                      │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ liuchengxu/vista.vim                                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
