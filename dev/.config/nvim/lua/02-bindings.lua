@@ -2,14 +2,6 @@ local o = vim.o
 local g = vim.g
 local a = vim.api
 
-local function nvim_set_au(au_type, where, dispatch)
-    vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
-end
-
-local function map(mod, lhs, rhs, opt)
-    a.nvim_set_keymap(mod, lhs, rhs, opt or {})
-end
-
 map('', '<C-j>', '', { nowait = true })
 map('i', '<C-j>', '<ESC>', { nowait = true })
 map('v', '<C-j>', '<ESC>', { nowait = true })

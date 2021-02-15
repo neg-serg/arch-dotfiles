@@ -1,11 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ haya14busa/vim-asterisk                                                      │
+-- │  █▓▒░ sjbach/lusty.git                                                            │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-map('n', '*',   '<Plug>(asterisk-#)')
-map('n', '#',   '<Plug>(asterisk-*)')
-map('n', 'g*',  '<Plug>(asterisk-g#)')
-map('n', 'g#',  '<Plug>(asterisk-g*)')
-map('n', 'z*',  '<Plug>(asterisk-z#)')
-map('n', 'gz*', '<Plug>(asterisk-gz#)')
-map('n', 'z#',  '<Plug>(asterisk-z*)')
-map('n', 'gz#', '<Plug>(asterisk-gz*)')
+vim.g.LustyJugglerDefaultMappings = 0
+vim.g.LustyExplorerDefaultMappings = 0
+vim.g.LustyExplorerAlwaysShowDotFiles = 1
+map('n', '<leader>l', ':packadd lusty<CR>:LustyFilesystemExplorerFromHere<CR>', {silent=true})

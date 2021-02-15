@@ -1,11 +1,5 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ haya14busa/vim-asterisk                                                      │
+-- │ █▓▒░ junegunn/vim-easy-align                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-map('n', '*',   '<Plug>(asterisk-#)')
-map('n', '#',   '<Plug>(asterisk-*)')
-map('n', 'g*',  '<Plug>(asterisk-g#)')
-map('n', 'g#',  '<Plug>(asterisk-g*)')
-map('n', 'z*',  '<Plug>(asterisk-z#)')
-map('n', 'gz*', '<Plug>(asterisk-gz#)')
-map('n', 'z#',  '<Plug>(asterisk-z*)')
-map('n', 'gz#', '<Plug>(asterisk-gz*)')
+map('n', 'ga', '<Plug>(EasyAlign)')
+map('x', 'ga', '<Plug>(EasyAlign)')
