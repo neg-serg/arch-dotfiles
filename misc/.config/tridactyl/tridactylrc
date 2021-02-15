@@ -162,7 +162,6 @@ bind j scrollline 3
 bind k scrollline -3
 bind --mode=normal Y composite get_current_url | yank
 bind --mode=normal y clipboard yankcanon
-bind d composite tab #; tabclose #
 bind D tabclose
 bind s hint -S
 bind ;S hint -s
