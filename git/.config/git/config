@@ -1,11 +1,16 @@
 [user]
-    email = serg.zorg@gmail.com
     name = Neg
+    email = serg.zorg@gmail.com
+[commit]
+    verbose = true
+    ; gpgsign = true
+[log]
+    decorate = short
 [core]
-    pager = PAGER= delta
+    pager = "delta --dark"
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
-	editor = nvr --remote-wait-silent
+    editor = nvr --remote-wait-silent
 [color]
     diff = 1
     pager = 0
@@ -36,6 +41,7 @@
     func = 68
     commit = 4
     whitespace = 54
+    colorMoved = default
 [man]
     viewer = nvimpager -p
 [receive]
@@ -71,19 +77,24 @@
     default = simple
 [pull]
     rebase = true
+[url "git@github.com:"]
+    pushInsteadOf = "https://github.com/"
+    pushInsteadOf = "git://github.com/"
 [delta]
-    features = unobtrusive-line-numbers decorations
     inspect-raw-lines = true
+    side-by-side = true
+    decorations = false
+    line-numbers-left-format = ""
+    line-numbers-right-format = ""
+    syntax-theme = "ansi-dark"
+    zero-style = "#6C7E96"
+    minus-style = "#d7c6f3" italic "#2f1b4f"
+    plus-style = "#6C7E96" "#072530"
+    whitespace-error-style = 22 reverse
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
-[delta "unobtrusive-line-numbers"]
-    line-numbers = true
-    line-numbers-minus-style = "#444444"
-    line-numbers-zero-style = "#444444"
-    line-numbers-plus-style = "#444444"
-    line-numbers-left-format = "{nm:>4}┊"
-    line-numbers-right-format = "{np:>4}┊"
-    line-numbers-left-style = blue
-    line-numbers-right-style = blue
+[rerere]
+    enabled = true
+    autoupdate = true
