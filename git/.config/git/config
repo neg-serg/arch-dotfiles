@@ -7,7 +7,7 @@
 [log]
     decorate = short
 [core]
-    pager = "delta --dark"
+    pager = PAGER= delta
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
     editor = nvr --remote-wait-silent
@@ -83,7 +83,7 @@
 [delta]
     inspect-raw-lines = true
     side-by-side = true
-    decorations = false
+    decorations = true
     line-numbers-left-format = ""
     line-numbers-right-format = ""
     syntax-theme = "ansi-dark"
