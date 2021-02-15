@@ -130,51 +130,6 @@ let g:rainbow_conf = g:rainbow_conf_defaults
 " └───────────────────────────────────────────────────────────────────────────────────┘
 nnoremap <silent> <leader>a :ArgWrap<CR>
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ █▓▒░ liuchengxu/vista.vim                                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:vista_sidebar_width = 20
-let g:vista_disable_statusline = 1
-let g:vista#renderer#enable_icon = 1
-let g:vista_icon_indent = ['▸ ', '']
-let g:vista#renderer#icons = {
-      \ 'augroup':        "פּ",
-      \ 'class':          "",
-      \ 'constant':       '',
-      \ 'default':        "",
-      \ 'enum':           "",
-      \ 'enumerator':     "",
-      \ 'field':          "",
-      \ 'fields':         "",
-      \ 'functions':      "ﬦ",
-      \ 'function':       "ﬦ",
-      \ 'func':           "ﬦ",
-      \ 'implementation': "",
-      \ 'interface':      "",
-      \ 'macro':          "",
-      \ 'macros':         "",
-      \ 'map':            "פּ",
-      \ 'member':         "",
-      \ 'method':         "",
-      \ 'module':         '',
-      \ 'modules':        "",
-      \ 'namespace':      "",
-      \ 'package':        "",
-      \ 'packages':       "",
-      \ 'property':       "襁",
-      \ 'struct':         "",
-      \ 'subroutine':     "羚",
-      \ 'target':         "",
-      \ 'type':           "",
-      \ 'typedef':        "",
-      \ 'typeParameter':  "",
-      \ 'types':          "",
-      \ 'union':          "鬒",
-      \ 'variables':      "\ufb18",
-      \ 'variable':       "\ufb18",
-      \ 'var':            "\ufb18"
-\ }
-let g:vista_default_executive = 'coc'
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ █▓▒░ pearofducks/ansible-vim                                                      │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 augroup ansible_vim_fthosts
