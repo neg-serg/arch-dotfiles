@@ -79,14 +79,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/gina.vim"
   },
-  ["git-messenger.vim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/git-messenger.vim"
-  },
-  indentLine = {
-    loaded = false,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/indentLine"
-  },
   lusty = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/lusty"
@@ -94,6 +86,14 @@ _G.packer_plugins = {
   neg = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/neg"
+  },
+  ["nlua.nvim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/nlua.nvim"
+  },
+  ["nvim-bufdel"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-bufdel"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -106,6 +106,10 @@ _G.packer_plugins = {
   ["nvim-dap-virtual-text"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
+  },
+  ["nvim-moonmaker"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-moonmaker"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -142,10 +146,6 @@ _G.packer_plugins = {
   tcomment_vim = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/tcomment_vim"
-  },
-  ["todoist.nvim"] = {
-    loaded = false,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/todoist.nvim"
   },
   ["vim-NotableFt"] = {
     loaded = true,
@@ -223,6 +223,10 @@ _G.packer_plugins = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-mundo"
   },
+  ["vim-oscyank"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-oscyank"
+  },
   ["vim-packager"] = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-packager"
@@ -270,6 +274,10 @@ _G.packer_plugins = {
   ["vim-wordy"] = {
     loaded = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-wordy"
+  },
+  vimpeccable = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vimpeccable"
   },
   vimwiki = {
     loaded = false,
