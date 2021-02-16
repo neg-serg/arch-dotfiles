@@ -65,9 +65,10 @@ opt('w', 'spell', false)                                        -- Disable spell
 opt('w', 'number', true)                                        -- Line numbers on
 opt('o', 'pumblend', 15)                                        -- opt('o', up pmenu transparency
 opt('o', 'pumheight', 12)                                       -- Do not make pmenu too wide
-opt('o', 'scrolljump', 1)                                       -- Lines to scroll when cursor leaves screen
-opt('o', 'scrolloff' , 1)                                       -- Minimum lines to keep above and below cursor
-opt('o', 'scrollback', 1)                                       -- Disable scrollback
+opt('o', 'scrolljump', 0)                                       -- Lines to scroll when cursor leaves screen
+opt('o', 'scrolloff' , 0)                                       -- Minimum lines to keep above and below cursor
+opt('o', 'scrollback', 0)                                       -- Disable scrollback
+opt('o', 'sidescrolloff', 0)                                   -- Min num of scr columns to keep to the left and to the
 opt('o', 'shiftround', false)                                   -- Makes indenting a multiple of shiftwidth
 opt('o', 'shiftwidth', 4)                                       -- Spaces for autoindents
 opt('o', 'termguicolors', true)                                 -- Enable termguicolors
@@ -78,7 +79,6 @@ opt('o', 'hlsearch', true)                                      -- Highlight sea
 opt('o', 'shortmess', vim.o.shortmess ..'aoOstTWAIcqFS')            -- Shorting messages for all
 opt('o', 'showmode', true)                                      -- No show the mode ("-- INSERT --") at the bottom
 opt('o', 'showtabline', 0)                                      -- Do not show tab line
-opt('o', 'sidescrolloff', 10)                                   -- Min num of scr columns to keep to the left and to the
 opt('o', 'smartcase', true)                                     -- Case sensitive when uc present
 opt('o', 'softtabstop', 4)                                      -- Let backspace delete indent
 opt('o', 'splitbelow', true)                                    -- Puts new split windows to the bottom of the current
