@@ -18,6 +18,10 @@ alias sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
 alias U='yay -Su --devel --noconfirm --timeupdate'
 alias s='sudo'
+alias dd='dd status=progress'
+autoload -U zcalc
+function __calc_plugin { zcalc -e "$*" }
+aliases[=]='noglob __calc_plugin'
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias e='handlr open'
 _exists rg && {
