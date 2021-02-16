@@ -1,0 +1,7 @@
+#!/bin/sh
+
+upstream="$(git remote get-url origin)"
+origin="$(printf "%s" "$upstream" | sed 's@https\?://\([^/]\+\)/[^/]\+/\([^/]\+\)@https://\1/glacambre/\2@')"
+
+git remote set-url origin "$origin"
+git remote add upstream "$upstream"
