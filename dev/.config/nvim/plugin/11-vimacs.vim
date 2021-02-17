@@ -3,43 +3,43 @@ if exists('g:loaded_vim_like_emacs') || v:version < 700 || &compatible
 endif
 let g:loaded_vim_like_emacs = 1
 
-inoremap <expr> <C-b> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
-cnoremap        <C-b> <Left>
-inoremap <expr> <C-d> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-inoremap <expr> <C-e> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
-inoremap <expr> <C-f> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
-cnoremap <expr> <C-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+inoremap <expr> <M-b> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
+cnoremap        <M-b> <Left>
+inoremap <expr> <M-d> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <M-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+inoremap <expr> <M-e> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
+inoremap <expr> <M-f> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
+cnoremap <expr> <M-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 
 noremap! <expr> <SID>transposition getcmdpos()>strlen(getcmdline())?"\<Left>":getcmdpos()>1?'':"\<Right>"
 noremap! <expr> <SID>transpose "\<BS>\<Right>".matchstr(getcmdline()[0 : getcmdpos()-2], '.$')
-cmap <script> <C-t> <SID>transposition<SID>transpose
+cmap <script> <M-t> <SID>transposition<SID>transpose
 
-omap <C-b> <Left>
-omap <C-e> <End>
+omap <M-b> <Left>
+omap <M-e> <End>
 
-inoremap <C-x>b <C-o>:Buffers<CR>
-nnoremap <C-x>b <C-o>:Buffers<CR>
+inoremap <M-x>b <C-o>:Buffers<CR>
+nnoremap <M-x>b <C-o>:Buffers<CR>
 
-inoremap <M-f> <C-o>e<Right>
-inoremap <M-b> <S-Left>
-inoremap <M-d> <C-O>dw
-onoremap <M-f> e<Right>
+inoremap <C-f> <C-o>e<Right>
+inoremap <C-b> <S-Left>
+inoremap <C-d> <C-O>dw
+onoremap <C-f> e<Right>
 
 inoremap <silent> <c-a> <esc>I
 
-cnoremap <C-a> <home>
-cnoremap <C-e> <end>
-cnoremap <C-b> <left>
-cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr> <C-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
-cnoremap <C-p> <up>
-cnoremap <C-n> <down>
-cnoremap <M-d> <S-Right><C-w>
-cnoremap <C-y> <C-r><C-o>"
-cnoremap <M-f> <S-Right>
+cnoremap <M-a> <home>
+cnoremap <M-e> <end>
+cnoremap <M-b> <left>
+cnoremap <expr> <M-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <M-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+cnoremap <M-p> <up>
+cnoremap <M-n> <down>
+cnoremap <C-d> <S-Right><C-w>
+cnoremap <M-y> <C-r><C-o>"
+cnoremap <C-f> <S-Right>
 
-inoremap <silent> <C-k><C-k> <C-r>=<SID>KillLine()<CR>
+inoremap <silent> <M-k><M-k> <C-r>=<SID>KillLine()<CR>
 
 function! <SID>KillLine()
     if col('.') > strlen(getline('.'))
@@ -170,7 +170,7 @@ xmap <silent> <plug>SwapSwapOperands :call <SID>ttext('v' )<cr>
 xmap <silent> <plug>SwapSwapPivotOperands :call <SID>ttext('vi')<cr>
 nmap <silent> <plug>SwapSwapWithR_WORD :<c-u>call <SID>ttext('nr')<cr>
 nmap <silent> <plug>SwapSwapWithL_WORD :<c-u>call <SID>ttext('nl')<cr>
-imap <M-t> <C-o><M-t>
+imap <C-t> <C-o><C-t>
 
 function! s:map(mode, lhs, rhs)
     if !hasmapto(a:rhs, a:mode)
