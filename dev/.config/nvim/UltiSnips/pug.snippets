@@ -1,0 +1,59 @@
+snippet doc "doctype html5" b
+doctype html
+endsnippet
+
+snippet var "declare variable" b
+- var ${1} = ${2}
+endsnippet
+
+snippet case "case" b
+case ${1}
+	when ${2}
+		${3}
+	default
+		${4}
+endsnippet
+
+snippet if "if/else" b
+if ${1}
+	${2}
+else
+	${3}
+endsnippet
+
+snippet unl "unless" b
+unless ${1}
+	${2}
+endsnippet
+
+snippet each "each in" b
+each ${1} in ${2}
+	${3}
+endsnippet
+
+snippet for "for in" b
+for ${1} in ${2}
+	${3}
+endsnippet
+
+snippet while "while" b
+while ${1}
+	${2}
+endsnippet
+
+snippet mix "mixin without args" b
+mixin ${1}${2:(${3})}
+	${4}
+endsnippet
+
+snippet ext "extends" b
+extends ${1}
+endsnippet
+
+snippet inc "include" b
+include ${1}
+endsnippet
+
+snippet incf "include with filter" b
+include:${1:{filter}} ${2:{file}}
+endsnippet

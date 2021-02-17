@@ -1,0 +1,45 @@
+##############
+#  Control flow
+##############
+
+snippet if "if" w
+if ${1}
+	${2}
+else
+	${3}
+endsnippet
+
+snippet ? "if...then" w
+if ${1} then ${2}${3: else ${4}}
+endsnippet
+
+##############
+#  Iterations
+##############
+
+snippet for "for...in" w
+for ${1} in ${2}
+	${3}
+endsnippet
+
+snippet foro "for...of" w
+for ${1} of ${2}
+	${3}
+endsnippet
+
+##############
+#  Functions & classes
+##############
+
+snippet f "function" w
+(${1}) ->
+	${2}
+endsnippet
+
+##############
+#  Helpers
+##############
+
+snippet # "string interpolation" i
+#\{${1}\}
+endsnippet

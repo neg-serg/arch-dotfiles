@@ -1,0 +1,26 @@
+##############
+#  Helpers
+##############
+
+snippet link "link" i
+[${1}](${2})
+endsnippet
+
+snippet change "github changelog block" b
+${1} <small>(`!v strftime('%Y-%m-%d')`)</small>
+------------------------------
+
+* ${2}
+
+------------------------------
+endsnippet
+
+snippet badge "shield.io badge" b
+![${1}](https://img.shields.io/badge/${2:subject}-${3:status}-${4:color(brightscreen|green|yellowgreen|yellow|orange|red|lightgrey|blue|hex)}.svg${5:?style=${6:plastic|flat-square|social}}${7:?link=${7:http://abc.xyz&}} "${8:}")
+endsnippet
+
+snippet table "gfm table" b
+| ${1:...}                  | ${2:...}                  |
+| ------------------------- | ------------------------- |
+| ${3:...}                  | ${4:...}                  |
+endsnippet

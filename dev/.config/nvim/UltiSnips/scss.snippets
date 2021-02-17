@@ -1,0 +1,84 @@
+extends css
+
+##############
+#  Control Directives
+##############
+
+snippet if "@if" b
+if ${1} {
+	${2}
+}
+endsnippet
+
+snippet for "@for...to" b
+@for \$${1} from ${2:{start}} to ${3:{end}} {
+	${4}
+}
+endsnippet
+
+snippet fort "@for...through" b
+@for \$${1} from ${2:{start}} through ${3:{end}} {
+	${4}
+}
+endsnippet
+
+snippet each "each" b
+@each \$${1} in ${2} {
+	${3}
+}
+endsnippet
+
+snippet while "while" b
+@while \$${1} {
+	${2}
+}
+endsnippet
+
+##############
+#  Mixin Directives
+##############
+
+snippet mix "@mixin" b
+@mixin ${1}${2:(${3})} {
+	${4}
+}
+endsnippet
+
+snippet inc "@include mixin" w
+@include ${1}${2:(${3})};
+endsnippet
+
+##############
+#  Function Directives
+##############
+
+snippet f "@function" b
+@function ${1}${2:(${3})} {
+	${4}
+	@return 
+}
+endsnippet
+
+##############
+#  @Rules
+##############
+
+snippet imp "@import" b
+@import "${1}";
+endsnippet
+
+snippet ext "@extend" b
+@extend ${1};
+endsnippet
+
+##############
+#  Others
+##############
+
+snippet $ "variable" b
+\$${1}: ${2};
+endsnippet
+
+snippet # "interpolation" i
+#{\$${1}}
+endsnippet

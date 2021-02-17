@@ -1,0 +1,142 @@
+##############
+#  Constrol flow
+##############
+
+snippet if "if condition" b
+if ${1}
+	${2}
+endif
+endsnippet
+
+snippet ife "if else block" b
+if ${1}
+	${2}
+else
+	${3}
+endif
+endsnippet
+
+snippet ? "ternary" w
+${1} ? ${2} : ${3}
+endsnippet
+
+##############
+#  Iterations
+##############
+
+snippet for "for loop" b
+for ${1} in ${2}
+	${3}
+endfor
+endsnippet
+
+snippet forl "for loop with 2 items" b
+for [${1}, ${2}] in ${3}
+	${4}
+endfor
+endsnippet
+
+snippet while "while loop" b
+while ${1}
+	${2}
+endwhile
+endsnippet
+
+snippet try "try and catch block" b
+try
+	${1}
+catch
+	${2}
+endtry
+endsnippet
+
+##############
+#  Commands
+##############
+
+snippet au "autocmd" w
+autocmd ${1:{event}} ${2:{pattern}} ${3}
+endsnippet
+
+snippet aug "augroup block" b
+augroup ${1}
+	autocmd!
+	${2}
+augroup END
+endsnippet
+
+##############
+#  Functions
+##############
+
+snippet f "function!" b
+fun! ${1}(${2}) ${3:abort}
+	${4}
+endfun
+endsnippet
+
+snippet ff "function! with fold" b
+fun! ${1}(${2}) ${3:abort} " \{\{\{${4:1}
+	${5}
+endfun
+" $4\}\}\}
+endsnippet
+
+snippet fd "function! with fold and doc" b
+"" $1() \{\{\{1
+" $4
+fun! ${1}(${2}) ${3:abort}
+	${5}
+endfun
+" 1\}\}\}
+
+endsnippet
+
+snippet fa "lambda" w
+{${1} -> ${2}}
+endsnippet
+
+##############
+#  Helpers
+##############
+
+snippet header "header block" b
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Kabbaj Amine - amine.kabb@gmail.com
+" Creation: `date +%Y-%m-%d`
+" Last modification: `date +%Y-%m-%d`
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+${1}
+endsnippet
+
+snippet /** "commentary block" b
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 	        	${1}
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+endsnippet
+
+snippet plug "plugin for vim-plug" w
+Plug '${1}'${2:, {${3}}}
+endsnippet
+
+snippet hi "highlight group" b
+hi ${1:group} guibg=${2:NONE} guifg=${3:NONE} gui=${4:NONE}
+endsnippet
+
+snippet hil "highlight link" b
+hi! link ${1:group} ${2:toGroup}
+endsnippet
+
+snippet redirv "redir to variable" b
+redir => ${1}
+	${2}
+redir END
+endsnippet
+
+snippet get "get() function" w
+get(${1}, ${2}, ${3})
+endsnippet
+
+snippet @ "doctype @" w
+@${1:param} {${2:type}} ${3:name} ${4:def:${5}} ${6:description}
+endsnippet

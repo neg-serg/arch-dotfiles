@@ -1,0 +1,127 @@
+##############
+#  Constrol flow
+##############
+
+snippet if "if condition" b
+if (${1}) {
+	${2}
+}
+endsnippet
+
+snippet switch "switch" b
+switch (${1}) {
+	case '${2}':
+	  ${3}
+	  break;
+	default:
+	  ${4}
+}
+endsnippet
+
+snippet try "try/catch" b
+try {
+	${1}
+} catch (${2}) {
+	${3}
+}
+endsnippet
+
+snippet ? "ternary" w
+${1} ? ${2} : ${3}
+endsnippet
+
+##############
+#  Iterations
+##############
+
+snippet for "for" b
+for (var i = 0; ${1}; i++) {
+	${2}
+}
+endsnippet
+
+snippet foro "for..of" b
+for (${1:const} ${2} of ${3}) {
+	${4}
+}
+endsnippet
+
+snippet fori "for..in" b
+for (${1:const} ${2} in ${3}) {
+	${4}
+}
+endsnippet
+
+snippet while "while" b
+while ($1) {
+	${2}
+}
+endsnippet
+
+snippet dowhile "do/while" b
+do {
+	${2}
+} while ($1)
+endsnippet
+
+##############
+#  Functions & classes
+##############
+
+snippet f "function" w
+function ${1} (${2}) {
+	${3}
+}
+endsnippet
+
+snippet fa "arrow function" w
+(${1}) => ${2:{${3}}}
+endsnippet
+
+snippet class "class block" b
+class ${1}${2: extends ${3}} {
+	${4}
+}
+endsnippet
+
+snippet const "constructor" b
+constructor (${1}) {
+	${2}
+}
+endsnippet
+
+snippet fm "method" b
+${1} (${2}) {
+	${3}
+}
+endsnippet
+
+snippet fms "method static" b
+static ${1} (${2}) {
+	${3}
+}
+endsnippet
+
+##############
+#  Others
+##############
+
+snippet imp "import" b
+import ${1} from '${2}'
+endsnippet
+
+snippet impa "import as" b
+import ${1} as ${2} from '${3}'
+endsnippet
+
+##############
+#  Helpers
+##############
+
+snippet cl "console.log" w
+console.log(${1})
+endsnippet
+
+snippet $ "string interpolation" i
+\$\{${1}\}
+endsnippet

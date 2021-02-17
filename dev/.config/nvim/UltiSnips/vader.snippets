@@ -1,0 +1,91 @@
+#  Basic block
+##############
+
+snippet giv "given block" b
+Given ${1:{filetype}} ${2:(${3})}:
+	${4}
+endsnippet
+
+snippet do "do block" b
+Do ${1:(${2})}:
+	${3}
+endsnippet
+
+snippet exe "execute block" b
+Execute ${1:[ruby/python/perl/lua]} ${2:(${3})}:
+	${4}
+endsnippet
+
+snippet then "then block" b
+Then ${1:(${2})}:
+	${3}
+endsnippet
+
+snippet exp "expect block" b
+Expect ${1:{filetype}} ${2:(${3})}:
+	${4}
+endsnippet
+
+snippet bef "before block" b
+Before ${1:(${2})}:
+	${3}
+endsnippet
+
+snippet aft "after block" b
+After ${1:(${2})}:
+	${3}
+endsnippet
+
+snippet inc "include macro" b
+Include: ${1}.vader
+endsnippet
+
+# Inline commands
+#################
+
+snippet as "assert" b
+Assert ${1:{bool}}${2:, ${3:{message}}}
+endsnippet
+
+snippet ase "assertEqual" b
+AssertEqual ${1:{expected}}, ${2:{got}}${3:, ${4:{message}}}
+endsnippet
+
+snippet asne "assertNotEqual" b
+AssertNotEqual ${1:{expected}}, ${2:{got}}${3:, ${4:{message}}}
+endsnippet
+
+snippet ast "assertThrows" b
+AssertThrows ${1}
+endsnippet
+
+snippet log "log" b
+Log ${1}
+endsnippet
+
+snippet save "save" b
+Save ${1}${2:, ${3}}
+endsnippet
+
+snippet rest "restore" b
+Restore ${1:${2}${3:, ${4}}}
+endsnippet
+
+# Syntax helpers
+################
+
+snippet syna "syntaxAt function" b
+SyntaxAt(${1})
+endsnippet
+
+snippet synac "syntaxAt function with col argument" b
+SyntaxAt(${1:{col}})
+endsnippet
+
+snippet synalc "syntaxAt function with line and col argument" b
+SyntaxAt(${1:{lnum}}, ${2:{col}})
+endsnippet
+
+snippet syno "syntaxOf function" b
+SyntaxOf(${1:{pattern}}${2:, ${3:{nth}}})
+endsnippet

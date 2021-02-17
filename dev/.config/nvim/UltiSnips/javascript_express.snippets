@@ -1,0 +1,18 @@
+snippet ag "(express) get method" b
+app.get(${1}, (request, response) => {
+	${2}
+})
+endsnippet
+
+snippet ap "(express) post method" b
+app.get(${1}, (request, response) => {
+	${2}
+})
+endsnippet
+
+
+snippet al "(express) listen method" b
+app.listen(${1:{port}}${2:, () => {
+	${3}
+}})
+endsnippet

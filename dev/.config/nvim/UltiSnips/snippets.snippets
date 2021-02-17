@@ -1,0 +1,16 @@
+# Shamelessly taken from https://github.com/honza/vim-snippets/blob/master/UltiSnips/snippets.snippets
+snippet snip "Ultisnips snippet definition" b
+`!p snip.rv = "snippet"` ${1:{trigger}} "${2:description}" ${3:[b/i/w]}
+${0:${VISUAL}}
+`!p snip.rv = "endsnippet"`
+endsnippet
+
+snippet $ "placeholder" i
+\$\{${1}\}
+endsnippet
+
+snippet ## "comment block" b
+##############
+#  ${1}
+##############
+endsnippet

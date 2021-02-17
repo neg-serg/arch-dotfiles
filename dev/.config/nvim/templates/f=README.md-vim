@@ -1,0 +1,26 @@
+# %PROJECT% - <small>%_%</small>
+
+![Badge version](https://img.shields.io/badge/version-0.1-blue.svg?style=flat-square "Badge for version")
+![License version](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square "Badge for license")
+
+## Description
+
+## Installation
+
+Use your preferred method to install the plugin. I recommend you to use a plugin manager.
+
+e.g with [Vim-plug](https://github.com/junegunn/vim-plug)
+
+```
+Plug 'KabbAmine/%PROJECT%.vim'
+```
+
+## Notes
+
+Thanks to Bram Moolenaar for creating the best piece of software in the world :heart:
+
+Thanks to you if you're using %PROJECT%.
+
+## License
+
+%LICENSE%

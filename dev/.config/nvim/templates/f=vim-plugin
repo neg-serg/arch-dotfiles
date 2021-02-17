@@ -1,0 +1,28 @@
+" %_%
+
+" CREATION     : %DATE%
+" MODIFICATION : %DATE%
+" MAINTAINER   : %NAME% <%MAIL%>
+" LICENSE      : %LICENSE%
+
+
+" Vim options {{{1
+if exists('g:%FILE%_loaded')
+    finish
+endif
+let g:%FILE%_loaded = 1
+
+" To avoid conflict problems.
+let s:save_cpoptions = &cpoptions
+set cpoptions&vim
+" 1}}}
+
+
+
+" Restore default vim options {{{1
+let &cpoptions = s:save_cpoptions
+unlet s:save_cpoptions
+" 1}}}
+
+
+" vim:ft=vim:fdm=marker:fmr={{{,}}}:
