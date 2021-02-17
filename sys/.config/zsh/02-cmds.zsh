@@ -22,6 +22,7 @@ alias dd='dd status=progress'
 autoload -U zcalc
 function __calc_plugin { zcalc -e "$*" }
 aliases[=]='noglob __calc_plugin'
+_exists bc && alias '?=bc -l <<<'
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias e='handlr open'
 _exists rg && {
@@ -42,7 +43,6 @@ _exists rg && {
 _exists bpython && alias python='bpython'
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
 _exists lfs && alias df='lfs'
-_exists bc && alias '?=bc -l <<<'
 _exists acpi && alias acpi='acpi -V'
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
