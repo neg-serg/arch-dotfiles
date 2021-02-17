@@ -61,10 +61,10 @@ clipboard_pipe() {
 
 clip_main() {
     rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip"
-    selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval $rofi_cmd | cut -c5-)"
-    if [ ! -z "$selection" ]; then
-        echo "$selection" | xclip
-    fi
+    selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval $rofi_cmd)"
+    num="$(echo "$selection" | awk -F ': ' '{print $1}')"
+    uuid="$(gpaste-client --oneline | awk -F ':' '{print $1}' | sed -n "$(echo -n $num)p")"
+    gpaste-client select "$uuid"
 }
 
 yr() {
