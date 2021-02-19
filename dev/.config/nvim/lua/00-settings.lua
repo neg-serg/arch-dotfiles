@@ -130,3 +130,5 @@ opt('o','formatoptions', 'n1jcroql')
 -- cpoptions+=s -- opt('o', buf opts before it created
 -- cpoptions+=a -- :read with a filename opt('o', the alternate filename for window
 opt('o', 'cpoptions', '_$ABFWcdesa')
+vim.cmd('syntax on')
+vim.cmd("colorscheme neg")
