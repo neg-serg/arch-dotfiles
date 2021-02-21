@@ -19,7 +19,7 @@ opt('w', 'concealcursor', 'niv')                                -- Conceal curso
 opt('o', 'keymap', 'russian-jcukenwin')                         -- Add ru keymap
 opt('o', 'magic', true)                                         -- Use magic
 opt('o', 'listchars', '')                                       -- Disable listchars
-opt('o', 'path', vim.o.path .. ',.,..,/usr/include,./include,../include,**') -- Add path settings
+opt('o', 'path', vim.o.path .. ',.,..,/usr/include,./include,../include,*') -- Add path settings
 vim.api.nvim_exec([[
 if executable(resolve(expand('par')))
     set formatprg="par -140"                                    -- Use par as formatter
