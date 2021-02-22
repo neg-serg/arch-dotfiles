@@ -292,3 +292,4 @@ sys/.config/zsh/.zcompdump
 music/.config/mpd
 neg-dark.tdesktop-theme
 .zcalc_history
+music/.config/mpd/mpd.pid
