@@ -19,3 +19,22 @@ function! CCR()
 endfunction
 cnoremap <expr> <CR> CCR()
 ]], true)
+
+-- cnoreabbrev W! w!
+-- cnoreabbrev Q! q!
+-- cnoreabbrev QA! qa!
+-- cnoreabbrev QA qa
+-- cnoreabbrev Wq wq
+-- cnoreabbrev wQ wq
+-- cnoreabbrev WQ wq
+-- cnoreabbrev W w
+-- cnoreabbrev Q q
+-- cnoreabbrev e E
+-- cnoreabbrev sp Sp
+-- cnoreabbrev vs VS
+-- cnoreabbrev tabe TabE
+-- cnoreabbrev bd Bd
+-- cnoreabbrev rm Rm
+-- cnoreabbrev mkdir Mkdir
+-- cnoreabbrev cp Cp
+-- cnoreabbrev mv Mv
