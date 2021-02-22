@@ -117,4 +117,21 @@ augroup END
 " "text will overwrite yanked text in the register.
 " nnoremap yp "0p
 " nnoremap yP "0P
-" "
+
+" command! Hl :help local-additions
+" command! Fl :help function-list
+
+" " >>> Clever gf {{{1
+" nnoremap <silent> gf :call ka#utils#clever_gf()<CR>
+" nnoremap <silent> gF :call ka#utils#clever_gf(1)<CR>
+" " 1}}}
+
+" nnoremap cd "+d
+" nnoremap cp "+p
+" nnoremap cP "+P
+" nnoremap cy "+y
+" nnoremap cY "+y$
+" xnoremap Cd "+d
+" xnoremap Cp "+p
+" xnoremap CP "+P
+" xnoremap Cy "+y
