@@ -11,6 +11,9 @@
     "json"
   ],
   "codeLens.enable": true,
+  "snippets.ultisnips.enable": true,
+  "snippets.autoTrigger": true,
+  "snippets.ultisnips.directories": ["snips"],
   "diagnostic.displayByAle": true,
   "diagnostic.infoSign": "◉",
   "diagnostic.refreshOnInsertMode": true,
