@@ -23,11 +23,12 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
 end
 
 local function try_loadstring(s, component, name)
-  local success, err = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s))
   if not success then
     print('Error running ' .. component .. ' for ' .. name)
-    error(err)
+    error(result)
   end
+  return result
 end
 
 _G.packer_plugins = {
@@ -37,11 +38,8 @@ _G.packer_plugins = {
   },
   ["ansible-vim"] = {
     loaded = false,
+    needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/ansible-vim"
-  },
-  ["auto-pairs"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
   ["coc-fzf"] = {
     loaded = true,
@@ -81,6 +79,7 @@ _G.packer_plugins = {
   },
   lusty = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/lusty"
   },
   neg = {
@@ -119,8 +118,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
+  nvim_utils = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim_utils"
+  },
   ["packer.nvim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["plenary.nvim"] = {
@@ -153,6 +157,7 @@ _G.packer_plugins = {
   },
   ["vim-ansible-vault"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-ansible-vault"
   },
   ["vim-apathy"] = {
@@ -209,6 +214,7 @@ _G.packer_plugins = {
   },
   ["vim-markdown"] = {
     loaded = false,
+    needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-markdown"
   },
   ["vim-matchup"] = {
@@ -221,6 +227,7 @@ _G.packer_plugins = {
   },
   ["vim-mundo"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-mundo"
   },
   ["vim-oscyank"] = {
@@ -229,6 +236,7 @@ _G.packer_plugins = {
   },
   ["vim-packager"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-packager"
   },
   ["vim-pencil"] = {
@@ -240,7 +248,9 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-polyglot"
   },
   ["vim-puppet"] = {
+    after_files = { "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-puppet/after/plugin/gutentags.vim" },
     loaded = false,
+    needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-puppet"
   },
   ["vim-ref"] = {
@@ -269,10 +279,12 @@ _G.packer_plugins = {
   },
   ["vim-tridactyl"] = {
     loaded = false,
+    needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-tridactyl"
   },
   ["vim-wordy"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-wordy"
   },
   vimpeccable = {
@@ -281,10 +293,12 @@ _G.packer_plugins = {
   },
   vimwiki = {
     loaded = false,
+    needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vimwiki"
   },
   ["vista.vim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vista.vim"
   },
   ["winteract.vim"] = {
