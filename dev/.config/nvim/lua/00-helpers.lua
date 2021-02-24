@@ -1,6 +1,7 @@
 local o = vim.o
 local g = vim.g
 local a = vim.api
+api = vim.api
 
 function _G.nvim_set_au(au_type, where, dispatch)
     vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
