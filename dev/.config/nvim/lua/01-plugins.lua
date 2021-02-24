@@ -88,7 +88,7 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'pearofducks/ansible-vim', opt=true, run = './UltiSnips/generate.sh'}
+    use {'pearofducks/ansible-vim', opt=true} -- ansible support
     use {'arouene/vim-ansible-vault', opt=true} -- ansible-vault support
     use {'saltstack/salt-vim'} -- salt sls support
     use {'rodjek/vim-puppet', opt=true} -- puppet support
