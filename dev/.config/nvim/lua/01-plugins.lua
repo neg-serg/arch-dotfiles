@@ -57,7 +57,7 @@ return require('packer').startup(function()
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'andymass/vim-matchup'} -- generic matcher
     use {'junegunn/vim-easy-align'} -- use easy-align, instead of tabular
-    use {'jiangmiao/auto-pairs'} -- auto-pairs
+    -- use {'jiangmiao/auto-pairs'} -- auto-pairs
     use {'svermeulen/vim-NotableFt'} -- better ft
     use {'tomtom/tcomment_vim'} -- commenter plugin
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
