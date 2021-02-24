@@ -5,7 +5,8 @@ vim.g.coc_status_warning_sign = ''
 vim.g.coc_status_error_sign = ''
 vim.g.coc_snippet_next = '<tab>'
 -- Use <c-space> to trigger completion.
-api.nvim_command('inoremap <expr> <C-space> coc#refresh()')
+api.nvim_command('inoremap <expr> <C-Space> " "')
+api.nvim_command('inoremap <expr> <Space> pumvisible() ? coc#_select_confirm() : coc#expandableOrJumpable() ? "" : "<Space>"')
 api.nvim_command('inoremap <silent><expr> <Tab> pumvisible() ? coc#_select_confirm() : coc#expandableOrJumpable() ? "" : <SID>check_back_space() ? "<TAB>" : coc#refresh()')
 api.nvim_command([[
 function! s:check_back_space() abort
