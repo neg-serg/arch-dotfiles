@@ -21,7 +21,6 @@ return require('packer').startup(function()
     use {'neg-serg/lusty', opt=true} -- file/buffer explorer
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
-    use {'nvim-lua/plenary.nvim'} -- lua helpers
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- better highlight
     use {'ojroques/nvim-bufdel'} -- better buffer delete
     use {'ojroques/vim-oscyank'} -- cross-server yank
@@ -30,11 +29,16 @@ return require('packer').startup(function()
     use {'reedes/vim-wordy', opt=true} -- style check for english
     use {'romgrk/winteract.vim'} -- interactive window resize
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
-    use {'svermeulen/nvim-moonmaker'} -- moonscript neovim extensions
-    use {'svermeulen/vimpeccable'} -- neovim lua extensions
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
-    use {'tjdevries/nlua.nvim'} -- neovim lua autocompletion
     use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Neovim lua stuff                                                             │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'nvim-lua/plenary.nvim'} -- lua helpers
+    use {'tjdevries/nlua.nvim'} -- neovim lua autocompletion
+    use {'norcalli/nvim_utils'} -- new neovim extensions
+    use {'svermeulen/vimpeccable'} -- neovim lua extensions
+    use {'svermeulen/nvim-moonmaker'} -- moonscript neovim extensions
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -75,8 +79,8 @@ return require('packer').startup(function()
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg'} -- my colorscheme
     use {'luochen1990/rainbow'} -- better rainbow parentheses
-    -- best color highlighting
-    use {'RRethy/vim-hexokinase', run = 'git submodule init && git submodule update && cd hexokinase/ && go build'}
+    use {'RRethy/vim-hexokinase', -- best color highlighting
+         run = 'git submodule init && git submodule update && cd hexokinase/ && go build'}
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'justinmk/vim-syntax-extra'} -- better syntax for some langs
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
