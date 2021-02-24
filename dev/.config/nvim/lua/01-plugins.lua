@@ -82,9 +82,11 @@ return require('packer').startup(function()
     use {'RRethy/vim-hexokinase', -- best color highlighting
          run = 'git submodule init && git submodule update && cd hexokinase/ && go build'}
     use {'sheerun/vim-polyglot'} -- language pack collection
+    use {'stephpy/vim-yaml'} -- experiment with faster yaml
     use {'justinmk/vim-syntax-extra'} -- better syntax for some langs
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons'} -- fancy webicons
+    use {'numToStr/FTerm.nvim'} -- experiment with ftterm
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
