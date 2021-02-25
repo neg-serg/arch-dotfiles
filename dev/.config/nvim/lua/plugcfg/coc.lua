@@ -29,7 +29,17 @@ map('n', 'gr', ':<C-u>CocCommand fzf-preview.CocReferences<CR>', {silent=true})
 -- Remap for rename current word
 map('n', '[Qleader]r', '<Plug>(coc-rename)', {silent=true})
 -- Reformat command
+vim.g.coc_global_extensions = {
+  'coc-diagnostic',
+  'coc-lists',
+  'coc-prettier',
+  'coc-pyright',
+  'coc-rust-analyzer',
+  'coc-snippets',
+  'coc-solargraph',
+  'coc-stylelint',
+  'coc-yaml',
+}
 vim.api.nvim_exec([[
 command! -nargs=0 Format :call CocAction('format')
-let g:coc_global_extensions = ['coc-actions', 'coc-browser', 'coc-clangd', 'coc-diagnostic', 'coc-git', 'coc-json', 'coc-lists', 'coc-prettier', 'coc-python', 'coc-rust-analyzer', 'coc-snippets', 'coc-solargraph', 'coc-stylelint', 'coc-translator', 'coc-yaml']
 ]], true)
