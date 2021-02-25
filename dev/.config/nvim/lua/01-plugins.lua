@@ -34,7 +34,6 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'nvim-lua/plenary.nvim'} -- lua helpers
     use {'tjdevries/nlua.nvim'} -- neovim lua autocompletion
     use {'norcalli/nvim_utils'} -- new neovim extensions
     use {'svermeulen/vimpeccable'} -- neovim lua extensions
@@ -86,6 +85,9 @@ return require('packer').startup(function()
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons'} -- fancy webicons
     use {'numToStr/FTerm.nvim'} -- experiment with ftterm
+    use {'nvim-lua/plenary.nvim'} -- lua helpers
+    use {'nvim-lua/popup.nvim'}
+    use {'nvim-telescope/telescope.nvim'}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
