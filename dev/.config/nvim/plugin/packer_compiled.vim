@@ -32,10 +32,6 @@ local function try_loadstring(s, component, name)
 end
 
 _G.packer_plugins = {
-  ["FTerm.nvim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/FTerm.nvim"
-  },
   ale = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/ale"
@@ -45,6 +41,10 @@ _G.packer_plugins = {
     needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/ansible-vim"
   },
+  ["auto-pairs"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/auto-pairs"
+  },
   ["coc-fzf"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc-fzf"
@@ -53,6 +53,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc.nvim"
   },
+  ["codi.vim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/codi.vim"
+  },
   ["committia.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/committia.vim"
@@ -60,6 +65,16 @@ _G.packer_plugins = {
   ["conflict-marker.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/conflict-marker.vim"
+  },
+  conjure = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/conjure"
+  },
+  fencview = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/fencview"
   },
   fzf = {
     loaded = true,
@@ -80,6 +95,10 @@ _G.packer_plugins = {
   ["gina.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/gina.vim"
+  },
+  kommentary = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/kommentary"
   },
   lusty = {
     loaded = false,
@@ -118,6 +137,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
+  ["nvim-ts-rainbow"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
@@ -131,14 +154,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/plenary.nvim"
-  },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/popup.nvim"
-  },
   ["salt-vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/salt-vim"
@@ -150,14 +165,6 @@ _G.packer_plugins = {
   ["targets.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/targets.vim"
-  },
-  tcomment_vim = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/tcomment_vim"
-  },
-  ["telescope.nvim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["vim-NotableFt"] = {
     loaded = true,
@@ -289,6 +296,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-tridactyl"
+  },
+  ["vim-visual-multi"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-visual-multi"
   },
   ["vim-wordy"] = {
     loaded = false,
