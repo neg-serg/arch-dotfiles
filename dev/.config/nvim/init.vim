@@ -135,3 +135,5 @@ augroup END
 " xnoremap Cp "+p
 " xnoremap CP "+P
 " xnoremap Cy "+y
+"choice=$( rofi -dmenu -config /usr/share/rofi/themes/dmenu2.rasi -p "Search     :     ")
+
