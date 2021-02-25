@@ -54,6 +54,7 @@ return require('packer').startup(function()
     use {'tpope/vim-apathy'} -- better include jump
     use {'tpope/vim-dispatch'} -- provide async build
     use {'Olical/conjure'} -- interactive repl
+    use {'metakirby5/codi.vim'} -- nice scratchpad for hackers
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
