@@ -32,6 +32,10 @@ local function try_loadstring(s, component, name)
 end
 
 _G.packer_plugins = {
+  ["FTerm.nvim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/FTerm.nvim"
+  },
   ale = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/ale"
@@ -131,6 +135,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
   rainbow = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/rainbow"
@@ -150,6 +158,10 @@ _G.packer_plugins = {
   tcomment_vim = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/tcomment_vim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["vim-NotableFt"] = {
     loaded = true,
@@ -286,6 +298,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-wordy"
+  },
+  ["vim-yaml"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-yaml"
   },
   vimpeccable = {
     loaded = true,
