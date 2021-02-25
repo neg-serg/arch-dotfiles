@@ -24,6 +24,7 @@ return require('packer').startup(function()
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- better highlight
     use {'ojroques/nvim-bufdel'} -- better buffer delete
     use {'ojroques/vim-oscyank'} -- cross-server yank
+    use {'mg979/vim-visual-multi'} -- visual multiline
     use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
     use {'reedes/vim-pencil'} -- better text support
     use {'reedes/vim-wordy', opt=true} -- style check for english
@@ -31,6 +32,7 @@ return require('packer').startup(function()
     use {'simnalamburt/vim-mundo', opt=true} -- undo tree
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
     use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
+    use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -56,7 +58,7 @@ return require('packer').startup(function()
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'andymass/vim-matchup'} -- generic matcher
     use {'junegunn/vim-easy-align'} -- use easy-align, instead of tabular
-    -- use {'jiangmiao/auto-pairs'} -- auto-pairs
+    use {'jiangmiao/auto-pairs'} -- auto-pairs
     use {'svermeulen/vim-NotableFt'} -- better ft
     use {'tomtom/tcomment_vim'} -- commenter plugin
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
