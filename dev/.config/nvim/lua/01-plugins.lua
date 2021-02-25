@@ -78,7 +78,6 @@ return require('packer').startup(function()
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg'} -- my colorscheme
-    use {'luochen1990/rainbow'} -- better rainbow parentheses
     use {'RRethy/vim-hexokinase', -- best color highlighting
          run = 'git submodule init && git submodule update && cd hexokinase/ && go build'}
     use {'sheerun/vim-polyglot'} -- language pack collection
