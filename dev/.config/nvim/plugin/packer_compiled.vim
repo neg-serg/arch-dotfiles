@@ -139,10 +139,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
-  rainbow = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/rainbow"
-  },
   ["salt-vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/salt-vim"
