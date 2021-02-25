@@ -31,7 +31,7 @@ require 'plugcfg/fzfmru'
 require 'plugcfg/oscyank'
 require 'plugcfg/esearch'
 require 'plugcfg/telescope'
-
+require 'plugcfg/treesitter'
 -- vim.api.nvim_set_keymap('n', '++', '<Plug>kommentary_line_default', { silent = true })
 -- vim.api.nvim_set_keymap('v', '++', '<Plug>kommentary_visual_default', { silent = true })
 -- utils.nnoremap('<leader>t', '<CMD>lua require"FTerm".toggle()<CR>')
