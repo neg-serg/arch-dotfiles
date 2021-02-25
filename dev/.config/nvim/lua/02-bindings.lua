@@ -1,15 +1,13 @@
 local o = vim.o
 local g = vim.g
 local a = vim.api
-
-map('', '<C-j>', '', { nowait = true })
-map('i', '<C-j>', '<ESC>', { nowait = true })
-map('v', '<C-j>', '<ESC>', { nowait = true })
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
-map('n', '<C-h>', '<C-w>h')
-map('n', '<space><space>', '<c-^>')
+map('i', '<C-j>', '<ESC>', {nowait = true})
+map('v', '<C-j>', '<ESC>', {nowait = true})
+map('n', '<C-j>', '<C-w>j', {nowait = true})
+map('n', '<C-k>', '<C-w>k', {nowait = true})
+map('n', '<C-l>', '<C-w>l', {nowait = true})
+map('n', '<C-h>', '<C-w>h', {nowait = true})
+map('n', '<Space><Space>', '<C-^>')
 map('n', 'q', '<NOP>')
 map('n', 'Q', 'q')
 map('n', '<F1>', '')
@@ -55,22 +53,22 @@ map('n', "`", "'")
 map('n', '<M-w>', ':bd<CR>', {silent=true})
 map('i', '<C-V>', '<C-R>+')
 map('n', 'K', ":call CocActionAsync('doHover')<CR>", {silent=true})
-
-local result = vim.api.nvim_exec(
+vim.g.mapleader = ','
+map('n', 'Y', 'y$')
+api.nvim_command('nnoremap <expr> G &wrap ? "G$g0" : "G"')
+api.nvim_command('nnoremap <expr> 0 &wrap ? "g0" : "0"')
+api.nvim_command('nnoremap <expr> $ &wrap ? "g$" : "$"')
+api.nvim_command('nnoremap <expr> j (v:count == 0 ? "gj" : "j")')
+api.nvim_command('nnoremap <expr> k (v:count == 0 ? "gk" : "k")')
+vim.api.nvim_exec(
 [[
-    let mapleader = ','
-    let g:mapleader = ','
-    nnoremap Y y$
-    noremap <expr> G &wrap ? "G$g0" : "G"
-    noremap <expr> 0 &wrap ? 'g0' : '0'
-    noremap <expr> $ &wrap ? "g$" : "$"
-    noremap <expr> j (v:count == 0 ? 'gj' : 'j')
-    noremap <expr> k (v:count == 0 ? 'gk' : 'k')
-    " thx to ralismark.xyz/2020/08/29/how-i-use-vim-1.html
-    " Fixed I/A for visual
-    xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
-    xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
-    exe 'inoremap <script> <C-v> <C-g>u' . paste#paste_cmd['i']
-    exe 'vnoremap <script> <C-v> ' . paste#paste_cmd['v']
-]],
-true)
+    exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+    exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+]], true)
+-- thx to ralismark.xyz/2020/08/29/how-i-use-vim-1.html
+-- Fixed I/A for visual
+vim.api.nvim_exec(
+[[
+xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
+xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
+]], true)
