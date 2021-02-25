@@ -44,6 +44,7 @@ return require('packer').startup(function()
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neoclide/coc.nvim'} -- lsp autocomplete
+    -- branch': 'master', 'do': 'yarn install --frozen-lockfile'
     use {'antoinemadec/coc-fzf'} -- coc fzf support
     use {'dense-analysis/ale'} -- async linter with lsp support
     use {'liuchengxu/vista.vim', opt=true} -- lsp-symbols tag searcher
@@ -61,7 +62,6 @@ return require('packer').startup(function()
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'andymass/vim-matchup'} -- generic matcher
     use {'junegunn/vim-easy-align'} -- use easy-align, instead of tabular
-    use {'jiangmiao/auto-pairs'} -- auto-pairs
     use {'svermeulen/vim-NotableFt'} -- better ft
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
     use {'tpope/vim-repeat'} -- dot for surround
