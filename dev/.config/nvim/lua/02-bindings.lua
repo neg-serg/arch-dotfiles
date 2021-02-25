@@ -20,11 +20,6 @@ map('t', '<Esc>', '<C-\\><C-n>', {silent=true})
 map('n', '<Tab>', ':bn<CR>', {silent=true})
 map('n', '<S-Tab>', ':bp<CR>', {silent=true})
 map('n', '<leader><Tab>', ':b#<CR>', {silent=true})
-map('n', '<M-1>', ':b 1<CR>', {silent=true})
-map('n', '<M-2>', ':b 2<CR>', {silent=true})
-map('n', '<M-3>', ':b 3<CR>', {silent=true})
-map('n', '<M-4>', ':b 4<CR>', {silent=true})
-map('n', '<M-5>', ':b 5<CR>', {silent=true})
 
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
 map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
@@ -59,6 +54,8 @@ map('n', "`", "'")
 -- like firefox tabs
 map('n', '<M-w>', ':bd<CR>', {silent=true})
 map('i', '<C-V>', '<C-R>+')
+map('n', 'K', ":call CocActionAsync('doHover')<CR>", {silent=true})
+
 local result = vim.api.nvim_exec(
 [[
     let mapleader = ','
