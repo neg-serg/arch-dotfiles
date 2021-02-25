@@ -53,6 +53,7 @@ return require('packer').startup(function()
     use {'theHamsta/nvim-dap-virtual-text'} -- virtual debugging text support
     use {'tpope/vim-apathy'} -- better include jump
     use {'tpope/vim-dispatch'} -- provide async build
+    use {'Olical/conjure'} -- interactive repl
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
