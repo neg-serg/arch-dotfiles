@@ -53,8 +53,9 @@ return require('packer').startup(function()
     use {'theHamsta/nvim-dap-virtual-text'} -- virtual debugging text support
     use {'tpope/vim-apathy'} -- better include jump
     use {'tpope/vim-dispatch'} -- provide async build
-    use {'Olical/conjure'} -- interactive repl
-    use {'metakirby5/codi.vim'} -- nice scratchpad for hackers
+    use {'Olical/conjure', opt=true} -- interactive repl
+    use {'metakirby5/codi.vim', opt=true} -- nice scratchpad for hackers
+    use {'b3nj5m1n/kommentary'} -- alternative commenter
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -62,7 +63,6 @@ return require('packer').startup(function()
     use {'junegunn/vim-easy-align'} -- use easy-align, instead of tabular
     use {'jiangmiao/auto-pairs'} -- auto-pairs
     use {'svermeulen/vim-NotableFt'} -- better ft
-    use {'tomtom/tcomment_vim'} -- commenter plugin
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
     use {'tpope/vim-repeat'} -- dot for surround
     use {'wellle/targets.vim'} -- better text objects
