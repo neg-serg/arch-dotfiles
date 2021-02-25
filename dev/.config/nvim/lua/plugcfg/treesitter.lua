@@ -4,7 +4,8 @@ require'nvim-treesitter.configs'.setup {
     enable = true, -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
   },
-  rainbow = { enable = true }
+  rainbow = { enable = true },
+  indent = { enable = true }
 }
 vim.cmd('hi rainbowcol1 guifg=#365e96')
 vim.cmd('hi rainbowcol2 guifg=#315587')
