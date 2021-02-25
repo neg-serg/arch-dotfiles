@@ -89,6 +89,7 @@ return require('packer').startup(function()
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons'} -- fancy webicons
     use {'numToStr/FTerm.nvim'} -- experiment with ftterm
+    use {'mbbill/fencview', opt=true} -- select various encodings
     use {'nvim-lua/plenary.nvim'} -- lua helpers
     use {'nvim-lua/popup.nvim'}
     use {'nvim-telescope/telescope.nvim'}
