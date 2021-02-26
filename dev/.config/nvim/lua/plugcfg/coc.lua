@@ -30,6 +30,7 @@ map('n', 'gr', ':<C-u>CocCommand fzf-preview.CocReferences<CR>', {silent=true})
 map('n', '[Qleader]r', '<Plug>(coc-rename)', {silent=true})
 -- Reformat command
 vim.g.coc_global_extensions = {
+  'coc-calc',
   'coc-diagnostic',
   'coc-git',
   'coc-grammarly',
