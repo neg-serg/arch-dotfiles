@@ -13,7 +13,7 @@
   "coc-actions.hideCursor": false,
   "coc.source.around.shortcut": "B",
   "coc.source.buffer.shortcut": "BS",
-  "coc.source.file.ignoreHidden": true,
+  "coc.source.file.ignoreHidden": false,
   "codeLens.enable": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.displayByAle": true,
