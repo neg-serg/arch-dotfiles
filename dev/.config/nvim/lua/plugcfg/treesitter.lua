@@ -1,4 +1,10 @@
-require'nvim-treesitter.configs'.setup {
+local tsconf = require'nvim-treesitter.configs'
+if not tsconf then
+   vim.cmd [[ echom 'Cannot load `nvim-treesitter.configs`' ]]
+   return
+end
+
+tsconf.setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true, -- false will disable the whole extension
