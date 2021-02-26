@@ -47,6 +47,7 @@
   "snippets.autoTrigger": true,
   "snippets.ultisnips.directories": ["snips"],
   "snippets.ultisnips.enable": true,
+  "snippets.snipmate.enable": false,
   "suggest.autoTrigger": "always",
   "suggest.detailField": "menu",
   "suggest.echodocSupport": true,
