@@ -70,7 +70,7 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Search                                                                       │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'junegunn/fzf'} -- fzf binary
+    use {"junegunn/fzf", run = function() vim.fn["fzf#install"]() end}  -- fzf binary
     use {'junegunn/fzf.vim'} -- fzf vim bindings
     use {'pbogut/fzf-mru.vim'} -- fzf mru source
     use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
@@ -82,8 +82,7 @@ return require('packer').startup(function()
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg'} -- my colorscheme
-    use {'RRethy/vim-hexokinase', -- best color highlighting
-         run = 'git submodule init && git submodule update && cd hexokinase/ && go build'}
+    use {'RRethy/vim-hexokinase', run = "make hexokinase" } -- best color highlighting
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'stephpy/vim-yaml'} -- experiment with faster yaml
     use {'justinmk/vim-syntax-extra'} -- better syntax for some langs
