@@ -31,6 +31,8 @@ map('n', '[Qleader]r', '<Plug>(coc-rename)', {silent=true})
 -- Reformat command
 vim.g.coc_global_extensions = {
   'coc-diagnostic',
+  'coc-git',
+  'coc-grammarly',
   'coc-lists',
   'coc-pairs',
   'coc-prettier',
