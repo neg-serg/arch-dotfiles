@@ -10,6 +10,7 @@ opt('o', 'exrc', false)
 opt('o', 'secure', true)
 opt('o', 'termguicolors', true)
 opt('o', 'packpath', '/home/neg/.config/nvim,/home/neg/.config/nvim/after,/home/neg/.local/share/nvim/site/')
+opt('o', 'formatprg', 'par -140')                               -- Better format
 opt('o', 'report', 0)                                           -- No report on substitution
 opt('o', 'fileformats', 'unix,dos,mac')                         -- File format fallback
 opt('o', 'synmaxcol', 256)                                      -- No syntax hi for too long lines
@@ -20,16 +21,6 @@ opt('o', 'keymap', 'russian-jcukenwin')                         -- Add ru keymap
 opt('o', 'magic', true)                                         -- Use magic
 opt('o', 'listchars', '')                                       -- Disable listchars
 opt('o', 'path', vim.o.path .. ',.,..,/usr/include,./include,../include,*') -- Add path settings
-vim.api.nvim_exec([[
-if executable(resolve(expand('par')))
-    set formatprg="par -140"                                    -- Use par as formatter
-else
-    set formatprg="fmt -140"                                    -- Use fmt as formatter
-endif
-if executable(resolve(expand('perltidy')))
-    set equalprg="perltidy"
-endif
-]], true)
 opt('o', 'hidden', true)                                        -- It hides buffers instead of closing them
 opt('o', 'lazyredraw', true)                                    -- Reduce useless redrawing
 opt('o', 'backup', true)                                        -- Backuping is good
@@ -40,8 +31,8 @@ opt('o', 'clipboard', 'unnamedplus')                            -- Always clipbo
 opt('o', 'copyindent', true)                                    -- Copy the previous indentation on autoindenting
 opt('o', 'diffopt', o.diffopt..',internal,algorithm:patience')  -- Better diff algorithm
 opt('o', 'eadirection', 'hor')                                  -- Ver/hor/both - where does equalalways apply
-opt('o', 'expandtab', true)                                     -- tabs are spaces, not tabs
-opt('o', 'fileencodings', 'utf-8,default')                      -- less file encodings
+opt('o', 'expandtab', true)                                     -- Tabs are spaces, not tabs
+opt('o', 'fileencodings', 'utf-8,default')                      -- Less file encodings
 opt('o', 'gdefault', true)                                      -- This makes search/replace global by default
 opt('o', 'ignorecase', true)                                    -- Case insensitive search
 opt('o', 'iminsert', 0)                                         -- Write latin1 characters first
@@ -51,7 +42,7 @@ opt('o', 'isfname', o.isfname .. ',{,}')                        -- Scan in filen
 opt('o', 'jumpoptions', 'stack')                                -- Jumplist behave like tagstack
 opt('o', 'linespace', 0)                                        -- No extra spaces between rows
 opt('o', 'matchtime', 0)                                        -- Default time to hi brackets too long for me
-opt('o', 'matchpairs', o.matchpairs..',<:>,《:》,〈:〉')        -- more matchpairs
+opt('o', 'matchpairs', o.matchpairs..',<:>,《:》,〈:〉')        -- More matchpairs
 opt('o', 'maxfuncdepth', 100)                                   -- Maximum depth of function calls for user functions
 opt('o', 'maxmapdepth', 1000)                                   -- Maximum number of times a mapping is done without resulting in a character to be used.
 opt('o', 'maxmempattern', 1000)                                 -- Maximum amount of memory (in Kbyte) to use for pattern matching.
@@ -63,7 +54,7 @@ opt('o', 'joinspaces', false)                                   -- Prevents inse
 opt('o', 'showmatch', false)                                    -- Show matching brackets/parenthesis
 opt('w', 'spell', false)                                        -- Disable spell checking by default
 opt('w', 'number', true)                                        -- Line numbers on
-opt('o', 'pumblend', 15)                                        -- opt('o', up pmenu transparency
+opt('o', 'pumblend', 15)                                        -- setup pmenu transparency
 opt('o', 'pumheight', 12)                                       -- Do not make pmenu too wide
 opt('o', 'scrolljump', 0)                                       -- Lines to scroll when cursor leaves screen
 opt('o', 'scrolloff' , 0)                                       -- Minimum lines to keep above and below cursor
@@ -77,7 +68,7 @@ opt('o', 'incsearch', true)                                     -- Move cursor d
 opt('o', 'wildmenu', true)                                      -- Command line completion mode
 opt('o', 'hlsearch', true)                                      -- Highlight search results (enforce)
 opt('o', 'shortmess', vim.o.shortmess ..'aoOstTWAIcqFS')        -- Shorting messages for all
-opt('o', 'showmode', true)                                      -- No show the mode ("-- INSERT --") at the bottom
+opt('o', 'showmode', true)                                      -- Show the mode ("-- INSERT --") at the bottom
 opt('o', 'showtabline', 0)                                      -- Do not show tab line
 opt('o', 'smartcase', true)                                     -- Case sensitive when uc present
 opt('o', 'softtabstop', 4)                                      -- Let backspace delete indent
@@ -85,7 +76,7 @@ opt('o', 'splitbelow', true)                                    -- Puts new spli
 opt('o', 'splitright', true)                                    -- Puts new vsplit windows to the right of the current
 opt('o', 'switchbuf', 'useopen,usetab')                         -- 'useopen' may be useful for re-using QuickFix window.
 opt('o', 'tabstop', 4)                                          -- An indentation every four columns
-opt('o', 'timeoutlen', 2000)                                    -- 2 seconds wait to sequence complete
+opt('o', 'timeoutlen', 1000)                                    -- 1sec wait to sequence complete
 opt('o', 'ttimeoutlen', 20)                                     -- Very fast and also you shouldn't make combination too fast
 opt('o', 'updatetime', 250)                                     -- Faster diagnostics
 opt('o', 'virtualedit', 'onemore,block')                        -- Allow for cursor beyond last character
