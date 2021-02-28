@@ -32,7 +32,4 @@ require 'plugcfg/vim-rooter'
 require 'plugcfg/vimwiki'
 require 'plugcfg/vista'
 require 'plugcfg/wininteract'
--- vim.api.nvim_set_keymap('n', '++', '<Plug>kommentary_line_default', { silent = true })
--- vim.api.nvim_set_keymap('v', '++', '<Plug>kommentary_visual_default', { silent = true })
--- utils.nnoremap('<leader>t', '<CMD>lua require"FTerm".toggle()<CR>')
--- utils.tnoremap('<leader>t', '<C-\\><C-n><CMD>lua require"FTerm".toggle()<CR>')
+require 'plugcfg/vimacs'
