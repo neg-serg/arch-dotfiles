@@ -16,6 +16,7 @@ return require('packer').startup(function()
     use {'FooSoft/vim-argwrap'} -- vim arg wrapper
     use {'jamessan/vim-gnupg'} -- transparent work with gpg-encrypted files
     use {'justinmk/vim-dirvish'} -- minimalistic file manager
+    use {'jpaulogg/vim-flipdir'} -- flipdir via dirvish
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'kristijanhusak/vim-packager', opt=true}
     use {'neg-serg/lusty', opt=true} -- file/buffer explorer
