@@ -41,10 +41,6 @@ _G.packer_plugins = {
     needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/ansible-vim"
   },
-  ["auto-pairs"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/auto-pairs"
-  },
   ["coc-fzf"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc-fzf"
