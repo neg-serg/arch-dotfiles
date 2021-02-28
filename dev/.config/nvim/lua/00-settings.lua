@@ -92,7 +92,7 @@ opt('o', 'backupdir', '/home/neg/trash/')                       -- Setup backupd
 opt('o', 'directory', '/home/neg/trash/')                       -- Directory for swap files
 opt('o', 'undodir', '/home/neg/trash/')                         -- Setup undo dir
 opt('o', 'swapfile', false)                                     -- No swap file
-opt('o', 'undofile', false)                                     -- So is persistent undo ...
+opt('o', 'undofile', true)                                      -- Enable undofile
 opt('o', 'undolevels', 1000)                                    -- Maximum number of changes that can be undone
 opt('o', 'undoreload', 10000)                                   -- Maximum number lines to save for undo on a buffer reload
 opt('o', 'shada', "!,'100,<50,s100,h,:100,%,/100")              -- Shada settings
