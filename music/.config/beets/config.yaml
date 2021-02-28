@@ -1,6 +1,7 @@
 # Main beets config
 plugins: >
-  acousticbrainz 
+  acousticbrainz
+  bpm
   chroma
   discogs
   duplicates
@@ -12,11 +13,14 @@ plugins: >
   ftintitle
   fuzzy
   info
+  ipfs
   lastgenre
   lastimport
   lyrics
+  mbcollection
+  mbsubmit
   mbsync
-  mpdstats 
+  mpdstats
   play
   smartplaylist
   web
@@ -77,3 +81,6 @@ lyrics:
 bbq:
   fields: artist title album
 
+musicbrainz:
+  user: you
+  pass: seekrit
