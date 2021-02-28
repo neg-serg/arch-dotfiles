@@ -51,7 +51,7 @@ opt('o', 'isfname', o.isfname .. ',{,}')                        -- Scan in filen
 opt('o', 'jumpoptions', 'stack')                                -- Jumplist behave like tagstack
 opt('o', 'linespace', 0)                                        -- No extra spaces between rows
 opt('o', 'matchtime', 0)                                        -- Default time to hi brackets too long for me
-opt('o', 'matchpairs', o.matchpairs..',<:>,《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”') -- better matchpairs
+opt('o', 'matchpairs', o.matchpairs..',<:>,《:》,〈:〉')        -- more matchpairs
 opt('o', 'maxfuncdepth', 100)                                   -- Maximum depth of function calls for user functions
 opt('o', 'maxmapdepth', 1000)                                   -- Maximum number of times a mapping is done without resulting in a character to be used.
 opt('o', 'maxmempattern', 1000)                                 -- Maximum amount of memory (in Kbyte) to use for pattern matching.
@@ -97,8 +97,8 @@ opt('o', 'winminheight', 0)                                     -- Windows can b
 opt('o', 'winminwidth', 0)                                      -- Windows can be 0 line width
 opt('w', 'wrap', false)                                         -- Do not wrap lines by default
 opt('o', 'mouse', 'a')                                          -- Add mouse support
-opt('o', 'backupdir', '/home/neg/trash')                        -- Setup backupdir
-opt('o', 'directory', '/home/neg/trash')                        -- Directory for swap files
+opt('o', 'backupdir', '/home/neg/trash/')                       -- Setup backupdir
+opt('o', 'directory', '/home/neg/trash/')                       -- Directory for swap files
 opt('o', 'undodir', '/home/neg/trash/')                         -- Setup undo dir
 opt('o', 'swapfile', false)                                     -- No swap file
 opt('o', 'undofile', false)                                     -- So is persistent undo ...
