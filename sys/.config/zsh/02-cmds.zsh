@@ -17,7 +17,7 @@ alias grep='grep --color=auto'
 alias sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
 _exists yay && alias U='yay -Su --devel --noconfirm --timeupdate'
-_exists sudo && alias s='sudo'
+_exists sudo && alias s='sudo -A'
 _exists plocate && alias locate=plocate
 _exists dd && alias dd='dd status=progress'
 autoload -U zcalc
