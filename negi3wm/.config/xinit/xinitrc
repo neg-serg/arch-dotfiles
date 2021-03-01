@@ -11,6 +11,8 @@ fi
 xset s off -dpms
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 sudo openrgb --server -p neg.orp &
+# # Switch to US international with Caps as Mod/Escape
+# setxkbmap -option caps:super -variant altgr-intl && killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape' &
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 export XDG_CURRENT_DESKTOP=GNOME
 exec gnome-session-i3
