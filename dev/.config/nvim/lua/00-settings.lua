@@ -88,6 +88,7 @@ opt('o', 'winminheight', 0)                                     -- Windows can b
 opt('o', 'winminwidth', 0)                                      -- Windows can be 0 line width
 opt('w', 'wrap', false)                                         -- Do not wrap lines by default
 opt('o', 'mouse', 'a')                                          -- Add mouse support
+opt('o', 'signcolumn', 'number')                                -- Merge sign and numbers
 opt('o', 'backupdir', '/home/neg/trash/')                       -- Setup backupdir
 opt('o', 'directory', '/home/neg/trash/')                       -- Directory for swap files
 opt('o', 'undodir', '/home/neg/trash/')                         -- Setup undo dir
