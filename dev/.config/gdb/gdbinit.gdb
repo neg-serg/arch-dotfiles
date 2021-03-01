@@ -149,7 +149,6 @@ Set stack dump window size to NUM lines.
 Usage: contextsize-stack NUM
 end
 
-
 define contextsize-data
     if $argc != 1
         help contextsize-data
@@ -161,7 +160,6 @@ document contextsize-data
 Set data dump window size to NUM lines.
 Usage: contextsize-data NUM
 end
-
 
 define contextsize-code
     if $argc != 1
@@ -175,7 +173,6 @@ Set code window size to NUM lines.
 Usage: contextsize-code NUM
 end
 
-
 # _____________breakpoint aliases_____________
 define bpl
     info breakpoints
@@ -183,7 +180,6 @@ end
 document bpl
 List all breakpoints.
 end
-
 
 define bp
     if $argc != 1
@@ -202,8 +198,7 @@ bp "[NSControl stringValue]"
 Or else you can use directly the break command (break [NSControl stringValue])
 end
 
-
-define bpc 
+define bpc
     if $argc != 1
         help bpc
     else
@@ -215,7 +210,6 @@ Clear breakpoint.
 Usage: bpc LOCATION
 LOCATION may be a line number, function name, or "*" and an address.
 end
-
 
 define bpe
     if $argc != 1
@@ -229,7 +223,6 @@ Enable breakpoint with number NUM.
 Usage: bpe NUM
 end
 
-
 define bpd
     if $argc != 1
         help bpd
@@ -241,7 +234,6 @@ document bpd
 Disable breakpoint with number NUM.
 Usage: bpd NUM
 end
-
 
 define bpt
     if $argc != 1
@@ -257,7 +249,6 @@ Usage: bpt LOCATION
 LOCATION may be a line number, function name, or "*" and an address.
 end
 
-
 define bpm
     if $argc != 1
         help bpm
@@ -269,7 +260,6 @@ document bpm
 Set a read/write breakpoint on EXPRESSION, e.g. *address.
 Usage: bpm EXPRESSION
 end
-
 
 define bhb
     if $argc != 1
@@ -283,7 +273,6 @@ Set hardware assisted breakpoint.
 Usage: bhb LOCATION
 LOCATION may be a line number, function name, or "*" and an address.
 end
-
 
 define bht
     if $argc != 1
@@ -299,7 +288,6 @@ Usage: bht LOCATION
 LOCATION may be a line number, function name, or "*" and an address.
 end
 
-
 # ______________process information____________
 define argv
     show args
@@ -307,7 +295,6 @@ end
 document argv
 Print program arguments.
 end
-
 
 define stack
     if $argc == 0
@@ -325,7 +312,6 @@ Print backtrace of the call stack, or innermost COUNT frames.
 Usage: stack <COUNT>
 end
 
-
 define frame
     info frame
     info args
@@ -334,7 +320,6 @@ end
 document frame
 Print stack frame.
 end
-
 
 define flagsarm
 # conditional flags are
@@ -374,7 +359,7 @@ define flagsarm
         printf "v "
         set $_v_flag = 0
     end
-    # Sticky overflow (Q), bit 27    
+    # Sticky overflow (Q), bit 27
     if ($cpsr->q & 1)
         printf "Q "
         set $_q_flag = 1
@@ -402,7 +387,7 @@ define flagsarm
         set $_e_flag = 0
     end
     # Imprecise abort disable bit (A), bit 8
-    # The A bit is set to 1 automatically. It is used to disable imprecise data aborts. 
+    # The A bit is set to 1 automatically. It is used to disable imprecise data aborts.
     # It might not be writable in the Nonsecure state if the AW bit in the SCR register is reset.
     if ($cpsr->a & 1)
         printf "A "
@@ -421,7 +406,7 @@ define flagsarm
         set $_i_flag = 0
     end
     # FIQ disable bit (F), bit 6
-    # When the F bit is set to 1, FIQ interrupts are disabled. 
+    # When the F bit is set to 1, FIQ interrupts are disabled.
     # FIQ can be nonmaskable in the Nonsecure state if the FW bit in SCR register is reset.
     if ($cpsr->f & 1)
         printf "F "
@@ -444,7 +429,6 @@ end
 document flagsarm
 Auxiliary function to set ARM cpu flags.
 end
-
 
 define flagsx86
     # OF (overflow) flag
@@ -517,7 +501,6 @@ document flagsx86
 Auxiliary function to set X86/X64 cpu flags.
 end
 
-
 define flags
     # call the auxiliary functions based on target cpu
     if $ARM == 1
@@ -529,7 +512,6 @@ end
 document flags
 Print flags register.
 end
-
 
 define eflags
     if $ARM == 1
@@ -561,7 +543,6 @@ document eflags
 Print eflags register.
 end
 
-
 define cpsr
 	eflags
 end
@@ -579,7 +560,7 @@ define regarm
         echo \033[0m
     end
     printf "  0x%08X  ", $r0
-    
+
     echo \033[32m
     printf "R1:"
     if ($r1 != $oldr1 && $SHOWREGCHANGES == 1)
@@ -616,7 +597,7 @@ define regarm
         echo \033[0m
     end
     printf "  0x%08X  ", $r4
-    
+
     echo \033[32m
     printf "R5:"
     if ($r5 != $oldr5 && $SHOWREGCHANGES == 1)
@@ -756,7 +737,7 @@ define regx64
     echo \033[32m
     printf "RDX:"
     if ($rdx != $oldrdx && $SHOWREGCHANGES == 1)
-        echo \033[31m        
+        echo \033[31m
     else
         echo \033[0m
     end
@@ -907,14 +888,13 @@ document regx64
 Auxiliary function to display X86_64 registers.
 end
 
-
 define regx86
     printf "  "
     # EAX
     echo \033[32m
 	printf "EAX:"
     if ($eax != $oldeax && $SHOWREGCHANGES == 1)
-   	 	echo \033[31m   	 	
+   	 	echo \033[31m
    	else
    	 	echo \033[0m
    	end
@@ -922,8 +902,8 @@ define regx86
    	# EBX
     echo \033[32m
    	printf "EBX:"
-   	if ($ebx != $oldebx && $SHOWREGCHANGES == 1) 
-	    echo \033[31m   		
+   	if ($ebx != $oldebx && $SHOWREGCHANGES == 1)
+	    echo \033[31m
    	else
 	    echo \033[0m
    	end
@@ -932,7 +912,7 @@ define regx86
     echo \033[32m
    	printf "ECX:"
    	if ($ecx != $oldecx && $SHOWREGCHANGES == 1)
-	    echo \033[31m	    
+	    echo \033[31m
 	else
 	    echo \033[0m
 	end
@@ -957,7 +937,7 @@ define regx86
 	echo \033[32m
     printf "ESI:"
     if ($esi != $oldesi && $SHOWREGCHANGES == 1)
-	    echo \033[31m	    
+	    echo \033[31m
 	else
 	    echo \033[0m
 	end
@@ -966,7 +946,7 @@ define regx86
 	echo \033[32m
     printf "EDI:"
 	if ($edi != $oldedi && $SHOWREGCHANGES == 1)
-	    echo \033[31m	    
+	    echo \033[31m
 	else
 	    echo \033[0m
 	end
@@ -984,7 +964,7 @@ define regx86
 	echo \033[32m
     printf "ESP:"
 	if ($esp != $oldesp && $SHOWREGCHANGES == 1)
-	    echo \033[31m	    
+	    echo \033[31m
 	else
 	    echo \033[0m
     end
@@ -1024,7 +1004,6 @@ document regx86
 Auxiliary function to display X86 registers.
 end
 
-
 define reg
     if $ARM == 1
         regarm
@@ -1047,7 +1026,7 @@ define reg
 	    end
     else
         if ($64BITS == 1)
-            regx64 
+            regx64
         else
             regx86
         end
@@ -1094,7 +1073,6 @@ document reg
 Print CPU registers.
 end
 
-
 define smallregisters
     if ($64BITS == 1)
     #64bits stuff
@@ -1123,7 +1101,7 @@ define smallregisters
     	set $si  = $rsi & 0xffff
     	# from rdi
     	set $edi = $rdi & 0xffffffff
-    	set $di  = $rdi & 0xffff		
+    	set $di  = $rdi & 0xffff
     #32 bits stuff
     else
 	    # from eax
@@ -1145,14 +1123,13 @@ define smallregisters
     	# from esi
     	set $si = $esi & 0xffff
     	# from edi
-	    set $di = $edi & 0xffff		
+	    set $di = $edi & 0xffff
      end
 end
 document smallregisters
 Create the 16 and 8 bit cpu registers (gdb doesn't have them by default).
 And 32bits if we are dealing with 64bits binaries.
 end
-
 
 define func
     if $argc == 0
@@ -1170,7 +1147,6 @@ Print all function names in target, or those matching REGEXP.
 Usage: func <REGEXP>
 end
 
-
 define var
     if $argc == 0
         info variables
@@ -1187,14 +1163,12 @@ Print all global and static variable names (symbols), or those matching REGEXP.
 Usage: var <REGEXP>
 end
 
-
 define lib
     info sharedlibrary
 end
 document lib
 Print shared libraries linked to target.
 end
-
 
 define sig
     if $argc == 0
@@ -1213,14 +1187,12 @@ Specify a SIGNAL as argument to print info on that signal only.
 Usage: sig <SIGNAL>
 end
 
-
 define threads
     info threads
 end
 document threads
 Print threads in target.
 end
-
 
 define dis
     if $argc == 0
@@ -1231,19 +1203,18 @@ define dis
     end
     if $argc == 2
         disassemble $arg0 $arg1
-    end 
+    end
     if $argc > 2
         help dis
     end
 end
 document dis
 Disassemble a specified section of memory.
-Default is to disassemble the function surrounding the PC (program counter) of selected frame. 
+Default is to disassemble the function surrounding the PC (program counter) of selected frame.
 With one argument, ADDR1, the function surrounding this address is dumped.
 Two arguments are taken as a range of memory to dump.
 Usage: dis <ADDR1> <ADDR2>
 end
-
 
 # __________hex/ascii dump an address_________
 define ascii_char
@@ -1265,7 +1236,6 @@ Print "." if the value is unprintable.
 Usage: ascii_char ADDR
 end
 
-
 define hex_quad
     if $argc != 1
         help hex_quad
@@ -1281,7 +1251,6 @@ document hex_quad
 Print eight hexadecimal bytes starting at address ADDR.
 Usage: hex_quad ADDR
 end
-
 
 define hexdump
     if $argc == 1
@@ -1301,10 +1270,9 @@ define hexdump
 end
 document hexdump
 Display a 16-byte hex/ASCII dump of memory starting at address ADDR.
-Optional parameter is the number of lines to display if you want more than one. 
+Optional parameter is the number of lines to display if you want more than one.
 Usage: hexdump ADDR [nr lines]
 end
-
 
 define hexdump_aux
     if $argc != 1
@@ -1349,7 +1317,6 @@ Display a 16-byte hex/ASCII dump of memory at address ADDR.
 Usage: hexdump_aux ADDR
 end
 
-
 # _______________data window__________________
 define ddump
     if $argc != 1
@@ -1383,7 +1350,6 @@ Display NUM lines of hexdump for address in $data_addr global variable.
 Usage: ddump NUM
 end
 
-
 define dd
     if $argc != 1
         help dd
@@ -1396,7 +1362,6 @@ document dd
 Display 16 lines of a hex dump of address starting at ADDR.
 Usage: dd ADDR
 end
-
 
 define datawin
     if $ARM == 1
@@ -1452,7 +1417,6 @@ Display valid address from one register in data window.
 Registers to choose are: esi, edi, eax, or esp.
 end
 
-
 ################################
 ##### ALERT ALERT ALERT ########
 ################################
@@ -1490,7 +1454,7 @@ define dumpjump
 	        	set $_conditional = *(unsigned char *)($pc+1) ^ 0xD0
         		dumpjumphelper
         	end
-        end 
+        end
 ##################### X86
     else
         ## grab the first two bytes from the instruction so we can determine the jump instruction
@@ -1510,7 +1474,7 @@ define dumpjump
             	# cf != 0 or zf != 0
            		echo \033[31m
            		printf "  Jump is NOT taken (c!=0 or z!=0)"
-          	end 
+          	end
         end
         ## opcode 0x73: JAE, JNB, JNC (jump if CF=0)
         ## opcode 0x0F83: JNC, JNB, JAE (jump if CF=0)
@@ -1523,7 +1487,7 @@ define dumpjump
             	# cf != 0
            		echo \033[31m
    		        printf "  Jump is NOT taken (c!=0)"
-          	end 
+          	end
         end
         ## opcode 0x72: JB, JC, JNAE (jump if CF=1)
         ## opcode 0x0F82: JNAE, JB, JC
@@ -1536,7 +1500,7 @@ define dumpjump
             	# cf != 1
            		echo \033[31m
    		        printf "  Jump is NOT taken (c!=1)"
-          	end 
+          	end
         end
         ## opcode 0x76: JBE, JNA (jump if CF=1 or ZF=1)
         ## opcode 0x0F86: JBE, JNA
@@ -1549,7 +1513,7 @@ define dumpjump
             	# cf != 1 or zf != 1
            		echo \033[31m
            		printf "  Jump is NOT taken (c!=1 or z!=1)"
-          	end 
+          	end
         end
         ## opcode 0xE3: JCXZ, JECXZ, JRCXZ (jump if CX=0 or ECX=0 or RCX=0)
         if ($_byte1 == 0xE3)
@@ -1560,7 +1524,7 @@ define dumpjump
           	else
    	    	    echo \033[31m
        	    	printf "  Jump is NOT taken (cx!=0 or ecx!=0)"
-          	end 
+          	end
         end
         ## opcode 0x74: JE, JZ (jump if ZF=1)
         ## opcode 0x0F84: JZ, JE, JZ (jump if ZF=1)
@@ -1573,7 +1537,7 @@ define dumpjump
                 # ZF = 0
            		echo \033[31m
    		        printf "  Jump is NOT taken (z!=1)"
-          	end 
+          	end
         end
         ## opcode 0x7F: JG, JNLE (jump if ZF=0 and SF=OF)
         ## opcode 0x0F8F: JNLE, JG (jump if ZF=0 and SF=OF)
@@ -1585,7 +1549,7 @@ define dumpjump
          	else
    		        echo \033[31m
    		        printf "  Jump is NOT taken (z!=0 or s!=o)"
-  	        end 
+  	        end
         end
         ## opcode 0x7D: JGE, JNL (jump if SF=OF)
         ## opcode 0x0F8D: JNL, JGE (jump if SF=OF)
@@ -1597,7 +1561,7 @@ define dumpjump
   	        else
    		        echo \033[31m
    		        printf "  Jump is NOT taken (s!=o)"
-  	        end 
+  	        end
         end
         ## opcode: 0x7C: JL, JNGE (jump if SF != OF)
         ## opcode: 0x0F8C: JNGE, JL (jump if SF != OF)
@@ -1609,7 +1573,7 @@ define dumpjump
   	        else
         		echo \033[31m
    		        printf "  Jump is NOT taken (s=o)"
-  	        end 
+  	        end
         end
         ## opcode 0x7E: JLE, JNG (jump if ZF = 1 or SF != OF)
         ## opcode 0x0F8E: JNG, JLE (jump if ZF = 1 or SF != OF)
@@ -1621,7 +1585,7 @@ define dumpjump
   	        else
    		        echo \033[31m
    	        	printf "  Jump is NOT taken (zf!=1 or sf=of)"
-  	        end 
+  	        end
         end
         ## opcode 0x75: JNE, JNZ (jump if ZF = 0)
         ## opcode 0x0F85: JNE, JNZ (jump if ZF = 0)
@@ -1634,7 +1598,7 @@ define dumpjump
                 # ZF = 1
    		        echo \033[31m
    	        	printf "  Jump is NOT taken (z!=0)"
-  	        end 
+  	        end
         end
         ## opcode 0x71: JNO (OF = 0)
         ## opcode 0x0F81: JNO (OF = 0)
@@ -1647,7 +1611,7 @@ define dumpjump
                 # OF != 0
            		echo \033[31m
            		printf "  Jump is NOT taken (o!=0)"
-          	end 
+          	end
         end
         ## opcode 0x7B: JNP, JPO (jump if PF = 0)
         ## opcode 0x0F8B: JPO (jump if PF = 0)
@@ -1660,7 +1624,7 @@ define dumpjump
                 # PF != 0
            		echo \033[31m
    		        printf "  Jump is taken (p!=0)"
-          	end 
+          	end
         end
         ## opcode 0x79: JNS (jump if SF = 0)
         ## opcode 0x0F89: JNS (jump if SF = 0)
@@ -1673,7 +1637,7 @@ define dumpjump
                  # SF != 0
            		echo \033[31m
    		        printf "  Jump is NOT taken (s!=0)"
-          	end 
+          	end
         end
         ## opcode 0x70: JO (jump if OF=1)
         ## opcode 0x0F80: JO (jump if OF=1)
@@ -1686,7 +1650,7 @@ define dumpjump
                 # OF != 1
            		echo \033[31m
    		        printf "  Jump is NOT taken (o!=1)"
-          	end 
+          	end
         end
         ## opcode 0x7A: JP, JPE (jump if PF=1)
         ## opcode 0x0F8A: JP, JPE (jump if PF=1)
@@ -1699,7 +1663,7 @@ define dumpjump
                  # PF = 0
            		echo \033[31m
    		        printf "  Jump is NOT taken (p!=1)"
-          	end 
+          	end
         end
         ## opcode 0x78: JS (jump if SF=1)
         ## opcode 0x0F88: JS (jump if SF=1)
@@ -1712,7 +1676,7 @@ define dumpjump
                  # SF != 1
            		echo \033[31m
            		printf "  Jump is NOT taken (s!=1)"
-          	end 
+          	end
         end
     end
 end
@@ -1866,12 +1830,11 @@ document dumpjumphelper
 Helper function to decide if conditional jump will be taken or not, for ARM and Thumb.
 end
 
-
 # _______________process context______________
 # initialize variable
 set $displayobjectivec = 0
 
-define context 
+define context
     echo \033[34m
     if $SHOWCPUREGISTERS == 1
 	    printf "----------------------------------------"
@@ -1945,8 +1908,8 @@ define context
 	    		printf "[ObjectiveC]\n"
       	    	echo \033[0m\033[30m
       		    x/s $objectivec
-         	end   
-         	set $displayobjectivec = 0     
+         	end
+         	set $displayobjectivec = 0
         end
         if $displayobjectivec == 1
             echo \033[34m
@@ -1957,8 +1920,8 @@ define context
 	    	echo \033[34m\033[1m
 		    printf "[ObjectiveC]\n"
           	echo \033[0m\033[30m
-          	x/s $objectivec 
-        end   
+          	x/s $objectivec
+        end
     end
     echo \033[0m
 # and this is the end of this little crap
@@ -1977,7 +1940,7 @@ define context
     echo \033[0m
     set $context_i = $CONTEXTSIZE_CODE
     if ($context_i > 0)
-        if ($SETCOLOUR1STLINE == 1)	
+        if ($SETCOLOUR1STLINE == 1)
 	        echo \033[32m
     	    x /i $pc
 	        echo \033[0m
@@ -2004,7 +1967,6 @@ document context
 Print context window, i.e. regs, stack, ds:esi and disassemble cs:eip.
 end
 
-
 define context-on
     set $SHOW_CONTEXT = 1
     printf "Displaying of context is now ON\n"
@@ -2013,7 +1975,6 @@ document context-on
 Enable display of context on every program break.
 end
 
-
 define context-off
     set $SHOW_CONTEXT = 0
     printf "Displaying of context is now OFF\n"
@@ -2021,7 +1982,6 @@ end
 document context-off
 Disable display of context on every program break.
 end
-
 
 # _______________process control______________
 define n
@@ -2042,7 +2002,6 @@ This is alias for nexti.
 Usage: n <NUM>
 end
 
-
 define go
     if $argc == 0
         stepi
@@ -2061,7 +2020,6 @@ This is alias for stepi.
 Usage: go <NUM>
 end
 
-
 define pret
     finish
 end
@@ -2069,7 +2027,6 @@ document pret
 Execute until selected stack frame returns (step out of current call).
 Upon return, the value returned is printed and put in the value history.
 end
-
 
 define init
     set $SHOW_NEST_INSN = 0
@@ -2080,7 +2037,6 @@ document init
 Run program and break on _init().
 end
 
-
 define start
     set $SHOW_NEST_INSN = 0
     tbreak _start
@@ -2089,7 +2045,6 @@ end
 document start
 Run program and break on _start().
 end
-
 
 define sstart
     set $SHOW_NEST_INSN = 0
@@ -2101,7 +2056,6 @@ Run program and break on __libc_start_main().
 Useful for stripped executables.
 end
 
-
 define main
     set $SHOW_NEST_INSN = 0
     tbreak main
@@ -2110,7 +2064,6 @@ end
 document main
 Run program and break on main().
 end
-
 
 # FIXME64
 #### WARNING ! WARNING !!
@@ -2121,8 +2074,8 @@ define stepoframework
         # bl and bx opcodes
         # bx Rn  => ARM bits 27-20: 0 0 0 1 0 0 1 0 , bits 7-4: 0 0 0 1 ; Thumb bits: 15-7: 0 1 0 0 0 1 1 1 0
         # blx Rn => ARM bits 27-20: 0 0 0 1 0 0 1 0 , bits 7-4: 0 0 1 1 ; Thumb bits: 15-7: 0 1 0 0 0 1 1 1 1
-        # bl # => ARM bits 27-24: 1 0 1 1 ; Thumb bits: 15-11: 1 1 1 1 0 
-        # blx # => ARM bits 31-25: 1 1 1 1 1 0 1 ; Thumb bits: 15-11: 1 1 1 1 0 
+        # bl # => ARM bits 27-24: 1 0 1 1 ; Thumb bits: 15-11: 1 1 1 1 0
+        # blx # => ARM bits 31-25: 1 1 1 1 1 0 1 ; Thumb bits: 15-11: 1 1 1 1 0
         set $_nextaddress = 0
 
         # ARM Mode
@@ -2144,7 +2097,7 @@ define stepoframework
         	set $_bit6 = ($_branchesint >> 0x6) & 1
         	set $_bit5 = ($_branchesint >> 0x5) & 1
         	set $_bit4 = ($_branchesint >> 0x4) & 1
-	
+
             #	set $_lastbyte = *(unsigned char *)($pc+3)
             #	set $_bits2724 = $_lastbyte & 0x1
             #	set $_bits3128 = $_lastbyte >> 4
@@ -2155,7 +2108,7 @@ define stepoframework
             #	set $_previousbyte = *(unsigned char *)($pc+2)
             #	set $_bits2320 = $_previousbyte >> 4
             #	printf "bits2724: %x bits2320: %x\n", $_bits2724, $_bits2320
-	
+
         	if ($_bit27 == 0 && $_bit26 == 0 && $_bit25 == 0 && $_bit24 == 1 && $_bit23 == 0 && $_bit22 == 0 && $_bit21 == 1 && $_bit20 == 0 && $_bit7 == 0 && $_bit6 == 0 && $_bit5 == 0 && $_bit4 == 1)
 		        printf "Found a bx Rn\n"
         		set $_nextaddress = $pc+0x4
@@ -2177,7 +2130,7 @@ define stepoframework
             # 32 bits instructions in Thumb are divided into two half words
         	set $_hw1 = *(unsigned short*)($pc)
         	set $_hw2 = *(unsigned short*)($pc+2)
-	
+
         	# bl/blx (immediate)
         	# hw1: bits 15-11: 1 1 1 1 0
         	# hw2: bits 15-14: 1 1 ; BL bit 12: 1 ; BLX bit 12: 0
@@ -2187,7 +2140,7 @@ define stepoframework
 		        end
         	end
         end
-        # if we have found a call to bypass we set a temporary breakpoint on next instruction and continue 
+        # if we have found a call to bypass we set a temporary breakpoint on next instruction and continue
         if ($_nextaddress != 0)
             tbreak *$_nextaddress
             continue
@@ -2221,10 +2174,10 @@ define stepoframework
                 end
                 # call *0x??(%ebp) (0xFF55??) || call *0x??(%esi) (0xFF56??) || call *0x??(%edi) (0xFF5F??) || call *0x??(%ebx)
                 # call *0x??(%edx) (0xFF52??) || call *0x??(%ecx) (0xFF51??) || call *0x??(%edi) (0xFF57??) || call *0x??(%eax) (0xFF50??)
-                if ($_byte2 == 0x55 || $_byte2 == 0x56 || $_byte2 == 0x5F || $_byte2 == 0x53 || $_byte2 == 0x52 || $_byte2 == 0x51 || $_byte2 == 0x57 || $_byte2 == 0x50) 
+                if ($_byte2 == 0x55 || $_byte2 == 0x56 || $_byte2 == 0x5F || $_byte2 == 0x53 || $_byte2 == 0x52 || $_byte2 == 0x51 || $_byte2 == 0x57 || $_byte2 == 0x50)
                     set $_nextaddress = $pc + 0x3
                 end
-                # call *0x????????(%ebx) (0xFF93????????) || 
+                # call *0x????????(%ebx) (0xFF93????????) ||
                 if ($_byte2 == 0x93 || $_byte2 == 0x94 || $_byte2 == 0x90 || $_byte2 == 0x92)
                     set $_nextaddress = $pc + 6
                 end
@@ -2234,7 +2187,7 @@ define stepoframework
                 end
             end
         end
-        # if we have found a call to bypass we set a temporary breakpoint on next instruction and continue 
+        # if we have found a call to bypass we set a temporary breakpoint on next instruction and continue
         if ($_nextaddress != 0)
             if ($arg0 == 1)
                 thbreak *$_nextaddress
@@ -2261,14 +2214,12 @@ This function will set a temporary breakpoint on next instruction after the call
 You can safely use it instead nexti or n since it will single step code if it's not a call instruction (unless you want to go into the call function).
 end
 
-
 define stepoh
     stepoframework 1
 end
 document stepoh
 Same as stepo command but uses temporary hardware breakpoints.
 end
-
 
 # FIXME: ARM
 define skip
@@ -2289,7 +2240,6 @@ document skip
 Skip over the instruction located at EIP/RIP. By default, the instruction will not be executed!
 Some configurable options are available on top of gdbinit to override this.
 end
-
 
 # _______________eflags commands______________
 # conditional flags are
@@ -2313,7 +2263,6 @@ document cfn
 Change Negative/Less Than Flag.
 end
 
-
 define cfc
 # Carry/Borrow/Extend (C), bit 29
     if $ARM == 1
@@ -2335,7 +2284,6 @@ document cfc
 Change Carry Flag.
 end
 
-
 define cfp
     if (($eflags >> 2) & 1)
         set $eflags = $eflags&~0x4
@@ -2347,7 +2295,6 @@ document cfp
 Change Parity Flag.
 end
 
-
 define cfa
     if (($eflags >> 4) & 1)
         set $eflags = $eflags&~0x10
@@ -2358,7 +2305,6 @@ end
 document cfa
 Change Auxiliary Carry Flag.
 end
-
 
 define cfz
 # zero (Z), bit 30
@@ -2381,7 +2327,6 @@ document cfz
 Change Zero Flag.
 end
 
-
 define cfs
     if (($eflags >> 7) & 1)
         set $eflags = $eflags&~0x80
@@ -2393,7 +2338,6 @@ document cfs
 Change Sign Flag.
 end
 
-
 define cft
     if (($eflags >>8) & 1)
         set $eflags = $eflags&~0x100
@@ -2404,7 +2348,6 @@ end
 document cft
 Change Trap Flag.
 end
-
 
 define cfi
     if (($eflags >> 9) & 1)
@@ -2419,7 +2362,6 @@ Only privileged applications (usually the OS kernel) may modify IF.
 This only applies to protected mode (real mode code may always modify IF).
 end
 
-
 define cfd
     if (($eflags >>0xA) & 1)
         set $eflags = $eflags&~0x400
@@ -2431,7 +2373,6 @@ document cfd
 Change Direction Flag.
 end
 
-
 define cfo
     if (($eflags >> 0xB) & 1)
         set $eflags = $eflags&~0x800
@@ -2442,7 +2383,6 @@ end
 document cfo
 Change Overflow Flag.
 end
-
 
 # Overflow (V), bit 28
 define cfv
@@ -2459,7 +2399,6 @@ document cfv
 Change Overflow Flag.
 end
 
-
 # ____________________patch___________________
 # the usual nops are mov r0,r0 for arm (0xe1a00000)
 # and mov r8,r8 in Thumb (0x46c0)
@@ -2470,7 +2409,7 @@ define nop
     if ($argc > 2 || $argc == 0)
         help nop
     end
-  
+
     if $ARM == 1
         if ($argc == 1)
             if ($cpsr->t &1)
@@ -2494,8 +2433,8 @@ define nop
 			    	set *(int *)$addr = 0xe1a00000
 			    	set $addr = $addr + 4
 			    end
-		    end			
-        end 
+		    end
+        end
     else
         if ($argc == 1)
     	    set *(unsigned char *)$arg0 = 0x90
@@ -2514,12 +2453,11 @@ Patch a single byte at address ADDR1, or a series of bytes between ADDR1 and ADD
 ARM or Thumb code will be patched accordingly.
 end
 
-
 define null
     if ( $argc >2 || $argc == 0)
         help null
     end
- 
+
     if ($argc == 1)
 	    set *(unsigned char *)$arg0 = 0
     else
@@ -2558,7 +2496,6 @@ Patch byte at address ADDR to an INT3 (0xCC) instruction or the equivalent softw
 Usage: int3 ADDR
 end
 
-
 define rint3
     if $ARM == 1
       	set *(unsigned int *)$ORIGINAL_INT3ADDRESS = $ORIGINAL_INT3
@@ -2575,7 +2512,6 @@ end
 document rint3
 Restore the original byte previous to int3 patch issued with "int3" command.
 end
-
 
 # ____________________cflow___________________
 define print_insn_type
@@ -2609,7 +2545,6 @@ document print_insn_type
 Print human-readable mnemonic for the instruction type (usually $INSN_TYPE).
 Usage: print_insn_type INSN_TYPE_NUMBER
 end
-
 
 define get_insn_type
     if $argc != 1
@@ -2650,11 +2585,11 @@ define get_insn_type
                 set $INSN_TYPE = 2
             end
         end
-        if ($_byte1 == 0xFF)        
+        if ($_byte1 == 0xFF)
             # opcode extension
             set $_byte2 = *(unsigned char *)($arg0 + 1)
             set $_opext = ($_byte2 & 0x38)
-            if ($_opext == 0x10 || $_opext == 0x18) 
+            if ($_opext == 0x10 || $_opext == 0x18)
                 # "call"
                 set $INSN_TYPE = 3
             end
@@ -2673,16 +2608,15 @@ unknown, a jump, a conditional jump, a call, a return, or an interrupt.
 Usage: get_insn_type ADDR
 end
 
-
 define step_to_call
     set $_saved_ctx = $SHOW_CONTEXT
     set $SHOW_CONTEXT = 0
     set $SHOW_NEST_INSN = 0
- 
+
     set logging file /dev/null
     set logging redirect on
     set logging on
- 
+
     set $_cont = 1
     while ($_cont > 0)
         stepi
@@ -2700,11 +2634,11 @@ define step_to_call
 
     set $SHOW_CONTEXT = $_saved_ctx
     set $SHOW_NEST_INSN = 0
- 
+
     set logging file ~/gdb.txt
     set logging redirect off
     set logging on
- 
+
     printf "step_to_call command stopped at:\n  "
     x/i $pc
     printf "\n"
@@ -2717,7 +2651,6 @@ Stop before the call is taken.
 Log is written into the file ~/gdb.txt.
 end
 
-
 define trace_calls
 
     printf "Tracing...please wait...\n"
@@ -2727,7 +2660,7 @@ define trace_calls
     set $SHOW_NEST_INSN = 0
     set $_nest = 1
     set listsize 0
-  
+
     set logging overwrite on
     set logging file ~/gdb_trace_calls.txt
     set logging on
@@ -2769,7 +2702,7 @@ define trace_calls
 
     set $SHOW_CONTEXT = $_saved_ctx
     set $SHOW_NEST_INSN = 0
- 
+
     printf "Done, check ~/gdb_trace_calls.txt\n"
 end
 document trace_calls
@@ -2777,9 +2710,8 @@ Create a runtime trace of the calls made by target.
 Log overwrites(!) the file ~/gdb_trace_calls.txt.
 end
 
-
 define trace_run
- 
+
     printf "Tracing...please wait...\n"
 
     set $_saved_ctx = $SHOW_CONTEXT
@@ -2855,7 +2787,6 @@ document rptraceme
 Remove ptrace hook.
 end
 
-
 # ____________________misc____________________
 define hook-stop
 # Display instructions formats
@@ -2889,7 +2820,6 @@ document hook-stop
 !!! FOR INTERNAL USE ONLY - DO NOT CALL !!!
 end
 
-
 # original by Tavis Ormandy (http://my.opera.com/taviso/blog/index.dml/tag/gdb) (great fix!)
 # modified to work with Mac OS X by fG!
 # seems nasm shipping with Mac OS X has problems accepting input from stdin or heredoc
@@ -2911,7 +2841,7 @@ define assemble
     printf " Do not forget to use NASM assembler syntax!\n"
     echo \033[0m
     printf "End with a line saying just \"end\".\n"
-    
+
     if ($argc)
 	    if ($64BITS == 1)
 		    # argument specified, assemble instructions into memory at address specified.
@@ -2950,7 +2880,6 @@ If no address is specified, assembled instructions are printed to stdout.
 Use the pseudo instruction "org ADDR" to set the base address.
 end
 
-
 define asm
 	if $argc == 1
 		assemble $arg0
@@ -2961,7 +2890,6 @@ end
 document asm
 Shortcut to the asssemble command.
 end
-
 
 define assemble_gas
     printf "\nType code to assemble and hit Ctrl-D when finished.\n"
@@ -2982,7 +2910,6 @@ Assemble instructions to binary opcodes. Uses GNU as and objdump.
 Usage: assemble_gas
 end
 
-
 define dump_hexfile
     dump ihex memory $arg0 $arg1 $arg2
 end
@@ -2992,7 +2919,6 @@ The range is specified by ADDR1 and ADDR2 addresses.
 Usage: dump_hexfile FILENAME ADDR1 ADDR2
 end
 
-
 define dump_binfile
     dump memory $arg0 $arg1 $arg2
 end
@@ -3001,7 +2927,6 @@ Write a range of memory to a binary file.
 The range is specified by ADDR1 and ADDR2 addresses.
 Usage: dump_binfile FILENAME ADDR1 ADDR2
 end
-
 
 define dumpmacho
     if $argc != 2
@@ -3029,14 +2954,12 @@ You need to input the start address (use info shared command to find it).
 Usage: dumpmacho STARTADDRESS FILENAME
 end
 
-
 define cls
     shell clear
 end
 document cls
 Clear screen.
 end
-
 
 define search
     set $start = (char *) $arg0
@@ -3055,7 +2978,6 @@ Search for the given pattern beetween $start and $end address.
 Usage: search <start> <end> <pattern>
 end
 
-
 # _________________user tips_________________
 # The 'tips' command is used to provide tutorial-like info to the user
 define tips
@@ -3068,7 +2990,6 @@ end
 document tips
 Provide a list of tips from users on various topics.
 end
-
 
 define tip_patch
     printf "\n"
@@ -3089,7 +3010,6 @@ end
 document tip_patch
 Tips on patching memory and binary files.
 end
-
 
 define tip_strip
     printf "\n"
@@ -3113,11 +3033,10 @@ document tip_strip
 Tips on dealing with stripped binaries.
 end
 
-
 define tip_syntax
     printf "\n"
     printf "\t    INTEL SYNTAX                        AT&T SYNTAX\n"
-    printf "\tmnemonic dest, src, imm            mnemonic src, dest, imm\n" 
+    printf "\tmnemonic dest, src, imm            mnemonic src, dest, imm\n"
     printf "\t[base+index*scale+disp]            disp(base, index, scale)\n"
     printf "\tregister:      eax                 register:      %%eax\n"
     printf "\timmediate:     0xFF                immediate:     $0xFF\n"
@@ -3137,7 +3056,6 @@ end
 document tip_syntax
 Summary of Intel and AT&T syntax differences.
 end
-
 
 define tip_display
     printf "\n"
@@ -3168,7 +3086,6 @@ document enablesolib
 Shortcut to enable stop-on-solib-events trick.
 end
 
-
 define disablesolib
 	set stop-on-solib-events 0
 	printf "Stop-on-solib-events is disabled!\n"
@@ -3176,7 +3093,6 @@ end
 document disablesolib
 Shortcut to disable stop-on-solib-events trick.
 end
-
 
 # enable commands for different displays
 define enableobjectivec
@@ -3186,14 +3102,12 @@ document enableobjectivec
 Enable display of objective-c information in the context window.
 end
 
-
 define enablecpuregisters
 	set $SHOWCPUREGISTERS = 1
 end
 document enablecpuregisters
 Enable display of cpu registers in the context window.
 end
-
 
 define enablestack
 	set $SHOWSTACK = 1
@@ -3202,14 +3116,12 @@ document enablestack
 Enable display of stack in the context window.
 end
 
-
 define enabledatawin
 	set $SHOWDATAWIN = 1
 end
 document enabledatawin
 Enable display of data window in the context window.
 end
-
 
 # disable commands for different displays
 define disableobjectivec
@@ -3219,14 +3131,12 @@ document disableobjectivec
 Disable display of objective-c information in the context window.
 end
 
-
 define disablecpuregisters
 	set $SHOWCPUREGISTERS = 0
 end
 document disablecpuregisters
 Disable display of cpu registers in the context window.
 end
-
 
 define disablestack
 	set $SHOWSTACK = 0
@@ -3235,14 +3145,12 @@ document disablestack
 Disable display of stack information in the context window.
 end
 
-
 define disabledatawin
 	set $SHOWDATAWIN = 0
 end
 document disabledatawin
 Disable display of data window in the context window.
 end
-
 
 define 32bits
 	set $64BITS = 0
@@ -3256,7 +3164,6 @@ document 32bits
 Set gdb to work with 32bits binaries.
 end
 
-
 define 64bits
 	set $64BITS = 1
     if $X86FLAVOR == 0
@@ -3268,7 +3175,6 @@ end
 document 64bits
 Set gdb to work with 64bits binaries.
 end
-
 
 define arm
     if $ARMOPCODES == 1
@@ -3283,7 +3189,6 @@ document arm
 Set gdb to work with ARM binaries.
 end
 
-
 define enablelib
 	set stop-on-solib-events 1
 end
@@ -3291,14 +3196,12 @@ document enablelib
 Activate stop-on-solib-events.
 end
 
-
 define disablelib
 	set stop-on-solib-events 0
 end
 document disablelib
 Deactivate stop-on-solib-events.
 end
-
 
 define intelsyntax
     if $ARM == 0
@@ -3308,7 +3211,6 @@ end
 document intelsyntax
 Change disassembly syntax to intel flavor.
 end
-
 
 define attsyntax
     if $ARM == 0
@@ -3320,170 +3222,3 @@ Change disassembly syntax to at&t flavor.
 end
 
 #EOF
-
-# Older change logs:
-#
-#   Version 7.4.4 (02/01/2012)
-#     - Added the "skip" command. This will jump to the next instruction after EIP/RIP without executing the current one.
-#       Thanks to @bSr43 for the tip to retrieve the current instruction size.
-#
-#	Version 7.4.3 (04/11/2011)
-#	  - Modified "hexdump" command to support a variable number of lines (optional parameter)
-#	  - Removed restrictions on type of addresses in the "dd" command - Thanks to Plouj for the warning :-)
-#	   I don't know what was the original thinking behind those :-)
-#	  - Modified the assemble command to support 64bits - You will need to recompile nasm since the version shipped with OS X doesn't supports 64bits (www.nasm.us).
-#	   Assumes that the new binary is installed at /usr/local/bin - modify the variable at the top if you need so. 
-#	   It will assemble based on the target arch being debugged. If you want to use gdb for a quick asm just use the 32bits or 64bits commands to set your target.
-#      Thanks to snare for the warning and original patch :-)
-#	  - Added "asm" command - it's a shortcut to the "assemble" command.
-#	  - Added configuration variable for colorized prompt. Plouj reported some issues with Ubuntu's gdb 7.2 if prompt is colorized.
-#
-#   Version 7.4.2 (11/08/2011)
-#    Small fix to a weird bug happening on FreeBSD 8.2. It doesn't like a "if(" instruction, needs to be "if (". Weird!
-#     Many thanks to Evan for reporting and sending the patch :-)
-#    Added the ptraceme/rptraceme commands to bypass PTRACE_TRACME anti-debugging technique.
-#     Grabbed this from http://falken.tuxfamily.org/?p=171
-#	  It's commented out due to a gdb problem in OS X (refer to http://reverse.put.as/2011/08/20/another-patch-for-apples-gdb-the-definecommands-problem/ )
-#	  Just uncomment it if you want to use in ptrace enabled systems.
-#
-#   Version 7.4.1 (21/06/2011) - fG!
-#    Added patch sent by sbz, more than 1 year ago, which I forgot to add :-/
-#     This will allow to search for a given pattern between start and end address.
-#     On sbz words: "It's usefull to find call, ret or everything like that." :-)
-#    New command is "search"
-#
-#   Version 7.4 (20/06/2011) - fG!
-#    When registers change between instructions the colour will change to red (like it happens in OllyDBG)
-#     This is the default behavior, if you don't like it, modify the variable SHOWREGCHANGES
-#    Added patch sent by Philippe Langlois
-#     Colour the first disassembly line - change the setting below on SETCOLOUR1STLINE - by default it's disabled
-#
-#	Version 7.3.2 (21/02/2011) - fG!
-#	  Added the command rint3 and modified the int3 command. The new command will restore the byte in previous int3 patch.
-#
-# 	Version 7.3.1 (29/06/2010) - fG!
-#	  Added enablelib/disablelib command to quickly set the stop-on-solib-events trick
-#	  Implemented the stepoh command equivalent to the stepo but using hardware breakpoints 
-#	  More fixes to stepo
-#
-#	Version 7.3 (16/04/2010) - fG!
-#	  Support for 64bits targets. Default is 32bits, you should modify the variable or use the 32bits or 64bits to choose the mode.
-#     	  I couldn't find another way to recognize the type of binary… Testing the register doesn't work that well.
-#	  TODO: fix objectivec messages and stepo for 64bits
-#   Version 7.2.1 (24/11/2009) - fG!
-#	  Another fix to stepo (0xFF92 missing)
-#
-#   Version 7.2 (11/10/2009) - fG!
-#	  Added the smallregisters function to create 16 and 8 bit versions from the registers EAX, EBX, ECX, EDX
-#	  Revised and fixed all the dumpjump stuff, following Intel manuals. There were some errors (thx to rev who pointed the jle problem).
-#	  Small fix to stepo command (missed a few call types)
-#
-#   Version 7.1.7 - fG!
-#     Added the possibility to modify what's displayed with the context window. You can change default options at the gdb options part. For example, kernel debugging is much slower if the stack display is enabled...
-#     New commands enableobjectivec, enablecpuregisters, enablestack, enabledatawin and their disable equivalents (to support realtime change of default options)
-#     Fixed problem with the assemble command. I was calling /bin/echo which doesn't support the -e option ! DUH ! Should have used bash internal version.
-#     Small fixes to colours...
-#     New commands enablesolib and disablesolib . Just shortcuts for the stop-on-solib-events fantastic trick ! Hey... I'm lazy ;)
-#     Fixed this: Possible removal of "u" command, info udot is missing in gdb 6.8-debian . Doesn't exist on OS X so bye bye !!!
-#     Displays affected flags in jump decisions
-#
-#   Version 7.1.6 - fG!
-#     Added modified assemble command from Tavis Ormandy (further modified to work with Mac OS X) (shell commands used use full path name, working for Leopard, modify for others if necessary)
-#     Renamed thread command to threads because thread is an internal gdb command that allows to move between program threads
-#
-#   Version 7.1.5 (04/01/2009) - fG!
-#     Fixed crash on Leopard ! There was a If Else condition where the else had no code and that made gdb crash on Leopard (CRAZY!!!!)
-#     Better code indention
-#
-#   Version 7.1.4 (02/01/2009) - fG!
-#     Bug in show objective c messages with Leopard ???
-#     Nop routine support for single address or range (contribution from gln [ghalen at hack.se])
-#     Used the same code from nop to null routine
-#
-#   Version 7.1.3 (31/12/2008) - fG!
-#     Added a new command 'stepo'. This command will step a temporary breakpoint on next instruction after the call, so you can skip over
-#     the call. Did this because normal commands not always skip over (mainly with objc_msgSend)
-#
-#   Version 7.1.2 (31/12/2008) - fG!
-#     Support for the jump decision (will display if a conditional jump will be taken or not)
-#
-#   Version 7.1.1 (29/12/2008) - fG!
-#     Moved gdb options to the beginning (makes more sense)
-#     Added support to dump message being sent to msgSend (easier to understand what's going on)
-#
-#   Version 7.1
-#     Fixed serious (and old) bug in dd and datawin, causing dereference of
-#     obviously invalid address. See below:
-#     gdb$ dd 0xffffffff
-#     FFFFFFFF : Cannot access memory at address 0xffffffff
-#
-#   Version 7.0
-#     Added cls command.
-#     Improved documentation of many commands.
-#     Removed bp_alloc, was neither portable nor usefull.
-#     Checking of passed argument(s) in these commands:
-#       contextsize-stack, contextsize-data, contextsize-code
-#       bp, bpc, bpe, bpd, bpt, bpm, bhb,...
-#     Fixed bp and bhb inconsistencies, look at * signs in Version 6.2
-#     Bugfix in bhb command, changed "break" to "hb" command body
-#     Removed $SHOW_CONTEXT=1 from several commands, this variable
-#     should only be controlled globally with context-on and context-off
-#     Improved stack, func, var and sig, dis, n, go,...
-#     they take optional argument(s) now
-#     Fixed wrong $SHOW_CONTEXT assignment in context-off
-#     Fixed serious bug in cft command, forgotten ~ sign
-#     Fixed these bugs in step_to_call:
-#       1) the correct logging sequence is:
-#          set logging file > set logging redirect > set logging on
-#       2) $SHOW_CONTEXT is now correctly restored from $_saved_ctx
-#     Fixed these bugs in trace_calls:
-#       1) the correct logging sequence is:
-#          set logging file > set logging overwrite >
-#          set logging redirect > set logging on
-#       2) removed the "clean up trace file" part, which is not needed now,
-#          stepi output is properly redirected to /dev/null
-#       3) $SHOW_CONTEXT is now correctly restored from $_saved_ctx
-#     Fixed bug in trace_run:
-#       1) $SHOW_CONTEXT is now correctly restored from $_saved_ctx
-#     Fixed print_insn_type -- removed invalid semicolons!, wrong value checking,
-#     Added TODO entry regarding the "u" command
-#     Changed name from gas_assemble to assemble_gas due to consistency
-#     Output from assemble and assemble_gas is now similar, because i made
-#     both of them to use objdump, with respect to output format (AT&T|Intel).
-#     Whole code was checked and made more consistent, readable/maintainable.
-#
-#   Version 6.2
-#     Add global variables to allow user to control stack, data and code window sizes
-#     Increase readability for registers
-#     Some corrections (hexdump, ddump, context, cfp, assemble, gas_asm, tips, prompt)
-#   
-#   Version 6.1-color-user
-#     Took the Gentoo route and ran sed s/user/user/g
-#
-#   Version 6.1-color
-#     Added color fixes from
-#       http://gnurbs.blogsome.com/2006/12/22/colorizing-mamons-gdbinit/
-#
-#   Version 6.1
-#     Fixed filename in step_to_call so it points to /dev/null
-#     Changed location of logfiles from /tmp  to ~
-#
-#   Version 6
-#     Added print_insn_type, get_insn_type, context-on, context-off commands
-#     Added trace_calls, trace_run, step_to_call commands
-#     Changed hook-stop so it checks $SHOW_CONTEXT variable
-#
-#   Version 5
-#     Added bpm, dump_bin, dump_hex, bp_alloc commands
-#     Added 'assemble' by elaine, 'gas_asm' by mong
-#     Added Tip Topics for aspiring users ;)
-#
-#   Version 4
-#     Added eflags-changing insns by pusillus
-#     Added bp, nop, null, and int3 patch commands, also hook-stop
-#
-#   Version 3
-#     Incorporated elaine's if/else goodness into the hex/ascii dump
-#
-#   Version 2
-#     Radix bugfix by elaine
