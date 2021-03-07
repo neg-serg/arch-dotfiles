@@ -208,6 +208,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-fetch"
   },
+  ["vim-flipdir"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-flipdir"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-fugitive"
