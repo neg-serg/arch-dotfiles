@@ -32,7 +32,6 @@ return require('packer').startup(function()
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
     use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
     use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
-    use {'https://gitlab.com/lstwn/broot.vim'} -- broot filemanager integration
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -74,7 +73,6 @@ return require('packer').startup(function()
     use {'pbogut/fzf-mru.vim'} -- fzf mru source
     use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
     use {'eugen0329/vim-esearch'} -- the best of the best way to search
-    use {'svermeulen/vim-subversive'} -- fast substitute
     use {'haya14busa/vim-asterisk'} -- smartcase star
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
