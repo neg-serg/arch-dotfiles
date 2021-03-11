@@ -15,8 +15,6 @@ return require('packer').startup(function()
     use {'airblade/vim-rooter'} -- autochdir for project root or for current dir
     use {'FooSoft/vim-argwrap'} -- vim arg wrapper
     use {'jamessan/vim-gnupg'} -- transparent work with gpg-encrypted files
-    use {'justinmk/vim-dirvish'} -- minimalistic file manager
-    use {'jpaulogg/vim-flipdir'} -- flipdir via dirvish
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'kristijanhusak/vim-packager', opt=true}
     use {'neg-serg/lusty', opt=true} -- file/buffer explorer
@@ -34,7 +32,7 @@ return require('packer').startup(function()
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
     use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
     use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
-    use {'lstwn/broot.vim'} -- broot filemanager integration
+    use {'https://gitlab.com/lstwn/broot.vim'} -- broot filemanager integration
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -76,7 +74,6 @@ return require('packer').startup(function()
     use {'pbogut/fzf-mru.vim'} -- fzf mru source
     use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
     use {'eugen0329/vim-esearch'} -- the best of the best way to search
-    use {'romgrk/searchReplace.vim'} -- better search and replace
     use {'svermeulen/vim-subversive'} -- fast substitute
     use {'haya14busa/vim-asterisk'} -- smartcase star
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -85,8 +82,8 @@ return require('packer').startup(function()
     use {'neg-serg/neg'} -- my colorscheme
     use {'RRethy/vim-hexokinase', run = "make hexokinase" } -- best color highlighting
     use {'sheerun/vim-polyglot'} -- language pack collection
-    use {'stephpy/vim-yaml'} -- experiment with faster yaml
     use {'justinmk/vim-syntax-extra'} -- better syntax for some langs
+    use {'stephpy/vim-yaml'} -- experiment with faster yaml
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons'} -- fancy webicons
     use {'mbbill/fencview', opt=true} -- select various encodings
