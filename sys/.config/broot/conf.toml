@@ -1,4 +1,4 @@
-default_flags = "h"
+default_flags = "sdp"
 
 # date_time_format = "%Y/%m/%d %R"
 # show_selection_mark = true
