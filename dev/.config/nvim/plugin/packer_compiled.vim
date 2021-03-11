@@ -41,10 +41,6 @@ _G.packer_plugins = {
     needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/ansible-vim"
   },
-  ["broot.vim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/broot.vim"
-  },
   ["coc-fzf"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc-fzf"
@@ -157,10 +153,6 @@ _G.packer_plugins = {
   ["salt-vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/salt-vim"
-  },
-  ["searchReplace.vim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/searchReplace.vim"
   },
   ["targets.vim"] = {
     loaded = true,
@@ -275,10 +267,6 @@ _G.packer_plugins = {
   ["vim-rooter"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-rooter"
-  },
-  ["vim-subversive"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-subversive"
   },
   ["vim-surround"] = {
     loaded = true,
