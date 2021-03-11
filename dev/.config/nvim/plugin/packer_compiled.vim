@@ -41,6 +41,10 @@ _G.packer_plugins = {
     needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/ansible-vim"
   },
+  ["broot.vim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/broot.vim"
+  },
   ["coc-fzf"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc-fzf"
@@ -186,10 +190,6 @@ _G.packer_plugins = {
   ["vim-better-whitespace"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-better-whitespace"
-  },
-  ["vim-dirvish"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-dirvish"
   },
   ["vim-dispatch"] = {
     loaded = true,
