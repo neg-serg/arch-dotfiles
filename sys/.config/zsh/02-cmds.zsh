@@ -128,4 +128,24 @@ _exists tmux && {
     # Copy from remote tmux buffer to local tmux clipboard
     cpt() { ssh "$1" "tmux saveb -" | tmux loadb - }
 }
+_exists broot && \
+br() {
+    f=$(mktemp)
+    (
+        set +e
+        broot --outcmd "$f" "$@"
+        code=$?
+        if [ "$code" != 0 ]; then
+            rm -f "$f"
+            exit "$code"
+        fi
+    )
+    code=$?
+    if [ "$code" != 0 ]; then
+        return "$code"
+    fi
+    d=$(<"$f")
+    rm -f "$f"
+    eval "$d"
+}
 unfunction _exists
