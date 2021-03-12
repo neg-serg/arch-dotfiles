@@ -12,25 +12,28 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- better highlight
     use {'airblade/vim-rooter'} -- autochdir for project root or for current dir
-    use {'FooSoft/vim-argwrap'} -- vim arg wrapper
-    use {'jamessan/vim-gnupg'} -- transparent work with gpg-encrypted files
+    use {'FooSoft/vim-argwrap', cmd = {'ArgWrap'}, opt=true} -- vim arg wrapper
+    use {'jamessan/vim-gnupg', ft = {'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'kristijanhusak/vim-packager', opt=true}
     use {'neg-serg/lusty', opt=true} -- file/buffer explorer
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- better highlight
     use {'ojroques/nvim-bufdel'} -- better buffer delete
-    use {'ojroques/vim-oscyank'} -- cross-server yank
     use {'mg979/vim-visual-multi'} -- visual multiline
     use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
-    use {'reedes/vim-pencil'} -- better text support
+    use {'reedes/vim-pencil', opt=true,
+      cmd = {
+        'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'
+      }
+    } -- better text support
     use {'reedes/vim-wordy', opt=true} -- style check for english
-    use {'romgrk/winteract.vim'} -- interactive window resize
-    use {'simnalamburt/vim-mundo', opt=true} -- undo tree
+    use {'romgrk/winteract.vim', cmd = {'InteractiveWindow'}, opt=true} -- interactive window resize
+    use {'simnalamburt/vim-mundo', cmd = {'MundoToggle'}, opt=true} -- undo tree
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
-    use {'vimwiki/vimwiki', opt=true} -- personal wiki for vim
+    use {'vimwiki/vimwiki', ft = {'wiki'}, opt=true} -- personal wiki for vim
     use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
@@ -47,12 +50,16 @@ return require('packer').startup(function()
     use {'antoinemadec/coc-fzf'} -- coc fzf support
     use {'dense-analysis/ale'} -- async linter with lsp support
     use {'liuchengxu/vista.vim', opt=true} -- lsp-symbols tag searcher
-    use {'mfussenegger/nvim-dap'} -- neovim debugger protocol support
+    use {'mfussenegger/nvim-dap', opt=true} -- neovim debugger protocol support
+    use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
     use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
+    use {'tpope/vim-dispatch', opt=true,
+        cmd={
+          'Dispatch', 'Make', 'Focus', 'Start'
+        }
+    } -- provide async build
     use {'radenling/vim-dispatch-neovim'} -- neovim support for vim-dispatch
-    use {'theHamsta/nvim-dap-virtual-text'} -- virtual debugging text support
-    use {'tpope/vim-apathy'} -- better include jump
-    use {'tpope/vim-dispatch'} -- provide async build
+    use {'tpope/vim-apathy', opt=true} -- better include jump
     use {'Olical/conjure', opt=true} -- interactive repl
     use {'metakirby5/codi.vim', opt=true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
@@ -78,25 +85,19 @@ return require('packer').startup(function()
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg'} -- my colorscheme
-    use {'RRethy/vim-hexokinase', run = "make hexokinase" } -- best color highlighting
+    use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
     use {'sheerun/vim-polyglot'} -- language pack collection
-    use {'justinmk/vim-syntax-extra'} -- better syntax for some langs
-    use {'stephpy/vim-yaml'} -- experiment with faster yaml
     use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons'} -- fancy webicons
-    use {'mbbill/fencview', opt=true} -- select various encodings
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'pearofducks/ansible-vim', opt=true} -- ansible support
-    use {'arouene/vim-ansible-vault', opt=true} -- ansible-vault support
-    use {'saltstack/salt-vim'} -- salt sls support
-    use {'rodjek/vim-puppet', opt=true} -- puppet support
+    use {'pearofducks/ansible-vim', opt=true, ft = 'yaml'} -- ansible support
+    use {'saltstack/salt-vim', opt=true, ft = 'sls'} -- salt sls support
+    use {'rodjek/vim-puppet', opt=true, ft = 'pp'} -- puppet support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'rhysd/committia.vim'} -- better commit message
-    use {'rhysd/conflict-marker.vim'} -- good conflict marker
-    use {'lambdalisue/gina.vim'} -- git stuff new
     use {'tpope/vim-fugitive'} -- git stuff old
+    use {'rhysd/conflict-marker.vim'} -- good conflict marker
 end)

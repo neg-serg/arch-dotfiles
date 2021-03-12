@@ -54,10 +54,6 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/codi.vim"
   },
-  ["committia.vim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/committia.vim"
-  },
   ["conflict-marker.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/conflict-marker.vim"
@@ -66,11 +62,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/conjure"
-  },
-  fencview = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/fencview"
   },
   fzf = {
     loaded = true,
@@ -87,10 +78,6 @@ _G.packer_plugins = {
   ["fzf.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/fzf.vim"
-  },
-  ["gina.vim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/gina.vim"
   },
   kommentary = {
     loaded = true,
@@ -118,12 +105,14 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-dap"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-dap"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/nvim-dap"
   },
   ["nvim-dap-virtual-text"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/nvim-dap-virtual-text"
   },
   ["nvim-moonmaker"] = {
     loaded = true,
@@ -151,8 +140,9 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["salt-vim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/salt-vim"
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/salt-vim"
   },
   ["targets.vim"] = {
     loaded = true,
@@ -162,18 +152,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-NotableFt"
   },
-  ["vim-ansible-vault"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-ansible-vault"
-  },
   ["vim-apathy"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-apathy"
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-apathy"
   },
   ["vim-argwrap"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-argwrap"
+    commands = { "ArgWrap" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-argwrap"
   },
   ["vim-asterisk"] = {
     loaded = true,
@@ -184,8 +172,10 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-better-whitespace"
   },
   ["vim-dispatch"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-dispatch"
+    commands = { "Dispatch", "Make", "Focus", "Start" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
   },
   ["vim-dispatch-neovim"] = {
     loaded = true,
@@ -208,8 +198,9 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-gnupg"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-gnupg"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-gnupg"
   },
   ["vim-hexokinase"] = {
     loaded = true,
@@ -229,13 +220,10 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-mkdir"
   },
   ["vim-mundo"] = {
+    commands = { "MundoToggle" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-mundo"
-  },
-  ["vim-oscyank"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-oscyank"
   },
   ["vim-packager"] = {
     loaded = false,
@@ -243,8 +231,10 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-packager"
   },
   ["vim-pencil"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-pencil"
+    commands = { "Pencil", "PencilHard", "PencilSoft", "PencilToggle" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-pencil"
   },
   ["vim-polyglot"] = {
     loaded = true,
@@ -272,10 +262,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
-  ["vim-syntax-extra"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-syntax-extra"
-  },
   ["vim-tridactyl"] = {
     loaded = false,
     needs_bufread = true,
@@ -289,10 +275,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-wordy"
-  },
-  ["vim-yaml"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-yaml"
   },
   vimpeccable = {
     loaded = true,
@@ -309,11 +291,41 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vista.vim"
   },
   ["winteract.vim"] = {
-    loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/winteract.vim"
+    commands = { "InteractiveWindow" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/winteract.vim"
   }
 }
 
+
+-- Command lazy-loads
+vim.cmd [[command! -nargs=* -range -bang -complete=file Make lua require("packer.load")({'vim-dispatch'}, { cmd = "Make", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file InteractiveWindow lua require("packer.load")({'winteract.vim'}, { cmd = "InteractiveWindow", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Dispatch lua require("packer.load")({'vim-dispatch'}, { cmd = "Dispatch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Pencil lua require("packer.load")({'vim-pencil'}, { cmd = "Pencil", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file MundoToggle lua require("packer.load")({'vim-mundo'}, { cmd = "MundoToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file ArgWrap lua require("packer.load")({'vim-argwrap'}, { cmd = "ArgWrap", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file PencilToggle lua require("packer.load")({'vim-pencil'}, { cmd = "PencilToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file PencilSoft lua require("packer.load")({'vim-pencil'}, { cmd = "PencilSoft", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file PencilHard lua require("packer.load")({'vim-pencil'}, { cmd = "PencilHard", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+vim.cmd [[au FileType wiki ++once lua require("packer.load")({'vimwiki'}, { ft = "wiki" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sls ++once lua require("packer.load")({'salt-vim'}, { ft = "sls" }, _G.packer_plugins)]]
+vim.cmd [[au FileType gpg ++once lua require("packer.load")({'vim-gnupg'}, { ft = "gpg" }, _G.packer_plugins)]]
+vim.cmd [[au FileType yaml ++once lua require("packer.load")({'ansible-vim'}, { ft = "yaml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType pp ++once lua require("packer.load")({'vim-puppet'}, { ft = "pp" }, _G.packer_plugins)]]
+vim.cmd("augroup END")
+vim.cmd [[augroup filetypedetect]]
+vim.cmd [[source /home/neg/.local/share/nvim/site/pack/packer/opt/ansible-vim/ftdetect/ansible.vim]]
+vim.cmd [[source /home/neg/.local/share/nvim/site/pack/packer/opt/salt-vim/ftdetect/sls.vim]]
+vim.cmd [[source /home/neg/.local/share/nvim/site/pack/packer/opt/vim-puppet/ftdetect/puppet.vim]]
+vim.cmd("augroup END")
 END
 
 catch
