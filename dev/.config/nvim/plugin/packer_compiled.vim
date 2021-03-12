@@ -33,10 +33,12 @@ end
 
 _G.packer_plugins = {
   ale = {
+    config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/ale\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/ale"
   },
   ["ansible-vim"] = {
+    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20plugcfg/ansible\frequire\0" },
     loaded = false,
     needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/ansible-vim"
@@ -46,6 +48,7 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc-fzf"
   },
   ["coc.nvim"] = {
+    config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/coc\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/coc.nvim"
   },
@@ -64,10 +67,12 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/conjure"
   },
   fzf = {
+    config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/fzf\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/fzf"
   },
   ["fzf-mru.vim"] = {
+    config = { "\27LJ\1\2.\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\19plugcfg/fzfmru\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/fzf-mru.vim"
   },
@@ -84,6 +89,8 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/kommentary"
   },
   lusty = {
+    commands = { "LustyFilesystemExplorerFromHere" },
+    config = { "\27LJ\1\2ò\1\0\0\5\0\n\0\0194\0\0\0007\0\1\0'\1\0\0:\1\2\0004\0\0\0007\0\1\0'\1\0\0:\1\3\0004\0\0\0007\0\1\0'\1\1\0:\1\4\0004\0\5\0%\1\6\0%\2\a\0%\3\b\0003\4\t\0>\0\5\1G\0\1\0\1\0\1\vsilent\2):LustyFilesystemExplorerFromHere<CR>\14<leader>l\6n\bmap$LustyExplorerAlwaysShowDotFiles!LustyExplorerDefaultMappings LustyJugglerDefaultMappings\6g\bvim\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/lusty"
@@ -105,6 +112,7 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-dap"] = {
+    config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/dap\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/nvim-dap"
@@ -119,6 +127,7 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-moonmaker"
   },
   ["nvim-treesitter"] = {
+    config = { "\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugcfg/treesitter\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
@@ -127,6 +136,7 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
+    config = { "\27LJ\1\0029\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\30plugcfg/nvim-web-devicons\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
@@ -159,11 +169,13 @@ _G.packer_plugins = {
   },
   ["vim-argwrap"] = {
     commands = { "ArgWrap" },
+    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20plugcfg/argwrap\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-argwrap"
   },
   ["vim-asterisk"] = {
+    config = { "\27LJ\1\0024\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\25plugcfg/vim-asterisk\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-asterisk"
   },
@@ -173,6 +185,7 @@ _G.packer_plugins = {
   },
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
+    config = { "\27LJ\1\0024\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\25plugcfg/vim-dispatch\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
@@ -182,10 +195,12 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-dispatch-neovim"
   },
   ["vim-easy-align"] = {
+    config = { "\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugcfg/easyalign\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-easy-align"
   },
   ["vim-esearch"] = {
+    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20plugcfg/esearch\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-esearch"
   },
@@ -212,6 +227,7 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vim-markdown"
   },
   ["vim-matchup"] = {
+    config = { "\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24plugcfg/vim-matchup\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-matchup"
   },
@@ -255,6 +271,7 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-repeat"
   },
   ["vim-rooter"] = {
+    config = { "\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugcfg/vim-rooter\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-rooter"
   },
@@ -281,36 +298,62 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vimpeccable"
   },
   vimwiki = {
+    config = { "\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20plugcfg/vimwiki\frequire\0" },
     loaded = false,
     needs_bufread = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vimwiki"
   },
   ["vista.vim"] = {
+    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18plugcfg/vista\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vista.vim"
   },
   ["winteract.vim"] = {
     commands = { "InteractiveWindow" },
+    config = { "\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24plugcfg/wininteract\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/winteract.vim"
   }
 }
 
+-- Config for: nvim-treesitter
+try_loadstring("\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugcfg/treesitter\frequire\0", "config", "nvim-treesitter")
+-- Config for: nvim-web-devicons
+try_loadstring("\27LJ\1\0029\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\30plugcfg/nvim-web-devicons\frequire\0", "config", "nvim-web-devicons")
+-- Config for: fzf-mru.vim
+try_loadstring("\27LJ\1\2.\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\19plugcfg/fzfmru\frequire\0", "config", "fzf-mru.vim")
+-- Config for: ale
+try_loadstring("\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/ale\frequire\0", "config", "ale")
+-- Config for: coc.nvim
+try_loadstring("\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/coc\frequire\0", "config", "coc.nvim")
+-- Config for: vim-asterisk
+try_loadstring("\27LJ\1\0024\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\25plugcfg/vim-asterisk\frequire\0", "config", "vim-asterisk")
+-- Config for: vim-esearch
+try_loadstring("\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20plugcfg/esearch\frequire\0", "config", "vim-esearch")
+-- Config for: vim-easy-align
+try_loadstring("\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugcfg/easyalign\frequire\0", "config", "vim-easy-align")
+-- Config for: vim-matchup
+try_loadstring("\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24plugcfg/vim-matchup\frequire\0", "config", "vim-matchup")
+-- Config for: fzf
+try_loadstring("\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/fzf\frequire\0", "config", "fzf")
+-- Config for: vim-rooter
+try_loadstring("\27LJ\1\0022\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\23plugcfg/vim-rooter\frequire\0", "config", "vim-rooter")
 
 -- Command lazy-loads
 vim.cmd [[command! -nargs=* -range -bang -complete=file Make lua require("packer.load")({'vim-dispatch'}, { cmd = "Make", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file InteractiveWindow lua require("packer.load")({'winteract.vim'}, { cmd = "InteractiveWindow", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Dispatch lua require("packer.load")({'vim-dispatch'}, { cmd = "Dispatch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Pencil lua require("packer.load")({'vim-pencil'}, { cmd = "Pencil", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file MundoToggle lua require("packer.load")({'vim-mundo'}, { cmd = "MundoToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file ArgWrap lua require("packer.load")({'vim-argwrap'}, { cmd = "ArgWrap", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file LustyFilesystemExplorerFromHere lua require("packer.load")({'lusty'}, { cmd = "LustyFilesystemExplorerFromHere", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file PencilToggle lua require("packer.load")({'vim-pencil'}, { cmd = "PencilToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file ArgWrap lua require("packer.load")({'vim-argwrap'}, { cmd = "ArgWrap", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file PencilSoft lua require("packer.load")({'vim-pencil'}, { cmd = "PencilSoft", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file PencilHard lua require("packer.load")({'vim-pencil'}, { cmd = "PencilHard", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Pencil lua require("packer.load")({'vim-pencil'}, { cmd = "Pencil", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]

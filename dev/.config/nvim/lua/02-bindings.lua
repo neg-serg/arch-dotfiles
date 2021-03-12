@@ -60,6 +60,7 @@ api.nvim_command('nnoremap <expr> 0 &wrap ? "g0" : "0"')
 api.nvim_command('nnoremap <expr> $ &wrap ? "g$" : "$"')
 api.nvim_command('nnoremap <expr> j (v:count == 0 ? "gj" : "j")')
 api.nvim_command('nnoremap <expr> k (v:count == 0 ? "gk" : "k")')
+map('n', '<leader>l', ':LustyFilesystemExplorerFromHere<CR>', {silent=true})
 vim.api.nvim_exec(
 [[
     exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
