@@ -15,17 +15,13 @@ endfunction
 api.nvim_command('inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"')
 api.nvim_command('nnoremap <leader>d <Plug>(coc-diagnostic-prev)')
 api.nvim_command('nnoremap <leader>s <Plug>(coc-diagnostic-next)')
-api.nvim_command('nnoremap gd <Plug>(coc-definition)')
-api.nvim_command('nnoremap gr <Plug>(coc-references)')
-api.nvim_command("nnoremap K :call CocActionAsync('doHover')<CR>")
+-- Remap keys for gotos
+map('n', 'gD', '<Plug>(coc-definition)', {silent=true})
+map('n', 'gI', '<Plug>(coc-implementation)', {silent=true})
+map('n', 'gR', '<Plug>(coc-references)', {silent=true})
 map('n', '[Qleader]c', '<Plug>(coc-diagnostic-next)', {silent=true})
 map('n', '[Qleader]C', '<Plug>(coc-diagnostic-prev)', {silent=true})
 map('n', '<M-CR>', '<Plug>(coc-fix-current)', {silent=true})
--- Remap keys for gotos
-map('n', 'gd', '<Plug>(coc-definition)', {silent=true})
-map('n', 'gi', '<Plug>(coc-implementation)', {silent=true})
-map('n', 'gy', ':<C-u>CocCommand fzf-preview.CocTypeDefinitions<CR>', {silent=true})
-map('n', 'gr', ':<C-u>CocCommand fzf-preview.CocReferences<CR>', {silent=true})
 -- Remap for rename current word
 map('n', '[Qleader]r', '<Plug>(coc-rename)', {silent=true})
 -- Reformat command
@@ -45,28 +41,18 @@ vim.g.coc_global_extensions = {
   'coc-toml',
   'coc-yaml',
 }
-vim.api.nvim_exec([[
-command! -nargs=0 Format :call CocAction('format')
-]], true)
 
---[[ " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
- ]]
+-- Map function and class text objects
+-- Requires 'textDocument.documentSymbol' support from the language server.
+api.nvim_command('xmap if <Plug>(coc-funcobj-i)')
+api.nvim_command('omap if <Plug>(coc-funcobj-i)')
+api.nvim_command('xmap af <Plug>(coc-funcobj-a)')
+api.nvim_command('omap af <Plug>(coc-funcobj-a)')
+api.nvim_command('xmap ic <Plug>(coc-classobj-i)')
+api.nvim_command('omap ic <Plug>(coc-classobj-i)')
+api.nvim_command('xmap ac <Plug>(coc-classobj-a)')
+api.nvim_command('omap ac <Plug>(coc-classobj-a)')
+-- Remap keys for applying codeAction to the current buffer.
+api.nvim_command('nmap <leader>ac  <Plug>(coc-codeaction)')
+-- Apply AutoFix to problem on the current line.
+api.nvim_command('nmap <leader>qf  <Plug>(coc-fix-current)')
