@@ -67,7 +67,6 @@ return require('packer').startup(function()
     use {'tjdevries/nlua.nvim'} -- neovim lua autocompletion
     use {'norcalli/nvim_utils'} -- new neovim extensions
     use {'svermeulen/vimpeccable'} -- neovim lua extensions
-    use {'svermeulen/nvim-moonmaker'} -- moonscript neovim extensions
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -81,23 +80,22 @@ return require('packer').startup(function()
     } -- async linter with lsp support
     use {'liuchengxu/vista.vim',
           config = function() require'plugcfg/vista' end,
-          opt=true
+          opt = true
     } -- lsp-symbols tag searcher
-    use {'mfussenegger/nvim-dap', opt=true,
+    use {'mfussenegger/nvim-dap', opt = true,
           config = function() require'plugcfg/dap' end
     } -- neovim debugger protocol support
-    use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
-    use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
-    use {'tpope/vim-dispatch', opt=true,
-        cmd={
+    use {'theHamsta/nvim-dap-virtual-text', opt = true} -- virtual debugging text support
+    use {'plasticboy/vim-markdown', opt = true} -- markdown vim mode
+    use {'tpope/vim-dispatch', opt = true,
+        cmd = {
           'Dispatch', 'Make', 'Focus', 'Start'
         },
         config = function() require'plugcfg/vim-dispatch' end
     } -- provide async build
     use {'radenling/vim-dispatch-neovim'} -- neovim support for vim-dispatch
-    use {'tpope/vim-apathy', opt=true} -- better include jump
-    use {'Olical/conjure', opt=true} -- interactive repl
-    use {'metakirby5/codi.vim', opt=true} -- nice scratchpad for hackers
+    use {'tpope/vim-apathy', opt = true} -- better include jump
+    use {'metakirby5/codi.vim', opt = true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
@@ -134,9 +132,9 @@ return require('packer').startup(function()
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg'} -- my colorscheme
-    use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
     use {'sheerun/vim-polyglot'} -- language pack collection
-    use {'tridactyl/vim-tridactyl', opt=true} -- tridactyl support
+    use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
+    use {'tridactyl/vim-tridactyl', ft = 'tridactyl', opt = true} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons',
           config = function() require'plugcfg/nvim-web-devicons' end
     } -- fancy webicons
@@ -144,12 +142,12 @@ return require('packer').startup(function()
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'pearofducks/ansible-vim',
-        opt=true,
-        ft = 'yaml',
+        opt = true,
+        ft = 'ansible',
         config = function() require'plugcfg/ansible' end
     } -- ansible support
-    use {'saltstack/salt-vim', opt=true, ft = 'sls'} -- salt sls support
-    use {'rodjek/vim-puppet', opt=true, ft = 'pp'} -- puppet support
+    use {'saltstack/salt-vim', opt = true, ft = 'salt'} -- salt sls support
+    use {'rodjek/vim-puppet', opt = true, ft = 'puppet'} -- puppet support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
