@@ -90,7 +90,7 @@ _G.packer_plugins = {
   },
   lusty = {
     commands = { "LustyFilesystemExplorerFromHere" },
-    config = { "\27LJ\1\2ò\1\0\0\5\0\n\0\0194\0\0\0007\0\1\0'\1\0\0:\1\2\0004\0\0\0007\0\1\0'\1\0\0:\1\3\0004\0\0\0007\0\1\0'\1\1\0:\1\4\0004\0\5\0%\1\6\0%\2\a\0%\3\b\0003\4\t\0>\0\5\1G\0\1\0\1\0\1\vsilent\2):LustyFilesystemExplorerFromHere<CR>\14<leader>l\6n\bmap$LustyExplorerAlwaysShowDotFiles!LustyExplorerDefaultMappings LustyJugglerDefaultMappings\6g\bvim\0" },
+    config = { "\27LJ\1\2š\1\0\0\2\0\5\0\r4\0\0\0007\0\1\0'\1\0\0:\1\2\0004\0\0\0007\0\1\0'\1\0\0:\1\3\0004\0\0\0007\0\1\0'\1\1\0:\1\4\0G\0\1\0$LustyExplorerAlwaysShowDotFiles!LustyExplorerDefaultMappings LustyJugglerDefaultMappings\6g\bvim\0" },
     loaded = false,
     needs_bufread = false,
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/lusty"
