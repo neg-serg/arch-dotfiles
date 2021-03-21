@@ -47,6 +47,9 @@ return require('packer').startup(function()
             'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'
           }
     } -- better text support
+    use {'rhysd/vim-grammarous', opt=true,
+          cmd = { 'GrammarousCheck' }
+    } -- check with grammarous
     use {'reedes/vim-wordy', opt=true} -- style check for english
     use {'romgrk/winteract.vim',
           cmd = {'InteractiveWindow'},
