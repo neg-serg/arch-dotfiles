@@ -179,6 +179,7 @@ bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 
 quickmark c https://www.twitch.tv/cooller
 quickmark e http://www.ektoplazm.com/
+quickmark E https://projecteuler.net/
 quickmark g https://gmail.com
 quickmark G https://github.com/neg-serg
 quickmark L http://gen.lib.rus.ec
