@@ -64,6 +64,17 @@ return require('packer').startup(function()
           config = function() require'plugcfg/vimwiki' end
     } -- personal wiki for vim
     use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
+    use {'npxbr/glow.nvim'} -- glow preview
+    use {'ElPiloto/sidekick.nvim'} -- experimental outline window
+    use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
+    use {'MTDL9/vim-log-highlighting'} -- better log highlighter
+    use {'delphinus/vim-auto-cursorline'} -- show cursorline when truly need it
+    use {'mhinz/vim-sayonara',
+          cmd = {'Sayonara'},
+          opt=true
+    } -- smart buffer delete
+    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'} -- experimental indent
+    use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -100,6 +111,8 @@ return require('packer').startup(function()
     use {'tpope/vim-apathy', opt = true} -- better include jump
     use {'metakirby5/codi.vim', opt = true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
+    use {'KabbAmine/vCoolor.vim'} -- generic color selector
+    use {'mattn/vim-sonictemplate', cmd = 'Template'} -- snippets alternative
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -131,6 +144,7 @@ return require('packer').startup(function()
     use {'haya14busa/vim-asterisk',
           config = function() require'plugcfg/vim-asterisk' end
     } -- smartcase star
+    use {'brooth/far.vim'} -- better find and replace
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
