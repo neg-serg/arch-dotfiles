@@ -24,6 +24,7 @@ zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
 zinit wait silent light-mode for zsh-users/zsh-completions
 zinit wait silent light-mode for neg-serg/fast-syntax-highlighting
+zinit light peterhurford/git-it-on.zsh
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
