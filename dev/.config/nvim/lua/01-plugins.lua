@@ -75,6 +75,7 @@ return require('packer').startup(function()
     } -- smart buffer delete
     use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'} -- experimental indent
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
+    use {'mg979/vim-visual-multi'} -- experiment with multicursor
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
