@@ -73,9 +73,7 @@ return require('packer').startup(function()
           cmd = {'Sayonara'},
           opt=true
     } -- smart buffer delete
-    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'} -- experimental indent
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
-    use {'mg979/vim-visual-multi'} -- experiment with multicursor
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -112,8 +110,8 @@ return require('packer').startup(function()
     use {'tpope/vim-apathy', opt = true} -- better include jump
     use {'metakirby5/codi.vim', opt = true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
-    use {'KabbAmine/vCoolor.vim'} -- generic color selector
     use {'mattn/vim-sonictemplate', cmd = 'Template'} -- snippets alternative
+    use {'lewis6991/gitsigns.nvim'} -- async gitsigns
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
