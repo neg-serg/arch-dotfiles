@@ -28,7 +28,6 @@ map('n', '[Qleader]r', '<Plug>(coc-rename)', {silent=true})
 vim.g.coc_global_extensions = {
   'coc-calc',
   'coc-diagnostic',
-  'coc-git',
   'coc-grammarly',
   'coc-lists',
   'coc-pairs',

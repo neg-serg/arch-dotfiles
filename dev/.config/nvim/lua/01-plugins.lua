@@ -6,6 +6,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute('packadd packer.nvim')
 end
 vim.cmd [[packadd packer.nvim]]
+
 return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
@@ -111,7 +112,9 @@ return require('packer').startup(function()
     use {'metakirby5/codi.vim', opt = true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
     use {'mattn/vim-sonictemplate', cmd = 'Template'} -- snippets alternative
-    use {'lewis6991/gitsigns.nvim'} -- async gitsigns
+    use {'lewis6991/gitsigns.nvim',
+        requires = {'nvim-lua/plenary.nvim'},
+    } -- async gitsigns
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
