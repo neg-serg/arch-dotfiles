@@ -115,6 +115,7 @@ return require('packer').startup(function()
     use {'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
     } -- async gitsigns
+    use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
