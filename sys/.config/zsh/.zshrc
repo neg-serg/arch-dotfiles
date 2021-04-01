@@ -22,9 +22,10 @@ fpath=(
 zinit ice depth=1
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k
 zinit light romkatv/zsh-defer
-zinit wait silent light-mode for zsh-users/zsh-completions
-zinit wait silent light-mode for neg-serg/fast-syntax-highlighting
+zinit wait lucid light-mode for neg-serg/fast-syntax-highlighting
 zinit light peterhurford/git-it-on.zsh
+zinit wait lucid atload"zicompinit; zicdreplay" blockf \
+    for zsh-users/zsh-completions
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
