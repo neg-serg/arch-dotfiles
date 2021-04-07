@@ -21,7 +21,7 @@ _exists sudo && alias s='sudo -A'
 _exists plocate && alias locate=plocate
 _exists dd && alias dd='dd status=progress'
 autoload -U zcalc
-function __calc_plugin { zcalc -e "$*" }
+__calc_plugin() { zcalc -e "$*" }
 aliases[=]='noglob __calc_plugin'
 _exists bc && alias '?=bc -l <<<'
 _exists prettyping && alias ping='prettyping'
@@ -92,6 +92,8 @@ local noglob_list=(
     clivescan youtube-dl youtube-viewer translate links links2 lynx you-get
     bower pip task
 )
+autoload zmv
+alias zcp='zmv -C' zln='zmv -L'
 local dev_null_list=(tig)
 for i in ${sudo_list[@]}; alias "${i}=sudo ${i}"
 for i in ${noglob_list[@]}; alias "${i}=noglob ${i}"
