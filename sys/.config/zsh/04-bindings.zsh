@@ -15,6 +15,7 @@ bindkey . rationalise-dot
 bindkey "^XD" describe-key-briefly
 bindkey "^Z" fg-widget
 bindkey '^j' fasd-complete
+bindkey '^@' fasd-complete
 bindkey "^I" expand-or-complete-with-dots
 bindkey '^M' special-accept-line
 bindkey " "  magic-space
