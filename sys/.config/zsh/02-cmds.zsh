@@ -1,5 +1,5 @@
 _exists() { (( $+commands[$1] )) }
-alias @r='~/bin/scripts/music-rename'
+alias -g @r='~/bin/scripts/music-rename'
 alias qe='cd *(/om[1]D)'
 if _exists exa; then
     alias la='exa --icons -a --group-directories-first'
@@ -10,22 +10,22 @@ else
     alias ls='ls --color=auto'
 fi
 alias l='ls'
-alias mv='mv -i'
-alias mk='mkdir -p'
-alias rd='rmdir'
+alias -g mv='mv -i'
+alias -g mk='mkdir -p'
+alias -g rd='rmdir'
 alias grep='grep --color=auto'
-alias sort='sort --parallel 8 -S 16M'
+alias -g sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
 _exists yay && alias U='yay -Su --devel --noconfirm --timeupdate'
 _exists sudo && alias s='sudo -A'
-_exists plocate && alias locate=plocate
-_exists dd && alias dd='dd status=progress'
+_exists plocate && alias -g locate=plocate
+_exists dd && alias -g dd='dd status=progress'
 autoload -U zcalc
 __calc_plugin() { zcalc -e "$*" }
 aliases[=]='noglob __calc_plugin'
 _exists bc && alias '?=bc -l <<<'
 _exists prettyping && alias ping='prettyping'
-_exists handlr && alias e='handlr open'
+_exists handlr && alias -g e='handlr open'
 _exists rg && {
     local rg_options='--max-columns=0 \
     --max-columns-preview \
@@ -38,12 +38,12 @@ _exists rg && {
     --colors=path:style:bold \
     --smart-case \
     --hidden'
-    alias rg="rg ${rg_options}"
-    alias zrg="rg ${rg_options} -z"
+    alias -g rg="rg ${rg_options}"
+    alias -g zrg="rg ${rg_options} -z"
 }
 _exists bpython && alias python='bpython'
-_exists cdu && alias sp='cdu -idh -s -r -c ":"'
-_exists lfs && alias df='lfs'
+_exists cdu && alias -g sp='cdu -idh -s -r -c ":"'
+_exists lfs && alias -g df='lfs'
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
 _exists objdump && alias objdump='objdump -M intel -d'
@@ -55,20 +55,20 @@ _exists todoist && {
 }
 _exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
 _exists nvim && {
-    alias vim=nvim
-    alias nvim=v
-    alias v='~/bin/v'
+    alias -g vim='nvim'
+    alias -g v='~/bin/v'
+    alias -g nvim='v'
 }
-_exists iostat && alias iostat='iostat -mtx'
-_exists iotop && alias iotop='sudo iotop -oPa'
+_exists iostat && alias -g iostat='iostat -mtx'
+_exists iotop && alias -g iotop='sudo iotop -oPa'
 _exists patool && {
-    alias se='patool extract'
-    alias pk='patool create'
+    alias -g se='patool extract'
+    alias -g pk='patool create'
 }
-_exists xz && alias xz='xz --threads=0'
-_exists pigz && alias gzip='pigz'
-_exists pbzip2 && alias bzip2='pbzip2'
-_exists zstd && alias zstd='zstd --threads=0'
+_exists xz && alias -g xz='xz --threads=0'
+_exists pigz && alias -g gzip='pigz'
+_exists pbzip2 && alias -g bzip2='pbzip2'
+_exists zstd && alias -g zstd='zstd --threads=0'
 _exists mpv && {
     local mpv_ipc='--input-ipc-server=/tmp/mpvsocket'
     alias mpa="mpv ${mpv_ipc} --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
@@ -124,12 +124,6 @@ _exists git && {
     alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
 }
 _exists fzf && bindings() { bindkey -L | fzf }
-_exists tmux && {
-    # Copy from remote tmux buffer to local clipboard
-    cpb() { ssh "$1" "tmux saveb -" | xclip -sel c }
-    # Copy from remote tmux buffer to local tmux clipboard
-    cpt() { ssh "$1" "tmux saveb -" | tmux loadb - }
-}
 zc() {
     for f in "${ZDOTDIR}"/*.zsh; do
         zcompare "$f"
