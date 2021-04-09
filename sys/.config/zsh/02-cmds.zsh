@@ -130,6 +130,11 @@ _exists tmux && {
     # Copy from remote tmux buffer to local tmux clipboard
     cpt() { ssh "$1" "tmux saveb -" | tmux loadb - }
 }
+zc() {
+    for f in "${ZDOTDIR}"/*.zsh; do
+        zcompare "$f"
+    done
+}
 _exists broot && \
 br() {
     f=$(mktemp)
