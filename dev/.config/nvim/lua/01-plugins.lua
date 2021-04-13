@@ -69,11 +69,7 @@ return require('packer').startup(function()
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
-    use {'delphinus/vim-auto-cursorline'} -- show cursorline when truly need it
-    use {'mhinz/vim-sayonara',
-          cmd = {'Sayonara'},
-          opt=true
-    } -- smart buffer delete
+    use {'mhinz/vim-sayonara', cmd = {'Sayonara'}, opt=true} -- smart buffer delete
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
