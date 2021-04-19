@@ -60,8 +60,6 @@ return require('packer').startup(function()
     use {'simnalamburt/vim-mundo', cmd = {'MundoToggle'}, opt=true} -- undo tree
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
     use {'vimwiki/vimwiki',
-          ft = {'wiki'},
-          opt=true,
           config = function() require'plugcfg/vimwiki' end
     } -- personal wiki for vim
     use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
@@ -89,6 +87,7 @@ return require('packer').startup(function()
          config = function() require'plugcfg/ale' end
     } -- async linter with lsp support
     use {'liuchengxu/vista.vim',
+          cmd = {'Vista'},
           config = function() require'plugcfg/vista' end,
           opt = true
     } -- lsp-symbols tag searcher
@@ -98,14 +97,12 @@ return require('packer').startup(function()
     use {'theHamsta/nvim-dap-virtual-text', opt = true} -- virtual debugging text support
     use {'plasticboy/vim-markdown', opt = true} -- markdown vim mode
     use {'tpope/vim-dispatch', opt = true,
-        cmd = {
-          'Dispatch', 'Make', 'Focus', 'Start'
-        },
+        cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
         config = function() require'plugcfg/vim-dispatch' end
     } -- provide async build
     use {'radenling/vim-dispatch-neovim'} -- neovim support for vim-dispatch
-    use {'tpope/vim-apathy', opt = true} -- better include jump
-    use {'metakirby5/codi.vim', opt = true} -- nice scratchpad for hackers
+    use {'tpope/vim-apathy'} -- better include jump
+    use {'metakirby5/codi.vim', cmd = {'Codi', 'CodiUpdate'}, opt = true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
     use {'mattn/vim-sonictemplate', cmd = 'Template'} -- snippets alternative
     use {'lewis6991/gitsigns.nvim',
@@ -150,7 +147,7 @@ return require('packer').startup(function()
     use {'neg-serg/neg'} -- my colorscheme
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
-    use {'tridactyl/vim-tridactyl', ft = 'tridactyl', opt = true} -- tridactyl support
+    use {'tridactyl/vim-tridactyl'} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons',
           config = function() require'plugcfg/nvim-web-devicons' end
     } -- fancy webicons
@@ -162,8 +159,8 @@ return require('packer').startup(function()
         ft = 'ansible',
         config = function() require'plugcfg/ansible' end
     } -- ansible support
-    use {'saltstack/salt-vim', opt = true, ft = 'salt'} -- salt sls support
-    use {'rodjek/vim-puppet', opt = true, ft = 'puppet'} -- puppet support
+    use {'saltstack/salt-vim'} -- salt sls support
+    use {'rodjek/vim-puppet', opt = true} -- puppet support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
