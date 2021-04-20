@@ -1,5 +1,5 @@
 #!/bin/dash
-$XDG_CONFIG_HOME/i3/bin/send circle next nwim
+$XDG_CONFIG_HOME/negi3wm/bin/send circle next nwim
 while ! xdotool search --sync --all --classname '^nwim$' 2>&1 > /dev/null; do
     :;
 done
