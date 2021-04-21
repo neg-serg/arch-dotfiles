@@ -59,11 +59,8 @@ return require('packer').startup(function()
     } -- interactive window resize
     use {'simnalamburt/vim-mundo', cmd = {'MundoToggle'}, opt=true} -- undo tree
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
-    use {'vimwiki/vimwiki',
-          config = function() require'plugcfg/vimwiki' end
-    } -- personal wiki for vim
+    use {'vimwiki/vimwiki'} -- personal wiki for vim
     use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
-    use {'npxbr/glow.nvim'} -- glow preview
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
