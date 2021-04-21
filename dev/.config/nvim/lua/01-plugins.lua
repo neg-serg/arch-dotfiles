@@ -39,7 +39,7 @@ return require('packer').startup(function()
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
     use {'ojroques/nvim-bufdel'} -- better buffer delete
-    use {'mg979/vim-visual-multi'} -- visual multiline
+    use {'mhinz/vim-sayonara', cmd = {'Sayonara'}, opt=true} -- smart buffer delete
     use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
     use {'reedes/vim-pencil',
           opt=true,
@@ -60,7 +60,6 @@ return require('packer').startup(function()
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
-    use {'mhinz/vim-sayonara', cmd = {'Sayonara'}, opt=true} -- smart buffer delete
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
@@ -71,22 +70,15 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'neoclide/coc.nvim',
-          config = function() require'plugcfg/coc' end
-    } -- lsp autocomplete
-    -- branch': 'master', 'do': 'yarn install --frozen-lockfile'
+    use {'neoclide/coc.nvim', config = function() require'plugcfg/coc' end } -- lsp autocomplete
     use {'antoinemadec/coc-fzf'} -- coc fzf support
-    use {'dense-analysis/ale',
-         config = function() require'plugcfg/ale' end
-    } -- async linter with lsp support
+    use {'dense-analysis/ale', config = function() require'plugcfg/ale' end } -- async linter with lsp support
     use {'liuchengxu/vista.vim',
           cmd = {'Vista'},
           config = function() require'plugcfg/vista' end,
           opt = true
     } -- lsp-symbols tag searcher
-    use {'mfussenegger/nvim-dap', opt = true,
-          config = function() require'plugcfg/dap' end
-    } -- neovim debugger protocol support
+    use {'mfussenegger/nvim-dap', opt = true, config = function() require'plugcfg/dap' end } -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt = true} -- virtual debugging text support
     use {'plasticboy/vim-markdown', opt = true} -- markdown vim mode
     use {'tpope/vim-dispatch', opt = true,
@@ -105,12 +97,8 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'andymass/vim-matchup',
-          config = function() require'plugcfg/vim-matchup' end
-    } -- generic matcher
-    use {'junegunn/vim-easy-align',
-          config = function() require'plugcfg/easyalign' end
-    } -- use easy-align, instead of tabular
+    use {'andymass/vim-matchup', config = function() require'plugcfg/vim-matchup' end } -- generic matcher
+    use {'junegunn/vim-easy-align', config = function() require'plugcfg/easyalign' end } -- use easy-align, instead of tabular
     use {'svermeulen/vim-NotableFt'} -- better ft
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
     use {'tpope/vim-repeat'} -- dot for surround
@@ -123,16 +111,10 @@ return require('packer').startup(function()
       config = function() require'plugcfg/fzf' end
     }  -- fzf binary
     use {'junegunn/fzf.vim'} -- fzf vim bindings
-    use {'pbogut/fzf-mru.vim',
-      config = function() require'plugcfg/fzfmru' end
-    } -- fzf mru source
+    use {'pbogut/fzf-mru.vim', config = function() require'plugcfg/fzfmru' end } -- fzf mru source
     use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
-    use {'eugen0329/vim-esearch',
-      config = function() require'plugcfg/esearch' end
-    } -- the best of the best way to search
-    use {'haya14busa/vim-asterisk',
-          config = function() require'plugcfg/vim-asterisk' end
-    } -- smartcase star
+    use {'eugen0329/vim-esearch', config = function() require'plugcfg/esearch' end } -- the best of the best way to search
+    use {'haya14busa/vim-asterisk', config = function() require'plugcfg/vim-asterisk' end } -- smartcase star
     use {'brooth/far.vim'} -- better find and replace
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
@@ -141,9 +123,7 @@ return require('packer').startup(function()
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
     use {'tridactyl/vim-tridactyl'} -- tridactyl support
-    use {'kyazdani42/nvim-web-devicons',
-          config = function() require'plugcfg/nvim-web-devicons' end
-    } -- fancy webicons
+    use {'kyazdani42/nvim-web-devicons', config = function() require'plugcfg/nvim-web-devicons' end } -- fancy webicons
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
