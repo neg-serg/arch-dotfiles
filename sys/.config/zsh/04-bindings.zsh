@@ -7,17 +7,16 @@ autoload down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
+bindkey "^p" up-line-or-beginning-search
+bindkey "^n" down-line-or-beginning-search
 bindkey " " magic-abbrev-expand
-bindkey "^x " no-magic-abbrev-expand
 bindkey . rationalise-dot
-bindkey "^XD" describe-key-briefly
-bindkey "^Z" fg-widget
-bindkey '^j' fasd-complete
+bindkey "^xD" describe-key-briefly
+bindkey "^z" fg-widget
+bindkey '^J' fasd-complete
 bindkey '^@' fasd-complete
-bindkey "^I" expand-or-complete-with-dots
-bindkey '^M' special-accept-line
+bindkey "^i" expand-or-complete-with-dots
+bindkey '^m' special-accept-line
 bindkey " "  magic-space
 bindkey ",." zleiab
 bindkey . rationalise-dot
