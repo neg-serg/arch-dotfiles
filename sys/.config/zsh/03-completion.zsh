@@ -56,8 +56,7 @@ zstyle ':completion:*:default' \
     zstyle ':completion:*:warnings' \
     format \
     "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
-zstyle ':completion:*:default' list-colors ${${(s.:.)LS_COLORS}%ec=*}
-zstyle ':completion:*' list-colors "ma=48;5;7;38;5;16;1"
+zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS%ec=*} "ma=07;01;38;5;0;48;5;25"
 zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;75'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
 # highlight the original input.
