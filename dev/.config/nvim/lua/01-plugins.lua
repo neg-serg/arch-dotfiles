@@ -27,7 +27,6 @@ return require('packer').startup(function()
     } -- vim arg wrapper
     use {'jamessan/vim-gnupg', ft = {'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
-    use {'kristijanhusak/vim-packager', opt=true}
     use {'neg-serg/lusty',
           config = function()
             vim.g.LustyJugglerDefaultMappings = 0
@@ -48,9 +47,6 @@ return require('packer').startup(function()
             'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'
           }
     } -- better text support
-    use {'rhysd/vim-grammarous', opt=true,
-          cmd = { 'GrammarousCheck' }
-    } -- check with grammarous
     use {'reedes/vim-wordy', opt=true} -- style check for english
     use {'romgrk/winteract.vim',
           cmd = {'InteractiveWindow'},
@@ -157,7 +153,6 @@ return require('packer').startup(function()
         config = function() require'plugcfg/ansible' end
     } -- ansible support
     use {'saltstack/salt-vim'} -- salt sls support
-    use {'rodjek/vim-puppet', opt = true} -- puppet support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
