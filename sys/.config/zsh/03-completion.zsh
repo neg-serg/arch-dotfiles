@@ -109,3 +109,19 @@ zle -N forward-word-match
 # for backward-kill, all but / are word chars (ie, delete word up to last directory)
 zstyle ':zle:backward-kill-word*' word-style standard
 zstyle ':zle:*kill*' word-chars '*?_-.[]~=&;!#$%^(){}<>'
+
+zshcache_time="$(date +%s%N)"
+
+autoload -Uz add-zsh-hook
+
+rehash_precmd() {
+  if [[ -a /var/cache/zsh/pacman ]]; then
+    local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
+    if (( zshcache_time < paccache_time )); then
+      rehash
+      zshcache_time="$paccache_time"
+    fi
+  fi
+}
+
+add-zsh-hook -Uz precmd rehash_precmd
