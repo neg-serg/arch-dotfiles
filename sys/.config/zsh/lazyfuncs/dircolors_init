@@ -1,0 +1,2 @@
+[[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
+eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")

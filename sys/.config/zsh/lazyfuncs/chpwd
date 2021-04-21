@@ -1,0 +1,3 @@
+[[ -x =fasd ]] && {
+    [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
+}

@@ -31,7 +31,6 @@ setopt rm_star_wait # most Massively Useful Option ever! protects you from "you 
 setopt pushd_silent # do not print directory stack
 setopt short_loops # short loops support
 setopt correct # use autocorrection
-
 setopt append_history # this is default, but set for share_history
 setopt extended_history # save each command's beginning timestamp and the duration to the history file
 setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
@@ -50,17 +49,14 @@ setopt hist_reduce_blanks # Don't store blank lines in the history
 
 watch=(notme root) # watch for everyone but me and root
 typeset -U path cdpath fpath manpath # automatically remove duplicates from these arrays
-
 typeset -gx PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin:/opt/cuda/bin
 typeset -gx EDITOR="nvim"
 typeset -gx VISUAL="${EDITOR}"
 typeset -gx PAGER="nvimpager"
 typeset -gx MANPAGER="nvim +Man!"
-
 typeset -gx TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 typeset -gx WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 typeset -gx LS_COLORS
-
 typeset -gx HISTFILE=${ZDOTDIR}/zsh_history
 typeset -gx SAVEHIST=10000000
 typeset -gx HISTSIZE=$(( $SAVEHIST * 1.10 ))
@@ -86,6 +82,7 @@ zmodload -i zsh/complist
 autoload -Uz history-search-end
 autoload -Uz split-shell-arguments
 autoload -Uz lookupinit
+autoload -Uz dircolors_init
 
 fasd_init() {
     if [[ -x =fasd ]]; then
@@ -124,76 +121,10 @@ fasd_init() {
     fi
 }
 
-dircolors_init() {
-    [[ -f "${XDG_CONFIG_HOME}/dircolors/dircolors" ]] && \
-    eval $(dircolors "${XDG_CONFIG_HOME}/dircolors/dircolors")
-}
-
-chpwd() {
-    [[ -x =fasd ]] && {
-        [[ "${PWD}" -ef "${HOME}" ]] || fasd -A "${PWD}"
-    }
-}
-
-# Function to determine the need of a zcompile. If the .zwc file
-# does not exist, or the base file is newer, we need to compile.
-# These jobs are asynchronous, and will not impact the interactive shell
-zcompare() {
-    if [[ -s ${1} && ( ! -s ${1}.zwc || ${1} -nt ${1}.zwc) ]]; then
-      zcompile ${1}
-    fi
-}
-
-# Find history events by search pattern and list them by date.
-h() {
-    emulate -L zsh
-    local usage help ident format_l format_s first_char remain first last
-    usage='USAGE: whatwhen [options] <searchstring> <search range>'
-    #  help='Use' \`'whatwhen -h'\'' for further explanations.' # no idea why this doesn't work --obreitwi, 21-06-10 17:37:19
-    ident=${(l,${#${:-Usage: }},, ,)}
-    format_l="${ident}%s\t\t\t%s\n"
-    format_s="${format_l//(\\t)##/\\t}"
-    # Make the first char of the word to search for case
-    # insensitive; e.g. [aA]
-    first_char=[${(L)1[1]}${(U)1[1]}]
-    remain=${1[2,-1]}
-    # Default search range is `-1000'.
-    first=${2:-\-1000}
-    # Optional, just used for `<first> <last>' given.
-    last=$3
-    case $1 in
-        ("")
-            printf '%s\n\n' 'ERROR: No search string specified. Aborting.'
-            printf '%s\n%s\n\n' ${usage} ${help} && return 1
-        ;;
-        (-h)
-            printf '%s\n\n' ${usage}
-            print 'OPTIONS:'
-            printf $format_l '-h' 'show help text'
-            print '\f'
-            print 'SEARCH RANGE:'
-            printf $format_l "'0'" 'the whole history,'
-            printf $format_l '-<n>' 'offset to the current history number; (default: -100)'
-            printf $format_s '<[-]first> [<last>]' 'just searching within a give range'
-            printf '\n%s\n' 'EXAMPLES:'
-            printf ${format_l/(\\t)/} 'whatwhen grml' '# Range is set to -1000 by default.'
-            printf $format_l 'whatwhen zsh -250'
-            printf $format_l 'whatwhen foo 1 99'
-        ;;
-        (\?)
-            printf '%s\n%s\n\n' ${usage} ${help} && return 1
-        ;;
-        (*)
-            # -l list results on stout rather than invoking $EDITOR.
-            # -i Print dates as in YYYY-MM-DD.
-            # -m Search for a - quoted - pattern within the history.
-            fc -li -m "*${first_char}${remain}*" $first $last
-        ;;
-    esac
-}
-
+autoload -Uz chpwd
+autoload -Uz zcompare
+autoload -Uz h
 zle_highlight=(region:bg=228)
-
 zsh-defer _zpcompinit_custom
 zsh-defer fasd_init
 zsh-defer dircolors_init
