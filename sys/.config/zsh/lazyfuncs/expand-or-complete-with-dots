@@ -1,0 +1,3 @@
+echo -n "\e[36m··\e[0m"
+zle expand-or-complete
+zle redisplay

@@ -14,6 +14,7 @@ autoload -Uz _zinit
 typeset -gx P9K_SSH=0
 fpath=(
     ${HOME}/.zinit/completions
+    ${ZDOTDIR}/lazyfuncs
     /usr/share/zsh/site-functions
     /usr/share/zsh/functions/{Misc,Zle,Completion}
     /usr/share/zsh/functions/Completion/*
@@ -27,10 +28,10 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf \
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
-zsh-defer source "${ZDOTDIR}/02-zle-cmds.zsh"
+source "${ZDOTDIR}/02-zle-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
-zsh-defer source "${ZDOTDIR}/04-bindings.zsh"
+source "${ZDOTDIR}/04-bindings.zsh"
 zsh-defer source /usr/share/fzf/completion.zsh
 zsh-defer source /usr/share/fzf/key-bindings.zsh
-zsh-defer source "${ZDOTDIR}/06-neg-dirs.zsh"
+source "${ZDOTDIR}/06-neg-dirs.zsh"
 zsh-defer source "${ZDOTDIR}/16-todoist.zsh"

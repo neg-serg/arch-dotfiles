@@ -1,0 +1,8 @@
+local line=$BUFFER
+if [[ $line == "../" || $line == ".." ]]; then
+    cd "$line"
+    redraw-prompt
+    BUFFER=
+else
+    zle accept-line
+fi

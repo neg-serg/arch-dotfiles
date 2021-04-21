@@ -124,29 +124,6 @@ _exists git && {
     alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
 }
 _exists fzf && bindings() { bindkey -L | fzf }
-zc() {
-    for f in "${ZDOTDIR}"/*.zsh; do
-        zcompare "$f"
-    done
-}
-_exists broot && \
-br() {
-    f=$(mktemp)
-    (
-        set +e
-        broot --outcmd "$f" "$@"
-        code=$?
-        if [ "$code" != 0 ]; then
-            rm -f "$f"
-            exit "$code"
-        fi
-    )
-    code=$?
-    if [ "$code" != 0 ]; then
-        return "$code"
-    fi
-    d=$(<"$f")
-    rm -f "$f"
-    eval "$d"
-}
+_exists broot && autoload br
+autoload zc
 unfunction _exists

@@ -1,0 +1,8 @@
+stty icanon echo -inlcr < /dev/tty
+stty lnext '^V' quit '^\' susp '^Z' < /dev/tty
+zle reset-prompt
+if jobs %- >/dev/null 2>&1; then
+    fg %-
+else
+    fg
+fi

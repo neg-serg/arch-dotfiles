@@ -1,0 +1,9 @@
+# just type '...' to get '../..'
+local MATCH
+if [[ $LBUFFER =~ '(^|/| |  |'$'\n''|\||;|&)\.\.$' ]]; then
+    LBUFFER+=/
+    zle self-insert
+    zle self-insert
+else
+    zle self-insert
+fi

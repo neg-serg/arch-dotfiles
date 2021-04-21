@@ -1,0 +1,3 @@
+for f in "${ZDOTDIR}"/*.zsh; do
+    zcompare "$f"
+done
