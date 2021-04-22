@@ -43,6 +43,7 @@ _exists rg && {
 }
 _exists bpython && alias python='bpython'
 _exists cdu && alias -g sp='cdu -idh -s -r -c ":"'
+_exists dust && alias -g sp='dust -r'
 _exists lfs && alias -g df='lfs'
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
