@@ -47,13 +47,16 @@ setopt hist_find_no_dups # When searching in the history do not show dups multip
 setopt hist_no_store # Don't add the "history" command to the history when it's called
 setopt hist_reduce_blanks # Don't store blank lines in the history
 
+_exists() { (( $+commands[$1] )) }
 watch=(notme root) # watch for everyone but me and root
 typeset -U path cdpath fpath manpath # automatically remove duplicates from these arrays
 typeset -gx PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin:/opt/cuda/bin
-typeset -gx EDITOR="nvim"
-typeset -gx VISUAL="${EDITOR}"
-typeset -gx PAGER="nvimpager"
-typeset -gx MANPAGER="nvim +Man!"
+_exists nvim && {
+    typeset -gx EDITOR="nvim"
+    typeset -gx VISUAL="${EDITOR}"
+    typeset -gx MANPAGER="nvim +Man!"
+}
+typeset -gx PAGER="slit"
 typeset -gx TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 typeset -gx WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 typeset -gx LS_COLORS
@@ -61,6 +64,7 @@ typeset -gx HISTFILE=${ZDOTDIR}/zsh_history
 typeset -gx SAVEHIST=10000000
 typeset -gx HISTSIZE=$(( $SAVEHIST * 1.10 ))
 typeset -gx HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
+unfunction _exists
 
 _zpcompinit_custom() {
     setopt extendedglob local_options
