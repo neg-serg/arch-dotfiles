@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+
 use App::Cope;
 
 my %types = ( U => 'yellow bold', _else => 'green bold' );

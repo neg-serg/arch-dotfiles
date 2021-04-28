@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 . $ENV
 find "$XDG_PICTURES_DIR" -maxdepth 3 \
     -not -path "$XDG_PICTURES_DIR/.git/*" \

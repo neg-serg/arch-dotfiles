@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 # Original source taken from: https://github.com/Marco98/rofi-lutris
 import json
 import os

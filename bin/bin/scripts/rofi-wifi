@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env/dash
+
 bssid="$(nmcli device wifi list|sed '1d'|cut -b9-|rofi -dmenu -theme clip -p wifi|cut -d' ' -f1)"
 password="$(echo "" | rofi -dmenu -password -p 'Enter passwd: ')"
 nmcli device wifi connect "$bssid" password "$password"

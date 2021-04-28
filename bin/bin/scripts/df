@@ -1,16 +1,17 @@
 #!/usr/bin/env perl
+
 use App::Cope;
 use App::Cope::Extra qw[percent_b];
 
 my @headers = (
-  'Filesystem', 
+  'Filesystem',
   '1K-blocks',
   '1M-blocks',
   'Used',
-  qr/Avail(?:able)?/, 
-  'Use%', 
+  qr/Avail(?:able)?/,
+  'Use%',
   'Mounted on',
-  'Size', 
+  'Size',
   'Type',
   'Inodes',
   'IUsed',

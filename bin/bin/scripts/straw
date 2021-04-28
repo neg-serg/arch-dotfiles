@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env dash
+
 if [ "$1" = 'HD' ]; then
     figlet -c Youtube Viewer|lolcat -h 0.4 -v 0.1; straw-viewer --video-player=mpv --colorful --hd &
     shift

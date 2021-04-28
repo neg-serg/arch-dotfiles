@@ -1,4 +1,5 @@
-#!/usr/sbin/python
+#!/usr/bin/env python3
+
 import sys
 from PIL import Image
 from imagehash import dhash

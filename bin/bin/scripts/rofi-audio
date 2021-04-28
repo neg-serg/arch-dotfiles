@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env dash
+
 mpd_menu='title_copy artist_copy album_copy pulseaudio_output bit_perfect_output'
 blue="<span weight='bold' color='#395573'>"
 norm="<span weight='bold' color='#6C7E96'>"

@@ -1,4 +1,5 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+
 """ NetworkManager command line rofi script.
 To add new connections or enable/disable networking requires policykit
 permissions setup per:

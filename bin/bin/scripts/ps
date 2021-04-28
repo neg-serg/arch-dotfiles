@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+
 use App::Cope qw[run real_path colourise mark line];
 use App::Cope::Extra qw[user nonzero];
 use Term::ANSIColor;
