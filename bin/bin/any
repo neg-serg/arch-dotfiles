@@ -1,2 +1,3 @@
-#!/bin/dash
+#!/usr/bin/env dash
+
 [ ! -z "$1" ] && ps uwwwp $(pgrep -f "$@")

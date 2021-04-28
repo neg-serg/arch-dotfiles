@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 read_command() {
     rofi_cmd="rofi -dmenu -matching glob -dmenu -p ❯>"

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 reset_usb3() {
     # this script resets all USB3 devices, seems to be necessary sometimes after

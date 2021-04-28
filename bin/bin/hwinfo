@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 for i in $(find /sys/devices -name "bMaxPower")
 do

@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env dash
+
 find "$@" \
     -type f \
     -printf '%C@ %p\n' \

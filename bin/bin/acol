@@ -1,4 +1,5 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+
 in=0
 unbuffer=0
 confs=("$HOME/bin/scripts/acol/")

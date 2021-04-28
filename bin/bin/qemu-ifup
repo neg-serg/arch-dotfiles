@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 setup_nat() {
     echo 1 > /proc/sys/net/ipv4/ip_forward

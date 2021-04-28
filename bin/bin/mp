@@ -1,4 +1,5 @@
-#!/bin/dash
+#!/usr/bin/env dash
+
 main() {
     for arg in "$@"; do
         if [ -d "$arg" ]; then
