@@ -11,6 +11,7 @@
     whitespace = trailing-space,cr-at-eol
     excludesfile = /etc/gitignore
     editor = nvr --remote-wait-silent
+    untrackedCache = true
 [color]
     diff = 1
     pager = 0
@@ -77,6 +78,8 @@
     default = simple
 [pull]
     rebase = true
+[rebase]
+    autoStash = true
 [url "git@github.com:"]
     pushInsteadOf = "https://github.com/"
     pushInsteadOf = "git://github.com/"
