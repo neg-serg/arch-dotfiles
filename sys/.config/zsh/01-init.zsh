@@ -3,34 +3,33 @@ setopt auto_cd # if a command is issued that can't be executed as a normal comma
 setopt auto_pushd # make cd push the old directory onto the directory stack.
 setopt c_bases  # print $(( [#16] 0xff ))
 setopt completeinword # not just at the end
+setopt correct # use autocorrection
 setopt extendedglob # enable extended globbing
+setopt glob_dots  # should match dotfiles. ever.
 setopt glob_star_short # */** -> **
 setopt hash_list_all  # whenever a command completion is attempted, make sure the entire command path is hashed first.
 setopt interactivecomments # allow interactive comments
 setopt interactivecomments # allow interactive comments after '#' in command line
 setopt longlistjobs # display PID when suspending processes as well
-setopt magicequalsubst # ~ substitution and tab completion after a = (for --x=filename args)
-setopt nobeep # get rid of beeps
+setopt magic_equal_subst # ~ substitution and tab completion after a = (for --x=filename args)
+setopt multios # support multiple redirections
+setopt no_beep # get rid of beeps
 setopt no_bg_nice # don't nice background jobs
-setopt noflowcontrol # no c-s/c-q output freezing
-setopt noglobdots  # * shouldn't match dotfiles. ever.
-setopt nohup  # don't send SIGHUP to background processes when the shell exits.
+setopt no_flowcontrol # no c-s/c-q output freezing
+setopt no_hup  # don't send SIGHUP to background processes when the shell exits.
 setopt no_monitor # do not notify about bg task ending
-setopt nonomatch # try to avoid the 'zsh: no matches found...'
+setopt no_nomatch # try to avoid the 'zsh: no matches found...'
 setopt no_notify # do not notify about bg task ending
-setopt noshwordsplit  # use zsh style word splitting
+setopt no_shwordsplit  # use zsh style word splitting
 setopt notify  # report the status of backgrounds jobs immediately
-setopt transient_rprompt # only show the rprompt on the current prompt
 setopt prompt_subst # set the prompt
 setopt pushd_ignore_dups # don't push the same dir twice.
 setopt pushdminus # pushd -N goes to Nth dir in stack
-setopt pushdsilent # do not print dirstack after each cd/pushd
-setopt pushdtohome # pushd with no args pushes to home
-setopt multios # support multiple redirections
-setopt rm_star_wait # most Massively Useful Option ever! protects you from "you shoot yourself in the foot".
 setopt pushd_silent # do not print directory stack
+setopt pushdtohome # pushd with no args pushes to home
+setopt rm_star_wait # most Massively Useful Option ever! protects you from "you shoot yourself in the foot".
 setopt short_loops # short loops support
-setopt correct # use autocorrection
+setopt transient_rprompt # only show the rprompt on the current prompt
 setopt append_history # this is default, but set for share_history
 setopt extended_history # save each command's beginning timestamp and the duration to the history file
 setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
