@@ -93,8 +93,6 @@ local noglob_list=(
     clivescan youtube-dl youtube-viewer translate links links2 lynx you-get
     bower pip task
 )
-autoload zmv
-alias zcp='zmv -C' zln='zmv -L'
 local dev_null_list=(tig)
 for i in ${sudo_list[@]}; alias "${i}=sudo ${i}"
 for i in ${noglob_list[@]}; alias "${i}=noglob ${i}"
