@@ -20,3 +20,5 @@ autoload -Uz special-accept-line
 zle -N special-accept-line
 autoload -Uz expand-or-complete-with-dots
 zle -N expand-or-complete-with-dots
+_nothing() {}
+zle -N _nothing

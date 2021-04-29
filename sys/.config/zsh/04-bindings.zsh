@@ -26,3 +26,7 @@ bindkey -M menuselect '^o' accept-and-infer-next-history
 bindkey -M menuselect 'i' accept-and-menu-complete
 bindkey -M menuselect 'o' accept-and-infer-next-history
 bindkey -M menuselect '\e^M' accept-and-menu-complete
+bindkey '^[[1;3D' _nothing
+bindkey '^[[1;3C' _nothing
+bindkey '^[[1;5A' _nothing
+bindkey '^[[1;5B' _nothing
