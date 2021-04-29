@@ -2,14 +2,14 @@ _exists() { (( $+commands[$1] )) }
 alias -g @r='~/bin/scripts/music-rename'
 alias qe='cd *(/om[1]D)'
 if _exists exa; then
-    alias la='exa --icons -a --group-directories-first'
-    alias ll='exa --icons -al --group-directories-first'
-    alias ls='exa --icons --group-directories-first'
-    alias lr='exa -s modified --icons --group-directories-first'
+    alias -g la='exa --icons -a --group-directories-first'
+    alias -g ll='exa --icons -al --group-directories-first'
+    alias -g ls='exa --icons --group-directories-first'
+    alias -g lr='exa -s modified --icons --group-directories-first'
 else
-    alias ls='ls --color=auto'
+    alias -g ls='ls --color=auto'
 fi
-alias l='ls'
+alias -g l='ls'
 alias -g mv='mv -i'
 alias -g mk='mkdir -p'
 alias -g rd='rmdir'
@@ -41,20 +41,20 @@ _exists rg && {
     alias -g rg="rg ${rg_options}"
     alias -g zrg="rg ${rg_options} -z"
 }
-_exists bpython && alias python='bpython'
+_exists bpython && alias -g python='bpython'
 _exists cdu && alias -g sp='cdu -idh -s -r -c ":"'
 _exists dust && alias -g sp='dust -r'
 _exists lfs && alias -g df='lfs'
-_exists ip && alias ip='ip -c'
-_exists fd && alias fd='fd -H -u'
-_exists objdump && alias objdump='objdump -M intel -d'
+_exists ip && alias -g ip='ip -c'
+_exists fd && alias -g fd='fd -H -u'
+_exists objdump && alias -g objdump='objdump -M intel -d'
 _exists todoist && {
     alias t='todoist'
     alias ta='todoist add'
     alias tl='todoist list'
     alias ts='todoist show'
 }
-_exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
+_exists gdb && alias -g gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
 _exists nvim && {
     alias -g vim='nvim'
     alias -g v='~/bin/v'
