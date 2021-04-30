@@ -19,6 +19,7 @@ export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 export INPUTRC=${XDG_CONFIG_HOME}/inputrc
 export BROWSER="firefox"
 export PERLBREW_ROOT=${HOME}/.perl5
+export EXA_COLORS="da=00;38;5;250:uu=0:gu=0"
 export LS_COLORS GREP_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 export MPV_HOME="${HOME}/.config/mpv"
