@@ -2,10 +2,10 @@ _exists() { (( $+commands[$1] )) }
 alias -g @r='~/bin/scripts/music-rename'
 alias qe='cd *(/om[1]D)'
 if _exists exa; then
-    alias -g la='exa --icons -a --group-directories-first'
-    alias -g ll='exa --icons -al --group-directories-first'
-    alias -g ls='exa --icons --group-directories-first'
-    alias -g lr='exa -s modified --icons --group-directories-first'
+    alias -g ls='exa -ga --icons --group-directories-first --time-style=long-iso'
+    alias -g la='ls -a'
+    alias -g ll='ls -la'
+    alias -g lr='ls -s changed'
 else
     alias -g ls='ls --color=auto'
 fi
@@ -26,6 +26,7 @@ aliases[=]='noglob __calc_plugin'
 _exists bc && alias '?=bc -l <<<'
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias -g e='handlr open'
+_exists rsync && alias rsync='rsync -az --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
 _exists rg && {
     local rg_options='--max-columns=0 \
     --max-columns-preview \
