@@ -5,7 +5,8 @@ setopt c_bases  # print $(( [#16] 0xff ))
 setopt completeinword # not just at the end
 setopt correct # use autocorrection
 setopt extendedglob # enable extended globbing
-setopt glob_dots  # should match dotfiles. ever.
+setopt noglob_dots  # disable glob dots
+setopt rematch_pcre # use perl-like regexes
 setopt glob_star_short # */** -> **
 setopt hash_list_all  # whenever a command completion is attempted, make sure the entire command path is hashed first.
 setopt interactivecomments # allow interactive comments after '#' in command line
