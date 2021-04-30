@@ -26,7 +26,7 @@ aliases[=]='noglob __calc_plugin'
 _exists bc && alias '?=bc -l <<<'
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias -g e='handlr open'
-_exists rsync && alias rsync='rsync -az --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
+_exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
 _exists rg && {
     local rg_options='--max-columns=0 \
     --max-columns-preview \
