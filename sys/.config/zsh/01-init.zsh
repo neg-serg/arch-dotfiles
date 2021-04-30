@@ -8,7 +8,6 @@ setopt extendedglob # enable extended globbing
 setopt glob_dots  # should match dotfiles. ever.
 setopt glob_star_short # */** -> **
 setopt hash_list_all  # whenever a command completion is attempted, make sure the entire command path is hashed first.
-setopt interactivecomments # allow interactive comments
 setopt interactivecomments # allow interactive comments after '#' in command line
 setopt longlistjobs # display PID when suspending processes as well
 setopt magic_equal_subst # ~ substitution and tab completion after a = (for --x=filename args)
@@ -19,7 +18,6 @@ setopt no_flowcontrol # no c-s/c-q output freezing
 setopt no_hup  # don't send SIGHUP to background processes when the shell exits.
 setopt no_monitor # do not notify about bg task ending
 setopt no_nomatch # try to avoid the 'zsh: no matches found...'
-setopt no_notify # do not notify about bg task ending
 setopt no_shwordsplit  # use zsh style word splitting
 setopt notify  # report the status of backgrounds jobs immediately
 setopt prompt_subst # set the prompt
@@ -40,7 +38,7 @@ setopt histignorespace # remove command lines from the history list when the fir
 setopt hist_verify # don't execute, just expand history
 setopt inc_append_history # add comamnds as they are typed, don't wait until shell exit
 setopt share_history # import new commands from the history file also in other zsh-session
-unsetopt hist_beep # Don't beep when a widget tries to access an history entry which isn't there.
+setopt nohist_beep # Don't beep when a widget tries to access an history entry which isn't there.
 setopt hist_fcntl_lock # Use the OS's locking mechanism instead of ZSH's
 setopt hist_find_no_dups # When searching in the history do not show dups multiple times
 setopt hist_no_store # Don't add the "history" command to the history when it's called
