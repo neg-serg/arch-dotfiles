@@ -95,11 +95,11 @@ local noglob_list=(
     bower pip task
 )
 local dev_null_list=(tig)
-for i in ${sudo_list[@]}; alias "${i}=sudo ${i}"
-for i in ${noglob_list[@]}; alias "${i}=noglob ${i}"
-for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}"
-for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}"
-for i in ${dev_null_list[@]}; alias "${i}=${i} 2>/dev/null"
+for c in ${sudo_list[@]}; {_exists "$c" && alias "$c=sudo $c"}
+for c in ${noglob_list[@]}; {_exists "$c" && alias "$c=noglob $c"}
+for c in ${rlwrap_list[@]}; {_exists "$c" && alias "$c=rlwrap $c"}
+for c in ${nocorrect_list[@]}; {_exists "$c" && alias "$c=nocorrect $c"}
+for c in ${dev_null_list[@]}; {_exists "$c" && alias "$c=$c 2>/dev/null"}
 _exists systemctl && {
     sysctl_pref='systemctl'
     alias S='sudo systemctl stop'
