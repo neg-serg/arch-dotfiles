@@ -1,9 +1,13 @@
 set database sqlite
 
 unmap q
-unmap d 
+unmap d
 unmap <C-q>
 set font "Iosevka 17"
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
 
 map ; focus_inputbar ":"
 
