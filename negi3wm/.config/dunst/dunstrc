@@ -38,6 +38,7 @@
     stack_duplicates = true
     hide_duplicate_count = true
     ignore_dbusclose = true
+    always_run_script = true
 
 [urgency_low]
     background = "#010204"
