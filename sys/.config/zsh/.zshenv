@@ -33,8 +33,6 @@ typeset -gx AURDEST=$(realpath "${HOME}/src/1st_level/pacaur")
 typeset -gx GREP_COLOR='37;45'
 typeset -gx GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 typeset -gx BROWSER="firefox"
-typeset -gx SUDO_ASKPASS="/usr/bin/xaskpass"
-typeset -gx SSH_ASKPASS="/usr/bin/xaskpass"
 typeset -gx WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 typeset -gx KEYTIMEOUT=6
 typeset -gx ESCDELAY=1
