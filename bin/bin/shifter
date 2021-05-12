@@ -1,0 +1,87 @@
+#!/bin/bash
+# color temperature/brightness adjustment scripts (saves to file)
+# Go to the directory where the scripts are held.
+# NEWER VERSIONS USE redshift -PO {num}
+
+script_path='/home/jon/.config/awesome/scripts/'
+value_path='/home/jon/.config/awesome/tmp'
+
+#cd $script_path || exit
+
+#Check if RV exists, if it doesn't make it and give it X value.
+[[ -f $value_path/RV ]] || echo 6500 > $value_path/RV
+
+#Setting the local variable to file RV's value.
+num=$(<$value_path/RV)
+num2=$(<$value_path/BV)
+
+
+colder(){
+#Check if the number is under an arbitrary limit, and if so increment by X.
+if (( $num <= 6500 ))
+then
+	echo "$((num+=250))" > $value_path/RV
+	redshift -PO ${num}
+#	cat RV
+#	echo 'awesome.emit_signal("redshiftup", function() end)' | awesome-client
+#	dunstify -r 454 -u low "Colour Temperature :  $(<RV)"
+fi
+}
+
+
+warmer(){
+#Check if the number is under an arbitrary limit, and if so increment by X.
+if (( $num >= 1500 ))
+then
+	echo "$((num-=250))" > $value_path/RV
+	redshift -PO ${num}
+#	echo 'awesome.emit_signal("redshiftup", function() end)' | awesome-client
+#	cat RV
+#	dunstify -r 454 -u low "Colour Temperature :  $(<RV)"
+fi
+}
+
+#Check for ddcutil bus ID number
+# sudo ddcutil detect | grep bus | awk -F'-' {'print $2'}
+
+brighter(){
+if ! [ -f $value_path/BV ]
+then echo 100 > $value_path/BV
+fi
+if (( $num2 < 100 ))
+then echo "$((num2+=10))" > $value_path/BV
+sudo ddcutil setvcp --bus 1 10 $num2
+sudo ddcutil setvcp --bus 2 10 $num2
+sudo ddcutil setvcp --bus 3 10 $num2
+sudo ddcutil setvcp --bus 7 10 $num2
+	dunstify -r 454 -u low "Main Monitor Brightness :  $(<$value_path/BV)"
+fi
+}
+
+
+darker(){
+if ! [ -f BV ]
+then echo 100 > BV
+fi
+
+if (( $num2 > 0 ))
+then	echo "$((num2-=10))" > $value_path/BV
+sudo ddcutil setvcp --bus 1 10 $num2
+sudo ddcutil setvcp --bus 2 10 $num2
+sudo ddcutil setvcp --bus 3 10 $num2
+sudo ddcutil setvcp --bus 7 10 $num2
+	dunstify -r 454 -u low "Main Monitor Brightness :  $(<$value_path/BV)"
+fi
+}
+
+value(){
+	#echo $(< /home/jon/.local/bin/utilities/RV)
+	echo $(< $value_path/RV)
+}
+
+ddcvalue(){
+#	echo $(< /home/jon/.local/bin/utilities/BV)
+	echo $(< $value_path/BV)
+}
+
+"$@"
