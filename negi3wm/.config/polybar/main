@@ -5,7 +5,6 @@ include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
 [bar/main]
 modules-left = start time start-dark ws right start-br xkeyboard right start-br network right-end-top
 modules-right = left-end-top mpd end
-monitor = DP-2
 fixed-center = false
 bottom = true
 height = 48
