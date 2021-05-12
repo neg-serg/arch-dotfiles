@@ -153,3 +153,15 @@ augroup END
 " xnoremap Cy "+y
 "choice=$( rofi -dmenu -config /usr/share/rofi/themes/dmenu2.rasi -p "Search     :     ")
 
+" Plug 'PotatoesMaster/i3-vim-syntax'
+" Plug 'kovetskiy/sxhkd-vim'
+" " Disables automatic commenting on newline:
+" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" " Enable Goyo by default for mutt writting
+" " Goyo's width will be the line limit in mutt.
+" autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
+" autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo \| set bg=light
+" " Update binds when sxhkdrc is updated.
+" autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+" " Run xrdb whenever Xdefaults or Xresources are updated.
+" autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
