@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#might explicitly need html parser for perl on some machines
+
+search='results?search_query='
+entries=0
+
+input=$(rofi -dmenu -config /usr/share/rofi/themes/ytbarEntry.rasi -p "Youtube Search: " | sed 's/ /+/g')
+
+#adding escape
+if [ "$input" = "" ]; then
+	return
+else
+result=$(curl -s "https://www.youtube.com/$search$input" 2>/dev/null) <<< $result
+
+
+title=$(echo -e $(
+while IFS= read -r line
+  do
+    if [[ $line == *'title="'* && $line == *'href="'* && $line == *'data-sessionlink="'* && $line != *'u003'* && $line != *'title="__title__"'* && $line != *'href="//www.youtube.com/upload"'* ]];
+      then
+	line=$(echo $line | cut -f5 -d'>' | cut -f1 -d '<' |  sed '/^$/d' | perl -MHTML::Entities -pe 'decode_entities($_);')
+	if [[ $line != '' && $line != ' ' ]];
+	then
+	    entries=$((entries+1))
+	    echo -e "$line<RETURN>"
+        fi
+    fi
+done <<< "$result"
+) | sed 's/<RETURN>/\n/g' | sed 's/^[ ]//' | rofi -dmenu -config /usr/share/rofi/themes/ytbarResult.rasi -p "Youtube Results:  ")
+
+while IFS= read -r line
+  do
+    if [[ $line == *'title="'* && $line == *'href="'* && $line == *'data-sessionlink="'* && $line != *'u003'* && $line != *'title="__title__"'* && $line != *'href="//www.youtube.com/upload"'* ]];
+      then
+        bline=$line
+        line=$(echo $line | cut -f5 -d'>' | cut -f1 -d '<' |  sed '/^$/d' | perl -MHTML::Entities -pe 'decode_entities($_);')
+        if [[ $line != '' && $line != ' ' ]];
+          then
+            if [[ "$line" == "$title"  ]];
+	      then
+                link="https://www.youtube.com"
+                link+=$(echo $bline | cut -f4 -d'>' | cut -f2 -d'"' | cut -f1 -d '"')
+	    fi
+
+        fi
+    fi
+done <<< "$result"
+echo $link
+
+
+#adding escape sequence just incase
+	if [ "$link" != "" ]; then
+		dunstify -r 455 -u normal "Loading Video, please be patient, it may take some time: " "$title";
+	#saving link to clipboard for copy/paste
+	echo "$title" | xsel -ib
+	else
+		return
+	fi
+
+echo "$link" | xsel -ib
+echo " ;$link ;$title"  >> $HOME/mpsytHistory
+mpv --ytdl-format=22 "$link" || mpv "$link"
+
+fi
+
+
