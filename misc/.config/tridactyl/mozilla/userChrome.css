@@ -12,6 +12,10 @@
 #PanelUI-button #PanelUI-menu-button .toolbarbutton-icon {
   opacity: 0.7 !important;
 }
+#PanelUI-webext-ublock0_raymondhill_net-browser-action-view {
+  max-width: 252px !important;
+  min-width: 252px !important;
+}
 #home-button,
 #sidebar-button {
   display: none;
