@@ -5,8 +5,6 @@ setopt c_bases  # print $(( [#16] 0xff ))
 setopt completeinword # not just at the end
 setopt correct # use autocorrection
 setopt extendedglob # enable extended globbing
-setopt noglob_dots  # disable glob dots
-setopt rematch_pcre # use perl-like regexes
 setopt glob_star_short # */** -> **
 setopt hash_list_all  # whenever a command completion is attempted, make sure the entire command path is hashed first.
 setopt interactivecomments # allow interactive comments after '#' in command line
@@ -16,16 +14,19 @@ setopt multios # support multiple redirections
 setopt no_beep # get rid of beeps
 setopt no_bg_nice # don't nice background jobs
 setopt no_flowcontrol # no c-s/c-q output freezing
+setopt noglob_dots  # disable glob dots
 setopt no_hup  # don't send SIGHUP to background processes when the shell exits.
 setopt no_monitor # do not notify about bg task ending
 setopt no_nomatch # try to avoid the 'zsh: no matches found...'
 setopt no_shwordsplit  # use zsh style word splitting
 setopt notify  # report the status of backgrounds jobs immediately
+setopt nullglob # delete the pattern from the argument list if no match
 setopt prompt_subst # set the prompt
 setopt pushd_ignore_dups # don't push the same dir twice.
 setopt pushdminus # pushd -N goes to Nth dir in stack
 setopt pushd_silent # do not print directory stack
 setopt pushdtohome # pushd with no args pushes to home
+setopt rematch_pcre # use perl-like regexes
 setopt rm_star_wait # most Massively Useful Option ever! protects you from "you shoot yourself in the foot".
 setopt short_loops # short loops support
 setopt transient_rprompt # only show the rprompt on the current prompt
