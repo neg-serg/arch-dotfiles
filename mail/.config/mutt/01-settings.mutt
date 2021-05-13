@@ -57,7 +57,7 @@ set menu_scroll                      # scroll in menus
 set tilde                            # show tildes like in vim
 unset markers                        # no ugly plus signs
 
-set sort=reverse-last-date-received  # like gmail
+set sort_aux=reverse-last-date-received  # like gmail
 set sort_re
 set uncollapse_jump                  # don't collapse on an unread message
 
