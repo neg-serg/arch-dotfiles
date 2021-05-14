@@ -16,6 +16,7 @@ alias -g rd='rmdir'
 alias grep='grep --color=auto'
 alias -g sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
+alias :q="exit"
 _exists yay && alias U='yay -Su --devel --noconfirm --timeupdate'
 _exists sudo && {alias sudo="sudo "; alias s='sudo '}
 _exists plocate && alias -g locate=plocate
