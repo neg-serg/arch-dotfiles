@@ -75,6 +75,240 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
 
+" fun! ka#terminal#toggle(...) abort
+"     let term_buf_nr = get(g:, 'term_buf_nr', 0)
+"     if !term_buf_nr
+"         let cwd = exists('a:1') ? expand('%:p:h') : getcwd()
+"         let g:term_buf_nr = term_start(&shell, {
+"                     \   'term_name': 'term',
+"                     \   'cwd': cwd
+"                     \ })
+"         augroup Term
+"             autocmd!
+"             autocmd BufDelete,BufWipeout <buffer>
+"                         \ unlet! g:term_buf_nr
+"         augroup END
+"     elseif bufexists(term_buf_nr)
+"         let term_win_nr = bufwinnr(term_buf_nr)
+"         silent execute term_win_nr isnot# -1
+"                     \ ? term_win_nr . 'hide'
+"                     \ : term_buf_nr . 'sbuffer'
+"     endif
+" endfun
+
+" fun! ka#terminal#kill() abort
+"     let term_buf_nr = get(g:, 'term_buf_nr', 0)
+"     if term_buf_nr && index(term_list(), term_buf_nr) isnot# -1
+"                 \ && bufloaded(term_buf_nr)
+"         silent execute term_buf_nr . 'bwipeout!'
+"         unlet! g:term_buf_nr
+"     endif
+" endfun
+
+" fun! ka#ui#echo(title, msg, ...) abort
+"     let title = !empty(a:title) ? a:title . ' ' : ''
+"     let higroup = get(a:, 1, 'Normal')
+"     let keep_in_history = get(a:, 2, 0)
+
+"     redraw
+"     execute 'echohl ' . higroup
+"     if keep_in_history
+"         echomsg title . a:msg
+"         echohl None
+"     else
+"         echon title
+"         echohl None
+"         echon a:msg
+"     endif
+" endfun
+
+" fun! ka#operator#sort(...) abort
+"     execute printf('%d,%d:!sort', line("'["), line("']"))
+" endfun
+
+" fun! ka#sys#open_here(type, ...) abort
+"     " type: (t)erminal, (f)ilemanager
+"     " a:1: Location (pwd by default)
+
+"     let cmd = {
+"                 \ 't': (g:is_unix ?
+"                 \   'exo-open --launch TerminalEmulator ' .
+"                 \       '--working-directory %s 2> /dev/null &' :
+"                 \   'start cmd /k cd %s'),
+"                 \ 'f': (g:is_unix ?
+"                 \   'xdg-open %s 2> /dev/null &' :
+"                 \   'start explorer %s')
+"                 \ }
+"     exe printf('silent !' . cmd[a:type],
+"                 \   (exists('a:1') ? shellescape(a:1) : getcwd())
+"                 \ )
+
+"     if !g:is_gui | redraw! | endif
+" endfun
+
+" fun! ka#sys#open_url() abort
+"     " Open the current URL
+"     " - If line begins with "Plug" open the github page
+"     " of the plugin.
+
+"     let cl = getline('.')
+"     let url = escape(matchstr(cl, '[a-z]*:\/\/\/\?[^ >,;()]*'), '#%')
+"     if cl =~# 'Plug'
+"         let pn = cl[match(cl, "'", 0, 1) + 1 :
+"                     \ match(cl, "'", 0, 2) - 1]
+"         let url = printf('https://github.com/%s', pn)
+"     endif
+"     if !empty(url)
+"         let url = substitute(url, "'", '', 'g')
+"         let wmctrl = executable('wmctrl') && v:windowid isnot# 0 ?
+"                     \ ' && wmctrl -ia ' . v:windowid : ''
+"         exe 'silent :!' . (g:is_unix ?
+"                     \   'x-www-browser ' . shellescape(url) :
+"                     \   ' start "' . shellescape(url)) .
+"                     \ wmctrl .
+"                     \ (g:is_unix ? ' 2> /dev/null &' : '')
+"         if !g:is_gui | redraw! | endif
+"     endif
+
+" endfun
+
+
+" fun! ka#tabline#get() abort " {{{1
+"     let hi_selected = '%#User4#'
+"     let hi_cwd = '%#TabLine#'
+
+"     let tabline = '%=' . hi_selected . '%( %{ka#tabline#buffer_info()} %)'
+"     let tabline .= hi_cwd . '%( %{ka#tabline#cwd()} %)'
+"     let tabline .= hi_selected . '%( %{ka#tabline#tab()} %)'
+"     return tabline
+" endfun
+" " 1}}}
+
+" fun! ka#tabline#buffer_info() abort " {{{1
+"     let current = bufnr('%')
+"     let buffers = filter(range(1, bufnr('$')), {i, v ->
+"                 \  buflisted(v) && getbufvar(v, '&filetype') isnot# 'qf'
+"                 \ })
+"     let index_current = index(buffers, current) + 1
+"     let modified = getbufvar(current, '&modified') ? '+' : ''
+"     let count_buffers = len(buffers)
+"     return index_current isnot# 0 && count_buffers ># 1
+"                 \ ? printf('%s/%s', index_current, count_buffers)
+"                 \ : ''
+" endfun
+" " 1}}}
+
+" fun! ka#tabline#cwd() abort " {{{1
+"     let cwd = fnamemodify(getcwd(), ':~')
+"     if cwd isnot# '~/'
+"         let cwd = len(cwd) <=# 15 ? pathshorten(cwd) : cwd
+"         return cwd
+"     else
+"         return ''
+"     endif
+" endfun
+" " 1}}}
+
+" fun! ka#tabline#tab() abort " {{{1
+"     let count_tabs = tabpagenr('$')
+"     return count_tabs isnot# 1
+"                 \ ? printf('T%d/%d', tabpagenr(), count_tabs)
+"                 \ : ''
+" endfun
+
+
+" fun! ka#utils#clever_gf(...) abort " {{{1
+"     " Expand 2 times in case we have $HOME or ~
+"     let cf = fnamemodify(expand(expand('<cfile>')), '%:p')
+"     if isdirectory(cf)
+"         return ''
+"     endif
+"     if exists('a:1')
+"         execute 'vsplit ' . cf
+"     else
+"         execute filereadable(cf)
+"                     \ ? 'normal! gf'
+"                     \ : 'edit ' . cf
+"     endif
+" endfun
+" " 1}}}
+
+" fun! ka#utils#go_to_tag_custom(...) abort " {{{1
+"     " tjump to a tag <cexpr>, and if it does not exist search for a tag
+"     " containing the expression with 'tselect /expr'
+
+"     let split = get(a:, 1, 0)
+"     try
+"         let exp = expand('<cexpr>')
+"         let cmd = split ? 'vertical stjump' : 'tjump'
+"         execute cmd . ' ' . exp
+"         normal! ztzv
+"     catch /^Vim\%((\a\+)\)\=:E426/
+"         " E426: no tag found
+"         try
+"             let cmd = split ? 'vertical stselect' : 'tselect'
+"             execute cmd . ' /' . exp
+"         catch /^Vim\%((\a\+)\)\=:\(E426\|E349\)/
+"             " E349: no identifier on cursor
+"             call ka#ui#echo('[E]', v:exception, 'Error')
+"         endtry
+"     endtry
+" endfun
+" " 1}}}
+
+" fun! ka#utils#random_id() abort " {{{1
+"     " Generate a random number (https://stackoverflow.com/a/12739441)
+"     return str2nr(matchstr(reltimestr(reltime()), '\v\.@<=\d+')[1:])
+" endfun
+" " 1}}}
+
+" fun! ka#utils#make_text_objs(to) abort " {{{1
+"     let to = a:to
+
+"     " For all ft
+"     for [k, m] in to._
+"         execute 'onoremap <silent> ' . k . ' :normal! ' . m . '<CR>'
+"         execute 'xnoremap <silent> ' . k . ' :<C-u>normal! ' . m . '<CR>'
+"     endfor
+"     call remove(to, '_')
+
+"     augroup MyTextObjects
+"         autocmd!
+"         for ft in keys(to)
+"             for [k, m] in to[ft]
+"                 execute 'autocmd FileType ' . ft .
+"                             \ ' onoremap <buffer> <silent> ' . k .
+"                             \ ' :normal! ' . m . '<CR>'
+"                 execute 'autocmd FileType ' . ft .
+"                             \ ' xnoremap <buffer> <silent> ' . k .
+"                             \ ' :<C-u>normal! ' . m . '<CR>'
+"             endfor
+"         endfor
+"     augroup END
+" endfun
+" " 1}}}
+
+" fun! ka#utils#auto_mkdir() abort " {{{1
+"     let dir = expand('<afile>:p:h')
+"     let file = expand('<afile>:t')
+"     if !isdirectory(dir)
+"         echohl Question
+"         let ans = input(dir . ' does not exist, create it [y/N]? ')
+"         echohl None
+"         if empty(ans) || ans =~? '^n$'
+"             echomsg 'no'
+"             return
+"         endif
+"         call mkdir(dir, 'p')
+"         silent execute 'saveas ' . dir . '/' . file
+"         " Then wipeout the alternative buffer if it have the same name.
+"         if bufname('#') is# dir . '/' . file
+"             silent execute 'bwipeout! ' . bufnr('#')
+"         endif
+"     endif
+" endfun
+" " 1}}}
+
 "HOW TO SEARCH AND REPLACE IN MULTIPLE FILES --
 "All we have to do is be in a file with the string to replace and do this
 ":grep \"string" -- if we arent in file with string to replace yet
