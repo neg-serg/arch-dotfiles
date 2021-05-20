@@ -82,12 +82,9 @@ _zpcompinit_custom() {
 }
 
 zmodload -i zsh/complist
-autoload -Uz history-search-end
+autoload -Uz -- history-search-end split-shell-arguments lookupinit dircolors_init
 autoload -Uz run-help ${^fpath}/run-help-*(N:t) || return
 (( $+aliases[run-help] )) && unalias run-help  # make run-help more useful
-autoload -Uz split-shell-arguments
-autoload -Uz lookupinit
-autoload -Uz dircolors_init
 
 fasd_init() {
     if [[ -x =fasd ]]; then
