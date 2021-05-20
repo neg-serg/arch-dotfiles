@@ -30,21 +30,28 @@ setopt rematch_pcre # use perl-like regexes
 setopt rm_star_wait # most Massively Useful Option ever! protects you from "you shoot yourself in the foot".
 setopt short_loops # short loops support
 setopt transient_rprompt # only show the rprompt on the current prompt
-setopt append_history # this is default, but set for share_history
-setopt extended_history # save each command's beginning timestamp and the duration to the history file
-setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
-setopt histignorealldups # remove command lines from the history list when the first character on the line is a space
-setopt hist_ignore_dups # ignore duplication command history list
-setopt hist_ignore_space # reduce whitespace in history
-setopt histignorespace # remove command lines from the history list when the first character on the line is a space
-setopt hist_verify # don't execute, just expand history
-setopt inc_append_history # add comamnds as they are typed, don't wait until shell exit
-setopt share_history # import new commands from the history file also in other zsh-session
-setopt nohist_beep # Don't beep when a widget tries to access an history entry which isn't there.
-setopt hist_fcntl_lock # Use the OS's locking mechanism instead of ZSH's
-setopt hist_find_no_dups # When searching in the history do not show dups multiple times
-setopt hist_no_store # Don't add the "history" command to the history when it's called
-setopt hist_reduce_blanks # Don't store blank lines in the history
+
+() {
+    local hist
+    for hist in ~/.zsh_history*~$HISTFILE(N); do
+        fc -RI $hist
+    done
+    setopt append_history # this is default, but set for share_history
+    setopt extended_history # save each command's beginning timestamp and the duration to the history file
+    setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
+    setopt histignorealldups # remove command lines from the history list when the first character on the line is a space
+    setopt hist_ignore_dups # ignore duplication command history list
+    setopt hist_ignore_space # reduce whitespace in history
+    setopt histignorespace # remove command lines from the history list when the first character on the line is a space
+    setopt hist_verify # don't execute, just expand history
+    setopt inc_append_history # add comamnds as they are typed, don't wait until shell exit
+    setopt share_history # import new commands from the history file also in other zsh-session
+    setopt nohist_beep # Don't beep when a widget tries to access an history entry which isn't there.
+    setopt hist_fcntl_lock # Use the OS's locking mechanism instead of ZSH's
+    setopt hist_find_no_dups # When searching in the history do not show dups multiple times
+    setopt hist_no_store # Don't add the "history" command to the history when it's called
+    setopt hist_reduce_blanks # Don't store blank lines in the history
+}
 
 _exists() { (( $+commands[$1] )) }
 watch=(notme root) # watch for everyone but me and root
