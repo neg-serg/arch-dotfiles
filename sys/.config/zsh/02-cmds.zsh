@@ -50,12 +50,6 @@ _exists lfs && alias -g df='lfs'
 _exists ip && alias -g ip='ip -c'
 _exists fd && alias -g fd='fd -H -u'
 _exists objdump && alias -g objdump='objdump -M intel -d'
-_exists todoist && {
-    alias t='todoist'
-    alias ta='todoist add'
-    alias tl='todoist list'
-    alias ts='todoist show'
-}
 _exists gdb && alias -g gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
 _exists nvim && {
     alias -g vim='nvim'
