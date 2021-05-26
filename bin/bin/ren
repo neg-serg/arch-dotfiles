@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 """ Script to rename files to my own pretty naming format.
-
 Usage:
     ./ren FILES ...
     ./ren -i FILES ...
@@ -13,7 +12,6 @@ Options:
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
 year :: 2020
-
 """
 
 import os
@@ -23,27 +21,28 @@ from docopt import docopt
 from scripts.pretty_printer import pretty_printer
 
 def fancy_name(filename, file=False):
-    l = filename
+    """ Some magic to return beautiful filename """
 
-    l = re.sub('[ _\t\.]+', "·", l)
-    l = re.sub('·*-·*', '-', l)
-    l = re.sub('\,[_-]', '-', l)
-    l = re.sub('[+·\.]*-[+·\.]*', '-', l)
-    l = re.sub('[+·\.]*:[+·\.]*', ':', l)
+    filename = re.sub(r'[ _\t\.]+', "·", filename)
+    filename = re.sub(r'·*-·*', '-', filename)
+    filename = re.sub(r'\,[_-]', '-', filename)
+    filename = re.sub(r'[+·\.]*-[+·\.]*', '-', filename)
+    filename = re.sub(r'[+·\.]*:[+·\.]*', ':', filename)
 
-    l = re.sub('[><\\\]+', "", l)
-    l = re.sub('\(+', "[", l)
-    l = re.sub('\)+', "]", l)
-    l = re.sub('[\'\`]', "=", l)
-    l = re.sub('^[-.()+·\.]+', "", l)
-    l = re.sub('[-.()+·\.]+$', "", l)
+    filename = re.sub(r'[><\\\]+', "", filename)
+    filename = re.sub(r'\(+', "[", filename)
+    filename = re.sub(r'\)+', "]", filename)
+    filename = re.sub(r'[\'\`]', "=", filename)
+    filename = re.sub(r'^[-.()+·\.]+', "", filename)
+    filename = re.sub(r'[-.()+·\.]+$', "", filename)
 
     if file:
-        return '.'.join(l.rsplit('·', 1))
+        return '.'.join(filename.rsplit('·', 1))
 
-    return l
+    return filename
 
 def main():
+    """ Pretty-printing autorenamer """
     cmd_args = docopt(__doc__, version='1.0')
 
     files =  cmd_args['FILES']
