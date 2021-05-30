@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-for i in $(find /sys/devices -name "bMaxPower")
-do
+for i in $(find /sys/devices -name "bMaxPower"); do
 	busdir=${i%/*}
 	busnum=$(<$busdir/busnum)
 	devnum=$(<$busdir/devnum)
