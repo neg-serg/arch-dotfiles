@@ -1,6 +1,8 @@
 #!/bin/dash
-$XDG_CONFIG_HOME/negi3wm/bin/send circle next nwim
-while ! xdotool search --sync --all --classname '^nwim$' 2>&1 > /dev/null; do
-    :;
-done
+if [ ! -z $DISPLAY ]; then
+    $XDG_CONFIG_HOME/negi3wm/bin/send circle next nwim
+    while ! xdotool search --sync --all --classname '^nwim$' 2>&1 > /dev/null; do
+        :;
+    done
+fi
 NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvr """$@"""
