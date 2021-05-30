@@ -1,4 +1,4 @@
-#!/usr/bin/bin/env dash
+#!/usr/bin/env dash
 
 bridge=virtnet0
 brctl delif "$bridge" "$1"
