@@ -1,32 +1,32 @@
 _exists() { (( $+commands[$1] )) }
-alias -g @r='~/bin/scripts/music-rename'
+alias @r='~/bin/scripts/music-rename'
 alias qe='cd *(/om[1]D)'
 if _exists exa; then
-    alias -g ls='exa -ga --icons --group-directories-first --time-style=long-iso'
-    alias -g la='ls -a'
-    alias -g ll='ls -la'
-    alias -g lr='ls -s changed'
+    alias ls='exa -ga --icons --group-directories-first --time-style=long-iso'
+    alias la='ls -a'
+    alias ll='ls -la'
+    alias lr='ls -s changed'
 else
-    alias -g ls='ls --color=auto'
+    alias ls='ls --color=auto'
 fi
-alias -g l='ls'
-alias -g mv='mv -i'
-alias -g mk='mkdir -p'
-alias -g rd='rmdir'
+alias l='ls'
+alias mv='mv -i'
+alias mk='mkdir -p'
+alias rd='rmdir'
 alias grep='grep --color=auto'
-alias -g sort='sort --parallel 8 -S 16M'
+alias sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
 alias :q="exit"
 _exists yay && alias U='yay -Su --devel --noconfirm --timeupdate'
-_exists sudo && {alias sudo="sudo "; alias s='sudo '}
-_exists plocate && alias -g locate=plocate
-_exists dd && alias -g dd='dd status=progress'
+_exists sudo && {alias sudo='sudo '; alias s='sudo '}
+_exists plocate && alias locate='plocate'
+_exists dd && alias dd='dd status=progress'
 autoload -U zcalc
 __calc_plugin() { zcalc -e "$*" }
 aliases[=]='noglob __calc_plugin'
 _exists bc && alias '?=bc -l <<<'
 _exists prettyping && alias ping='prettyping'
-_exists handlr && alias -g e='handlr open'
+_exists handlr && alias e='handlr open'
 _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
 _exists rg && {
     local rg_options='--max-columns=0 \
@@ -43,29 +43,29 @@ _exists rg && {
     alias -g rg="rg ${rg_options}"
     alias -g zrg="rg ${rg_options} -z"
 }
-_exists bpython && alias -g python='bpython'
-_exists cdu && alias -g sp='cdu -idh -s -r -c ":"'
-_exists dust && alias -g sp='dust -r'
-_exists lfs && alias -g df='lfs'
-_exists ip && alias -g ip='ip -c'
-_exists fd && alias -g fd='fd -H -u'
-_exists objdump && alias -g objdump='objdump -M intel -d'
-_exists gdb && alias -g gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
+_exists bpython && alias python='bpython'
+_exists cdu && alias sp='cdu -idh -s -r -c ":"'
+_exists dust && alias sp='dust -r'
+_exists lfs && alias df='lfs'
+_exists ip && alias ip='ip -c'
+_exists fd && alias fd='fd -H -u'
+_exists objdump && alias objdump='objdump -M intel -d'
+_exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
 _exists nvim && {
-    alias -g vim='nvim'
-    alias -g v='~/bin/v'
-    alias -g nvim='v'
+    alias vim='nvim'
+    alias v='~/bin/v'
+    alias nvim='v'
 }
-_exists iostat && alias -g iostat='iostat -mtx'
-_exists iotop && alias -g iotop='sudo iotop -oPa'
+_exists iostat && alias iostat='iostat -mtx'
+_exists iotop && alias iotop='sudo iotop -oPa'
 _exists patool && {
-    alias -g se='patool extract'
-    alias -g pk='patool create'
+    alias se='patool extract'
+    alias pk='patool create'
 }
-_exists xz && alias -g xz='xz --threads=0'
-_exists pigz && alias -g gzip='pigz'
-_exists pbzip2 && alias -g bzip2='pbzip2'
-_exists zstd && alias -g zstd='zstd --threads=0'
+_exists xz && alias xz='xz --threads=0'
+_exists pigz && alias gzip='pigz'
+_exists pbzip2 && alias bzip2='pbzip2'
+_exists zstd && alias zstd='zstd --threads=0'
 _exists mpv && {
     local mpv_ipc='--input-ipc-server=/tmp/mpvsocket'
     alias mpa="mpv ${mpv_ipc} --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
