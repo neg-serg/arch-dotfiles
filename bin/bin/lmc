@@ -3,28 +3,18 @@
 # A general audio interface this extends on the frame work layed out by luke smith ( lukesmith.xyz ) in
 # github.com/LukeSmithxyz/voidrice/blob/archi3/.local/bin/tools/lmc and brings in the new changes from the new version.
 
-NUM="${2:-5}"
-
 if command -v pulseaudio 1> /dev/null ; then
-	mtoggle() { pulsemixer --toggle-mute ;}
-	mute() { pulsemixer --mute ;}
-	up() { pulsemixer --change-volume +"$NUM" ;}
-	down() { pulsemixer --change-volume -"$NUM" ;}
-	mixer() { pulsemixer ;}
-else
-	mtoggle() { amixer sset Master toggle ;}
-	mute() { amixer sset Master mute ;}
-	up() { amixer sset Master "$NUM"%+ ;}
-	down() { amixer sset Master "$NUM"%- ;}
-	mixer() { alsamixer ;}
+		mtoggle() { pulsemixer --toggle-mute ;}
+		mute() { pulsemixer --mute ;}
+		mixer() { pulsemixer ;}
 fi
 
 CMD=playerctl
 if command -v playerctl 1> /dev/null ; then
-  ptoggle() { playerctl play-pause ;}
+		ptoggle() { playerctl play-pause ;}
 else
-	CMD=mpc
-  ptoggle() { mpc toggle ;}
+		CMD=mpc
+		ptoggle() { mpc toggle ;}
 fi
 
 case "$1" in
@@ -35,32 +25,12 @@ case "$1" in
 	up) up ;;
 	down) down ;;
 	play) $CMD play ;;
-	pause) $CMD pause; pauseallmpv ;;
+	pause) $CMD pause ;;
 	next) $CMD next ;;
 	prev) $CMD prev ;;
-	seek) $CMD "$NUM" ;;
-	f*) $CMD seek +"$NUM" ;;
-	b*) $CMD seek -"$NUM" ;;
+	seek) $CMD "${2:-5}" ;;
 	r*) $CMD seek 0% ;;
 	mixer) mixer ;;
-	*) cat << EOF
-lmc: cli music interface for mpd and pulse for those with divine intellect too
-grand to remember the mpc/pamixer commands.
-Allowed options:
-  up NUM	Increase volume (2 secs default)
-  down NUM	Decrease volume (2 secs default)
-  mute		Toggle mute
-  next		Next track
-  prev		Previous track
-  toggle	Toggle pause
-  pause	Pause
-  foward NUM	Seek foward in song (2 secs default)
-  back NUM	Seek back in song (2 secs default)
-  restart	Restart current song
-  all else	Print this message
-All of these commands, except for \`truemute\`, \`prev\` and \`play\` can be truncated,
-i.e. \`lmc r\` for \`lmc restart\`.
-EOF
 esac
 
 pkill -RTMIN+10 dwmblocks &
