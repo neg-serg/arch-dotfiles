@@ -399,3 +399,13 @@ augroup END
 " autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 " " Run xrdb whenever Xdefaults or Xresources are updated.
 " autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+" " Ale
+" let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+" let g:ale_python_flake8_options = '--max-line-length=100'
+" let g:ale_linters = {
+" \ 'markdown': [],
+" \ 'cpp': ['clang', 'clangcheck', 'clangtidy'],
+" \}
+" let g:ale_cpp_clang_options = '--std=c++11 -Wall -Iinclude -I/usr/include/eigen3/ -I/home/shark/Informatik/c++/dbg-macro -DDBG_MACRO_NO_WARNING=1'
+" let g:ale_cpp_clangtidy_options = '-Wall -std=c++11 -x c++ -Iinclude -I/usr/include/eigen3 -I/home/shark/Informatik/c++/dbg-macro -DDBG_MACRO_NO_WARNING=1 -extra-arg -Xanalyzer -extra-arg -analyzer-output=text'
+" let g:ale_cpp_clangcheck_options = '-extra-arg -Xanalyzer -extra-arg -analyzer-output=text -- -Wall -std=c++11 -x c++ -Iinclude -I/usr/include/eigen3 -I/home/shark/Informatik/c++/dbg-macro -DDBG_MACRO_NO_WARNING=1'
