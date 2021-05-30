@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-group_valid(){
+valid_groups(){
     for d in /sys/kernel/iommu_groups/*/devices/*; do
         n=${d#*/iommu_groups/*}; n=${n%%/*}
         printf 'IOMMU Group %s ' "$n"
@@ -8,7 +8,7 @@ group_valid(){
     done;
 }
 
-reset_info(){
+reset_groups(){
     setopt nullglob
     for iommu_group in $(find /sys/kernel/iommu_groups/ -maxdepth 1 -mindepth 1 -type d);do
         echo "IOMMU group $(basename "$iommu_group")";
@@ -21,7 +21,7 @@ reset_info(){
     done
 }
 
-case ${1} in
-    r*) reset_info ;;
-    *) group_valid ;;
+case "$1" in
+    r*) reset_groups ;;
+    *) valid_groups ;;
 esac
