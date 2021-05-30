@@ -6,12 +6,12 @@
 
 # Usage function to be called when the program is ran with -h
 usage () {
-	echo "# Usbswitch" 
+	echo "# Usbswitch"
 	echo -e "# Attach devices to and from a virtual machine\n"
-	echo "Usage: usbswitch -adtADT [-lh]" 
+	echo "Usage: usbswitch -adtADT [-lh]"
 	echo "Options:"
-	echo "	-l,			List usb devices with their number, id, and name." 
-	echo "	-a DEVICE DOMAIN,	Attach the device to the VM." 
+	echo "	-l,			List usb devices with their number, id, and name."
+	echo "	-a DEVICE DOMAIN,	Attach the device to the VM."
 	echo "	-d DEVICE DOMAIN,	Detach the device from the VM."
 	echo "	-t DEVICE DOMAIN,	Toggle devices attachment to the VM."
 	echo "	-A DEVICE DOMAIN,	Add the device to the VM config."
@@ -74,7 +74,7 @@ select_id () {
 }
 
 # Tests wether the device input matches a usb number.
-select_num () { 
+select_num () {
 	selectline=$(echo "$listfull" | awk -F"	" '$1 ~ /^'$OPTARG'$/{print}')
 	if [[ $selectline ]]; then
 		select_device
