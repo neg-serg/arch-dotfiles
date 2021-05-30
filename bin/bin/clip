@@ -1,5 +1,4 @@
 #!/usr/bin/env dash
-
 read_command() {
     rofi_cmd="rofi -dmenu -matching glob -dmenu -p ❯>"
     cmd_=$(echo -n "sort tac"| tr -s ' ' '\n' | eval $rofi_cmd)
@@ -82,29 +81,14 @@ youtube_url() {
 }
 
 case "$1" in
-    pipe)
-        shift
-        clipboard_pipe "$@"
-    ;;
-    youtube-view)
-        shift
-        yr "$(xclip -o)"
-    ;;
+    pipe) shift; clipboard_pipe "$@" ;;
+    youtube-view) shift; yr "$(xclip -o)" ;;
     translate)
-        shift
+        shift;
         trans_result="$(gpaste-client get 0 | xargs -0n1 transline)"
         dunstify "$trans_result"
     ;;
-    youtube-dw)
-        shift
-        cd $XDG_VIDEOS_DIR/new
-        youtube-dl "$(xclip -o)"
-    ;;
-    youtube-dw-list)
-        shift
-        cd $XDG_VIDEOS_DIR/new
-        youtube-dl "$(youtube_url)"
-    ;;
-    *) clip_main
-    ;;
+    youtube-dw) shift; cd $XDG_VIDEOS_DIR/new; youtube-dl "$(xclip -o)" ;;
+    youtube-dw-list) shift; cd $XDG_VIDEOS_DIR/new; youtube-dl "$(youtube_url)" ;;
+    *) clip_main ;;
 esac
