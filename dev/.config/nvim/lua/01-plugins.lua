@@ -23,7 +23,7 @@ return require('packer').startup(function()
     } -- autochdir for project root or for current dir
     use {'FooSoft/vim-argwrap',
         cmd = {'ArgWrap'},
-        opt=true,
+        opt=false,
         config = function() require'plugcfg/argwrap' end
     } -- vim arg wrapper
     use {'jamessan/vim-gnupg', ft = {'gpg'}, opt=true} -- transparent work with gpg-encrypted files
@@ -40,7 +40,6 @@ return require('packer').startup(function()
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
     use {'ojroques/nvim-bufdel'} -- better buffer delete
-    use {'mhinz/vim-sayonara', cmd = {'Sayonara'}, opt=true} -- smart buffer delete
     use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
     use {'reedes/vim-pencil',
           opt=true,
@@ -48,11 +47,11 @@ return require('packer').startup(function()
             'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'
           }
     } -- better text support
-    use {'reedes/vim-wordy', opt=true} -- style check for english
+    use {'reedes/vim-wordy', opt=false} -- style check for english
     use {'romgrk/winteract.vim',
           cmd = {'InteractiveWindow'},
           config = function() require'plugcfg/wininteract' end,
-          opt=true
+          opt=false
     } -- interactive window resize
     use {'simnalamburt/vim-mundo', cmd = {'MundoToggle'}, opt=true} -- undo tree
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
@@ -86,7 +85,6 @@ return require('packer').startup(function()
         cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
         config = function() require'plugcfg/vim-dispatch' end
     } -- provide async build
-    use {'radenling/vim-dispatch-neovim'} -- neovim support for vim-dispatch
     use {'tpope/vim-apathy'} -- better include jump
     use {'metakirby5/codi.vim', cmd = {'Codi', 'CodiUpdate'}, opt = true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
