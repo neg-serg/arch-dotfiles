@@ -1,10 +1,7 @@
 #!/bin/sh
-#
-# A general audio interface
-#
-# this extends on the frame work layed out by luke smith ( lukesmith.xyz ) in
-#  github.com/LukeSmithxyz/voidrice/blob/archi3/.local/bin/tools/lmc
-#  and brings in the new changes from the new version.
+
+# A general audio interface this extends on the frame work layed out by luke smith ( lukesmith.xyz ) in
+# github.com/LukeSmithxyz/voidrice/blob/archi3/.local/bin/tools/lmc and brings in the new changes from the new version.
 
 NUM="${2:-5}"
 
