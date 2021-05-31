@@ -9,7 +9,7 @@ alias pstree="pstree -U "$@" | sed '
 	s/[{}]/\x1B[31m&\x1B[0m/g
 	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
 alias pscpu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
-alias psmem='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
+alias psmem='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS'
 
 alias '?=bc -l <<<'
 
@@ -17,9 +17,9 @@ alias ls="ls --color=auto"   # do we have GNU ls with color-support?
 if [[ ! -x "${BIN_HOME}/l" ]]; then
     if  [[ -x "${BIN_HOME}/lsp" ]]; then
         alias l="lsp"
-        if [[ -x "/usr/bin/vendor_perl/ls++" ]]; then 
-            alias l="ls++"; 
-        else 
+        if [[ -x "/usr/bin/vendor_perl/ls++" ]]; then
+            alias l="ls++";
+        else
             alias l="ls -aChkopl --group-directories-first --color=auto";
         fi
     fi
