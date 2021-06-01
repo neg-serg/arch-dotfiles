@@ -1,5 +1,7 @@
 #!/usr/bin/env dash
-
+export ENV=$HOME/.profile
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-/usr/bin/xinit -- :1 -nolisten tcp vt$XDG_VTNR
+export XINITRC=$HOME/.config/xinit/xinitrc
+export XSERVERRC=$HOME/.config/xinit/xserverrc
+/usr/bin/xinit -- :1 -nolisten tcp vt1
 # vim: set ftype=sh
