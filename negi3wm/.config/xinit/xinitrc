@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 export ENV=$HOME/.profile
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+export $(dbus-launch)
 xrdb -I$XDG_CONFIG_HOME/xres -load "$HOME/.Xresources"
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
@@ -11,8 +11,6 @@ fi
 xset s off -dpms
 eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 sudo openrgb --server -p neg.orp &
-# # Switch to US international with Caps as Mod/Escape
-# setxkbmap -option caps:super -variant altgr-intl && killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape' &
 export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 export XDG_CURRENT_DESKTOP=GNOME
-exec gnome-session-i3
+exec i3-gnome
