@@ -31,6 +31,18 @@ setopt rm_star_wait # most Massively Useful Option ever! protects you from "you 
 setopt short_loops # short loops support
 setopt transient_rprompt # only show the rprompt on the current prompt
 
+# setopt auto_list           # When requesting autocomp ambiguously, show list of options on first request
+# setopt auto_menu           # When autocompleting ambiguously, insert first match on second autocomp request
+# setopt auto_remove_slash   # When the last autocompleted char is a slash and a space is typed next, remove the slash
+# setopt no_complete_aliases # Complete aliases instead of expanding them
+# setopt complete_in_word    # When autocompleting, cursor should stay at pos instead of going to end of word
+# setopt glob_complete       # When requesting autocomp for glob (.e.g. *), don't replace with matches, instead offer autocomp
+# setopt list_ambiguous      # Don't show completion list when requesting unambiguous autocompletion
+# unsetopt list_beep         # Don't beep on ambiguous completion
+# setopt list_packed         # Make autocompletion columns smaller
+# unsetopt list_rows_first   # Don't sort autocompletion in rows (sort in columns)
+# setopt menu_complete       # When autocompleting, insert the whole first match directly
+
 () {
     local hist
     for hist in ~/.zsh_history*~$HISTFILE(N); do

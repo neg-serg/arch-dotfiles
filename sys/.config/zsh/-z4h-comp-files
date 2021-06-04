@@ -1,0 +1,129 @@
+#!/usr/bin/env zsh
+
+()  {
+  eval "$_z4h_opt"
+
+  local -i dot_glob list_types
+  [[ $1 == on ]] && dot_glob=1
+  [[ $2 == on ]] && list_types=1
+
+  if (( _z4h_only_dirs )); then
+    local dirs=($_z4h_path_prefix${^${(Q)_z4h_words}}/*(D-/Y1N:h:t))
+  else
+    local dirs=($_z4h_path_prefix${^${(Q)_z4h_words}}/*(DY1N:h:t))
+  fi
+
+  -z4h-set-list-colors "$_z4h_curcontext" "$list_types"
+  local -i list_colors=$((!$?))
+
+  autoload +X -Uz -- -z4h-present-files -z4h-cursor-show -z4h-find -z4h-fzf
+
+  local -i pct=60
+  (( _z4h_can_save_restore_screen )) && pct=100
+
+  local -i height=$(( ! $#dirs && 100 * ($#_z4h_words + 4) < pct * LINES ? $#_z4h_words + 4 : pct * LINES / 100 ))
+
+  (( height >= 6 )) || (( height = 6 ))
+  (( height <= LINES - 1 )) || (( height = LINES - 1 ))
+
+  local opts=(
+    --query=${_z4h_word_prefix:+"^$_z4h_word_prefix"}
+    --color=hl:201,hl+:201
+    --with-nth=2
+    --delimiter='\000'
+    --ansi
+    --exact
+    --no-mouse
+    --tiebreak=length,begin,index
+    --multi
+    --cycle
+    --border=horizontal
+  )
+
+  () {
+    emulate -L zsh
+    # Set dot_glob in case the value of find-flags depends on it (via `zstyle -e`).
+    # Ideally we should run this with user options.
+    (( dot_glob )) && setopt dot_glob
+    local -a bin
+    zstyle -a :z4h:${WIDGET#z4h-} find-command bin
+    if (( ! $#bin )) && (( $+commands[bfs] )); then
+      opts+=(--no-sort)
+    fi
+  }
+
+  local cursor_y cursor_x
+  -z4h-get-cursor-pos || return
+
+  if (( _z4h_can_save_restore_screen )); then
+    opts+=(--no-clear)
+    if { (( height <= cursor_y - 1 )) && zstyle -T :z4h: prompt-at-bottom } ||
+       (( cursor_y - 1 > LINES - cursor_y && cursor_y - 1 > 6 )) &&
+       { (( height > LINES - cursor_y )) || zstyle -T :z4h: prompt-at-bottom }; then
+      (( height <= cursor_y - 1 )) || (( height = cursor_y - 1 ))
+      local move=$'\e[0m\e['$((cursor_y-height))';1H'
+      opts+=(--layout=default)
+    elif (( LINES - cursor_y > 6 )); then
+      (( height <= LINES - cursor_y )) || (( height = LINES - cursor_y ))
+      local move=$'\e[0m\n\r'
+      opts+=(--layout=reverse)
+    else
+      local -i extra=$((height - LINES + cursor_y))
+      print -rn -- ${(pl:$height::\n:)} >$TTY || return
+      (( cursor_y += LINES - cursor_y - height ))
+      local move=$'\e[0m\e['$((cursor_y+1))';1H'
+      opts+=(--layout=reverse)
+    fi
+    local _z4h_saved_screen
+    -z4h-save-screen || return
+  else
+    print >$TTY || return
+    local move=
+    opts+=(--layout=reverse)
+  fi
+
+  opts+=(--height=$height)
+
+  {
+    local choice
+    choice="$(
+      unsetopt pipe_fail
+      exec 2>/dev/null
+      [[ -n $_z4h_path_prefix ]] && builtin cd -q -- $_z4h_path_prefix
+      {
+        print -lr -- ${(Q)_z4h_words}
+        # Set curcontext to support this:
+        #
+        #   zstyle -e :z4h:fzf-complete find-flags my-find-flags
+        #
+        #   function my-find-flags() {
+        #     if [[ $curcontext == :complete:cd:* ]]; then
+        #       reply=(...)
+        #     fi
+        #   }
+        local curcontext=$_z4h_curcontext
+        -z4h-find $dot_glob $_z4h_only_dirs $dirs | command cut -b3-
+      } | {
+        -z4h-present-files $list_colors $list_types
+      } | {
+        print -rn -- $move >$TTY
+        -z4h-cursor-show
+        2>$TTY -z4h-fzf $opts
+      }
+    )"
+  } always {
+    -z4h-cursor-hide
+    if (( _z4h_can_save_restore_screen )); then
+      -z4h-restore-screen
+      print -rn -- $'\e[0m\e['$cursor_y';'$cursor_x'H'
+    else
+      builtin echoti cuu 1
+      (( cursor_x > 1 )) && builtin echoti cuf $((cursor_x-1))
+    fi
+  }
+
+  [[ -n $choice ]] || return
+  choice=("${(@f)choice}")
+  typeset -g _z4h_reply=(0 ${${choice:1}%$'\0'*})
+  [[ -z $choice[1] ]] || _z4h_reply[1]=1
+} "${options[dot_glob]}" "${options[list_types]}"

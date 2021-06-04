@@ -1,0 +1,244 @@
+#!/usr/bin/env zsh
+
+[[ -w $TTY && -r $TTY ]] || return
+
+[[ -o auto_menu ]] && local -i auto_menu=1 || local -i auto_menu=0
+
+setopt local_options always_to_end no_auto_list no_auto_menu no_auto_param_keys     \
+       no_auto_remove_slash no_bash_auto_list no_complete_in_word no_list_ambiguous \
+       no_list_beep no_list_packed no_list_rows_first no_menu_complete no_rec_exact
+
+local -ra _z4h_shadow_funcs=(_main_complete _multi_parts _path_files _setup compadd zstyle)
+
+local f
+for f in $_z4h_shadow_funcs; do
+  if (( ${+functions[$f]} )); then
+    builtin functions -c -- $f -z4h-orig-$f
+    local _z4h_orig_${f#_}=-z4h-orig-$f
+  else
+    eval "local -a _z4h_orig_${f#_}=(builtin $f)"
+  fi
+done
+
+# exec 3>&2 2>/tmp/log
+
+{
+  # setopt xtrace
+
+  function zstyle() {
+    # zstyle -T ":completion:${curcontext}:$_type" list-grouped
+    if [[ $# == 3 && $3 == list-grouped && $1 == -(t|T) && $2 == :completion:* ]]; then
+      return 1
+    else
+      $_z4h_orig_zstyle "$@"
+    fi
+  }
+
+  function _setup () {}
+
+  function _multi_parts() {
+    local _z4h_sep=${@[-2]}
+    local _z4h_array=${@[-1]}
+    shift -p 2
+    [[ $# != 0 && ${@[-1]} == (-|--) ]] && shift -p
+    () {
+      emulate -L zsh
+      if [[ $_z4h_array == '('* ]]; then
+        _z4h_array=(${=_z4h_array[2,-2]})
+      else
+        _z4h_array=("${(@P)_z4h_array}")
+      fi
+    }
+    compadd -M "r:|${_z4h_sep}=* r:|=*" "$@" - "${_z4h_array[@]}"
+  }
+
+  function _path_files() {
+    () {
+      # TODO: respect pats and ignore somehow.
+      local -a opts files dirs pats ignore
+      zparseopts -a mopts f=files /=dirs g+:=pats F:=ignore \
+        P: S: q r: R: W:  M+: J+: V+: x+: X+: 1 2 o+: n
+      (( ${#files} || ! ${#dirs} )) && typeset -gi _z4h_only_dirs=0
+    } "$@"
+    local -ir _z4h_in_path_files=1
+    $_z4h_orig_path_files "$@"
+  }
+
+  function compadd() {
+    local -a _z4h_{opts,nDOA,q,f,s,S,I,W,i,P,p,d,r,R,e,U}
+    zparseopts -E -a _z4h_opts {D,O,A}+:=_z4h_nDOA n+=_z4h_nDOA \
+      f+=_z4h_f s+:=_z4h_s S+:=_z4h_S I+:=_z4h_I W+:=_z4h_W     \
+      i+:=_z4h_i P+:=_z4h_P p+:=_z4h_p d+:=_z4h_d q+=_z4h_q     \
+      r+:=_z4h_r R+:=_z4h_R e+=_z4h_e U+=_z4h_U \
+      {a,k,l,1,2,C,Q}+ {F,J,X,x,V,E,M}+: o+::
+    if (( ${#_z4h_nDOA} )); then
+      $_z4h_orig_compadd "$@"
+      return
+    fi
+    local -a _z4h_A _z4h_D
+    if (( ${#_z4h_d} )); then
+      () {
+        emulate -L zsh
+        local _z4h_arr=$_z4h_d[2]
+        if [[ $_z4h_arr == '('* ]]; then
+          _z4h_D=(${=_z4h_arr[2,-2]})
+        else
+          _z4h_D=("${(@P)_z4h_arr}") 
+        fi
+      }
+    fi
+    $_z4h_orig_compadd -A _z4h_A -D _z4h_D "$@" || true
+    (( ${#_z4h_A} )) || return
+    # Many completers read $compstate[nmatches], which can be super slow if there are
+    # many matches that require deduplication. We drop everything in an unsorted
+    # group without deduplication to avoid this cost. We deduplicate everything manually
+    # at a later stage.
+    $_z4h_orig_compadd -V- -2 -o nosort -J- "$@" || return
+
+    emulate -L zsh
+    typeset -g _z4h_curcontext=$curcontext
+    if (( $#_z4h_D < $#_z4h_A )); then
+      _z4h_D+=(${_z4h_A:$#_z4h_D})
+    elif (( $#_z4h_D > $#_z4h_A )); then
+      _z4h_D[$#_z4h_A+1,-1]=()
+    fi
+    _z4h_words+=("${_z4h_A[@]}")
+    _z4h_descrs+=("${_z4h_D[@]}")
+    if (( ! $#_z4h_U )); then
+      _z4h_i=(-i "$IPREFIX$_z4h_i[2]")
+      _z4h_I=(-I "$_z4h_I[2]$ISUFFIX")
+    fi
+    local scaffold=(
+      "$_z4h_in_path_files"
+      "$_z4h_P[2]" "$_z4h_S[2]" "$_z4h_p[2]" "$_z4h_s[2]" "$_z4h_i[2]" "$_z4h_I[2]"
+      "$_z4h_q[1]" "$_z4h_r[2]" "$_z4h_R[2]" "$_z4h_f[1]" "$_z4h_e[1]" "$_z4h_W[2]"
+      "$PREFIX" "$SUFFIX")
+    scaffold=${(pj:\1:)scaffold}
+    if (( ! $#_z4h_scaffolds )); then
+      _z4h_scaffolds=($scaffold)
+      if [[ $IPREFIX$PREFIX == $_z4h_i[2]$_z4h_P[2]$_z4h_p[2]* ]]; then
+        _z4h_word_prefix=${${:-$IPREFIX$PREFIX}#$_z4h_i[2]$_z4h_P[2]$_z4h_p[2]}
+      fi
+    elif (( $#_z4h_scaffolds > 1 )) || [[ $_z4h_scaffolds[1] != $scaffold ]]; then
+      repeat $(( $#_z4h_words - $#_z4h_scaffolds - $#_z4h_A )); do
+        _z4h_scaffolds+=($_z4h_scaffolds[1])
+      done
+      repeat $#_z4h_A _z4h_scaffolds+=($scaffold)
+    fi
+  }
+
+  -z4h-cursor-hide
+
+  local ZLE_REMOVE_SUFFIX_CHARS ZLE_SPACE_SUFFIX_CHARS
+  unset ZLE_REMOVE_SUFFIX_CHARS ZLE_SPACE_SUFFIX_CHARS
+
+  local -i again=1
+  while (( again )); do
+    {
+      -z4h-show-dots $LBUFFER
+
+      local buf=$BUFFER
+      local -i cursor=CURSOR
+      
+      local -a _z4h_words=()
+      local -a _z4h_descrs=()
+      local -a _z4h_scaffolds=()
+      local -i _z4h_only_dirs=1
+      local -i _z4h_in_path_files=0
+      local -i _z4h_in_quotes=0
+      local _z4h_curcontext=
+      local _z4h_word_prefix=
+
+      functions -c -- -z4h-main-complete _main_complete
+      builtin zle expand-or-complete
+      if [[ $buf == $BUFFER && $cursor == $CURSOR ]]; then
+        (( ${#_z4h_words} )) || return 0
+        local _z4h_path_prefix=
+        if () {
+                emulate -L zsh
+                (( $#_z4h_scaffolds == 1 && !_z4h_in_quotes )) || return
+                local -a s=("${(@ps:\1:)_z4h_scaffolds}")
+                [[ $s[1] == 1 && -z $s[3] && -z $s[5] && -z $s[7] && -n $s[11] &&
+                  $s[13] == (|*/) && -z $s[15] ]] || return
+                typeset -g _z4h_path_prefix=$s[13]
+              }; then
+          local -a _z4h_reply=()
+          if builtin zstyle -t ":completion:${_z4h_curcontext}:default" sort; then
+            _z4h_words=("${(@ou)_z4h_words}")
+          else
+            _z4h_words=("${(@u)_z4h_words}")
+          fi
+          -z4h-sanitize-word-prefix "${_z4h_words[@]}"
+          -z4h-comp-files || return
+          () {
+            emulate -L zsh
+            again=${_z4h_reply[1]}
+            _z4h_words=("${(@q)_z4h_reply:1}")
+          }
+          -z4h-insert-all || return
+        else
+          local -a _z4h_reply=()
+          local nl=$'\n'
+          _z4h_descrs=("${(@)_z4h_descrs//$nl/\\n}")
+          -z4h-sanitize-word-prefix "${_z4h_descrs[@]}"
+          -z4h-comp-words || return
+          () {
+            emulate -L zsh
+            again=${_z4h_reply[1]}
+            local -i idx=0
+            local words=()
+            if (( ${#_z4h_scaffolds} == 1 )); then
+              for idx in "${(@)_z4h_reply:1}"; do
+                words+=("${_z4h_words[idx]}")
+              done
+            else
+            local scaffolds=()
+              for idx in "${(@)_z4h_reply:1}"; do
+                words+=("${_z4h_words[idx]}")
+                scaffolds+=("${_z4h_scaffolds[idx]}")
+              done
+              _z4h_scaffolds=("${scaffolds[@]}")
+            fi
+            _z4h_words=("${words[@]}")
+          }
+          -z4h-insert-all || return
+        fi
+      else
+        if (( auto_menu )); then
+          _z4h_words=("${(@ou)_z4h_words}")
+          again=$((${#_z4h_words} > 1))
+        else
+          again=0
+        fi
+      fi
+
+      if [[ $LBUFFER == *' ' && $RBUFFER == ' '* ]]; then
+        RBUFFER[1]=
+      else
+        BUFFER=$BUFFER
+      fi
+
+      [[ $BUFFER == $buf && $CURSOR == $cursor ]] && return
+      builtin zle .split-undo || return
+      [[ $LBUFFER == *' ' ]] && return
+    } always {
+      if (( _z4h_use[zsh-autosuggestions] && _z4h_use[zsh-syntax-highlighting] )); then
+        -z4h-redraw-buffer
+      fi
+    }
+  done
+} always {
+  # unsetopt xtrace
+  # exec 2>&3 3>&-
+  local f=
+  for f in $_z4h_shadow_funcs; do
+    if (( ${+functions[-z4h-orig-$f]} )); then
+      builtin functions -c -- -z4h-orig-$f $f
+      builtin unfunction -- -z4h-orig-$f
+    elif (( ${+functions[$f]} )); then
+      builtin unfunction -- $f
+    fi
+  done
+  builtin zle -R
+  -z4h-cursor-show
+}
