@@ -64,8 +64,8 @@ colors:
     cursor: CellForeground
 
   selection:
-    text: CellBackground
-    background: CellForeground
+    text: '0x55AE24'
+    background: '0x000000'
 
   normal:
     black: '0x020202'
