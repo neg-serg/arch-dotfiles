@@ -26,6 +26,8 @@ return require('packer').startup(function()
         opt=false,
         config = function() require'plugcfg/argwrap' end
     } -- vim arg wrapper
+    use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
+    use {'machakann/vim-sandwich'} -- support sandwich surrounds
     use {'jamessan/vim-gnupg', ft = {'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'neg-serg/lusty',
