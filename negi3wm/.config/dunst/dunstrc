@@ -18,7 +18,7 @@
     ignore_dbusclose = true
     ignore_newline = false
     indicate_hidden = true
-    line_height = 4
+    line_height = 0
     markup = full
     max_icon_size = 400
     monitor = 0
