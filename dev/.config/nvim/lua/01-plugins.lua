@@ -26,13 +26,8 @@ return require('packer').startup(function()
         opt=false,
         config = function() require'plugcfg/argwrap' end
     } -- vim arg wrapper
-    use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
-    use {'machakann/vim-sandwich'} -- support sandwich surrounds
     use {'jamessan/vim-gnupg', ft = {'gpg'}, opt=true} -- transparent work with gpg-encrypted files
-    use {'tversteeg/registers.nvim'} -- show registers
-    use {'sindrets/diffview.nvim', cmd = {'DiffviewLoad'} } -- diff view for multiple files
     use {'nacro90/numb.nvim', config = [[require('numb').setup()]] }
-    -- "aouelete/sway-vim-syntax",
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'neg-serg/lusty',
           config = function()
@@ -49,10 +44,8 @@ return require('packer').startup(function()
     use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
     use {'reedes/vim-pencil',
           opt=true,
-          cmd = {
-            'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'
-          },
-          ft = { "txt", "markdown", "rst" }
+          cmd = {'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'},
+          ft = {'txt', 'markdown', 'rst'}
     } -- better text support
     use {'reedes/vim-wordy', opt=false} -- style check for english
     use {'romgrk/winteract.vim',
@@ -64,7 +57,6 @@ return require('packer').startup(function()
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
     use {'vimwiki/vimwiki'} -- personal wiki for vim
     use {'p00f/nvim-ts-rainbow'} -- treesitter-based rainbow
-    use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
@@ -80,11 +72,7 @@ return require('packer').startup(function()
     use {'neoclide/coc.nvim', config = function() require'plugcfg/coc' end } -- lsp autocomplete
     use {'antoinemadec/coc-fzf'} -- coc fzf support
     use {'dense-analysis/ale', config = function() require'plugcfg/ale' end } -- async linter with lsp support
-    use {'liuchengxu/vista.vim',
-          cmd = {'Vista'},
-          config = function() require'plugcfg/vista' end,
-          opt = true
-    } -- lsp-symbols tag searcher
+    use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'mfussenegger/nvim-dap', opt = true, config = function() require'plugcfg/dap' end } -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt = true} -- virtual debugging text support
     use {'plasticboy/vim-markdown', opt = true} -- markdown vim mode
@@ -98,16 +86,19 @@ return require('packer').startup(function()
     use {'mattn/vim-sonictemplate', cmd = 'Template'} -- snippets alternative
     use {'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
+        config = function() require'plugcfg/gitsigns' end
     } -- async gitsigns
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
     use {'andymass/vim-matchup', config = function() require'plugcfg/vim-matchup' end } -- generic matcher
     use {'junegunn/vim-easy-align', config = function() require'plugcfg/easyalign' end } -- use easy-align, instead of tabular
+    use {'machakann/vim-sandwich'} -- support sandwich surrounds
     use {'svermeulen/vim-NotableFt'} -- better ft
-    use {'tpope/vim-surround'} -- new commands to vim for generic brackets
     use {'tpope/vim-repeat'} -- dot for surround
+    use {'tpope/vim-surround'} -- new commands to vim for generic brackets
     use {'wellle/targets.vim'} -- better text objects
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Search                                                                       │
@@ -125,12 +116,13 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'neg-serg/neg'} -- my colorscheme
-    use {'sheerun/vim-polyglot'} -- language pack collection
+    use {"aouelete/sway-vim-syntax"} -- add sway syntax
     use {'Bakudankun/PICO-8.vim'} -- pico-8 cartridge files
-    use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
-    use {'tridactyl/vim-tridactyl'} -- tridactyl support
     use {'kyazdani42/nvim-web-devicons', config = function() require'plugcfg/nvim-web-devicons' end } -- fancy webicons
+    use {'neg-serg/neg'} -- my colorscheme
+    use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
+    use {'sheerun/vim-polyglot'} -- language pack collection
+    use {'tridactyl/vim-tridactyl'} -- tridactyl support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -143,6 +135,11 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'tpope/vim-fugitive'} -- git stuff old
+    use {'iberianpig/tig-explorer.vim'} -- tig integration
     use {'rhysd/conflict-marker.vim'} -- good conflict marker
+    use {'sindrets/diffview.nvim',
+        cmd = {'DiffviewLoad'},
+        config = function() require'plugcfg/diffview' end
+    } -- diff view for multiple files
+    use {'tpope/vim-fugitive'} -- git stuff old
 end)
