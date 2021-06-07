@@ -60,6 +60,7 @@ return require('packer').startup(function()
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
+    use {'akinsho/nvim-bufferline.lua'} -- fancy bufferline
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -69,50 +70,58 @@ return require('packer').startup(function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'neoclide/coc.nvim', config = function() require'plugcfg/coc' end } -- lsp autocomplete
     use {'antoinemadec/coc-fzf'} -- coc fzf support
-    use {'dense-analysis/ale', config = function() require'plugcfg/ale' end } -- async linter with lsp support
-    use {'ElPiloto/sidekick.nvim'} -- experimental outline window
-    use {'mfussenegger/nvim-dap', opt = true, config = function() require'plugcfg/dap' end } -- neovim debugger protocol support
-    use {'theHamsta/nvim-dap-virtual-text', opt = true} -- virtual debugging text support
-    use {'plasticboy/vim-markdown', opt = true} -- markdown vim mode
-    use {'tpope/vim-dispatch', opt = true,
-        cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
-        config = function() require'plugcfg/vim-dispatch' end
-    } -- provide async build
-    use {'tpope/vim-apathy'} -- better include jump
-    use {'metakirby5/codi.vim', cmd = {'Codi', 'CodiUpdate'}, opt = true} -- nice scratchpad for hackers
     use {'b3nj5m1n/kommentary'} -- alternative commenter
-    use {'mattn/vim-sonictemplate', cmd = 'Template'} -- snippets alternative
+    use {'dense-analysis/ale',
+        config = function() require'plugcfg/ale' end
+    } -- async linter with lsp support
+    use {'ElPiloto/sidekick.nvim'} -- experimental outline window
+    use {'eraserhd/parinfer-rust', run = 'cargo build --release'} -- support lisps
     use {'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
         config = function() require'plugcfg/gitsigns' end
     } -- async gitsigns
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
+    use {'mattn/vim-sonictemplate', cmd = 'Template'} -- snippets alternative
+    use {'metakirby5/codi.vim', cmd = {'Codi', 'CodiUpdate'}, opt = true} -- nice scratchpad for hackers
+    use {'mfussenegger/nvim-dap', opt = true,
+        config = function() require'plugcfg/dap' end
+    } -- neovim debugger protocol support
+    use {'neoclide/coc.nvim', config = function() require'plugcfg/coc' end } -- lsp autocomplete
+    use {'plasticboy/vim-markdown', opt = true} -- markdown vim mode
+    use {'theHamsta/nvim-dap-virtual-text', opt = true} -- virtual debugging text support
+    use {'tpope/vim-apathy'} -- better include jump
+    use {'tpope/vim-dispatch',
+        opt = true,
+        cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
+        config = function() require'plugcfg/vim-dispatch' end
+    } -- provide async build
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
-    use {'andymass/vim-matchup', config = function() require'plugcfg/vim-matchup' end } -- generic matcher
     use {'junegunn/vim-easy-align', config = function() require'plugcfg/easyalign' end } -- use easy-align, instead of tabular
     use {'machakann/vim-sandwich'} -- support sandwich surrounds
+    use {'rstacruz/vim-closer.git'} -- close brackets on enter
     use {'svermeulen/vim-NotableFt'} -- better ft
+    use {'andymass/vim-matchup',
+        event = 'VimEnter',
+        config = function() require'plugcfg/vim-matchup' end
+    } -- generic matcher
+    use {'tommcdo/vim-exchange'} -- exchange operator
     use {'tpope/vim-repeat'} -- dot for surround
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
     use {'wellle/targets.vim'} -- better text objects
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Search                                                                       │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {"junegunn/fzf",
-      run = function() vim.fn["fzf#install"]() end,
-      config = function() require'plugcfg/fzf' end
-    }  -- fzf binary
-    use {'junegunn/fzf.vim'} -- fzf vim bindings
-    use {'pbogut/fzf-mru.vim', config = function() require'plugcfg/fzfmru' end } -- fzf mru source
-    use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
+    use {'brooth/far.vim'} -- better find and replace
     use {'eugen0329/vim-esearch', config = function() require'plugcfg/esearch' end } -- the best of the best way to search
     use {'haya14busa/vim-asterisk', config = function() require'plugcfg/vim-asterisk' end } -- smartcase star
-    use {'brooth/far.vim'} -- better find and replace
+    use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end } -- latest fzf binary
+    use {'junegunn/fzf.vim', config = function() require'plugcfg/fzf' end } -- fzf vim bindings
+    use {'pbogut/fzf-mru.vim', config = function() require'plugcfg/fzfmru' end } -- fzf mru source
+    use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
