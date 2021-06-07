@@ -61,6 +61,7 @@ return require('packer').startup({function()
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
     use {'akinsho/nvim-bufferline.lua'} -- fancy bufferline
+    use {'akinsho/nvim-toggleterm.lua'} -- fast terminal toggle
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
