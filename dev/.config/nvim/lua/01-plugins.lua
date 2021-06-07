@@ -29,6 +29,10 @@ return require('packer').startup(function()
     use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
     use {'machakann/vim-sandwich'} -- support sandwich surrounds
     use {'jamessan/vim-gnupg', ft = {'gpg'}, opt=true} -- transparent work with gpg-encrypted files
+    use {'tversteeg/registers.nvim'} -- show registers
+    use {'sindrets/diffview.nvim', cmd = {'DiffviewLoad'} } -- diff view for multiple files
+    use {'nacro90/numb.nvim', config = [[require('numb').setup()]] }
+    -- "aouelete/sway-vim-syntax",
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'neg-serg/lusty',
           config = function()
@@ -47,7 +51,8 @@ return require('packer').startup(function()
           opt=true,
           cmd = {
             'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'
-          }
+          },
+          ft = { "txt", "markdown", "rst" }
     } -- better text support
     use {'reedes/vim-wordy', opt=false} -- style check for english
     use {'romgrk/winteract.vim',
