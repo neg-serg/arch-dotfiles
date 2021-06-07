@@ -12,3 +12,6 @@ require '31-statusline'
 require '62-sort-operator'
 require '70-rsi'
 require'plugcfg/gitsigns'
+
+vim.cmd('nnoremap <C-Space> :ToggleTerm<CR>')
+vim.cmd([[autocmd TermEnter term://*toggleterm#* tnoremap <silent><C-Space> <C-\><C-n>:exe v:count1 . "ToggleTerm"<CR>]])
