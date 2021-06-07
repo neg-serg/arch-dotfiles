@@ -2,7 +2,8 @@
 vcd() {
     name="""$1"""
     if [ -x "$(which nvr 2> /dev/null)" ]; then
-        nvr --servername "$NVIM_LISTEN_ADDRESS" --remote-send ":cd $name<CR>"
+        nvr --servername "$NVIM_LISTEN_ADDRESS" --remote "+ToggleTermCloseAll"
+        nvr --servername "$NVIM_LISTEN_ADDRESS" --remote "+cd $name"
     else
         exit 2
     fi
