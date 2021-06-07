@@ -1,5 +1,4 @@
 export PATH=/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -11,31 +10,17 @@ export XDG_DOCUMENTS_DIR="$HOME/doc/"
 export XDG_PICTURES_DIR="$HOME/pic"
 export XDG_VIDEOS_DIR="$HOME/vid"
 export XDG_PUBLICSHARE_DIR="$HOME/1st_level/upload/share"
-
 unset SSH_ASKPASS
-
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 export INPUTRC=${XDG_CONFIG_HOME}/inputrc
 export BROWSER="firefox"
-export PERLBREW_ROOT=${HOME}/.perl5
 export EXA_COLORS="da=00;38;5;250:uu=0:gu=0"
 export LS_COLORS GREP_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 export MPV_HOME="${HOME}/.config/mpv"
 export MANWIDTH=${MANWIDTH:-80}
-export GOPATH=${HOME}/bin/go
-
-export JAVA_FONTS=/usr/share/fonts/TTF
-export _JAVA_AWT_WM_NONREPARENTING=1
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-_SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
-unset _JAVA_OPTIONS
-
-export TODOIST_API_KEY=a90db957033648e8216d95791401d7fbf1503bdd
-
 export STEAM_RUNTIME=1
-
 export FZF_DEFAULT_OPTS="
 --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3
 --color=fg:#617287,header:#4779B3,info:#2b768d,pointer:#395573
