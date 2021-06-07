@@ -409,3 +409,65 @@ augroup END
 " let g:ale_cpp_clang_options = '--std=c++11 -Wall -Iinclude -I/usr/include/eigen3/ -I/home/shark/Informatik/c++/dbg-macro -DDBG_MACRO_NO_WARNING=1'
 " let g:ale_cpp_clangtidy_options = '-Wall -std=c++11 -x c++ -Iinclude -I/usr/include/eigen3 -I/home/shark/Informatik/c++/dbg-macro -DDBG_MACRO_NO_WARNING=1 -extra-arg -Xanalyzer -extra-arg -analyzer-output=text'
 " let g:ale_cpp_clangcheck_options = '-extra-arg -Xanalyzer -extra-arg -analyzer-output=text -- -Wall -std=c++11 -x c++ -Iinclude -I/usr/include/eigen3 -I/home/shark/Informatik/c++/dbg-macro -DDBG_MACRO_NO_WARNING=1'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"
+" Plug 'machakann/vim-sandwich'
+" Plug 'tommcdo/vim-exchange'
+
+" let g:vfinder_fuzzy = 0
+" let g:vfinder_win_pos = 'botright'
+" let g:vfinder_default_match_mode = 'compact_match'
+" let g:vfinder_maps = {}
+" let g:vfinder_maps._ = {
+"             \   'n': {'window_quit': 'q'},
+"             \   'i': {
+"             \       'toggle_maps_in_sl': '<Tab>',
+"             \       'cache_clean': '<C-x>'
+"             \   }
+"             \ }
+
+" nnoremap <silent> ,f :call vfinder#i('files')<CR>
+" nnoremap <silent> ,b :call vfinder#i('buffers')<CR>
+" nnoremap <silent> ,r :call vfinder#i('mru')<CR>
+" nnoremap <silent> ,t :call vfinder#i('tags')<CR>
+" nnoremap <silent> ,,f :call vfinder#i('tags_in_buffer', {
+"             \   'win_pos': 'aboveleft'
+"             \ })<CR>
+" nnoremap <silent> ,c :call vfinder#i('commands', {'fuzzy': 1})<CR>
+" nnoremap <silent> ,,c :call vfinder#i('command_history')<CR>
+" nnoremap <silent> ,w :call vfinder#i('windows')<CR>
+" nnoremap <silent> ,d :call vfinder#i('directories', {'win_pos': 'tab'})<CR>
+" nnoremap <silent> ,h :call vfinder#i('help')<CR>
+" nnoremap <silent> ,m :call vfinder#i('marks')<CR>
+" nnoremap <silent> ,l :call vfinder#i('lines', {'win_pos': 'aboveleft'})<CR>
+" if executable('cmus')
+"     nnoremap <silent> ,x :call vfinder#i('cmus', {'win_pos': 'tab'})<CR>
+" endif
+
+" nnoremap <silent> ,y :call vfinder#i('yank')<CR>
+" inoremap <silent> <A-y> <Esc>:call vfinder#i('yank')<CR>
+" nnoremap <silent> z= :call vfinder#i('spell', {
+"             \   'win_pos': 'topleft vertical'
+"             \ })<CR>
+" inoremap <silent> <A-z> <Esc>:call vfinder#i('spell', {
+"             \   'win_pos': 'topleft vertical'
+"             \ })<CR>
+
+" command! VFQf call <SID>vfinder_qf()
+
+" fun! s:vfinder_qf() abort " {{{2
+"     if getwininfo(win_getid(winnr()))[0].loclist
+"         call vfinder#i('qf', {'args': 'l', 'win_pos': 'topleft'})
+"     else
+"         call vfinder#i('qf', {'win_pos': 'topleft'})
+"     endif
+" endfun " 2}}}
+
+" highlight! link vfinderGitCommitsDiffStatPlus Question
+" highlight! link vfinderGitCommitsDiffStatMinus Error
+" nnoremap <silent> ,gc :call vfinder#i('git_commits', {'win_pos': 'tab'})<CR>
+
+" Plug 'itchyny/vim-parenmatch'
+" Plug 'machakann/vim-highlightedyank',
+" inoremap <C-a> <C-o>^
+" inoremap <C-e> <C-o>$
