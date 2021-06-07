@@ -62,8 +62,9 @@ time("try_loadstring definition", true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
-    print('Error running ' .. component .. ' for ' .. name)
-    error(result)
+    vim.schedule(function()
+      vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
+    end)
   end
   return result
 end
@@ -74,6 +75,10 @@ _G.packer_plugins = {
   ["FixCursorHold.nvim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/FixCursorHold.nvim"
+  },
+  ["PICO-8.vim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/PICO-8.vim"
   },
   ale = {
     config = { "\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/ale\frequire\0" },
@@ -105,6 +110,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/conflict-marker.vim"
   },
+  ["diffview.nvim"] = {
+    commands = { "DiffviewLoad" },
+    config = { "\27LJ\1\0020\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\21plugcfg/diffview\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/diffview.nvim"
+  },
   ["far.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/far.vim"
@@ -128,6 +140,7 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/fzf.vim"
   },
   ["gitsigns.nvim"] = {
+    config = { "\27LJ\1\0020\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\21plugcfg/gitsigns\frequire\0" },
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
@@ -149,6 +162,11 @@ _G.packer_plugins = {
   ["nlua.nvim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/nlua.nvim"
+  },
+  ["numb.nvim"] = {
+    config = { "require('numb').setup()" },
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/numb.nvim"
   },
   ["nvim-bufdel"] = {
     loaded = true,
@@ -208,9 +226,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/spellsitter.nvim"
   },
+  ["splitjoin.vim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/splitjoin.vim"
+  },
+  ["sway-vim-syntax"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/sway-vim-syntax"
+  },
   ["targets.vim"] = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/targets.vim"
+  },
+  ["tig-explorer.vim"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/tig-explorer.vim"
   },
   ["vim-NotableFt"] = {
     loaded = true,
@@ -321,6 +351,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-rooter"
   },
+  ["vim-sandwich"] = {
+    loaded = true,
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/vim-sandwich"
+  },
   ["vim-sonictemplate"] = {
     commands = { "Template" },
     loaded = false,
@@ -346,13 +380,6 @@ _G.packer_plugins = {
   vimwiki = {
     loaded = true,
     path = "/home/neg/.local/share/nvim/site/pack/packer/start/vimwiki"
-  },
-  ["vista.vim"] = {
-    commands = { "Vista" },
-    config = { "\27LJ\1\2-\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\18plugcfg/vista\frequire\0" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/opt/vista.vim"
   },
   ["winteract.vim"] = {
     commands = { "InteractiveWindow" },
@@ -380,22 +407,30 @@ time("Config for fzf-mru.vim", false)
 time("Config for ale", true)
 try_loadstring("\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/ale\frequire\0", "config", "ale")
 time("Config for ale", false)
--- Config for: fzf
-time("Config for fzf", true)
-try_loadstring("\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/fzf\frequire\0", "config", "fzf")
-time("Config for fzf", false)
--- Config for: vim-asterisk
-time("Config for vim-asterisk", true)
-try_loadstring("\27LJ\1\0024\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\25plugcfg/vim-asterisk\frequire\0", "config", "vim-asterisk")
-time("Config for vim-asterisk", false)
--- Config for: vim-esearch
-time("Config for vim-esearch", true)
-try_loadstring("\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20plugcfg/esearch\frequire\0", "config", "vim-esearch")
-time("Config for vim-esearch", false)
 -- Config for: vim-easy-align
 time("Config for vim-easy-align", true)
 try_loadstring("\27LJ\1\0021\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\22plugcfg/easyalign\frequire\0", "config", "vim-easy-align")
 time("Config for vim-easy-align", false)
+-- Config for: numb.nvim
+time("Config for numb.nvim", true)
+require('numb').setup()
+time("Config for numb.nvim", false)
+-- Config for: fzf
+time("Config for fzf", true)
+try_loadstring("\27LJ\1\2+\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\16plugcfg/fzf\frequire\0", "config", "fzf")
+time("Config for fzf", false)
+-- Config for: gitsigns.nvim
+time("Config for gitsigns.nvim", true)
+try_loadstring("\27LJ\1\0020\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\21plugcfg/gitsigns\frequire\0", "config", "gitsigns.nvim")
+time("Config for gitsigns.nvim", false)
+-- Config for: vim-esearch
+time("Config for vim-esearch", true)
+try_loadstring("\27LJ\1\2/\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\20plugcfg/esearch\frequire\0", "config", "vim-esearch")
+time("Config for vim-esearch", false)
+-- Config for: vim-asterisk
+time("Config for vim-asterisk", true)
+try_loadstring("\27LJ\1\0024\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\25plugcfg/vim-asterisk\frequire\0", "config", "vim-asterisk")
+time("Config for vim-asterisk", false)
 -- Config for: vim-matchup
 time("Config for vim-matchup", true)
 try_loadstring("\27LJ\1\0023\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\24plugcfg/vim-matchup\frequire\0", "config", "vim-matchup")
@@ -414,27 +449,30 @@ time("Defining lazy-load commands", true)
 vim.cmd [[command! -nargs=* -range -bang -complete=file Make lua require("packer.load")({'vim-dispatch'}, { cmd = "Make", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file InteractiveWindow lua require("packer.load")({'winteract.vim'}, { cmd = "InteractiveWindow", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file MundoToggle lua require("packer.load")({'vim-mundo'}, { cmd = "MundoToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Codi lua require("packer.load")({'codi.vim'}, { cmd = "Codi", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file DiffviewLoad lua require("packer.load")({'diffview.nvim'}, { cmd = "DiffviewLoad", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file CodiUpdate lua require("packer.load")({'codi.vim'}, { cmd = "CodiUpdate", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Template lua require("packer.load")({'vim-sonictemplate'}, { cmd = "Template", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Codi lua require("packer.load")({'codi.vim'}, { cmd = "Codi", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Dispatch lua require("packer.load")({'vim-dispatch'}, { cmd = "Dispatch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Vista lua require("packer.load")({'vista.vim'}, { cmd = "Vista", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file PencilToggle lua require("packer.load")({'vim-pencil'}, { cmd = "PencilToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file LustyFilesystemExplorerFromHere lua require("packer.load")({'lusty'}, { cmd = "LustyFilesystemExplorerFromHere", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file PencilToggle lua require("packer.load")({'vim-pencil'}, { cmd = "PencilToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file PencilHard lua require("packer.load")({'vim-pencil'}, { cmd = "PencilHard", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file PencilSoft lua require("packer.load")({'vim-pencil'}, { cmd = "PencilSoft", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Pencil lua require("packer.load")({'vim-pencil'}, { cmd = "Pencil", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file ArgWrap lua require("packer.load")({'vim-argwrap'}, { cmd = "ArgWrap", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file PencilHard lua require("packer.load")({'vim-pencil'}, { cmd = "PencilHard", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Pencil lua require("packer.load")({'vim-pencil'}, { cmd = "Pencil", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Template lua require("packer.load")({'vim-sonictemplate'}, { cmd = "Template", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 time("Defining lazy-load commands", false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time("Defining lazy-load filetype autocommands", true)
+vim.cmd [[au FileType rst ++once lua require("packer.load")({'vim-pencil'}, { ft = "rst" }, _G.packer_plugins)]]
+vim.cmd [[au FileType txt ++once lua require("packer.load")({'vim-pencil'}, { ft = "txt" }, _G.packer_plugins)]]
 vim.cmd [[au FileType ansible ++once lua require("packer.load")({'ansible-vim'}, { ft = "ansible" }, _G.packer_plugins)]]
 vim.cmd [[au FileType gpg ++once lua require("packer.load")({'vim-gnupg'}, { ft = "gpg" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-pencil'}, { ft = "markdown" }, _G.packer_plugins)]]
 time("Defining lazy-load filetype autocommands", false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
