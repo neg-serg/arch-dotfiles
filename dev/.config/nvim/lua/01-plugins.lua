@@ -102,7 +102,6 @@ return require('packer').startup({function()
     use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
     use {'junegunn/vim-easy-align', config = function() require'plugcfg/easyalign' end } -- use easy-align, instead of tabular
     use {'machakann/vim-sandwich'} -- support sandwich surrounds
-    use {'rstacruz/vim-closer.git'} -- close brackets on enter
     use {'svermeulen/vim-NotableFt'} -- better ft
     use {'andymass/vim-matchup',
         event = 'VimEnter',
