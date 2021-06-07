@@ -26,10 +26,8 @@ map('n', '<M-CR>', '<Plug>(coc-fix-current)', {silent=true})
 map('n', '[Qleader]r', '<Plug>(coc-rename)', {silent=true})
 -- Reformat command
 vim.g.coc_global_extensions = {
-  'coc-calc',
   'coc-diagnostic',
   'coc-lists',
-  'coc-pairs',
   'coc-prettier',
   'coc-pyright',
   'coc-snippets',
