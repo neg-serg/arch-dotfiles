@@ -195,19 +195,20 @@ command hint_focus hint -;
 " Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
 
+quickmark A https://magazine.artstation.com/
 quickmark c https://www.twitch.tv/cooller
-quickmark e http://www.ektoplazm.com/
 quickmark E https://projecteuler.net/
-quickmark g https://gmail.com
+quickmark e http://www.ektoplazm.com/
 quickmark G https://github.com/neg-serg
+quickmark g https://gmail.com
+quickmark k https://www.reddit.com/r/MechanicalKeyboards/
 quickmark L http://gen.lib.rus.ec
 quickmark l http://www.last.fm/user/e7z0x1
 quickmark s http://store.steampowered.com
+quickmark S https://uso.kkx.one
 quickmark u http://www.reddit.com/r/unixporn
 quickmark v https://vk.com
 quickmark y https://youtube.com/
-quickmark k https://www.reddit.com/r/MechanicalKeyboards/
-quickmark A https://magazine.artstation.com/
 
 " youtube hinting
 unbindurl youtube.com/watch f
