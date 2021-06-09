@@ -132,6 +132,7 @@ return require('packer').startup({function()
     use {'Bakudankun/PICO-8.vim'} -- pico-8 cartridge files
     use {'kyazdani42/nvim-web-devicons', config = function() require'plugcfg/nvim-web-devicons' end } -- fancy webicons
     use {'neg-serg/neg'} -- my colorscheme
+    use {'ishan9299/nvim-solarized-lua'} -- solarized colorscheme
     use {'RRethy/vim-hexokinase', run = "make hexokinase"} -- best color highlighting
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'tridactyl/vim-tridactyl'} -- tridactyl support
