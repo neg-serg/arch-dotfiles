@@ -77,7 +77,10 @@ return require('packer').startup({function()
         config = function() require'plugcfg/ale' end
     } -- async linter with lsp support
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
-    use {'eraserhd/parinfer-rust', run = 'cargo build --release'} -- support lisps
+    use {'eraserhd/parinfer-rust',
+        run = 'cargo build --release',
+        ft = { "clojure", "fennel", "lisp", "scheme" },
+    } -- support lisps
     use {'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
         config = function() require'plugcfg/gitsigns' end
@@ -135,11 +138,7 @@ return require('packer').startup({function()
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'pearofducks/ansible-vim',
-        opt = true,
-        ft = 'ansible',
-        config = function() require'plugcfg/ansible' end
-    } -- ansible support
+    use {'pearofducks/ansible-vim', opt = true, ft = 'ansible', config = function() require'plugcfg/ansible' end } -- ansible support
     use {'saltstack/salt-vim'} -- salt sls support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
