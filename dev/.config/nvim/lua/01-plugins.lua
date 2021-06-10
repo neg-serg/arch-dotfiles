@@ -72,7 +72,7 @@ return require('packer').startup({function(use)
     use {'antoinemadec/coc-fzf'} -- coc fzf support
     use {'b3nj5m1n/kommentary'} -- alternative commenter
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
-    use {'windwp/nvim-autopairs', config=[[require('nvim-autopairs').setup()]]} -- try new autopairs
+    use {'windwp/nvim-autopairs', config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]]} -- try new autopairs
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'eraserhd/parinfer-rust',
         run='cargo build --release',
