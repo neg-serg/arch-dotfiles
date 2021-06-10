@@ -1,5 +1,4 @@
 require '01-plugins'
-require '00-profile'
 _, nvim_utils = pcall(require, "nvim_utils")
 require '00-helpers'
 require '00-settings'
