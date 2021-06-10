@@ -1,6 +1,7 @@
 local o = vim.o
 local g = vim.g
 local a = vim.api
+
 map('i', '<C-j>', '<ESC>', {nowait = true})
 map('v', '<C-j>', '<ESC>', {nowait = true})
 map('n', '<C-j>', '<C-w>j', {nowait = true})
@@ -73,15 +74,13 @@ api.nvim_command('nnoremap <expr> $ &wrap ? "g$" : "$"')
 api.nvim_command('nnoremap <expr> j (v:count == 0 ? "gj" : "j")')
 api.nvim_command('nnoremap <expr> k (v:count == 0 ? "gk" : "k")')
 map('n', '<leader>l', ':LustyFilesystemExplorerFromHere<CR>', {silent=true})
-vim.api.nvim_exec(
-[[
+vim.api.nvim_exec([[
     exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
     exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 ]], true)
 -- thx to ralismark.xyz/2020/08/29/how-i-use-vim-1.html
 -- Fixed I/A for visual
-vim.api.nvim_exec(
-[[
-xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
-xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
+vim.api.nvim_exec([[
+    xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
+    xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
