@@ -76,7 +76,7 @@ opt('o', 'splitbelow', true)                                    -- Puts new spli
 opt('o', 'splitright', true)                                    -- Puts new vsplit windows to the right of the current
 opt('o', 'switchbuf', 'useopen,usetab')                         -- 'useopen' may be useful for re-using QuickFix window.
 opt('o', 'tabstop', 4)                                          -- An indentation every four columns
-opt('o', 'timeoutlen', 100)                                     -- 100 ms wait to sequence complete
+opt('o', 'timeoutlen', 400)                                     -- 400 ms wait to sequence complete
 opt('o', 'ttimeoutlen', 20)                                     -- Very fast and also you shouldn't make combination too fast
 opt('o', 'updatetime', 250)                                     -- Faster diagnostics
 opt('o', 'virtualedit', 'onemore,block')                        -- Allow for cursor beyond last character
