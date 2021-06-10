@@ -8,9 +8,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup({function()
+return require('packer').startup({function(use)
     -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt=true}
+    use 'wbthomason/packer.nvim' -- no lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
