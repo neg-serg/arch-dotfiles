@@ -55,7 +55,7 @@ opt('o', 'showmatch', false)                                    -- Show matching
 opt('w', 'spell', false)                                        -- Disable spell checking by default
 opt('w', 'number', true)                                        -- Line numbers on
 opt('o', 'pumblend', 15)                                        -- setup pmenu transparency
-opt('o', 'pumheight', 12)                                       -- Do not make pmenu too wide
+opt('o', 'pumheight', 10)                                       -- Do not make pmenu too wide
 opt('o', 'scrolljump', 0)                                       -- Lines to scroll when cursor leaves screen
 opt('o', 'scrolloff' , 0)                                       -- Minimum lines to keep above and below cursor
 opt('o', 'scrollback', 0)                                       -- Disable scrollback
