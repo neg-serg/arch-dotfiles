@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 export ENV=$HOME/.profile
-xrdb -I$XDG_CONFIG_HOME/xres -load "$HOME/.Xresources"
+xrdb -I$XDG_CONFIG_HOME/xres -load "$HOME/.config/xres/Xresources"
 xset s off -dpms
 sudo openrgb --server -p neg.orp &
 i3
