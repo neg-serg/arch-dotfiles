@@ -32,3 +32,4 @@ endfunction
 autocmd BufReadPost * call RestoreCursorPosition()
 autocmd FocusGained,BufEnter,FileChangedShell,WinEnter * checktime
 ]], true)
+vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"
