@@ -70,6 +70,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'antoinemadec/coc-fzf'} -- coc fzf support
+    use {'kevinhwang91/nvim-bqf'} -- better quickfix
     use {'b3nj5m1n/kommentary'} -- alternative commenter
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs', config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]]} -- try new autopairs
