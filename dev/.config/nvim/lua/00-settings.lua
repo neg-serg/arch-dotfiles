@@ -15,7 +15,7 @@ opt('o', 'report', 0)                                           -- No report on 
 opt('o', 'fileformats', 'unix,dos,mac')                         -- File format fallback
 opt('o', 'synmaxcol', 256)                                      -- No syntax hi for too long lines
 opt('o', 'regexpengine', 0)                                     -- Autoselect regex engine
-opt('w', 'conceallevel', 0)                                     -- Disable conceal
+opt('w', 'conceallevel', 1)                                     -- Enable some conceal
 opt('w', 'concealcursor', 'niv')                                -- Conceal cursor
 opt('o', 'keymap', 'russian-jcukenwin')                         -- Add ru keymap
 opt('o', 'magic', true)                                         -- Use magic
