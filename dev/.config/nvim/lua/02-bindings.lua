@@ -84,3 +84,39 @@ vim.api.nvim_exec([[
     xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
+
+vim.api.nvim_command('cnoremap <C-a> <home>')
+vim.api.nvim_command('cnoremap <C-b> <left>')
+vim.api.nvim_command('cnoremap <C-e> <end>')
+vim.api.nvim_command('cnoremap <C-n> <down>')
+vim.api.nvim_command('cnoremap <C-p> <up>')
+vim.api.nvim_command('cnoremap <C-d> <Del>')
+vim.api.nvim_command('cnoremap <M-f> <S-Right>')
+vim.api.nvim_command('inoremap <C-d> <Del>')
+vim.api.nvim_command('inoremap <C-b> <left>')
+vim.api.nvim_command('inoremap <C-f> <right>')
+vim.api.nvim_command('inoremap <C-x>b <C-o>:Buffers<CR>')
+vim.api.nvim_command('inoremap <M-b> <S-Left>')
+vim.api.nvim_command('inoremap <M-d> <C-o>dw')
+vim.api.nvim_command('inoremap <M-f> <C-o>e<Right>')
+vim.api.nvim_command('inoremap <silent> <c-a> <esc>I')
+vim.api.nvim_command('nnoremap <C-x>b <C-o>:Buffers<CR>')
+vim.api.nvim_command('omap <M-b> <Left>')
+vim.api.nvim_command('omap <M-e> <End>')
+vim.api.nvim_command('onoremap <M-f> <C-o>e<Right>')
+vim.api.nvim_command('inoremap <C-a> <C-o>^')
+vim.api.nvim_command('inoremap <C-e> <C-o>$')
+
+-- -- Move in command line mode using hjkl
+-- for b in [["<C-h>", "<left>"],
+-- 	\ ["<C-j>", "<down>"],
+-- 	\ ["<C-k>", "<up>"],
+-- 	\ ["<C-l>", "<right>"],
+-- 	\ ["<C-a>", "<Home>"],
+-- 	\ ["<C-e>", "<End>"]]
+--     execute('lnoremap ' . b[0] . ' ' . b[1])
+--     execute('cnoremap ' . b[0] . ' ' . b[1])
+--     " Warning: Unexpected behavior might ensue when it comes to closing
+--     " completion menu because of <C-e>
+--     execute('inoremap <expr> ' . b[0] . ' (pumvisible() ? "\<C-e>" : "") . "\' . b[1] . '"')
+-- endfor
