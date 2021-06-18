@@ -121,6 +121,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Search                                                                       │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'brooth/far.vim'} -- better find and replace
+    use {'windwp/nvim-spectre'} -- yet another interactive find and replace
     use {'eugen0329/vim-esearch', config=[[require'plugcfg/esearch']]} -- the best of the best way to search
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
     use {'junegunn/fzf', run=[[vim.fn['fzf#install']()]]} -- latest fzf binary
