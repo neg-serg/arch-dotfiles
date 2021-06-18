@@ -50,7 +50,6 @@
 
 #element {
   padding: 0 4mm;
-  border-color: @ultra;
   border-radius: 8px 8px 8px 8px;
   border: 2px 0px 2px 0px;
 }
@@ -101,9 +100,10 @@
 }
 
 listview {
-  layout: horizontal;
+  layout: vertical;
   spacing: 5px;
-  lines: 100;
+  lines: 2;
+  columns: 8;
 }
 
 entry {
@@ -116,6 +116,7 @@ entry {
 
 horibox {
   children: [ prompt, entry, listview ];
+  layout: vertical;
   orientation: horizontal;
 }
 
