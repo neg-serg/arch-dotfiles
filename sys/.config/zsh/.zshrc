@@ -34,3 +34,4 @@ source "${ZDOTDIR}/04-bindings.zsh"
 zsh-defer source /usr/share/fzf/completion.zsh
 zsh-defer source /usr/share/fzf/key-bindings.zsh
 source "${ZDOTDIR}/06-neg-dirs.zsh"
+source "${XDG_DATA_HOME}/nvim/site/pack/packer/start/shelley/shell/shelley.sh"
