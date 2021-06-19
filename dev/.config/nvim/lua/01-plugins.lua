@@ -20,7 +20,6 @@ return require('packer').startup({function(use)
     use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'nacro90/numb.nvim', config=[[require('numb').setup()]] }
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
-    use {'glacambre/shelley'} -- shell autocd
     -- use {'nvim-telescope/telescope.nvim'} -- try it later
     use {'neg-serg/lusty',
           config=function()
@@ -57,9 +56,10 @@ return require('packer').startup({function(use)
     use {'akinsho/nvim-toggleterm.lua',
         config=function()
             vim.cmd('nnoremap <C-Space> :ToggleTerm<CR>')
+            vim.cmd('inoremap <silent><C-Space> <Esc>:<c-u>exe v:count1 . "ToggleTerm"<CR>')
             vim.cmd([[autocmd TermEnter term://*toggleterm#* tnoremap <silent><C-Space> <C-\><C-n>:exe v:count1 . "ToggleTerm"<CR>]])
         end
-} -- fast terminal toggle
+    } -- fast terminal toggle
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Neovim lua stuff                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
