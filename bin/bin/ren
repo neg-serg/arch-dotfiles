@@ -11,7 +11,7 @@ Options:
 
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
-year :: 2020
+year :: 2021
 """
 
 import os
@@ -29,7 +29,7 @@ def fancy_name(filename, file=False):
     filename = re.sub(r'[+·\.]*-[+·\.]*', '-', filename)
     filename = re.sub(r'[+·\.]*:[+·\.]*', ':', filename)
 
-    filename = re.sub(r'[><\\\]+', "", filename)
+    # filename = re.sub(r'[><\\\]+', "", filename)
     filename = re.sub(r'\(+', "[", filename)
     filename = re.sub(r'\)+', "]", filename)
     filename = re.sub(r'[\'\`]', "=", filename)
