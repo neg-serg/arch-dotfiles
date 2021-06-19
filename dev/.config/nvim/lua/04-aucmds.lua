@@ -43,8 +43,12 @@ autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo \| set bg=light
 " Update binds when sxhkdrc is updated.
 autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 
-" Run xrdb whenever Xdefaults or Xresources are updated.
-autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+augroup custom_updates
+	autocmd!
+	au BufWritePost ~/.config/xorg/Xdefaults !xrdb -merge ~/.config/xorg/Xdefaults
+	au BufWritePost fonts.conf !fc-cache
+augroup END
+
 
 ]], true)
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"

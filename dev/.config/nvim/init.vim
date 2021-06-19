@@ -35,9 +35,3 @@ augroup general
 					\ | endif
 				\ | endif
 augroup END
-
-augroup custom_updates
-	autocmd!
-	au BufWritePost ~/.config/xorg/Xdefaults !xrdb -merge ~/.config/xorg/Xdefaults
-	au BufWritePost fonts.conf !fc-cache
-augroup END
