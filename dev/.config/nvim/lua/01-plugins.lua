@@ -105,6 +105,7 @@ return require('packer').startup({function(use)
         cmd={'Dispatch', 'Make', 'Focus', 'Start'},
         config=[[require'plugcfg/vim-dispatch']]
     } -- provide async build
+    use {'rstacruz/sparkup'} -- better emmet-vim
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
