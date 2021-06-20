@@ -11,7 +11,8 @@ tsconf.setup {
     disable = {},  -- list of language that will be disabled
   },
   rainbow = { enable = true },
-  indent = { enable = true }
+  indent = { enable = {"javascriptreact"} },
+  autotag = {enable = true},
 }
 vim.cmd('hi rainbowcol1 guifg=#365e96')
 vim.cmd('hi rainbowcol2 guifg=#315587')
