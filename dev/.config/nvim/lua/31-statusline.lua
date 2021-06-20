@@ -56,6 +56,45 @@ function M.FancyMode()
   return modes.current_mode[current_mode]
 end
 
+
+--[[ function M.Path()
+    if !empty(expand('%:t'))
+        let fn = winwidth(0) <# 55
+                    \ ? '../'
+                    \ : winwidth(0) ># 85
+                    \ ? expand('%:~:.:h') . '/'
+                    \ : pathshorten(expand('%:~:.:h')) . '/'
+    else
+        let fn = ''
+    end
+    return fn
+end ]]
+
+--[[ fun! SL_jobs()
+    let n_jobs = exists('g:jobs') ? len(g:jobs) : 0
+    return winwidth(0) <# 55 ? '' : n_jobs ? ' ' . n_jobs : ''
+end
+
+--[[ fun! SL_format_and_encoding()
+    let encoding = winwidth(0) <# 55 ? '' : strlen(&fenc) ? &fenc : &enc
+    let format = winwidth(0) ># 85 ? &fileformat : winwidth(0) <# 55 ? '' : &fileformat[0]
+    return printf('%s[%s]', encoding, format)
+endfun
+
+fun! SL_filetype() abort
+    return strlen(&filetype) ? &filetype : ''
+endfun
+
+fun! SL_column_and_percent() abort
+    " The percent part was inspired by vim-line-no-indicator plugin.
+    let chars = ['꜒', '꜓', '꜔', '꜕', '꜖',]
+    let [c_l, l_l] = [line('.'), line('$')]
+    let index = float2nr(ceil((c_l * len(chars) * 1.0) / l_l)) - 1
+    let perc = chars[index]
+    return winwidth(0) ># 55 ? printf('%s%2d', perc, col('.')) : ''
+endfun
+]]
+
 function M.activeLine()
   local statusline = ""
   statusline = statusline..'%#Base#   '
