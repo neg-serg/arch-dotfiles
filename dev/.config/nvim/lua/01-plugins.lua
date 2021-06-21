@@ -20,7 +20,6 @@ return require('packer').startup({function(use)
     use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'nacro90/numb.nvim', config=[[require('numb').setup()]] }
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
-    -- use {'nvim-telescope/telescope.nvim'} -- try it later
     use {'neg-serg/lusty',
           config=function()
             vim.g.LustyJugglerDefaultMappings = 0
