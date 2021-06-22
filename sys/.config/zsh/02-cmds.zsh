@@ -80,7 +80,10 @@ _exists mpc && {
     alias unlove='mpc sendmessage mpdas unlove'
 }
 _exists youtube-dl && alias yt='youtube-dl'
-_exists curl && alias weather="curl 'wttr.in/?T'"
+_exists curl && {
+    alias weather="curl 'wttr.in/?T'"
+    alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
+}
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(bigloo clisp irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
@@ -119,7 +122,10 @@ _exists git && {
     alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
     alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
 }
-_exists fzf && bindings() { bindkey -L | fzf }
+_exists fzf && {
+    alias ttcmd="echo '' | fzf -q '$*' --prompt '│ ' --pointer '― ' --preview-window=up:99% --preview='eval {q}'"
+    bindings() { bindkey -L | fzf }
+}
 _exists broot && autoload br
 autoload zc
 unfunction _exists
