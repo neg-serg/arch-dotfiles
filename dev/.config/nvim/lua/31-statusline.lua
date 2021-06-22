@@ -83,7 +83,7 @@ end
 
 function M.activeLine()
   local statusline = ""
-  statusline = statusline..'%#Base#   '
+  statusline = statusline .. '%#Base#   '
   statusline = statusline .. '%{VisualSelectionSize()}'
   statusline = statusline .. '%#StatusDelimiter#❯>'
   statusline = statusline .. '%#Modi# %{CheckMod(&modified)}'
@@ -94,7 +94,6 @@ function M.activeLine()
   statusline = statusline .. '%3* '
   statusline = statusline .. '%= '
   statusline = statusline .. '%#Decoration# '
-  statusline = statusline .. ' %{ColumnPercent()}'
   statusline = statusline .. '%#StatusRight#  %{StatusLinePWD()}'
   statusline = statusline .. '%3*'
   statusline = statusline .. '%#StatusDelimiter#'
