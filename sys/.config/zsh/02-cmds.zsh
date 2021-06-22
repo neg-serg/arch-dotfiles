@@ -80,6 +80,7 @@ _exists mpc && {
     alias unlove='mpc sendmessage mpdas unlove'
 }
 _exists youtube-dl && alias yt='youtube-dl'
+_exists curl && alias weather="curl 'wttr.in/?T'"
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(bigloo clisp irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
