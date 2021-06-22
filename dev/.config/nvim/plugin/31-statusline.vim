@@ -141,34 +141,25 @@ function! CheckMod(modi) abort
     endif
 endfunction
 
-"function! InactiveLine() abort
-"    return '%#Base# %#Filename# %.20%F '
-"endfunction
+function! TablineBufferInfo() abort " {{{1
+    let current = bufnr('%')
+    let buffers = filter(range(1, bufnr('$')), {i, v ->
+                \  buflisted(v) && getbufvar(v, '&filetype') isnot# 'qf'
+                \ })
+    let index_current = index(buffers, current) + 1
+    let modified = getbufvar(current, '&modified') ? '+' : ''
+    let count_buffers = len(buffers)
+    return index_current isnot# 0 && count_buffers ># 1
+                \ ? printf('%s/%s', index_current, count_buffers)
+                \ : ''
+endfunction
 
-
-" fun! ka#operator#sort(...) abort
-"     execute printf('%d,%d:!sort', line("'["), line("']"))
-" endfun
-
-" fun! ka#tabline#buffer_info() abort " {{{1
-"     let current = bufnr('%')
-"     let buffers = filter(range(1, bufnr('$')), {i, v ->
-"                 \  buflisted(v) && getbufvar(v, '&filetype') isnot# 'qf'
-"                 \ })
-"     let index_current = index(buffers, current) + 1
-"     let modified = getbufvar(current, '&modified') ? '+' : ''
-"     let count_buffers = len(buffers)
-"     return index_current isnot# 0 && count_buffers ># 1
-"                 \ ? printf('%s/%s', index_current, count_buffers)
-"                 \ : ''
-" endfun
-
-" fun! ka#tabline#cwd() abort " {{{1
-"     let cwd = fnamemodify(getcwd(), ':~')
-"     if cwd isnot# '~/'
-"         let cwd = len(cwd) <=# 15 ? pathshorten(cwd) : cwd
-"         return cwd
-"     else
-"         return ''
-"     endif
-" endfun
+function! TablineCwd() abort " {{{1
+    let cwd = fnamemodify(getcwd(), ':~')
+    if cwd isnot# '~/'
+        let cwd = len(cwd) <=# 15 ? pathshorten(cwd) : cwd
+        return cwd
+    else
+        return ''
+    endif
+endfunction
