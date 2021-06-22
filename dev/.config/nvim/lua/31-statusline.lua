@@ -95,6 +95,65 @@ fun! SL_column_and_percent() abort
 endfun
 ]]
 
+--[[
+function! s:file_is_modified() abort
+  return spaceline#utils#line_is_lean() || spaceline#utils#line_is_plain() ?  ''  :
+  \      &modified                                       ?  ' ' :
+  \      &modifiable                                     ?  ''  : ' -'
+endfunction
+
+function! s:line_percent()
+  let byte = line2byte( line( "." ) ) + col( "." ) - 1
+  let size = (line2byte( line( "$" ) + 1 ) - 1)
+  return (byte * 100) / size .'% '
+endfunction
+
+function! spaceline#scrollbar#scrollbar_instance() abort
+  " Zero index line number so 1/3 = 0, 2/3 = 0.5, and 3/3 = 1
+  let l:current_line = line('.') - 1
+  let l:total_lines = line('$') - 1
+
+  if l:current_line == 0
+    let l:index = 0
+  elseif l:current_line == l:total_lines
+    let l:index = -1
+  else
+    let l:line_no_fraction = floor(l:current_line) / floor(l:total_lines)
+    let l:index = float2nr(l:line_no_fraction * len(g:spaceline_scroll_bar_chars))
+  endif
+
+  return g:spaceline_scroll_bar_chars[l:index]
+endfunction
+
+function! s:file_readonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! s:size(f) abort
+    let l:size = getfsize(expand(a:f))
+  if l:size == 0 || l:size == -1 || l:size == -2
+    return ''
+  endif
+  if l:size < 1024
+    let size = l:size.'b'
+  elseif l:size < 1024*1024
+    let size = printf('%.1f', l:size/1024.0).'k'
+  elseif l:size < 1024*1024*1024
+    let size = printf('%.1f', l:size/1024.0/1024.0) . 'm'
+  else
+    let size = printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
+  endif
+  return size
+endfunction
+
+--]]
+
 function M.activeLine()
   local statusline = ""
   statusline = statusline..'%#Base#   '
