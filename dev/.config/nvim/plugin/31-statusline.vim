@@ -1,6 +1,12 @@
 function! StatusLinePWD() abort
     if !exists('b:statusline_pwd')
-        let b:statusline_pwd = fnamemodify(getcwd(), ':t')
+        let b:statusline_pwd = fnamemodify(getcwd(), ':~')
+        if b:statusline_pwd isnot# '~/'
+            let b:statusline_pwd = len(b:statusline_pwd) <=# 15 ? pathshorten(b:statusline_pwd) : b:statusline_pwd
+            return b:statusline_pwd
+        else
+            return ''
+        endif
     endif
     return b:statusline_pwd
 endfunction
@@ -141,25 +147,21 @@ function! CheckMod(modi) abort
     endif
 endfunction
 
-function! TablineBufferInfo() abort " {{{1
-    let current = bufnr('%')
-    let buffers = filter(range(1, bufnr('$')), {i, v ->
-                \  buflisted(v) && getbufvar(v, '&filetype') isnot# 'qf'
-                \ })
-    let index_current = index(buffers, current) + 1
-    let modified = getbufvar(current, '&modified') ? '+' : ''
-    let count_buffers = len(buffers)
-    return index_current isnot# 0 && count_buffers ># 1
-                \ ? printf('%s/%s', index_current, count_buffers)
-                \ : ''
+" diagnostic_errorsign', '●'
+" diagnostic_warnsign', '●'
+" diagnostic_oksign', ''
+
+function! FormatAndEncoding()
+    let encoding = winwidth(0) <# 55 ? '' : strlen(&fenc) ? &fenc : &enc
+    let format = winwidth(0) ># 85 ? &fileformat : winwidth(0) <# 55 ? '' : &fileformat[0]
+    return printf('%s | %s', encoding, format)
 endfunction
 
-function! TablineCwd() abort " {{{1
-    let cwd = fnamemodify(getcwd(), ':~')
-    if cwd isnot# '~/'
-        let cwd = len(cwd) <=# 15 ? pathshorten(cwd) : cwd
-        return cwd
-    else
-        return ''
-    endif
+function! ReadPercent() abort
+    " The percent part was inspired by vim-line-no-indicator plugin.
+    let chars = ['▁', '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█']
+    let [c_l, l_l] = [line('.'), line('$')]
+    let index = float2nr(ceil((c_l * len(chars) * 1.0) / l_l)) - 1
+    let perc = chars[index]
+    return winwidth(0) ># 55 ? printf('%s', perc) : ''
 endfunction
