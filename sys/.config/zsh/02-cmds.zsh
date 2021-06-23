@@ -85,29 +85,16 @@ _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
 }
 _exists imgur_screenshot && alias img='imgur-screenshot'
-local rlwrap_list=(bigloo clisp irb guile bb)
-local sudo_list=(umount mount chmod chown modprobe i7z aircrack-ng)
+local rlwrap_list=(irb guile bb)
+local sudo_list=(umount mount chmod chown modprobe)
 local logind_sudo_list=(reboot halt poweroff)
-local noglob_list=(
-    fc find ftp sftp lftp history locate rake rsync scp eix zmv mmv wget clive
-    clivescan youtube-dl youtube-viewer translate links links2 lynx you-get
-    bower pip task
-)
+local noglob_list=(fc find ftp sftp lftp history locate rake rsync scp wget youtube-dl links2 lynx you-get pip)
 local dev_null_list=(tig)
 for c in ${sudo_list[@]}; {_exists "$c" && alias "$c=sudo $c"}
 for c in ${noglob_list[@]}; {_exists "$c" && alias "$c=noglob $c"}
 for c in ${rlwrap_list[@]}; {_exists "$c" && alias "$c=rlwrap $c"}
 for c in ${nocorrect_list[@]}; {_exists "$c" && alias "$c=nocorrect $c"}
 for c in ${dev_null_list[@]}; {_exists "$c" && alias "$c=$c 2>/dev/null"}
-_exists systemctl && {
-    sysctl_pref='systemctl'
-    alias S='sudo systemctl stop'
-    alias R='sudo systemctl restart'
-    alias SU='systemctl stop --user'
-    alias RU='systemctl restart --user'
-    alias log='sudo journalctl --output cat'
-    alias log-previous-boot='sudo journalctl --boot=-1'
-}
 _exists lsof && alias ports='sudo lsof -Pni'
 _exists bandwhich && alias nethogs='sudo bandwhich'
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
