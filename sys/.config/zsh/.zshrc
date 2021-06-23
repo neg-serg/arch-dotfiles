@@ -25,10 +25,11 @@ zinit wait lucid light-mode for neg-serg/fast-syntax-highlighting
 zinit light peterhurford/git-it-on.zsh
 zinit wait lucid atload"zicompinit; zicdreplay" blockf \
     for zsh-users/zsh-completions
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
-source "${ZDOTDIR}/02-zle-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 source "${ZDOTDIR}/04-bindings.zsh"
 zsh-defer source /usr/share/fzf/completion.zsh
