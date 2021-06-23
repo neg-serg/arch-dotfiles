@@ -1,5 +1,7 @@
-emacs_bindings_init(){
+bindings_init(){
     bindkey -e
+
+    bindkey "^[" zvm_readkeys_handler
     bindkey "^[-" cd-forward
     bindkey "^[=" cd-back
     autoload up-line-or-beginning-search
@@ -56,5 +58,10 @@ emacs_bindings_init(){
     zle -N expand-or-complete-with-dots
     _nothing() {}
     zle -N _nothing
+
+    source "${ZDOTDIR}/06-neg-dirs.zsh"
 }
-zvm_after_init_commands=(emacs_bindings_init)
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+zvm_after_init_commands=(bindings_init)
