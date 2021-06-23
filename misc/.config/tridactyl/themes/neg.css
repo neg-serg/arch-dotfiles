@@ -1,6 +1,6 @@
 :root {
   --color_black: #020202;
-  --url_highlight: #004e4e;
+  --url_highlight: #243f55;
   --line_highlight: #13384f;
   --border_color: #0a3749;
   --foreground: #f0f1ff;
@@ -11,7 +11,7 @@
   --tridactyl-hintspan-fg: #89cdd2 !important;
   --tridactyl-hintspan-bg: #001742 !important;
   --tridactyl-hintspan-font-family: "Iosevka" !important;
-  --tridactyl-hintspan-font-style: "Medium" !important;
+  --tridactyl-hintspan-font-weight: 600 !important;
   --tridactyl-hintspan-font-size: 10pt !important;
   --tridactyl-hint-active-fg: var(--foreground);
   --tridactyl-hint-active-bg: var(--tridactyl-hintspan-bg);
@@ -30,8 +30,8 @@
   color: var(--tridactyl-fg);
   background: var(--tridactyl-bg);
   font-family: "Iosevka";
-  font-style: "Medium";
-  font-size: 14pt;
+  font-weight: 500;
+  font-size: 12pt;
 }
 
 #completions {
@@ -42,8 +42,8 @@
   overflow: hidden;
   width: 100%;
   font-family: "Iosevka";
-  font-style: "Medium";
-  font-size: 14pt;
+  font-weight: 500;
+  font-size: 12pt;
   padding: -8pt -8pt;
 }
 
@@ -54,9 +54,9 @@
 
 #completions table {
   font-family: "Iosevka";
-  font-style: "Medium";
+  font-weight: 500;
   padding: -8pt -8pt;
-  font-size: 14pt;
+  font-size: 12pt;
 }
 
 #completions .HistoryCompletionSource {
@@ -66,7 +66,7 @@
 
 #completions .HistoryCompletionSource table {
   width: 100%;
-  font-size: 14pt;
+  font-size: 12pt;
   border-spacing: 0;
   table-layout: fixed;
 }
@@ -78,7 +78,7 @@
 
 #completions .BufferCompletionSource table {
   width: unset;
-  font-size: 14pt;
+  font-size: 12pt;
   border-spacing: 0;
   table-layout: fixed;
 }
@@ -111,7 +111,6 @@
   padding: -8pt -8pt;
 }
 
-/* taken from hint css */
 span.TridactylHint {
   font-family: var(--tridactyl-hintspan-font-family) !important;
   font-size: var(--tridactyl-hintspan-font-size) !important;
