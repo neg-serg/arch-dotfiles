@@ -40,6 +40,9 @@
     width = 0
     word_wrap = true
 
+# [log_notifs]
+#     script = ~/.local/bin/dunst_logger.sh
+
 [urgency_low]
     background = "#010204"
     foreground = "#BFCAD0"
