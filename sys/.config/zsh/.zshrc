@@ -34,4 +34,3 @@ zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 source "${ZDOTDIR}/04-bindings.zsh"
 zsh-defer source /usr/share/fzf/completion.zsh
 zsh-defer source /usr/share/fzf/key-bindings.zsh
-source "${ZDOTDIR}/06-neg-dirs.zsh"
