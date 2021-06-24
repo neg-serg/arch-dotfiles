@@ -19,6 +19,7 @@ fpath=(
     /usr/share/zsh/functions/{Misc,Zle,Completion}
     /usr/share/zsh/functions/Completion/*
 )
+zinit light Aloxaf/fzf-tab
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k
 zinit load romkatv/zsh-defer
 zinit wait lucid light-mode for neg-serg/fast-syntax-highlighting
@@ -32,5 +33,3 @@ source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 source "${ZDOTDIR}/04-bindings.zsh"
-zsh-defer source /usr/share/fzf/completion.zsh
-zsh-defer source /usr/share/fzf/key-bindings.zsh

@@ -3,6 +3,9 @@ bindings_init(){
 
     typeset -gx KEYTIMEOUT=10
 
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+
     autoload -Uz zleiab
     zle -N zleiab
     autoload -Uz inplace_mk_dirs
@@ -111,9 +114,16 @@ bindings_init(){
     bindkey   '^[^?'    z4h-backward-kill-word         # alt+bs
     bindkey   '^[^H'    z4h-backward-kill-word         # ctrl+alt+bs
 
-    bindkey '^@' z4h-fzf-complete
+    fzf-tab-partial-and-complete() {
+        if [[ $LASTWIDGET = 'fzf-tab-partial-and-complete' ]]; then
+            fzf-tab-complete
+        else
+            zle complete-word
+        fi
+    }
 
-    zle -C -- -z4h-comp-insert-all complete-word -z4h-comp-insert-all
+    zle -N fzf-tab-partial-and-complete
+    bindkey '^@' fzf-tab-partial-and-complete
 }
 ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
