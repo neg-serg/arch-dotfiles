@@ -83,7 +83,7 @@ done
         if [[ $_z4h_arr == '('* ]]; then
           _z4h_D=(${=_z4h_arr[2,-2]})
         else
-          _z4h_D=("${(@P)_z4h_arr}") 
+          _z4h_D=("${(@P)_z4h_arr}")
         fi
       }
     fi
@@ -137,7 +137,7 @@ done
 
       local buf=$BUFFER
       local -i cursor=CURSOR
-      
+
       local -a _z4h_words=()
       local -a _z4h_descrs=()
       local -a _z4h_scaffolds=()

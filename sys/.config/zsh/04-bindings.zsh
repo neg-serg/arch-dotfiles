@@ -74,7 +74,7 @@ bindings_init(){
 
     autoload -Uz -- '-z4h-comp-files'
     autoload -Uz -- '-z4h-comp-words'
-    autoload -Uz -- '-z4h-cursor-hide'
+    function -z4h-cursor-hide() { [[ -t 1 ]] && echoti civis || echoti civis >"$TTY" }
     autoload -Uz -- '-z4h-cursor-show'
     autoload -Uz -- '-z4h-get-cursor-pos'
     autoload -Uz -- '-z4h-main-complete'
@@ -111,7 +111,7 @@ bindings_init(){
     bindkey   '^[^?'    z4h-backward-kill-word         # alt+bs
     bindkey   '^[^H'    z4h-backward-kill-word         # ctrl+alt+bs
 
-    bindkey '^W' z4h-fzf-complete      # ctrl+w
+    bindkey '^@' z4h-fzf-complete
 
     zle -C -- -z4h-comp-insert-all complete-word -z4h-comp-insert-all
 }

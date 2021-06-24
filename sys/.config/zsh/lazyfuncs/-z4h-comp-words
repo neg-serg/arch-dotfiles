@@ -3,25 +3,36 @@
 ()  {
   eval "$_z4h_opt"
 
-  local -i dot_glob list_types
-  [[ $1 == on ]] && dot_glob=1
-  [[ $2 == on ]] && list_types=1
+  local -i list_types
+  [[ $1 == on ]] && list_types=1
 
-  if (( _z4h_only_dirs )); then
-    local dirs=($_z4h_path_prefix${^${(Q)_z4h_words}}/*(D-/Y1N:h:t))
-  else
-    local dirs=($_z4h_path_prefix${^${(Q)_z4h_words}}/*(DY1N:h:t))
+  typeset -ga _z4h_naturals
+  if (( $#_z4h_naturals < $#_z4h_words )); then
+    _z4h_naturals+=({$(($#_z4h_naturals+1))..$#_z4h_words})
   fi
+
+  local -A seen
+  local -a indices
+  local word idx
+  for word idx in "${(@)_z4h_words:^_z4h_naturals}"; do
+    if (( ! ${+seen[$word]} )); then
+      seen[$word]=1
+      indices+=($idx)
+    fi
+  done
 
   -z4h-set-list-colors "$_z4h_curcontext" "$list_types"
   local -i list_colors=$((!$?))
 
-  autoload +X -Uz -- -z4h-present-files -z4h-cursor-show -z4h-find -z4h-fzf
+  zstyle -t :completion:${_z4h_curcontext}:default sort
+  local -i sort=$((!$?))
+
+  autoload +X -Uz -- -z4h-cursor-show -z4h-fzf
 
   local -i pct=60
   (( _z4h_can_save_restore_screen )) && pct=100
 
-  local -i height=$(( ! $#dirs && 100 * ($#_z4h_words + 4) < pct * LINES ? $#_z4h_words + 4 : pct * LINES / 100 ))
+  local -i height=$(( 100 * ($#indices + 4) < pct * LINES ? $#indices + 4 : pct * LINES / 100 ))
 
   (( height >= 6 )) || (( height = 6 ))
   (( height <= LINES - 1 )) || (( height = LINES - 1 ))
@@ -39,18 +50,6 @@
     --cycle
     --border=horizontal
   )
-
-  () {
-    emulate -L zsh
-    # Set dot_glob in case the value of find-flags depends on it (via `zstyle -e`).
-    # Ideally we should run this with user options.
-    (( dot_glob )) && setopt dot_glob
-    local -a bin
-    zstyle -a :z4h:${WIDGET#z4h-} find-command bin
-    if (( ! $#bin )) && (( $+commands[bfs] )); then
-      opts+=(--no-sort)
-    fi
-  }
 
   local cursor_y cursor_x
   -z4h-get-cursor-pos || return
@@ -89,13 +88,19 @@
     choice="$(
       unsetopt pipe_fail
       exec 2>/dev/null
-      [[ -n $_z4h_path_prefix ]] && builtin cd -q -- $_z4h_path_prefix
       {
-        print -lr -- ${(Q)_z4h_words}
-        local curcontext=$_z4h_curcontext
-        -z4h-find $dot_glob $_z4h_only_dirs $dirs | command cut -b3-
-      } | {
-        -z4h-present-files $list_colors $list_types
+        # TODO: colorize files.
+        if (( sort )); then
+          local rows=()
+          for idx in $indices; do
+            rows+=($_z4h_descrs[idx]$'\0'$idx)
+          done
+          printf '%2$s\0%1$s\n' "${(@0)${(@o)rows}}"
+        else
+          for idx in $indices; do
+            printf '%s\0%s\n' $idx "$_z4h_descrs[idx]"
+          done
+        fi
       } | {
         print -rn -- $move >$TTY
         -z4h-cursor-show
@@ -117,4 +122,4 @@
   choice=("${(@f)choice}")
   typeset -g _z4h_reply=(0 ${${choice:1}%$'\0'*})
   [[ -z $choice[1] ]] || _z4h_reply[1]=1
-} "${options[dot_glob]}" "${options[list_types]}"
+} "${options[list_types]}"
