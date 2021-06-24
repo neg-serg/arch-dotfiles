@@ -1,6 +1,33 @@
 bindings_init(){
     bindkey -e
 
+    typeset -gx KEYTIMEOUT=10
+
+    autoload -Uz zleiab
+    zle -N zleiab
+    autoload -Uz inplace_mk_dirs
+    autoload -Uz imv
+    autoload -Uz rationalise-dot
+    zle -N rationalise-dot
+    autoload -Uz fg-widget
+    zle -N fg-widget
+    autoload -Uz redraw-prompt
+    autoload -Uz cd-rotate
+    cd-back() { cd-rotate +1 }
+    cd-forward() { cd-rotate -0 }
+    zle -N cd-back
+    zle -N cd-forward
+    autoload -Uz magic-abbrev-expand
+    zle -N magic-abbrev-expand
+    no-magic-abbrev-expand() { LBUFFER+=' ' }
+    zle -N no-magic-abbrev-expand
+    autoload -Uz special-accept-line
+    zle -N special-accept-line
+    autoload -Uz expand-or-complete-with-dots
+    zle -N expand-or-complete-with-dots
+    _nothing() {}
+    zle -N _nothing
+
     bindkey "^[" zvm_readkeys_handler
     bindkey "^[-" cd-forward
     bindkey "^[=" cd-back
@@ -33,31 +60,6 @@ bindings_init(){
     bindkey '^[[1;3C' _nothing
     bindkey '^[[1;5A' _nothing
     bindkey '^[[1;5B' _nothing
-
-    autoload -Uz zleiab
-    zle -N zleiab
-    autoload -Uz inplace_mk_dirs
-    autoload -Uz imv
-    autoload -Uz rationalise-dot
-    zle -N rationalise-dot
-    autoload -Uz fg-widget
-    zle -N fg-widget
-    autoload -Uz redraw-prompt
-    autoload -Uz cd-rotate
-    cd-back() { cd-rotate +1 }
-    cd-forward() { cd-rotate -0 }
-    zle -N cd-back
-    zle -N cd-forward
-    autoload -Uz magic-abbrev-expand
-    zle -N magic-abbrev-expand
-    no-magic-abbrev-expand() { LBUFFER+=' ' }
-    zle -N no-magic-abbrev-expand
-    autoload -Uz special-accept-line
-    zle -N special-accept-line
-    autoload -Uz expand-or-complete-with-dots
-    zle -N expand-or-complete-with-dots
-    _nothing() {}
-    zle -N _nothing
 
     source "${ZDOTDIR}/06-neg-dirs.zsh"
 }
