@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+local -i cursor=CURSOR
+"$@"
+emulate -L zsh
+
+local -i from to
+if (( CURSOR < cursor )); then
+  from=CURSOR+1
+  to=cursor
+else
+  from=cursor+1
+  to=CURSOR
+  CURSOR=$cursor
+fi
+
+if [[ $LASTWIDGET != ((z4h-|.|)(backward-|)kill-*|(.|)copy-region-as-kill) ]]; then
+  zle .copy-region-as-kill -- $BUFFER[from,to]
+elif (( CURSOR < cursor )); then
+  CUTBUFFER=$BUFFER[from,to]$CUTBUFFER
+else
+  CUTBUFFER+=$BUFFER[from,to]
+fi
+
+BUFFER[from,to]=
+zle -f kill

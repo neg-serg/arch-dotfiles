@@ -127,8 +127,6 @@ done
     fi
   }
 
-  -z4h-cursor-hide
-
   local ZLE_REMOVE_SUFFIX_CHARS ZLE_SPACE_SUFFIX_CHARS
   unset ZLE_REMOVE_SUFFIX_CHARS ZLE_SPACE_SUFFIX_CHARS
 

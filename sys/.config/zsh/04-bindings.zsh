@@ -62,6 +62,58 @@ bindings_init(){
     bindkey '^[[1;5B' _nothing
 
     source "${ZDOTDIR}/06-neg-dirs.zsh"
+
+    -z4h-cursor-show() { [[ -t 1 ]] && echoti cnorm || echoti cnorm >"$TTY" }
+
+    autoload -Uz -- '-z4h-move-and-kill'
+    autoload -Uz -- 'z4h-forward-word'
+    autoload -Uz -- 'z4h-forward-zword'
+    autoload -Uz -- 'z4h-backward-word'
+    autoload -Uz -- 'z4h-backward-zword'
+    autoload -Uz -- 'z4h-fzf-complete'
+
+    autoload -Uz -- '-z4h-comp-files'
+    autoload -Uz -- '-z4h-comp-words'
+    autoload -Uz -- '-z4h-cursor-hide'
+    autoload -Uz -- '-z4h-cursor-show'
+    autoload -Uz -- '-z4h-get-cursor-pos'
+    autoload -Uz -- '-z4h-main-complete'
+    autoload -Uz -- '-z4h-sanitize-word-prefix'
+    autoload -Uz -- '-z4h-set-list-colors'
+    autoload -Uz -- '-z4h-show-dots'
+    autoload -Uz -- '-z4h-insert-all'
+
+    z4h-kill-word() { -z4h-move-and-kill z4h-forward-word }
+    z4h-backward-kill-word() { -z4h-move-and-kill z4h-backward-word  }
+    z4h-kill-zword() { -z4h-move-and-kill z4h-forward-zword  }
+    z4h-backward-kill-zword() { -z4h-move-and-kill z4h-backward-zword }
+
+    zle -N z4h-expand
+    zle -N z4h-forward-word
+    zle -N z4h-kill-word
+    zle -N z4h-backward-word
+    zle -N z4h-backward-kill-word
+    zle -N z4h-forward-zword
+    zle -N z4h-kill-zword
+    zle -N z4h-backward-zword
+    zle -N z4h-backward-kill-zword
+
+    zle -N z4h-fzf-complete
+    zle -N z4h-fzf-history
+    zle -N z4h-fzf-dir-history
+
+    bindkey   '^[d'     z4h-kill-word                  # alt+d
+    bindkey   '^[D'     z4h-kill-word                  # alt+D
+    bindkey   '^[[3;5~' z4h-kill-word                  # ctrl+del
+    bindkey   '^[[3;3~' z4h-kill-word                  # alt+del
+    # Delete previous word.
+    bindkey   '^W'      z4h-backward-kill-word         # ctrl+w
+    bindkey   '^[^?'    z4h-backward-kill-word         # alt+bs
+    bindkey   '^[^H'    z4h-backward-kill-word         # ctrl+alt+bs
+
+    bindkey '^W' z4h-fzf-complete      # ctrl+w
+
+    zle -C -- -z4h-comp-insert-all complete-word -z4h-comp-insert-all
 }
 ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
