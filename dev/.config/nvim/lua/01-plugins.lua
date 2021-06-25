@@ -10,7 +10,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup({function(use)
     -- Packer can manage itself as an optional plugin
-    use 'wbthomason/packer.nvim' -- no lazy packer
+    use {'wbthomason/packer.nvim', opt=true} -- no lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -80,10 +80,10 @@ return require('packer').startup({function(use)
         run='cargo build --release',
         ft={"clojure", "fennel", "lisp", "scheme"},
     } -- support lisps
-    use {'lewis6991/gitsigns.nvim',
-        requires = {'nvim-lua/plenary.nvim'},
-        config=[[require'plugcfg/gitsigns']]
-    } -- async gitsigns
+    -- use {'lewis6991/gitsigns.nvim',
+    --     requires = {'nvim-lua/plenary.nvim'},
+    --     config=[[require'plugcfg/gitsigns']]
+    -- } -- async gitsigns
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'mattn/vim-sonictemplate', cmd='Template'} -- snippets alternative
     use {'metakirby5/codi.vim', cmd={'Codi', 'CodiUpdate'}, opt=true} -- nice scratchpad for hackers
@@ -136,7 +136,7 @@ return require('packer').startup({function(use)
     use {'Bakudankun/PICO-8.vim'} -- pico-8 cartridge files
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'tjdevries/colorbuddy.vim'} -- for future experiments with new colorschemes
-    use {'neg-serg/neg'} -- my colorscheme
+    use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'ishan9299/nvim-solarized-lua'} -- solarized colorscheme
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best color highlighting
     use {'sheerun/vim-polyglot'} -- language pack collection
