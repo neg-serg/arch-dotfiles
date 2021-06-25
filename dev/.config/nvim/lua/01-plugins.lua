@@ -87,7 +87,7 @@ return require('packer').startup({function(use)
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'mattn/vim-sonictemplate', cmd='Template'} -- snippets alternative
     use {'metakirby5/codi.vim', cmd={'Codi', 'CodiUpdate'}, opt=true} -- nice scratchpad for hackers
-    use { 'Olical/conjure', ft={ 'fennel', 'clojure' },
+    use {'Olical/conjure', ft={'fennel', 'clojure'},
         config=function()
             vim.g['conjure#highlight#enabled'] = 1
             vim.g['conjure#highlight#timeout'] = 500
