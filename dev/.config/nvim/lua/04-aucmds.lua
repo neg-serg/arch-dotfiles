@@ -39,5 +39,13 @@ nvim_create_augroups({
     cocgroup = {
         -- Update signature help on jump placeholder
         {'User', 'CocJumpPlaceholder', [[call CocActionAsync('showSignatureHelp')]]}
-    }
+    },
 })
+
+api.nvim_exec([[
+  augroup Statusline
+  au!
+  au WinEnter,BufEnter * setlocal statusline=%!v:lua.NegStatusline('active')
+  au WinLeave,BufLeave * setlocal statusline=%!v:lua.NegStatusline('inactive')
+  augroup END
+]], false)
