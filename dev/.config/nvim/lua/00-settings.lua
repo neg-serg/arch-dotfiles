@@ -34,7 +34,7 @@ vim.cmd('set isfname+={,}')                                  -- Scan in filename
 vim.opt.jumpoptions = 'stack'                                -- Jumplist behave like tagstack
 vim.opt.linespace = 0                                        -- No extra spaces between rows
 vim.opt.matchtime = 0                                        -- Default time to hi brackets too long for me
--- vim.opt.matchpairs = vim.opt.matchpairs..',<:>,《:》,〈:〉'  -- More matchpairs
+vim.opt.matchpairs:append '<:>'                              -- More matchpairs
 vim.opt.maxfuncdepth = 100                                   -- Maximum depth of function calls for user functions
 vim.opt.maxmapdepth = 1000                                   -- Maximum number of times a mapping is done without resulting in a character to be used.
 vim.opt.maxmempattern = 1000                                 -- Maximum amount of memory (in Kbyte to use for pattern matching.
