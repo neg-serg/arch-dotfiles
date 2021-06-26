@@ -59,5 +59,5 @@ require('telescope').setup{
       prompt_position = "bottom",
       prompt_title = false,
     },
-  }
+  },
 }

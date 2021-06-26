@@ -68,7 +68,7 @@ map('o', 'b', 'B', {noremap=true})
 map('o', 'B', 'b', {noremap=true})
 map('x', 'b', 'B', {noremap=true})
 map('x', 'B', 'b', {noremap=true})
-map('n', '<leader>ff', ":lua require('telescope.builtin').oldfiles({})<cr>", {noremap=true})
+map('n', "<leader>.", "<Cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
 vim.cmd('nnoremap <expr> G &wrap ? "G$g0" : "G"')
 vim.cmd('nnoremap <expr> 0 &wrap ? "g0" : "0"')
 vim.cmd('nnoremap <expr> $ &wrap ? "g$" : "$"')
@@ -85,7 +85,6 @@ vim.api.nvim_exec([[
     xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
-
 vim.cmd('cnoremap <C-a> <home>')
 vim.cmd('cnoremap <C-b> <left>')
 vim.cmd('cnoremap <C-e> <end>')
@@ -107,7 +106,6 @@ vim.cmd('omap <M-e> <End>')
 vim.cmd('onoremap <M-f> <C-o>e<Right>')
 vim.cmd('inoremap <C-a> <C-o>^')
 vim.cmd('inoremap <C-e> <C-o>$')
-
 -- -- Move in command line mode using hjkl
 -- for b in [["<C-h>", "<left>"],
 -- 	\ ["<C-j>", "<down>"],

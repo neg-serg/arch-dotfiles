@@ -87,7 +87,17 @@ return require('packer').startup({function(use)
     } -- async gitsigns
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        requires = {
+            {'nvim-lua/popup.nvim'},
+            {'nvim-lua/plenary.nvim'},
+        }
+    }
+    use {
+        "nvim-telescope/telescope-frecency.nvim",
+        config = [[require"telescope".load_extension("frecency")]],
+        requires = {
+            {'tami5/sql.nvim'},
+        }
     }
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'mattn/vim-sonictemplate', cmd='Template'} -- snippets alternative
@@ -130,9 +140,7 @@ return require('packer').startup({function(use)
     use {'windwp/nvim-spectre'} -- yet another interactive find and replace
     use {'eugen0329/vim-esearch', config=[[require'plugcfg/esearch']]} -- the best of the best way to search
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
-    use {'junegunn/fzf', run=[[vim.fn['fzf#install']()]]} -- latest fzf binary
     use {'junegunn/fzf.vim', config=[[require'plugcfg/fzf']]} -- fzf vim bindings
-    use {'pbogut/fzf-mru.vim', config=[[require'plugcfg/fzfmru']]} -- fzf mru source
     use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
