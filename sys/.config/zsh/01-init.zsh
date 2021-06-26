@@ -31,6 +31,7 @@ setopt rm_star_wait # most Massively Useful Option ever! protects you from "you 
 setopt short_loops # short loops support
 setopt transient_rprompt # only show the rprompt on the current prompt
 setopt noauto_list # When requesting autocomp ambiguously, do not show list of options on first request
+setopt rc_quotes # quotes with ''
 
 () {
     local hist
