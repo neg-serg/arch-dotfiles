@@ -99,6 +99,7 @@ return require('packer').startup({function(use)
             {'tami5/sql.nvim'},
         }
     }
+    use {'jvgrootveld/telescope-zoxide'} -- zoxide cd history
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'mattn/vim-sonictemplate', cmd='Template'} -- snippets alternative
     use {'metakirby5/codi.vim', cmd={'Codi', 'CodiUpdate'}, opt=true} -- nice scratchpad for hackers

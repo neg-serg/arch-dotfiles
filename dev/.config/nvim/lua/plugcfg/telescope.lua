@@ -11,7 +11,7 @@ require('telescope').setup{
     },
     prompt_position = "top",
     prompt_prefix = "❯> ",
-    selection_caret = "> ",
+    selection_caret = "• ",
     entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",
@@ -61,3 +61,4 @@ require('telescope').setup{
     },
   },
 }
+require'telescope'.load_extension('zoxide')
