@@ -80,10 +80,11 @@ return require('packer').startup({function(use)
         run='cargo build --release',
         ft={"clojure", "fennel", "lisp", "scheme"},
     } -- support lisps
-    -- use {'lewis6991/gitsigns.nvim',
-    --     requires = {'nvim-lua/plenary.nvim'},
-    --     config=[[require'plugcfg/gitsigns']]
-    -- } -- async gitsigns
+    use 'mizlan/iswap.nvim' -- intellectual swap
+    use {'lewis6991/gitsigns.nvim',
+        requires = {'nvim-lua/plenary.nvim'},
+        config=[[require'plugcfg/gitsigns']]
+    } -- async gitsigns
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'mattn/vim-sonictemplate', cmd='Template'} -- snippets alternative
     use {'metakirby5/codi.vim', cmd={'Codi', 'CodiUpdate'}, opt=true} -- nice scratchpad for hackers
