@@ -1,3 +1,15 @@
+neg_dirs(){
+    if [[ ! -z "${HOME}" ]]; then
+        local -U neg_dirs=("${HOME}"/{1st_level,dw,src/1st_level})
+        for t in {1..$#neg_dirs}; do
+            typeset -x "NEGCD[${t}]=$neg_dirs[${t}]"
+            bindkey "^[${t}" negcd-${t}
+            eval "negcd-$t() { cd \"${NEGCD[$t]}\" && redraw-prompt }"
+            eval "zle -N negcd-$t"
+        done
+    fi
+}
+
 bindings_init(){
     bindkey -e
     typeset -gx KEYTIMEOUT=10
@@ -5,26 +17,26 @@ bindings_init(){
     source /usr/share/fzf/completion.zsh
     source /usr/share/fzf/key-bindings.zsh
 
-    autoload -Uz zleiab; zle -N zleiab
-    autoload -Uz inplace_mk_dirs; zle -N inplace_mk_dirs
+    autoload -Uz zleiab && zle -N zleiab
+    autoload -Uz inplace_mk_dirs && zle -N inplace_mk_dirs
     autoload -Uz imv
-    autoload -Uz rationalise-dot; zle -N rationalise-dot
-    autoload -Uz fg-widget; zle -N fg-widget
+    autoload -Uz rationalise-dot && zle -N rationalise-dot
+    autoload -Uz fg-widget && zle -N fg-widget
     autoload -Uz redraw-prompt
-    autoload -Uz magic-abbrev-expand; zle -N magic-abbrev-expand
-    autoload -Uz special-accept-line; zle -N special-accept-line
+    autoload -Uz magic-abbrev-expand && zle -N magic-abbrev-expand
+    autoload -Uz special-accept-line && zle -N special-accept-line
     _nothing() {}; zle -N _nothing
 
     autoload -Uz cd-rotate
     cd-back() { cd-rotate +1 }
     cd-forward() { cd-rotate -0 }
-    zle -N cd-back; zle -N cd-forward
+    zle -N cd-back && zle -N cd-forward
     bindkey "^[-" cd-forward
     bindkey "^[=" cd-back
 
     bindkey "^[" zvm_readkeys_handler
-    autoload up-line-or-beginning-search; zle -N up-line-or-beginning-search
-    autoload down-line-or-beginning-search; zle -N down-line-or-beginning-search
+    autoload up-line-or-beginning-search && zle -N up-line-or-beginning-search
+    autoload down-line-or-beginning-search && zle -N down-line-or-beginning-search
     bindkey "^[[A" up-line-or-beginning-search
     bindkey "^[[B" down-line-or-beginning-search
     bindkey "^p" up-line-or-beginning-search
@@ -43,33 +55,7 @@ bindings_init(){
     bindkey '^xM' inplace_mk_dirs # load the lookup subsystem if it's available on the system
 
     for b in '3D' '3C' '5A' '5B'; bindkey "^[[1;$b" _nothing
-    source "${ZDOTDIR}/06-neg-dirs.zsh"
-
-    autoload -Uz -- 'z4h-move-and-kill'
-    autoload -Uz -- 'z4h-forward-word'
-    autoload -Uz -- 'z4h-forward-zword'
-    autoload -Uz -- 'z4h-backward-word'
-    autoload -Uz -- 'z4h-backward-zword'
-    autoload -Uz -- 'z4h-main-complete'
-    autoload -Uz -- 'z4h-set-list-colors'
-
-    z4h-kill-word() { z4h-move-and-kill z4h-forward-word }
-    z4h-backward-kill-word() { z4h-move-and-kill z4h-backward-word  }
-    z4h-kill-zword() { z4h-move-and-kill z4h-forward-zword  }
-    z4h-backward-kill-zword() { z4h-move-and-kill z4h-backward-zword }
-
-    zle -N z4h-forward-word
-    zle -N z4h-kill-word
-    zle -N z4h-backward-word
-    zle -N z4h-backward-kill-word
-    zle -N z4h-forward-zword
-    zle -N z4h-kill-zword
-    zle -N z4h-backward-zword
-    zle -N z4h-backward-kill-zword
-
-    bindkey   '^[d'     z4h-kill-word # alt+d
-    bindkey   '^[D'     z4h-kill-word # alt+D
-    bindkey   '^W'      z4h-backward-kill-word # ctrl+w
+    neg_dirs
 
     zstyle ':fzf-tab:*' continuous-trigger 'ctrl-space'
 
