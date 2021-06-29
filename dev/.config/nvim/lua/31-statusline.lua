@@ -220,26 +220,27 @@ end
 
 function N.activeLine()
   local statusline = ""
-  statusline = statusline .. '%#Base#   '
-                          .. '%{v:lua.N.VisualSelectionSize()}'
-                          .. '%#StatusDelimiter#❯>'
-                          .. '%#Modi# %{v:lua.N.CheckMod(&modified)} %{v:lua.N.FizeSize()}'
-                          .. "%#Modi# %{&readonly?' ':''}"
-                          .. '%(%{v:lua.N.StatusErrors()}%)%*'
-                          .. "%#Git# %{get(g:,'coc_git_status','')}"
-                          .. '%#Decoration# '
-                          .. '%3* '
-                          .. '%= '
-                          .. '%#Decoration# '
-                          .. '%#StatusRight#  %{v:lua.N.StatusLinePWD()}'
-                          .. '%3*'
-                          .. '%#StatusDelimiter#'
-                          .. "%{&modifiable?(&expandtab?'   ':'    ').&shiftwidth:''}"
-                          .. '%(%{v:lua.N.CocStatus()}%)'
-                          .. '%1*'
-                          .. '%#StatusDelimiter# '
-                          .. '%#Mode#%{v:lua.N.FancyMode()}'
-                          .. ' %#StatusRight#%2p%%'
+  statusline = statusline
+    .. '%#Base#   '
+    .. '%{v:lua.N.VisualSelectionSize()}'
+    .. '%#StatusDelimiter#❯>'
+    .. '%#Modi# %{v:lua.N.CheckMod(&modified)} %{v:lua.N.FizeSize()}'
+    .. "%#Modi# %{&readonly?' ':''}"
+    .. '%(%{v:lua.N.StatusErrors()}%)%*'
+    .. "%#Git# %{get(g:,'coc_git_status','')}"
+    .. '%#Decoration# '
+    .. '%3* '
+    .. '%= '
+    .. '%#Decoration# '
+    .. '%#StatusRight#  %{v:lua.N.StatusLinePWD()}'
+    .. '%3*'
+    .. '%#StatusDelimiter#'
+    .. "%{&modifiable?(&expandtab?'   ':'    ').&shiftwidth:''}"
+    .. '%(%{v:lua.N.CocStatus()}%)'
+    .. '%1*'
+    .. '%#StatusDelimiter# '
+    .. '%#Mode#%{v:lua.N.FancyMode()}'
+    .. ' %#StatusRight#%2p%%'
   return statusline
 end
 
