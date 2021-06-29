@@ -25,6 +25,7 @@ autoload -U zcalc
 __calc_plugin() { zcalc -e "$*" }
 aliases[=]='noglob __calc_plugin'
 _exists bc && alias '?=bc -l <<<'
+_exists hxd && alias hexdump='hxd'
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias e='handlr open'
 _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
