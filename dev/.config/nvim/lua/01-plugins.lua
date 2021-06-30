@@ -85,19 +85,16 @@ return require('packer').startup({function(use)
         requires = {'nvim-lua/plenary.nvim'},
         config=[[require'plugcfg/gitsigns']]
     } -- async gitsigns
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = {
-            {'nvim-lua/popup.nvim'},
-            {'nvim-lua/plenary.nvim'},
-        }
+    use {'pwntester/octo.nvim', config=function()
+        require"octo".setup()
+    end} -- github review support
+    use {'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, }
     }
     use {
         "nvim-telescope/telescope-frecency.nvim",
         config = [[require"telescope".load_extension("frecency")]],
-        requires = {
-            {'tami5/sql.nvim'},
-        }
+        requires = {'tami5/sql.nvim'}
     }
     use {'jvgrootveld/telescope-zoxide'} -- zoxide cd history
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
