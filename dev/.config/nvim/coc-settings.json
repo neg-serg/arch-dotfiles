@@ -13,6 +13,7 @@
   "coc-actions.hideCursor": false,
   "coc.source.around.shortcut": "B",
   "coc.source.buffer.shortcut": "BS",
+  "git.enableGutters": false,
   "coc.source.file.ignoreHidden": false,
   "codeLens.enable": true,
   "diagnostic.checkCurrentLine": true,
