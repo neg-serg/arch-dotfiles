@@ -106,6 +106,7 @@ vim.cmd('omap <M-e> <End>')
 vim.cmd('onoremap <M-f> <C-o>e<Right>')
 vim.cmd('inoremap <C-a> <C-o>^')
 vim.cmd('inoremap <C-e> <C-o>$')
+vim.cmd('nnoremap / /' .. '\\' ..'V')
 -- -- Move in command line mode using hjkl
 -- for b in [["<C-h>", "<left>"],
 -- 	\ ["<C-j>", "<down>"],
