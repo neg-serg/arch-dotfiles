@@ -48,6 +48,7 @@ _exists bpython && alias python='bpython'
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
 _exists dust && alias sp='dust -r'
 _exists lfs && alias df='lfs'
+_exists journalctl && journalctl() { command journalctl "${@:--b}"; }
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
 _exists objdump && alias objdump='objdump -M intel -d'
