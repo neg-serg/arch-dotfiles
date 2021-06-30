@@ -193,11 +193,11 @@ end
 
 function N.ReadPercent()
     -- The percent part was inspired by vim-line-no-indicator plugin.
-    local chars = {'▁', '▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'}
+    local chars = {'▁', '▁', '▂', '▃', '▄', '▅', '▓'}
     local c_l = vim.fn.line('.')
     local l_l = vim.fn.line('$')
     local index = math.floor(math.ceil((c_l * #chars * 1.0) / l_l)) - 1
-    return chars[index]
+    return chars[index+1]
 end
 
 function N.VisualSelectionSize()
@@ -221,26 +221,27 @@ end
 function N.activeLine()
   local statusline = ""
   statusline = statusline
-    .. '%#Base#   '
+    .. '%#Base# '
+    .. ' '
     .. '%{v:lua.N.VisualSelectionSize()}'
-    .. '%#StatusDelimiter#❯>'
-    .. '%#Modi# %{v:lua.N.CheckMod(&modified)} %{v:lua.N.FizeSize()}'
-    .. "%#Modi# %{&readonly?' ':''}"
+    .. ' %#String#%{v:lua.N.FizeSize()}'
+    .. '%#Modi# %{v:lua.N.CheckMod(&modified)}'
+    .. "%#Modi#%{&readonly?' ':''}"
     .. '%(%{v:lua.N.StatusErrors()}%)%*'
-    .. "%#Git# %{get(g:,'coc_git_status','')}"
     .. '%#Decoration# '
-    .. '%3* '
-    .. '%= '
+    .. '%3* %= '
     .. '%#Decoration# '
     .. '%#StatusRight#  %{v:lua.N.StatusLinePWD()}'
     .. '%3*'
     .. '%#StatusDelimiter#'
     .. "%{&modifiable?(&expandtab?'   ':'    ').&shiftwidth:''}"
     .. '%(%{v:lua.N.CocStatus()}%)'
+    .. "%#Git# %{get(g:,'coc_git_status','')}"
     .. '%1*'
     .. '%#StatusDelimiter# '
     .. '%#Mode#%{v:lua.N.FancyMode()}'
-    .. ' %#StatusRight#%2p%%'
+    .. ' %#LineNr#%{v:lua.N.ReadPercent()} '
+    .. '%#Base#'
   return statusline
 end
 
