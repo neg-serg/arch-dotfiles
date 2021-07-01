@@ -1,36 +1,15 @@
 #!/usr/bin/env dash
-
 scr_dir=~/tmp/shots
 filename="screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
 summary_="$scr_dir/$filename"
 [ ! -d "$scr_dir" ] && mkdir "$scr_dir"
 arglist=" -p 0 "
 
-make_shot() {
-    arglist="$arglist $summary_"
-    maim -m 1 $arglist
-    ~/bin/scripts/pic-notify "$summary_" &
-}
-
-Select() {
-    arglist="$arglist -s "
-    make_shot "$@"
-}
-
-Current() {
-    arglist="$arglist -d 0.5 "
-    arglist="$arglist -i \"$(xdotool getactivewindow)\" "
-    make_shot "$@";
-}
-
-Delay() {
-    arglist="$arglist -d 5 "
-    make_shot "$@";
-}
-
-Full() {
-    make_shot "$@"
-}
+Shot() { arglist="$arglist $summary_"; maim -m 1 $arglist; ~/bin/scripts/pic-notify "$summary_"; }
+Select() { arglist="$arglist -s "; Shot "$@"; }
+Current() { arglist="$arglist -d 0.5 "; arglist="$arglist -i \"$(xdotool getactivewindow)\" "; Shot "$@"; }
+Delay() { arglist="$arglist -d 5 "; Shot "$@"; }
+Full() { Shot "$@"; }
 
 Menu() {
     rofi_cmd="rofi -dmenu -theme clip"
@@ -43,22 +22,12 @@ Menu() {
     esac
 }
 
-show_help() {
-echo "Script to create screenshot and show notification.\n" \
-     "\n" \
-     "  -r          run selection mode\n"  \
-     "  -c          screenshot current window\n"  \
-     "  -d          add delay\n" \
-     "  -m          show menu for options\n" \
-     "  -h          display this help and exit\n"
-}
-
 case "$1" in
-    -r) Select "$@" ;;
-    -c) Current "$@" ;;
-    -d) Delay "$@" ;;
-    -m) Menu "$@" ;;
-    --help) show_help ;;
-    -h) show_help ;;
-    *) Full "$@" ;;
+    -r) Select "$@";;
+    -c) Current "$@";;
+    -d) Delay "$@";;
+    -m) Menu "$@";;
+    --help) show_help;;
+    -h) show_help;;
+    *) Full "$@";;
 esac
