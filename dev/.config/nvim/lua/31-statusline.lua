@@ -15,7 +15,6 @@ cmd('hi Filetype guibg=NONE guifg=#007fb5')
 cmd('hi Git guibg=NONE guifg=#005faf')
 cmd('hi StatusDelimiter guibg=NONE guifg=#326e8c')
 cmd('hi StatusLine guifg=black guibg=NONE')
-cmd('hi StatusLineNC guifg=black guibg=cyan')
 cmd('hi StatusRight guibg=NONE guifg=#6c7e96')
 cmd('hi Mode guibg=NONE guifg=#007fb5')
 cmd('set noruler') --disable line numbers in bottom right for our custom indicator as above
@@ -146,15 +145,15 @@ function N.StatusLinePWD()
     return vim.api.nvim_buf_get_var(0, 'statusline_pwd')
 end
 
-function N.CheckMod(modi)
+function N.CheckMod(modi, filename)
     if modi == 1 then
         cmd('hi Modi guifg=#8fa7c7 guibg=NONE')
         cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
-        return N.StatusLineFileName() .. '  '
+        return filename .. '  '
     else
         cmd('hi Modi guifg=#6587b3 guibg=NONE')
         cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
-        return N.StatusLineFileName()
+        return filename
     end
 end
 
@@ -202,9 +201,13 @@ end
 
 function N.VisualSelectionSize()
   if vim.fn.mode():byte() == 22 then
-      return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1) .. 'x' .. (vim.fn.abs(vim.fn.virtcol('v') - vim.fn.virtcol('.')) + 1) .. ' block'
+      return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
+        .. 'x'
+        .. (vim.fn.abs(vim.fn.virtcol('v') - vim.fn.virtcol('.')) + 1)
+        .. ' block '
   elseif vim.fn.mode() == 'V' or (vim.fn.line('v') ~= vim.fn.line('.')) then
-      return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1) .. ' lines'
+      return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
+              .. ' lines '
   else
     return ''
   end
@@ -214,7 +217,7 @@ function N.GitBranch(git)
     if git == '' then
         return ''
     else
-        return ' ' .. git .. ' '
+        return ' ' .. git
     end
 end
 
@@ -222,25 +225,22 @@ function N.activeLine()
   local statusline = ""
   statusline = statusline
     .. '%#Base# '
-    .. ' '
-    .. '%{v:lua.N.VisualSelectionSize()}'
-    .. ' %#String#%{v:lua.N.FizeSize()}'
-    .. '%#Modi# %{v:lua.N.CheckMod(&modified)}'
+    .. '  '
+    .. '%{v:lua.N.VisualSelectionSize()}%#String#%{v:lua.N.FizeSize()}'
+    .. '%#Modi# %{v:lua.N.CheckMod(&modified, v:lua.N.StatusLineFileName())}'
     .. "%#Modi#%{&readonly?' ':''}"
     .. '%(%{v:lua.N.StatusErrors()}%)%*'
     .. '%#Decoration# '
     .. '%3* %= '
-    .. '%#Decoration# '
-    .. '%#StatusRight#  %{v:lua.N.StatusLinePWD()}'
+    .. '%#Filetype# %#StatusRight#%{v:lua.N.StatusLinePWD()}'
     .. '%3*'
     .. '%#StatusDelimiter#'
     .. "%{&modifiable?(&expandtab?'   ':'    ').&shiftwidth:''}"
     .. '%(%{v:lua.N.CocStatus()}%)'
-    .. "%#Git# %{get(g:,'coc_git_status','')}"
+    .. "%#Git# %{v:lua.N.GitBranch(get(g:,'coc_git_status',''))}"
     .. '%1*'
     .. '%#StatusDelimiter# '
-    .. '%#Mode#%{v:lua.N.FancyMode()}'
-    .. ' %#LineNr#%{v:lua.N.ReadPercent()} '
+    .. '%#Mode#%{v:lua.N.FancyMode()} %#LineNr#%{v:lua.N.ReadPercent()} '
     .. '%#Base#'
   return statusline
 end
