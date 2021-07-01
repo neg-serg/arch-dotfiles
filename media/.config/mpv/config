@@ -5,6 +5,7 @@ target-prim=auto
 gamma-auto
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
+x11-bypass-compositor=no
 #--[Decoding]----------------------------------------------
 cache=auto
 scale=ewa_lanczossharp
