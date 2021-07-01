@@ -58,6 +58,7 @@ bindings_init(){
     neg_dirs
 
     zstyle ':fzf-tab:*' continuous-trigger 'ctrl-space'
+    zstyle ':fzf-tab:*' fzf-flags --height=20% --info=inline
 
     tab_then_fzf() {
         if [[ $LASTWIDGET = 'tab_then_fzf' ]]; then
