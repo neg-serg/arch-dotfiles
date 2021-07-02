@@ -20,15 +20,6 @@ return require('packer').startup({function(use)
     use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'nacro90/numb.nvim', config=[[require('numb').setup()]] }
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
-    use {'neg-serg/lusty',
-          config=function()
-            vim.g.LustyJugglerDefaultMappings = 0
-            vim.g.LustyExplorerDefaultMappings = 0
-            vim.g.LustyExplorerAlwaysShowDotFiles = 1
-          end,
-          cmd={'LustyFilesystemExplorerFromHere'},
-          opt=true,
-    } -- file/buffer explorer
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
     use {'ojroques/nvim-bufdel'} -- better buffer delete
