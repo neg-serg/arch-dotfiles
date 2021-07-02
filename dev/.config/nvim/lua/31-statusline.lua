@@ -3,12 +3,6 @@ local cmd = api.nvim_command
 local call = vim.call
 local func = api.nvim_call_function
 
-local bufmod = require 'sections.bufmodified'
-local bufname = require 'sections.bufname'
-local buficon = require 'sections.buficon'
-local editable = require 'sections.bufeditable'
-local filesize = require 'sections.filesize'
-
 cmd('hi Base guibg=NONE guifg=#234758')
 cmd('hi Decoration guibg=NONE guifg=NONE')
 cmd('hi Filetype guibg=NONE guifg=#007fb5')
@@ -131,7 +125,11 @@ end
 
 function N.StatusLinePWD()
     if vim.fn.exists('b:statusline_pwd') then
-        vim.api.nvim_buf_set_var(0, 'statusline_pwd', vim.fn.fnamemodify(vim.fn.getcwd(), ':~'))
+        vim.api.nvim_buf_set_var(
+          0,
+          'statusline_pwd',
+          vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+        )
         local statusline_pwd = vim.api.nvim_buf_get_var(0, 'statusline_pwd')
         if statusline_pwd ~= '~/' then
           if #statusline_pwd <= 15 then
@@ -145,15 +143,15 @@ function N.StatusLinePWD()
     return vim.api.nvim_buf_get_var(0, 'statusline_pwd')
 end
 
-function N.CheckMod(modi, filename)
-    if modi == 1 then
+function N.CheckMod()
+    if vim.api.nvim_buf_get_option(0, 'modified') == true then
         cmd('hi Modi guifg=#8fa7c7 guibg=NONE')
         cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
-        return filename .. '  '
+        return '  '
     else
         cmd('hi Modi guifg=#6587b3 guibg=NONE')
         cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
-        return filename
+        return ''
     end
 end
 
@@ -225,23 +223,40 @@ function N.activeLine()
   local statusline = ""
   statusline = statusline
     .. '%#Base# '
-    .. '  '
-    .. '%{v:lua.N.VisualSelectionSize()}%#String#%{v:lua.N.FizeSize()}'
-    .. '%#Modi# %{v:lua.N.CheckMod(&modified, v:lua.N.StatusLineFileName())}'
-    .. "%#Modi#%{&readonly?' ':''}"
-    .. '%(%{v:lua.N.StatusErrors()}%)%*'
-    .. '%#Decoration# '
-    .. '%3* %= '
-    .. '%#Filetype# %#StatusRight#%{v:lua.N.StatusLinePWD()}'
+    .. N.VisualSelectionSize()
+    local pwd = N.StatusLinePWD()
+    if pwd ~= '' then
+      statusline = statusline .. '%#Git# %#String#' .. pwd .. '%#Git# ¦ %#Modi#'
+    end
+    filename = N.StatusLineFileName()
+    filename = filename:gsub("/", "%%#Base#/%%#Modi#")
+    statusline = statusline .. filename
+    .. '%#Modi#' .. N.CheckMod()
+    if vim.api.nvim_get_option('readonly') then
+      statusline = statusline .. ''
+    end
+    statusline = statusline .. N.StatusErrors() .. '%*'
+    .. '%#Decoration# %3* %= '
+    .. '%#Filetype#'
     .. '%3*'
     .. '%#StatusDelimiter#'
-    .. "%{&modifiable?(&expandtab?'   ':'    ').&shiftwidth:''}"
-    .. '%(%{v:lua.N.CocStatus()}%)'
-    .. "%#Git# %{v:lua.N.GitBranch(get(g:,'coc_git_status',''))}"
-    .. '%1*'
-    .. '%#StatusDelimiter# '
-    .. '%#Mode#%{v:lua.N.FancyMode()} %#LineNr#%{v:lua.N.ReadPercent()} '
-    .. '%#Base#'
+    .. '%#String#' .. N.FizeSize() .. '%#Modi#'
+    if vim.api.nvim_get_option('modifiable') then
+      if vim.api.nvim_get_option('expandtab') then
+        statusline = statusline ..  '  '
+      else
+        statusline = statusline ..  '   '
+      end
+    end
+    statusline = statusline
+    .. vim.api.nvim_get_option('shiftwidth')
+    .. N.CocStatus()
+    .. '%#Git# '
+    if vim.g.coc_git_status then
+      statusline = statusline .. N.GitBranch(vim.g.coc_git_status)
+    end
+    statusline = statusline .. '%1*%#StatusDelimiter# '
+    .. '%#LineNr#' .. N.ReadPercent() .. '%#Base#'
   return statusline
 end
 
