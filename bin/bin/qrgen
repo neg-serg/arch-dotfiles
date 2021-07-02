@@ -1,0 +1,2 @@
+#!/bin/dash
+qrencode -l H -d 75 -s 10 -o - "$(xsel)">~/tmp/qrcode.png
