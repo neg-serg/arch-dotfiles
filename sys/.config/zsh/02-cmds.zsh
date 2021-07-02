@@ -14,6 +14,22 @@ alias mv='mv -i'
 alias mk='mkdir -p'
 alias rd='rmdir'
 alias grep='grep --color=auto'
+_exists rg && {
+    local rg_options='--max-columns=0 \
+    --max-columns-preview \
+    --glob=\!git/\* \
+    --colors=match:fg:25 \
+    --colors=match:style:underline \
+    --colors=line:fg:cyan \
+    --colors=line:style:bold \
+    --colors=path:fg:249 \
+    --colors=path:style:bold \
+    --smart-case \
+    --hidden'
+    alias rg="rg ${rg_options}"
+    alias -g RG="rg ${rg_options}"
+    alias -g zrg="rg ${rg_options} -z"
+}
 alias sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
 alias :q="exit"
@@ -29,26 +45,11 @@ _exists hxd && alias hexdump='hxd'
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias e='handlr open'
 _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
-_exists rg && {
-    local rg_options='--max-columns=0 \
-    --max-columns-preview \
-    --glob=\!git/\* \
-    --colors=match:fg:25 \
-    --colors=match:style:underline \
-    --colors=line:fg:cyan \
-    --colors=line:style:bold \
-    --colors=path:fg:249 \
-    --colors=path:style:bold \
-    --smart-case \
-    --hidden'
-    alias -g rg="rg ${rg_options}"
-    alias -g zrg="rg ${rg_options} -z"
-}
 _exists bpython && alias python='bpython'
 _exists cdu && alias sp='cdu -idh -s -r -c ":"'
 _exists dust && alias sp='dust -r'
 _exists lfs && alias df='lfs'
-_exists journalctl && journalctl() { command journalctl "${@:--b}"; }
+_exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
 _exists objdump && alias objdump='objdump -M intel -d'
@@ -114,7 +115,13 @@ _exists git && {
 _exists fzf && {
     alias ttcmd="echo '' | fzf -q '$*' --prompt '│ ' --pointer '― ' --preview-window=up:99% --preview='eval {q}'"
     bindings() { bindkey -L | fzf }
+    logs() {
+      local cmd log_file
+      cmd="command find /var/log/ -type f -name '*log' 2>/dev/null"
+      log_file=$(eval "$cmd" | fzf --height 40% --min-height 25 --tac --tiebreak=length,begin,index --reverse --inline-info) && less "$log_file"
+    }
 }
+_exists xev && alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 _exists broot && autoload br
 autoload zc
 unfunction _exists
