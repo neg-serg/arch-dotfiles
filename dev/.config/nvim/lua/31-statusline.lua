@@ -249,7 +249,7 @@ function N.activeLine()
       end
     end
     statusline = statusline
-    .. vim.api.nvim_get_option('shiftwidth')
+    .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
     .. N.CocStatus()
     .. '%#Git# '
     if vim.g.coc_git_status then
