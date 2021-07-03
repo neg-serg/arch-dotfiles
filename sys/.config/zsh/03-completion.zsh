@@ -14,6 +14,8 @@ zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
 zstyle ':completion:*:history-words' list false
+# autorehash for completion
+zstyle ':completion:*' rehash true
 # activate menu
 zstyle ':completion:*:history-words' menu yes
 # ignore duplicate entries
