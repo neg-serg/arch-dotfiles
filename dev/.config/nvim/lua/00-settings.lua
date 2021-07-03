@@ -58,6 +58,21 @@ vim.opt.termguicolors = true                                 -- Enable termguico
 vim.opt.confirm = false                                      -- Disable no write
 vim.opt.incsearch = true                                     -- Move cursor during search
 vim.opt.wildmenu = true                                      -- Command line completion mode
+vim.opt.wildignorecase = true                                -- Ignore case for wildmenu
+vim.opt.wildignore:append {
+	"*.7z" , "*.aux" , "*.avi" , "*.bak"
+	, "*.bib" , "*.class" , "*.cls" , "*.cmi"
+	, "*.cmo" , "*.doc" , "*.docx" , "*.dvi"
+	, "*.flac" , "*.flv" , "*.gif" , "*.ico"
+	, "*.jpeg" , "*.jpg" , "*.log" , "*.min*.js"
+	, "*.mov" , "*.mp3" , "*.mp4" , "*.mpg"
+	, "*.nav" , "*.o" , "*.ods" , "*.odt"
+	, "*.ogg" , "*.opus" , "*.out" , "*.pdf"
+	, "*.pem" , "*.png" , "*.rar" , "*.sty"
+	, "*.svg" , "*.swp" , "*.swp*." , "*.tar"
+	, "*.tgz" , "*.toc" , "*.wav" , "*.webm"
+	, "*.xcf" , "*.xls" , "*.xlsx" , "*.zip"
+}
 vim.opt.hlsearch = true                                      -- Highlight search results (enforce
 vim.opt.shortmess:append 'aoOstTWAIcqFS'                     -- Shorting messages for all
 vim.opt.showmode = true                                      -- Show the mode ("-- INSERT --" at the bottom
