@@ -29,15 +29,23 @@ set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
 
 alias w saveas
-alias playAllVideos js tri.native.run("mpv --really-quiet --ontop --keepaspect-window --profile=protocol.http " + Array.from(document.querySelectorAll("a, iframe, video")).reduce((s, e) => {let r=(/^https?:\/\/((www.)?youtu((\.be\/)|(be\.com\/((embed\/)|(watch\?v=))))[^ ]+)|(.+\.webm)$/);let l="";if(e.tagName=="IFRAME")l=e.src.match(r);else if(e.tagName=="A")l=e.href.match(r)||e.innerText.match(r);else if(e.tagName=="VIDEO")l=[e.currentSrc?e.currentSrc:e.src];console.log(l);return s+(l && l.length > 0 && s.indexOf(l[0])<0?"'"+l[0]+"' ":"")},""))
-alias gitclone jsb -p tri.native.run("git clone --depth=1 '" + JS_ARG + "' /home/me/prog/" + JS_ARG.split("/").slice(-1))
-alias tn jsb let a = str.join("").split("/" + "/").slice(-1)[0]; tri.excmds.tabopen(a ? `https://intranet.adacore.com/crm/#/tn/${a}` : `https://intranet.adacore.com/crm/#/Tickets/myTNs`) //
-alias mktn js tri.native.run(`mkdir -v "$HOME/prog/${document.location.href.split("/").slice(-1)[0]}"`).then(r=>Array.from(document.querySelectorAll("#Files a")).forEach(a=>fetch(a.href).then(r=>r.text()).then(t=>tri.native.write(`${r.content.match(/'.*'\n/)[0].slice(1,-2)}/${a.href.split("/").slice(-1)[0]}`,t))))
 
-bind v composite hint -pipe a href | js -p tri.excmds.shellescape(JS_ARG) | exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
-bind V js tri.excmds.shellescape(document.location.href).then(url => tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${url}'`))
-bind ;v composite hint -qpipe a href | js -p JS_ARG.map(h => `'${h}'`).join(" ") | ! mpv
-bind <A-v> playAllVideos
+jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
+set searchurls.bandcamp https://bandcamp.com/search?q=%s
+set searchurls.crates https://crates.io/search?q=%s
+set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
+set searchurls.g https://www.google.com/search?q=%s
+set searchurls.gi https://www.google.com/search?q=%s&tbm=isch
+set searchurls.gmaps https://www.google.com/maps/search/%s
+set searchurls.imdb https://www.imdb.com/find?q=%s
+set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js
+set searchurls.osm https://www.openstreetmap.org/search?query=%s
+set searchurls.pydoc https://docs.python.org/3/search.html?q=%s
+set searchurls.rustdoc https://doc.rust-lang.org/std/index.html?search=%s
+set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
+set searchurls.steam https://store.steampowered.com/search/?term=%s
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+set searchurls.y https://www.youtube.com/results?search_query=%s
 
 blacklistadd calendar.google.com
 blacklistadd docs.google.com
@@ -49,11 +57,7 @@ blacklistadd mattermost.galois.com
 bind u undo tab
 bind U undo tab
 
-bind gc composite js window.location.href | gitclone
-bind ;gc hint -qW gitclone
-
 set auconcreatecontainer true
-autocontain facebook\.com facebook
 autocontain vk\.com vk
 autocontain youtube.com youtube
 
@@ -84,9 +88,6 @@ bindurl youtu((\.be)|(be\.com)) f hint -J
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-" bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-" bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-" bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 
 bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
 bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
@@ -109,8 +110,6 @@ bind --mode=normal ,. fillcmdline find
 bind --mode=normal <Tab> findnext 1
 bind --mode=normal <S-Tab> findnext -1
 bind ,, nohlsearch
-" GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
-bind zp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
 " Git{Hub,Lab} git clone via SSH yank
 bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 " As above but execute it and open terminal in folder
@@ -162,9 +161,6 @@ bind --mode=input <C-k> text.kill_line
 bind --mode=ex <C-u> text.backward_kill_line
 bind --mode=insert <C-u> text.backward_kill_line
 bind --mode=input <C-u> text.backward_kill_line
-" Requires custom firefox build: https://github.com/glacambre/firefox-patches
-" or you can make simple modification over ui.key.accelKey 17(Ctrl) to 18(Alt)
-" in about:config.
 bind --mode=ex <C-w> text.backward_kill_word
 bind --mode=insert <C-w> text.backward_kill_word
 bind --mode=input <C-w> text.backward_kill_word
