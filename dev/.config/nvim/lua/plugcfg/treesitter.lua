@@ -10,14 +10,20 @@ tsconf.setup {
     enable = true, -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
   },
-  rainbow = { enable = true },
-  indent = { enable = {"javascriptreact"} },
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    colors = {
+      '#365e96',
+      '#315587',
+      '#2e5080',
+      '#294873',
+      '#26436b',
+      '#21395c',
+      '#1d3352',
+    },
+  },
+  indent = {enable = {"javascriptreact"}},
   autotag = {enable = true},
 }
-vim.cmd('hi rainbowcol1 guifg=#365e96')
-vim.cmd('hi rainbowcol2 guifg=#315587')
-vim.cmd('hi rainbowcol3 guifg=#2e5080')
-vim.cmd('hi rainbowcol4 guifg=#294873')
-vim.cmd('hi rainbowcol5 guifg=#26436b')
-vim.cmd('hi rainbowcol6 guifg=#21395c')
-vim.cmd('hi rainbowcol7 guifg=#1d3352')
