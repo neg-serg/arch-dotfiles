@@ -14,6 +14,8 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'norcalli/nvim_utils'} -- neovim lua utils
+    use {'svermeulen/vimpeccable'} -- neovim lua extensions
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
     use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=false, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
@@ -51,14 +53,8 @@ return require('packer').startup({function(use)
         end
     } -- fast terminal toggle
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Neovim lua stuff                                                             │
--- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'norcalli/nvim_utils'} -- new neovim extensions
-    use {'svermeulen/vimpeccable'} -- neovim lua extensions
--- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'antoinemadec/coc-fzf'} -- coc fzf support
     use {'kevinhwang91/nvim-bqf'} -- better quickfix
     use {'b3nj5m1n/kommentary'} -- alternative commenter
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
@@ -126,8 +122,6 @@ return require('packer').startup({function(use)
     use {'windwp/nvim-spectre'} -- yet another interactive find and replace
     use {'eugen0329/vim-esearch', config=[[require'plugcfg/esearch']]} -- the best of the best way to search
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
-    use {'junegunn/fzf.vim', config=[[require'plugcfg/fzf']]} -- fzf vim bindings
-    use {'yuki-ycino/fzf-preview.vim'} -- integration fzf preview with coc
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
