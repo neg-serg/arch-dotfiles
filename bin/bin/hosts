@@ -1,0 +1,59 @@
+#!/bin/zsh
+
+set -o errexit -o pipefail -o nounset
+readonly mode="${1:-}"
+
+dsh_hosts() {
+    local file
+    file="$HOME/.dsh/group/all"
+    if [ -f "$file" ]; then
+        grep -vE '^#' "$file"
+    fi
+}
+
+known_hosts() {
+    local file
+    file="$HOME/.ssh/known_hosts"
+    if [ -f "$file" ]; then
+        awk '{print $1}' "$file"    \
+            | grep -v ^\|           \
+            | cut -d, -f 1          \
+            | sed -e 's/\[//g'      \
+            | sed -e 's/\]//g'      \
+            | cut -d: -f1           \
+            | grep -v ssh-rsa
+    fi
+}
+
+zsh_history() {
+    fc -R
+    fc -ln 0 | rg -e "^host|^dig|^drill|^ping|^whois" | awk '{print $NF}'
+}
+
+ssh_config() {
+    local file
+    file="$HOME/.ssh/config"
+    if [ -d "$(dirname "$file")" ]; then
+        awk '/^Host/ && ! /*/ {print $2}' "$file"
+    fi
+}
+
+ssh_config_d() {
+    local file
+    file="$HOME/.ssh/config.d/*"
+    if [ -d "$(dirname "$file")" ]; then
+        # shellcheck disable=2086
+        awk '/^Host/ && ! /*/ {print $2}' $file
+    fi
+}
+
+main() {
+    case "$mode" in
+        "ssh") (ssh_config_d; known_hosts) | grep -vE "\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b" | sort -u ;;
+        "ips") (zsh_history; known_hosts) | grep -oE "\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b" | sort -u ;;
+        "all") (ssh_config_d; known_hosts; zsh_history;) | sort -u ;;
+        *) ( known_hosts && zsh_history) | grep -vE "\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b|^@|^\\+|^\\.'" | sort -u;;
+    esac
+    return 0
+}
+main
