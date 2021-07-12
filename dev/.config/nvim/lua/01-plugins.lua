@@ -55,9 +55,6 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'norcalli/nvim_utils'} -- new neovim extensions
     use {'svermeulen/vimpeccable'} -- neovim lua extensions
-    use {'Olical/aniseed',
-        config=[[require('aniseed.env').init({module='dotfiles.init'})]]
-    } -- fennel support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
