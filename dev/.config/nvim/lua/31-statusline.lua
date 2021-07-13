@@ -255,8 +255,7 @@ function N.activeLine()
     if vim.g.coc_git_status then
       statusline = statusline .. N.GitBranch(vim.g.coc_git_status)
     end
-    statusline = statusline .. '%1*%#StatusDelimiter# '
-    .. '%#LineNr#' .. N.ReadPercent() .. '%#Base#'
+    statusline = statusline .. '%1* %#Base#'
   return statusline
 end
 
