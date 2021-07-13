@@ -8,9 +8,8 @@ map('n', '<C-j>', '<C-w>j', {nowait = true})
 map('n', '<C-k>', '<C-w>k', {nowait = true})
 map('n', '<C-l>', '<C-w>l', {nowait = true})
 map('n', '<C-h>', '<C-w>h', {nowait = true})
-map('n', '<Space><Space>', '<C-^>')
 map('n', 'q', '<NOP>')
-map('n', 'Q', 'q')
+map('n', 'Q', '<NOP>')
 map('n', '<F1>', '')
 map('i', '<F1>', '')
 
@@ -69,12 +68,29 @@ map('o', 'B', 'b', {noremap=true})
 map('x', 'b', 'B', {noremap=true})
 map('x', 'B', 'b', {noremap=true})
 map('n', "<leader>.", "<Cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
+map('c', '<C-a>', '<home>', {noremap=true})
+map('c', '<C-b>', '<left>', {noremap=true})
+map('c', '<C-e>', '<end>', {noremap=true})
+map('c', '<C-n>', '<down>', {noremap=true})
+map('c', '<C-p>', '<up>', {noremap=true})
+map('c', '<C-d>', '<Del>', {noremap=true})
+map('c', '<M-f>', '<S-Right>', {noremap=true})
+map('i', '<C-d>', '<Del>', {noremap=true})
+map('i', '<C-b>', '<left>', {noremap=true})
+map('i', '<C-f>', '<right>', {noremap=true})
+map('i', '<M-b>', '<S-Left>', {noremap=true})
+map('i', '<M-d>', '<C-o>dw', {noremap=true})
+map('i', '<M-f>', '<C-o>e<Right>', {noremap=true})
+map('o', '<M-b>', '<Left>', {noremap=true})
+map('o', '<M-e>', '<End>', {noremap=true})
+map('o', '<M-f>', '<C-o>e<Right>', {noremap=true})
+map('i', '<C-a>', "<C-o>^", {noremap=true})
+map('i', '<C-e>', "<C-o>$", {noremap=true})
 vim.cmd('nnoremap <expr> G &wrap ? "G$g0" : "G"')
 vim.cmd('nnoremap <expr> 0 &wrap ? "g0" : "0"')
 vim.cmd('nnoremap <expr> $ &wrap ? "g$" : "$"')
 vim.cmd('nnoremap <expr> j (v:count == 0 ? "gj" : "j")')
 vim.cmd('nnoremap <expr> k (v:count == 0 ? "gk" : "k")')
-map('n', '<leader>l', ':LustyFilesystemExplorerFromHere<CR>', {silent=true})
 vim.api.nvim_exec([[
     exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
     exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
@@ -85,38 +101,3 @@ vim.api.nvim_exec([[
     xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
-vim.cmd('cnoremap <C-a> <home>')
-vim.cmd('cnoremap <C-b> <left>')
-vim.cmd('cnoremap <C-e> <end>')
-vim.cmd('cnoremap <C-n> <down>')
-vim.cmd('cnoremap <C-p> <up>')
-vim.cmd('cnoremap <C-d> <Del>')
-vim.cmd('cnoremap <M-f> <S-Right>')
-vim.cmd('inoremap <C-d> <Del>')
-vim.cmd('inoremap <C-b> <left>')
-vim.cmd('inoremap <C-f> <right>')
-vim.cmd('inoremap <C-x>b <C-o>:Buffers<CR>')
-vim.cmd('inoremap <M-b> <S-Left>')
-vim.cmd('inoremap <M-d> <C-o>dw')
-vim.cmd('inoremap <M-f> <C-o>e<Right>')
-vim.cmd('inoremap <silent> <c-a> <esc>I')
-vim.cmd('nnoremap <C-x>b <C-o>:Buffers<CR>')
-vim.cmd('omap <M-b> <Left>')
-vim.cmd('omap <M-e> <End>')
-vim.cmd('onoremap <M-f> <C-o>e<Right>')
-vim.cmd('inoremap <C-a> <C-o>^')
-vim.cmd('inoremap <C-e> <C-o>$')
-vim.cmd('nnoremap / /' .. '\\' ..'V')
--- -- Move in command line mode using hjkl
--- for b in [["<C-h>", "<left>"],
--- 	\ ["<C-j>", "<down>"],
--- 	\ ["<C-k>", "<up>"],
--- 	\ ["<C-l>", "<right>"],
--- 	\ ["<C-a>", "<Home>"],
--- 	\ ["<C-e>", "<End>"]]
---     execute('lnoremap ' . b[0] . ' ' . b[1])
---     execute('cnoremap ' . b[0] . ' ' . b[1])
---     " Warning: Unexpected behavior might ensue when it comes to closing
---     " completion menu because of <C-e>
---     execute('inoremap <expr> ' . b[0] . ' (pumvisible() ? "\<C-e>" : "") . "\' . b[1] . '"')
--- endfor
