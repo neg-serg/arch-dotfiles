@@ -118,7 +118,7 @@ function hex_pos(statusline)
   local line = api.nvim_call_function('line', {"."})
   line = string.format("%X", tostring(line))
   local col = api.nvim_call_function('col', {"."})
-  local delimiter = '%#StatusDelimiter#•%#StatusRight#'
+  local delimiter = '%#StatusDelimiter# • %#StatusRight#'
   col = delimiter  .. string.format("%X", tostring(col))
   return statusline ..  line .. col
 end
