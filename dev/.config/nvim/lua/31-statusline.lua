@@ -15,9 +15,9 @@ cmd('set noruler') --disable line numbers in bottom right for our custom indicat
 
 N = {}
 function N.FancyMode()
-  local modes = {}
-  local current_mode = api.nvim_get_mode()['mode']
-  modes.current_mode = setmetatable({
+    local modes = {}
+    local current_mode = api.nvim_get_mode()['mode']
+    modes.current_mode = setmetatable({
         ['n'] = 'N',
         ['no'] = 'N·Operator Pending',
         ['v'] = 'V',
@@ -39,27 +39,27 @@ function N.FancyMode()
         ['r?'] = 'Confirm',
         ['!'] = 'Shell',
         ['t'] = 'T'
-      }, {
-        -- fix weird issues
-        __index = function(_, _)
-          return 'V·Block'
-        end
-      }
-  )
-  return modes.current_mode[current_mode]
+    }, {
+            -- fix weird issues
+            __index = function(_, _)
+                return 'V·Block'
+            end
+        }
+    )
+    return modes.current_mode[current_mode]
 end
 
 function N.FizeSize()
-  local file = vim.fn.expand('%:p')
-  if string.len(file) == 0 then return '' end
-  return format_file_size_(file)
+    local file = vim.fn.expand('%:p')
+    if string.len(file) == 0 then return '' end
+    return format_file_size_(file)
 end
 
 _G.NegStatusline = setmetatable(N, {
-  __call = function(statusline, mode)
-    if mode == "active" then return N.activeLine() end
-    if mode == "inactive" then return N.inActiveLine() end
-  end
+    __call = function(statusline, mode)
+        if mode == "active" then return N.activeLine() end
+        if mode == "inactive" then return N.inActiveLine() end
+    end
 })
 
 function N.StatusErrors()
@@ -81,61 +81,61 @@ function N.StatusErrors()
 end
 
 function NegJobs()
-  local n_jobs = 0
-  if vim.fn.exists('g:jobs') then
-    n_jobs = ' ' .. #vim.api.nvim_get_option('jobs')
-  end
-  if n_jobs ~= 0 then
-    return n_jobs
-  else
-    return ''
-  end
+    local n_jobs = 0
+    if vim.fn.exists('g:jobs') then
+        n_jobs = ' ' .. #vim.api.nvim_get_option('jobs')
+    end
+    if n_jobs ~= 0 then
+        return n_jobs
+    else
+        return ''
+    end
 end
 
 local conditions = {
-  buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
-  hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
-  check_git_workspace = function()
-    local filepath = vim.fn.expand('%:p:h')
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
-  end
+    buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
+    hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
+    check_git_workspace = function()
+        local filepath = vim.fn.expand('%:p:h')
+        local gitdir = vim.fn.finddir('.git', filepath .. ';')
+        return gitdir and #gitdir > 0 and #gitdir < #filepath
+    end
 }
 
 function format_file_size_(file)
-  local size = vim.fn.getfsize(file)
-  if size <= 0 then return '' end
-  local sufixes = {'b','k','m','g'}
-  local i = 1
-  while size > 1024 do
-    size = size / 1024
-    i = i + 1
-  end
-  return string.format('%.1f%s', size, sufixes[i])
+    local size = vim.fn.getfsize(file)
+    if size <= 0 then return '' end
+    local sufixes = {'b','k','m','g'}
+    local i = 1
+    while size > 1024 do
+        size = size / 1024
+        i = i + 1
+    end
+    return string.format('%.1f%s', size, sufixes[i])
 end
 
 function hex_pos(statusline)
-  local line = api.nvim_call_function('line', {"."})
-  line = string.format("%X", tostring(line))
-  local col = api.nvim_call_function('col', {"."})
-  local delimiter = '%#StatusDelimiter# • %#StatusRight#'
-  col = delimiter  .. string.format("%X", tostring(col))
-  return statusline ..  line .. col
+    local line = api.nvim_call_function('line', {"."})
+    line = string.format("%X", tostring(line))
+    local col = api.nvim_call_function('col', {"."})
+    local delimiter = '%#StatusDelimiter# • %#StatusRight#'
+    col = delimiter  .. string.format("%X", tostring(col))
+    return statusline ..  line .. col
 end
 
 function N.StatusLinePWD()
     if vim.fn.exists('b:statusline_pwd') then
         vim.api.nvim_buf_set_var(
-          0,
-          'statusline_pwd',
-          vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+            0,
+            'statusline_pwd',
+            vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
         )
         local statusline_pwd = vim.api.nvim_buf_get_var(0, 'statusline_pwd')
         if statusline_pwd ~= '~/' then
-          if #statusline_pwd <= 15 then
-            statusline_pwd = vim.fn.pathshorten(statusline_pwd)
-          end
-          return statusline_pwd
+            if #statusline_pwd <= 15 then
+                statusline_pwd = vim.fn.pathshorten(statusline_pwd)
+            end
+            return statusline_pwd
         else
             return ''
         end
@@ -172,20 +172,20 @@ function N.FormatAndEncoding()
 end
 
 function N.CocStatus()
-  if vim.fn.exists('g:coc_status') == 0 then
-    return ''
-  end
-  local status = vim.api.nvim_get_var('coc_status')
-  local words = {}
-  words[1], words[2] = status:match("(%w+)(.+)")
-  local first_word = words[1]
-  -- Replace the long strings by some fancy characters
-  if first_word == 'Python' then
-    return ''
-  elseif first_word == 'TSC' then
-    return ''
-  end
-  return status
+    if vim.fn.exists('g:coc_status') == 0 then
+        return ''
+    end
+    local status = vim.api.nvim_get_var('coc_status')
+    local words = {}
+    words[1], words[2] = status:match("(%w+)(.+)")
+    local first_word = words[1]
+    -- Replace the long strings by some fancy characters
+    if first_word == 'Python' then
+        return ''
+    elseif first_word == 'TSC' then
+        return ''
+    end
+    return status
 end
 
 function N.ReadPercent()
@@ -198,17 +198,17 @@ function N.ReadPercent()
 end
 
 function N.VisualSelectionSize()
-  if vim.fn.mode():byte() == 22 then
-      return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
-        .. 'x'
-        .. (vim.fn.abs(vim.fn.virtcol('v') - vim.fn.virtcol('.')) + 1)
-        .. ' block '
-  elseif vim.fn.mode() == 'V' or (vim.fn.line('v') ~= vim.fn.line('.')) then
-      return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
-              .. ' lines '
-  else
-    return ''
-  end
+    if vim.fn.mode():byte() == 22 then
+        return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
+            .. 'x'
+            .. (vim.fn.abs(vim.fn.virtcol('v') - vim.fn.virtcol('.')) + 1)
+            .. ' block '
+    elseif vim.fn.mode() == 'V' or (vim.fn.line('v') ~= vim.fn.line('.')) then
+        return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
+            .. ' lines '
+    else
+        return ''
+    end
 end
 
 function N.GitBranch(git)
@@ -220,47 +220,47 @@ function N.GitBranch(git)
 end
 
 function N.activeLine()
-  local statusline = ""
-  statusline = statusline
-    .. '%#Base# '
-    .. N.VisualSelectionSize()
+    local statusline = ""
+    statusline = statusline
+        .. '%#Base# '
+        .. N.VisualSelectionSize()
     local pwd = N.StatusLinePWD()
     if pwd ~= '' then
-      statusline = statusline .. '%#Git# %#String#' .. pwd .. '%#Git# ¦ %#Modi#'
+        statusline = statusline .. '%#Git# %#String#' .. pwd .. '%#Git# ¦ %#Modi#'
     end
     filename = N.StatusLineFileName()
     filename = filename:gsub("/", "%%#Base#/%%#Modi#")
     statusline = statusline .. filename
-    .. '%#Modi#' .. N.CheckMod()
+        .. '%#Modi#' .. N.CheckMod()
     if vim.api.nvim_get_option('readonly') then
-      statusline = statusline .. ''
+        statusline = statusline .. ''
     end
     statusline = statusline .. N.StatusErrors() .. '%*'
-    .. '%#Decoration# %3* %= '
-    .. '%#Filetype#'
-    .. '%3*'
-    .. '%#StatusDelimiter#'
-    .. '%#String#' .. N.FizeSize() .. '%#Modi#'
+        .. '%#Decoration# %3* %= '
+        .. '%#Filetype#'
+        .. '%3*'
+        .. '%#StatusDelimiter#'
+        .. '%#String#' .. N.FizeSize() .. '%#Modi#'
     if vim.api.nvim_get_option('modifiable') then
-      if vim.api.nvim_get_option('expandtab') then
-        statusline = statusline ..  '  '
-      else
-        statusline = statusline ..  '   '
-      end
+        if vim.api.nvim_get_option('expandtab') then
+            statusline = statusline ..  '  '
+        else
+            statusline = statusline ..  '   '
+        end
     end
     statusline = statusline
-    .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
-    .. N.CocStatus()
-    .. '%#Git# '
+        .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
+        .. N.CocStatus()
+        .. '%#Git# '
     if vim.g.coc_git_status then
-      statusline = statusline .. N.GitBranch(vim.g.coc_git_status)
+        statusline = statusline .. N.GitBranch(vim.g.coc_git_status)
     end
     statusline = statusline .. '%1* %#Base#'
-  return statusline
+    return statusline
 end
 
 function N.inActiveLine()
-  return '%#Base# %#Filename# %.20%F'
+    return '%#Base# %#Filename# %.20%F'
 end
 
 return N
