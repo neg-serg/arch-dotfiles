@@ -3,14 +3,14 @@
 """ Script to rename files to my own pretty naming format.
 
 Usage:
-    ./vid_fancy_print FILES ...
+    ./vid-info FILES ...
 
 Options:
     FILES   input file list
 
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
-year :: 2020
+year :: 2021
 
 """
 
@@ -25,23 +25,25 @@ from docopt import docopt
 
 from pretty_printer import pretty_printer
 
+
 class SizeUnit(enum.Enum):
     """ Enum for size units """
     BYTES = 1
-    KiB = 2
-    MiB = 3
-    GiB = 4
-    TiB = 4
+    KIB = 2
+    MIB = 3
+    GIB = 4
+    TIB = 4
+
 
 def convert_unit(size_in_bytes, unit):
     """ Convert the size from bytes to other units like KB, MB or GB"""
-    if unit == SizeUnit.KiB:
+    if unit == SizeUnit.KIB:
         return size_in_bytes/1024
-    if unit == SizeUnit.MiB:
+    if unit == SizeUnit.MIB:
         return size_in_bytes/(1024*1024)
-    if unit == SizeUnit.GiB:
+    if unit == SizeUnit.GIB:
         return size_in_bytes/(1024*1024*1024)
-    if unit == SizeUnit.TiB:
+    if unit == SizeUnit.TIB:
         return size_in_bytes/(1024*1024*1024*1024)
     return size_in_bytes
 
@@ -79,7 +81,7 @@ def media_info(filename):
         if stream['codec_type'] == 'audio':
             if stream.get('bit_rate', ''):
                 audio_bitrate = math.floor(convert_unit(
-                    float(stream['bit_rate']), SizeUnit.KiB
+                    float(stream['bit_rate']), SizeUnit.KIB
                 ))
             audio_sample_rate = float(stream['sample_rate']) / 1000
 
@@ -90,12 +92,12 @@ def media_info(filename):
     )))
 
     size = math.floor(convert_unit(
-        float(file_format['size']), SizeUnit.MiB
+        float(file_format['size']), SizeUnit.MIB
     ))
-    out += pp.size(str(size), 'MiB')
+    out += pp.size(str(size), 'MIB')
 
     video_bitrate = math.floor(convert_unit(
-        float(file_format['bit_rate']), SizeUnit.KiB
+        float(file_format['bit_rate']), SizeUnit.KIB
     ))
     out += pp.size(str(video_bitrate), 'kbps', pref='vidbrate')
     out += pp.wrap(str(vid_frame_rate), postfix='fps')
@@ -128,5 +130,6 @@ def main():
         input_name = os.path.basename(fname)
         print(f'{pp.prefix()}{dir_name_out}{pp.fancy_file(input_name)}')
         media_info(fname)
+
 
 main()
