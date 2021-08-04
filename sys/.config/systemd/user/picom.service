@@ -1,11 +1,19 @@
 [Unit]
 Description=Compositing manager
-After=dbus.service
+After=dbus.socket
+PartOf=graphical-session.target
 
 [Service]
-Type=simple
-ExecStartPre=/bin/sleep 2
 ExecStart=/usr/bin/picom --dbus --experimental-backends --backend glx
+ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
+# Try to restart no matter how the process ended
+Restart=always
+# Restart in 5 second intervals
+RestartSec=5
+# Try to restart up to 3 times
+StartLimitBurst=3
+# Don't try to restart after 60 seconds
+StartLimitIntervalSec=60
 
 [Install]
 WantedBy=default.target
