@@ -1,10 +1,13 @@
 [Unit]
 Description=Setup wallpaper on startup
-After=picom.service
+After=xinit.service
+PartOf=graphical-session.target
 
 [Service]
 Type=forking
 ExecStart=%h/bin/wl -r
+ExecStartPre=/bin/sleep 6
+Restart=on-failure
 
 [Install]
 WantedBy=default.target
