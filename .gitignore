@@ -293,3 +293,7 @@ music/.config/mpd
 neg-dark.tdesktop-theme
 .zcalc_history
 music/.config/mpd/mpd.pid
+dev/.config/nvim/plugin/
+music/.config/ncmpcpp/error.log
+sys/.config/tmux/plugins/tmux-jump/
+sys/.config/tmux/plugins/tmux-thumbs/
