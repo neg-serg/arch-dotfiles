@@ -3,4 +3,4 @@ export ENV=$HOME/.profile
 xrdb -I$XDG_CONFIG_HOME/xres -load "$HOME/.config/xres/Xresources"
 xset s off -dpms
 sudo openrgb --server -p neg.orp &
-exec i3
+exec /usr/bin/i3-gnome
