@@ -6,7 +6,7 @@ PartOf=graphical-session.target
 [Service]
 Type=forking
 ExecStart=%h/bin/wl -r
-ExecStartPre=/bin/sleep 6
+ExecStartPre=/bin/sleep 3
 Restart=on-failure
 
 [Install]
