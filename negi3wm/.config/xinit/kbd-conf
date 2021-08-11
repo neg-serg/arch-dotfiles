@@ -1,4 +1,4 @@
 #!/usr/bin/env dash
 # Switch to US international with Caps as Mod/Escape
-localectl --no-convert set-x11-keymap us,ru altgr-intl,grp:alt_shift_toggle,pointerkeys,ctrl:nocaps,compose:ralt
+sudo localectl set-x11-keymap "us,ru" altgr-intl "" grp:alt_shift_toggle,grp:alt_shift_toggle,grp_led:scroll,ctrl:nocaps,compose:ralt,pointerkeys
 unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
