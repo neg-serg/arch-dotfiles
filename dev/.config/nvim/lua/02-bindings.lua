@@ -27,7 +27,6 @@ map('n', '[Qleader]P', ':normal :<C-u>clast<CR>', {silent=true})
 map('n', '[Qleader]l', ':normal :<C-u>clist<CR>', {silent=true})
 map('n', '[Qleader]w', ':w!<cr>', {silent=true})
 map('n', '[Qleader]W', ':SudoWrite<cr>', {silent=true})
-
 -- Fix for floating windows
 map('n', '<C-c>', '<C-[>')
 map('i', '<C-c>', '<C-[>')
@@ -101,3 +100,4 @@ vim.api.nvim_exec([[
     xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
+map('n', '<leader>l', ':LustyBufferExplorer<CR>', {silent=true, noremap=true})
