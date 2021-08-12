@@ -89,6 +89,7 @@ chromium
 .cxoffice
 cycle_settings.pyc
 .dbus
+dev/.config/nvim/plugin/
 dev/.config/nvim/sessions/
 dev/.config/nvim/sessions/default.vim
 dev/.config/pylint/
@@ -154,7 +155,10 @@ misc/.slit/history
 .mozilla
 music/.config/beets/discogs_token.json
 music/.config/beets/state.pickle
+music/.config/mpd
+music/.config/mpd/mpd.pid
 music/.config/mpd/mpdstate
+music/.config/ncmpcpp/error.log
 .mutt_certificates
 mutt/.config/mutt/home.gmail/hcache
 .mutt/hcache/
@@ -167,6 +171,7 @@ mutt/.mutt/work.gmail/cache
 mutt/.mutt/work.gmail/cache/
 mutt/.mutt/work.gmail/hcache
 .my-pwds.gpg
+neg-dark.tdesktop-theme
 .newsbeuter/cache.db
 .newsbeuter/error.log
 .newsbeuter/history.cmdline
@@ -252,6 +257,12 @@ surf
 .swt
 sys/.config/bpytop/error.log
 sys/.config/tmux/plugin/
+sys/.config/tmux/plugins/extrakto
+sys/.config/tmux/plugins/tmux-continuum
+sys/.config/tmux/plugins/tmux-jump/
+sys/.config/tmux/plugins/tmux-resurrect
+sys/.config/tmux/plugins/tmux-thumbs/
+sys/.config/zsh/.zcompdump
 .task
 .TelegramDesktop
 .t-engine
@@ -276,6 +287,7 @@ watch_later
 .xsession-errors.old
 .yandex
 .yankring_hist_v2.txt
+.zcalc_history
 .zcompcache/
 .zex_history
 .zhistory
@@ -288,12 +300,3 @@ zsh_history
 zsh/.zsh/.zcompdump
 zsh/.zsh/zcomp-sanctum
 *.zwc
-sys/.config/zsh/.zcompdump
-music/.config/mpd
-neg-dark.tdesktop-theme
-.zcalc_history
-music/.config/mpd/mpd.pid
-dev/.config/nvim/plugin/
-music/.config/ncmpcpp/error.log
-sys/.config/tmux/plugins/tmux-jump/
-sys/.config/tmux/plugins/tmux-thumbs/
