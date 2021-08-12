@@ -126,6 +126,7 @@ _exists git && {
     --bind='alt-j:preview-down,alt-n:preview-down'
     --bind='ctrl-r:toggle-all'
     --bind='ctrl-s:toggle-sort'
+    --bind 'tab:down,shift-tab:up'
     --bind='?:toggle-preview'
     --bind='alt-w:toggle-preview-wrap'
     --preview-window='right:60%'
