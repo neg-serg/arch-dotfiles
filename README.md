@@ -50,19 +50,16 @@ a good example of creating some new stuff with i3ipc. Though it python-based
 it's really fast because of client-server architecture.
 
 **gtk** -- using custom version of
-[Flat-remix-blue-dark](https://github.com/daniruiz/flat-remix)
-
+[Kora](https://github.com/bikass/kora)
 [dunst](https://dunst-project.org/) -- my minimalistic notification daemon,
 which also used for mpd-notification.
 [polybar](https://github.com/polybar/polybar) -- my favorite statusbar.
 **keymaps** -- alternative keymaps. I am using xmodmaprc with caps-lock
 rebinded to ctrl, etc.
-
 [rofi](https://github.com/davatorium/rofi) -- dmenu analogue to run programs,
 find windows, everything, used very widely. It's definitely my favorite menu
 generator.
-
-[picom-tryone](https://github.com/tryone144/picom/tree/feature/dual_kawase)
+[picom](https://github.com/yshui/picom)
 Compositing manager, modern fork of compton with support of very fancy kawase
 blur algorithm and some new experimental backends.
 
@@ -73,8 +70,6 @@ Some stuff from Gnome project:
 **gpaste**: GPaste clipboard manager daemon, using it with help of rofi.
 
 and some misc stuff:
-
-**caffeine** Prevents the desktop becoming idle in full-screen mode.
 
 **udiskie** automounter
 
