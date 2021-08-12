@@ -28,6 +28,7 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf \
     for zsh-users/zsh-completions
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+zinit load wfxr/forgit
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"

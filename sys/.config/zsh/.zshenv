@@ -53,3 +53,4 @@ typeset -gx FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window
 typeset -gx FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 [[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
 [[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
+typeset -gx FORGIT_NO_ALIASES=1

@@ -92,7 +92,6 @@ local rlwrap_list=(irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe)
 local logind_sudo_list=(reboot halt poweroff)
 local noglob_list=(fc find ftp sftp lftp history locate rake rsync scp wget youtube-dl links2 lynx you-get pip)
-local dev_null_list=(tig)
 for c in ${sudo_list[@]}; {_exists "$c" && alias "$c=sudo $c"}
 for c in ${noglob_list[@]}; {_exists "$c" && alias "$c=noglob $c"}
 for c in ${rlwrap_list[@]}; {_exists "$c" && alias "$c=rlwrap $c"}
@@ -108,9 +107,30 @@ _exists git && {
     # http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
     intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
-    alias gd="${intra_line_less} git diff ${intra_line_diff}"
-    alias gd2='git diff -w -U0 --word-diff-regex=[^[:space:]]'
-    alias gd3='git diff --word-diff-regex="[A-Za-z0-9. ]|[^[:space:]]" --word-diff=color'
+    alias gd='git diff -w -U0 --word-diff-regex=[^[:space:]]'
+    alias gdd="${intra_line_less} git diff ${intra_line_diff}"
+    alias tig='forgit::log'
+    alias gdi='forgit::diff'
+    alias ga='forgit::add'
+    alias gi='forgit::ignore'
+    alias gcf='forgit::checkout::file'
+    alias gcb='forgit::checkout::branch'
+    alias gco='forgit::checkout::commit'
+    alias ga='forgit::add'
+    alias gst='forgit::stash::show'
+    FORGIT_FZF_DEFAULT_OPTS="
+    $FZF_DEFAULT_OPTS
+    --ansi --height='90%'
+    --bind='alt-k:preview-up,alt-p:preview-up'
+    --bind='alt-j:preview-down,alt-n:preview-down'
+    --bind='ctrl-r:toggle-all'
+    --bind='ctrl-s:toggle-sort'
+    --bind='?:toggle-preview'
+    --bind='alt-w:toggle-preview-wrap'
+    --preview-window='right:60%'
+    +1
+    $FORGIT_FZF_DEFAULT_OPTS
+    "
 }
 _exists fzf && {
     alias ttcmd="echo '' | fzf -q '$*' --prompt '│ ' --pointer '― ' --preview-window=up:99% --preview='eval {q}'"
