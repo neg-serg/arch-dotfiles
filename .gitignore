@@ -257,11 +257,7 @@ surf
 .swt
 sys/.config/bpytop/error.log
 sys/.config/tmux/plugin/
-sys/.config/tmux/plugins/extrakto
-sys/.config/tmux/plugins/tmux-continuum
-sys/.config/tmux/plugins/tmux-jump/
-sys/.config/tmux/plugins/tmux-resurrect
-sys/.config/tmux/plugins/tmux-thumbs/
+sys/.config/tmux/plugins/*
 sys/.config/zsh/.zcompdump
 .task
 .TelegramDesktop
