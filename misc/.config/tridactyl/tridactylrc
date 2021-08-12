@@ -28,8 +28,6 @@ set keytranslatemodes.inputmaps true
 set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
 
-alias w saveas
-
 jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 set searchurls.bandcamp https://bandcamp.com/search?q=%s
 set searchurls.crates https://crates.io/search?q=%s
@@ -98,6 +96,7 @@ bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".thr
 " Add helper commands that Mozillians think make Firefox irredeemably
 " insecure. For details, read the comment at the top of this file.
 command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+bind --mode=normal W saveas --overwrite ~/dw
 " Make Tridactyl work on more sites at the expense of some security. For
 " details, read the comment at the top of this file.
 " set csp clobber
