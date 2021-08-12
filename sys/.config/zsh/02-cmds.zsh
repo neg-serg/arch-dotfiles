@@ -120,6 +120,7 @@ _exists git && {
     alias gst='forgit::stash::show'
     FORGIT_FZF_DEFAULT_OPTS="
     $FZF_DEFAULT_OPTS
+    --reverse
     --ansi --height='90%'
     --bind='alt-k:preview-up,alt-p:preview-up'
     --bind='alt-j:preview-down,alt-n:preview-down'
