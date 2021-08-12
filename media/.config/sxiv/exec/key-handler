@@ -99,7 +99,7 @@ case "$1" in
     "r") repeat_action ;;
     "v") proc mv ;;
     "C-c") proc cp ;;
-    "C-d") dest="$HOME/trash/1st-level/pic"  proc mv ;;
+    "C-d") dest="$HOME/trash/1st_level/pic"  proc mv ;;
     "C-1") wall "full" ;;
     "C-2") wall "mono" ;;
     "C-3") wall "center" ;;
