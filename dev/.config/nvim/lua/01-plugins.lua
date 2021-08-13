@@ -80,7 +80,6 @@ return require('packer').startup({function(use)
         config = [[require"telescope".load_extension("frecency")]],
         requires = {'tami5/sql.nvim'}
     }
-    use {'jvgrootveld/telescope-zoxide'} -- zoxide cd history
     use {'neg-serg/lusty'} -- best file navigator
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'mattn/vim-sonictemplate', cmd='Template'} -- snippets alternative
