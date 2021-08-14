@@ -6,7 +6,6 @@ vim.opt.formatprg = 'par -140'                               -- Better format
 vim.opt.report = 0                                           -- No report on substitution
 vim.opt.fileformats = 'unix,dos,mac'                         -- File format fallback
 vim.opt.synmaxcol = 256                                      -- No syntax hi for too long lines
-vim.opt.regexpengine = 0                                     -- Autoselect regex engine
 vim.opt.conceallevel = 1                                     -- Enable conceal without hide
 vim.opt.concealcursor = 'niv'                                -- Conceal cursor
 vim.opt.keymap = 'russian-jcukenwin'                         -- Add ru keymap
