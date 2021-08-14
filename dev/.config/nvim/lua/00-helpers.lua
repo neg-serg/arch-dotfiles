@@ -165,6 +165,7 @@ function M.resize(vertical, margin)
 end
 
 function M.sudo_exec(cmd, print_output)
+    -- vim.api_nvim_set_keymap('c', 'w!!', "<esc>:lua require'utils'.sudo_write()<CR>", { silent = true })
     local password = vim.fn.inputsecret("Password: ")
     if not password or #password == 0 then
         M.warn("Invalid password, sudo aborted")
