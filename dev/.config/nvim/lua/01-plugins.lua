@@ -131,6 +131,7 @@ return require('packer').startup({function(use)
     use {'tjdevries/colorbuddy.vim'} -- for future experiments with new colorschemes
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'ishan9299/nvim-solarized-lua'} -- solarized colorscheme
+    use {'seanjbl/tonight.nvim'} -- darker variant of tommorow
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best color highlighting
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'tridactyl/vim-tridactyl'} -- tridactyl support
