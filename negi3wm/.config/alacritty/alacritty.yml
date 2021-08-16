@@ -64,8 +64,8 @@ colors:
     cursor: CellForeground
 
   selection:
-    text: '0x55AE24'
-    background: '0x000000'
+    text: '0x367bbf'
+    background: '0x0d1824'
 
   normal:
     black: '0x020202'
@@ -260,4 +260,4 @@ selection:
 shell:
   program: /usr/bin/tmux
   args:
-    - -u # force UTF-8 in tmux
+    - -u
