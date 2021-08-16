@@ -118,21 +118,20 @@ _exists git && {
     alias gco='forgit::checkout::commit'
     alias ga='forgit::add'
     alias gst='forgit::stash::show'
-    FORGIT_FZF_DEFAULT_OPTS="
+    export FORGIT_FZF_DEFAULT_OPTS="
     $FZF_DEFAULT_OPTS
     --reverse
-    --ansi --height='90%'
+    --ansi --height='100%'
+    --disabled
     --bind='alt-k:preview-up,alt-p:preview-up'
     --bind='alt-j:preview-down,alt-n:preview-down'
     --bind='ctrl-r:toggle-all'
     --bind='ctrl-s:toggle-sort'
-    --bind 'tab:down,shift-tab:up'
+    --bind 'j:down,k:up'
+    --bind 'tab:unbind(j,k)+enable-search'
     --bind='?:toggle-preview'
-    --bind='alt-w:toggle-preview-wrap'
-    --preview-window='right:60%'
-    +1
-    $FORGIT_FZF_DEFAULT_OPTS
-    "
+    --preview-window='noborder,right:70%'
+    +1"
 }
 _exists fzf && {
     alias ttcmd="echo '' | fzf -q '$*' --prompt '│ ' --pointer '― ' --preview-window=up:99% --preview='eval {q}'"
