@@ -33,7 +33,10 @@ _exists rg && {
 alias sort='sort --parallel 8 -S 16M'
 alias P='patch -p1 <'
 alias :q="exit"
-_exists yay && alias U='yay -Su --devel --noconfirm --timeupdate'
+_exists paru && {
+    alias paru='yay'
+    alias U='paru -Su --devel --noconfirm --timeupdate'
+}
 _exists sudo && {alias sudo='sudo '; alias s='sudo '}
 _exists plocate && alias locate='plocate'
 _exists dd && alias dd='dd status=progress'
