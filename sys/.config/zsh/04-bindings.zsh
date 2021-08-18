@@ -59,7 +59,6 @@ bindings_init(){
 
     zstyle ':fzf-tab:*' continuous-trigger 'ctrl-space'
     zstyle ':fzf-tab:*' fzf-flags --height=20% --info=inline
-
     tab_then_fzf() {
         if [[ $LASTWIDGET = 'tab_then_fzf' ]]; then
             fzf-tab-complete
@@ -69,7 +68,6 @@ bindings_init(){
             zle redisplay
         fi
     }
-
     zle -N tab_then_fzf
     bindkey '^@' tab_then_fzf
 }
