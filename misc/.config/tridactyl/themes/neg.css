@@ -1,50 +1,50 @@
 :root {
-  --color_black: #020202;
-  --url_highlight: #243f55;
-  --line_highlight: #13384f;
   --border_color: #0a3749;
+  --color_black: #020202;
   --foreground: #f0f1ff;
-  --tridactyl-fg: var(--foreground);
+  --line_highlight: #13384f;
   --tridactyl-bg: var(--color_black);
-  --tridactyl-url-fg: var(--url_highlight);
-  --tridactyl-url-bg: var(--color_black);
-  --tridactyl-hintspan-fg: #89cdd2 !important;
-  --tridactyl-hintspan-bg: #001742 !important;
-  --tridactyl-hintspan-font-family: "Iosevka" !important;
-  --tridactyl-hintspan-font-weight: 600 !important;
-  --tridactyl-hintspan-font-size: 10pt !important;
-  --tridactyl-hint-active-fg: var(--foreground);
+  --tridactyl-fg: var(--foreground);
   --tridactyl-hint-active-bg: var(--tridactyl-hintspan-bg);
+  --tridactyl-hint-active-fg: var(--foreground);
   --tridactyl-hint-active-outline: none;
   --tridactyl-hint-bg: none;
   --tridactyl-hint-outline: none;
+  --tridactyl-hintspan-bg: #001742 !important;
+  --tridactyl-hintspan-fg: #89cdd2 !important;
+  --tridactyl-hintspan-font-family: "Iosevka" !important;
+  --tridactyl-hintspan-font-size: 10pt !important;
+  --tridactyl-hintspan-font-weight: 600 !important;
+  --tridactyl-url-bg: var(--color_black);
+  --tridactyl-url-fg: var(--url_highlight);
+  --url_highlight: #243f55;
 }
 
 #command-line-holder {
-  order: 1;
   border: 1pt solid var(--border_color);
   color: var(--tridactyl-bg);
+  order: 1;
 }
 
 #tridactyl-input {
-  color: var(--tridactyl-fg);
   background: var(--tridactyl-bg);
+  color: var(--tridactyl-fg);
   font-family: "Iosevka";
-  font-weight: 500;
   font-size: 12pt;
+  font-weight: 600;
 }
 
 #completions {
-  --option-height: 1.2em;
-  color: var(--tridactyl-fg);
   background: var(--tridactyl-bg);
+  color: var(--tridactyl-fg);
   display: inline-block;
-  overflow: hidden;
-  width: 100%;
   font-family: "Iosevka";
-  font-weight: 500;
   font-size: 12pt;
+  font-weight: 600;
+  --option-height: 1.2em;
+  overflow: hidden;
   padding: -8pt -8pt;
+  width: 100%;
 }
 
 #completions > div {
@@ -54,9 +54,9 @@
 
 #completions table {
   font-family: "Iosevka";
-  font-weight: 500;
-  padding: -8pt -8pt;
   font-size: 12pt;
+  font-weight: 600;
+  padding: -8pt -8pt;
 }
 
 #completions .HistoryCompletionSource {
@@ -65,10 +65,10 @@
 }
 
 #completions .HistoryCompletionSource table {
-  width: 100%;
-  font-size: 12pt;
   border-spacing: 0;
+  font-size: 12pt;
   table-layout: fixed;
+  width: 100%;
 }
 
 #completions .BmarkCompletionSource {
@@ -77,10 +77,10 @@
 }
 
 #completions .BufferCompletionSource table {
-  width: unset;
-  font-size: 12pt;
   border-spacing: 0;
+  font-size: 12pt;
   table-layout: fixed;
+  width: unset;
 }
 
 #completions table tr .title {
@@ -88,9 +88,9 @@
 }
 
 #completions table tr {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #completions .sectionHeader {
@@ -112,16 +112,16 @@
 }
 
 span.TridactylHint {
+  background-color: var(--tridactyl-hintspan-bg) !important;
+  border-radius: 4px !important;
+  border-style: var(--tridactyl-hintspan-border-style) !important;
+  border-width: var(--tridactyl-hintspan-border-width) !important;
+  color: var(--tridactyl-hintspan-fg) !important;
   font-family: var(--tridactyl-hintspan-font-family) !important;
   font-size: var(--tridactyl-hintspan-font-size) !important;
   font-style: var(--tridactyl-hintspan-font-style) !important;
-  position: absolute !important;
-  color: var(--tridactyl-hintspan-fg) !important;
-  background-color: var(--tridactyl-hintspan-bg) !important;
-  border-width: var(--tridactyl-hintspan-border-width) !important;
   min-width: 0.75em !important;
-  border-style: var(--tridactyl-hintspan-border-style) !important;
   padding: 2pt !important;
+  position: absolute !important;
   z-index: 2147483646 !important;
-  border-radius: 4px !important;
 }
