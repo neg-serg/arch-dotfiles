@@ -2,12 +2,8 @@ require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
       'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
+      '--color=never', '--no-heading', '--with-filename',
+      '--line-number', '--column', '--smart-case'
     },
     prompt_prefix = "❯> ",
     selection_caret = "• ",
@@ -16,9 +12,10 @@ require('telescope').setup{
     selection_strategy = "reset",
     sorting_strategy = "descending",
     layout_strategy = "vertical",
-    layout_defaults = {
+    layout_config = {
       horizontal = {mirror = false},
       vertical = {mirror = false},
+      height = 8
     },
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {},
@@ -40,7 +37,6 @@ require('telescope').setup{
       theme = "ivy",
       border = false,
       previewer = false,
-      layout_config = {height = 8},
       sorting_strategy = "descending",
       prompt_position = "bottom",
       prompt_title = false,
@@ -49,7 +45,6 @@ require('telescope').setup{
       theme = "ivy",
       border = false,
       previewer = false,
-      layout_config = {height = 8},
       sorting_strategy = "descending",
       prompt_position = "bottom",
       prompt_title = false,
