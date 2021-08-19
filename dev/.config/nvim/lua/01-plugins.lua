@@ -44,14 +44,6 @@ return require('packer').startup({function(use)
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
-    use {'akinsho/nvim-bufferline.lua'} -- fancy bufferline
-    use {'akinsho/nvim-toggleterm.lua',
-        config=function()
-            vim.cmd('nnoremap <C-Space> :ToggleTerm<CR>')
-            vim.cmd('inoremap <silent><C-Space> <Esc>:<c-u>exe v:count1 . "ToggleTerm"<CR>')
-            vim.cmd([[autocmd TermEnter term://*toggleterm#* tnoremap <silent><C-Space> <C-\><C-n>:exe v:count1 . "ToggleTerm"<CR>]])
-        end
-    } -- fast terminal toggle
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
