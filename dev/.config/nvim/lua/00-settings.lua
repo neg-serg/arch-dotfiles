@@ -1,7 +1,10 @@
 vim.opt.exrc = false
 vim.opt.secure = true
 vim.opt.termguicolors = true
-vim.opt.path = '/home/neg/.config/nvim,/home/neg/.config/nvim/after,/home/neg/.local/share/nvim/site/'
+vim.opt.path = vim.env.XDG_CONFIG_HOME .. '/nvim,' ..
+	vim.env.XDG_CONFIG_HOME .. '/nvim/after,' ..
+	vim.env.HOME .. '/.local/share/nvim/site/' ..
+		',.,..,/usr/include,./include,../include,*'
 vim.opt.formatprg = 'par -140'                               -- Better format
 vim.opt.report = 0                                           -- No report on substitution
 vim.opt.fileformats = 'unix,dos,mac'                         -- File format fallback
@@ -11,7 +14,6 @@ vim.opt.concealcursor = 'niv'                                -- Conceal cursor
 vim.opt.keymap = 'russian-jcukenwin'                         -- Add ru keymap
 vim.opt.magic = true                                         -- Use magic
 vim.opt.listchars = {}                                       -- Disable listchars
-vim.opt.path = vim.opt.path + ',.,..,/usr/include,./include,../include,*' -- Add path settings
 vim.opt.hidden = true                                        -- It hides buffers instead of closing them
 vim.opt.lazyredraw = true                                    -- Reduce useless redrawing
 vim.opt.backup = true                                        -- Backuping is good
@@ -95,9 +97,9 @@ vim.opt.winminwidth = 0                                      -- Windows can be 0
 vim.opt.wrap = false                                         -- Do not wrap lines by default
 vim.opt.mouse = 'a'                                          -- Add mouse support
 vim.opt.signcolumn = 'number'                                -- Merge sign and numbers
-vim.opt.backupdir = '/home/neg/trash/'                       -- Setup backupdir
-vim.opt.directory = '/home/neg/trash/'                       -- Directory for swap files
-vim.opt.undodir = '/home/neg/trash/'                         -- Setup undo dir
+vim.opt.backupdir = vim.env.HOME .. '/trash/'                -- Setup backupdir
+vim.opt.directory = vim.env.HOME .. '/trash/'                -- Directory for swap files
+vim.opt.undodir = vim.env.HOME .. '/trash/'                  -- Setup undo dir
 vim.opt.swapfile = false                                     -- No swap file
 vim.opt.undofile = true                                      -- Enable undofile
 vim.opt.undolevels = 1000                                    -- Maximum number of changes that can be undone
