@@ -23,7 +23,6 @@ return require('packer').startup({function(use)
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
-    use {'ojroques/nvim-bufdel'} -- better buffer delete
     use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
     use {'reedes/vim-pencil',
           opt=true,
@@ -43,6 +42,15 @@ return require('packer').startup({function(use)
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
+    use {'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
+    use {
+        'nvim-telescope/telescope-frecency.nvim',
+        config = [[require'telescope'.load_extension('frecency')]],
+        requires = {'tami5/sql.nvim'}
+    }
+    use {'neg-serg/lusty'} -- best file navigator
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -60,15 +68,6 @@ return require('packer').startup({function(use)
         config=[[require'plugcfg/gitsigns']]
     } -- async gitsigns
     use {'pwntester/octo.nvim', config=function() require"octo".setup() end} -- github review support
-    use {'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
-    use {
-        'nvim-telescope/telescope-frecency.nvim',
-        config = [[require'telescope'.load_extension('frecency')]],
-        requires = {'tami5/sql.nvim'}
-    }
-    use {'neg-serg/lusty'} -- best file navigator
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'Olical/conjure', ft={'fennel', 'clojure'},
         config=function()
