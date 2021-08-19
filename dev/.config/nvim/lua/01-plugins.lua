@@ -18,9 +18,8 @@ return require('packer').startup({function(use)
     use {'svermeulen/vimpeccable'} -- neovim lua extensions
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
-    use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=false, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
-    use {'nacro90/numb.nvim', config=[[require('numb').setup()]] }
+    use {'nacro90/numb.nvim', config=[[require('numb').setup()]] } -- interactive number with :<num>
     use {'kopischke/vim-fetch'} -- vim path/to/file.ext:12:3
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
@@ -56,26 +55,21 @@ return require('packer').startup({function(use)
         run='cargo build --release',
         ft={"clojure", "fennel", "lisp", "scheme"},
     } -- support lisps
-    use 'mizlan/iswap.nvim' -- intellectual swap
     use {'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
         config=[[require'plugcfg/gitsigns']]
     } -- async gitsigns
-    use {'pwntester/octo.nvim', config=function()
-        require"octo".setup()
-    end} -- github review support
+    use {'pwntester/octo.nvim', config=function() require"octo".setup() end} -- github review support
     use {'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, }
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use {
-        "nvim-telescope/telescope-frecency.nvim",
-        config = [[require"telescope".load_extension("frecency")]],
+        'nvim-telescope/telescope-frecency.nvim',
+        config = [[require'telescope'.load_extension('frecency')]],
         requires = {'tami5/sql.nvim'}
     }
     use {'neg-serg/lusty'} -- best file navigator
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
-    use {'mattn/vim-sonictemplate', cmd='Template'} -- snippets alternative
-    use {'metakirby5/codi.vim', cmd={'Codi', 'CodiUpdate'}, opt=true} -- nice scratchpad for hackers
     use {'Olical/conjure', ft={'fennel', 'clojure'},
         config=function()
             vim.g['conjure#highlight#enabled'] = 1
@@ -84,7 +78,9 @@ return require('packer').startup({function(use)
             vim.g['conjure#mapping#doc_word'] = 'K'
         end,
     }
-    use {'neoclide/coc.nvim', config=[[require'plugcfg/coc']]} -- lsp autocomplete
+    use {'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile',
+        config=[[require'plugcfg/coc']],
+    } -- lsp autocomplete
     use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
     use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
@@ -99,10 +95,12 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
+    use {'andymass/vim-matchup', event = 'VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
+    use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=false, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
     use {'machakann/vim-sandwich'} -- support sandwich surrounds
+    use {'mizlan/iswap.nvim'} -- intellectual swap
     use {'svermeulen/vim-NotableFt'} -- better ft
-    use {'andymass/vim-matchup', event = 'VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
     use {'tommcdo/vim-exchange'} -- exchange operator
     use {'tpope/vim-repeat'} -- dot for surround
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
@@ -111,21 +109,21 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Search                                                                       │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'brooth/far.vim'} -- better find and replace
-    use {'windwp/nvim-spectre'} -- yet another interactive find and replace
     use {'eugen0329/vim-esearch', config=[[require'plugcfg/esearch']]} -- the best of the best way to search
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
+    use {'windwp/nvim-spectre'} -- yet another interactive find and replace
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {"aouelete/sway-vim-syntax"} -- add sway syntax
     use {'Bakudankun/PICO-8.vim'} -- pico-8 cartridge files
-    use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
-    use {'tjdevries/colorbuddy.vim'} -- for future experiments with new colorschemes
-    use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'ishan9299/nvim-solarized-lua'} -- solarized colorscheme
-    use {'seanjbl/tonight.nvim'} -- darker variant of tommorow
+    use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
+    use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best color highlighting
+    use {'seanjbl/tonight.nvim'} -- darker variant of tommorow
     use {'sheerun/vim-polyglot'} -- language pack collection
+    use {'tjdevries/colorbuddy.vim'} -- for future experiments with new colorschemes
     use {'tridactyl/vim-tridactyl'} -- tridactyl support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
