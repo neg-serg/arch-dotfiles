@@ -108,4 +108,3 @@ vim.opt.shada = "!,'100,<50,s100,h,:100,%,/100"              -- Shada settings
 vim.opt.background = 'dark'                                  -- Dark background
 vim.opt.formatoptions = 'n1jcroqlj'                          -- Format settings
 vim.opt.cpoptions = '_$ABFWcdesa'                            -- Vim-exclusive stuff
-vim.cmd('syntax on')                                         -- Enable syntax explicitly
