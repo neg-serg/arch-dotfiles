@@ -42,9 +42,7 @@ return require('packer').startup({function(use)
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
-    use {'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
+    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {
         'nvim-telescope/telescope-frecency.nvim',
         config = [[require'telescope'.load_extension('frecency')]],
