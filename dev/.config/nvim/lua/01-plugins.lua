@@ -51,6 +51,7 @@ return require('packer').startup({function(use)
         requires = {'tami5/sql.nvim'}
     }
     use {'neg-serg/lusty', opt=true} -- best file navigator
+    use {'dstein64/vim-startuptime'} -- startup time measurement
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
