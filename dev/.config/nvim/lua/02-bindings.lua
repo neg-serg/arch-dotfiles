@@ -96,4 +96,4 @@ vim.api.nvim_exec([[
     xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
-map('n', '<leader>l', ':LustyFilesystemExplorerFromHere<CR>', {silent=true, noremap=true})
+map('n', '<leader>l', ':packadd lusty<CR>:LustyFilesystemExplorerFromHere<CR>', {silent=true, noremap=true})

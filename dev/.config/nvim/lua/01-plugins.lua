@@ -50,7 +50,7 @@ return require('packer').startup({function(use)
         config = [[require'telescope'.load_extension('frecency')]],
         requires = {'tami5/sql.nvim'}
     }
-    use {'neg-serg/lusty'} -- best file navigator
+    use {'neg-serg/lusty', opt=true} -- best file navigator
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
