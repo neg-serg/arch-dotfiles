@@ -1,7 +1,3 @@
-local o = vim.o
-local g = vim.g
-local a = vim.api
-
 map('i', '<C-j>', '<ESC>', {nowait = true})
 map('v', '<C-j>', '<ESC>', {nowait = true})
 map('n', '<C-j>', '<C-w>j', {nowait = true})
