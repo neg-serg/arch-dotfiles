@@ -32,7 +32,7 @@ return require('packer').startup({function(use)
     use {'reedes/vim-wordy', opt=false} -- style check for english
     use {'romgrk/winteract.vim',
           cmd={'InteractiveWindow'},
-          config=function() require'plugcfg/wininteract' end,
+          config=[[require'plugcfg/wininteract']],
           opt=false
     } -- interactive window resize
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
@@ -43,6 +43,10 @@ return require('packer').startup({function(use)
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+    use {'nvim-telescope/telescope-fzf-writer.nvim'}
+    use {'nvim-telescope/telescope-fzy-native.nvim'}
+    use {'nvim-telescope/telescope-media-files.nvim'}
     use {
         'nvim-telescope/telescope-frecency.nvim',
         config = [[require'telescope'.load_extension('frecency')]],
@@ -58,10 +62,6 @@ return require('packer').startup({function(use)
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs', config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]]} -- try new autopairs
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
-    use {'eraserhd/parinfer-rust',
-        run='cargo build --release',
-        ft={"clojure", "fennel", "lisp", "scheme"},
-    } -- support lisps
     use {'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
         config=[[require'plugcfg/gitsigns']]
@@ -76,7 +76,8 @@ return require('packer').startup({function(use)
             vim.g['conjure#mapping#doc_word'] = 'K'
         end,
     }
-    use {'neoclide/coc.nvim', branch = 'master', run = 'yarn install --frozen-lockfile',
+    use {'neoclide/coc.nvim',
+        branch = 'master', run = 'yarn install --frozen-lockfile',
         config=[[require'plugcfg/coc']],
     } -- lsp autocomplete
     use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
@@ -126,7 +127,6 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'pearofducks/ansible-vim', opt=true, ft='ansible', config=[[require'plugcfg/ansible']]} -- ansible support
     use {'saltstack/salt-vim'} -- salt sls support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
@@ -143,7 +143,7 @@ return require('packer').startup({function(use)
     } -- good conflict marker
     use {'sindrets/diffview.nvim',
         cmd={'DiffviewLoad'},
-        config=function() require'plugcfg/diffview' end
+        config=[[require'plugcfg/diffview']]
     } -- diff view for multiple files
     use {'tpope/vim-fugitive'} -- git stuff old
 end, config={
