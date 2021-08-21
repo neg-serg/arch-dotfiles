@@ -34,10 +34,7 @@ vim.g.coc_global_extensions = {
   'coc-snippets',
   'coc-solargraph',
   'coc-stylelint',
-  'coc-toml',
-  'coc-yaml',
 }
-
 -- Map function and class text objects
 -- Requires 'textDocument.documentSymbol' support from the language server.
 api.nvim_command('xmap if <Plug>(coc-funcobj-i)')
