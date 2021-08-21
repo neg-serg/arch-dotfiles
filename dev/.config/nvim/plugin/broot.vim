@@ -2,7 +2,7 @@ nnoremap [Qleader]e :call RunBroot()<CR>i
 
 function! RunBroot()
     let l:command = 'broot -h --conf ~/.config/nvim/nvim-broot.toml'
-    vnew
+    vnew | setl nonumber
     call termopen(l:command, {'on_exit': 'BrootOnExit'})
 endfunction
 
