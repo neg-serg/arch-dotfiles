@@ -32,6 +32,7 @@ vim.g.coc_global_extensions = {
   'coc-prettier',
   'coc-pyright',
   'coc-snippets',
+  'coc-solargraph',
   'coc-stylelint',
   'coc-toml',
   'coc-yaml',

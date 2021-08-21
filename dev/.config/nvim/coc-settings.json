@@ -98,6 +98,17 @@
       ],
       "filetypes": ["haskell", "lhaskell"]
     },
+    "puppet": {
+      "command": "ruby",
+      "args": [
+        "/opt/puppet-editor-services/puppet-languageserver",
+        "--stdio",
+        /* "--puppet-settings=--moduledir,/path/to/module/path" */
+      ],
+      "cwd": "/opt/puppet-editor-services/",
+      "filetypes": ["puppet"],
+      "rootPatterns": [".git/", "metadata.json"]
+    },
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": ["dockerfile"],

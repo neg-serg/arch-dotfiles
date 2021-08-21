@@ -124,6 +124,7 @@ return require('packer').startup({function(use)
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'tjdevries/colorbuddy.vim'} -- for future experiments with new colorschemes
     use {'tridactyl/vim-tridactyl'} -- tridactyl support
+    use {'rodjek/vim-puppet'} -- puppet syntax highlighting
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
