@@ -121,6 +121,7 @@ return require('packer').startup({function(use)
     use {'folke/todo-comments.nvim'} -- better highlight TODO, HACK, etc
     use {'ishan9299/nvim-solarized-lua'} -- solarized colorscheme
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
+    use {'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'}}
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'rodjek/vim-puppet'} -- puppet syntax highlighting
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best color highlighting
