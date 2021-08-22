@@ -62,6 +62,7 @@ return require('packer').startup({function(use)
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs', config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]]} -- try new autopairs
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
+    use {'lervag/vimtex'} -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
         config=[[require'plugcfg/gitsigns']]
@@ -97,12 +98,13 @@ return require('packer').startup({function(use)
     use {'andymass/vim-matchup', event = 'VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
     use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=false, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
-    use {'machakann/vim-sandwich'} -- support sandwich surrounds
+    use {'David-Kunz/treesitter-unit'} -- treesitter-based selection
     use {'mizlan/iswap.nvim'} -- intellectual swap
     use {'svermeulen/vim-NotableFt'} -- better ft
     use {'tommcdo/vim-exchange'} -- exchange operator
     use {'tpope/vim-repeat'} -- dot for surround
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
+    use {'machakann/vim-sandwich'} -- support sandwich surrounds
     use {'wellle/targets.vim'} -- better text objects
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Search                                                                       │
@@ -116,15 +118,16 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {"aouelete/sway-vim-syntax"} -- add sway syntax
     use {'Bakudankun/PICO-8.vim'} -- pico-8 cartridge files
+    use {'folke/todo-comments.nvim'} -- better highlight TODO, HACK, etc
     use {'ishan9299/nvim-solarized-lua'} -- solarized colorscheme
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
+    use {'rodjek/vim-puppet'} -- puppet syntax highlighting
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best color highlighting
     use {'seanjbl/tonight.nvim'} -- darker variant of tommorow
     use {'sheerun/vim-polyglot'} -- language pack collection
     use {'tjdevries/colorbuddy.vim'} -- for future experiments with new colorschemes
     use {'tridactyl/vim-tridactyl'} -- tridactyl support
-    use {'rodjek/vim-puppet'} -- puppet syntax highlighting
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
