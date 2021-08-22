@@ -24,17 +24,14 @@ return require('packer').startup({function(use)
     use {'norcalli/nvim-colorizer.lua'} -- high-performance color highlighter for Neovim
     use {'ntpeters/vim-better-whitespace'} -- delete whitespaces with ease
     use {'pbrisbin/vim-mkdir'} -- auto make dir without asking
-    use {'reedes/vim-pencil',
-          opt=true,
+    use {'reedes/vim-pencil', opt=true,
           cmd={'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'},
-          ft={'txt', 'markdown', 'rst'}
-    } -- better text support
+          ft={'txt', 'markdown', 'rst'}} -- better text support
     use {'reedes/vim-wordy', opt=false} -- style check for english
     use {'romgrk/winteract.vim',
           cmd={'InteractiveWindow'},
           config=[[require'plugcfg/wininteract']],
-          opt=false
-    } -- interactive window resize
+          opt=true} -- interactive window resize
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use {'thinca/vim-ref'} -- integrated reference viewer for help with separated window
     use {'vimwiki/vimwiki'} -- personal wiki for vim
@@ -44,14 +41,10 @@ return require('packer').startup({function(use)
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-    use {'nvim-telescope/telescope-fzf-writer.nvim'}
-    use {'nvim-telescope/telescope-fzy-native.nvim'}
     use {'nvim-telescope/telescope-media-files.nvim'}
-    use {
-        'nvim-telescope/telescope-frecency.nvim',
+    use {'nvim-telescope/telescope-frecency.nvim',
         config = [[require'telescope'.load_extension('frecency')]],
-        requires = {'tami5/sql.nvim'}
-    }
+        requires = {'tami5/sql.nvim'}}
     use {'neg-serg/lusty', opt=true} -- best file navigator
     use {'dstein64/vim-startuptime'} -- startup time measurement
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -67,7 +60,7 @@ return require('packer').startup({function(use)
         requires = {'nvim-lua/plenary.nvim'},
         config=[[require'plugcfg/gitsigns']]
     } -- async gitsigns
-    use {'pwntester/octo.nvim', config=function() require"octo".setup() end} -- github review support
+    use {'pwntester/octo.nvim', config=[[require"octo".setup()]]} -- github review support
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'Olical/conjure', ft={'fennel', 'clojure'},
         config=function()
@@ -96,7 +89,7 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
     use {'andymass/vim-matchup', event = 'VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
-    use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=false, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
+    use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=true, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
     use {'David-Kunz/treesitter-unit'} -- treesitter-based selection
     use {'mizlan/iswap.nvim'} -- intellectual swap
@@ -151,8 +144,5 @@ return require('packer').startup({function(use)
         config=[[require'plugcfg/diffview']]
     } -- diff view for multiple files
     use {'tpope/vim-fugitive'} -- git stuff old
-end, config={
-    display = {
-        open_fn = require('packer.util').float, }
-    }
+end, config={display = {open_fn = require('packer.util').float}}
 })
