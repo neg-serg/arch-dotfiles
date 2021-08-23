@@ -9,7 +9,7 @@ nvim_create_augroups({
         {'FileType', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
         -- Update binds when sxhkdrc is updated.
         {'BufWritePost', '*sxhkdrc', '!pkill -USR1 sxhkd'},
-        {'BufWritePost', 'plugins.lua', 'PackerCompile'},
+        {'BufWritePost', '01-plugins.lua', 'PackerCompile'},
         {'BufEnter', '*', 'set noreadonly'},
         -- This is equivalent to :set autochdir but lets buffer-local
         -- autocommands change the dir. Autochdir doesn't.
