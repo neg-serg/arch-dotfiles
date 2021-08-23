@@ -1,0 +1,4 @@
+#for additional googler options see "googler --help"
+export GOOGLE_ARGS='["--count", 5]'
+export ROFI_SEARCH='googler'
+rofi -modi blocks -blocks-wrap /usr/bin/rofi-search -show blocks -lines 4 -eh 4 -kb-custom-1 'Control+y' -theme /home/neg/.dotfiles/negi3wm/.config/rofi/neg.rasi
