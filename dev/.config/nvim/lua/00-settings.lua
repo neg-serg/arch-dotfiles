@@ -112,7 +112,7 @@ vim.opt.switchbuf = 'useopen,usetab'                         -- useopen may be u
 vim.opt.tabstop = 4                                          -- An indentation every four columns
 vim.opt.timeoutlen = 250                                     -- 250 ms wait to sequence complete
 vim.opt.ttimeoutlen = 20                                     -- Very fast and also you shouldnt make combination too fast
-vim.opt.updatetime = 250                                     -- Faster diagnostics
+vim.opt.updatetime = 100                                     -- Faster diagnostics
 vim.opt.virtualedit = 'onemore,block'                        -- Allow for cursor beyond last character
 vim.opt.whichwrap = 'b,s,h,l,<,>,[,]'                        -- Backspace and cursor keys wrap too
 vim.opt.wildmode = 'full'                                    -- Command <Tab> completion = list matches = then longest common part = then all.
