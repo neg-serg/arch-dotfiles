@@ -71,6 +71,7 @@ vim.opt.joinspaces = false                                   -- Prevents inserti
 vim.opt.showmatch = false                                    -- Show matching brackets/parenthesis
 vim.opt.spell = false                                        -- Disable spell checking by default
 vim.opt.number = true                                        -- Line numbers on
+vim.opt.numberwidth = 3                                      -- Shorter number width
 vim.opt.pumblend = 15                                        -- setup pmenu transparency
 vim.opt.pumheight = 10                                       -- Do not make pmenu too wide
 vim.opt.scrolljump = 0                                       -- Lines to scroll when cursor leaves screen
