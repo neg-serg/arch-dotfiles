@@ -1,18 +1,18 @@
 [global]
     alignment = left
     always_run_script = true
-    browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/firefox-developer-edition -new-tab
     corner_radius = 4
     ellipsize = end
     follow = mouse
-    font = Iosevka Medium 23
-    format = "<span font_desc='Iosevka Bold 23' foreground='#2e72ac'>%s</span>\n%b"
+    font = Iosevka 22
+    format = "<span font_desc='Iosevka 22' foreground='#2e72ac'>%s</span>\n%b"
     frame_color = "#0C0C0D"
     frame_width = 4
     geometry = "1120x11-0-52"
     hide_duplicate_count = true
     horizontal_padding = 6
-    icon_path = ~/.local/share/icons/korla
+    icon_path = /usr/share/icons/kora
     icon_position = left
     idle_threshold = 0
     ignore_dbusclose = true
@@ -33,15 +33,11 @@
     stack_duplicates = true
     startup_notification = false
     sticky_history = true
-    transparency = 10
     transparency = 14
     verbosity = mesg
     vertical_alignment = center
     width = 0
     word_wrap = true
-
-# [log_notifs]
-#     script = ~/.local/bin/dunst_logger.sh
 
 [urgency_low]
     background = "#010204"
