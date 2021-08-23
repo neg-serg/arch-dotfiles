@@ -1,3 +1,4 @@
+#!/bin/zsh
 #for additional googler options see "googler --help"
 export GOOGLE_ARGS='["--count", 5]'
 export ROFI_SEARCH='googler'
