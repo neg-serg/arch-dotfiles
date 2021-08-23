@@ -49,6 +49,7 @@ map('n', '<M-w>', ':bd<CR>', {silent=true})
 map('i', '<C-V>', '<C-R>+')
 map('n', 'K', ":call CocActionAsync('doHover')<CR>", {silent=true})
 vim.g.mapleader = ','
+map('n', 'Y', 'y$')
 map('n', 'w', 'W', {noremap=true})
 map('n', 'W', 'w', {noremap=true})
 map('o', 'w', 'W', {noremap=true})
