@@ -24,7 +24,7 @@ require('gitsigns').setup {
     ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
     ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
   },
-  watch_index = { interval = 500 },
+  watch_index = {interval = 500, follow_files = true},
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
