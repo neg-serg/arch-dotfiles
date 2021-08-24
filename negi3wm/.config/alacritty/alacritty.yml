@@ -3,70 +3,51 @@ env:
   TERM: alacritty
 
 window:
+  dimensions:
+    columns: 0
+    lines: 0
   padding:
     x: 2
     y: 2
-  dimensions:
-    columns: 80
-    lines: 24
   decorations: none
   dynamic_padding: false
   dynamic_title: false
   gtk_theme_variant: dark
   startup_mode: Maximized
-
 background_opacity: 0.88
 
 font:
   normal:
     family: "Iosevka"
     style: Medium
-
   bold:
     family: "Iosevka"
     style: Bold
-
   italic:
     family: "Iosevka"
     style: Italic
-
-  size: 36.0
-
+  size: 18.0
   offset:
     x: 0
     y: 0
-
   glyph_offset:
     x: 0
     y: 0
-
   use_thin_strokes: true
-
-debug:
-  render_timer: false
-  persistent_logging: false
-
-scrolling:
-  history: 1000
-  multiplier: 1
 
 colors:
   primary:
     background: '0x000000'
     foreground: '0x6C7E96'
-
   cursor:
     text: '0x000000'
     cursor: '0x375BC1'
-
   vi_mode_cursor:
     text: CellBackground
     cursor: CellForeground
-
   selection:
     text: '0x367bbf'
     background: '0x0d1824'
-
   normal:
     black: '0x020202'
     red: '0x8A2F58'
@@ -76,7 +57,6 @@ colors:
     magenta: '0x5E468C'
     cyan: '0x31658C'
     white: '0x899CA1'
-
   bright:
     black: '0x3D3D3D'
     red: '0xCF4F88'
@@ -86,7 +66,6 @@ colors:
     magenta: '0x7E62B3'
     cyan: '0x6096BF'
     white: '0x617287'
-
   indexed_colors:
     - {index: 16, color: '#040408'}
     - {index: 17, color: '#01004C'}
@@ -220,11 +199,13 @@ cursor:
   style: Block
   unfocused_hollow: true
   thickness: 0.15
-
 bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
+scrolling:
+  history: 0
+  multiplier: 1
 
 key_bindings:
   - {key: V, mods: Control|Shift, action: Paste}
@@ -245,18 +226,14 @@ mouse:
   double_click: {threshold: 200}
   triple_click: {threshold: 200}
   hide_when_typing: false
-
 url:
   launcher:
     program: xdg-open
     args: []
   modifiers: None
-
 draw_bold_text_with_bright_colors: false
-
 selection:
   semantic_escape_chars: ",`|:\"' ()[]{}<>"
-
 shell:
   program: /usr/bin/tmux
   args:
