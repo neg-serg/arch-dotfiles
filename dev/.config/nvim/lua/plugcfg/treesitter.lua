@@ -10,6 +10,7 @@ tsconf.setup {
     enable = true, -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
   },
+  autopairs = {enable = false},
   rainbow = {
     enable = true,
     extended_mode = false, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
