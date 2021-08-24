@@ -1,3 +1,8 @@
+vim.cmd([[
+	syntax off
+	filetype off
+    filetype plugin indent off
+]])
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
     "netrw",
