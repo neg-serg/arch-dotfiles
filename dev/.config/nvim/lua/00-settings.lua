@@ -3,6 +3,11 @@ vim.cmd([[
 	filetype off
     filetype plugin indent off
 ]])
+-- Fix alacritty resize: github.com/neovim/neovim/issues/11330
+vim.cmd([[
+    autocmd VimEnter * :sleep 10m
+    autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
+]])
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
