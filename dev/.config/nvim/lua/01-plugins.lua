@@ -39,26 +39,32 @@ return require('packer').startup({function(use)
     use {'antoinemadec/FixCursorHold.nvim'} -- fix cursorhold slowdown
     use {'MTDL9/vim-log-highlighting'} -- better log highlighter
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
-    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-    use {'nvim-telescope/telescope-media-files.nvim'}
-    use {'nvim-telescope/telescope-frecency.nvim',
-        config = [[require'telescope'.load_extension('frecency')]],
-        requires = {'tami5/sql.nvim'}}
+    use {'nvim-telescope/telescope.nvim', requires={
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
+            {'nvim-telescope/telescope-media-files.nvim'},
+            {'nvim-telescope/telescope-frecency.nvim',
+                config = [[require'telescope'.load_extension('frecency')]],
+                requires = {'tami5/sql.nvim'}
+            }
+        }
+    }
     use {'neg-serg/lusty', opt=true} -- best file navigator
     use {'dstein64/vim-startuptime'} -- startup time measurement
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf'} -- better quickfix
-    use {'b3nj5m1n/kommentary'} -- alternative commenter
+    use {'b3nj5m1n/kommentary', event = 'BufEnter'} -- alternative commenter
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
-    use {'windwp/nvim-autopairs', config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]]} -- try new autopairs
+    use {'windwp/nvim-autopairs',
+        config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]],
+        event = 'InsertEnter',
+    } -- try new autopairs
     use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'lervag/vimtex'} -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
-        requires = {'nvim-lua/plenary.nvim'},
-        config=[[require'plugcfg/gitsigns']]
+        after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event = 'BufRead'
     } -- async gitsigns
     use {'pwntester/octo.nvim', config=[[require"octo".setup()]]} -- github review support
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
