@@ -51,6 +51,7 @@ return require('packer').startup({function(use)
     }
     use {'neg-serg/lusty', opt=true} -- best file navigator
     use {'dstein64/vim-startuptime'} -- startup time measurement
+    use {'rmagatti/auto-session'} -- best modern autosession plugin
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘

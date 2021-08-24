@@ -3,6 +3,7 @@ vim.cmd([[
 	filetype off
     filetype plugin indent off
 ]])
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
     "netrw",
