@@ -98,18 +98,12 @@ vim.opt.incsearch = true                                     -- Move cursor duri
 vim.opt.wildmenu = true                                      -- Command line completion mode
 vim.opt.wildignorecase = true                                -- Ignore case for wildmenu
 vim.opt.wildignore:append {
-	"*.7z" , "*.aux" , "*.avi" , "*.bak"
-	, "*.bib" , "*.class" , "*.cls" , "*.cmi"
-	, "*.cmo" , "*.doc" , "*.docx" , "*.dvi"
-	, "*.flac" , "*.flv" , "*.gif" , "*.ico"
-	, "*.jpeg" , "*.jpg" , "*.log" , "*.min*.js"
-	, "*.mov" , "*.mp3" , "*.mp4" , "*.mpg"
-	, "*.nav" , "*.o" , "*.ods" , "*.odt"
-	, "*.ogg" , "*.opus" , "*.out" , "*.pdf"
-	, "*.pem" , "*.png" , "*.rar" , "*.sty"
-	, "*.svg" , "*.swp" , "*.swp*." , "*.tar"
-	, "*.tgz" , "*.toc" , "*.wav" , "*.webm"
-	, "*.xcf" , "*.xls" , "*.xlsx" , "*.zip"
+	"*.7z" , "*.aux" , "*.avi" , "*.bak" , "*.bib" , "*.class" , "*.cls" , "*.cmi"
+	, "*.cmo" , "*.doc" , "*.docx" , "*.dvi" , "*.flac" , "*.flv" , "*.gif" , "*.ico"
+	, "*.jpeg" , "*.jpg" , "*.log" , "*.min*.js" , "*.mov" , "*.mp3" , "*.mp4" , "*.mpg"
+	, "*.nav" , "*.o" , "*.ods" , "*.odt" , "*.ogg" , "*.opus" , "*.out" , "*.pdf"
+	, "*.pem" , "*.png" , "*.rar" , "*.sty" , "*.svg" , "*.swp" , "*.swp*." , "*.tar"
+	, "*.tgz" , "*.toc" , "*.wav" , "*.webm" , "*.xcf" , "*.xls" , "*.xlsx" , "*.zip"
 }
 vim.opt.hlsearch = true                                      -- Highlight search results (enforce
 vim.opt.shortmess:append 'aoOstTWAIcqFS'                     -- Shorting messages for all
