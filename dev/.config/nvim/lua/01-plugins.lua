@@ -15,7 +15,6 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'norcalli/nvim_utils'} -- neovim lua utils
-    use {'svermeulen/vimpeccable'} -- neovim lua extensions
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
     use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
@@ -62,21 +61,11 @@ return require('packer').startup({function(use)
         config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]],
         event = 'InsertEnter',
     } -- try new autopairs
-    use {'ElPiloto/sidekick.nvim'} -- experimental outline window
     use {'lervag/vimtex'} -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
         after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event = 'BufRead'
     } -- async gitsigns
-    use {'pwntester/octo.nvim', config=[[require"octo".setup()]]} -- github review support
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
-    use {'Olical/conjure', ft={'fennel', 'clojure'},
-        config=function()
-            vim.g['conjure#highlight#enabled'] = 1
-            vim.g['conjure#highlight#timeout'] = 500
-            vim.g['conjure#highlight#group'] = 'IncSearch'
-            vim.g['conjure#mapping#doc_word'] = 'K'
-        end,
-    }
     use {'neoclide/coc.nvim',
         branch = 'master', run = 'yarn install --frozen-lockfile',
         config=[[require'plugcfg/coc']],
@@ -121,9 +110,8 @@ return require('packer').startup({function(use)
     use {'folke/todo-comments.nvim'} -- better highlight TODO, HACK, etc
     use {'ishan9299/nvim-solarized-lua'} -- solarized colorscheme
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
-    use {'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'}}
+    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
-    use {'rodjek/vim-puppet'} -- puppet syntax highlighting
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best color highlighting
     use {'seanjbl/tonight.nvim'} -- darker variant of tommorow
     use {'sheerun/vim-polyglot'} -- language pack collection
@@ -133,6 +121,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'saltstack/salt-vim'} -- salt sls support
+    use {'rodjek/vim-puppet'} -- puppet syntax highlighting
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
