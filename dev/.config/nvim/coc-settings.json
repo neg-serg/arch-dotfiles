@@ -3,13 +3,7 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.hoverTarget": "preview",
   "coc.preferences.jumpCommand": "drop",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "html",
-    "css",
-    "markdown",
-    "go",
-    "json"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["html", "css", "markdown", "go", "json"],
   "coc-actions.hideCursor": false,
   "coc.source.around.shortcut": "B",
   "coc.source.buffer.shortcut": "BS",
@@ -103,7 +97,6 @@
       "args": [
         "/opt/puppet-editor-services/puppet-languageserver",
         "--stdio",
-        /* "--puppet-settings=--moduledir,/path/to/module/path" */
       ],
       "cwd": "/opt/puppet-editor-services/",
       "filetypes": ["puppet"],
