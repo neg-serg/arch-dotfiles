@@ -5,7 +5,7 @@ vim.cmd([[
 ]])
 -- Fix alacritty resize: github.com/neovim/neovim/issues/11330
 vim.cmd([[
-    autocmd VimEnter * :sleep 10m
+    autocmd VimEnter * :sleep 50m
     autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 ]])
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
