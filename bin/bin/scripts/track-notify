@@ -1,47 +1,63 @@
 #!/usr/bin/env zsh
-
 body="$3"
 urgency="$5"
-
 dunst_pics="$(realpath ${HOME}/tmp/dunst-images)"
 cover_lock="${dunst_pics}/notify.lock"
 image="/tmp/.mpd-notification-artwork.png"
-mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
 magic_pie='8143'
-col1="<span weight='Medium' color='#395573'>"
-bold="<span weight='bold' color='#4FB3FF'>"
-end="</span>"
 max_len=35
-fancy_table=('⚌' '♫' '⟫' '|')
+mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
+nr(){
+    print "<span weight='Bold' color='#b8c5d9'>$1</span>"
+}
+fa(){
+    print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>"
+}
+E(){
+    print '</span>'
+}
+prefix=(
+    ''                        # track name    [1]
+    "$(fa '#004E4E')   $(E)" # artist        [2]
+    "$(fa '#004E4E')   $(E)" # album         [3]
+    "$(fa '#004E4E')   $(E)" # ????          [4]
+    "$(fa '#004E4E')   $(E)" # audio_quality [5]
+    "$(fa '#004E4E')   $(E)" # label         [6]
+    "$(fa '#004E4E')   $(E)" # year          [7]
+)
+delimiter() {
+    repeat ${len} print -n "◇"
+}
+cmp_img() {
+    ${HOME}/bin/scripts/cmp-imgs.py "${1}" "${2}"
+}
 
-wf(){ print "${col1}⟬${end}${bold}$1${end}${col1}⟭${end} " }
-nr(){ print "<span weight='Medium' color='#b8c5d9'>$1${end}" }
-delimiter(){ repeat ${len} print -n "◇" }
-cmp_img(){ ${HOME}/bin/scripts/cmp-imgs.py "${1}" "${2}" }
-
-notify(){
-    local -a bodyarr=()
-    local -a len=()
-    while read line; do bodyarr+="${line}" done <<< ${body}
-
-    for i in {1..6}; len+=${#bodyarr[$i]};
+notify() {
+    bodyarr=()
+    len=()
+    while read line; do
+        bodyarr+="${line}"
+    done <<< ${body}
+    for i in {1..6}; do
+        len+=${#bodyarr[$i]};
+    done
     len=($(printf "%s\n" "${len[@]}"|sort -nr))
-
     len=$[${(@)len[1]}]
     [[ ${len} > ${max_len} ]] && len=${max_len}
 
-    for i in {1..$#fancy_table}; do
+    bodyarr[1]=''
+    for i in {2..5}; do
         if [[ ! -z "${bodyarr[i]}" ]]; then
-            bodyarr[i]=$(wf ${fancy_table[i]})"$(nr ${bodyarr[i]})\n"
+            bodyarr[i]="${prefix[i]}$(nr ${bodyarr[i]})\n"
         else
             bodyarr[i]="\n"
         fi
     done
 
-    local current_file="$(mpc -f '%file%'|head -1)"
-    local current_dirname="${mpd_music_dir}/$(dirname "${current_file}")"
-    local sox_metadata="$(sox --i "${mpd_music_dir}/${current_file}" 2> /dev/null)"
-    local audio_quality="$(awk -F '\\s*:\\s*' \
+    current_file="$(mpc -f '%file%'|head -1)"
+    current_dirname="${mpd_music_dir}/$(dirname "${current_file}")"
+    sox_metadata="$(sox --i "${mpd_music_dir}/${current_file}" 2> /dev/null)"
+    audio_quality="$(awk -F '\\s*:\\s*' \
         'BEGIN {} /^Channels/{ch=$2} \
         /^Sample Encoding/{se=$2} \
         /^Bit Rate/{br=$2} \
@@ -53,22 +69,12 @@ notify(){
     if (se ~ /Direct Stream Digital/) printf "dsd·"; \
         print br"·"sr"K/"pr"·"ch}' <<< ${sox_metadata})"
 
-    local year="$(awk -F '=' '/^YEAR/{print $2}' <<< ${sox_metadata})"
-    local label="$(awk -F '=' '/^LABEL/{print $2}' <<< ${sox_metadata})"
+    year="$(awk -F '=' '/^YEAR/{print $2}' <<< ${sox_metadata})"
+    label="$(awk -F '=' '/^LABEL/{print $2}' <<< ${sox_metadata})"
+    [[ ${audio_quality// } != "·K/·" ]] && bodyarr[5]="${prefix[5]}$(nr ${audio_quality})\n" || bodyarr[5]="\n"
+    [[ ! -z "${label// }" ]] && bodyarr[6]="${prefix[6]}$(nr ${label})\n" || bodyarr[6]="\n"
+    [[ ! -z "${year// }" ]] && bodyarr[7]="${prefix[7]}$(nr ${year})\n" || bodyarr[7]="\n"
 
-    [[ ${audio_quality// } != "·K/·" ]] && \
-        bodyarr[5]=$(wf '❯')"$(nr ${audio_quality})\n" || \
-        bodyarr[5]="\n"
-
-    [[ ! -z "${label// }" ]] && \
-        bodyarr[6]=$(wf '©')"$(nr ${label})\n" || \
-        bodyarr[6]="\n"
-
-    [[ ! -z "${year// }" ]] && \
-        bodyarr[7]=$(wf 'Y')"$(nr ${year})\n" || \
-        bodyarr[7]="\n"
-
-    local output
     for i in ${bodyarr[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
 
@@ -82,7 +88,16 @@ notify(){
     sed '1d' <<< $(echo -n "${body}") > "${cover_lock}"
 }
 
-show_notify(){
+debug(){
+    echo ":: BODY ::"
+    print "$body"
+    echo
+    echo ":: BODY_ARR ::"
+    print "$bodyarr"
+    echo
+}
+
+show_notify() {
     if [[ ! -f "${cover_lock}" ]]; then
         notify
     elif [[ -s "${cover_lock}" ]]; then
@@ -93,7 +108,7 @@ show_notify(){
     cp "${image}" "${prev}"
 }
 
-zshexit(){
+zshexit() {
     (
         hashsum1=$(xxh32sum "${image}"|cut -d ' ' -f1)
         sleep 4s
@@ -102,7 +117,7 @@ zshexit(){
     ) &
 }
 
-main(){
+main() {
     dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
     [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
     prev="${dunst_pics}/prev.png"
