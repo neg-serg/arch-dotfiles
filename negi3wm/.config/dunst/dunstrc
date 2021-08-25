@@ -5,8 +5,8 @@
     corner_radius = 4
     ellipsize = end
     follow = mouse
-    font = Iosevka 22
-    format = "<span font_desc='Iosevka 22' foreground='#2e72ac'>%s</span>\n%b"
+    font = Iosevka Medium 22
+    format = "<span font_desc='Iosevka Medium 22' foreground='#2e72ac'>%s</span>\n%b"
     frame_color = "#0C0C0D"
     frame_width = 4
     geometry = "1120x11-0-52"
