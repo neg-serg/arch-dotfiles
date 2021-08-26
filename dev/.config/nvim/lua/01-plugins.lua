@@ -27,8 +27,7 @@ return require('packer').startup({function(use)
           cmd={'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'},
           ft={'txt', 'markdown', 'rst'}} -- better text support
     use {'reedes/vim-wordy', opt=false} -- style check for english
-    use {'romgrk/winteract.vim',
-          cmd={'InteractiveWindow'},
+    use {'romgrk/winteract.vim', cmd={'InteractiveWindow'},
           config=[[require'plugcfg/wininteract']],
           opt=true} -- interactive window resize
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
@@ -59,8 +58,7 @@ return require('packer').startup({function(use)
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
         config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]],
-        event = 'InsertEnter',
-    } -- try new autopairs
+        event = 'InsertEnter'} -- try new autopairs
     use {'lervag/vimtex'} -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
         after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event = 'BufRead'
@@ -74,11 +72,8 @@ return require('packer').startup({function(use)
     use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
     use {'tpope/vim-apathy'} -- better include jump
-    use {'tpope/vim-dispatch',
-        opt=true,
-        cmd={'Dispatch', 'Make', 'Focus', 'Start'},
-        config=[[require'plugcfg/vim-dispatch']]
-    } -- provide async build
+    use {'tpope/vim-dispatch', config=[[require'plugcfg/vim-dispatch']],
+        cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
     use {'rstacruz/sparkup'} -- better emmet-vim
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
