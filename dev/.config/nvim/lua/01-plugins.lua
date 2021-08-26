@@ -90,7 +90,6 @@ return require('packer').startup({function(use)
     use {'David-Kunz/treesitter-unit'} -- treesitter-based selection
     use {'mizlan/iswap.nvim'} -- intellectual swap
     use {'svermeulen/vim-NotableFt'} -- better ft
-    use {'tommcdo/vim-exchange'} -- exchange operator
     use {'tpope/vim-repeat'} -- dot for surround
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
     use {'wellle/targets.vim'} -- better text objects
