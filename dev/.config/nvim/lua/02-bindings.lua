@@ -86,10 +86,8 @@ vim.cmd('nnoremap <expr> 0 &wrap ? "g0" : "0"')
 vim.cmd('nnoremap <expr> $ &wrap ? "g$" : "$"')
 vim.cmd('nnoremap <expr> j (v:count == 0 ? "gj" : "j")')
 vim.cmd('nnoremap <expr> k (v:count == 0 ? "gk" : "k")')
-vim.api.nvim_exec([[
-    exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-    exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-]], true)
+map('i', '<C-v>', 'paste#paste_cmd["i"]', {expr=true})
+map('v', '<C-v>', 'paste#paste_cmd["v"]', {expr=true})
 -- thx to ralismark.xyz/2020/08/29/how-i-use-vim-1.html
 -- Fixed I/A for visual
 vim.api.nvim_exec([[
