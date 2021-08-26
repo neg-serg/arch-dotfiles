@@ -93,7 +93,6 @@ return require('packer').startup({function(use)
     use {'tommcdo/vim-exchange'} -- exchange operator
     use {'tpope/vim-repeat'} -- dot for surround
     use {'tpope/vim-surround'} -- new commands to vim for generic brackets
-    use {'machakann/vim-sandwich'} -- support sandwich surrounds
     use {'wellle/targets.vim'} -- better text objects
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Search                                                                       │
