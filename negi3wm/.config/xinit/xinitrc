@@ -3,4 +3,6 @@ export ENV=$HOME/.profile
 xrdb -I$XDG_CONFIG_HOME/xres -load "$HOME/.config/xres/Xresources"
 xset s off -dpms
 sudo openrgb --server -p neg.orp &
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
 exec /usr/bin/i3-gnome
