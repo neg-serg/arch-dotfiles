@@ -156,6 +156,8 @@ misc/.slit/history
 music/.config/beets/discogs_token.json
 music/.config/beets/state.pickle
 music/.config/mpd
+music/.config/mpd
+music/.config/mpd/mpd.pid
 music/.config/mpd/mpd.pid
 music/.config/mpd/mpdstate
 music/.config/ncmpcpp/error.log
@@ -171,6 +173,7 @@ mutt/.mutt/work.gmail/cache
 mutt/.mutt/work.gmail/cache/
 mutt/.mutt/work.gmail/hcache
 .my-pwds.gpg
+neg-dark.tdesktop-theme
 neg-dark.tdesktop-theme
 .newsbeuter/cache.db
 .newsbeuter/error.log
@@ -209,6 +212,7 @@ password.gpg
 pic
 .pip
 .pki
+plugin/
 polybar/.config/polybar/gmail/client_secrets.json
 .pry_history
 .pulse-cookie
@@ -259,6 +263,7 @@ sys/.config/bpytop/error.log
 sys/.config/tmux/plugin/
 sys/.config/tmux/plugins/*
 sys/.config/zsh/.zcompdump
+sys/.config/zsh/.zcompdump
 .task
 .TelegramDesktop
 .t-engine
@@ -283,6 +288,7 @@ watch_later
 .xsession-errors.old
 .yandex
 .yankring_hist_v2.txt
+.zcalc_history
 .zcalc_history
 .zcompcache/
 .zex_history
