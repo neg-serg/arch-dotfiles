@@ -134,7 +134,6 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'iberianpig/tig-explorer.vim'} -- tig integration
     use {'rhysd/conflict-marker.vim',
         config=function()
             vim.cmd[[highlight ConflictMarkerBegin guibg=#2f7366]]
