@@ -77,7 +77,6 @@ return require('packer').startup({function(use)
         vim.g.LustyExplorerDefaultMappings = 0
         vim.g.LustyExplorerAlwaysShowDotFiles = 1
       end,
-      cmd={'LustyFilesystemExplorerFromHere'},
       opt=true,
     } -- best file explorer ever
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
