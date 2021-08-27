@@ -65,12 +65,12 @@ wall() {
     wallarg=""
     specarg=""
     case $action in
-        center) wallarg="-center" ;;
-        tile) wallarg="-tile" ;;
-        fill) wallarg="-fill" ;;
-        full) wallarg="-full" ;;
-        cover) wallarg="-full" ;;
-        mono) specarg="plus"
+        center) wallarg="-center";;
+        tile) wallarg="-tile";;
+        fill) wallarg="-fill";;
+        full) wallarg="-full";;
+        cover) wallarg="-full";;
+        mono) specarg="plus";;
     esac
     tee "$tmp_wall"
     if [ -z $specarg ]; then
@@ -87,7 +87,7 @@ wall() {
 }
 
 finish() {
-    rm -f "$ff" "$ff"
+    rm -f "$ff"
 }
 
 case "$1" in
@@ -100,10 +100,10 @@ case "$1" in
     "v") proc mv ;;
     "C-c") proc cp ;;
     "C-d") dest="$HOME/trash/1st_level/pic"  proc mv ;;
-    "C-1") wall "full" ;;
-    "C-2") wall "mono" ;;
-    "C-3") wall "center" ;;
+    "C-1") wall "center" ;;
+    "C-2") wall "fill" ;;
+    "C-3") wall "full" ;;
     "C-4") wall "tile" ;;
-    "C-5") wall "fill" ;;
+    "C-5") wall "mono" ;;
     "C-w") wall "cover" ;;
 esac
