@@ -14,6 +14,7 @@
     horizontal_padding = 6
     icon_path = /usr/share/icons/kora
     icon_position = left
+    ellipsize = middle
     idle_threshold = 0
     ignore_dbusclose = true
     ignore_newline = false
