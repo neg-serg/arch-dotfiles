@@ -7,15 +7,10 @@ image="/tmp/.mpd-notification-artwork.png"
 magic_pie='8143'
 max_len=35
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
-nr(){
-    print "<span weight='Bold' color='#b8c5d9'>$1</span>"
-}
-fa(){
-    print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>"
-}
-E(){
-    print '</span>'
-}
+nr(){ print "<span weight='Bold' color='#b8c5d9'>$1</span>" }
+fa(){ print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>" }
+E(){ print '</span>' }
+cmp_img() { ${HOME}/bin/scripts/cmp-imgs.py "${1}" "${2}" }
 prefix=(
     ''                        # track name    [1]
     "$(fa '#004E4E')   $(E)" # artist        [2]
@@ -25,12 +20,6 @@ prefix=(
     "$(fa '#004E4E')   $(E)" # label         [6]
     "$(fa '#004E4E')   $(E)" # year          [7]
 )
-delimiter() {
-    repeat ${len} print -n "◇"
-}
-cmp_img() {
-    ${HOME}/bin/scripts/cmp-imgs.py "${1}" "${2}"
-}
 
 notify() {
     bodyarr=()
@@ -78,7 +67,8 @@ notify() {
     for i in ${bodyarr[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
 
-    output="$(delimiter)\n${output}$(delimiter)\n​"
+    output="\n${output}\n​"
+    debug
     summary=""
     dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
         -u "${urgency}" \
