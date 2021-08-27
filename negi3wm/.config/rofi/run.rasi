@@ -3,13 +3,13 @@
 }
 
 window {
-    width:      96%;
+    width:      100%;
     padding:    0.1em;
     children:   [ horibox ];
     location: south east;
     anchor: south east;
     y-offset: -2.5%;
-    x-offset: -2%;
+    x-offset: 0;
 }
 
 horibox {

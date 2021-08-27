@@ -13,25 +13,29 @@
   darkgray: #315c70;
   ultra: #005faf55;
 
-  font: "Iosevka Medium 24";
+  font: "Iosevka Medium 22";
   background-color: @blackdarkest;
 }
 
 #window {
   background-color: @blackdarkest;
-  location: south;
+  width: 100%;
   children: [ horibox ];
-  width: 96%;
   padding: 0.1em;
   location: south east;
   anchor: south east;
   y-offset: -2.5%;
-  x-offset: -2%;
+  x-offset: 0;
 }
 
 #message {
   padding: 6px 6px;
   background-color: @blackwidget;
+}
+
+#horibox {
+  children: [ prompt, entry, listview ];
+  orientation: horizontal;
 }
 
 #textbox {
@@ -40,9 +44,8 @@
 }
 
 #listview {
-  fixed-height: false;
   scrollbar: false;
-  dynamic: true;
+  layout: horizontal;
   padding: 6px 6px 6px 6px;
   margin: 0px 0px 0px 0px;
   background: @blackdarkest;
@@ -102,8 +105,8 @@
 listview {
   layout: vertical;
   spacing: 5px;
-  lines: 2;
-  columns: 8;
+  lines: 1;
+  columns: 14;
 }
 
 entry {
@@ -112,12 +115,6 @@ entry {
   padding: 8px 8px;
   background-color: @blackwidget;
   text-color: @fgwhite;
-}
-
-horibox {
-  children: [ prompt, entry, listview ];
-  layout: vertical;
-  orientation: horizontal;
 }
 
 #scrollbar {
