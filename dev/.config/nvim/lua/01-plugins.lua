@@ -47,7 +47,6 @@ return require('packer').startup({function(use)
             }
         }
     }
-    use {'neg-serg/lusty', opt=true} -- best file navigator
     use {'dstein64/vim-startuptime'} -- startup time measurement
     use {'rmagatti/auto-session'} -- best modern autosession plugin
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -63,6 +62,24 @@ return require('packer').startup({function(use)
     use {'lewis6991/gitsigns.nvim',
         after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event = 'BufRead'
     } -- async gitsigns
+    use {'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, }
+    }
+    use {
+        "nvim-telescope/telescope-frecency.nvim",
+        config = [[require"telescope".load_extension("frecency")]],
+        requires = {'tami5/sql.nvim'}
+    }
+    use {'jvgrootveld/telescope-zoxide'} -- zoxide cd history
+    use {'neg-serg/lusty',
+      config=function()
+        vim.g.LustyJugglerDefaultMappings = 0
+        vim.g.LustyExplorerDefaultMappings = 0
+        vim.g.LustyExplorerAlwaysShowDotFiles = 1
+      end,
+      cmd={'LustyFilesystemExplorerFromHere'},
+      opt=true,
+    } -- best file explorer ever
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'neoclide/coc.nvim',
         branch = 'master', run = 'yarn install --frozen-lockfile',
