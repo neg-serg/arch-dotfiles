@@ -33,3 +33,4 @@ zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 source "${ZDOTDIR}/04-bindings.zsh"
 source ${XDG_CONFIG_HOME}/broot/launcher/bash/br
+source "${ZDOTDIR}/08-neovim-cd.zsh"
