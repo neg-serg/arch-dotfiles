@@ -62,9 +62,6 @@ return require('packer').startup({function(use)
     use {'lewis6991/gitsigns.nvim',
         after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event = 'BufRead'
     } -- async gitsigns
-    use {'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
     use {
         "nvim-telescope/telescope-frecency.nvim",
         config = [[require"telescope".load_extension("frecency")]],
