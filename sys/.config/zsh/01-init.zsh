@@ -140,5 +140,8 @@ zsh-defer _zpcompinit_custom
 zsh-defer fasd_init
 zsh-defer dircolors_init
 
+neovim_autocd() { ~/bin/neovim-autocd.py & }
+chpwd_functions+=( neovim_autocd )
+
 hash -d nvim=~/.config/nvim
 hash -d zsh=~/.config/zsh
