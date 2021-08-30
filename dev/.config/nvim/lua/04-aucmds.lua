@@ -11,6 +11,8 @@ nvim_create_augroups({
         {'BufWritePost', '*sxhkdrc', '!pkill -USR1 sxhkd'},
         {'BufWritePost', '01-plugins.lua', 'PackerCompile'},
         {'BufEnter', '*', 'set noreadonly'},
+        {'TermOpen', 'term://*', 'startinsert'},
+        {'BufLeave', 'term://*', 'stopinsert'},
         -- This is equivalent to :set autochdir but lets buffer-local
         -- autocommands change the dir. Autochdir doesn't.
         {'BufEnter', '*', [[
@@ -34,7 +36,7 @@ nvim_create_augroups({
         {'TextYankPost', '*', [[silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})]]}
     },
     CursorLine = {
-        {'VimEnter,WinEnter,BufWinEnter,BufEnter',  '*', 'setlocal cursorline'},
+        {'VimEnter,WinEnter,BufWinEnter,BufEnter', '*', 'setlocal cursorline'},
         {'BufLeave,WinLeave',  '*', 'setlocal nocursorline'}
     },
     cocgroup = {
