@@ -19,7 +19,6 @@ fpath=(
     /usr/share/zsh/functions/{Misc,Zle,Completion}
     /usr/share/zsh/functions/Completion/*
 )
-#zinit light Aloxaf/fzf-tab
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k # best prompt
 zinit load romkatv/zsh-defer # lazy loading
 zinit wait lucid light-mode for neg-serg/fast-syntax-highlighting # customized syntax highlighting
