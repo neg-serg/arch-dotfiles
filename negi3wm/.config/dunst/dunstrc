@@ -9,13 +9,13 @@
     format = "<span font_desc='Iosevka Medium 22' foreground='#2e72ac'>%s</span>\n%b"
     frame_color = "#000000"
     frame_width = 20
-    geometry = "1120x11-0-52"
+    geometry = "1120x11-10-52"
     hide_duplicate_count = true
     horizontal_padding = 6
     icon_path = /usr/share/icons/kora
     icon_position = left
     idle_threshold = 0
-    ignore_dbusclose = true
+    ignore_dbusclose = false
     ignore_newline = false
     indicate_hidden = true
     line_height = 0
@@ -24,6 +24,11 @@
     monitor = 0
     padding = 0
     plain_text = false
+    progress_bar_frame_width = 1
+    progress_bar_height = 6
+    progress_bar_max_width = 300
+    progress_bar_min_width = 150
+    progress_bar = true
     separator_color = frame
     separator_height = 4
     show_age_threshold = -1
