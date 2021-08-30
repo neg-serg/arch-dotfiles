@@ -11,7 +11,8 @@ nvim_create_augroups({
         {'BufWritePost', '*sxhkdrc', '!pkill -USR1 sxhkd'},
         {'BufWritePost', '01-plugins.lua', 'PackerCompile'},
         {'BufEnter', '*', 'set noreadonly'},
-        {'TermOpen', 'term://*', 'startinsert'},
+        {'TermOpen', 'term://*', 'startinsert | set nonumber'},
+        {'TermClose', '*', 'call feedkeys("i")'},
         {'BufLeave', 'term://*', 'stopinsert'},
         -- This is equivalent to :set autochdir but lets buffer-local
         -- autocommands change the dir. Autochdir doesn't.
