@@ -29,7 +29,7 @@
     separator_height = 4
     show_age_threshold = -1
     show_indicators = false
-    shrink = false
+    shrink = true
     sort = true
     stack_duplicates = true
     startup_notification = false
