@@ -140,3 +140,8 @@
   text-color: @maincolor;
   background-color: @blackwidget;
 }
+
+element-text {
+  background-color: inherit;
+  text-color:       inherit;
+}
