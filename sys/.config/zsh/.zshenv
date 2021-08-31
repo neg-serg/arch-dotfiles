@@ -36,7 +36,11 @@ typeset -gx BROWSER="firefox"
 typeset -gx WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 typeset -gx KEYTIMEOUT=6
 typeset -gx ESCDELAY=1
-typeset -gx FZF_TMUX=1
+if [[ ! $TMUX =~ ".*nwim.*" ]]; then
+    typeset -gx FZF_TMUX=1
+else
+    typeset -gx FZF_TMUX=0
+fi
 typeset -gx FZF_DEFAULT_OPTS="
 --color=bg+:#000000,bg:#000000,spinner:#395573,hl:#496E80
 --color=fg:#4f5d78,header:#4779B3,info:#34596C,pointer:#444090
