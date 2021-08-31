@@ -68,14 +68,6 @@ return require('packer').startup({function(use)
         requires = {'tami5/sql.nvim'}
     }
     use {'jvgrootveld/telescope-zoxide'} -- zoxide cd history
-    use {'neg-serg/lusty',
-      config=function()
-        vim.g.LustyJugglerDefaultMappings = 0
-        vim.g.LustyExplorerDefaultMappings = 0
-        vim.g.LustyExplorerAlwaysShowDotFiles = 1
-      end,
-      opt=true,
-    } -- best file explorer ever
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'neoclide/coc.nvim',
         branch = 'master', run = 'yarn install --frozen-lockfile',
