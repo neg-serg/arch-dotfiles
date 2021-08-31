@@ -10,7 +10,6 @@ configuration {
     tokenize:                      true;
     case-sensitive:                false;
     fixed-num-lines:               false;
-    fullscreen:                    false;
     threads:                       16;
 
     kb-primary-paste:              "Control+Shift+v,Shift+Insert";
