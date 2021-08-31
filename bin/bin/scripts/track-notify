@@ -66,15 +66,11 @@ notify() {
 
     for i in ${bodyarr[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
-
     output="\n${output}\n​"
-    debug
-    summary=""
     dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
         -u "${urgency}" \
-        -i "${image}" "${summary}" "${output}" > /tmp/notify_id \
+        -i "${image}" "" "${output}" > /tmp/notify_id \
         -r ${magic_pie}
-    sleep 2s
     sed '1d' <<< $(echo -n "${body}") > "${cover_lock}"
 }
 
@@ -107,24 +103,20 @@ zshexit() {
     ) &
 }
 
-main() {
-    dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
+dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
+[[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
+prev="${dunst_pics}/prev.png"
+fd prev.png --changed-before '12min' -x rm '{}'
+if [[ -f ${image} ]]; then
     [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
-    prev="${dunst_pics}/prev.png"
-    fd prev.png --changed-before '12min' -x rm '{}'
-    if [[ -f ${image} ]]; then
-        [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
-        # send notification with compatible image
-        if [[ ! -f "${prev}" ]]; then
+    # send notification with compatible image
+    if [[ ! -f "${prev}" ]]; then
+        show_notify
+    else
+        local dunst_picslist=$(setopt nullglob dotglob; print "${dunst_pics}"/*)
+        if [[ $(cmp_img "${image}" "${prev}") == "False" ]] \
+            && (( ${#dunst_picslist[@]} > 1 )); then
             show_notify
-        else
-            local dunst_picslist=$(setopt nullglob dotglob; print "${dunst_pics}"/*)
-            if [[ $(cmp_img "${image}" "${prev}") == "False" ]] \
-                && (( ${#dunst_picslist[@]} > 1 )); then
-                show_notify
-            fi
         fi
     fi
-}
-
-main "$@"
+fi
