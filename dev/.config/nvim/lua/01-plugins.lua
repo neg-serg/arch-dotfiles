@@ -47,7 +47,6 @@ return require('packer').startup({function(use)
             }
         }
     }
-    use {'s1n7ax/nvim-terminal', config=[[require'plugcfg/nvim-terminal']]} -- better terminal support
     use {'dstein64/vim-startuptime'} -- startup time measurement
     use {'rmagatti/auto-session'} -- best modern autosession plugin
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
