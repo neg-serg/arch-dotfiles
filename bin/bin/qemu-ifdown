@@ -1,4 +1,0 @@
-#!/usr/bin/env dash
-
-bridge=virtnet0
-brctl delif "$bridge" "$1"
