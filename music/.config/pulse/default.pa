@@ -7,7 +7,7 @@ load-module module-card-restore
 load-module module-augment-properties
 load-module module-switch-on-port-available
 .ifexists module-udev-detect.so
-load-module module-udev-detect
+load-module module-udev-detect tsched=0
 .else
 load-module module-detect
 .endif
