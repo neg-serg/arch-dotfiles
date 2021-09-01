@@ -22,7 +22,7 @@ require('telescope').setup{
     file_ignore_patterns = { "node_modules", ".git" },
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     path_display = { shorten = 5 },
-    winblend = 0,
+    winblend = 8,
     border = {},
     borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
     color_devicons = true,
