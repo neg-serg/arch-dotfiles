@@ -97,3 +97,4 @@ vim.api.nvim_exec([[
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
 map('n', '<leader>l', ':terminal tmux splitw -l 10<CR>', {silent=true, noremap=true})
+map('n', '[Qleader]e', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files()<CR>", {silent=true, noremap=true})
