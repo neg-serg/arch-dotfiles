@@ -52,7 +52,9 @@ return require('packer').startup({function(use)
         config = [[require"telescope".load_extension("frecency")]],
         requires = {'tami5/sql.nvim'}
     }
-    use {'fannheyward/telescope-coc.nvim'} -- telescope coc-integration
+    use {'fannheyward/telescope-coc.nvim',
+        setup=[[require('telescope').load_extension('coc')]]
+    } -- telescope coc-integration
     use {'dstein64/vim-startuptime'} -- startup time measurement
     use {'rmagatti/auto-session'} -- best modern autosession plugin
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
