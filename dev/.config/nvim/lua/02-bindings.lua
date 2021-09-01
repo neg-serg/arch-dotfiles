@@ -98,6 +98,6 @@ vim.api.nvim_exec([[
 ]], true)
 map('n', '<leader>l', ':terminal tmux splitw -l 10<CR>', {silent=true, noremap=true})
 map('n', '[Qleader]e',
-    "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files{find_command={'rg','--files','--hidden','-g','!.git'}}<CR>",
+    "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files{}<CR>",
     {silent=true, noremap=true}
 )
