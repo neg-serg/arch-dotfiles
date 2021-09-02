@@ -39,6 +39,7 @@ return require('packer').startup({function(use)
     use {'justinmk/vim-gtfo'} -- open filemanager or terminal in current dir
     use {'nvim-telescope/telescope.nvim', requires={
             {'nvim-lua/plenary.nvim'},
+            {'fannheyward/telescope-coc.nvim'},
             {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
             {'nvim-telescope/telescope-media-files.nvim'},
             {'nvim-telescope/telescope-frecency.nvim',
@@ -53,7 +54,7 @@ return require('packer').startup({function(use)
         requires = {'tami5/sql.nvim'}
     }
     use {'fannheyward/telescope-coc.nvim',
-        setup=[[require('telescope').load_extension('coc')]]
+        config=[[require('telescope').load_extension('coc')]],
     } -- telescope coc-integration
     use {'dstein64/vim-startuptime'} -- startup time measurement
     use {'rmagatti/auto-session'} -- best modern autosession plugin
