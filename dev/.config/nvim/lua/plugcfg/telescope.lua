@@ -46,7 +46,10 @@ require('telescope').setup{
       previewer = false,
       sorting_strategy = "descending",
       prompt_title = false,
-      find_command={'rg','--files','--hidden','-g','!.git'}
+      find_command={'rg','--files','--hidden','-g','!.git'},
+      layout_config = {
+        height = 12
+      },
     },
     oldfiles = {
       theme = "ivy",
