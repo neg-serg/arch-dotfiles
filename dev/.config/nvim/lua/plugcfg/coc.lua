@@ -13,17 +13,18 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 ]])
-api.nvim_command('nnoremap <leader>d <Plug>(coc-diagnostic-prev)')
-api.nvim_command('nnoremap <leader>s <Plug>(coc-diagnostic-next)')
+api.nvim_command('nnoremap <leader>d <Cmd>Telescope coc diagnostics<CR>')
 -- Remap keys for gotos
-map('n', 'gD', '<Plug>(coc-definition)', {silent=true})
-map('n', 'gI', '<Plug>(coc-implementation)', {silent=true})
-map('n', 'gR', '<Plug>(coc-references)', {silent=true})
+map('n', 'gD', '<Cmd>Telescope coc definitions<CR>', {silent=true})
+map('n', 'gI', '<Cmd>Telescope coc implementations<CR>', {silent=true})
+map('n', 'gR', '<Cmd>Telescope coc references<CR>', {silent=true})
 map('n', '[Qleader]c', '<Plug>(coc-diagnostic-next)', {silent=true})
 map('n', '[Qleader]C', '<Plug>(coc-diagnostic-prev)', {silent=true})
 map('n', '<M-CR>', '<Plug>(coc-fix-current)', {silent=true})
 -- Remap for rename current word
 map('n', '[Qleader]r', '<Plug>(coc-rename)', {silent=true})
+-- Remap keys for applying codeAction to the current buffer.
+map('n', '[Qleader]ac', '<Plug>(coc-codeaction)', {silent=true})
 -- Reformat command
 vim.g.coc_global_extensions = {
   'coc-diagnostic',
@@ -45,7 +46,3 @@ api.nvim_command('xmap ic <Plug>(coc-classobj-i)')
 api.nvim_command('omap ic <Plug>(coc-classobj-i)')
 api.nvim_command('xmap ac <Plug>(coc-classobj-a)')
 api.nvim_command('omap ac <Plug>(coc-classobj-a)')
--- Remap keys for applying codeAction to the current buffer.
-api.nvim_command('nmap <leader>ac <Plug>(coc-codeaction)')
--- Apply AutoFix to problem on the current line.
-api.nvim_command('nmap <leader>qf <Plug>(coc-fix-current)')
