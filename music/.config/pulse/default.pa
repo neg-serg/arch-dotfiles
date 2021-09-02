@@ -1,13 +1,12 @@
 #!/usr/bin/pulseaudio -nF
 .fail
-
 load-module module-device-restore
 load-module module-stream-restore
 load-module module-card-restore
 load-module module-augment-properties
 load-module module-switch-on-port-available
 .ifexists module-udev-detect.so
-load-module module-udev-detect tsched=0
+load-module module-udev-detect tsched=1 avoid_resampling=1
 .else
 load-module module-detect
 .endif
@@ -40,14 +39,3 @@ load-module module-position-event-sounds
 load-module module-role-cork
 load-module module-filter-heuristics
 load-module module-filter-apply
-
-# load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;192.168.0.0/24 auth-anonymous=1
-# load-module module-native-protocol-unix
-# load-module module-jack-sink channels=2
-# load-module module-jack-source channels=2
-# load-module module-null-sink
-# load-module module-stream-restore
-# load-module module-always-sink
-# load-module module-suspend-on-idle
-# set-default-sink jack_out
-# set-default-source jack_in
