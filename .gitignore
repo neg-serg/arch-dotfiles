@@ -302,3 +302,6 @@ zsh_history
 zsh/.zsh/.zcompdump
 zsh/.zsh/zcomp-sanctum
 *.zwc
+../../music/.config/pulse/cookiegs
+../../music/.config/pulse/cookie
+music/.config/pulse/cookie
