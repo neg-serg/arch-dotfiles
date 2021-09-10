@@ -10,7 +10,7 @@ mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.co
 nr(){ print "<span weight='Bold' color='#b8c5d9'>$1</span>" }
 fa(){ print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>" }
 E(){ print '</span>' }
-cmp_img() { ${HOME}/bin/scripts/cmp-imgs.py "${1}" "${2}" }
+cmp_img() { ${HOME}/bin/cmp-imgs.py "${1}" "${2}" }
 prefix=(
     ''                        # track name    [1]
     "$(fa '#004E4E')   $(E)" # artist        [2]

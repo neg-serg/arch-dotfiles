@@ -1,5 +1,5 @@
 _exists() { (( $+commands[$1] )) }
-alias @r='~/bin/scripts/music-rename'
+alias @r='~/bin/music-rename'
 alias qe='cd *(/om[1]D)'
 if _exists exa; then
     alias ls='exa -ga --icons --group-directories-first --time-style=long-iso'

@@ -57,12 +57,12 @@
 [pic]
     appname = screenshot
     format = "%s\n%b"
-    script = "~/bin/scripts/pic-notify"
+    script = "~/bin/pic-notify"
     urgency = normal
 
 [mpd]
     appname = mpd-notification
-    script = "~/bin/scripts/track-notify"
+    script = "~/bin/track-notify"
     format = ""
     timeout = 10
 

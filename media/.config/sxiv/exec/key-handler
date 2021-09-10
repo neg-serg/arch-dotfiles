@@ -56,7 +56,7 @@ copy_name() {
     tee "$ff"
     fname="$(realpath "$(cat "$ff")")"
     echo "$fname" | xsel -bi
-    ~/bin/scripts/pic-notify "$fname"
+    ~/bin/pic-notify "$fname"
     trap finish EXIT
 }
 

@@ -4,7 +4,7 @@ Description=startx as service
 [Service]
 Environment="XINITRC=%h/.config/xinit/xinitrc"
 Environment="XSERVERRC=%h/.config/xinit/xserverrc"
-ExecStart=%h/bin/scripts/xinit
+ExecStart=%h/bin/runx
 Restart=on-abort
 
 [Install]
