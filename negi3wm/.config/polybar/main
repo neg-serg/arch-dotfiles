@@ -3,7 +3,7 @@ include-file = $XDG_CONFIG_HOME/polybar/modules.cfg
 include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
 
 [bar/main]
-modules-left = start time start-dark ws right start-br xkeyboard right start-br network right-end-top
+modules-left = start time start-dark ws right start-br xkeyboard right start-br network-eth1 network-eth2 network-eth3 right-end-top
 modules-right = left-end-top mpd end
 fixed-center = false
 bottom = true
