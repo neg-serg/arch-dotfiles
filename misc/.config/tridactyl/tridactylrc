@@ -30,21 +30,21 @@ set keytranslatemodes.ignoremaps true
 
 jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 
-set searchurls.bandcamp bandcamp.com/search?q=%s
-set searchurls.crates crates.io/search?q=%s
-set searchurls.g google.com/search?q=%s
-set searchurls.gh github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
-set searchurls.gi google.com/search?q=%s&tbm=isch
-set searchurls.gmaps google.com/maps/search/%s
-set searchurls.imdb imdb.com/find?q=%s
-set searchurls.mdn developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js
-set searchurls.osm openstreetmap.org/search?query=%s
-set searchurls.pydoc docs.python.org/3/search.html?q=%s
-set searchurls.rustdoc doc.rust-lang.org/std/index.html?search=%s
-set searchurls.searxme searx.me/?q=%s&categories=general&language=en-US
-set searchurls.steam store.steampowered.com/search/?term=%s
-set searchurls.w en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
-set searchurls.y youtube.com/results?search_query=%s
+set searchurls.bandcamp https://bandcamp.com/search?q=%s
+set searchurls.crates https://crates.io/search?q=%s
+set searchurls.g https://google.com/search?q=%s
+set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
+set searchurls.gi https://google.com/search?q=%s&tbm=isch
+set searchurls.gmaps https://google.com/maps/search/%s
+set searchurls.imdb https://imdb.com/find?q=%s
+set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js
+set searchurls.osm https://openstreetmap.org/search?query=%s
+set searchurls.pydoc https://docs.python.org/3/search.html?q=%s
+set searchurls.rustdoc https://doc.rust-lang.org/std/index.html?search=%s
+set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
+set searchurls.steam https://store.steampowered.com/search/?term=%s
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+set searchurls.y https://youtube.com/results?search_query=%s
 
 blacklistadd calendar.google.com
 blacklistadd docs.google.com
