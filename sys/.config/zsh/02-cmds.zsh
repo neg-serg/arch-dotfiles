@@ -31,7 +31,6 @@ _exists rg && {
     alias -g zrg="rg ${rg_options} -z"
 }
 alias sort='sort --parallel 8 -S 16M'
-alias P='patch -p1 <'
 alias :q="exit"
 _exists paru && {
     alias paru='yay'
@@ -49,14 +48,13 @@ _exists prettyping && alias ping='prettyping'
 _exists handlr && alias e='handlr open'
 _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
 _exists bpython && alias python='bpython'
-_exists cdu && alias sp='cdu -idh -s -r -c ":"'
 _exists dust && alias sp='dust -r'
 _exists lfs && alias df='lfs'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -H -u'
 _exists objdump && alias objdump='objdump -M intel -d'
-_exists gdb && alias gdb="gdb -nh -x "${XDG_CONFIG_HOME}"/gdb/gdbinit.gdb"
+_exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
 _exists nvim && {
     alias vim='nvim'
     alias v='~/bin/v'
@@ -146,7 +144,6 @@ _exists fzf && {
     }
 }
 _exists xev && alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
-_exists broot && autoload br
 _exists khal && alias cal='khal calendar'
 autoload zc
 unfunction _exists
