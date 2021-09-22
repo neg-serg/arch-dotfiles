@@ -1,0 +1,147 @@
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/toolbars_below_content.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Moves tabs toolbar, bookmarks toolbar and main toolbar to the bottom of the window, and makes tabs be the bottom-most toolbar */
+
+/* By default, menubar will stay on top with two options to select it's behavior - see below */
+
+@-moz-document url(chrome://browser/content/browser.xhtml)
+{
+  #titlebar {
+    -moz-appearance: none !important;
+  }
+
+  @media (-moz-os-version: windows-win10) {
+    /* Next two variables are used by autohide_menubar.css */
+    #toolbar-menubar {
+      --uc-menubar-extra-margin: 0px;
+    }
+    :root[sizemode="maximized"] #toolbar-menubar {
+      --uc-menubar-extra-margin: 8px;
+    }
+
+    :root[sizemode="maximized"][tabsintitlebar]
+      :where(#browser, #customization-container, #toolbar-menubar) {
+      margin-top: 8px;
+    }
+  }
+
+  #mainPopupSet,
+  #browser,
+  #customization-container
+  ,#nav-bar, #PersonalToolbar/* Remove this row if you want tabs to be the top-most row */ {
+    -moz-box-ordinal-group: 0;
+  }
+
+  #toolbar-menubar {
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    top: 0px;
+  }
+
+  #toolbar-menubar > spacer {
+    flex-grow: 1;
+  }
+
+  #urlbar[breakout][breakout-extend] {
+    display: flex !important;
+    flex-direction: column-reverse;
+    bottom: -2px !important; /* Change to 3-5 px if using compact_urlbar_megabar.css depending on toolbar density */
+    top: auto !important;
+  }
+
+  .urlbarView-body-inner {
+    border-top-style: none !important;
+  }
+
+  /* Yeah, removes window controls. Likely not wanted on bottom row  */
+  #TabsToolbar > .titlebar-buttonbox-container {
+    display: none;
+  }
+  #toolbar-menubar > .titlebar-buttonbox-container {
+    order: 1000;
+  }
+
+  /* Fullscreen mode support */
+  #navigator-toolbox[inFullscreen] {
+    margin-top: 0 !important;
+  }
+  #navigator-toolbox[inFullscreen][style*="margin-top"] {
+    visibility: collapse;
+  }
+  #fullscr-toggler {
+    bottom: 0;
+    top: unset !important;
+  }
+
+  /* These two rules exist for compatibility with autohide_toolbox.css */
+  #navigator-toolbox {
+    bottom: -1px;
+    transform-origin: bottom;
+  }
+
+  #toolbar-menubar {
+    z-index: 1;
+    background-color: var(--lwt-accent-color, black);
+  }
+
+  /**************
+  Menubar options - By default, menubar is overlayed on top of web-content
+  ***************/
+
+  /* Uncomment the following if you want static menubar on top of the window (make menubar enabled)
+  * Use when menubar is enabled to always show it */
+
+  /*
+  #browser,#customization-container{ padding-top: var(--uc-menubar-spacer,28px) }
+  */
+
+  /* OR, if uncomment the following if you want menubar to appear below content, above tabs toolbar */
+
+  /*
+  #toolbar-menubar{ position: static; display: -moz-box; margin-top: 0px !important; background-color: transparent }
+  */
+
+  /* set to "reverse" (without quotes) if you want tabs above menubar with the above option */
+  #titlebar {
+    -moz-box-direction: normal;
+  }
+}
+
+#tabbrowser-tabs {
+  visibility: collapse;
+}
+/* #TabsToolbar-customization-target {
+  -moz-box-pack: end;
+} */
+/* #alltabs-button {
+  position: relative;
+  z-index: 1;
+} */
+/* #TabsToolbar > .titlebar-spacer {
+  display: none;
+}
+#TabsToolbar {
+  margin-bottom: calc(-18px - 2 * (var(--toolbarbutton-inner-padding)));
+} */
+/*
+:root {
+  --uc-titlebar-padding: 0px;
+  --uc-window-control-width: 40px;
+}
+:root[tabsintitlebar] {
+  --uc-window-control-width: 160px;
+}
+:root[inFullscreen] {
+  --uc-window-control-width: 0px;
+}
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win10) {
+  :root[sizemode="maximized"][tabsintitlebar] {
+    --uc-titlebar-padding: 8px;
+  }
+}
+#titlebar {
+  -moz-appearance: none !important;
+  margin-top: var(--uc-titlebar-padding);
+} */
