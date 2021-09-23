@@ -16,6 +16,7 @@
 --    *     /-._/-._/
 --        * \   `\  \
 --           `-._/._/
+require('impatient')
 require '00-helpers'
 require '00-settings'
 require '01-plugins'

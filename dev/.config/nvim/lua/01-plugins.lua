@@ -15,6 +15,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'norcalli/nvim_utils'} -- neovim lua utils
+    use {'lewis6991/impatient.nvim'} -- speedup loading
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
     use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
@@ -140,5 +141,9 @@ return require('packer').startup({function(use)
         config=[[require'plugcfg/diffview']]
     } -- diff view for multiple files
     use {'tpope/vim-fugitive'} -- git stuff old
-end, config={display = {open_fn = require('packer.util').float}}
+end, config = {
+        display = {open_fn = require('packer.util').float},
+        -- Move to lua dir so impatient.nvim can cache it
+        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+    }
 })
