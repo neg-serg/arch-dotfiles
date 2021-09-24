@@ -3,14 +3,14 @@ include-file = $XDG_CONFIG_HOME/polybar/modules.cfg
 include-file = $XDG_CONFIG_HOME/polybar/decor.cfg
 
 [bar/main]
-modules-left = start time start-dark ws right start-br xkeyboard right start-br network-eth1 network-eth2 network-eth3 right-end-top
+modules-left = start time start-dark ws right start-br xkeyboard right start-br net right-end-top
 modules-right = left-end-top mpd end
 fixed-center = false
 bottom = true
 height = 48
 enable-ipc = true
-radius-top = 18.0
-radius-bottom = 18.0
+radius-top = 0.0
+radius-bottom = 0.0
 background = ${color.background}
 foreground = ${color.foreground}
 border-top-size = ${border.t}
@@ -18,9 +18,9 @@ border-bottom-size = ${border.b}
 border-left-size = ${border.l}
 border-right-size = ${border.r}
 border-top-color = ${color.border}
-border-bottom-color = ${color.border_nontransparent}
-border-left-color = ${color.border_nontransparent}
-border-right-color = ${color.border_nontransparent}
+border-bottom-color = ${color.border}
+border-left-color = ${color.border}
+border-right-color = ${color.border}
 poll-interval = 10
 font-0 = Iosevka:style=Medium:size=28.5;6
 font-1 = Iosevka:style=Bold:size=32;7
@@ -30,21 +30,22 @@ font-4 = Iosevka:style=Medium:size=23;6
 
 [color]
 ac = "#D26273"
-mgf = "#dd020209"
+mgf = "#ff020209"
 background = "#77020209"
 foreground = "#ffCFCFDB"
-border = "#66005F87"
+border = "#77020209"
 border_nontransparent = "#66005F87"
 green = "#287373"
 blue = "#395573"
 delimiter = "#005F87"
 start_end = "#005F87"
+dark = "#2B5062"
 
 [border]
-t = 1
-b = 1
-l = 1
-r = 1
+t = 6
+b = 0
+l = 0
+r = 0
 
 [templates]
 network = " %{T4 F#8BAAC7}%{T- F-} %downspeed%%{F#395573}/%{F-}%upspeed% "
