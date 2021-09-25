@@ -14,21 +14,19 @@ set findresults 40
 set downloadsskiphistory true
 set minincsearchlen 1
 set newtab https://online.bonjourr.fr/
-
+" hints settings
 set hintdelay 80
 set hintfiltermode vimperator-reflow
 set hintnames short
 set hintshift true
 set hintchars wersdfa
 set hintuppercase true
-
+" cyrillic support
 set keytranslatemodes.nmaps true
 set keytranslatemodes.imaps true
 set keytranslatemodes.inputmaps true
 set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
-
-jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 
 set searchurls.bandcamp https://bandcamp.com/search?q=%s
 set searchurls.crates https://crates.io/search?q=%s
@@ -45,6 +43,7 @@ set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 set searchurls.steam https://store.steampowered.com/search/?term=%s
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
 set searchurls.y https://youtube.com/results?search_query=%s
+jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 
 blacklistadd calendar.google.com
 blacklistadd docs.google.com
@@ -53,11 +52,11 @@ blacklistadd e.mail.ru
 blacklistadd keep.google.com
 blacklistadd mail.google.com
 
-bind u undo tab
-bind U undo tab
+bind --mode=normal u undo tab
+bind --mode=normal U undo tab
 
 set auconcreatecontainer true
-autocontain vk\.com vk
+autocontain vk.com vk
 autocontain youtube.com youtube
 
 " thx to: https://github.com/aminroosta/dot-files/blob/master/.tridactylrc
@@ -76,21 +75,14 @@ bindurl news.ycombinator.com gF hint -Jqbc span.pagetop > a,td.title > a,td.subt
 bindurl news.ycombinator.com/item f hint -Jc span.pagetop > a,a.storylink,a.hnuser,div.comment a
 bindurl news.ycombinator.com/item F hint -Jtc span.pagetop > a,a.storylink,a.hnuser,div.comment a
 bindurl news.ycombinator.com/item gF hint -Jqbc span.pagetop > a,a.storylink,a.hnuser,div.comment a
-
-bindurl www.reddit.com f hint -Jc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
-bindurl www.reddit.com F hint -Jtc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
-bindurl www.reddit.com F hint -Jqbc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
-
-bindurl https://github.com/.*/.*/blob f hint -c .blob-num,a
-
+bindurl reddit.com f hint -Jc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
+bindurl reddit.com F hint -Jtc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
+bindurl reddit.com F hint -Jqbc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
+bindurl github.com/.*/.*/blob f hint -c .blob-num,a
 bindurl youtu((\.be)|(be\.com)) f hint -J
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
-
-bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
-bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
-
 bindurl lkml.org/lkml gl js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) + 1].querySelector("a").href
 bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) - 1].querySelector("a").href
 
@@ -133,6 +125,8 @@ unbindurl mail\.google\.com k
 unbindurl mail\.google\.com o
 unbindurl mail\.google\.com x
 unbindurl mail\.google\.com e
+" youtube hinting
+unbindurl youtube.com/watch f
 
 bind --mode=ex <C-c> ex.hide_and_clear
 unbind --mode=ex <C-w>
@@ -206,17 +200,11 @@ quickmark u www.reddit.com/r/unixporn
 quickmark v vk.com
 quickmark y youtube.com/
 
-" youtube hinting
-unbindurl youtube.com/watch f
-
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
 " command line, so set an option to move the status bar to the right.
 guiset_quiet hoverlink right
 guiset_quiet statuspanel right
 guiset_quiet tabcounters show
-guiset_quiet tabs autohide
-
-jsb browser.webRequest.onHeadersReceived.addListener(tri.request.clobberCSP,{urls:["<all_urls>"],types:["main_frame"]},["blocking","responseHeaders"])
 
 " Cyrillic keymap support
 keymap , ?
