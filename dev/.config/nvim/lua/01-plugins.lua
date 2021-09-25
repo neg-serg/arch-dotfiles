@@ -85,6 +85,10 @@ return require('packer').startup({function(use)
         cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
     use {'rstacruz/sparkup'} -- better emmet-vim
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Audio                                                                        │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'davidgranstrom/scnvim', config=[[vim.cmd(scnvim#install())]]} -- supercollider support
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
