@@ -56,20 +56,6 @@ bindings_init(){
 
     for b in '3D' '3C' '5A' '5B'; bindkey "^[[1;$b" _nothing
     neg_dirs
-
-    zstyle ':fzf-tab:*' continuous-trigger 'ctrl-space'
-    zstyle ':fzf-tab:*' fzf-flags --height=20% --info=inline
-    tab_then_fzf() {
-        if [[ $LASTWIDGET = 'tab_then_fzf' ]]; then
-            fzf-tab-complete
-        else
-            echo -n "\e[36m··\e[0m"
-            zle expand-or-complete
-            zle redisplay
-        fi
-    }
-    zle -N tab_then_fzf
-    bindkey '^@' tab_then_fzf
 }
 ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
