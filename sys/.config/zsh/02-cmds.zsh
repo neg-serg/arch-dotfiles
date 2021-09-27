@@ -88,6 +88,7 @@ _exists curl && {
     alias weather="curl 'wttr.in/?T'"
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
 }
+_exists wget2 && alias wget='wget2'
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(irb guile bb)
 local sudo_list=(umount mount chmod chown modprobe)
