@@ -17,6 +17,11 @@
   background-color: @blackdarkest;
 }
 
+element-icon {
+  size: 2.2ch;
+  background-color: transparent;
+}
+
 #window {
   background-color: @blackdarkest;
   width: 100%;
@@ -155,6 +160,6 @@ entry {
 }
 
 element-text {
-    background-color: inherit;
-    text-color:       inherit;
+  background-color: inherit;
+  text-color: inherit;
 }
