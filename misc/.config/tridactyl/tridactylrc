@@ -50,7 +50,7 @@ blacklistadd docs.google.com
 blacklistadd drive.google.com
 blacklistadd e.mail.ru
 blacklistadd keep.google.com
-blacklistadd mail.google.com
+blacklistadd 192.168.88.1
 
 bind --mode=normal u undo tab
 bind --mode=normal U undo tab
@@ -125,9 +125,8 @@ unbindurl mail\.google\.com k
 unbindurl mail\.google\.com o
 unbindurl mail\.google\.com x
 unbindurl mail\.google\.com e
-" youtube hinting
 unbindurl youtube.com/watch f
-unbindurl dastereo.ru
+unbindurl dastereo.ru g x
 
 bind --mode=ex <C-c> ex.hide_and_clear
 unbind --mode=ex <C-w>
