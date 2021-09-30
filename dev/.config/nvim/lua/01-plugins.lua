@@ -59,6 +59,7 @@ return require('packer').startup({function(use)
     } -- telescope coc-integration
     use {'dstein64/vim-startuptime'} -- startup time measurement
     use {'rmagatti/auto-session'} -- best modern autosession plugin
+    use {'justinmk/vim-dirvish'} -- file manager
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
