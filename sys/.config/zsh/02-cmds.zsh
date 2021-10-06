@@ -1,14 +1,10 @@
 _exists() { (( $+commands[$1] )) }
 alias @r='~/bin/music-rename'
 alias qe='cd *(/om[1]D)'
-if _exists exa; then
+if [[ $USE_EXA ]] && _exists exa; then
     alias ls='exa -ga --icons --group-directories-first --time-style=long-iso'
-    alias la='ls -a'
-    alias ll='ls -la'
-    alias lr='ls -s changed'
-else
-    alias ls='ls --color=auto'
 fi
+alias ls='ls --color=auto'
 alias l='ls'
 alias mv='mv -i'
 alias mk='mkdir -p'
