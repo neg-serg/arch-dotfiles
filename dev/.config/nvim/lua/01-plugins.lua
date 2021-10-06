@@ -1,7 +1,7 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-local execute = vim.api.nvim_command
-vim.o.termguicolors = true
+local fn=vim.fn
+local install_path=fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local execute=vim.api.nvim_command
+vim.o.termguicolors=true
 if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
   execute('packadd packer.nvim')
@@ -44,15 +44,15 @@ return require('packer').startup({function(use)
             {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
             {'nvim-telescope/telescope-media-files.nvim'},
             {'nvim-telescope/telescope-frecency.nvim',
-                config = [[require'telescope'.load_extension('frecency')]],
-                requires = {'tami5/sql.nvim'}
+                config=[[require'telescope'.load_extension('frecency')]],
+                requires={'tami5/sql.nvim'}
             }
         }
     }
     use {
         "nvim-telescope/telescope-frecency.nvim",
-        config = [[require"telescope".load_extension("frecency")]],
-        requires = {'tami5/sql.nvim'}
+        config=[[require"telescope".load_extension("frecency")]],
+        requires={'tami5/sql.nvim'}
     }
     use {'fannheyward/telescope-coc.nvim',
         config=[[require('telescope').load_extension('coc')]],
@@ -64,20 +64,18 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf'} -- better quickfix
-    use {'b3nj5m1n/kommentary', event = 'BufEnter'} -- alternative commenter
+    use {'b3nj5m1n/kommentary', event='BufEnter'} -- alternative commenter
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
         config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]],
-        event = 'InsertEnter'} -- try new autopairs
+        event='InsertEnter'} -- try new autopairs
     use {'lervag/vimtex'} -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
-        after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event = 'BufRead'
-    } -- async gitsigns
+        after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
     use {'lewis6991/spellsitter.nvim'} -- treesitter-based spellsitter
     use {'neoclide/coc.nvim',
-        branch = 'master', run = 'yarn install --frozen-lockfile',
-        config=[[require'plugcfg/coc']],
-    } -- lsp autocomplete
+        branch='master', run='yarn install --frozen-lockfile',
+        config=[[require'plugcfg/coc']]} -- lsp autocomplete
     use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
     use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
@@ -89,7 +87,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'AndrewRadev/splitjoin.vim'} -- one-line <-> multiline converter
-    use {'andymass/vim-matchup', event = 'VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
+    use {'andymass/vim-matchup', event='VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
     use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=true, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
     use {'David-Kunz/treesitter-unit'} -- treesitter-based selection
@@ -141,9 +139,9 @@ return require('packer').startup({function(use)
         config=[[require'plugcfg/diffview']]
     } -- diff view for multiple files
     use {'tpope/vim-fugitive'} -- git stuff old
-end, config = {
-        display = {open_fn = require('packer.util').float},
+end, config={
+        display={open_fn=require('packer.util').float},
         -- Move to lua dir so impatient.nvim can cache it
-        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+        compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
     }
 })
