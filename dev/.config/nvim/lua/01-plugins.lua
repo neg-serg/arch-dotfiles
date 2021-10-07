@@ -39,10 +39,10 @@ return require('packer').startup({function(use)
     use 'MTDL9/vim-log-highlighting' -- better log highlighter
     use 'justinmk/vim-gtfo' -- open filemanager or terminal in current dir
     use {'nvim-telescope/telescope.nvim', requires={
-            {'nvim-lua/plenary.nvim'},
-            {'fannheyward/telescope-coc.nvim'},
+            'nvim-lua/plenary.nvim',
+            'fannheyward/telescope-coc.nvim',
             {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
-            {'nvim-telescope/telescope-media-files.nvim'},
+            'nvim-telescope/telescope-media-files.nvim',
             {'nvim-telescope/telescope-frecency.nvim',
                 config=[[require'telescope'.load_extension('frecency')]],
                 requires={'tami5/sql.nvim'}
