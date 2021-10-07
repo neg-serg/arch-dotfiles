@@ -6,7 +6,7 @@ vim.g.coc_status_error_sign = ''
 vim.g.coc_snippet_next = '<tab>'
 api.nvim_command('inoremap <expr> <C-Space> pumvisible() ? coc#_select_confirm() : coc#expandableOrJumpable() ? "" : "<Space>"')
 api.nvim_command('inoremap <silent><expr> <Tab> pumvisible() ? coc#_select_confirm() : coc#expandableOrJumpable() ? "" : <SID>check_back_space() ? "<TAB>" : coc#refresh()')
-api.nvim_command('inoremap <expr> <S-Tab> pumvisible() ? "<C-p>" : "<S-Tab>"')
+api.nvim_command('inoremap <expr> <S-Tab> pumvisible() ? "<C-n>" : "<S-Tab>"')
 api.nvim_command([[
 function! s:check_back_space() abort
   let col = col('.') - 1
