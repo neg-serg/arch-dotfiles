@@ -45,7 +45,6 @@ return require('packer').startup({function(use)
             'nvim-lua/plenary.nvim',
             'fannheyward/telescope-coc.nvim',
             {'nvim-telescope/telescope-fzf-native.nvim', run='make'},
-            'nvim-telescope/telescope-media-files.nvim',
             {'nvim-telescope/telescope-frecency.nvim',
                 config=[[require'telescope'.load_extension('frecency')]],
                 requires={'tami5/sql.nvim'}
