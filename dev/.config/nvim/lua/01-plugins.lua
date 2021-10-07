@@ -14,9 +14,12 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'neoclide/coc.nvim', branch='release', config=[[require'plugcfg/coc']]} -- lsp autocomplete
     use 'norcalli/nvim_utils' -- neovim lua utils
     use 'lewis6991/impatient.nvim' -- speedup loading
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
+    use 'lewis6991/spellsitter.nvim' -- treesitter-based spellsitter
+    use 'David-Kunz/treesitter-unit' -- treesitter-based selection
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
     use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'nacro90/numb.nvim', config=[[require('numb').setup()]] } -- interactive number with :<num>
@@ -72,10 +75,6 @@ return require('packer').startup({function(use)
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
         after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
-    use 'lewis6991/spellsitter.nvim' -- treesitter-based spellsitter
-    use {'neoclide/coc.nvim',
-        branch='master', run='yarn install --frozen-lockfile',
-        config=[[require'plugcfg/coc']]} -- lsp autocomplete
     use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
     use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
@@ -90,7 +89,6 @@ return require('packer').startup({function(use)
     use {'andymass/vim-matchup', event='VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
     use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=true, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
-    use 'David-Kunz/treesitter-unit' -- treesitter-based selection
     use 'mizlan/iswap.nvim' -- intellectual swap
     use 'svermeulen/vim-NotableFt' -- better ft
     use 'tpope/vim-repeat' -- dot for surround
