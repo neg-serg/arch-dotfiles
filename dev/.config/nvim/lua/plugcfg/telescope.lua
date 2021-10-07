@@ -38,6 +38,11 @@ require('telescope').setup{
       override_generic_sorter = false,
       override_file_sorter = true,
     },
+    frecency = {
+      show_unindexed = true,
+      db_safe_mode = false,
+      auto_validate = true,
+    },
   },
   pickers = {
     find_files = {
