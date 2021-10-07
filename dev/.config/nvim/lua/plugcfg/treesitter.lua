@@ -10,10 +10,9 @@ tsconf.setup {
     enable = true, -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
   },
-  autopairs = {enable = false},
   rainbow = {
     enable = true,
-    extended_mode = false, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     max_file_lines = 4000, -- Do not enable for files with more than 1000 lines, int
     colors = {'#365e96', '#315587', '#2e5080', '#294873', '#26436b', '#21395c', '#1d3352'},
   },
