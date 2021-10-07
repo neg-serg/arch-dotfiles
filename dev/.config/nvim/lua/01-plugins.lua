@@ -14,7 +14,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'neoclide/coc.nvim', branch='release', config=[[require'plugcfg/coc']]} -- lsp autocomplete
+    use {'neoclide/coc.nvim', branch='release'} -- lsp autocomplete
     use 'norcalli/nvim_utils' -- neovim lua utils
     use 'lewis6991/impatient.nvim' -- speedup loading
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight

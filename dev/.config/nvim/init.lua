@@ -36,3 +36,4 @@ require('auto-session').setup({
     auto_restore_enabled = nil,
     auto_session_suppress_dirs = nil
 })
+require'plugcfg/coc'
