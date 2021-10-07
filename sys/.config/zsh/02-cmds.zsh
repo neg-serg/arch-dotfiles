@@ -4,8 +4,13 @@ alias qe='cd *(/om[1]D)'
 if [[ $USE_EXA ]] && _exists exa; then
     alias ls='exa -ga --icons --group-directories-first --time-style=long-iso'
 fi
-alias ls='ls --color=auto'
-alias l='ls'
+if _exists lsc; then
+    alias ls='lsc'
+    alias l='lsc -l'
+else
+    alias ls='ls --color=auto'
+    alias l='ls'
+fi
 alias mv='mv -i'
 alias mk='mkdir -p'
 alias rd='rmdir'
