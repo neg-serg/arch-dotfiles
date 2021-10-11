@@ -17,10 +17,6 @@ for ${1:item} in ${2:iterable}:
 	${3:pass}
 endsnippet
 
-##########
-# COMMON #
-##########
-
 # The smart def and smart class snippets use a global option called
 # "g:ultisnips_python_style" which, if set to "doxygen" will use doxygen
 # style comments in docstrings.
@@ -651,6 +647,80 @@ snippet doc "doc block (triple quotes)"
 `!p snip.rv = triple_quotes(snip)`
 ${1:doc}
 `!p snip.rv = triple_quotes(snip)`
+endsnippet
+
+
+##############
+#  Control flow
+##############
+
+snippet if "if" w
+if ${1}:
+	${2}
+endsnippet
+
+snippet ? "inline if" w
+${1} if ${2} else ${3}
+endsnippet
+
+snippet while "while" w
+while ${1}:
+	${2}
+endsnippet
+
+snippet try "try/except" b
+try:
+	${1}
+except ${2}${3: as ${4}}:
+	${5}
+endsnippet
+
+##############
+#  Iterations
+##############
+
+snippet for "for...in" w
+for ${1} in ${2}:
+	${3}
+endsnippet
+
+snippet def "function" b
+def ${1}(${2}):
+	${3}
+endsnippet
+
+snippet class "class" b
+class ${1}${2:(${3})}:
+	${4}
+endsnippet
+
+snippet const "class initializer" b
+def __init__(self, ${1}):
+	${2}
+endsnippet
+
+snippet defm "method" b
+def ${1}(self, ${2}):
+	${3}
+endsnippet
+
+snippet lamb "lambda" w
+lambda ${1}: ${2}
+endsnippet
+
+snippet imp "import" w
+import ${1}
+endsnippet
+
+snippet from "from...import" b
+from ${1} import ${2}
+endsnippet
+
+snippet #!2 "shebang" b
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+${1}
 endsnippet
 
 # vim:ft=snippets:
