@@ -76,6 +76,28 @@ if (${1:condition}) {
 }
 endsnippet
 
+snippet switch "switch" b
+switch (${1}) {
+	case '${2}':
+	  ${3}
+	  break;
+	default:
+	  ${4}
+}
+endsnippet
+
+snippet ? "tern" w
+${1} ? ${2} : ${3}
+endsnippet
+
+snippet try "try/catch" b
+try {
+	${1}
+} catch (${2}) {
+	${3}
+}
+endsnippet
+
 snippet timeout "setTimeout function"
 setTimeout(function() {
 	${VISUAL}$0
@@ -90,8 +112,11 @@ for (${1:prop} in ${2:obj}){
 }
 endsnippet
 
-# Snippets for Console Debug Output
+snippet fa "arrow function" w
+(${1}) => ${2:{${3}}}
+endsnippet
 
+# Snippets for Console Debug Output
 snippet ca "console.assert" b
 console.assert(${1:assertion}, ${2:"${3:message}"});
 endsnippet
