@@ -14,7 +14,7 @@ generate_menu() {
 }
 
 handler() {
-    bitperfect_output_name='VMV D1 USB2.0'
+    bitperfect_output_name='Gustard X26Pro'
     timeout="5s"
     while IFS= read -r arg; do
         if echo $arg | rg "title_copy" > /dev/null; then
@@ -44,5 +44,5 @@ neg_rofi_hlfg="#aaaaaa"
 neg_rofi_hlbg="#194558"
 neg_rofi_bc="#202020"
 pref="$blue⟬$closeMPD action$blue⟭$close"
-rofi_options="-auto-select -markup-rows -b -lines 1 -theme run -dmenu -p '❯>'"
+rofi_options="-auto-select -markup-rows -b -lines 1 -theme neg -dmenu -p '❯>'"
 generate_menu | eval "rofi $rofi_colors $rofi_options" | handler
