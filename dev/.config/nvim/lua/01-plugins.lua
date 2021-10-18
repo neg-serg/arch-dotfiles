@@ -67,6 +67,7 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'kevinhwang91/nvim-bqf' -- better quickfix
     use {'b3nj5m1n/kommentary', event='BufEnter'} -- alternative commenter
+    use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
         config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]],
