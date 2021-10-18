@@ -122,7 +122,6 @@ set searchurls.!aw https://wiki.archlinux.org/index.php?title=Special:Search&sea
 
 unbindurl mail\.google\.com j
 unbindurl mail\.google\.com k
-unbindurl mail\.google\.com o
 unbindurl mail\.google\.com x
 unbindurl mail\.google\.com e
 unbindurl youtube.com/watch f
