@@ -101,7 +101,7 @@ yay -S udiskie --noconfirm
 yay -S util-linux valgrind --noconfirm
 yay -S vulkan-extra-layers vulkan-headers vulkan-html-docs vulkan-mesa-layer vulkan-tools vulkan-trace vulkan-validation-layers --noconfirm
 yay -S xurls urlscan-git urlview --noconfirm
-yay -S youtube-dl you-get straw-viewer-git sprunge --noconfirm
+yay -S youtube-dl you-get pipe-viewer-git sprunge --noconfirm
 yay -S wine wine-mono winetricks dxvk-bin dxvk-cache-server-git vkd3d protontricks-git lib32-vkd3d lutris --noconfirm
 yay -S zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps fbless --noconfirm
 yay -S zoom discord --noconfirm
