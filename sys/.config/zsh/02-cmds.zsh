@@ -84,7 +84,7 @@ _exists mpc && {
     alias love='mpc sendmessage mpdas love'
     alias unlove='mpc sendmessage mpdas unlove'
 }
-_exists youtube-dl && alias yt='youtube-dl'
+_exists youtube-dl && alias yt='noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"'
 _exists curl && {
     alias weather="curl 'wttr.in/?T'"
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
