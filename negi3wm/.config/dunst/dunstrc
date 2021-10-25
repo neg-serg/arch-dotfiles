@@ -23,7 +23,7 @@
     indicate_hidden = true
     line_height = 0
     markup = full
-    max_icon_size = 300
+    max_icon_size = 400
     monitor = 0
     padding = 0
     progress_bar_frame_width = 1
