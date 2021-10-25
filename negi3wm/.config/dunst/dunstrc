@@ -9,7 +9,10 @@
     format = "<span font_desc='Iosevka Medium 22' foreground='#2e72ac'>%s</span>\n%b"
     frame_color = "#000000"
     frame_width = 20
-    geometry = "1120x11-10-52"
+    width = 1120
+    notification_limit = 3
+    offset = 0x54
+    origin = bottom-right
     hide_duplicate_count = true
     horizontal_padding = 6
     icon_path = /usr/share/icons/kora
@@ -63,7 +66,7 @@
 [mpd]
     appname = mpd-notification
     script = "~/bin/track-notify"
-    format = ""
+    format = ' '
     timeout = 10
 
 # vim: ft=cfg
