@@ -1,0 +1,88 @@
+#--=[ mpd ]=---------------
+mpd_host = "localhost"
+mpd_port = 6600
+mpd_music_dir = "~/music"
+mpd_crossfade_time = "0"
+ncmpcpp_directory = "~/.config/ncmpcpp"
+#--=[ Main ]=-------------------
+autocenter_mode = "yes"
+centered_cursor = "yes"
+user_interface = "classic"
+display_bitrate = "yes"
+mouse_support = "no"
+mouse_list_scroll_whole_page = "no"
+use_console_editor = "yes"
+external_editor = "~/bin/v"
+jump_to_now_playing_song_at_start = "yes"
+ask_before_clearing_playlists = "no"
+song_window_title_format = "ncmpcpp"
+default_find_mode = "wrapped"
+block_search_constraints_change_if_items_found = "no"
+#--=[ Playlist ]=---------------
+playlist_disable_highlight_delay = "1"
+playlist_show_remaining_time = "yes"
+playlist_shorten_total_times = "yes"
+playlist_display_mode = "classic"
+playlist_editor_display_mode = "columns"
+show_duplicate_tags = "no"
+cyclic_scrolling = "no"
+space_add_mode="always_add"
+lines_scrolled = "1"
+#--=[ Progressbar ]=--------
+progressbar_look = "─╼ "
+progressbar_color = "white"
+progressbar_elapsed_color = "239"
+#--=[ Bars ]=---------------
+song_status_format = "{$8%a} $(26)❯$(26)> {$8%t} $(26)❯$(26)> $b{$8%b}$/b $b({$8%y})$/b$(end)"
+song_list_format = "$(111)%5n  $7%26a$7$(238) ❯ $(250)%44t$(1)$R$(238)❮ $(250)%5l $7%28b$(end)"
+song_library_format = "{$(3)%n$(end)$(26) ❯ $(end)}{%t}|{%f}"
+now_playing_suffix = "$/b$(24)◂$(26)"
+current_item_prefix = "$b$(26)❯>"
+current_item_suffix = "$/b$/r$(end)"
+current_item_inactive_column_prefix = "$b$(25)$(end)"
+current_item_inactive_column_suffix = "$/b$/r$(end)"
+titles_visibility = "no"
+header_visibility = "no"
+statusbar_visibility = "yes"
+#--=[ Media library ]=--------
+media_library_primary_tag = "artist"
+media_library_albums_split_by_date = "yes"
+#--=[ Browser ]=--------------
+browser_display_mode = "classic"
+incremental_seeking = "yes"
+seek_time = "4"
+message_delay_time = "3"
+#--=[ Colors ]=---------------
+colors_enabled = "yes"
+discard_colors_if_item_is_selected = "yes"
+header_window_color = "black"
+volume_color = "cyan"
+volume_change_step = "1"
+state_line_color = "black"
+state_flags_color = "green"
+main_window_color = "default"
+color1 = "cyan"
+color2 = "default"
+statusbar_color = "white"
+default_tag_editor_pattern = "%n - %t"
+ignore_leading_the = "yes"
+ignore_diacritics = "yes"
+search_engine_display_mode = "classic"
+default_place_to_search_in = "database"
+show_hidden_files_in_local_browser = "no"
+active_window_border = "black"
+empty_tag_marker = "⟬…⟭"
+regular_expressions = "extended"
+#--=[ Visualizer ]=---------------
+visualizer_data_source = "/tmp/audio.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "no"
+visualizer_color = 091,097,108,104,99,105,111
+visualizer_type = ellipse
+execute_on_song_change="~/.config/ncmpcpp/ncmpcpp-ueberzug/ncmpcpp_cover_art.sh"
+visualizer_look = "  "
+startup_screen = visualizer
+startup_slave_screen = playlist
+startup_slave_screen_focus = yes
+locked_screen_width_part = "30"
+#  vim: set ts=2 sw=2 tw=0 :
