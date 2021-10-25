@@ -23,7 +23,7 @@
     indicate_hidden = true
     line_height = 0
     markup = full
-    max_icon_size = 400
+    max_icon_size = 300
     monitor = 0
     padding = 0
     progress_bar_frame_width = 1
@@ -65,8 +65,6 @@
 
 [mpd]
     appname = mpd-notification
-    script = "~/bin/track-notify"
-    format = ' '
-    timeout = 10
+    timeout = 0
 
 # vim: ft=cfg
