@@ -13,6 +13,7 @@
     notification_limit = 3
     offset = 0x54
     origin = bottom-right
+    height = 550
     hide_duplicate_count = true
     horizontal_padding = 6
     icon_path = /usr/share/icons/kora
@@ -62,9 +63,5 @@
     format = "%s\n%b"
     script = "~/bin/pic-notify"
     urgency = normal
-
-[mpd]
-    appname = mpd-notification
-    timeout = 0
 
 # vim: ft=cfg
