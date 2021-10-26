@@ -1,13 +1,12 @@
 #!/bin/zsh
-echo "$@"
-set -e
-dunst_pics="$(realpath ${HOME}/tmp/dunst-images)"
-cover_lock="${dunst_pics}/notify.lock"
+
+pics="$(realpath ${HOME}/tmp/mpd-covers)"
+cover_lock="${pics}/notify.lock"
 image="/tmp/mpd_cover.jpg"
 magic_pie='8143'
 max_len=35
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
-ffmpeg -y -i "$(mpc --format "$mpd_music_dir"/%file% | head -n 1)" /tmp/mpd_cover.jpg > /dev/null 2>&1
+
 nr(){ print "<span weight='Bold' color='#b8c5d9'>$1</span>" }
 fa(){ print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>" }
 E(){ print '</span>' }
@@ -23,28 +22,32 @@ prefix=(
 )
 
 notify() {
-    bodyarr=()
+    info=()
     len=()
     current_file="$(mpc -f '%file%'|head -1)"
     current_dirname="${mpd_music_dir}/$(dirname "${current_file}")"
-    sox_metadata="$(sox --i "${mpd_music_dir}/${current_file}" 2> /dev/null)"
-    body="$(awk -F '=' '/(Artist|Album|Year)/{print $2}' <<< "$sox_metadata")"
-    while read line; do
-        bodyarr+="${line}"
-    done <<< ${body}
-    for i in {1..6}; do
-        len+=${#bodyarr[$i]};
+    track_metadata="$(sox --i "${mpd_music_dir}/${current_file}" 2> /dev/null)"
+
+    finger="$(awk -F '=' 'BEGIN{IGNORECASE=1}/(Artist|Album|Year)/{print $2}' <<< "$track_metadata")"
+
+    info[1]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^ARTIST/{print $2}' <<< ${track_metadata})"
+    info[2]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^ALBUM/{print $2}' <<< ${track_metadata})"
+    info[3]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^LABEL/{print $2}' <<< ${track_metadata})"
+    info[4]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^YEAR/{print $2}' <<< ${track_metadata})"
+
+    for i in {1..4}; do
+        len+=${#info[$i]};
     done
+
     len=($(printf "%s\n" "${len[@]}"|sort -nr))
     len=$[${(@)len[1]}]
     [[ ${len} > ${max_len} ]] && len=${max_len}
 
-    bodyarr[1]=''
-    for i in {2..5}; do
-        if [[ ! -z "${bodyarr[i]}" ]]; then
-            bodyarr[i]="${prefix[i]}$(nr ${bodyarr[i]})\n"
+    for i in {1..4}; do
+        if [[ ! -z "${info[i]}" ]]; then
+            info[i]="${prefix[i]}$(nr ${info[i]})\n"
         else
-            bodyarr[i]="\n"
+            info[i]="\n"
         fi
     done
 
@@ -58,42 +61,30 @@ notify() {
     if (se ~ /FLAC/) printf "FLAC·"; \
     if (se ~ /MPEG/) printf "mpeg·"; \
     if (se ~ /Direct Stream Digital/) printf "dsd·"; \
-        print br"·"sr"K/"pr"·"ch}' <<< ${sox_metadata})"
+        print br"·"sr"K/"pr"·"ch}' <<< ${track_metadata})"
 
-    year="$(awk -F '=' '/^YEAR/{print $2}' <<< ${sox_metadata})"
-    label="$(awk -F '=' '/^LABEL/{print $2}' <<< ${sox_metadata})"
-    [[ ${audio_quality// } != "·K/·" ]] && bodyarr[5]="${prefix[5]}$(nr ${audio_quality})\n" || bodyarr[5]="\n"
-    [[ ! -z "${label// }" ]] && bodyarr[6]="${prefix[6]}$(nr ${label})\n" || bodyarr[6]="\n"
-    [[ ! -z "${year// }" ]] && bodyarr[7]="${prefix[7]}$(nr ${year})\n" || bodyarr[7]="\n"
+    [[ ${audio_quality// } != "·K/·" ]] && info[5]="${prefix[5]}$(nr ${audio_quality})\n" || info[5]="\n"
+    [[ ! -z "${label// }" ]] && info[6]="${prefix[6]}$(nr ${label})\n" || info[6]="\n"
+    [[ ! -z "${year// }" ]] && info[7]="${prefix[7]}$(nr ${year})\n" || info[7]="\n"
 
-    for i in ${bodyarr[@]};
+    for i in ${info[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
     output="\n${output}\n​"
     dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
         -u "normal" \
         -i "${image}" "" "${output}" > /tmp/notify_id \
         -r ${magic_pie}
-    sed '1d' <<< $(echo -n "${body}") > "${cover_lock}"
-}
-
-debug(){
-    echo ":: BODY ::"
-    print "$body"
-    echo
-    echo ":: BODY_ARR ::"
-    print "$bodyarr"
-    echo
+    echo -n "${finger}" > "${cover_lock}"
 }
 
 show_notify() {
-    notify
-    # if [[ ! -f "${cover_lock}" ]]; then
-    #     notify
-    # elif [[ -s "${cover_lock}" ]]; then
-    #     if [[ "$(< "${cover_lock}")" != "$(sed '1d' <<< $(echo -n "${body}"))" ]]; then
-    #         notify
-    #     fi
-    # fi
+    if [[ ! -f "${cover_lock}" ]]; then
+        notify
+    elif [[ -s "${cover_lock}" ]]; then
+        if [[ "$(< "${cover_lock}")" != "$(sed '1d' <<< $(echo -n "${body}"))" ]]; then
+            notify
+        fi
+    fi
     cp "${image}" "${prev}"
 }
 
@@ -106,21 +97,28 @@ zshexit() {
     ) &
 }
 
+dump_cover(){
+    ffmpeg -y -i "$(mpc --format "$mpd_music_dir"/%file% | head -n 1)" "${image}" > /dev/null 2>&1
+}
+
 dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
-[[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
-prev="${dunst_pics}/prev.png"
+
+dump_cover
+
+[[ ! -d "${pics}" ]] && mkdir -p "${pics}"
+prev="${pics}/prev.png"
 fd prev.png --changed-before '12min' -x rm '{}'
 if [[ -f ${image} ]]; then
     show_notify
-    # [[ ! -d "${dunst_pics}" ]] && mkdir -p "${dunst_pics}"
-    # # send notification with compatible image
-    # if [[ ! -f "${prev}" ]]; then
-    #     show_notify
-    # else
-    #     local dunst_picslist=$(setopt nullglob dotglob; print "${dunst_pics}"/*)
-    #     if [[ $(cmp_img "${image}" "${prev}") == "False" ]] \
-    #         && (( ${#dunst_picslist[@]} > 1 )); then
-    #         show_notify
-    #     fi
-    # fi
+    [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
+    # send notification with compatible image
+    if [[ ! -f "${prev}" ]]; then
+        show_notify
+    else
+        local picslist=$(setopt nullglob dotglob; print "${pics}"/*)
+        if [[ $(cmp_img "${image}" "${prev}") == "False" ]] \
+            && (( ${#picslist[@]} > 1 )); then
+            show_notify
+        fi
+    fi
 fi
