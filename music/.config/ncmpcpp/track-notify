@@ -15,10 +15,11 @@ prefix=(
     ''                        # track name    [1]
     "$(fa '#004E4E')   $(E)" # artist        [2]
     "$(fa '#004E4E')   $(E)" # album         [3]
-    "$(fa '#004E4E')   $(E)" # ????          [4]
+    "$(fa '#004E4E')   $(E)" # label         [4]
     "$(fa '#004E4E')   $(E)" # audio_quality [5]
-    "$(fa '#004E4E')   $(E)" # label         [6]
-    "$(fa '#004E4E')   $(E)" # year          [7]
+    "$(fa '#004E4E')   $(E)" # genre         [6]
+    "$(fa '#004E4E')   $(E)" # quality       [7]
+    "$(fa '#004E4E')   $(E)" # year          [8]
 )
 
 notify() {
@@ -30,19 +31,22 @@ notify() {
     finger="$(awk -F '=' 'BEGIN{IGNORECASE=1}/(Artist|Album|Year)/{print $2}' <<< "$track_metadata")"
 
     info[1]=""
-    info[2]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^ARTIST=/{print $2}' <<< ${track_metadata})"
-    info[3]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^ALBUM=/{print $2}' <<< ${track_metadata})"
-    info[4]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^LABEL=/{print $2}' <<< ${track_metadata})"
-    info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^YEAR=/{print $2}' <<< ${track_metadata})"
+    info[2]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^artist=/{print $2}' <<< ${track_metadata})"
+    info[3]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^album=/{print $2}' <<< ${track_metadata})"
+    info[4]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^label=/{print $2}' <<< ${track_metadata})"
+    info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^year=/{print $2}' <<< ${track_metadata})"
+    if [[ -z $info[5] ]]; then
+        info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^date=/{print $2}' <<< ${track_metadata})"
+    fi
+    info[6]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^genre=/{print $2}' <<< ${track_metadata})"
 
-    for i in {2..5}; do
+    for i in {2..6}; do
         if [[ ! -z "${info[i]}" ]]; then
             info[i]="${prefix[i]}$(nr ${info[i]})\n"
         else
             info[i]="\n"
         fi
     done
-
     audio_quality="$(awk -F '\\s*:\\s*' \
         'BEGIN {} /^Channels/{ch=$2} \
         /^Sample Encoding/{se=$2} \
@@ -54,10 +58,7 @@ notify() {
     if (se ~ /MPEG/) printf "mpeg·"; \
     if (se ~ /Direct Stream Digital/) printf "dsd·"; \
         print br"·"sr"K/"pr"·"ch}' <<< ${track_metadata})"
-
-    [[ ${audio_quality// } != "·K/·" ]] && info[6]="${prefix[6]}$(nr ${audio_quality})\n" || info[6]="\n"
-    [[ ! -z "${label// }" ]] && info[7]="${prefix[7]}$(nr ${label})\n" || info[7]="\n"
-    [[ ! -z "${year// }" ]] && info[8]="${prefix[8]}$(nr ${year})\n" || info[8]="\n"
+    [[ ${audio_quality// } != "·K/·" ]] && info[7]="${prefix[7]}$(nr ${audio_quality})\n" || info[7]="\n"
 
     for i in ${info[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
