@@ -2,7 +2,7 @@
 if [[ ! -f ${ZDOTDIR}/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "${ZDOTDIR}/.zinit" && command chmod g-rwX "${ZDOTDIR}/.zinit"
-    command git clone https://github.com/zdharma/zinit "${ZDOTDIR}/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "${ZDOTDIR}/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -21,9 +21,13 @@ fpath=(
 )
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k # best prompt
 zinit load romkatv/zsh-defer # lazy loading
-zinit wait lucid light-mode for neg-serg/fast-syntax-highlighting # customized syntax highlighting
-zinit light peterhurford/git-it-on.zsh # open github at folder
-zinit wait lucid atload"zicompinit; zicdreplay" blockf for zsh-users/zsh-completions
+zinit wait lucid for \
+ silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+    neg-serg/fast-syntax-highlighting \
+ as"completion" \
+    zsh-users/zsh-completions \
+ pick"git-it-on.plugin.zsh" \
+    peterhurford/git-it-on.zsh #\
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode # better vim-mode
 zinit load wfxr/forgit # git-fzf integration
