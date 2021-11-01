@@ -38,7 +38,7 @@ notify() {
     if [[ -z $info[5] ]]; then
         info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^date=/{print $2}' <<< ${track_metadata})"
     fi
-    info[6]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^genre=/{print $2}' <<< ${track_metadata})"
+    info[6]="$(xargs <<< $(awk -F '=' 'BEGIN{IGNORECASE=1}/^genre=/{print $2}' <<< ${track_metadata}))"
 
     for i in {2..6}; do
         if [[ ! -z "${info[i]}" ]]; then
