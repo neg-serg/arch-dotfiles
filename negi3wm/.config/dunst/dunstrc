@@ -3,16 +3,12 @@
     always_run_script = true
     browser = /usr/bin/firefox-developer-edition -new-tab
     corner_radius = 4
-    ellipsize = middle
+    ellipsize = end
     follow = mouse
     font = Iosevka Medium 22
     format = "<span font_desc='Iosevka Medium 22' foreground='#2e72ac'>%s</span>\n%b"
     frame_color = "#000000"
     frame_width = 20
-    width = 1120
-    notification_limit = 3
-    offset = 0x54
-    origin = bottom-right
     height = 550
     hide_duplicate_count = true
     horizontal_padding = 6
@@ -25,7 +21,12 @@
     line_height = 0
     markup = full
     max_icon_size = 400
+    maximum_width = 1120
+    minimum_height = 0
     monitor = 0
+    notification_limit = 3
+    offset = 0x54
+    origin = bottom-right
     padding = 0
     progress_bar_frame_width = 1
     progress_bar_height = 6
@@ -36,13 +37,13 @@
     separator_height = 4
     show_age_threshold = -1
     show_indicators = false
-    shrink = true
     sort = true
     stack_duplicates = true
     sticky_history = true
     transparency = 14
     vertical_alignment = center
-    word_wrap = true
+    width = 1000
+    word_wrap = false
 
 [urgency_low]
     background = "#010204"
