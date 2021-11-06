@@ -52,11 +52,6 @@ return require('packer').startup({function(use)
             }
         }
     }
-    use {
-        "nvim-telescope/telescope-frecency.nvim",
-        config=[[require"telescope".load_extension("frecency")]],
-        requires={'tami5/sql.nvim'}
-    }
     use {'fannheyward/telescope-coc.nvim',
         config=[[require('telescope').load_extension('coc')]],
     } -- telescope coc-integration
