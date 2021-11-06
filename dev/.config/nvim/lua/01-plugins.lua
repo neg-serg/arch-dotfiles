@@ -66,7 +66,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'kevinhwang91/nvim-bqf' -- better quickfix
+    use {'kevinhwang91/nvim-bqf', ft = 'qf'} -- better quickfix
     use {'b3nj5m1n/kommentary', event='BufEnter'} -- alternative commenter
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
