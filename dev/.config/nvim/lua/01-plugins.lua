@@ -58,7 +58,6 @@ return require('packer').startup({function(use)
     use 'dstein64/vim-startuptime' -- startup time measurement
     use 'rmagatti/auto-session' -- best modern autosession plugin
     use 'justinmk/vim-dirvish' -- file manager
-    use 'voldikss/vim-translator' -- builtin translator
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
