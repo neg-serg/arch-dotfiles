@@ -58,11 +58,11 @@ return require('packer').startup({function(use)
     use 'dstein64/vim-startuptime' -- startup time measurement
     use 'rmagatti/auto-session' -- best modern autosession plugin
     use 'justinmk/vim-dirvish' -- file manager
+    use 'voldikss/vim-translator' -- builtin translator
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf', ft = 'qf'} -- better quickfix
-    use 'rcarriga/vim-ultest' -- unit testing
     use {'b3nj5m1n/kommentary', event='BufEnter'} -- alternative commenter
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
