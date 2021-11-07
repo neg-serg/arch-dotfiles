@@ -55,6 +55,7 @@
     colorMoved = default
 [alias]
     patch = !git --no-pager diff --no-color
+	hub = !hub
 [difftool "nwim"]
     cmd = ~/bin/v -d $LOCAL $REMOTE
 [merge]
