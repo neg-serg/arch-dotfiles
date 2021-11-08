@@ -1,5 +1,4 @@
 {
-  "coc.preferences.colorSupport": true,
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.extensionUpdateCheck": "daily",
   "coc.preferences.hoverTarget": "preview",
