@@ -14,10 +14,9 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'neoclide/coc.nvim', branch='release'} -- lsp autocomplete
+    use 'lewis6991/impatient.nvim' -- faster loading
     use 'max397574/better-escape.nvim' -- fast escape
     use 'norcalli/nvim_utils' -- neovim lua utils
-    use 'lewis6991/impatient.nvim' -- speedup loading
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
     use 'lewis6991/spellsitter.nvim' -- treesitter-based spellsitter
     use 'David-Kunz/treesitter-unit' -- treesitter-based selection
@@ -52,17 +51,26 @@ return require('packer').startup({function(use)
             }
         }
     }
-    use {'fannheyward/telescope-coc.nvim',
-        config=[[require('telescope').load_extension('coc')]],
-    } -- telescope coc-integration
     use 'dstein64/vim-startuptime' -- startup time measurement
-    use 'rmagatti/auto-session' -- best modern autosession plugin
+    use {'rmagatti/auto-session', event = 'VimEnter', config=[[require('10-session')]]} -- best modern autosession plugin
     use 'justinmk/vim-dirvish' -- file manager
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Completion                                                                   │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+    use 'L3MON4D3/LuaSnip' -- lua snippets
+    use 'onsails/lspkind-nvim' -- lsp pictograms
+    use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
+    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/autocomplete').init()]]} -- completion engine
+    use {'saadparwaiz1/cmp_luasnip'} -- lua snippets
+    use {'hrsh7th/cmp-nvim-lua'} -- cmp neovim lua api support
+    use {'hrsh7th/cmp-nvim-lsp'} -- cmp lsp support
+    use {'hrsh7th/cmp-path'} -- cmp path completion support
+    use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf', ft = 'qf'} -- better quickfix
-    use {'b3nj5m1n/kommentary', event='BufEnter'} -- alternative commenter
+    use {'b3nj5m1n/kommentary', event='BufWinEnter'} -- alternative commenter
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
@@ -135,7 +143,5 @@ return require('packer').startup({function(use)
     use 'tpope/vim-fugitive' -- git stuff old
 end, config={
         display={open_fn=require('packer.util').float},
-        -- Move to lua dir so impatient.nvim can cache it
-        compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
     }
 })
