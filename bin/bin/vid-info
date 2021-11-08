@@ -23,7 +23,7 @@ import datetime
 import enum
 from docopt import docopt
 
-from pretty_printer import pretty_printer
+from scripts.pretty_printer import pretty_printer
 
 
 class SizeUnit(enum.Enum):
