@@ -45,17 +45,14 @@ return require('packer').startup({function(use)
                         config = {
                             default_keybinds = true, -- Generate the default keybinds
                             neorg_leader = "<Leader>o" -- This is the default if unspecified
-                        }
-                    },
+                        }},
                     ["core.norg.concealer"] = {}, -- Allows for use of icons
                     ["core.norg.dirman"] = { -- Manage your directories with Neorg
                     ["core.norg.completion"] = {config = {engine = "nvim-cmp"}},
                     config = {workspaces = {my_workspace = "~/1st_level"}}
                 }
             },
-        }
-        end,
-        requires = "nvim-lua/plenary.nvim"
+        } end, requires = "nvim-lua/plenary.nvim"
     }
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
     use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
@@ -90,7 +87,6 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf', ft = 'qf'} -- better quickfix
-    use {'b3nj5m1n/kommentary', event='BufWinEnter'} -- alternative commenter
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
