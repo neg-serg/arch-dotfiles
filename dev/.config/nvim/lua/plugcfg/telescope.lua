@@ -5,6 +5,7 @@ require('telescope').setup{
       '--color=never', '--no-heading', '--with-filename',
       '--line-number', '--column', '--smart-case'
     },
+    dynamic_preview_title = true,
     prompt_prefix = "❯> ",
     selection_caret = "• ",
     entry_prefix = "  ",
