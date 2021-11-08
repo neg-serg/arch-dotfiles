@@ -143,5 +143,6 @@ return require('packer').startup({function(use)
     use 'tpope/vim-fugitive' -- git stuff old
 end, config={
         display={open_fn=require('packer.util').float},
+        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
     }
 })
