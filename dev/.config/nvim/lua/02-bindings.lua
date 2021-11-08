@@ -96,7 +96,6 @@ vim.api.nvim_exec([[
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
 map('n', '<leader>l', ':terminal tmux setenv NEOVIM_TERMINAL 1 \\; splitw -l 6 -c %:p:h<CR>', {silent=true, noremap=true})
-map('n', '[Qleader]e',
-    "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files{}<CR>",
-    {silent=true, noremap=true}
-)
+map('n', '[Qleader]e', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]f', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]c', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').git_commits{}<CR>", {silent=true, noremap=true})
