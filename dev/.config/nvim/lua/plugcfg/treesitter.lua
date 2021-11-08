@@ -17,5 +17,5 @@ tsconf.setup {
     colors = {'#365e96', '#315587', '#2e5080', '#294873', '#26436b', '#21395c', '#1d3352'},
   },
   indent = {enable = {"javascriptreact"}},
-  autotag = {enable = false},
+  autotag = {enable = true},
 }
