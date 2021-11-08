@@ -1,6 +1,6 @@
 _exists() { (( $+commands[$1] )) }
 alias @r='~/bin/music-rename'
-alias qe='cd *(/om[1]D)'
+alias qe='cd ^.git*(/om[1]D)'
 if [[ $USE_EXA ]] && _exists exa; then
     alias ls='exa -ga --icons --group-directories-first --time-style=long-iso'
 fi
