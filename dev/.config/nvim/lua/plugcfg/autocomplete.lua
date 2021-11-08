@@ -70,6 +70,7 @@ M.init = function()
       {name = 'buffer'},
       {name = 'luasnip'},
       {name = 'path'},
+      {name = 'neorg'},
     }),
     formatting = {
       format = require('lspkind').cmp_format({

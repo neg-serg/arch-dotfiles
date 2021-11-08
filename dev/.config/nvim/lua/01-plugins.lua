@@ -36,7 +36,27 @@ return require('packer').startup({function(use)
           opt=true} -- interactive window resize
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use 'vimwiki/vimwiki' -- personal wiki for vim
+    use {"nvim-neorg/neorg",
+        config = function()
+            require('neorg').setup {
+                load = {
+                    ["core.defaults"] = {}, -- Load all the default modules
+                    ["core.keybinds"] = { -- Configure core.keybinds
+                        config = {
+                            default_keybinds = true, -- Generate the default keybinds
+                            neorg_leader = "<Leader>o" -- This is the default if unspecified
+                        }
+                    },
+                    ["core.norg.concealer"] = {}, -- Allows for use of icons
+                    ["core.norg.dirman"] = { -- Manage your directories with Neorg
+                    ["core.norg.completion"] = {config = {engine = "nvim-cmp"}},
+                    config = {workspaces = {my_workspace = "~/1st_level"}}
+                }
+            },
+        }
+        end,
+        requires = "nvim-lua/plenary.nvim"
+    }
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
     use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
     use 'MTDL9/vim-log-highlighting' -- better log highlighter
