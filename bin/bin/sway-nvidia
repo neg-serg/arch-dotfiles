@@ -1,0 +1,11 @@
+#!/bin/dash
+
+sway_nvidia() {
+    GBM_BACKEND=nvidia-drm \
+    __GLX_VENDOR_LIBRARY_NAME=nvidia \
+    WLR_NO_HARDWARE_CURSORS=1 \
+    WLR_DRM_NO_ATOMIC=1 \
+    sway --unsupported-gpu -d &>/tmp/sway.log
+}
+
+sway_nvidia "$@"
