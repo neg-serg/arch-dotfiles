@@ -15,13 +15,14 @@ dscale=mitchell
 dither-depth=auto
 correct-downscaling
 linear-downscaling=yes
+vd-lavc-threads=8
+gpu.api=vulkan
+vulkan-swap-mode=immediate
+vo=gpu
+interpolation=no
 hwdec-codecs=all
 hwdec=cuda
-vd-lavc-threads=32
-opengl-pbo
-opengl-swapinterval=0
-vo=gpu
-vulkan-swap-mode=immediate
+video-sync=display-resample
 # --[ Time scaling ]----------------------------------------
 # interpolation=yes
 # tscale=oversample
