@@ -9,6 +9,5 @@ require('auto-session').setup({
   auto_session_suppress_dirs = nil
 })
 
---[[ -- session
 map('n', '<leader>sl', ':silent RestoreSession<cr>')
-map('n', '<leader>ss', ':SaveSession<cr>') ]]
+map('n', '<leader>ss', ':SaveSession<cr>')

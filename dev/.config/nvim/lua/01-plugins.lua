@@ -37,7 +37,7 @@ return require('packer').startup({function(use)
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {"nvim-neorg/neorg",
-        config = function()
+        config = [[
             require('neorg').setup {
                 load = {
                     ["core.defaults"] = {}, -- Load all the default modules
@@ -52,7 +52,7 @@ return require('packer').startup({function(use)
                     config = {workspaces = {my_workspace = "~/1st_level"}}
                 }
             },
-        } end, requires = "nvim-lua/plenary.nvim"
+        } ]], requires = "nvim-lua/plenary.nvim"
     }
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
     use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
@@ -69,7 +69,7 @@ return require('packer').startup({function(use)
         }
     }
     use 'dstein64/vim-startuptime' -- startup time measurement
-    use {'rmagatti/auto-session', event = 'VimEnter', config=[[require('10-session')]]} -- best modern autosession plugin
+    use {'rmagatti/auto-session', event = 'VimEnter', config=[[require('plugcfg/auto-session')]]} -- best modern autosession plugin
     use 'justinmk/vim-dirvish' -- file manager
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
@@ -77,7 +77,7 @@ return require('packer').startup({function(use)
     use 'L3MON4D3/LuaSnip' -- lua snippets
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
-    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/autocomplete').init()]]} -- completion engine
+    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]]} -- completion engine
     use {'saadparwaiz1/cmp_luasnip'} -- lua snippets
     use {'hrsh7th/cmp-nvim-lua'} -- cmp neovim lua api support
     use {'hrsh7th/cmp-nvim-lsp'} -- cmp lsp support
@@ -90,11 +90,11 @@ return require('packer').startup({function(use)
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
-        config=[[require('nvim-autopairs').setup({break_line_filetype=nil})]],
+        config=[[require('plugcfg/nvim-autopairs')]],
         event='InsertEnter'} -- try new autopairs
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
-        after="plenary.nvim", config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
+        after='plenary.nvim', config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
     use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
     use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
@@ -107,9 +107,8 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'AndrewRadev/splitjoin.vim' -- one-line <-> multiline converter
     use {'andymass/vim-matchup', event='VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
-    use {'FooSoft/vim-argwrap', cmd={'ArgWrap'}, opt=true, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
+    use {'FooSoft/vim-argwrap', cmd='ArgWrap', opt=true, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
-    use 'mizlan/iswap.nvim' -- intellectual swap
     use 'svermeulen/vim-NotableFt' -- better ft
     use 'tpope/vim-repeat' -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
@@ -123,7 +122,6 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'aouelete/sway-vim-syntax' -- add sway syntax
     use 'Bakudankun/PICO-8.vim' -- pico-8 cartridge files
     use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
     use 'ishan9299/nvim-solarized-lua' -- solarized colorscheme
@@ -144,13 +142,13 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'rhysd/conflict-marker.vim',
-        config=function()
-            vim.cmd[[highlight ConflictMarkerBegin guibg=#2f7366]]
-            vim.cmd[[highlight ConflictMarkerOurs guibg=#2e5049]]
-            vim.cmd[[highlight ConflictMarkerTheirs guibg=#344f69]]
-            vim.cmd[[highlight ConflictMarkerEnd guibg=#2f628e]]
-            vim.cmd[[highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81]]
-        end
+        config=[[
+            vim.cmd('highlight ConflictMarkerBegin guibg=#2f7366')
+            vim.cmd('highlight ConflictMarkerOurs guibg=#2e5049')
+            vim.cmd('highlight ConflictMarkerTheirs guibg=#344f69')
+            vim.cmd('highlight ConflictMarkerEnd guibg=#2f628e')
+            vim.cmd('highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81')
+        ]]
     } -- good conflict marker
     use {'sindrets/diffview.nvim',
         cmd={'DiffviewLoad'},
