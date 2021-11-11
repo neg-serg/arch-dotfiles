@@ -12,51 +12,21 @@ return require('packer').startup({function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt=true} -- no lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Generic                                                                      │
+-- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'lewis6991/impatient.nvim' -- faster loading
-    use 'max397574/better-escape.nvim' -- fast escape
+    use 'dstein64/vim-startuptime' -- startup time measurement
+    use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Generic                                                                      │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'norcalli/nvim_utils' -- neovim lua utils
-    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
-    use 'lewis6991/spellsitter.nvim' -- treesitter-based spellsitter
-    use 'David-Kunz/treesitter-unit' -- treesitter-based selection
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
-    use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
-    use {'nacro90/numb.nvim', config=[[require('numb').setup()]] } -- interactive number with :<num>
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use 'norcalli/nvim-colorizer.lua' -- high-performance color highlighter for Neovim
-    use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
+    use {'nacro90/numb.nvim', config=[[require('numb').setup()]] } -- interactive number with :<num>
     use 'pbrisbin/vim-mkdir' -- auto make dir without asking
-    use {'reedes/vim-pencil', opt=true,
-          cmd={'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'},
-          ft={'txt', 'markdown', 'rst'}} -- better text support
-    use 'reedes/vim-wordy' -- style check for english
-    use {'romgrk/winteract.vim', cmd={'InteractiveWindow'},
-          config=[[require'plugcfg/wininteract']],
-          opt=true} -- interactive window resize
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use {"nvim-neorg/neorg",
-        config = [[
-            require('neorg').setup {
-                load = {
-                    ["core.defaults"] = {}, -- Load all the default modules
-                    ["core.keybinds"] = { -- Configure core.keybinds
-                        config = {
-                            default_keybinds = true, -- Generate the default keybinds
-                            neorg_leader = "<Leader>o" -- This is the default if unspecified
-                        }},
-                    ["core.norg.concealer"] = {}, -- Allows for use of icons
-                    ["core.norg.dirman"] = { -- Manage your directories with Neorg
-                    ["core.norg.completion"] = {config = {engine = "nvim-cmp"}},
-                    config = {workspaces = {my_workspace = "~/1st_level"}}
-                }
-            },
-        } ]], requires = "nvim-lua/plenary.nvim"
-    }
-    use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
-    use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
-    use 'MTDL9/vim-log-highlighting' -- better log highlighter
     use 'justinmk/vim-gtfo' -- open filemanager or terminal in current dir
     use {'nvim-telescope/telescope.nvim', requires={
             'nvim-lua/plenary.nvim',
@@ -68,8 +38,7 @@ return require('packer').startup({function(use)
             }
         }
     }
-    use 'dstein64/vim-startuptime' -- startup time measurement
-    use {'rmagatti/auto-session', event = 'VimEnter', config=[[require('plugcfg/auto-session')]]} -- best modern autosession plugin
+    use {'rmagatti/auto-session', event='VimEnter', config=[[require('plugcfg/auto-session')]]} -- best modern autosession plugin
     use 'justinmk/vim-dirvish' -- file manager
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
@@ -87,6 +56,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf', ft = 'qf'} -- better quickfix
+    use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
@@ -95,13 +65,20 @@ return require('packer').startup({function(use)
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
         after='plenary.nvim', config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
-    use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
     use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
     use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', config=[[require'plugcfg/vim-dispatch']],
         cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
     use 'rstacruz/sparkup' -- better emmet-vim
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Text                                                                         │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
+    use {'reedes/vim-pencil', opt=true,
+          cmd={'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'},
+          ft={'txt', 'markdown', 'rst'}} -- better text support
+    use {"nvim-neorg/neorg", config = [[require'plugcfg/neorg']], requires = "nvim-lua/plenary.nvim"}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -113,6 +90,7 @@ return require('packer').startup({function(use)
     use 'tpope/vim-repeat' -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
     use 'wellle/targets.vim' -- better text objects
+    use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Search                                                                       │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -122,6 +100,10 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
+    use 'norcalli/nvim-colorizer.lua' -- high-performance color highlighter for Neovim
+    use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
+    use 'MTDL9/vim-log-highlighting' -- better log highlighter
     use 'Bakudankun/PICO-8.vim' -- pico-8 cartridge files
     use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
     use 'ishan9299/nvim-solarized-lua' -- solarized colorscheme
