@@ -1,12 +1,15 @@
 _exists() { (( $+commands[$1] )) }
-typeset -gx ACOLS_PATH="$HOME/bin/colorizers"
 [[ -x ~/bin/acol ]] && {
-    du(){ command du "$@" | acol "$ACOLS_PATH/du.1.awk" };
-    env(){ command env "$@" | acol "$ACOLS_PATH/env.1.sed" };
-    lsblk(){ command lsblk "$@"| acol "$ACOLS_PATH/lsblk.1.awk" };
-    lspci(){ command lspci "$@"| acol "$ACOLS_PATH/lspci.1.awk" };
-    mount(){ command sudo mount "$@"| acol "$ACOLS_PATH/mount.1.sed" };
-    nmap(){ command nmap "$@" | acol "$ACOLS_PATH/nmap.1.awk" };
+    for t in du env lsblk lspci nmap; do
+        alias $t="acol $t"
+    done
+    mount() {
+        if [[ -z $1 ]]; then
+            acol mount "$@"
+        else
+            sudo mount "$@"
+        fi
+    }
 }
 alias @r='~/bin/music-rename'
 alias qe='cd ^.git*(/om[1]D)'

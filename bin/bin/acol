@@ -1,16 +1,66 @@
 #!/usr/bin/env bash
-
+PREFIX="${PREFIX:-/usr}"
 in=0
-unbuffer=0
-confs=("$HOME/bin/colorizers/")
+
+set -f # disable globbing
+IFS=':'
+#shellcheck disable=2206
+confs=( "$HOME/bin/colorizers" $XDG_CONFIG_DIRS $XDG_CONFIG_HOME "$HOME/.config" "$HOME/.local/share" \
+	"/etc" "$PREFIX/local/share" "$PREFIX/share" )
+IFS=
+set +f # re-enable globbing
+
+help(){
+	cat >&2 << EOF
+Usage: $0 [ -i ] [ -o str ] [ -e str ] [ -O str ] [ -h | -H ]  command [ args ... ]
+
+	-u       Use unbuffer to fake a tty for command.
+	-U       Do not use unbuffer
+	-i       colorize from stdin instead of command (combine with one of -[oeO]
+	-o str   colorize stdout using the given file or spec (default)
+	-e str   colorize stderr using the given file or spec (disables default stdout coloring)
+	-O str   colorize both stdour and stderr the given file or spec
+	-h       show this help and exit
+	-H       show more help and exit
+EOF
+	(( ${#1} )) || return
+	cat >&2 << EOF
+
+By default, $0 will colorize the command's stdout with \`\`command.1.*'',
+and the command's stderr with \`\`command.2.*''. If a spec is specified (with -[oeO]),
+then \`\`spec.*'' will be searched for instead. If a spec contains a \`/', then it is
+considered to be a file.
+
+The paths $0 will look for with your current environment are:
+EOF
+	for p in "${confs[@]}"; do
+		printf >&2 '\t%s/acolor\n' "$p"
+	done
+}
+
 while getopts 'ie:o:O:uUhH' o; do
 	case "$o" in
 		i) in=1 ;;
 		e) espec="$OPTARG" ;;
 		o) ospec="$OPTARG" ;;
-		O) ospec="$OPTARG"; espec="$OPTARG" ;;
-		u) unbuffer=2 ;;
-		U) unbuffer=0 ;;
+		O)
+			ospec="$OPTARG"
+			espec="$OPTARG"
+		;;
+		u) unbuf=2  ;;
+		U) unbuf=0 ;;
+		h)
+			help
+			exit 0
+		;;
+		H)
+			help 1
+			exit 0
+		;;
+		*)
+			help
+			exit 1
+		;;
 	esac
 done
 shift "$(( OPTIND - 1 ))"
@@ -49,13 +99,21 @@ stdout_cmd="$REPLY"
 getf "$1" 2 "$espec"
 stderr_cmd="$REPLY"
 
-if (( in )); then
-	exec 2> >("$stderr_cmd" >&2)
-	exec "$stdout_cmd"
+buf=()
+if ((unbuf == 2)) || [[ -t 0 ]] && ((unbuf)); then
+	command -v unbuffer >/dev/null && {
+		buf=(unbuffer)
+	}
 fi
-# no colorizer found, just exec
-(( ${#stdout_cmd} + ${#stderr_cmd} )) || exec "$@"
 
-# set COMMAND to the command being run (quoted)
-export COMMAND="${*@Q}"
-"$@" 2> >("$stderr_cmd" >&2) | "$stdout_cmd"
+if ((in)); then
+	[[ -n $stderr_cmd ]] && exec 2> >("${stderr_cmd[@]}" >&2)
+	exec "${stdout_cmd[@]}"
+else
+	# Set COMMAND equal to the quoted command
+	cmd="${*@Q}"
+	[[ -n $stderr_cmd ]] && exec 12> >(COMMAND="$cmd" "$stderr_cmd")
+	# no colorizer found, just exec
+	[[ -n $stdout_cmd ]] || exec "$@"
+	exec "${buf[@]}" "$@" 2>&12 | COMMAND="$cmd" "$stdout_cmd"
+fi
