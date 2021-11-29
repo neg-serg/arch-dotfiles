@@ -2,7 +2,7 @@
 
 in=0
 unbuffer=0
-confs=("$HOME/bin/scripts/acol/")
+confs=("$HOME/bin/colorizers/")
 while getopts 'ie:o:O:uUhH' o; do
 	case "$o" in
 		i) in=1 ;;
