@@ -1,4 +1,13 @@
 _exists() { (( $+commands[$1] )) }
+typeset -gx ACOLS_PATH="$HOME/bin/colorizers"
+[[ -x ~/bin/acol ]] && {
+    du(){ command du "$@" | acol "$ACOLS_PATH/du.1.awk" };
+    env(){ command env "$@" | acol "$ACOLS_PATH/env.1.sed" };
+    lsblk(){ command lsblk "$@"| acol "$ACOLS_PATH/lsblk.1.awk" };
+    lspci(){ command lspci "$@"| acol "$ACOLS_PATH/lspci.1.awk" };
+    mount(){ command sudo mount "$@"| acol "$ACOLS_PATH/mount.1.sed" };
+    nmap(){ command nmap "$@" | acol "$ACOLS_PATH/nmap.1.awk" };
+}
 alias @r='~/bin/music-rename'
 alias qe='cd ^.git*(/om[1]D)'
 if [[ $USE_EXA ]] && _exists exa; then
@@ -93,7 +102,7 @@ _exists curl && {
 _exists wget2 && alias wget='wget2'
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(irb guile bb)
-local sudo_list=(umount mount chmod chown modprobe)
+local sudo_list=(umount chmod chown modprobe)
 local logind_sudo_list=(reboot halt poweroff)
 local noglob_list=(fc find ftp sftp lftp history locate rake rsync scp wget youtube-dl links2 lynx you-get pip)
 for c in ${sudo_list[@]}; {_exists "$c" && alias "$c=sudo $c"}
