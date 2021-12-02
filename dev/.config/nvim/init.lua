@@ -16,10 +16,11 @@
 --    *     /-._/-._/
 --        * \   `\  \
 --           `-._/._/
+--
 require('impatient')
 require '00-helpers'
 require '00-settings'
-require 'packer_compiled'
+require 'packer/packer_compiled'
 require '01-plugins'
 _, nvim_utils = pcall(require, "nvim_utils")
 require '02-bindings'
