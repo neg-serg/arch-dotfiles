@@ -17,16 +17,25 @@
 --        * \   `\  \
 --           `-._/._/
 --
-require('impatient')
-require '00-helpers'
-require '00-settings'
-require 'packer/packer_compiled'
-require '01-plugins'
-_, nvim_utils = pcall(require, "nvim_utils")
-require '02-bindings'
-require '04-aucmds'
-require '08-cmds'
-require '14-abbr'
-require '21-lang'
-require '31-statusline'
-require '62-sort-operator'
+function loadrequire(module)
+    local function requiref(module)
+        require(module)
+    end
+    res = pcall(requiref,module)
+    if not(res) then
+        -- Do Stuff when no module
+    end
+end
+
+loadrequire 'impatient'
+loadrequire '00-helpers'
+loadrequire '00-settings'
+loadrequire 'packer/packer_compiled'
+loadrequire '01-plugins'
+loadrequire '02-bindings'
+loadrequire '04-aucmds'
+loadrequire '08-cmds'
+loadrequire '14-abbr'
+loadrequire '21-lang'
+loadrequire '31-statusline'
+loadrequire '62-sort-operator'
