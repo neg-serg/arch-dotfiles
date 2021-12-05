@@ -28,6 +28,7 @@ function loadrequire(module)
 end
 
 loadrequire 'impatient'
+loadrequire 'nvim_utils'
 loadrequire '00-helpers'
 loadrequire '00-settings'
 loadrequire 'packer/packer_compiled'
