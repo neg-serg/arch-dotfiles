@@ -64,11 +64,13 @@ notify() {
         [[ ${i} != "\n" ]] && output="${output}${i}"
     output="\n${output}\n​"
 
-    dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
-        -u "normal" \
-        -i "${image}" "" "${output}" > /tmp/notify_id \
-        -r ${magic_pie}
-    echo -n "${finger}" > "${cover_lock}"
+    if [[ -e "$image" ]]; then
+        dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
+            -u "normal" \
+            -i "${image}" "" "${output}" > /tmp/notify_id \
+            -r ${magic_pie}
+        echo -n "${finger}" > "${cover_lock}"
+    fi
 }
 
 show_notify() {
@@ -84,10 +86,12 @@ show_notify() {
 
 zshexit() {
     (
-        hashsum1=$(xxh32sum "${image}"|cut -d ' ' -f1)
-        sleep 4s
-        hashsum2=$(xxh32sum "${image}"|cut -d ' ' -f1)
-        [[ ${hashsum1} = ${hashsum2} ]] && rm -f ${image}
+        if [[ -e "$image" ]]; then
+            hashsum1=$(xxh32sum "${image}"|cut -d ' ' -f1)
+            sleep 4s
+            hashsum2=$(xxh32sum "${image}"|cut -d ' ' -f1)
+            [[ ${hashsum1} = ${hashsum2} ]] && rm -f ${image}
+        fi
     ) &
 }
 
