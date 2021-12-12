@@ -99,7 +99,9 @@ dump_cover(){
     ffmpeg -y -i "$(mpc --format "$mpd_music_dir"/%file% | head -n 1)" "${image}" > /dev/null 2>&1
 }
 
-dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
+if [[ -f  /tmp/notify_id ]]; then
+    dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
+fi
 
 dump_cover
 
