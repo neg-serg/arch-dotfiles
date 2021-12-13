@@ -1,7 +1,7 @@
 #!/bin/dash
 if [ ! -z $DISPLAY ]; then
     $XDG_CONFIG_HOME/negi3wm/bin/send circle next nwim
-    while ! xdotool search --sync --all --classname '^nwim$' 2>&1 > /dev/null; do
+    while ! xdotool search --sync --all --class '^nwim$' 2>&1 > /dev/null; do
         :;
     done
 fi
