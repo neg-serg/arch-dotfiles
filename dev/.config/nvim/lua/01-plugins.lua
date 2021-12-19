@@ -3,12 +3,13 @@ local install_path=fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 local execute=vim.api.nvim_command
 vim.o.termguicolors=true
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-  execute('packadd packer.nvim')
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup({function(use)
+    if packer_bootstrap then
+        require('packer').sync()
+    end
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt=true} -- no lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
