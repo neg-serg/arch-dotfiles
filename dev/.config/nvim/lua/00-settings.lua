@@ -40,6 +40,7 @@ vim.opt.path = vim.env.XDG_CONFIG_HOME .. '/nvim,' ..
 	vim.env.XDG_CONFIG_HOME .. '/nvim/after,' ..
 	vim.env.HOME .. '/.local/share/nvim/site/' ..
 		',.,..,/usr/include,./include,../include,*'
+vim.opt.fillchars:append { eob = " " }                       -- Disable ~ symbol
 vim.opt.formatprg = 'par -140'                               -- Better format
 vim.opt.report = 0                                           -- No report on substitution
 vim.opt.fileformats = 'unix,dos,mac'                         -- File format fallback
