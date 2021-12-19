@@ -226,10 +226,13 @@ function N.activeLine()
         .. N.VisualSelectionSize()
     local pwd = N.StatusLinePWD()
     if pwd ~= '' then
-        statusline = statusline .. '%#Git# %#String#' .. pwd .. '%#Git# ¦ %#Modi#'
+        statusline = statusline .. '%#Git# %#String#' .. pwd
     end
     filename = N.StatusLineFileName()
     filename = filename:gsub("/", "%%#Base#/%%#Modi#")
+    if filename ~= '' then
+        statusline = statusline .. '%#Git# ¦ %#Modi#'
+    end
     statusline = statusline .. filename
         .. '%#Modi#' .. N.CheckMod()
     if vim.api.nvim_get_option('readonly') then
