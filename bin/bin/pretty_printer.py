@@ -1,19 +1,22 @@
+""" Custom pretty-printer for scripts """
 import os
 import re
 import subprocess
-from colored import fg
+import colored
 
 
-class pretty_printer():
-    darkblue = fg(238)
-    darkwhite = fg(7)
-    almostgray = fg(243)
-    nicecyan = fg(24)
-    default = fg(0)
+class PrettyPrinter():
+    """ Custom pretty-printer for scripts """
+    darkblue = colored.fg(238)
+    darkwhite = colored.fg(7)
+    almostgray = colored.fg(243)
+    nicecyan = colored.fg(24)
+    default = colored.fg(0)
 
     @classmethod
     def fg(cls, color: int):
-        return fg(color)
+        """ Print fg esc-seq """
+        return colored.fg(color)
 
     @classmethod
     def _wrap(cls, out):
@@ -22,6 +25,7 @@ class pretty_printer():
 
     @classmethod
     def wrap(cls, text, delim='', postfix=''):
+        """ Fancy wrapper """
         if delim:
             delim = cls.nicecyan + delim
         if postfix:
@@ -78,7 +82,7 @@ class pretty_printer():
     @classmethod
     def prefix(cls):
         """ Print prefix """
-        return cls.wrap(fg(25) + "❯" + fg(26) + ">")
+        return cls.wrap(colored.fg(25) + "❯" + colored.fg(26) + ">")
 
     @classmethod
     def delim(cls):
@@ -88,26 +92,29 @@ class pretty_printer():
     @classmethod
     def fancy_file(cls, filename):
         """ Pretty printing for filename """
-        filename = re.sub('~', fg(2) + "~" + fg(7), filename)
-        filename = re.sub(os.environ["HOME"], fg(2) + "~" + fg(7), filename)
-        filename = re.sub("([/·])", fg(4) + r"\1" + fg(7), filename)
+        filename = re.sub('~', colored.fg(2) + "~" + colored.fg(7), filename)
+        filename = re.sub(os.environ["HOME"], colored.fg(2) + "~" + colored.fg(7), filename)
+        filename = re.sub("([/·])", colored.fg(4) + r"\1" + colored.fg(7), filename)
         filename = re.sub(
-            "(-\[)([0-9]+)(x)([0-9A-Z]+)(\]-)",
-            fg(4) + r"\1" + fg(7) + r"\2" + \
-            fg(6) + r"\3" + \
-            fg(7) + r"\4" + fg(4) + r"\5" + fg(7),
+            r"(-\[)([0-9]+)(x)([0-9A-Z]+)(\]-)",
+            colored.fg(4) + r"\1" + colored.fg(7) + r"\2" + \
+            colored.fg(6) + r"\3" + \
+            colored.fg(7) + r"\4" + colored.fg(4) + r"\5" + colored.fg(7),
             filename
         )
         return cls.wrap(filename)
 
 
 # file info printer
-class file_info_printer():
+class FileInfoPrinter():
+    """ Prints info about files """
     def __init__(self):
         pass
 
     # counting with external wc is faster than everything else
-    def wccount(self, filename):
+    @staticmethod
+    def wccount(filename):
+        """ Print file line-length """
         out = subprocess.Popen(
             ['wc', '-l', filename],
             stdout=subprocess.PIPE,
@@ -116,37 +123,44 @@ class file_info_printer():
 
         return int(out.partition(b' ')[0])
 
-    def nonexistsfile(self, filename):
+    @staticmethod
+    def nonexistsfile(filename):
+        """ Print info about non-existing file """
         print(
-            pretty_printer.prefix() +
-            pretty_printer.fancy_file(filename) +
-            pretty_printer.delim() +
-            pretty_printer.newfile(filename)
+            PrettyPrinter.prefix() +
+            PrettyPrinter.fancy_file(filename) +
+            PrettyPrinter.delim() +
+            PrettyPrinter.newfile(filename)
         )
 
-    def existsfile(self, filename):
+    @staticmethod
+    def existsfile(filename):
+        """ Print info about existing file """
         print(
-            pretty_printer.prefix() +
-            pretty_printer.fancy_file(filename) +
-            pretty_printer.delim() +
-            pretty_printer.size(os.stat(filename).st_size) +
-            pretty_printer.delim() +
-            pretty_printer.filelen(self.wccount(filename))
+            PrettyPrinter.prefix() +
+            PrettyPrinter.fancy_file(filename) +
+            PrettyPrinter.delim() +
+            PrettyPrinter.size(os.stat(filename).st_size) +
+            PrettyPrinter.delim() +
+            PrettyPrinter.filelen(FileInfoPrinter.wccount(filename))
         )
 
-    def currentdir(self, filename):
+    @staticmethod
+    def currentdir(filename):
+        """ Current directory printer """
         print(
-            pretty_printer.prefix() +
-            pretty_printer.wrap("current dir") +
-            pretty_printer.delim() +
-            pretty_printer.dir(filename)
+            PrettyPrinter.prefix() +
+            PrettyPrinter.wrap("current dir") +
+            PrettyPrinter.delim() +
+            PrettyPrinter.dir(filename)
         )
 
-    def dir(self, filename):
+    @staticmethod
+    def dir(filename):
+        """ Directory printer """
         print(
-            pretty_printer.prefix() +
-            pretty_printer.fancy_file(filename) +
-            pretty_printer.delim() +
-            pretty_printer.dir(filename)
+            PrettyPrinter.prefix() +
+            PrettyPrinter.fancy_file(filename) +
+            PrettyPrinter.delim() +
+            PrettyPrinter.dir(filename)
         )
-

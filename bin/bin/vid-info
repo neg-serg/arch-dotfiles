@@ -22,8 +22,7 @@ import math
 import datetime
 import enum
 from docopt import docopt
-
-from scripts.pretty_printer import pretty_printer
+from pretty_printer import PrettyPrinter
 
 
 class SizeUnit(enum.Enum):
@@ -68,7 +67,7 @@ def media_info(filename):
 
     mediainfo = ''.join(str(mediainfo_ret))
     ret = json.loads(mediainfo)
-    pp = pretty_printer
+    pp = PrettyPrinter
     out, vid_frame_rate = "", ""
     audio_bitrate, audio_sample_rate = "", ""
     if not ret.get('streams', []):
@@ -113,7 +112,7 @@ def main():
     """ Entry point """
     cmd_args = docopt(__doc__, version='1.0')
     files = cmd_args['FILES']
-    pp = pretty_printer
+    pp = PrettyPrinter
     print_cwd, dir_name = False, ""
 
     for fname in files:

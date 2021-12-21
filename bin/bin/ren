@@ -17,8 +17,7 @@ year :: 2021
 import os
 import re
 from docopt import docopt
-
-from scripts.pretty_printer import pretty_printer
+import pretty_printer
 
 def fancy_name(filename, file=False):
     """ Some magic to return beautiful filename """
@@ -63,7 +62,7 @@ def main():
             if dir_name:
                 pref = dir_name + '/'
             os.rename(pref + input_name, pref + output_name)
-        pp = pretty_printer
+        pp = pretty_printer.PrettyPrinter
         print(f'{pp.prefix()}{pp.fancy_file(dir_name)}'
             f'{pp.fancy_file(input_name)} -> {pp.fancy_file(output_name)}'
         )

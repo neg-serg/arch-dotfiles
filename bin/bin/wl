@@ -88,12 +88,12 @@ class WallpaperManager():
     def print_wall_history(self, history):
         """ Print wall history """
         home = str(Path.home())
-        from scripts.pretty_printer import pretty_printer
+        from pretty_printer import PrettyPrinter
         for num, line in enumerate(history):
             if line.startswith(home):
                 line = '~/' + line.split(home)[1]
-                number = pretty_printer.wrap(str(num))
-                file_name = pretty_printer.fancy_file(str(Path(line)))
+                number = PrettyPrinter.wrap(str(num))
+                file_name = PrettyPrinter.fancy_file(str(Path(line)))
                 print(f'{number} {file_name}')
 
     def set_wallpaper(self):
