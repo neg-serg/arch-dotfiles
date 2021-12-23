@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 ######################################
 #> https://github.com/pystardust/ytfzf
@@ -789,7 +789,7 @@ print_data () {
 get_video_format () {
 	# select format if flag given
 	if [ $show_format -eq 1 ]; then
-        formats=$(youtube-dl -F "$(printf "$selected_urls")") 
+        formats=$(youtube-dl -F "$(printf "$selected_urls")")
         line_number=$(printf "$formats" | grep -n '.*extension  resolution.*' | cut -d: -f1)
         quality=$(printf "$formats \n1 2 xAudio" | awk -v lineno=$line_number 'FNR > lineno {print $3}' | sort -n |  awk -F"x" '{print $2 "p"}' | uniq | sed -e "s/Audiop/Audio/" -e "/^p$/d" | eval "$menu_command" | sed "s/p//g")
 		[ -z "$quality"  ] && exit;
@@ -1084,7 +1084,7 @@ parse_opt () {
 			sort_videos_data=${optarg:-1}
 			is_non_number "$sort_videos_data" && bad_opt_arg "--sort=" "$sort_videos_data" ;;
 
-		S)	
+		S)
 			scrape="yt_subs" ;;
 		subs)
 			sub_link_count=$optarg
@@ -1094,8 +1094,8 @@ parse_opt () {
 		fancy-subs)
 			fancy_subscriptions_menu=${optarg:-1}
 			is_non_number "$fancy_subscriptions_menu" && bad_opt_arg "--fancy-subs=" "$fancy_subscriptions_menu" ;;
-			
-		T|trending)	
+
+		T|trending)
 			trending_tab=${optarg:-}
 			scrape="trending" ;;
 
