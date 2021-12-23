@@ -1,12 +1,9 @@
 #!/usr/bin/env dash
 export ENV=$HOME/.profile
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 export XDG_CURRENT_DESKTOP=GNOME
-eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-dbus-update-activation-environment --systemd --all
 xrdb -merge "$HOME/.Xresources"
 xset s off -dpms
 sudo openrgb --server -p neg.orp &
-eval $(gnome-keyring-daemon --start)
+eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 exec /usr/bin/i3-gnome
