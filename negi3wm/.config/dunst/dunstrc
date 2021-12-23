@@ -5,11 +5,11 @@
     corner_radius = 4
     ellipsize = end
     follow = mouse
-    font = Iosevka Medium 22
-    format = "<span font_desc='Iosevka Medium 22' foreground='#2e72ac'>%s</span>\n%b"
+    font = Iosevka Medium 14
+    format = "<span font_desc='Iosevka Medium 14' foreground='#2e72ac'>%s</span>\n%b"
     frame_color = "#000000"
-    frame_width = 20
-    height = 550
+    frame_width = 10
+    height = 350
     hide_duplicate_count = true
     horizontal_padding = 6
     icon_path = /usr/share/icons/kora
@@ -20,7 +20,7 @@
     indicate_hidden = true
     line_height = 0
     markup = full
-    max_icon_size = 400
+    max_icon_size = 250
     maximum_width = 1120
     minimum_height = 0
     monitor = 0
@@ -42,7 +42,7 @@
     sticky_history = true
     transparency = 14
     vertical_alignment = center
-    width = 1000
+    width = 800
     word_wrap = false
 
 [urgency_low]
