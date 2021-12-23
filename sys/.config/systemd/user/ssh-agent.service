@@ -1,12 +1,24 @@
+# [Unit]
+# Description=SSH key agent
+# Wants=dbus.socket
+# After=dbus.socket
+#
+# [Service]
+# Type=simple
+# Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+# ExecStartPre=/usr/bin/dbus-update-activation-environment --systemd SSH_AUTH_SOCK
+# ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+# ExecStopPost=/usr/bin/dbus-update-activation-environment --systemd SSH_AUTH_SOCK=
+# Restart=always
+
 [Unit]
-Description=SSH key agent
-Wants=dbus.socket
-After=dbus.socket
+Description=GNOME Keyring Daemon
+IgnoreOnIsolate=true
 
 [Service]
-Type=simple
-Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
-ExecStartPre=/usr/bin/dbus-update-activation-environment --systemd SSH_AUTH_SOCK
-ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
-ExecStopPost=/usr/bin/dbus-update-activation-environment --systemd SSH_AUTH_SOCK=
-Restart=always
+Type=dbus
+EnvironmentFile=-/etc/locale.conf
+Environment=DISPLAY=:0
+BusName=org.gnome.keyring
+BusName=org.freedesktop.secrets
+ExecStart=/usr/bin/gnome-keyring-daemon --start -f --control-directory=%t/keyring
