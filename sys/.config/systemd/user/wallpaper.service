@@ -1,12 +1,10 @@
 [Unit]
 Description=Setup wallpaper on startup
 After=xorg.service
-PartOf=graphical-session.target
 
 [Service]
 Type=forking
 ExecStart=%h/bin/wl -r
-ExecStartPre=/bin/sleep 3
 Restart=on-failure
 
 [Install]
