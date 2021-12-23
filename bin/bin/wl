@@ -27,6 +27,7 @@ year :: 2020
 """
 
 import os
+import sys
 import errno
 import subprocess
 import random
@@ -150,4 +151,8 @@ def main():
 
 if __name__ == '__main__':
     cmd_args = docopt(__doc__, version='0.1')
+    if os.environ.get('DISPLAY'):
+        print("X11 is available")
+    else:
+        sys.exit(1)
     main()
