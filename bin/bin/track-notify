@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 pics="$(realpath ${HOME}/tmp/mpd-covers)"
 cover_lock="${pics}/notify.lock"

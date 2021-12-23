@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Copyright (c) 2010, 2013 Yu-Jie Lin
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of

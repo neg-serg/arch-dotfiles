@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 pushd() {
 	SAVE=$(pwd)
