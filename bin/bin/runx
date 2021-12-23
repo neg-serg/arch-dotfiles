@@ -1,7 +1,0 @@
-#!/usr/bin/env dash
-dbus-update-activation-environment --systemd --all
-XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority \
-XINITRC=$HOME/.config/xinit/xinitrc \
-XSERVERRC=$HOME/.config/xinit/xserverrc \
-    /usr/bin/xinit -- :1 -nolisten tcp vt1
-# vim: set ftype=sh
