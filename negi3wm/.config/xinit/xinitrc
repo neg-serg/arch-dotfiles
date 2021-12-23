@@ -1,7 +1,6 @@
 #!/usr/bin/env dash
 export ENV=$HOME/.profile
 xset s off -dpms
-sudo openrgb --server -p neg.orp &
 eval $(/usr/bin/gnome-keyring-daemon -s --components=gpg,pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 i3
