@@ -5,6 +5,3 @@ After=dbus.service
 [Service]
 Type=forking
 ExecStart=%h/.config/xinit/kbd-conf
-
-[Install]
-WantedBy=default.target

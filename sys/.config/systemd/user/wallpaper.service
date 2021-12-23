@@ -1,11 +1,8 @@
 [Unit]
 Description=Setup wallpaper on startup
-After=xorg.service
+After=i3-wm.service
 
 [Service]
 Type=forking
 ExecStart=%h/bin/wl -r
 Restart=on-failure
-
-[Install]
-WantedBy=default.target

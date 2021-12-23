@@ -14,6 +14,3 @@ RestartSec=5
 StartLimitBurst=3
 # Don't try to restart after 60 seconds
 StartLimitIntervalSec=60
-
-[Install]
-WantedBy=default.target

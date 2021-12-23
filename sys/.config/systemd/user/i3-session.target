@@ -1,0 +1,7 @@
+[Unit]
+Description=i3 session
+BindsTo=graphical-session.target
+Wants=picom.service
+Wants=kdb-conf.service
+Wants=wallpaper.service
+# Wants=i3-companion.service
