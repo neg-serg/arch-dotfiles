@@ -1,0 +1,20 @@
+[Unit]
+Description=Xorg
+Documentation=man:Xorg(1)
+Requires=x11.socket
+After=x11.socket
+# Add this line
+Before=x11.target
+
+[Service]
+Environment="XINITRC=%h/.config/xinit/xinitrc"
+Environment="XSERVERRC=%h/.config/xinit/xserverrc"
+ExecStart=/usr/bin/xinit -- :1 -nolisten tcp vt1
+# ExecStart=/usr/bin/Xorg $DISPLAY -nolisten tcp -noreset -verbose 1 vt1
+SuccessExitStatus=0 1
+
+[Install]
+Alias=x11.service
+Also=x11.socket x11.target
+# Add this line:
+WantedBy=default.target

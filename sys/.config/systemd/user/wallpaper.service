@@ -1,6 +1,6 @@
 [Unit]
 Description=Setup wallpaper on startup
-After=xinit.service
+After=xorg.service
 PartOf=graphical-session.target
 
 [Service]
