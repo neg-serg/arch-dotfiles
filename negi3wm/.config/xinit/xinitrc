@@ -1,8 +1,7 @@
 #!/usr/bin/env dash
 export ENV=$HOME/.profile
-export XDG_CURRENT_DESKTOP=GNOME
 xset s off -dpms
 sudo openrgb --server -p neg.orp &
-eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+eval $(/usr/bin/gnome-keyring-daemon -s --components=gpg,pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
-exec /usr/bin/i3-gnome
+i3
