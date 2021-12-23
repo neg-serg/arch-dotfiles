@@ -46,7 +46,7 @@ _exists rg && {
 alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
 _exists paru && {
-    alias paru='yay'
+    alias yay='paru'
     alias U='paru -Su --devel --noconfirm --timeupdate'
 }
 _exists sudo && {alias sudo='sudo '; alias s='sudo '}
