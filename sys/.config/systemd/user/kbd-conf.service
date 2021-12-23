@@ -4,7 +4,7 @@ After=dbus.service
 
 [Service]
 Type=forking
-ExecStartPre=/bin/sleep 6
+ExecStartPre=/bin/sleep 1
 ExecStart=%h/.config/xinit/kbd-conf
 
 [Install]
