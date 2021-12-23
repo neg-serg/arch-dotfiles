@@ -1,7 +1,17 @@
 [Unit]
 Description=i3 session
 BindsTo=graphical-session.target
-Wants=picom.service
+
+Wants=dpms-off.service
+Wants=gsd-xsettings.service
 Wants=kdb-conf.service
+Wants=picom.service
+Wants=policykit-agent.service
+Wants=pulseaudio.socket
+Wants=ssh-agent.service
 Wants=wallpaper.service
-# Wants=i3-companion.service
+Wants=xiccd.service
+Wants=xrdb.service
+Wants=xsettingsd.service
+# Wants=inputplug.service
+# Wants=xss-lock.service
