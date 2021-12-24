@@ -1,3 +1,2 @@
 #!/usr/bin/env dash
-dbus-update-activation-environment --all
 exec i3
