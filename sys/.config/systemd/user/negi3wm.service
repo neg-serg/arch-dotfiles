@@ -1,0 +1,7 @@
+[Unit]
+Description=Negi3WM Window Manager mod for i3wm
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%E/negi3wm/bin/negi3wm_run
+Restart=on-failure

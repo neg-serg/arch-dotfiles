@@ -1,0 +1,7 @@
+[Unit]
+Description=Polybar statusbar
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/polybar -q main
+Restart=on-failure
