@@ -98,4 +98,3 @@ map('n', '<leader>l', ':terminal tmux setenv NEOVIM_TERMINAL 1 \\; splitw -l 6 -
 map('n', '[Qleader]e', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
 map('n', '[Qleader]f', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
 map('n', '[Qleader]c', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').git_commits{}<CR>", {silent=true, noremap=true})
--- nmap <silent> <leader>s :!tmux resize-pane -Z<cr>:FzfLua git_status<cr><F2>
