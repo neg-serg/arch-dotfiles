@@ -1,11 +1,12 @@
 #!/usr/bin/env dash
 # Switch to US international with Caps as Mod/Escape
-sudo localectl set-x11-keymap "us,ru" altgr-intl "" grp:alt_shift_toggle,grp:alt_shift_toggle,grp_led:scroll,ctrl:nocaps,compose:ralt,pointerkeys
-unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
-if [[ ! -z $COMPACT_KEYBOARD ]]; then
-    xcape -e 'Caps_Lock=Escape'
-    xmodmap "$XDG_CONFIG_HOME/xinit/xmodmap-compact"
+sudo localectl set-x11-keymap "us,ru" altgr-intl "" grp:alt_shift_toggle,grp_led:scroll,ctrl:nocaps,compose:ralt,pointerkeys
+pkill unclutter; unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
+pkill xcape
+if [ ! -z $COMPACT_KEYBOARD ]; then
+    xmodmap -e "keycode 9 = grave asciitilde"
+    xmodmap -e "keycode 49 = Escape"
+    xcape -t 140 -e 'Control_L=Escape'
 else
-    pkill xcape
     xmodmap "$XDG_CONFIG_HOME/xinit/xmodmap-default"
 fi
