@@ -2,3 +2,10 @@
 # Switch to US international with Caps as Mod/Escape
 sudo localectl set-x11-keymap "us,ru" altgr-intl "" grp:alt_shift_toggle,grp:alt_shift_toggle,grp_led:scroll,ctrl:nocaps,compose:ralt,pointerkeys
 unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
+if [[ ! -z $COMPACT_KEYBOARD ]]; then
+    xcape -e 'Caps_Lock=Escape'
+    xmodmap "$XDG_CONFIG_HOME/xinit/xmodmap-compact"
+else
+    pkill xcape
+    xmodmap "$XDG_CONFIG_HOME/xinit/xmodmap-default"
+fi
