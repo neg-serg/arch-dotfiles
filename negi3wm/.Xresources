@@ -1,5 +1,5 @@
 Sxiv.background: #000000
-Sxiv.font: Iosevka:style=Medium:size=28
+Sxiv.font: Iosevka:style=Medium:size=17
 Sxiv.foreground: #3993AA
 Sxiv.selection:  #342EB9
 Xcursor.size: 48
