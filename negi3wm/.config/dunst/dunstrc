@@ -21,10 +21,9 @@
     line_height = 0
     markup = full
     max_icon_size = 250
-    maximum_width = 1120
     minimum_height = 0
     monitor = 0
-    notification_limit = 3
+    notification_limit = 2
     offset = 0x54
     origin = bottom-right
     padding = 0
@@ -33,6 +32,7 @@
     progress_bar_max_width = 300
     progress_bar_min_width = 150
     progress_bar = true
+    scale = 0
     separator_color = frame
     separator_height = 4
     show_age_threshold = -1
@@ -42,7 +42,7 @@
     sticky_history = true
     transparency = 14
     vertical_alignment = center
-    width = 800
+    width = (800, 1120)
     word_wrap = false
 
 [urgency_low]
