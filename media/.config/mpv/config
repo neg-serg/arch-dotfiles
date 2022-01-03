@@ -16,21 +16,12 @@ dither-depth=auto
 correct-downscaling
 linear-downscaling=yes
 vd-lavc-threads=8
-gpu.api=vulkan
 vulkan-swap-mode=immediate
 vo=gpu
 interpolation=no
 hwdec-codecs=all
-hwdec=cuda
+hwdec=nvdec
 video-sync=display-resample
-# --[ Time scaling ]----------------------------------------
-# interpolation=yes
-# tscale=oversample
-# tscale=box
-# tscale-window=quadric
-# tscale-clamp=0.0
-# tscale-radius=1.025
-# osd-msg1="FPS: ${estimated-display-fps}
 #--[Antiringing]-------------------------------------------
 scale-antiring=0.7 # luma upscale deringing
 dscale-antiring=0.7 # luma downscale deringing
@@ -38,7 +29,7 @@ cscale-antiring=0.7 # chroma upscale deringing
 #--[Volume]------------------------------------------------
 volume=100
 volume-max=100
-ao=pulse,jack
+ao=pipewire,jack
 #--[Language]----------------------------------------------
 slang=ru,rus
 alang=en
