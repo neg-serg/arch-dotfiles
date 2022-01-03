@@ -20,7 +20,7 @@ vulkan-swap-mode=immediate
 vo=gpu
 interpolation=no
 hwdec-codecs=all
-hwdec=nvdec
+hwdec=auto
 video-sync=display-resample
 #--[Antiringing]-------------------------------------------
 scale-antiring=0.7 # luma upscale deringing
