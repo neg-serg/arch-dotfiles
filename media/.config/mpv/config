@@ -60,13 +60,14 @@ ytdl
 ytdl-format=bestvideo+bestaudio/best
 #--[ETC]---------------------------------------------------
 screenshot-template="~/dw/scr-%F_%P"
-quiet
 
 [extension.flac]
+term-osd=auto
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
 
 [extension.mp3]
+term-osd=auto
 term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
 
