@@ -35,7 +35,7 @@ pl_rofi() {
     pushd ${arg_}
     rg_cmd=(
         rg -g \"'!{.git,node_modules}/*'\" -g \"'!*.srt'\"
-        --files --hidden --follow
+        --files --hidden --follow --sort path
     )
     if [[ ${set_maxdepth} == true ]]; then
         rg_cmd+=(--max-depth 1)
@@ -44,7 +44,7 @@ pl_rofi() {
     if [[ $#rg_cmd_result > 1 ]]; then
         find_result=$(rofi -theme clip -p '⟬vid⟭ ❯>' -i -dmenu <<< ${rg_cmd_result})
     else
-        find_result=rg_cmd_result
+        find_result="$rg_cmd_result"
     fi
     xsel <<< "${find_result}"
     if [[ ! -z ${find_result} ]]; then
