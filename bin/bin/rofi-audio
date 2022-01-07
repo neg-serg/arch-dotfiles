@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 
-mpd_menu='title_copy artist_copy album_copy pulseaudio_output bit_perfect_output'
+mpd_menu='title_copy artist_copy album_copy pipewire_output alsa_output'
 blue="<span weight='bold' color='#395573'>"
 norm="<span weight='bold' color='#6C7E96'>"
 close="</span>"
@@ -14,7 +14,7 @@ generate_menu() {
 }
 
 handler() {
-    bitperfect_output_name='Gustard X26Pro'
+    alsa_name='Gustard X26Pro'
     timeout="5s"
     while IFS= read -r arg; do
         if echo $arg | rg "title_copy" > /dev/null; then
@@ -23,14 +23,14 @@ handler() {
             mpc current -f "[%album%]"|xsel -bi
         elif echo $arg | rg "artist_copy" > /dev/null; then
             mpc current -f "[%artist%]"|xsel -bi
-        elif echo $arg | rg "pulseaudio_output" > /dev/null; then
+        elif echo $arg | rg "pipewire_output" > /dev/null; then
             mpc pause
-            mpc enable Pulseaudio
-            mpc disable "$bitperfect_output_name" && mpc play
-        elif echo $arg | rg "bit_perfect_output" > /dev/null; then
+            mpc enable PipeWire
+            mpc disable "$alsa_name" && mpc play
+        elif echo $arg | rg "alsa_output" > /dev/null; then
             mpc pause
-            mpc enable "$bitperfect_output_name"
-            mpc disable Pulseaudio
+            mpc enable "$alsa_name"
+            mpc disable PipeWire
             mpc play
             sleep "$timeout";
             mpc play
