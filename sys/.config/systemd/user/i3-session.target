@@ -15,5 +15,6 @@ Wants=wallpaper.service
 Wants=xiccd.service
 Wants=xrdb.service
 Wants=xsettingsd.service
+Wants=negi3wm-autostart.service
 # Wants=inputplug.service
 # Wants=xss-lock.service
