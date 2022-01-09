@@ -1,6 +1,5 @@
 [Unit]
 Description=Polybar statusbar
-After=systemd-networkd.service
 PartOf=graphical-session.target
 
 [Service]
