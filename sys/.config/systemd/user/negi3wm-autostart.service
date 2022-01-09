@@ -3,6 +3,5 @@ Description=Startup stuff depended on negi3wm
 After=negi3wm.service
 
 [Service]
-Type=forking
 ExecStart=%E/negi3wm/bin/send circle next term
 Restart=on-failure
