@@ -11,11 +11,7 @@ _exists() { (( $+commands[$1] )) }
         fi
     }
 }
-alias @r='~/bin/music-rename'
 alias qe='cd ^.git*(/om[1]D)'
-if [[ $USE_EXA ]] && _exists exa; then
-    alias ls='exa -ga --icons --group-directories-first --time-style=long-iso'
-fi
 if _exists lsc; then
     alias ls='lsc'
     alias l='lsc -l'
@@ -45,17 +41,10 @@ _exists rg && {
 }
 alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
-_exists paru && {
-    alias yay='paru'
-    alias U='paru -Su --devel --noconfirm --timeupdate'
-}
+_exists paru && alias yay='paru'
 _exists sudo && {alias sudo='sudo '; alias s='sudo '}
 _exists plocate && alias locate='plocate'
 _exists dd && alias dd='dd status=progress'
-autoload -U zcalc
-__calc_plugin() { zcalc -e "$*" }
-aliases[=]='noglob __calc_plugin'
-_exists bc && alias '?=bc -l <<<'
 _exists hxd && alias hexdump='hxd'
 _exists prettyping && alias ping='prettyping'
 _exists handlr && alias e='handlr open'
@@ -65,31 +54,20 @@ _exists dust && alias sp='dust -r'
 _exists lfs && alias df='lfs'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
-_exists fd && alias fd='fd -H -u'
+_exists fd && alias fd='fd -Hu'
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
-_exists nvim && {
-    alias vim='nvim'
-    alias v='~/bin/v'
-    alias nvim='v'
-}
+_exists nvim && { alias vim='nvim'; alias v='~/bin/v'; alias nvim='v'; }
 _exists iostat && alias iostat='iostat -mtx'
 _exists iotop && alias iotop='sudo iotop -oPa'
-_exists patool && {
-    alias se='patool extract'
-    alias pk='patool create'
-}
+_exists patool && { alias se='patool extract'; alias pk='patool create'; }
 _exists xz && alias xz='xz --threads=0'
 _exists pigz && alias gzip='pigz'
 _exists pbzip2 && alias bzip2='pbzip2'
 _exists zstd && alias zstd='zstd --threads=0'
 _exists mpv && {
-    local mpv_ipc='--input-ipc-server=/tmp/mpvsocket'
-    alias mpa="mpv ${mpv_ipc} --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
-    alias mpA="mpv ${mpv_ipc} --vo=gpu -fs -ao null "$@" > ${HOME}/tmp/mpv.log"
-    alias mpi="mpv ${mpv_ipc} --vo=gpu \
-        --interpolation=yes \
-        --tscale='oversample' \
+    alias mpa="mpv --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
+    alias mpi="mpv --vo=gpu --interpolation=yes --tscale='oversample' \
         --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
 }
 _exists mpc && {
@@ -98,10 +76,6 @@ _exists mpc && {
 }
 _exists youtube-dl && alias yt='noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"'
 _exists ytfzf && alias ytfzf='ytfzf --preview-side=left -t'
-_exists curl && {
-    alias weather="curl 'wttr.in/?T'"
-    alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
-}
 _exists wget2 && alias wget='wget2'
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(irb guile bb)
@@ -149,6 +123,10 @@ _exists git && {
     --preview-window='noborder,right:70%'
     +1"
 }
+_exists curl && {
+    alias weather="curl 'wttr.in/?T'"
+    alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
+}
 _exists fzf && {
     alias ttcmd="echo '' | fzf -q '$*' --prompt '│ ' --pointer '― ' --preview-window=up:99% --preview='eval {q}'"
     bindings() { bindkey -L | fzf }
@@ -159,6 +137,5 @@ _exists fzf && {
     }
 }
 _exists xev && alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
-_exists khal && alias cal='khal calendar'
 autoload zc
 unfunction _exists
