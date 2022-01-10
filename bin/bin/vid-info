@@ -65,8 +65,7 @@ def media_info(filename):
     if mediainfo_ret is None:
         return
 
-    mediainfo = ''.join(str(mediainfo_ret))
-    ret = json.loads(mediainfo)
+    ret = json.loads(''.join(mediainfo_ret))
     pp = PrettyPrinter
     out, vid_frame_rate = "", ""
     audio_bitrate, audio_sample_rate = "", ""
@@ -75,7 +74,7 @@ def media_info(filename):
     for stream in ret['streams']:
         if stream['codec_type'] == 'video':
             out += pp.wrap(str(stream['width']) + 'x' + str(stream['height']))
-            frame_rate = stream['avg_frame_rateame_rate'].split('/')
+            frame_rate = stream['avg_frame_rate'].split('/')
             vid_frame_rate = round(float(frame_rate[0]) / float(frame_rate[1]))
         if stream['codec_type'] == 'audio':
             if stream.get('bit_rate', ''):
