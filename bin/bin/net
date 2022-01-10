@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+import threading
+import time
+from collections import deque
+import psutil
+
+
+def calc_ul_dl(rate, dt=1, interface="net1"):
+    t0 = time.time()
+    counter = psutil.net_io_counters(pernic=True)[interface]
+    tot = (counter.bytes_sent, counter.bytes_recv)
+
+    while True:
+        last_tot = tot
+        time.sleep(dt)
+        counter = psutil.net_io_counters(pernic=True)[interface]
+        t1 = time.time()
+        tot = (counter.bytes_sent, counter.bytes_recv)
+        ul, dl = [
+            (now - last) / (t1 - t0) / 1024.0
+            for now, last in zip(tot, last_tot)
+        ]
+        rate.append((ul, dl))
+        t0 = time.time()
+
+
+def print_rate(rate):
+    if len(list(rate)):
+        r = list(rate[0])
+        print("%{T4 F#8BAAC7}%{T- F-} " + format(r[1], '.1f') + "%{F#395573}/%{F-}" + format(r[0], '.1f'), flush=True)
+
+
+# Create the ul/dl thread and a deque of length 1 to hold the ul/dl- values
+transfer_rate = deque(maxlen=1)
+t = threading.Thread(target=calc_ul_dl, args=(transfer_rate,))
+
+# The program will exit if there are only daemonic threads left.
+t.daemon = True
+t.start()
+
+# The rest of your program, emulated by me using a while True loop
+while True:
+    print_rate(transfer_rate)
+    time.sleep(1)
