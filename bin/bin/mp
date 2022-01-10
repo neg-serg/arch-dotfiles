@@ -16,7 +16,7 @@ main() {
         done
         echo -n "$args" | xargs -0n10 -P 10 ~/bin/vid-info
     } &
-    mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > $HOME/tmp/mpv.log
+    mpv --vo=gpu "$@" > $HOME/tmp/mpv.log
 }
 
 main "$@" 2>/dev/null
