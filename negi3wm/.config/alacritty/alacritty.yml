@@ -14,7 +14,7 @@ window:
   dynamic_title: false
   gtk_theme_variant: dark
   startup_mode: Maximized
-background_opacity: 0.88
+  opacity: 0.88
 
 font:
   normal:
