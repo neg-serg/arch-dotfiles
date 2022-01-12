@@ -1,0 +1,12 @@
+[Unit]
+Description=Start tmux in detached session
+After=getty.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/tmux -S /home/neg/.config/negi3wm/cache/tmux_sockets/term.socket new-session -s term -d
+ExecStop=/usr/bin/tmux -S /home/neg/.config/negi3wm/cache/tmux_sockets/term.socket kill-session -t term
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
