@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 # Switch to US international with Caps as Mod/Escape
-sudo localectl set-x11-keymap "us,ru" altgr-intl "" grp:alt_shift_toggle,grp_led:scroll,ctrl:nocaps,compose:ralt,compose:menu,compose:rwin,pointerkeys
+localectl set-x11-keymap "us,ru" altgr-intl "" grp:alt_shift_toggle,grp_led:scroll,ctrl:nocaps,compose:ralt,compose:menu,compose:rwin,pointerkeys
 pkill unclutter; unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
 pkill xcape
 if [ ! -z $COMPACT_KEYBOARD ]; then
