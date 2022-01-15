@@ -99,26 +99,29 @@ dump_cover(){
     ffmpeg -y -i "$(mpc --format "$mpd_music_dir"/%file% | head -n 1)" "${image}" > /dev/null 2>&1
 }
 
-if [[ -f  /tmp/notify_id ]]; then
-    dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
-fi
+main(){
+    if [[ -f  /tmp/notify_id ]]; then
+        dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
+    fi
 
-dump_cover
-
-[[ ! -d "${pics}" ]] && mkdir -p "${pics}"
-prev="${pics}/prev.png"
-fd prev.png --changed-before '12min' -x rm '{}'
-if [[ -f ${image} ]]; then
-    show_notify
+    dump_cover
     [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
-    # send notification with compatible image
-    if [[ ! -f "${prev}" ]]; then
+    prev="${pics}/prev.png"
+    fd prev.png --changed-before '12min' -x rm '{}'
+    if [[ -f ${image} ]]; then
         show_notify
-    else
-        local picslist=$(setopt nullglob dotglob; print "${pics}"/*)
-        if [[ $(cmp_img "${image}" "${prev}") == "False" ]] \
-            && (( ${#picslist[@]} > 1 )); then
+        [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
+        # send notification with compatible image
+        if [[ ! -f "${prev}" ]]; then
             show_notify
+        else
+            local picslist=$(setopt nullglob dotglob; print "${pics}"/*)
+            if [[ $(cmp_img "${image}" "${prev}") == "False" ]] \
+                && (( ${#picslist[@]} > 1 )); then
+                show_notify
+            fi
         fi
     fi
-fi
+}
+
+main "$@" &!
