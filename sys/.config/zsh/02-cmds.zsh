@@ -52,6 +52,7 @@ _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY
 _exists bpython && alias python='bpython'
 _exists dust && alias sp='dust -r'
 _exists duf && alias df='duf'
+_exists btm && alias htop='btm -b'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -Hu'
