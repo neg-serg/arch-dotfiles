@@ -116,7 +116,7 @@ main(){
             show_notify
         else
             local picslist=$(setopt nullglob dotglob; print "${pics}"/*)
-            if [[ $(cmp_img "${track_cover}" "${prev_track_cover}") == "False" ]] \
+            if cmp_img "${track_cover}" "${prev_track_cover}" \
                 && (( ${#picslist[@]} > 1 )); then
                 show_notify
             fi

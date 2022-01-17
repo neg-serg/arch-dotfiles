@@ -5,8 +5,9 @@ from PIL import Image
 from imagehash import dhash
 
 try:
-    print(
-        dhash(Image.open(sys.argv[1])) == dhash(Image.open(sys.argv[2]))
-    )
+    if dhash(Image.open(sys.argv[1])) == dhash(Image.open(sys.argv[2])):
+        sys.exit(0)
+    else:
+        sys.exit(2)
 except Exception:
-    print("Error")
+    sys.exit(1)
