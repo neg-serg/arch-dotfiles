@@ -1,7 +1,10 @@
 // Blended keycolor transparancy by clort.  Jan, 2020
-// all colors below 25% intensity get gradually less opaque, down 
-// to the target opacity 
-//
+// all colors below 25% intensity get gradually less opaque, down
+// to the target opacity
+
+// Example:
+// picom --backend glx --glx-fshader-win "$(cat clortkeyramp.glsl)"
+
 uniform float opacity;
 uniform sampler2D tex;
 
