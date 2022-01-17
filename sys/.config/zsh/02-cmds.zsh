@@ -51,7 +51,7 @@ _exists handlr && alias e='handlr open'
 _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
 _exists bpython && alias python='bpython'
 _exists dust && alias sp='dust -r'
-_exists lfs && alias df='lfs'
+_exists duf && alias df='duf'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -Hu'
