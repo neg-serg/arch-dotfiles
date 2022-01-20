@@ -102,6 +102,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
+    use 'rebelot/heirline.nvim' -- lua statusline api
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
     use 'MTDL9/vim-log-highlighting' -- better log highlighter
     use 'Bakudankun/PICO-8.vim' -- pico-8 cartridge files
