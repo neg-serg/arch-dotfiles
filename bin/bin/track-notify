@@ -8,11 +8,11 @@ track_path="$(mpc --format "$mpd_music_dir"/%file% | head -n 1)"
 track_dir=$(dirname "$track_path")
 prev_track_cover="${pics}/prev_track_cover.png"
 track_cover="$track_dir/cover.jpg"
+picslist=$(setopt nullglob dotglob; print "${pics}"/*)
 
 nr(){ print "<span weight='Bold' color='#b8c5d9'>$1</span>" }
 fa(){ print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>" }
 E(){ print '</span>' }
-cmp_img() { ${HOME}/bin/cmp-imgs.py "${1}" "${2}" }
 prefix=(
     ''                        # track name    [1]
     "$(fa '#004E4E')   $(E)" # artist        [2]
@@ -82,17 +82,6 @@ show_notify() {
     cp "${track_cover}" "${prev_track_cover}"
 }
 
-zshexit() {
-    (
-        if [[ -e "$track_cover" ]]; then
-            hashsum1=$(xxh32sum "${track_cover}"|cut -d ' ' -f1)
-            sleep 4s
-            hashsum2=$(xxh32sum "${track_cover}"|cut -d ' ' -f1)
-            [[ ${hashsum1} = ${hashsum2} ]] && rm -f ${track_cover}
-        fi
-    ) &
-}
-
 extract_and_dump_cover_if_none(){
     if [[ ! -e ${track_cover} ]]; then
         ffmpeg -y -i "$(mpc --format "$mpd_music_dir"/%file% | head -n 1)" "${track_cover}" > /dev/null 2>&1
@@ -100,23 +89,17 @@ extract_and_dump_cover_if_none(){
 }
 
 main(){
-    if [[ -e  /tmp/notify_id ]]; then
-        dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
-    fi
-
+    [[ -e  /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
     extract_and_dump_cover_if_none
-
     [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
     fd prev_track_cover.png --changed-before '12min' -x rm '{}'
     if [[ -e ${track_cover} ]]; then
-        show_notify
         [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
         # send notification with compatible track_cover
         if [[ ! -e "${prev_track_cover}" ]]; then
             show_notify
         else
-            local picslist=$(setopt nullglob dotglob; print "${pics}"/*)
-            if cmp_img "${track_cover}" "${prev_track_cover}" \
+            if ${HOME}/bin/cmp-imgs.py "${track_cover}" "${prev_track_cover}" \
                 && (( ${#picslist[@]} > 1 )); then
                 show_notify
             fi
@@ -124,4 +107,4 @@ main(){
     fi
 }
 
-main "$@" &!
+main "$@"
