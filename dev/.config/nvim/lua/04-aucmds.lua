@@ -40,10 +40,6 @@ nvim_create_augroups({
         {'VimEnter,WinEnter,BufWinEnter,BufEnter', '*', 'setlocal cursorline'},
         {'BufLeave,WinLeave',  '*', 'setlocal nocursorline'}
     },
-    cocgroup = {
-        -- Update signature help on jump placeholder
-        {'User', 'CocJumpPlaceholder', [[call CocActionAsync('showSignatureHelp')]]}
-    },
 })
 
 api.nvim_exec([[

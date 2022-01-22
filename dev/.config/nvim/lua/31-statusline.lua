@@ -171,23 +171,6 @@ function N.FormatAndEncoding()
     return printf('%s | %s', encoding, format)
 end
 
-function N.CocStatus()
-    if vim.fn.exists('g:coc_status') == 0 then
-        return ''
-    end
-    local status = vim.api.nvim_get_var('coc_status')
-    local words = {}
-    words[1], words[2] = status:match("(%w+)(.+)")
-    local first_word = words[1]
-    -- Replace the long strings by some fancy characters
-    if first_word == 'Python' then
-        return ''
-    elseif first_word == 'TSC' then
-        return ''
-    end
-    return status
-end
-
 function N.ReadPercent()
     -- The percent part was inspired by vim-line-no-indicator plugin.
     local chars = {'▁', '▁', '▂', '▃', '▄', '▅', '▓'}
@@ -252,9 +235,7 @@ function N.activeLine()
         end
     end
     statusline = statusline
-        .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
-        .. N.CocStatus()
-        .. '%#Git# '
+        .. vim.api.nvim_buf_get_option(0, 'shiftwidth') .. '%#Git# '
     if vim.g.coc_git_status then
         statusline = statusline .. N.GitBranch(vim.g.coc_git_status)
     end

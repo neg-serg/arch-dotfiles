@@ -47,7 +47,6 @@ map('n', "`", "'")
 -- like firefox tabs
 map('n', '<M-w>', ':bd<CR>', {silent=true})
 map('i', '<C-V>', '<C-R>+')
-map('n', 'K', ":call CocActionAsync('doHover')<CR>", {silent=true})
 vim.g.mapleader = ','
 map('n', "<leader>.", "<Cmd>lua require'plugcfg/telescope';require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
 map('c', '<C-a>', '<home>', {noremap=true})
