@@ -1,7 +1,6 @@
 [global]
     alignment = left
-    always_run_script = true
-    browser = /usr/bin/firefox-developer-edition -new-tab
+    browser = /usr/bin/firefox -new-tab
     corner_radius = 4
     ellipsize = end
     follow = mouse
