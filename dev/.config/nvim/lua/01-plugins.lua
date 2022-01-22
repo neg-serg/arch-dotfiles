@@ -10,7 +10,7 @@ if packer_bootstrap then
     require('packer').sync()
 end
 return require('packer').startup({function(use)
-    use {'wbthomason/packer.nvim'} -- no lazy packer
+    use {'wbthomason/packer.nvim', opt=true} -- lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
