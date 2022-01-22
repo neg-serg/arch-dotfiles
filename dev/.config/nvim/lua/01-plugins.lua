@@ -24,11 +24,9 @@ return require('packer').startup({function(use)
     use 'norcalli/nvim_utils' -- neovim lua utils
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use {'nacro90/numb.nvim', config=[[require('numb').setup()]] } -- interactive number with :<num>
     use 'pbrisbin/vim-mkdir' -- auto make dir without asking
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use 'justinmk/vim-gtfo' -- open filemanager or terminal in current dir
     use {'nvim-telescope/telescope.nvim', requires={
             'nvim-lua/plenary.nvim',
             'fannheyward/telescope-coc.nvim',
@@ -56,8 +54,8 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'kevinhwang91/nvim-bqf', ft = 'qf'} -- better quickfix
-    use {'jamessan/vim-gnupg', ft={'gpg'}, opt=true} -- transparent work with gpg-encrypted files
+    use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
+    use {'jamessan/vim-gnupg', ft='gpg', opt=true} -- transparent work with gpg-encrypted files
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
@@ -66,19 +64,18 @@ return require('packer').startup({function(use)
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
         after='plenary.nvim', config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
-    use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
-    use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', config=[[require'plugcfg/vim-dispatch']],
         cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
-    use 'rstacruz/sparkup' -- better emmet-vim
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Debug                                                                        │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'mfussenegger/nvim-dap', opt=true, config=[[require'plugcfg/dap']]} -- neovim debugger protocol support
+    use {'theHamsta/nvim-dap-virtual-text', opt=true} -- virtual debugging text support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'plasticboy/vim-markdown', opt=true} -- markdown vim mode
-    use {'reedes/vim-pencil', opt=true,
-          cmd={'Pencil', 'PencilHard', 'PencilSoft', 'PencilToggle'},
-          ft={'txt', 'markdown', 'rst'}} -- better text support
+    use {'plasticboy/vim-markdown', ft='md', opt=true} -- markdown vim mode
     use {"nvim-neorg/neorg", config = [[require'plugcfg/neorg']], requires = "nvim-lua/plenary.nvim"}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
@@ -87,10 +84,10 @@ return require('packer').startup({function(use)
     use {'andymass/vim-matchup', event='VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
     use {'FooSoft/vim-argwrap', cmd='ArgWrap', opt=true, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
     use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
-    use 'svermeulen/vim-NotableFt' -- better ft
+    use 'svermeulen/vim-NotableFt' -- better f-t-bindings
     use 'tpope/vim-repeat' -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
-    use 'wellle/targets.vim' -- better text objects
+    use 'wellle/targets.vim' -- new text objects
     use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Search                                                                       │
@@ -111,8 +108,7 @@ return require('packer').startup({function(use)
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
-    use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best color highlighting
-    use 'seanjbl/tonight.nvim' -- darker variant of tommorow
+    use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best way to display colors in the file
     use 'sheerun/vim-polyglot' -- language pack collection
     use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
     use 'tridactyl/vim-tridactyl' -- tridactyl support
@@ -133,10 +129,7 @@ return require('packer').startup({function(use)
             vim.cmd('highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81')
         ]]
     } -- good conflict marker
-    use {'sindrets/diffview.nvim',
-        cmd={'DiffviewLoad'},
-        config=[[require'plugcfg/diffview']]
-    } -- diff view for multiple files
+    use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
     use 'tpope/vim-fugitive' -- git stuff old
 end, config={
         display={open_fn=require('packer.util').float},
