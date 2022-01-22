@@ -5,13 +5,12 @@ vim.o.termguicolors=true
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-
+vim.cmd [[packadd packer.nvim]]
+if packer_bootstrap then
+    require('packer').sync()
+end
 return require('packer').startup({function(use)
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-    -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt=true} -- no lazy packer
+    use {'wbthomason/packer.nvim'} -- no lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -38,6 +37,7 @@ return require('packer').startup({function(use)
         }
     }
     use {'rmagatti/auto-session', event='VimEnter', config=[[require('plugcfg/auto-session')]]} -- best modern autosession plugin
+    use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
