@@ -10,54 +10,48 @@ neg_dirs(){
     fi
 }
 
-bindings_init(){
-    bindkey -e
-    typeset -gx KEYTIMEOUT=10
+bindkey -e
+typeset -gx KEYTIMEOUT=10
 
-    source /usr/share/fzf/completion.zsh
-    source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 
-    autoload -Uz zleiab && zle -N zleiab
-    autoload -Uz inplace_mk_dirs && zle -N inplace_mk_dirs
-    autoload -Uz imv
-    autoload -Uz rationalise-dot && zle -N rationalise-dot
-    autoload -Uz fg-widget && zle -N fg-widget
-    autoload -Uz redraw-prompt
-    autoload -Uz magic-abbrev-expand && zle -N magic-abbrev-expand
-    autoload -Uz special-accept-line && zle -N special-accept-line
-    _nothing() {}; zle -N _nothing
+autoload -Uz zleiab && zle -N zleiab
+autoload -Uz inplace_mk_dirs && zle -N inplace_mk_dirs
+autoload -Uz imv
+autoload -Uz rationalise-dot && zle -N rationalise-dot
+autoload -Uz fg-widget && zle -N fg-widget
+autoload -Uz redraw-prompt
+autoload -Uz magic-abbrev-expand && zle -N magic-abbrev-expand
+autoload -Uz special-accept-line && zle -N special-accept-line
+_nothing() {}; zle -N _nothing
 
-    autoload -Uz cd-rotate
-    cd-back() { cd-rotate +1 }
-    cd-forward() { cd-rotate -0 }
-    zle -N cd-back && zle -N cd-forward
-    bindkey "^[-" cd-forward
-    bindkey "^[=" cd-back
+autoload -Uz cd-rotate
+cd-back() { cd-rotate +1 }
+cd-forward() { cd-rotate -0 }
+zle -N cd-back && zle -N cd-forward
+bindkey "^[-" cd-forward
+bindkey "^[=" cd-back
 
-    bindkey "^[" zvm_readkeys_handler
-    autoload up-line-or-beginning-search && zle -N up-line-or-beginning-search
-    autoload down-line-or-beginning-search && zle -N down-line-or-beginning-search
-    bindkey "^[[A" up-line-or-beginning-search
-    bindkey "^[[B" down-line-or-beginning-search
-    bindkey "^p" up-line-or-beginning-search
-    bindkey "^n" down-line-or-beginning-search
-    bindkey " " magic-abbrev-expand
-    bindkey . rationalise-dot
-    bindkey "^xD" describe-key-briefly
-    bindkey "^z" fg-widget
-    bindkey '^J' fasd-complete
-    bindkey '^@' fasd-complete
-    bindkey '^m' special-accept-line
-    bindkey " "  magic-space
-    bindkey ",." zleiab
-    bindkey . rationalise-dot
-    bindkey -M isearch . self-insert # without this, typing a . aborts incremental history search
-    bindkey '^xM' inplace_mk_dirs # load the lookup subsystem if it's available on the system
+bindkey "^[" zvm_readkeys_handler
+autoload up-line-or-beginning-search && zle -N up-line-or-beginning-search
+autoload down-line-or-beginning-search && zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+bindkey "^p" up-line-or-beginning-search
+bindkey "^n" down-line-or-beginning-search
+bindkey " " magic-abbrev-expand
+bindkey . rationalise-dot
+bindkey "^xD" describe-key-briefly
+bindkey "^z" fg-widget
+bindkey '^J' fasd-complete
+bindkey '^@' fasd-complete
+bindkey '^m' special-accept-line
+bindkey " "  magic-space
+bindkey ",." zleiab
+bindkey . rationalise-dot
+bindkey -M isearch . self-insert # without this, typing a . aborts incremental history search
+bindkey '^xM' inplace_mk_dirs # load the lookup subsystem if it's available on the system
 
-    for b in '3D' '3C' '5A' '5B'; bindkey "^[[1;$b" _nothing
-    neg_dirs
-}
-ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-zvm_after_init_commands=(bindings_init)
+for b in '3D' '3C' '5A' '5B'; bindkey "^[[1;$b" _nothing
+neg_dirs

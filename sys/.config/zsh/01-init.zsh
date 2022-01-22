@@ -132,19 +132,6 @@ fasd_init() {
     fi
 }
 
-command_not_found_handler() {
-    # Find which package contains the file with the path /usr/bin/COMMAND
-    package_name=$(pacman -Fq "/usr/bin/$1" | head)
-    # If no package is found output the error message which ZSH shows by default
-    [[ -z "$package_name" ]] && echo "zsh: command not found: $1" && exit 1
-    # Notify user and ask whether or not they want to install the package
-    echo -e "Command '\e[1m$1\e[0m' not found, but was found in the '\e[1m$package_name\e[0m' package."
-    echo -n "Would you like to install it? [Y/n] "
-    read -k confirm
-    echo "\n"
-    [[ "$confirm" == [yY] ]] && sudo pacman -S "$package_name"
-}
-
 autoload -Uz chpwd
 autoload -Uz zcompare
 autoload -Uz h
@@ -152,5 +139,3 @@ zle_highlight=(region:bg=228 paste:none)
 zsh-defer _zpcompinit_custom
 zsh-defer fasd_init
 zsh-defer dircolors_init
-hash -d nvim=~/.config/nvim
-hash -d zsh=~/.config/zsh
