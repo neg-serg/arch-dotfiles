@@ -89,7 +89,6 @@ for c in ${rlwrap_list[@]}; {_exists "$c" && alias "$c=rlwrap $c"}
 for c in ${nocorrect_list[@]}; {_exists "$c" && alias "$c=nocorrect $c"}
 for c in ${dev_null_list[@]}; {_exists "$c" && alias "$c=$c 2>/dev/null"}
 _exists lsof && alias ports='sudo lsof -Pni'
-_exists bandwhich && alias nethogs='sudo bandwhich'
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
 _exists git && {
