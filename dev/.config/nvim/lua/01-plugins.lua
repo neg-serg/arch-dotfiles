@@ -35,7 +35,7 @@ return require('packer').startup({function(use)
             'nvim-telescope/telescope-fzy-native.nvim',
             {'nvim-telescope/telescope-frecency.nvim',
                 config=[[require'telescope'.load_extension('frecency')]],
-                requires={'tami5/sql.nvim'}
+                requires={'tami5/sqlite.lua'}
             }
         }
     }
