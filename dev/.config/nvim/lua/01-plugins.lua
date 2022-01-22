@@ -38,7 +38,6 @@ return require('packer').startup({function(use)
         }
     }
     use {'rmagatti/auto-session', event='VimEnter', config=[[require('plugcfg/auto-session')]]} -- best modern autosession plugin
-    use 'justinmk/vim-dirvish' -- file manager
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -99,8 +98,8 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
-    use 'rebelot/heirline.nvim' -- lua statusline api
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
+    use 'rebelot/heirline.nvim' -- lua statusline api
     use 'MTDL9/vim-log-highlighting' -- better log highlighter
     use 'Bakudankun/PICO-8.vim' -- pico-8 cartridge files
     use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
