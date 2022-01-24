@@ -108,7 +108,6 @@ return require('packer').startup({function(use)
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best way to display colors in the file
-    use 'sheerun/vim-polyglot' -- language pack collection
     use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
     use 'tridactyl/vim-tridactyl' -- tridactyl support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
