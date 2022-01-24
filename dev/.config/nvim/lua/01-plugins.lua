@@ -109,6 +109,7 @@ return require('packer').startup({function(use)
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best way to display colors in the file
     use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
+    use 'sheerun/vim-polyglot' -- huge langpack
     use 'tridactyl/vim-tridactyl' -- tridactyl support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
