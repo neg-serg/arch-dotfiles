@@ -31,6 +31,6 @@ tsconf.setup {
     max_file_lines = 4000, -- Do not enable for files with more than 1000 lines, int
     colors = {'#365e96', '#315587', '#2e5080', '#294873', '#26436b', '#21395c', '#1d3352'},
   },
-  indent = {enable = {"javascriptreact"}},
+  indent = {enable = true},
   autotag = {enable = false},
 }
