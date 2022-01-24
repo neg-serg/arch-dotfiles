@@ -110,6 +110,7 @@ return require('packer').startup({function(use)
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best way to display colors in the file
     use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
     use 'tridactyl/vim-tridactyl' -- tridactyl support
+    use {'nathom/filetype.nvim', config=[[require'plugcfg/filetype-nvim']]} -- faster filetype alternative
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Ops                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
