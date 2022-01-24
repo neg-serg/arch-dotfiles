@@ -1,7 +1,7 @@
 vim.cmd([[
 	syntax off
-	filetype off
-    filetype plugin indent off
+	filetype on
+    filetype plugin indent on
 ]])
 -- Fix alacritty resize: github.com/neovim/neovim/issues/11330
 vim.cmd([[
