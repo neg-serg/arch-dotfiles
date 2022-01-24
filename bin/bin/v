@@ -6,6 +6,3 @@ if [ ! -z $DISPLAY ]; then
     done
 fi
 nvr --servername /tmp/nvimsocket """$@"""
-if echo $TMUX | grep "nwim.socket" > /dev/null && [ $(tmux list-panes | wc -l) -gt 1 ]; then
-    tmux killp
-fi
