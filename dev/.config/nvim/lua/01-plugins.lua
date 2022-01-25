@@ -28,7 +28,6 @@ return require('packer').startup({function(use)
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim', requires={
             'nvim-lua/plenary.nvim',
-            'fannheyward/telescope-coc.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
             {'nvim-telescope/telescope-frecency.nvim',
                 config=[[require'telescope'.load_extension('frecency')]],
@@ -38,6 +37,8 @@ return require('packer').startup({function(use)
     }
     use {'rmagatti/auto-session', event='VimEnter', config=[[require('plugcfg/auto-session')]]} -- best modern autosession plugin
     use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
+    use 'brooth/far.vim' -- better find and replace
+    use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -89,33 +90,18 @@ return require('packer').startup({function(use)
     use 'wellle/targets.vim' -- new text objects
     use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Search                                                                       │
--- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'brooth/far.vim' -- better find and replace
-    use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
-    use 'windwp/nvim-spectre' -- yet another interactive find and replace
--- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
     use 'rebelot/heirline.nvim' -- lua statusline api
-    use 'MTDL9/vim-log-highlighting' -- better log highlighter
-    use 'Bakudankun/PICO-8.vim' -- pico-8 cartridge files
     use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
-    use 'ishan9299/nvim-solarized-lua' -- solarized colorscheme
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best way to display colors in the file
     use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
-    use 'tridactyl/vim-tridactyl' -- tridactyl support
     use {'nathom/filetype.nvim', config=[[require'plugcfg/filetype-nvim']]} -- faster filetype alternative
--- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ Ops                                                                          │
--- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'saltstack/salt-vim' -- salt sls support
-    use 'rodjek/vim-puppet' -- puppet syntax highlighting
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
