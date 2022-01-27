@@ -5,4 +5,4 @@ if [ ! -z $DISPLAY ]; then
         :;
     done
 fi
-nvr --servername /tmp/nvimsocket """$@"""
+nvr --servername localhost:7777 """$@"""
