@@ -60,3 +60,4 @@ typeset -gx FZF_COMPLETION_TRIGGER='~~'
 [[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
 typeset -gx FORGIT_NO_ALIASES=1
 typeset -gx LIBSEAT_BACKEND=logind
+typeset -gx DISPLAY=:0
