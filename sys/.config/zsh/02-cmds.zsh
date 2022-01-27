@@ -120,7 +120,7 @@ _exists git && {
     --bind 'j:down,k:up'
     --bind 'tab:unbind(j,k)+enable-search'
     --bind='?:toggle-preview'
-    --preview-window='noborder,right:70%'
+    --preview-window='noborder,right:25%'
     +1"
 }
 _exists curl && {

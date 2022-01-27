@@ -61,3 +61,4 @@ typeset -gx FZF_COMPLETION_TRIGGER='~~'
 typeset -gx FORGIT_NO_ALIASES=1
 typeset -gx LIBSEAT_BACKEND=logind
 typeset -gx DISPLAY=:0
+export FORGIT_LOG_FORMAT="%C(bold)%an %C(auto) %C(white)%C(italic)%ar   %C(auto)%h%d %s %C(black)%C(bold)%cr%Creset"
