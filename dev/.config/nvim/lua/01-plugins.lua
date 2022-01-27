@@ -42,7 +42,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'L3MON4D3/LuaSnip' -- lua snippets
+    use {'L3MON4D3/LuaSnip', config=[[require("luasnip.loaders.from_snipmate").load()]]} -- lua snippets
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
     use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]]} -- completion engine

@@ -1,142 +1,128 @@
-##############
-#  Constrol flow
-##############
+snippet if "if condition" b if ${1} ${2} endif endsnippet
+snippet ife "if else block" b if ${1} ${2} else ${3} endif endsnippet
+snippet ? "ternary" w ${1} ? ${2} : ${3} endsnippet
 
-snippet if "if condition" b
-if ${1}
-	${2}
-endif
+snippet for "for loop" b for ${1} in ${2} ${3} endfor endsnippet
+
+snippet forl "for loop with 2 items" b for [${1}, ${2}] in ${3} ${4} endfor
 endsnippet
 
-snippet ife "if else block" b
-if ${1}
-	${2}
-else
-	${3}
-endif
+snippet while "while loop" b while ${1} ${2} endwhile endsnippet
+snippet try "try and catch block" b try ${1} catch ${2} endtry endsnippet
+
+
+snippet au "autocmd" w autocmd ${1:{event}} ${2:{pattern}} ${3} endsnippet
+snippet aug "augroup block" b augroup ${1} autocmd! ${2} augroup END endsnippet
+
+snippet f "function!" b fun! ${1}(${2}) ${3:abort} ${4} endfun endsnippet
+snippet ff "function! with fold" b fun! ${1}(${2}) ${3:abort} " \{\{\{${4:1}
+${5} endfun " $4\}\}\} endsnippet
+snippet fd "function! with fold and doc" b "" $1() \{\{\{1 " $4 fun! ${1}(${2})
+${3:abort} ${5} endfun " 1\}\}\}
 endsnippet
 
-snippet ? "ternary" w
-${1} ? ${2} : ${3}
+snippet fa "lambda" w {${1} -> ${2}} endsnippet
+
+snippet header "header block"
+b " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" " Kabbaj
+Amine - amine.kabb@gmail.com " Creation: `date +%Y-%m-%d` " Last modification:
+`date +%Y-%m-%d`
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" ${1}
 endsnippet
 
-##############
-#  Iterations
-##############
-
-snippet for "for loop" b
-for ${1} in ${2}
-	${3}
-endfor
-endsnippet
-
-snippet forl "for loop with 2 items" b
-for [${1}, ${2}] in ${3}
-	${4}
-endfor
-endsnippet
-
-snippet while "while loop" b
-while ${1}
-	${2}
-endwhile
-endsnippet
-
-snippet try "try and catch block" b
-try
-	${1}
-catch
-	${2}
-endtry
-endsnippet
-
-##############
-#  Commands
-##############
-
-snippet au "autocmd" w
-autocmd ${1:{event}} ${2:{pattern}} ${3}
-endsnippet
-
-snippet aug "augroup block" b
-augroup ${1}
-	autocmd!
-	${2}
-augroup END
-endsnippet
-
-##############
-#  Functions
-##############
-
-snippet f "function!" b
-fun! ${1}(${2}) ${3:abort}
-	${4}
-endfun
-endsnippet
-
-snippet ff "function! with fold" b
-fun! ${1}(${2}) ${3:abort} " \{\{\{${4:1}
-	${5}
-endfun
-" $4\}\}\}
-endsnippet
-
-snippet fd "function! with fold and doc" b
-"" $1() \{\{\{1
-" $4
-fun! ${1}(${2}) ${3:abort}
-	${5}
-endfun
-" 1\}\}\}
-
-endsnippet
-
-snippet fa "lambda" w
-{${1} -> ${2}}
-endsnippet
-
-##############
-#  Helpers
-##############
-
-snippet header "header block" b
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Kabbaj Amine - amine.kabb@gmail.com
-" Creation: `date +%Y-%m-%d`
-" Last modification: `date +%Y-%m-%d`
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-${1}
-endsnippet
-
-snippet /** "commentary block" b
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+snippet /** "commentary block"
+b " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 	        	${1}
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""" endsnippet
+
+snippet plug "plugin for vim-plug" w Plug '${1}'${2:, {${3}}} endsnippet
+
+snippet hi "highlight group" b hi ${1:group} guibg=${2:NONE} guifg=${3:NONE}
+gui=${4:NONE} endsnippet
+
+snippet hil "highlight link" b hi! link ${1:group} ${2:toGroup} endsnippet
+
+snippet redirv "redir to variable" b redir => ${1} ${2} redir END endsnippet
+
+snippet get "get() function" w get(${1}, ${2}, ${3}) endsnippet
+
+snippet @ "doctype @" w @${1:param} {${2:type}} ${3:name} ${4:def:${5}}
+${6:description} endsnippet
+
+global !p
+
+pairs = { '[': ']', '{': '}', '(': ')', ']': '[', '}': '{', ')': '(' };
+
+# ${1:text} `!p snip.rv = pair(t[1])`
+def pair(v): for p in pairs: if v.startswith(p): return pairs[p] return ''
+
+# ${5:e}`!p snip.rv = complete(t[5], ['endif', 'else', 'elseif'])`
+def complete(t, opts): if t: opts = [ m[len(t):] for m in opts if
+m.startswith(t) ] if len(opts) == 1: return opts[0] return '(' + '|'.join(opts)
++ ')'
+
+endglobal
+
+# SCRIPTING META
+
+snippet so "!::source" b " !::exe [So] endsnippet
+
+snippet guard "script reload guard" b if exists('${1:did_`!p snip.rv
+= snip.fn.replace('.','_')`}') finish end let $1 = ${3:1} endsnippet snippet
+save "save options" b let saved_${1:opt} = &$1 ${2:let &$1 = $0} let &$1
+= saved_$1 endsnippet
+
+# COMMENTS
+snippet == "Section"
+b "===============================================================================
+" ${1:Section}`!p snip.rv = ' '*(75-len(t[1]))`{{{ $0 " }}}
+"===============================================================================
 endsnippet
 
-snippet plug "plugin for vim-plug" w
-Plug '${1}'${2:, {${3}}}
+# GENERAL
+snippet l "let g:..." b let g:${1:varname} = ${2:val} `!p snip.rv = pair(t[2])
+` endsnippet
+
+# LOOP
+snippet for "for v in list" b for ${1:idx} in ${2:range(${3:len})} $0 endfor
+endsnippet snippet wh "while ..." b while (${1:expression}) $0 endwhile
 endsnippet
 
-snippet hi "highlight group" b
-hi ${1:group} guibg=${2:NONE} guifg=${3:NONE} gui=${4:NONE}
-endsnippet
+# IF STATEMENTS
+snippet if "if condition end" b if ${1:${2:var} == ${3:value}} ${4:let a = 1}
+${5:end} endsnippet snippet ife "if | end" b if empty(${1:condition})
+| ${2:return} | end endsnippet snippet ifne "if | end" b if
+!empty(${1:condition}) | ${2:return} | end endsnippet snippet ifx "if exists"
+b if exists('g:${1:name}') ${2:unlet g:$1} end endsnippet snippet ifnx "if not
+exists" b if !exists('g:${1:name}') ${2:unlet g:$1} end endsnippet
 
-snippet hil "highlight link" b
-hi! link ${1:group} ${2:toGroup}
-endsnippet
+# CONDITIONNAL EXPRESSIONS
+snippet "(!?has)" "(!)has" r `!p snip.rv = match.group(1)`('$3') endsnippet
+snippet "(!?)exi?s?t?s?" "(!) exists" r `!p snip.rv
+= match.group(1)`exists(${1:'${2:val}'}) endsnippet
 
-snippet redirv "redir to variable" b
-redir => ${1}
-	${2}
-redir END
-endsnippet
+# STRUCTURES
+snippet obj "let obj = { ... }: Dict" b let ${1:object} = { \	'${2:key}':
+${3:value}, \ } endsnippet snippet fu "fu! endfu" b function! ${1:name}()
+endfunc endsnippet snippet fn "function! endfunction" b function! ${1:name}
+(${2:args}) endfunc endsnippet snippet fs "function! s: endfunction"
+b function! s:${1:name} (${2:args}) endfunction endsnippet snippet : "key:
+value" '${1:key}': ${2:'${3:value}'}, endsnippet
 
-snippet get "get() function" w
-get(${1}, ${2}, ${3})
-endsnippet
+# OTHER
 
-snippet @ "doctype @" w
-@${1:param} {${2:type}} ${3:name} ${4:def:${5}} ${6:description}
+snippet % "expand" expand('${1:%}$0') endsnippet
+
+snippet aug "autoroup file" b augroup $0 au! augroup END endsnippet
+
+snippet hi "hi! link" b hi! link ${1:From} ${2:To} endsnippet snippet hl
+"highlight Group" b hi! ${1:Group} ${2:guifg=${3:red}} ${4:guibg=${5:none}}
+${6:gui=${7:none}} endsnippet
+
+snippet command "command" b command! -nargs=${3:*} -bar -range ${1:Name}
+${2:call function} endsnippet
+
+#snippet link "hi link" b #hi! ${1:link} ${2:Group} ${3:Linked} #endsnippet
+
+snippet try "try catch" b try ${VISUAL} catch /${2:.*}/ | $0 | endtry
 endsnippet
