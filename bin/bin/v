@@ -5,4 +5,5 @@ if [ ! -z $DISPLAY ]; then
         :;
     done
 fi
+nvr --servername localhost:7777 +':if &buftype == "terminal" | :close | endif<CR>'
 nvr --servername localhost:7777 """$@"""
