@@ -58,7 +58,5 @@ typeset -gx FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null ||
 typeset -gx FZF_COMPLETION_TRIGGER='~~'
 [[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
 [[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
-typeset -gx FORGIT_NO_ALIASES=1
 typeset -gx LIBSEAT_BACKEND=logind
 typeset -gx DISPLAY=:0
-export FORGIT_LOG_FORMAT="%C(bold)%an %C(auto) %C(white)%C(italic)%ar   %C(auto)%h%d %s %C(black)%C(bold)%cr%Creset"

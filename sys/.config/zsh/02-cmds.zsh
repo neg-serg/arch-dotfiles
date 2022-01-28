@@ -99,29 +99,6 @@ _exists git && {
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
     alias gd='git diff -w -U0 --word-diff-regex=[^[:space:]]'
     alias gdd="${intra_line_less} git diff ${intra_line_diff}"
-    alias tig='forgit::log'
-    alias gdi='forgit::diff'
-    alias ga='forgit::add'
-    alias gi='forgit::ignore'
-    alias gcf='forgit::checkout::file'
-    alias gcb='forgit::checkout::branch'
-    alias gco='forgit::checkout::commit'
-    alias ga='forgit::add'
-    alias gst='forgit::stash::show'
-    export FORGIT_FZF_DEFAULT_OPTS="
-    $FZF_DEFAULT_OPTS
-    --reverse
-    --ansi --height='100%'
-    --disabled
-    --bind='alt-k:preview-up,alt-p:preview-up'
-    --bind='alt-j:preview-down,alt-n:preview-down'
-    --bind='ctrl-r:toggle-all'
-    --bind='ctrl-s:toggle-sort'
-    --bind 'j:down,k:up'
-    --bind 'tab:unbind(j,k)+enable-search'
-    --bind='?:toggle-preview'
-    --preview-window='noborder,right:25%'
-    +1"
 }
 _exists curl && {
     alias weather="curl 'wttr.in/?T'"
