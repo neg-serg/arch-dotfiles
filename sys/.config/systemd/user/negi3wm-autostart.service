@@ -1,7 +1,0 @@
-[Unit]
-Description=Startup stuff depended on negi3wm
-After=negi3wm.service
-
-[Service]
-ExecStart=%E/negi3wm/bin/send circle next term
-Restart=on-failure

@@ -1,12 +1,9 @@
-[submodule "i3/.config/i3"]
-	path = i3/.config/i3
-	url = https://github.com/neg-serg/negi3mods.git
 [submodule "zsh/.config/zsh/powerlevel10k"]
 	path = zsh/.config/zsh/powerlevel10k
     url = git@github.com:romkatv/powerlevel10k.git
 [submodule "zsh/.config/zsh/powerlevel10k"]
     path = zsh/.config/zsh/powerlevel10k
     url = git@github.com:romkatv/powerlevel10k.git
-[submodule "negi3wm/.config/i3"]
-	path = negi3wm/.config/i3
-	url = https://github.com/neg-serg/negi3wm
+[submodule "negwm/.config/i3"]
+	path = negwm/.config/i3
+	url = https://github.com/neg-serg/negwm

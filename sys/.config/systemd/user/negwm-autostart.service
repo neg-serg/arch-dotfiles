@@ -1,0 +1,7 @@
+[Unit]
+Description=Startup stuff depended on negwm
+After=negwm.service
+
+[Service]
+ExecStart=%E/negwm/bin/send circle next term
+Restart=on-failure

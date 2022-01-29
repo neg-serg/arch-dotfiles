@@ -1,10 +1,10 @@
 [Unit]
-Description=Negi3WM Window Manager mod for i3wm
+Description=negwm window manager mod for i3wm
 PartOf=graphical-session.target
 StartLimitBurst=5
 StartLimitIntervalSec=1
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/env dash %E/negi3wm/bin/run
+ExecStart=/usr/bin/env dash %E/negwm/bin/run
 Restart=on-failure

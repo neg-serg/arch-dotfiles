@@ -69,7 +69,7 @@ no_focus [window_type="splash"]
 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec systemctl --user start --no-block i3-session.target
-exec_always systemctl --user restart --no-block negi3wm.service
+exec_always systemctl --user restart --no-block negwm.service
 default_border normal
 default_floating_border normal
 font pango: Iosevka Bold 12
@@ -77,7 +77,7 @@ hide_edge_borders both
 show_marks yes
 title_align left
 set $exit mode \"default\"
-set $i3 ${XDG_CONFIG_HOME}/negi3wm
+set $i3 ${XDG_CONFIG_HOME}/negwm
 set $term "1 :: ︁ α:term"
 set $web "2 ::  β:web"
 set $dev "3 ::  δ:dev"
@@ -91,14 +91,14 @@ set $sys "10 ::  η:sys"
 set $vm "11 ::  λ:vm"
 set $wine "12 ::  μ:wine"
 
-set $actions exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send actions
-set $circle exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send circle
-set $conf_gen exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send conf_gen
-set $executor exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send executor
-set $fullscreen exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send fullscreen
-set $menu exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send menu
-set $remember_focused exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send remember_focused
-set $scratchpad exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send scratchpad
+set $actions exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send actions
+set $circle exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send circle
+set $conf_gen exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send conf_gen
+set $executor exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send executor
+set $fullscreen exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send fullscreen
+set $menu exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send menu
+set $remember_focused exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send remember_focused
+set $scratchpad exec --no-startup-id ${XDG_CONFIG_HOME}/negwm/bin/send scratchpad
 
 
 bindsym Mod4+q  fullscreen toggle
@@ -142,7 +142,7 @@ bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec flameshot gui
 bindsym Mod1+grave exec rofi -show run -show-icons -disable-history -theme neg
 bindsym Mod4+8 exec playerctl volume 0.0 || amixer -q set Master 0 mute
-bindsym Mod4+apostrophe exec ${XDG_CONFIG_HOME}/negi3wm/bin/i3-full-reload
+bindsym Mod4+apostrophe exec ${XDG_CONFIG_HOME}/negwm/bin/i3-full-reload
 bindsym Mod4+c exec ~/bin/clip
 bindsym Mod4+g exec ~/bin/g
 bindsym Mod4+p exec ~/bin/rofi-tmux-urls

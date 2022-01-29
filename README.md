@@ -36,7 +36,7 @@ basic config for my GTD-like tool taskwarrior.
 [i3-gaps](https://github.com/Airblader/i3) -- my current WM. I migrated to it
 after many years of using my fork of Notion WM. It has extremely
 sophisticated and unusial customization with help of my
-[negi3wm](https://github.com/neg-serg/negi3wm) to make it UX more similar to
+[negwm](https://github.com/neg-serg/negwm) to make it UX more similar to
 [ion3](https://tuomov.iki.fi/software/) and [notion](https://notionwm.net/),
 with a lot of unique features as run of raise over windows tags, multiwindow
 scratchpads, config generator and more, rofi-menu generator and more. Also
