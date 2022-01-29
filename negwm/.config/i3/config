@@ -1,0 +1,270 @@
+client.background #000000ee
+client.focused #000011dd #000000ee #ddddee #112211 #0C0C0D
+client.focused_inactive #000000dd #000000ee #005fff #000000 #020204
+client.placeholder #000000ee #000000 #ffffff #000000 #0c0c0c
+client.unfocused #000000ee #000000 #315c70 #000000 #020204
+client.urgent #000000ee #2E2457 #4C407C #32275E #32275E
+default_orientation auto
+floating_modifier Mod4
+focus_follows_mouse no
+focus_on_window_activation smart
+focus_wrapping workspace
+force_display_urgency_hint 2000 ms
+mouse_warping none
+workspace_layout tabbed
+set $scratchpad-discord [class="discord"]
+set $scratchpad-im [class="^(KotatogramDesktop|myteam|Skype|Slack|TelegramDesktop|zoom)$"]
+set $scratchpad-ncmpcpp [class="ncmpcpp"]
+set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
+set $scratchpad-password [instance="1password"]
+set $scratchpad-teardrop [instance="teardrop"]
+set $scratchpad-torrment [instance="torrment"]
+set $scratchpad-transients [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"]
+set $scratchpad-webcam [instance="webcam"]
+
+for_window $scratchpad-discord move scratchpad, move absolute position 1936 825, resize set 1898 1273
+for_window $scratchpad-im move scratchpad, move absolute position 2536 2, resize set 1304 2109
+for_window $scratchpad-ncmpcpp move scratchpad, move absolute position 753 1181, resize set 2251 852
+for_window $scratchpad-neomutt move scratchpad, move absolute position 104 0, resize set 3670 2228
+for_window $scratchpad-password move scratchpad, move absolute position 2150 1272, resize set 1690 838
+for_window $scratchpad-teardrop move scratchpad, move absolute position 0 0, resize set 3840 1300
+for_window $scratchpad-torrment move scratchpad, move absolute position 0 0, resize set 3840 1300
+for_window $scratchpad-transients move scratchpad, move absolute position 693 1310, resize set 1812 797
+for_window $scratchpad-webcam move scratchpad, move absolute position 1368 268, resize set 2463 1880
+set $circle-bitwig [class="Bitwig Studio"]
+set $circle-doc [class="^(Zathura|cr3)$"]
+set $circle-lutris [class="^(Wine|Lutris)$"]
+set $circle-nwim [class="nwim"]
+set $circle-obs [class="obs"]
+set $circle-remote [class="^(xfreerdp|reminna|org.remmina.Remmina)$"]
+set $circle-steam [class="^(Steam|steam)$"]
+set $circle-sxiv [class="Sxiv"]
+set $circle-term [instance="term"]
+set $circle-vid [class="mpv"]
+set $circle-vm [class="spicy"]
+set $circle-web [class="^(firefox|firefoxdeveloperedition|Tor Browser|Chromium)$"]
+for_window $circle-bitwig move workspace $sound,focus
+for_window $circle-doc move workspace $doc,focus
+for_window $circle-lutris move workspace $steam,focus
+for_window $circle-nwim move workspace $dev,focus
+for_window $circle-obs move workspace $obs,focus
+for_window $circle-remote move workspace $remote,focus
+for_window $circle-steam move workspace $steam,focus
+for_window $circle-sxiv move workspace $gfx,focus
+for_window $circle-term move workspace $term,focus
+for_window $circle-vid move workspace $gfx,focus
+for_window $circle-vm move workspace $vm,focus
+for_window $circle-web move workspace $web,focus
+for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 5
+for_window [class="^(Gcolor3|rdesktop|openssh-askpass)$"] floating enable
+for_window [class="^(inkscape|gimp)$"] move workspace $draw
+for_window [class="(?i)(?:steam|lutris)"] floating enable
+for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
+for_window [class="steam_app_.*"] floating enable
+for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, focus
+for_window [title="Firefox — Sharing Indicator"] border pixel 1, sticky enable, move position 20 ppt -5 px
+no_focus [class="zoom" instance="zoom" title="^zoom$"]
+no_focus [title="Firefox — Sharing Indicator"]
+no_focus [window_type="splash"]
+
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec systemctl --user start --no-block i3-session.target
+exec_always systemctl --user restart --no-block negi3wm.service
+default_border normal
+default_floating_border normal
+font pango: Iosevka Bold 12
+hide_edge_borders both
+show_marks yes
+title_align left
+set $exit mode \"default\"
+set $i3 ${XDG_CONFIG_HOME}/negi3wm
+set $term "1 :: ︁ α:term"
+set $web "2 ::  β:web"
+set $dev "3 ::  δ:dev"
+set $doc "4 ::  γ:doc"
+set $draw "5 ::  ζ:draw"
+set $gfx "6 ::  ε:gfx"
+set $obs "7 :: @ ρ:obs"
+set $pic "8 ::  ξ:pic"
+set $steam "9 ::  ι:steam"
+set $sys "10 ::  η:sys"
+set $vm "11 ::  λ:vm"
+set $wine "12 ::  μ:wine"
+
+set $actions exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send actions
+set $circle exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send circle
+set $conf_gen exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send conf_gen
+set $executor exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send executor
+set $fullscreen exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send fullscreen
+set $menu exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send menu
+set $remember_focused exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send remember_focused
+set $scratchpad exec --no-startup-id ${XDG_CONFIG_HOME}/negi3wm/bin/send scratchpad
+
+
+bindsym Mod4+q  fullscreen toggle
+bindsym Mod4+Control+q  kill
+
+bindsym Mod4+j focus down
+bindsym Mod4+h focus left
+bindsym Mod4+l focus right
+bindsym Mod4+k focus up
+
+bindsym Mod4+XF86AudioNext exec --no-startup-id playerctl next
+bindsym Mod4+period exec --no-startup-id playerctl next
+bindsym Mod4+XF86AudioPlay exec --no-startup-id playerctl play
+bindsym Mod4+Shift+2 exec --no-startup-id playerctl play-pause
+bindsym Mod4+XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym Mod4+comma exec --no-startup-id playerctl previous
+bindsym Mod4+XF86AudioStop exec --no-startup-id playerctl stop
+
+bindsym XF86AudioLowerVolume $vol d
+bindsym XF86AudioRaiseVolume $vol u
+
+bindsym Mod4+Shift+a $menu attach
+bindsym Mod4+Shift+s $menu autoprop
+bindsym Mod4+Control+grave $menu cmd_menu
+bindsym Mod1+g $menu goto_win
+bindsym Mod4+Control+g $menu movews
+bindsym Mod1+Control+g $menu ws
+
+bindsym Mod4+Control+a $scratchpad dialog
+bindsym Mod4+Control+s $scratchpad geom_dump
+bindsym Mod4+Control+space $scratchpad geom_restore
+bindsym Mod4+s $scratchpad hide_current
+bindsym Mod4+3 $scratchpad next
+
+bindsym Mod4+grave $remember_focused focus_next_visible
+bindsym Mod4+Shift+grave $remember_focused focus_prev_visible
+bindsym Mod1+Tab $remember_focused switch
+bindsym Mod4+slash $remember_focused switch
+bindsym Mod4+4 exec ~/bin/screenshot
+bindsym Mod4+Control+4 exec ~/bin/screenshot -r
+bindsym Mod4+Shift+4 exec flameshot gui
+bindsym Mod1+grave exec rofi -show run -show-icons -disable-history -theme neg
+bindsym Mod4+8 exec playerctl volume 0.0 || amixer -q set Master 0 mute
+bindsym Mod4+apostrophe exec ${XDG_CONFIG_HOME}/negi3wm/bin/i3-full-reload
+bindsym Mod4+c exec ~/bin/clip
+bindsym Mod4+g exec ~/bin/g
+bindsym Mod4+p exec ~/bin/rofi-tmux-urls
+bindsym Mod4+Shift+6 exec ~/bin/wl
+bindsym Mod4+Shift+8 exec playerctl volume 1.0 || amixer -q set Master 65536 unmute
+bindsym Mod4+Shift+9 exec dunstctl history-pop
+bindsym Mod4+Shift+apostrophe exec i3-msg restart
+bindsym Mod4+Shift+i exec ~/bin/rofi-nm
+bindsym Mod4+Shift+l exec ~/bin/rofi-lutris
+bindsym Mod4+Shift+m exec ~/bin/rofi-audio
+bindsym Mod4+Shift+y exec ~/bin/clip youtube-dw-list
+bindsym Mod4+space exec dunstctl close-all
+bindsym XF86Sleep exec sudo systemctl suspend
+bindsym Mod4+v $scratchpad toggle discord
+bindsym Mod4+e $scratchpad toggle im
+bindsym Mod4+f $scratchpad toggle ncmpcpp
+bindsym Mod4+n $scratchpad toggle neomutt
+bindsym Mod4+Control+p $scratchpad toggle password
+bindsym Mod4+d $scratchpad toggle teardrop
+bindsym Mod4+t $scratchpad toggle torrment
+bindsym Mod4+Control+b $circle next bitwig
+bindsym Mod4+o $circle next doc
+bindsym Mod4+Control+e $circle next lutris
+bindsym Mod4+1 $circle next nwim
+bindsym Mod4+Shift+o $circle toggle obs
+bindsym Mod4+Control+5 $circle toggle remote
+bindsym Mod4+Shift+e $circle next steam
+bindsym Mod4+Control+c $circle next sxiv
+bindsym Mod4+Shift+c $circle subtag sxiv wallpaper
+bindsym Mod4+x $circle next term
+bindsym Mod4+b $circle next vid
+bindsym Mod4+Control+v $circle next vm
+bindsym Mod4+w $circle next web
+
+bindsym Mod4+r mode "resize"
+mode resize {
+	bindsym j $actions resize bottom 4
+	bindsym s $actions resize bottom 4
+	bindsym h $actions resize left 4
+	bindsym a $actions resize left 4
+	bindsym l $actions resize right 4
+	bindsym d $actions resize right 4
+	bindsym k $actions resize top 4
+	bindsym w $actions resize top 4
+
+	bindsym Shift+j $actions resize bottom -4
+	bindsym Shift+s $actions resize bottom -4
+	bindsym Shift+h $actions resize left -4
+	bindsym Shift+a $actions resize left -4
+	bindsym Shift+l $actions resize right -4
+	bindsym Shift+d $actions resize right -4
+	bindsym Shift+k $actions resize top -4
+	bindsym Shift+w $actions resize top -4
+	bindsym Return,$exit
+	bindsym Escape,$exit
+	bindsym space,$exit
+	bindsym Control+C,$exit
+	bindsym Control+G,$exit
+}
+
+bindsym Mod1+e mode "spec"
+mode spec {
+	bindsym e  [urgent=latest] focus,$exit
+	bindsym Shift+d  floating toggle,$exit
+
+	bindsym Shift+t $menu gtk_theme,$exit
+	bindsym Shift+i $menu icon_theme,$exit
+	bindsym i $menu pulse_input,$exit
+	bindsym o $menu pulse_output,$exit
+	bindsym m $menu xprop,$exit
+	bindsym t $scratchpad subtag im tel,$exit
+	bindsym w $scratchpad toggle webcam,$exit
+	bindsym f $circle subtag web firefox,$exit
+	bindsym 5 $circle subtag web tor,$exit
+	bindsym Return,$exit
+	bindsym Escape,$exit
+	bindsym space,$exit
+	bindsym Control+C,$exit
+	bindsym Control+G,$exit
+}
+
+bindsym Mod4+minus mode "wm"
+mode wm {
+	bindsym grave layout default,$exit
+	bindsym minus layout splith,$exit
+	bindsym backslash layout splitv,$exit
+	bindsym t layout tabbed,$exit
+	bindsym Control+t layout toggle,$exit
+
+	bindsym h split horizontal,$exit
+	bindsym l split horizontal,$exit
+	bindsym j split vertical,$exit
+	bindsym k split vertical,$exit
+
+	bindsym s move bottom
+	bindsym a move left
+	bindsym d move right
+	bindsym w move top
+
+	bindsym Shift+w $actions hdown x2
+	bindsym Shift+a $actions hup x2
+	bindsym Shift+s $actions vleft x2
+	bindsym Shift+d $actions vright x2
+
+	bindsym 1 $actions 1
+	bindsym 2 $actions 2
+	bindsym 3 $actions 3
+	bindsym 4 $actions 4
+
+	bindsym Shift+plus $actions grow
+	bindsym x $actions maxhor
+	bindsym m $actions maximize
+	bindsym y $actions maxvert
+	bindsym c $actions none
+	bindsym Shift+c $actions resize
+	bindsym Shift+m $actions revert_maximize
+	bindsym Shift+x $actions revert_maximize
+	bindsym Shift+y $actions revert_maximize
+	bindsym Shift+minus $actions shrink
+	bindsym Return,$exit
+	bindsym Escape,$exit
+	bindsym space,$exit
+	bindsym Control+C,$exit
+	bindsym Control+G,$exit
+}
