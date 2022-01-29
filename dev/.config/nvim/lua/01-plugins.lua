@@ -35,18 +35,16 @@ return require('packer').startup({function(use)
             }
         }
     }
-    use {'rmagatti/auto-session', event='VimEnter', config=[[require('plugcfg/auto-session')]]} -- best modern autosession plugin
     use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
     use 'brooth/far.vim' -- better find and replace
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'L3MON4D3/LuaSnip', config=[[require("luasnip.loaders.from_snipmate").load()]]} -- lua snippets
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
+    use {'nvim-lua/lsp-status.nvim'} -- statusline lsp
     use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]]} -- completion engine
-    use 'saadparwaiz1/cmp_luasnip' -- lua snippets
     use 'hrsh7th/cmp-nvim-lua' -- cmp neovim lua api support
     use 'hrsh7th/cmp-nvim-lsp' -- cmp lsp support
     use 'hrsh7th/cmp-path' -- cmp path completion support

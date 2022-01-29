@@ -2,7 +2,6 @@ local M = {}
 
 M.init = function()
   local cmp = require('cmp')
-  local luasnip = require('luasnip')
 
   vim.cmd([[
   hi CmpItemKindDefault guifg=#0C2430'
@@ -15,11 +14,6 @@ M.init = function()
   end
 
   cmp.setup({
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
-    },
     mapping = {
       ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i','c'}),
       ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i','c'}),
@@ -36,8 +30,6 @@ M.init = function()
       ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
         elseif has_words_before() then
           cmp.complete()
         else
@@ -50,8 +42,6 @@ M.init = function()
       ['<S-Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
         else
           fallback()
         end
@@ -68,7 +58,6 @@ M.init = function()
       {name = 'nvim_lsp'},
       {name = 'nvim_lua'},
       {name = 'buffer'},
-      {name = 'luasnip'},
       {name = 'path'},
       {name = 'neorg'},
     }),
