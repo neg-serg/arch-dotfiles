@@ -8,7 +8,6 @@ track_path="$(mpc --format "$mpd_music_dir"/%file% | head -n 1)"
 track_dir=$(dirname "$track_path")
 prev_track_cover="${pics}/prev_track_cover.png"
 track_cover="$track_dir/cover.jpg"
-picslist=$(setopt nullglob dotglob; print "${pics}"/*)
 
 nr(){ print "<span weight='Bold' color='#b8c5d9'>$1</span>" }
 fa(){ print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>" }
@@ -79,7 +78,7 @@ show_notify() {
             notify
         fi
     fi
-    cp "${track_cover}" "${prev_track_cover}"
+    mv "${track_cover}" "${prev_track_cover}"
 }
 
 extract_and_dump_cover_if_none(){
@@ -92,15 +91,14 @@ main(){
     [[ -e  /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
     extract_and_dump_cover_if_none
     [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
-    fd prev_track_cover.png --changed-before '12min' -x rm '{}'
+    fd "${prev_track_cover}" --changed-before '12min' -x rm '{}'
     if [[ -e ${track_cover} ]]; then
         [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
         # send notification with compatible track_cover
         if [[ ! -e "${prev_track_cover}" ]]; then
             show_notify
         else
-            if ${HOME}/bin/cmp-imgs.py "${track_cover}" "${prev_track_cover}" \
-                && (( ${#picslist[@]} > 1 )); then
+            if ! ${HOME}/bin/cmp-imgs.py "${track_cover}" "${prev_track_cover}"; then
                 show_notify
             fi
         fi
