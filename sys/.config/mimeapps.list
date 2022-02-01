@@ -1,0 +1,32 @@
+[Added Associations]
+application/x-extension-htm=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+application/x-extension-html=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+application/x-extension-shtml=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+application/x-extension-xht=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+application/x-extension-xhtml=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+application/xhtml+xml=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+text/html=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+x-scheme-handler/chrome=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+x-scheme-handler/http=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+x-scheme-handler/https=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
+x-scheme-handler/tg=userapp-Kotatogram Desktop-T3KXD1.desktop;userapp-Telegram Desktop-MAA5E1.desktop;
+text/x-python3=wine-extension-txt.desktop;
+
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop;
+application/postscript=org.pwmt.zathura.desktop;
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+text/html=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/terminal=Alacritty.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-MAA5E1.desktop
+x-scheme-handler/ftp=userapp-Pale Moon-SWVWB1.desktop
+x-scheme-handler/nxm=vortex-downloads-handler.desktop
+x-scheme-handler/nxm-protocol=vortex-downloads-handler.desktop
