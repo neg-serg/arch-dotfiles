@@ -34,3 +34,11 @@ tsconf.setup {
   indent = {enable = true},
   autotag = {enable = false},
 }
+
+local ft_to_lang = require('nvim-treesitter.parsers').ft_to_lang
+require('nvim-treesitter.parsers').ft_to_lang = function(ft)
+    if ft == 'zsh' then
+        return 'bash'
+    end
+    return ft_to_lang(ft)
+end
