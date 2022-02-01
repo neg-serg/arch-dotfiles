@@ -1,9 +1,3 @@
-vim.cmd([[
-	syntax off
-	filetype on
-    filetype plugin indent off
-]])
-vim.g.did_load_filetypes = 1 -- do not load default filetype.vim
 -- Fix alacritty resize: github.com/neovim/neovim/issues/11330
 vim.cmd([[
     autocmd VimEnter * :sleep 100m
