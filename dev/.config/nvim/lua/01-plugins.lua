@@ -35,6 +35,7 @@ return require('packer').startup({function(use)
             }
         }
     }
+    use {'stevearc/dressing.nvim', config=[[require'plugcfg/dressing']]}
     use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
     use 'brooth/far.vim' -- better find and replace
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
