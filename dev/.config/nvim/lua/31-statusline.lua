@@ -171,15 +171,6 @@ function N.FormatAndEncoding()
     return printf('%s | %s', encoding, format)
 end
 
-function N.ReadPercent()
-    -- The percent part was inspired by vim-line-no-indicator plugin.
-    local chars = {'▁', '▁', '▂', '▃', '▄', '▅', '▓'}
-    local c_l = vim.fn.line('.')
-    local l_l = vim.fn.line('$')
-    local index = math.floor(math.ceil((c_l * #chars * 1.0) / l_l)) - 1
-    return chars[index+1]
-end
-
 function N.VisualSelectionSize()
     if vim.fn.mode():byte() == 22 then
         return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
