@@ -227,8 +227,8 @@ function N.activeLine()
     end
     statusline = statusline
         .. vim.api.nvim_buf_get_option(0, 'shiftwidth') .. '%#Git# '
-    if vim.g.coc_git_status then
-        statusline = statusline .. N.GitBranch(vim.g.coc_git_status)
+    if vim.b.gitsigns_head then
+        statusline = statusline .. N.GitBranch(vim.b.gitsigns_head .. vim.b.gitsigns_status)
     end
     statusline = statusline .. '%1* %#Base#'
     return statusline
