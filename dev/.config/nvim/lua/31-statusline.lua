@@ -147,7 +147,7 @@ function N.CheckMod()
     if vim.api.nvim_buf_get_option(0, 'modified') == true then
         cmd('hi Modi guifg=#8fa7c7 guibg=NONE')
         cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
-        return '  '
+        return '  '
     else
         cmd('hi Modi guifg=#6587b3 guibg=NONE')
         cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
