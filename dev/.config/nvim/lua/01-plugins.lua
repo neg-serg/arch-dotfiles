@@ -92,7 +92,6 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
-    use 'rebelot/heirline.nvim' -- lua statusline api
     use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
