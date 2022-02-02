@@ -92,6 +92,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
+    use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
     use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
