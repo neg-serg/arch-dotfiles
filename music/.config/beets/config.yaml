@@ -13,7 +13,6 @@ plugins: >
   ftintitle
   fuzzy
   info
-  ipfs
   lastgenre
   lastimport
   lyrics
