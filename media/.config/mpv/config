@@ -29,7 +29,7 @@ cscale-antiring=0.7 # chroma upscale deringing
 #--[Volume]------------------------------------------------
 volume=100
 volume-max=100
-ao=pipewire,jack
+ao=alsa,pipewire,jack
 #--[Language]----------------------------------------------
 slang=ru,rus
 alang=en
