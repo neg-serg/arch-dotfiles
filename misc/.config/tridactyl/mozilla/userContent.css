@@ -1,5 +1,5 @@
 * {
-  scrollbar-width: thin !important;
+  scrollbar-width: none !important;
 }
 
 @-moz-document url(about:blank), url(about:newtab), url(about:home) {

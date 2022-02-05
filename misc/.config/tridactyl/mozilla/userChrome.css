@@ -1,297 +1,147 @@
-#urlbar-background {
-  display: none !important;
-}
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/toolbars_below_content.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
 
-/* Icons */
-#PanelUI-menu-button {
-  list-style-image: url(image/Fx-Browser-icon-oneColor-white.png) !important;
-}
-#PanelUI-button {
-  background: #1b1e2b;
-}
-#PanelUI-button #PanelUI-menu-button .toolbarbutton-icon {
-  opacity: 0.7 !important;
-}
-#PanelUI-webext-ublock0_raymondhill_net-browser-action-view {
-  max-width: 252px !important;
-  min-width: 252px !important;
-}
-#home-button,
-#sidebar-button {
-  display: none;
-}
-#forward-button {
-  list-style-image: url(image/right-arrow.svg) !important;
-}
-#back-button {
-  list-style-image: url(image/left-arrow.svg) !important;
-}
+/* Moves tabs toolbar, bookmarks toolbar and main toolbar to the bottom of the window, and makes tabs be the bottom-most toolbar */
 
-#nav-bar-customization-target {
-  background-color: #1b1e2b !important;
-}
+/* By default, menubar will stay on top with two options to select it's behavior - see below */
 
-#urlbar-container {
-  max-height: 24px !important;
-}
-#urlbar-input-container {
-  max-height: 24px !important;
-  /* Fixing icons right and left padding inside search bar for hovering  */
-  padding-left: 7px;
-  padding-right: 7px;
-}
-#urlbar {
-  max-height: 24px !important;
-  border: 0 !important;
-  border-bottom: 1px solid #ffffff30 !important;
-  border-radius: 10px 10px 10px 10px !important;
-  background-image: none !important;
-  background-color: #0000004d !important;
-  box-shadow: none !important;
-  text-align: center !important;
-}
-#urlbar[open="true"] {
-  max-height: 24px !important;
-  border: 0 !important;
-  border-bottom: 1px solid #ffffff30 !important;
-  border-radius: 10px 10px 10px 10px !important;
-  background-image: none !important;
-  background-color: #0000004d !important;
-  max-height: 24px !important;
-  box-shadow: none !important;
-  text-align: center !important;
-}
+@-moz-document url(chrome://browser/content/browser.xhtml)
+{
+  #titlebar {
+    -moz-appearance: none !important;
+  }
 
-/* New tab icon size (16 is default) Important to not change the rest of calc */
-#tabs-newtab-button .toolbarbutton-icon {
-  width: calc(2 * var(--toolbarbutton-inner-padding) + 12px) !important;
-  height: calc(2 * var(--toolbarbutton-inner-padding) + 12px) !important;
-}
-/* Main BAR */
-#navigator-toolbox {
-  background-color: #1b1e2b !important;
-  --tabs-border-color: none !important;
-  --my-tab-min-width: 36px !important;
-  --tabs-navbar-shadow-size: 0px !important;
-  /*border: 0 !important; */
-}
-#TabsToolbar {
-  padding-top: 0px !important;
-  padding-bottom: 1px !important;
-}
-/* Seperate tabs and make them smaller */
-#TabsToolbar .tabbrowser-tab {
-  padding-right: 4px !important;
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-}
+  @media (-moz-os-version: windows-win10) {
+    /* Next two variables are used by autohide_menubar.css */
+    #toolbar-menubar {
+      --uc-menubar-extra-margin: 0px;
+    }
+    :root[sizemode="maximized"] #toolbar-menubar {
+      --uc-menubar-extra-margin: 8px;
+    }
 
-/* Remove the fill when loading on the tab which 
-isnt formated for different border radius */
-#tabbrowser-tabs {
-  --tab-loading-fill: #1b1e2b;
-  padding-left: 2px !important; /* fix the left tab being too close to the edge */
-  background-color: #1b1e2b;
-}
+    :root[sizemode="maximized"][tabsintitlebar]
+      :where(#browser, #customization-container, #toolbar-menubar) {
+      margin-top: 8px;
+    }
+  }
 
-/* Width of the tabs. Important to have Fadein or it breaks fonctionality */
-.tabbrowser-tab[fadein]:not([pinned]) {
-  max-width: 135px !important;
-}
+  #mainPopupSet,
+  #browser,
+  #customization-container
+  ,#nav-bar, #PersonalToolbar/* Remove this row if you want tabs to be the top-most row */ {
+    -moz-box-ordinal-group: 0;
+  }
 
-/* Remove the line between the tabs / seperators */
-#tabbrowser-tabs .tabbrowser-tab::before,
-#tabbrowser-tabs .tabbrowser-tab::after {
-  border: 0 !important;
-}
+  #toolbar-menubar {
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    top: 0px;
+  }
 
-/* Selected tabs design */
-.tabbrowser-tab[selected="true"] {
-  border: 0 !important;
-  background: #1b1e2b !important;
-}
+  #toolbar-menubar > spacer {
+    flex-grow: 1;
+  }
 
-.tab-background[selected="true"] {
-  background: #1b1e2b !important;
-}
+  #urlbar[breakout][breakout-extend] {
+    display: flex !important;
+    flex-direction: column-reverse;
+    bottom: -2px !important; /* Change to 3-5 px if using compact_urlbar_megabar.css depending on toolbar density */
+    top: auto !important;
+  }
 
-.tab-content[selected="true"] {
-  background: #32374d !important;
-}
+  .urlbarView-body-inner {
+    border-top-style: none !important;
+  }
 
-/* Normal tabs design on hover */
-.tab-content:not([selected="true"]):hover {
-  background-color: #89bbdd !important;
-  color: #1b1e2b;
-}
+  /* Yeah, removes window controls. Likely not wanted on bottom row  */
+  #TabsToolbar > .titlebar-buttonbox-container {
+    display: none;
+  }
+  #toolbar-menubar > .titlebar-buttonbox-container {
+    order: 1000;
+  }
 
-/* Design of the plus/newtab button */
-toolbar
-  #tabs-newtab-button:not([disabled="true"]):not([checked]):not([open]):not(:active):hover
-  > .toolbarbutton-icon {
-  border: 0 !important;
-  border-radius: 3px !important;
-  background-color: #292d3e !important;
-  padding: 20px;
-}
+  /* Fullscreen mode support */
+  #navigator-toolbox[inFullscreen] {
+    margin-top: 0 !important;
+  }
+  #navigator-toolbox[inFullscreen][style*="margin-top"] {
+    visibility: collapse;
+  }
+  #fullscr-toggler {
+    bottom: 0;
+    top: unset !important;
+  }
 
-toolbar
-  #tabs-newtab-button:not([disabled="true"]):-moz-any([open], [checked], :hover:active)
-  > .toolbarbutton-icon {
-  border: 0 !important;
-  border-radius: 3px !important;
-  background-color: #292d3e !important;
-  padding: 20px;
-}
+  /* These two rules exist for compatibility with autohide_toolbox.css */
+  #navigator-toolbox {
+    bottom: -1px;
+    transform-origin: bottom;
+  }
 
-/* Show Tab close button on hover */
-.tabbrowser-tab:not([pinned]) .tab-close-button {
-  display: -moz-box !important;
-  opacity: 0;
-  visibility: collapse !important;
-  transition: opacity 0.25s, visibility 0.25s ease-in !important;
-}
-.tabbrowser-tab:not([pinned]):hover .tab-close-button {
-  opacity: 1;
-  visibility: visible !important;
-}
+  #toolbar-menubar {
+    z-index: 1;
+    background-color: var(--lwt-accent-color, black);
+  }
 
-/* bar on the bottom */
-#mainPopupSet ~ box {
-  -moz-box-ordinal-group: 10;
-}
-#titlebar {
-  -moz-box-ordinal-group: 10;
-}
-#urlbar {
-  top: unset !important;
-  bottom: calc(
-    (var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2
-  ) !important;
-  box-shadow: none !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-#urlbar > * {
-  max-height: var(--urlbar-height) !important;
-}
-#urlbar[breakout][breakout-extend] {
-  max-height: var(--urlbar-height) !important;
-}
-#urlbar[breakout][breakout-extend] > * {
-  max-height: var(--urlbar-height) !important;
-}
-#urlbar-input-container {
-  height: 100%;
-  order: 2;
-}
-#urlbar > .urlbarView {
-  order: 1;
-}
-#urlbar-results {
-  position: fixed;
-  left: 0;
-  bottom: 66px !important;
-  width: 100%;
-  background-color: #1b1e2b;
-  display: flex;
-  flex-direction: column-reverse;
-}
-.panel-arrowbox {
-  display: none;
-}
-.search-one-offs {
-  display: none !important;
-}
-.tab-background {
-  border-top: none !important;
-}
-#navigator-toolbox::after {
-  border: none;
-}
-#TabsToolbar .tabbrowser-arrowscrollbox,
-#tabbrowser-tabs,
-.tab-stack {
-  min-height: 28px !important;
-}
-.tabbrowser-tab {
-  font-size: 80%;
-}
-.tab-content {
-  padding: 0 5px;
-}
-.tab-close-button .toolbarbutton-icon {
-  width: 12px !important;
-  height: 12px !important;
-}
+  /**************
+  Menubar options - By default, menubar is overlayed on top of web-content
+  ***************/
 
-:root {
-  /* Appmenu: Reduce item padding */
-  --arrowpanel-menuitem-padding-block: 4px 8px !important;
-  /* Tabbar: reduce tab margin */
-  --tab-block-margin: 4px 3px !important;
-}
+  /* Uncomment the following if you want static menubar on top of the window (make menubar enabled)
+  * Use when menubar is enabled to always show it */
 
-/* Tab: Reduce height */
-.tabbrowser-tab {
-  min-height: 24px !important;
-}
+  /*
+  #browser,#customization-container{ padding-top: var(--uc-menubar-spacer,28px) }
+  */
 
-/* Tab: Ensure tab height doesn't augment when arrowscrollbox is visible  */
-#tabbrowser-arrowscrollbox {
-  --tab-min-height: 31px !important;
-  max-height: var(--tab-min-height);
-}
+  /* OR, if uncomment the following if you want menubar to appear below content, above tabs toolbar */
 
-/* Tab: Attention icon */
-.tabbrowser-tab:is([image], [pinned])
-  > .tab-stack
-  > .tab-content[attention]:not([selected="true"]),
-.tabbrowser-tab
-  > .tab-stack
-  > .tab-content[pinned][titlechanged]:not([selected="true"]) {
-  background-position-x: left 2px !important;
-  background-position-y: bottom 12.5px !important;
-}
+  /*
+  #toolbar-menubar{ position: static; display: -moz-box; margin-top: 0px !important; background-color: transparent }
+  */
 
-/* URLBar: Fix vertical alignment */
-#urlbar[breakout="true"]:not([open="true"]) {
-  --urlbar-height: 20px !important;
-  --urlbar-toolbar-height: 24px !important;
-}
-
-/* URLBar: Fix URL address vertical aligment when megabar is open */
-#urlbar[breakout="true"][open="true"] {
-  --urlbar-toolbar-height: 30px !important;
-}
-
-/* Searchbar: Ensure toolbar height doesn't augment when searchbar is visible */
-#urlbar-container,
-#search-container {
-  padding-block: 0 !important;
-}
-
-/* Searchbar: Make sure the min-height of the input is the same as the popup */
-#search-container {
-  min-width: 192px !important;
-}
-
-/* Toolbar: Reduce spacing */
-#urlbar-container {
-  --urlbar-container-height: 30px !important;
-  margin-top: 0 !important;
-}
-
-/* Reload Button: Fix vertical alignment */
-#reload-button {
-  margin-block-start: -2px !important;
-}
-
-/* Windows 10 context menu */
-@media (-moz-os-version: windows-win10) {
-  /* Context Menu: Reduce vertical space */
-  menupopup > menuitem,
-  menupopup > menu {
-    padding-block: 2px !important;
+  /* set to "reverse" (without quotes) if you want tabs above menubar with the above option */
+  #titlebar {
+    -moz-box-direction: normal;
   }
 }
+
+#tabbrowser-tabs {
+  visibility: collapse;
+}
+/* #TabsToolbar-customization-target {
+  -moz-box-pack: end;
+} */
+/* #alltabs-button {
+  position: relative;
+  z-index: 1;
+} */
+/* #TabsToolbar > .titlebar-spacer {
+  display: none;
+}
+#TabsToolbar {
+  margin-bottom: calc(-18px - 2 * (var(--toolbarbutton-inner-padding)));
+} */
+/*
+:root {
+  --uc-titlebar-padding: 0px;
+  --uc-window-control-width: 40px;
+}
+:root[tabsintitlebar] {
+  --uc-window-control-width: 160px;
+}
+:root[inFullscreen] {
+  --uc-window-control-width: 0px;
+}
+@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win10) {
+  :root[sizemode="maximized"][tabsintitlebar] {
+    --uc-titlebar-padding: 8px;
+  }
+}
+#titlebar {
+  -moz-appearance: none !important;
+  margin-top: var(--uc-titlebar-padding);
+} */
