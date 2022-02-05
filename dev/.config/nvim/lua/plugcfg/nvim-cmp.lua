@@ -63,6 +63,7 @@ M.init = function()
     }),
     formatting = {
       format = require('lspkind').cmp_format({
+        mode = 'symbol',
         symbol_map = {
           Text = "",
           Method = "ﬦ",
@@ -90,7 +91,6 @@ M.init = function()
           Operator = "",
           TypeParameter = ""
         },
-        with_text = true,
         menu = {
           buffer = '[buf]',
           nvim_lsp = '[LSP]',
