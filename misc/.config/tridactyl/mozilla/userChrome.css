@@ -44,6 +44,12 @@ See the above repository for updates as well as full license text. */
     flex-grow: 1;
   }
 
+
+  #urlbar {
+    font-size: 12pt !important;
+    font-weight: 500;
+  }
+
   #urlbar[breakout][breakout-extend] {
     display: flex !important;
     flex-direction: column-reverse;
@@ -159,10 +165,8 @@ findbar::before{
     -moz-box-flex: 100;
 }
 
-/*
-Move findbar so it isn't over the scrollbar
-Delete if you want findbar to begin from right window edge
-*/
+/* Move findbar so it isn't over the scrollbar
+    Delete if you want findbar to begin from right window edge */
 findbar{
     margin-right: 16px;
     border-right: 1px solid var(--chrome-content-separator-color);
