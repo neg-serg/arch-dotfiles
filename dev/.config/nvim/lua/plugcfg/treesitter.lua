@@ -21,6 +21,7 @@ tsconf.setup {
     enable = true, -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
     additional_vim_regex_highlighting = false,
+    use_languagetree = true,
   },
   matchup = {
     enable = true, -- mandatory, false will disable the whole extension
