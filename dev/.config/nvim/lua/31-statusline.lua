@@ -202,8 +202,7 @@ function N.activeLine()
     if pwd ~= '' then
         statusline = statusline .. '%#Git# %#String#' .. pwd
     end
-    filename = N.StatusLineFileName()
-    filename = filename:gsub("/", "%%#Base#/%%#Modi#")
+    filename = N.StatusLineFileName():gsub("/", "%%#Base#/%%#Modi#")
     if filename ~= '' then
         statusline = statusline .. '%#Git# ¦ %#Modi#'
     end
@@ -212,7 +211,8 @@ function N.activeLine()
     if vim.api.nvim_get_option('readonly') then
         statusline = statusline .. ''
     end
-    statusline = statusline .. N.StatusErrors() .. '%*'
+    statusline = statusline
+        .. '%#Title#' .. N.StatusErrors()
         .. '%#Decoration# %3* %= '
         .. '%#Filetype#'
         .. '%3*'
