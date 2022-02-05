@@ -74,7 +74,12 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'plasticboy/vim-markdown', ft='md', opt=true} -- markdown vim mode
-    use {"nvim-neorg/neorg", config = [[require'plugcfg/neorg']], requires = "nvim-lua/plenary.nvim"}
+    use {'nvim-neorg/neorg',
+        after = {'nvim-treesitter', 'telescope.nvim'},
+        config = [[require'plugcfg/neorg']],
+        ft = "norg",
+    }
+    use {'ellisonleao/glow.nvim', cmd='Glow', opt=true} -- glow preview in terminal
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
