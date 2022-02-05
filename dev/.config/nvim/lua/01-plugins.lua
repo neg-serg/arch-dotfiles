@@ -44,7 +44,6 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
-    use {'nvim-lua/lsp-status.nvim'} -- statusline lsp
     use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]]} -- completion engine
     use 'hrsh7th/cmp-nvim-lua' -- cmp neovim lua api support
     use 'hrsh7th/cmp-nvim-lsp' -- cmp lsp support
