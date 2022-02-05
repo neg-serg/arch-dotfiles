@@ -235,7 +235,19 @@ function N.activeLine()
 end
 
 function N.inActiveLine()
-    return '%#Base# %#Filename# %.20%F'
+    local statusline = ""
+    statusline = statusline .. '%#Statement# '
+    local pwd = N.StatusLinePWD()
+    if pwd ~= '' then
+        statusline = statusline .. '%#String# ' .. pwd
+    end
+    filename = N.StatusLineFileName()
+    if filename ~= '' then
+        statusline = statusline .. '%#String# ¦ '
+        statusline = statusline .. filename
+    end
+    statusline = statusline .. '%= %#Statement#'
+    return statusline
 end
 
 return N
