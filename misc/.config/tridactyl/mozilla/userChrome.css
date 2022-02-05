@@ -82,26 +82,13 @@ See the above repository for updates as well as full license text. */
   }
 
   #toolbar-menubar {
-    z-index: 1;
-    background-color: var(--lwt-accent-color, black);
+    /* z-index: 1; */
+    /* background-color: var(--lwt-accent-color, black); */
+    position: static;
+    display: -moz-box;
+    margin-top: 0px !important;
+    background-color: transparent;
   }
-
-  /**************
-  Menubar options - By default, menubar is overlayed on top of web-content
-  ***************/
-
-  /* Uncomment the following if you want static menubar on top of the window (make menubar enabled)
-  * Use when menubar is enabled to always show it */
-
-  /*
-  #browser,#customization-container{ padding-top: var(--uc-menubar-spacer,28px) }
-  */
-
-  /* OR, if uncomment the following if you want menubar to appear below content, above tabs toolbar */
-
-  /*
-  #toolbar-menubar{ position: static; display: -moz-box; margin-top: 0px !important; background-color: transparent }
-  */
 
   /* set to "reverse" (without quotes) if you want tabs above menubar with the above option */
   #titlebar {
@@ -112,36 +99,3 @@ See the above repository for updates as well as full license text. */
 #tabbrowser-tabs {
   visibility: collapse;
 }
-/* #TabsToolbar-customization-target {
-  -moz-box-pack: end;
-} */
-/* #alltabs-button {
-  position: relative;
-  z-index: 1;
-} */
-/* #TabsToolbar > .titlebar-spacer {
-  display: none;
-}
-#TabsToolbar {
-  margin-bottom: calc(-18px - 2 * (var(--toolbarbutton-inner-padding)));
-} */
-/*
-:root {
-  --uc-titlebar-padding: 0px;
-  --uc-window-control-width: 40px;
-}
-:root[tabsintitlebar] {
-  --uc-window-control-width: 160px;
-}
-:root[inFullscreen] {
-  --uc-window-control-width: 0px;
-}
-@media (-moz-os-version: windows-win7), (-moz-os-version: windows-win10) {
-  :root[sizemode="maximized"][tabsintitlebar] {
-    --uc-titlebar-padding: 8px;
-  }
-}
-#titlebar {
-  -moz-appearance: none !important;
-  margin-top: var(--uc-titlebar-padding);
-} */
