@@ -46,8 +46,8 @@ See the above repository for updates as well as full license text. */
 
 
   #urlbar {
-    font-size: 12pt !important;
-    font-weight: 500;
+    font-size: 11pt !important;
+    font-weight: 600;
   }
 
   #urlbar[breakout][breakout-extend] {
