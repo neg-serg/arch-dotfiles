@@ -103,7 +103,7 @@ vim.opt.wildignore:append {
 }
 vim.opt.hlsearch = true                                      -- Highlight search results (enforce
 vim.opt.shortmess:append 'aoOstTWAIcqFS'                     -- Shorting messages for all
-vim.opt.showmode = true                                      -- Show the mode ("-- INSERT --" at the bottom
+vim.opt.showmode = false                                     -- Dot not show the mode ("-- INSERT --" at the bottom
 vim.opt.showtabline = 0                                      -- Do not show tab line
 vim.opt.smartcase = true                                     -- Case sensitive when uc present
 vim.opt.softtabstop = 4                                      -- Let backspace delete indent
