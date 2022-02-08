@@ -7,6 +7,7 @@ nvim_create_augroups({
         {'FocusGained,BufEnter,FileChangedShell,WinEnter', '*', 'checktime'},
         -- Disables automatic commenting on newline:
         {'FileType', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
+        {'FileType', 'help,startuptime,qf,lspinfo', 'nnoremap <buffer><silent> q :close<CR>'},
         -- Update binds when sxhkdrc is updated.
         {'BufWritePost', '*sxhkdrc', '!pkill -USR1 sxhkd'},
         {'BufWritePost', '01-plugins.lua', 'PackerCompile'},
