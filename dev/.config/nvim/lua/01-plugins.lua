@@ -32,10 +32,13 @@ return require('packer').startup({function(use)
     use 'norcalli/nvim_utils' -- neovim lua utils
     use {'airblade/vim-rooter', config=[[require'plugcfg/vim-rooter']]} -- autochdir for project root or for current dir
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use 'pbrisbin/vim-mkdir' -- auto make dir without asking
+    use {"jghauser/mkdir.nvim", config = [[require("mkdir")]], event = "BufWritePre"}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use {'nvim-telescope/telescope.nvim', requires={
+    use {'nvim-telescope/telescope.nvim',
+        cmd = "Telescope",
+        module = { "telescope", "configs.telescope" },
+        requires={
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
             {'nvim-telescope/telescope-frecency.nvim',
@@ -53,10 +56,13 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
-    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]]} -- completion engine
-    use 'hrsh7th/cmp-nvim-lua' -- cmp neovim lua api support
-    use 'hrsh7th/cmp-nvim-lsp' -- cmp lsp support
-    use 'hrsh7th/cmp-path' -- cmp path completion support
+    use {'hrsh7th/nvim-cmp',
+        event = {"InsertEnter", "CmdLineEnter"},
+        config=[[require('plugcfg/nvim-cmp').init()]],
+    } -- completion engine
+    use {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'} -- cmp neovim lua api support
+    use {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'} -- cmp lsp support
+    use {'hrsh7th/cmp-path', after='nvim-cmp'} -- cmp path completion support
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
@@ -88,7 +94,9 @@ return require('packer').startup({function(use)
         config = [[require'plugcfg/neorg']],
         ft = "norg",
     }
+    use {'nvim-neorg/neorg-telescope', ft='norg'} -- neorg telescope integration
     use {'ellisonleao/glow.nvim', cmd='Glow', opt=true} -- glow preview in terminal
+    use {'jbyuki/nabla.nvim', opt=true} -- scentific notes in nvim
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -111,6 +119,7 @@ return require('packer').startup({function(use)
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
     use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
+    use {'wuelnerdotexe/vim-enfocado'} -- nice colorscheme approach
     use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best way to display colors in the file
     use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
     use {'nathom/filetype.nvim', config=[[require'plugcfg/filetype-nvim']]} -- faster filetype alternative
@@ -121,9 +130,21 @@ return require('packer').startup({function(use)
     use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
     use 'tpope/vim-fugitive' -- git stuff old
 end, config={
-        display={open_fn=require('packer.util').float},
-        compile_path = vim.fn.stdpath('config')..'/lua/packer/packer_compiled.lua',
+        display={
+            title = "Packer",
+            done_sym = "",
+            error_syn = "×",
+            keybindings = {
+                toggle_info = "<TAB>",
+            },
+            open_fn=require('packer.util').float
+        },
+        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
         auto_clean = true,
         compile_on_sync = true,
+        profile = {
+            enable = true,
+            threshold = 0.0001,
+        },
     }
 })
