@@ -57,12 +57,11 @@ return require('packer').startup({function(use)
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
     use {'hrsh7th/nvim-cmp',
-        event = {"InsertEnter", "CmdLineEnter"},
         config=[[require('plugcfg/nvim-cmp').init()]],
     } -- completion engine
-    use {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'} -- cmp neovim lua api support
-    use {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'} -- cmp lsp support
-    use {'hrsh7th/cmp-path', after='nvim-cmp'} -- cmp path completion support
+    use {'hrsh7th/cmp-nvim-lua'} -- cmp neovim lua api support
+    use {'hrsh7th/cmp-nvim-lsp'} -- cmp lsp support
+    use {'hrsh7th/cmp-path'} -- cmp path completion support
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
@@ -70,7 +69,6 @@ return require('packer').startup({function(use)
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'jamessan/vim-gnupg', ft='gpg', opt=true} -- transparent work with gpg-encrypted files
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
-    use {'dense-analysis/ale', config=[[require'plugcfg/ale']]} -- async linter with lsp support
     use {'windwp/nvim-autopairs',
         config=[[require('plugcfg/nvim-autopairs')]],
         event='InsertEnter'} -- try new autopairs
