@@ -134,17 +134,11 @@ end, config={
             title = "Packer",
             done_sym = "",
             error_syn = "×",
-            keybindings = {
-                toggle_info = "<TAB>",
-            },
-            open_fn=require('packer.util').float
+            keybindings = {toggle_info = "<TAB>"},
         },
         compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
         auto_clean = true,
         compile_on_sync = true,
-        profile = {
-            enable = true,
-            threshold = 0.0001,
-        },
+        profile = {enable = true, threshold = 0.0001},
     }
 })
