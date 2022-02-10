@@ -132,8 +132,7 @@ return require('packer').startup({function(use)
 end, config={
         display={
             title = "Packer",
-            done_sym = "",
-            error_syn = "×",
+            open_cmd = '85vnew \\[packer\\]', -- An optional command to open a window for packer's display
             keybindings = {toggle_info = "<TAB>"},
         },
         compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
