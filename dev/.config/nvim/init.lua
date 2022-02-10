@@ -39,7 +39,7 @@ vim.cmd "silent! command PackerUpdate lua require 'plugins' require('packer').up
 loadrequire 'nvim_utils'
 loadrequire '00-helpers'
 loadrequire '00-settings'
-loadrequire 'packer/packer_compiled'
+loadrequire 'packer_compiled'
 loadrequire '01-plugins'
 loadrequire '02-bindings'
 loadrequire '04-aucmds'
