@@ -62,23 +62,23 @@ _G.NegStatusline = setmetatable(N, {
     end
 })
 
-function N.StatusErrors()
-    if not vim.fn.exists(':ALE*') then
-        return ''
-    end
-    local s = ''
-    local ale = vim.fn['ale#statusline#Count'](vim.fn.bufnr('%'))
-    if ale['error'] > 0 then
-        s = s .. '●' .. ale['error']
-    end
-    if ale['warning'] > 0 then
-        s = s .. '' .. ale['error']
-    end
-    if not (s == nil or s == '') then
-        return s
-    end
-    return ''
-end
+-- function N.StatusErrors()
+--     if not vim.fn.exists(':ALE*') then
+--         return ''
+--     end
+--     local s = ''
+--     local ale = vim.fn['ale#statusline#Count'](vim.fn.bufnr('%'))
+--     if ale['error'] > 0 then
+--         s = s .. '●' .. ale['error']
+--     end
+--     if ale['warning'] > 0 then
+--         s = s .. '' .. ale['error']
+--     end
+--     if not (s == nil or s == '') then
+--         return s
+--     end
+--     return ''
+-- end
 
 function NegJobs()
     local n_jobs = 0
@@ -212,7 +212,7 @@ function N.activeLine()
         statusline = statusline .. ''
     end
     statusline = statusline
-        .. '%#Title#' .. N.StatusErrors()
+        -- .. '%#Title#' .. N.StatusErrors()
         .. '%#Decoration# %3* %= '
         .. '%#Filetype#'
         .. '%3*'
