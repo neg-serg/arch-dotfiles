@@ -114,13 +114,10 @@ return require('packer').startup({function(use)
     use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
     use 'RRethy/nvim-treesitter-endwise' -- ts-based endwise
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
-    use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
     use {'neg-serg/neg', config=[[require'neg']]} -- my pure-dark neovim colorscheme
-    use {'wuelnerdotexe/vim-enfocado'} -- nice colorscheme approach
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
-    use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
     use {'nathom/filetype.nvim', config=[[require'plugcfg/filetype-nvim']]} -- faster filetype alternative
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
