@@ -1,5 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
-local present, packer = pcall(require, "packer")
+local present, packer = pcall(require, 'packer')
 if not present then
     local fn=vim.fn
     local install_path=fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
@@ -32,12 +32,12 @@ return require('packer').startup({function(use)
     use 'norcalli/nvim_utils' -- neovim lua utils
     use {'jedi2610/nvim-rooter.lua', config=[[require'plugcfg/nvim-rooter']]} -- -- autochdir for project root or for current dir
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use {"jghauser/mkdir.nvim", config = [[require("mkdir")]], event = "BufWritePre"}
+    use {'jghauser/mkdir.nvim', config = [[require('mkdir')]], event = 'BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim',
-        cmd = "Telescope",
-        module = { "telescope", "configs.telescope" },
+        cmd = 'Telescope',
+        module = { 'telescope', 'configs.telescope' },
         requires={
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
@@ -90,7 +90,7 @@ return require('packer').startup({function(use)
     use {'nvim-neorg/neorg',
         after = {'nvim-treesitter', 'telescope.nvim'},
         config = [[require'plugcfg/neorg']],
-        ft = "norg",
+        ft = 'norg',
     }
     use {'nvim-neorg/neorg-telescope', ft='norg'} -- neorg telescope integration
     use {'ellisonleao/glow.nvim', cmd='Glow', opt=true} -- glow preview in terminal
@@ -117,9 +117,9 @@ return require('packer').startup({function(use)
     use 'folke/todo-comments.nvim' -- better highlight TODO, HACK, etc
     use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
-    use {'neg-serg/neg', config=[[vim.cmd("colorscheme neg")]]} -- my pure-dark neovim colorscheme
+    use {'neg-serg/neg', config=[[vim.cmd('colorscheme neg')]]} -- my pure-dark neovim colorscheme
     use {'wuelnerdotexe/vim-enfocado'} -- nice colorscheme approach
-    use {'RRethy/vim-hexokinase', run="make hexokinase"} -- best way to display colors in the file
+    use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
     use 'tjdevries/colorbuddy.vim' -- for future experiments with new colorschemes
     use {'nathom/filetype.nvim', config=[[require'plugcfg/filetype-nvim']]} -- faster filetype alternative
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -130,9 +130,9 @@ return require('packer').startup({function(use)
     use 'tpope/vim-fugitive' -- git stuff old
 end, config={
         display={
-            title = "Packer",
+            title = 'Packer',
             open_cmd = '85vnew \\[packer\\]', -- An optional command to open a window for packer's display
-            keybindings = {toggle_info = "<TAB>"},
+            keybindings = {toggle_info = '<TAB>'},
         },
         compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
         auto_clean = true,
