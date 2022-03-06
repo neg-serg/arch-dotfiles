@@ -1,3 +1,4 @@
+vim.cmd "cabbrev e tabe"
 vim.cmd "cabbrev W w"
 vim.cmd "cabbrev W! w!"
 vim.cmd "cnoreabbrev Bd bd"
