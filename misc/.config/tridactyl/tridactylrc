@@ -21,6 +21,7 @@ set hintnames short
 set hintshift true
 set hintchars wersdfa
 set hintuppercase true
+set completionfuzziness 1
 " cyrillic support
 set keytranslatemodes.nmaps true
 set keytranslatemodes.imaps true
