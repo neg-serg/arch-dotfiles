@@ -90,7 +90,7 @@
     decorations = true
     line-numbers-left-format = ""
     line-numbers-right-format = ""
-    syntax-theme = "ansi-dark"
+    syntax-theme = "ansi"
     zero-style = "#6C7E96"
     minus-style = "#781f34" "#1a0010"
     minus-emph-style = "#781f34" bold "#1a0010"
