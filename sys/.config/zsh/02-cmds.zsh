@@ -41,6 +41,7 @@ _exists rg && {
 }
 alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
+alias emptydir='ls -ld **/*(/^F)'
 _exists paru && alias yay='paru'
 _exists sudo && {alias sudo='sudo '; alias s='sudo '}
 _exists plocate && alias locate='plocate'
