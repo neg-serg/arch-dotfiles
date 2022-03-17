@@ -15,6 +15,12 @@ map('n', '<Tab>', ':bn<CR>', {silent=true})
 map('n', '<S-Tab>', ':bp<CR>', {silent=true})
 map('n', '<leader><Tab>', ':b#<CR>', {silent=true})
 
+-- Don't use arrow keys
+map('', '<up>', '<nop>')
+map('', '<down>', '<nop>')
+map('', '<left>', '<nop>')
+map('', '<right>', '<nop>')
+
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
 map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
 map('n', '[Qleader]R', ':normal :<C-u>crewind<CR>', {silent=true})
