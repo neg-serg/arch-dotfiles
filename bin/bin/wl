@@ -60,7 +60,7 @@ class WallpaperManager():
             stdout=subprocess.PIPE
         )
         outs, _ = proc.communicate(timeout=15)
-        self.images = str(outs).split('\\x00')
+        self.images = outs.decode('utf-8').split('\x00')
 
     def add_wall_history(self, image_path):
         """ Add wallpaper to the file with history """
