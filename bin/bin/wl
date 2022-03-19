@@ -8,7 +8,6 @@ Usage:
     wl -l | --list
     wl -r | --random
     wl -s | --show
-    wl -v | --video
     wl -c | --copy
     wl --copy-num=<n>
 
@@ -16,7 +15,6 @@ Options:
     --list           print list of wallpaper history
     --random         set random picture as wallpaper
     --show           open image viewer for the image history
-    --video          set random video wallpaper
     --copy           copy current wallpaper name to clipboard
 
 Created by :: Neg
@@ -83,7 +81,12 @@ class WallpaperManager():
     def execute_hsetroot(self):
         """ Execute hsetroot to set wallpape """
         img_to_set = random.choice(self.images)
-        subprocess.Popen(['hsetroot', '-cover', img_to_set])
+        if '.gif' == Path(img_to_set).suffix:
+            p1 = subprocess.Popen(['pkill', 'xrootgif']); p1.wait()
+            p2 = subprocess.Popen(['xrootgif', img_to_set]); p2.wait()
+        else:
+            os.system("pkill xrootgif &")
+            subprocess.Popen(['hsetroot', '-cover', img_to_set])
         return img_to_set
 
     def print_wall_history(self, history):
