@@ -95,7 +95,7 @@ class WallpaperManager():
                 line = '~/' + line.split(home)[1]
                 number = PrettyPrinter.wrap(str(num))
                 file_name = PrettyPrinter.fancy_file(str(Path(line)))
-                print(f'{number} {file_name}')
+                print(f'{number}{file_name}')
 
     def set_wallpaper(self):
         """ Set wallpaper """
