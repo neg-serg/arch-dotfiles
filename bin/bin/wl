@@ -44,7 +44,7 @@ class WallpaperManager():
         self.get_wallpapers = self.get_walls_with_fd
         self.get_wallpapers()
         self.random_selection = True
-        wlist_dir = os.path.expanduser("~/.config/wall")
+        wlist_dir = os.path.expanduser("~/.local/share/wl")
         self.wall_list_path = wlist_dir + '/' + "wallpaper.list"
         self.default_action = self.set_wallpaper
         try:
