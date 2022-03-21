@@ -1,0 +1,30 @@
+interface = "net1"
+long_uptime = true
+long_shell = false
+long_kernel = true
+current_shell = true
+physical_cores = true
+theme = "neg"
+
+# Displays only the specified readouts.
+# Accepted values (case-sensitive):
+#   - Host
+#   - Machine
+#   - Kernel
+#   - Distribution
+#   - OperatingSystem
+#   - DesktopEnvironment
+#   - WindowManager
+#   - Resolution
+#   - Backlight
+#   - Packages
+#   - LocalIP
+#   - Terminal
+#   - Shell
+#   - Uptime
+#   - Processor
+#   - ProcessorLoad
+#   - Memory
+#   - Battery
+# Example:
+#   show = ["Battery", "Memory", ...]

@@ -1,0 +1,48 @@
+# neg
+hide_ascii         = false
+prefer_small_ascii = true
+spacing            = 2
+padding            = 0
+separator          = ""
+key_color          = "025"
+
+[bar]
+hide_delimiters = false
+visible         = false
+
+[box]
+title           = ""
+border          = "rounded"
+visible         = false
+
+[box.inner_margin]
+x               = 2
+y               = 1
+
+[custom_ascii]
+color           = "243"
+path            = "~/.config/macchina/skull"
+
+[randomize]
+key_color       = false
+separator_color = false
+
+[keys]
+host            = "host"
+kernel          = "kernel"
+battery         = "bat"
+os              = "os"
+de              = "desktop"
+wm              = "wm"
+distro          = "distro"
+terminal        = "term"
+shell           = "sh"
+packages        = "packages"
+uptime          = "uptime"
+memory          = "memory"
+machine         = "machine"
+local_ip        = "ip"
+backlight       = "brightness"
+resolution      = "resolution"
+cpu_load        = "cpu load"
+cpu             = "cpu"
