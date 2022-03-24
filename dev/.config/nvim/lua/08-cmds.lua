@@ -66,10 +66,3 @@ vim.cmd("command! -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.
 vim.cmd("command! -range=% PB <line1>,<line2>w !curl -F 'c=@-' https://ptpb.pw/?u=1 | tr -d ' ' | xclip -i -selection clipboard")
 vim.cmd("command! -range=% IX <line1>,<line2>w !curl -F 'f:1=<-' ix.io | tr -d ' ' | xclip -i -selection clipboard")
 vim.cmd("command! -range=% TB <line1>,<line2>w !nc termbin.com 9999 | tr -d ' ' | xclip -i -selection clipboard")
-
-vim.cmd "silent! command PackerClean lua require 'plugins' require('packer').clean()"
-vim.cmd "silent! command PackerCompile lua require 'plugins' require('packer').compile()"
-vim.cmd "silent! command PackerInstall lua require 'plugins' require('packer').install()"
-vim.cmd "silent! command PackerStatus lua require 'plugins' require('packer').status()"
-vim.cmd "silent! command PackerSync lua require 'plugins' require('packer').sync()"
-vim.cmd "silent! command PackerUpdate lua require 'plugins' require('packer').update()"
