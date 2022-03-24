@@ -80,7 +80,7 @@ _exists youtube-dl && alias yt='noglob yt-dlp -q --downloader aria2c -f "(bestvi
 _exists ytfzf && alias ytfzf='ytfzf --preview-side=left -t'
 _exists wget2 && alias wget='wget2'
 _exists imgur_screenshot && alias img='imgur-screenshot'
-local rlwrap_list=(irb guile bb)
+local rlwrap_list=(bb fennel guile irb)
 local sudo_list=(umount chmod chown modprobe)
 local logind_sudo_list=(reboot halt poweroff)
 local noglob_list=(fc find ftp sftp lftp history locate rake rsync scp wget youtube-dl links2 lynx you-get pip)
