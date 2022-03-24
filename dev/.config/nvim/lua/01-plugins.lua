@@ -62,7 +62,9 @@ return require('packer').startup({function(use)
     use {'hrsh7th/cmp-nvim-lua'} -- cmp neovim lua api support
     use {'hrsh7th/cmp-nvim-lsp'} -- cmp lsp support
     use {'hrsh7th/cmp-path'} -- cmp path completion support
+    use {'lukas-reineke/cmp-under-comparator'} -- better nvim-cmp sorter
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
+    use {'j-hui/fidget.nvim', config=[[require'fidget'.setup{}]], after='nvim-lspconfig'} -- nvim-lsp progress
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
