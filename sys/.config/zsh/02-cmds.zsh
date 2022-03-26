@@ -22,7 +22,15 @@ fi
 alias mv='mv -i'
 alias mk='mkdir -p'
 alias rd='rmdir'
-alias grep='grep --color=auto'
+if _exists ugrep; then
+    alias grep='ugrep -G'  # search with basic regular expressions (BRE)
+    alias egrep='ugrep -E' # search with extended regular expressions (ERE)
+    alias fgrep='ugrep -F' # find string(s)
+    alias pgrep='ugrep -P' # search with Perl regular expressions
+    alias xgrep='ugrep -W' # search (ERE) and output text or hex for binary
+else
+    alias grep='grep --color=auto'
+fi
 _exists rg && {
     local rg_options='--max-columns=0 \
     --max-columns-preview \
