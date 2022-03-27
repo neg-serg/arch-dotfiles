@@ -9,7 +9,7 @@ local cursor_line = gr("cursor_line", {clear=true})
 local statusline = gr("statusline", {clear=true})
 
 au({'Filetype'}, {command='setlocal formatoptions-=c formatoptions-=r formatoptions-=o', group=main})
-au({'FocusGained,BufEnter,FileChangedShell,WinEnter'}, {command='checktime', group=main})
+au({'FocusGained','BufEnter','FileChangedShell','WinEnter'}, {command='checktime', group=main})
 -- Disables automatic commenting on newline:
 au({'Filetype'}, {
     pattern={'help', 'startuptime', 'qf', 'lspinfo'},
@@ -32,7 +32,7 @@ au({'BufReadPost'}, {command=[[
 -- Clear search context when entering insert mode, which implicitly stops the
 -- highlighting of whatever was searched for with hlsearch on. It should also
 -- not be persisted between sessions.
-au({'BufReadPre,FileReadPre'}, {command=[[let @/ = '']], group=mode_change})
+au({'BufReadPre','FileReadPre'}, {command=[[let @/ = '']], group=mode_change})
 au({'InsertLeave'}, {command='setlocal nopaste', group=mode_change})
 
 au({'BufWritePost'}, {
@@ -47,17 +47,8 @@ au({'TextYankPost'}, {
     group=hi_yank
 })
 
-au({'VimEnter,WinEnter,BufWinEnter,BufEnter'}, {command='setlocal cursorline', group=cursor_line})
-au({'BufLeave,WinLeave'}, {command='setlocal nocursorline', group=cursor_line})
+au({'VimEnter','WinEnter','BufWinEnter','BufEnter'}, {command='setlocal cursorline', group=cursor_line})
+au({'BufLeave','WinLeave'}, {command='setlocal nocursorline', group=cursor_line})
 
-api.nvim_exec([[
-  augroup Statusline
-  au!
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.NegStatusline('active')
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.NegStatusline('inactive')
-  augroup END
-]], false)
-
-
--- au({'WinEnter,BufEnter'}, {callback=function() vim.wo.statusline=NegStatusline('active') end, group=statusline})
--- au({'WinLeave,BufLeave'}, {callback=function() vim.wo.statusline=NegStatusline('inactive') end, group=statusline})
+au({'WinEnter','BufEnter'}, {callback=function() vim.wo.statusline=NegStatusline('active') end, group=statusline})
+au({'WinLeave','BufLeave'}, {callback=function() vim.wo.statusline=NegStatusline('inactive') end, group=statusline})
