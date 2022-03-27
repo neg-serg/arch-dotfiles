@@ -1,19 +1,16 @@
-local api = vim.api
-local cmd = api.nvim_command
-local call = vim.call
-local func = api.nvim_call_function
+local hi = vim.api.nvim_set_hl
 
-cmd('hi Base guibg=NONE guifg=#234758')
-cmd('hi Decoration guibg=NONE guifg=NONE')
-cmd('hi Filetype guibg=NONE guifg=#007fb5')
-cmd('hi Git guibg=NONE guifg=#005faf')
-cmd('hi StatusDelimiter guibg=NONE guifg=#326e8c')
-cmd('hi StatusLine guifg=black guibg=NONE')
-cmd('hi StatusRight guibg=NONE guifg=#6c7e96')
-cmd('hi Mode guibg=NONE guifg=#007fb5')
-cmd('set noruler') --disable line numbers in bottom right for our custom indicator as above
+hi(0, 'Base', {bg='NONE', fg='#234758'})
+hi(0, 'Decoration', {bg='NONE', fg='NONE'})
+hi(0, 'Filetype', {bg='NONE', fg='#007fb5'})
+hi(0, 'Git', {bg='NONE', fg='#005faf'})
+hi(0, 'StatusDelimiter', {bg='NONE', fg='#326e8c'})
+hi(0, 'StatusLine', {fg=black, bg='NONE'})
+hi(0, 'StatusRight', {bg='NONE', fg='#6c7e96'})
+hi(0, 'Mode', {bg='NONE', fg='#007fb5'})
 
 N = {}
+
 function N.FancyMode()
     local modes = {}
     local current_mode = api.nvim_get_mode()['mode']
@@ -40,12 +37,11 @@ function N.FancyMode()
         ['!'] = 'Shell',
         ['t'] = 'T'
     }, {
-            -- fix weird issues
-            __index = function(_, _)
-                return 'V·Block'
-            end
-        }
-    )
+        -- fix weird issues
+        __index = function(_, _)
+            return 'V·Block'
+        end
+    })
     return modes.current_mode[current_mode]
 end
 
@@ -54,31 +50,6 @@ function N.FizeSize()
     if string.len(file) == 0 then return '' end
     return format_file_size_(file)
 end
-
-_G.NegStatusline = setmetatable(N, {
-    __call = function(statusline, mode)
-        if mode == "active" then return N.activeLine() end
-        if mode == "inactive" then return N.inActiveLine() end
-    end
-})
-
--- function N.StatusErrors()
---     if not vim.fn.exists(':ALE*') then
---         return ''
---     end
---     local s = ''
---     local ale = vim.fn['ale#statusline#Count'](vim.fn.bufnr('%'))
---     if ale['error'] > 0 then
---         s = s .. '●' .. ale['error']
---     end
---     if ale['warning'] > 0 then
---         s = s .. '' .. ale['error']
---     end
---     if not (s == nil or s == '') then
---         return s
---     end
---     return ''
--- end
 
 function NegJobs()
     local n_jobs = 0
@@ -115,9 +86,9 @@ function format_file_size_(file)
 end
 
 function hex_pos(statusline)
-    local line = api.nvim_call_function('line', {"."})
+    local line = vim.api.nvim_call_function('line', {"."})
     line = string.format("%X", tostring(line))
-    local col = api.nvim_call_function('col', {"."})
+    local col = vim.api.nvim_call_function('col', {"."})
     local delimiter = '%#StatusDelimiter# • %#StatusRight#'
     col = delimiter  .. string.format("%X", tostring(col))
     return statusline ..  line .. col
@@ -145,12 +116,12 @@ end
 
 function N.CheckMod()
     if vim.api.nvim_buf_get_option(0, 'modified') == true then
-        cmd('hi Modi guifg=#8fa7c7 guibg=NONE')
-        cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
+        hi(0, 'Modi', {bg='NONE', fg='#8fa7c7'})
+        hi(0, 'Filename', {bg='NONE', fg='#8fa7c7'})
         return '  '
     else
-        cmd('hi Modi guifg=#6587b3 guibg=NONE')
-        cmd('hi Filename guifg=#8fa7c7 guibg=NONE')
+        hi(0, 'Modi', {bg='NONE', fg='#6587b3'})
+        hi(0, 'Filename', {bg='NONE', fg='#8fa7c7'})
         return ''
     end
 end
@@ -212,7 +183,6 @@ function N.activeLine()
         statusline = statusline .. ''
     end
     statusline = statusline
-        -- .. '%#Title#' .. N.StatusErrors()
         .. '%#Decoration# %3* %= '
         .. '%#Filetype#'
         .. '%3*'
@@ -249,5 +219,12 @@ function N.inActiveLine()
     statusline = statusline .. '%= %#Statement#'
     return statusline
 end
+
+_G.NegStatusline = setmetatable(N, {
+    __call = function(statusline, mode)
+        if mode == "active" then return N.activeLine() end
+        if mode == "inactive" then return N.inActiveLine() end
+    end
+})
 
 return N
