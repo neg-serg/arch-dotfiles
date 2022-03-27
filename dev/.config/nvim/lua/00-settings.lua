@@ -140,3 +140,4 @@ vim.opt.background = 'dark'                                  -- Dark background
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }      -- Completion options
 vim.opt.formatoptions = 'n1jcroqlj'                          -- Format settings
 vim.opt.cpoptions = '_$ABFWcdesa'                            -- Vim-exclusive stuff
+vim.opt.ruler = false                                        -- No ruler
