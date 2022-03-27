@@ -6,24 +6,24 @@ vim.cmd([[
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos"
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
+    "2html_plugin",
     "getscript",
     "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
+    "gzip",
     "logipat",
+    "matchit"
+    "netrw",
+    "netrwFileHandlers",
+    "netrwPlugin",
+    "netrwSettings",
     "rrhelper",
     "spellfile_plugin",
-    "matchit"
+    "tar",
+    "tarPlugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
 }
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
