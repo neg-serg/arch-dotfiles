@@ -72,7 +72,7 @@ return require('packer').startup({function(use)
     use {'jamessan/vim-gnupg', ft='gpg', opt=true} -- transparent work with gpg-encrypted files
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'windwp/nvim-autopairs',
-        config=[[require('plugcfg/nvim-autopairs').setup()]],
+        config=[[require('plugcfg/nvim-autopairs')]],
         event='InsertEnter'} -- try new autopairs
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
