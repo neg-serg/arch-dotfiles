@@ -40,8 +40,9 @@ return require('packer').startup({function(use)
         module = { 'telescope', 'configs.telescope' },
         requires={
             'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope-fzy-native.nvim',
-            {'nvim-telescope/telescope-frecency.nvim',
+            'nvim-telescope/telescope-fzy-native.nvim', -- fzy integration
+            'nvim-telescope/telescope-ui-select.nvim', -- telescope-based selection
+            {'nvim-telescope/telescope-frecency.nvim', -- mru for telescope
                 config=[[require'telescope'.load_extension('frecency')]],
                 requires={'tami5/sqlite.lua'}
             }
