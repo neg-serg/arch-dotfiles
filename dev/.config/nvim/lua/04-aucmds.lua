@@ -26,8 +26,9 @@ au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
 au({'BufReadPost'}, {command=[[
     if line("'\"") > 1 && line("'\"") <= line("$") |
         exe "normal! g'\"" |
-    endif ]], group=main}
-)
+    endif ]],
+    group=main
+})
 
 -- Clear search context when entering insert mode, which implicitly stops the
 -- highlighting of whatever was searched for with hlsearch on. It should also
@@ -38,12 +39,12 @@ au({'InsertLeave'}, {command='setlocal nopaste', group=mode_change})
 au({'BufWritePost'}, {
     pattern='~/.config/xorg/Xdefaults',
     command='!xrdb -merge ~/.config/xorg/Xdefaults',
-    group=custom_updates}
-)
+    group=custom_updates
+})
 au({'BufWritePost'}, {pattern='fonts.conf', command='!fc-cache', group=custom_updates})
 
 au({'TextYankPost'}, {
-    command=[[silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})]],
+    callback=function() require'vim.highlight'.on_yank({timeout=60, higroup="Search"}) end,
     group=hi_yank
 })
 
