@@ -1,47 +1,54 @@
-nvim_create_augroups({
-    core = {
-        {'BufReadPost', '*', [[
-        if line("'\"") > 1 && line("'\"") <= line("$") |
-            exe "normal! g'\"" |
-        endif ]], },
-        {'FocusGained,BufEnter,FileChangedShell,WinEnter', '*', 'checktime'},
-        -- Disables automatic commenting on newline:
-        {'FileType', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-        {'FileType', 'help,startuptime,qf,lspinfo', 'nnoremap <buffer><silent> q :close<CR>'},
-        -- Update binds when sxhkdrc is updated.
-        {'BufWritePost', '*sxhkdrc', '!pkill -USR1 sxhkd'},
-        {'BufWritePost', '01-plugins.lua', 'PackerCompile'},
-        {'BufEnter', '*', 'set noreadonly'},
-        {'TermOpen', 'term://*', 'startinsert | setl nonumber'},
-        {'TermClose', '*', 'call feedkeys("i")'},
-        {'BufLeave', 'term://*', 'stopinsert'},
-        -- This is equivalent to :set autochdir but lets buffer-local
-        -- autocommands change the dir. Autochdir doesn't.
-        {'BufEnter', '*', [[
-        if exists('b:shelley') && exists('b:shelley["path"]')
-            | execute('lcd ' . b:shelley['path'])
-        | endif]]}
-    },
-    custom_updates = {
-        {'BufWritePost', '~/.config/xorg/Xdefaults', '!xrdb -merge ~/.config/xorg/Xdefaults'},
-        {'BufWritePost', 'fonts.conf', '!fc-cache'},
-    },
-    ModeChangeSettings = {
-        -- Clear search context when entering insert mode, which implicitly stops the
-        -- highlighting of whatever was searched for with hlsearch on. It should also
-        -- not be persisted between sessions.
-        {'InsertEnter', '*', [[let @/ = '']]},
-        {'BufReadPre,FileReadPre', '*', [[let @/ = '']]},
-        {'InsertLeave', '*', 'setlocal nopaste'},
-    },
-    HighlightYank = {
-        {'TextYankPost', '*', [[silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})]]}
-    },
-    CursorLine = {
-        {'VimEnter,WinEnter,BufWinEnter,BufEnter', '*', 'setlocal cursorline'},
-        {'BufLeave,WinLeave',  '*', 'setlocal nocursorline'}
-    },
+local au = vim.api.nvim_create_autocmd
+local gr = vim.api.nvim_create_augroup
+
+local main = gr("main", {clear=true})
+local mode_change = gr("mode_change", {clear=true})
+local custom_updates = gr("custom_updates", {clear=true})
+local hi_yank = gr("hi_yank", {clear=true})
+local cursor_line = gr("cursor_line", {clear=true})
+local statusline = gr("statusline", {clear=true})
+
+au({'Filetype'}, {command='setlocal formatoptions-=c formatoptions-=r formatoptions-=o', group=main})
+au({'FocusGained,BufEnter,FileChangedShell,WinEnter'}, {command='checktime', group=main})
+-- Disables automatic commenting on newline:
+au({'Filetype'}, {
+    pattern={'help', 'startuptime', 'qf', 'lspinfo'},
+    command='nnoremap <buffer><silent> q :close<CR>',
+    group=main
 })
+-- Update binds when sxhkdrc is updated.
+au({'BufWritePost'}, {pattern={'*sxhkdrc'}, command='!pkill -USR1 sxhkd', group=main})
+au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='PackerCompile', group=main})
+au({'BufEnter'}, {command='set noreadonly', group=main})
+au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber', group=main})
+au({'TermClose'}, {command='call feedkeys("i")', group=main})
+au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
+au({'BufReadPost'}, {command=[[
+    if line("'\"") > 1 && line("'\"") <= line("$") |
+        exe "normal! g'\"" |
+    endif ]], group=main}
+)
+
+-- Clear search context when entering insert mode, which implicitly stops the
+-- highlighting of whatever was searched for with hlsearch on. It should also
+-- not be persisted between sessions.
+au({'BufReadPre,FileReadPre'}, {command=[[let @/ = '']], group=mode_change})
+au({'InsertLeave'}, {command='setlocal nopaste', group=mode_change})
+
+au({'BufWritePost'}, {
+    pattern='~/.config/xorg/Xdefaults',
+    command='!xrdb -merge ~/.config/xorg/Xdefaults',
+    group=custom_updates}
+)
+au({'BufWritePost'}, {pattern='fonts.conf', command='!fc-cache', group=custom_updates})
+
+au({'TextYankPost'}, {
+    command=[[silent! lua require'vim.highlight'.on_yank({timeout=60, higroup="Search"})]],
+    group=hi_yank
+})
+
+au({'VimEnter,WinEnter,BufWinEnter,BufEnter'}, {command='setlocal cursorline', group=cursor_line})
+au({'BufLeave,WinLeave'}, {command='setlocal nocursorline', group=cursor_line})
 
 api.nvim_exec([[
   augroup Statusline
@@ -50,3 +57,7 @@ api.nvim_exec([[
   au WinLeave,BufLeave * setlocal statusline=%!v:lua.NegStatusline('inactive')
   augroup END
 ]], false)
+
+
+-- au({'WinEnter,BufEnter'}, {callback=function() vim.wo.statusline=NegStatusline('active') end, group=statusline})
+-- au({'WinLeave,BufLeave'}, {callback=function() vim.wo.statusline=NegStatusline('inactive') end, group=statusline})
