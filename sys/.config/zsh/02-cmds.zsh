@@ -36,7 +36,7 @@ if _exists ugrep; then
     alias zpgrep='ugrep -zP'   # search compressed files and archives with Perl regular expressions
     alias zxgrep='ugrep -zW'   # search (ERE) compressed files/archives and output text or hex for binary
     # ---------------------------------------------------------------------------------------------------
-    alias xdump  = 'ugrep -X ""' # hexdump files without searching
+    alias xdump='ugrep -X ""' # hexdump files without searching
 else
     alias grep='grep --color=auto'
 fi
