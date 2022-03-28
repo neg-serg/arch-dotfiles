@@ -1,5 +1,6 @@
 reloaddead
 colors neg
+" sanitise tridactyllocal
 
 set searchengine g
 set allowautofocus true
@@ -55,6 +56,8 @@ blacklistadd 192.168.88.1
 
 bind --mode=normal u undo tab
 bind --mode=normal U undo tab
+unbind J
+unbind K
 
 set auconcreatecontainer true
 autocontain vk.com vk
@@ -70,12 +73,6 @@ unbind <F1><C-q><SA-ArrowUp><SA-ArrowUp><SA-ArrowDown><SA-ArrowDown><SA-ArrowLef
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
 
-bindurl news.ycombinator.com f hint -Jc span.pagetop > a,td.title > a,td.subtext > a:last-of-type
-bindurl news.ycombinator.com F hint -Jtc span.pagetop > a,td.title > a,td.subtext > a:last-of-type
-bindurl news.ycombinator.com gF hint -Jqbc span.pagetop > a,td.title > a,td.subtext > a:last-of-type
-bindurl news.ycombinator.com/item f hint -Jc span.pagetop > a,a.storylink,a.hnuser,div.comment a
-bindurl news.ycombinator.com/item F hint -Jtc span.pagetop > a,a.storylink,a.hnuser,div.comment a
-bindurl news.ycombinator.com/item gF hint -Jqbc span.pagetop > a,a.storylink,a.hnuser,div.comment a
 bindurl reddit.com f hint -Jc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 bindurl reddit.com F hint -Jtc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 bindurl reddit.com F hint -Jqbc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
@@ -89,12 +86,12 @@ bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".thr
 
 " Add helper commands that Mozillians think make Firefox irredeemably
 " insecure. For details, read the comment at the top of this file.
-command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+command fixamo_quiet_custom jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
 bind --mode=normal W saveas --overwrite ~/dw
 " Make Tridactyl work on more sites at the expense of some security. For
 " details, read the comment at the top of this file.
 " set csp clobber
-fixamo_quiet
+fixamo_quiet_custom
 
 " thx to: https://github.com/vishes-shell/dotfiles/blob/master/.config/tridactyl/tridactylrc
 " Ctrl-F should use the browser's native 'find' functionality.
