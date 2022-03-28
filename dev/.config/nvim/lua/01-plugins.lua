@@ -1,13 +1,10 @@
 vim.cmd [[packadd packer.nvim]]
+
 local present, packer = pcall(require, 'packer')
 if not present then
-    local fn=vim.fn
-    local install_path=fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-    local execute=vim.api.nvim_command
-    vim.o.termguicolors=true
+    local packer_path=vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
     vim.fn.delete(packer_path, "rf")
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
+    vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path})
     present, packer = pcall(require, "packer")
     if present then
         print "Packer cloned successfully."
@@ -15,9 +12,7 @@ if not present then
         error("Couldn't clone packer !\nPacker path: " .. packer_path .. "\n" .. packer)
     end
 end
-if packer_bootstrap then
-    require('packer').sync()
-end
+
 return require('packer').startup({function(use)
     use {'wbthomason/packer.nvim', opt=true} -- lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -127,7 +122,8 @@ return require('packer').startup({function(use)
     use {'rhysd/conflict-marker.vim', config=[[require'plugcfg/conflict-marker']]} -- good conflict marker
     use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
     use 'tpope/vim-fugitive' -- git stuff old
-end, config={
+end
+	,config={
         display={
             title = 'Packer',
             open_cmd = '85vnew \\[packer\\]', -- An optional command to open a window for packer's display
