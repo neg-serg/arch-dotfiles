@@ -1,7 +1,4 @@
-# default .ugrep configuration file used by ug and ugrep --config.
-
-# Custom color scheme overrides default GREP_COLORS parameters
-colors=
+colors=cx=hb:ms=hiy:mc=hic:fn=hi+y+K:ln=hg:cn=hg:bn=hg:se=
 # The argument is a colon-separated list of one or more parameters `sl='
 # (selected line), `cx=' (context line), `mt=' (matched text), `ms=' (match
 # selected), `mc=' (match context), `fn=' (file name), `ln=' (line number),
@@ -12,42 +9,20 @@ colors=
 # foreground and a background color may be combined with font properties `n'
 # (normal), `f' (faint), `h' (highlight), `i' (invert), `u' (underline).
 
-# Enable/disable color
 color
-
-# Enable/disable query UI confirmation prompts, default: confirm
 confirm
-
-# Enable/disable query UI file viewing command with CTRL-Y, default: view
 view
-
-# Enable/disable or specify a pager for terminal output, default: no-pager
 no-pager
-
-# Enable/disable pretty output to the terminal, default: no-pretty
 no-pretty
+no-heading
 
-# Enable/disable headings for terminal output, default: no-heading
-# no-heading
-
-### SEARCH PATTERNS ###
-# Enable/disable case-insensitive search, default: no-ignore-case
-# no-ignore-case
-# Enable/disable smart case, default: no-smart-case
-# no-smart-case
-# Enable/disable empty pattern matches, default: no-empty
-# no-empty
-### SEARCH TARGETS ###
-# Enable/disable searching hidden files and directories, default: no-hidden
+no-ignore-case
+no-smart-case
+no-empty
+# default: no-hidden
 hidden
-# Enable/disable binary files, default: no-ignore-binary
 no-ignore-binary
-# Enable/disable decompression and archive search, default: no-decompress
 no-decompress
-# Maximum decompression and de-archiving nesting levels, default: 1
 zmax=1
-# Enable/disable ignore files, default: no-ignore-files
 no-ignore-files
-### OUTPUT ###
-# Enable/disable sorted output, default: no-sort
-# no-sort
+no-sort
