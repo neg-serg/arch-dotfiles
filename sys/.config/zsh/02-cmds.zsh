@@ -24,20 +24,20 @@ alias mk='mkdir -p'
 alias rd='rmdir'
 if _exists ugrep; then
     # ------------------------------------------------------------------
-    alias grep='ugrep -G' # search with basic regular expressions (BRE)
-    alias egrep='ugrep -E' # search with extended regular expressions (ERE)
-    alias fgrep='ugrep -F' # find string(s)
-    alias pgrep='ugrep -P' # search with Perl regular expressions
-    alias xgrep='ugrep -W' # search (ERE) and output text or hex for binary
+    alias grep='ug -G' # search with basic regular expressions (BRE)
+    alias egrep='ug -E' # search with extended regular expressions (ERE)
+    alias fgrep='ug -F' # find string(s)
+    alias pgrep='ug -P' # search with Perl regular expressions
+    alias xgrep='ug -W' # search (ERE) and output text or hex for binary
     # ---------------------------------------------------------------------
-    alias zgrep='ugrep -zG' # search compressed files and archives with BRE
-    alias zegrep='ugrep -zE' # search compressed files and archives with ERE
-    alias zfgrep='ugrep -zF' # find string(s) in compressed files and/or archives
-    alias zpgrep='ugrep -zP' # search compressed files and archives with Perl regular expressions
-    alias zxgrep='ugrep -zW' # search (ERE) compressed files/archives and output text or hex for binary
+    alias zgrep='ug -zG' # search compressed files and archives with BRE
+    alias zegrep='ug -zE' # search compressed files and archives with ERE
+    alias zfgrep='ug -zF' # find string(s) in compressed files and/or archives
+    alias zpgrep='ug -zP' # search compressed files and archives with Perl regular expressions
+    alias zxgrep='ug -zW' # search (ERE) compressed files/archives and output text or hex for binary
     # ---------------------------------------------------------------------------------------------------
-    alias xdump='ugrep -X ""' # hexdump files without searching
-    alias ugit='ugrep -R --ignore-files'
+    alias xdump='ug -X ""' # hexdump files without searching
+    alias ugit='ug -R --ignore-files'
 else
     alias grep='grep --color=auto'
 fi
