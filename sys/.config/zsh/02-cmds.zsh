@@ -77,7 +77,7 @@ _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -Hu'
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
-_exists nvim && { alias vim='nvim'; alias v='~/bin/v'; alias nvim='v'; }
+_exists nvim && { alias vim='nvim'; alias nvim='v'; }
 _exists iostat && alias iostat='iostat -mtx'
 _exists iotop && alias iotop='sudo iotop -oPa'
 _exists patool && { alias se='patool extract'; alias pk='patool create'; }
@@ -94,14 +94,21 @@ _exists mpc && {
     alias love='mpc sendmessage mpdas love'
     alias unlove='mpc sendmessage mpdas unlove'
 }
-_exists youtube-dl && alias yt='noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"'
-_exists ytfzf && alias ytfzf='ytfzf --preview-side=left -t'
+_exists yt-dlp && {
+    yt() {
+        if [[ $# == 0 ]]; then
+            ytfzf --preview-side=left -t
+        else
+            noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"
+        fi
+    }
+}
 _exists wget2 && alias wget='wget2'
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(bb fennel guile irb)
-local sudo_list=(umount chmod chown modprobe)
+local sudo_list=(chmod chown modprobe umount)
 local logind_sudo_list=(reboot halt poweroff)
-local noglob_list=(fc find ftp sftp lftp history locate rake rsync scp wget youtube-dl links2 lynx you-get pip)
+local noglob_list=(fc find ftp history lftp links2 locate lynx pip rake rsync scp sftp wget you-get)
 for c in ${sudo_list[@]}; {_exists "$c" && alias "$c=sudo $c"}
 for c in ${noglob_list[@]}; {_exists "$c" && alias "$c=noglob $c"}
 for c in ${rlwrap_list[@]}; {_exists "$c" && alias "$c=rlwrap $c"}
@@ -129,7 +136,7 @@ _exists fzf && {
     logs() {
       local cmd log_file
       cmd="command find /var/log/ -type f -name '*log' 2>/dev/null"
-      log_file=$(eval "$cmd" | fzf --height 40% --min-height 25 --tac --tiebreak=length,begin,index --reverse --inline-info) && less "$log_file"
+      log_file=$(eval "$cmd" | fzy --height 40% --min-height 25 --tac --tiebreak=length,begin,index --reverse --inline-info) && less "$log_file"
     }
 }
 _exists xev && alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
