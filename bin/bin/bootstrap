@@ -72,11 +72,11 @@ paru -S stow \
     qt5ct \
     radare2 radare2-bindings-git \
     ranger \
-    xapian recoll \
+    xapian-core recoll \
     rofi \
     rsync sdl2 sshfs \
     dust ugrep ripgrep rmlint fd fasd fzf parallel massren mimeo ipython parallel \
-    steam steamcmd steam-fonts steam-native-runtime \
+    steam steamcmd steam-native-runtime \
     stig torrentinfo transmission-cli \
     stone-soup nethack nethack4 angband gzdoom \
     tar rpmextract unrar \
@@ -84,15 +84,15 @@ paru -S stow \
     tmux dtach \
     toilet \
     tor-browser torsocks \
-    t-prot tracker tracker-miners transline-git tree tsocks \
-    cozette-otb cozette-ttf ttf-code2000 ttf-iosevka ttf-iosevka-term ttf-ms-win10 ttf-ms-win10-japanese ttf-ms-win10-korean ttf-ms-win10-other ttf-ms-win10-sea ttf-ms-win10-thai ttf-ms-win10-zh_cn ttf-ms-win10-zh_tw \
+    t-prot tracker tracker-miners tree tsocks \
+    cozette-otb cozette-ttf ttf-code2000 ttf-ms-win10 ttf-ms-win10-japanese ttf-ms-win10-korean ttf-ms-win10-other ttf-ms-win10-sea ttf-ms-win10-thai ttf-ms-win10-zh_cn ttf-ms-win10-zh_tw \
     udiskie \
     util-linux valgrind \
-    vulkan-extra-layers vulkan-headers vulkan-html-docs vulkan-mesa-layer vulkan-tools vulkan-trace vulkan-validation-layers \
+    vulkan-extra-layers vulkan-headers vulkan-html-docs vulkan-mesa-layer vulkan-tools vulkan-validation-layers \
     xurls urlscan-git urlview \
     you-get pipe-viewer-git sprunge \
     wine-staging wine-mono winetricks dxvk-bin dxvk-cache-server-git vkd3d protontricks-git lib32-vkd3d lutris \
     zathura zathura-cb zathura-djvu zathura-pdf-mupdf zathura-ps fbless \
-    discord
+    discord --overwrite '*'
 
 # find -maxdepth 1 -type d -not -path '*/\.*' -printf '%P\n' | xargs stow -v
