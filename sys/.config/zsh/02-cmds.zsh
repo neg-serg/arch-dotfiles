@@ -95,13 +95,8 @@ _exists mpc && {
     alias unlove='mpc sendmessage mpdas unlove'
 }
 _exists yt-dlp && {
-    yt() {
-        if [[ $# == 0 ]]; then
-            ytfzf --preview-side=left -t
-        else
-            noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"
-        fi
-    }
+    yt() { noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)" "$@" }
+    ytt() { ytfzf --preview-side=left -t "$@" }
 }
 _exists wget2 && alias wget='wget2'
 _exists imgur_screenshot && alias img='imgur-screenshot'
