@@ -16,3 +16,4 @@ Wants=xiccd.service
 Wants=xrdb.service
 Wants=xsettingsd.service
 Wants=negwm-autostart.service
+Wants=xss-lock.service
