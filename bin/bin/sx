@@ -5,4 +5,4 @@ find "$@" -type f -printf '%C@ %p\n' \
     | xargs -I '{}' file '{}' --mime-type 2> /dev/null \
     | rg 'image/' \
     | cut -d ':' -f 1 \
-    | xargs -d '\n' -r sxiv -Zftoa -sd
+    | xargs -d '\n' -r nsxiv -Zftoa -sd
