@@ -28,10 +28,10 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
--- if executable('ugrep')
---     set grepprg=ugrep\ -RInk\ -j\ -u\ --tabs=1\ --ignore-files
---     set grepformat=%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\\|%l\\\|%c\\\|%m
--- endif
+if vim.fn.executable('ugrep') == 1 then
+    vim.o.grepprg="ugrep -RInk -j -u --tabs=1 --ignore-files"
+    vim.o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
+end
 -- use opt-in filetype.lua instead of vimscript default
 -- EXPERIMENTAL: https://github.com/neovim/neovim/pull/16600
 vim.g.do_filetype_lua = 1
