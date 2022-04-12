@@ -1,2 +1,2 @@
-#!/usr/bin/env dash
-nsxiv -Zftoa -sd -r "$@"
+#!/usr/bin/env zsh
+nsxiv -Zftoa -sd -r "${@:-.}"
