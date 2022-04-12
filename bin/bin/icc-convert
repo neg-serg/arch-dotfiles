@@ -1,0 +1,2 @@
+#!/usr/bin/env dash
+find -type f -exec convert '{}' -profile AdobeCompat-v4.icc -profile /etc/xdg/color/icc/devices/display/Acer·X27·P·AdobeRGB·200cd·D6500·sRGBcurve·27072020.icm '{}' \;
