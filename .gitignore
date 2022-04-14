@@ -309,3 +309,4 @@ dev/.config/nvim/lua/packer_compiled.lua
 negwm/.config/i3/
 music/.config/pulse/*-default-*
 packer/
+sys/.config/icedtea-web/security/
