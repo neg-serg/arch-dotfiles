@@ -51,5 +51,5 @@ au({'TextYankPost'}, {
 au({'VimEnter','WinEnter','BufWinEnter','BufEnter'}, {command='setlocal cursorline', group=cursor_line})
 au({'BufLeave','WinLeave'}, {command='setlocal nocursorline', group=cursor_line})
 
-au({'WinEnter','BufEnter'}, {callback=function() vim.wo.statusline=NegStatusline('active') end, group=statusline})
-au({'WinLeave','BufLeave'}, {callback=function() vim.wo.statusline=NegStatusline('inactive') end, group=statusline})
+au({'WinEnter','BufEnter','BufWinEnter'}, {callback=function() vim.wo.statusline=NegStatusline('active') end, group=statusline})
+au({'WinLeave','BufLeave','BufWinLeave'}, {callback=function() vim.wo.statusline=NegStatusline('inactive') end, group=statusline})
