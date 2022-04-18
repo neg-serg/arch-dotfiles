@@ -1,7 +1,7 @@
 hint_activation_key: M-9
 grid_activation_key: M-u
 screen_activation_key: A-M-s
-activation_key: A-M-c
+activation_key: M-0
 hint_oneshot_key: A-M-l
 repeat_interval: 20
 speed: 220
