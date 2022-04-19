@@ -44,7 +44,6 @@ for_window $scratchpad-neomutt floating enable
 for_window $scratchpad-password floating enable
 for_window $scratchpad-teardrop floating enable
 for_window $scratchpad-torrment floating enable
-for_window $scratchpad-transients move scratchpad, move absolute position 346 655, resize set 906 398
 for_window $scratchpad-webcam floating enable
 set $circle-bitwig [class="Bitwig Studio"]
 set $circle-doc [class="^(Zathura|cr3)$"]
