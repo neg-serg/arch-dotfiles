@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 if [ ! -z $DISPLAY ]; then
-    $XDG_CONFIG_HOME/negwm/bin/send circle next nwim
+    echo 'circle next nwim' | /usr/bin/nc localhost 15555 -w 0
     while ! xdotool search --sync --all --class '^nwim$' 2>&1 > /dev/null; do
         :;
     done
