@@ -1,2 +1,2 @@
 #!/usr/bin/env zsh
-nsxiv -Zftoa -sd -r "${@:-.}"
+nsxiv -Zftoa -sd -r ${@:-.}/*(oc)
