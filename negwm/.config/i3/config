@@ -44,6 +44,7 @@ for_window $scratchpad-neomutt floating enable
 for_window $scratchpad-password floating enable
 for_window $scratchpad-teardrop floating enable
 for_window $scratchpad-torrment floating enable
+for_window $scratchpad-transients move scratchpad, move absolute position 693 1310, resize set 1812 797
 for_window $scratchpad-webcam floating enable
 set $circle-bitwig [class="Bitwig Studio"]
 set $circle-doc [class="^(Zathura|cr3)$"]
@@ -52,7 +53,7 @@ set $circle-nwim [class="nwim"]
 set $circle-obs [class="obs"]
 set $circle-remote [class="^(xfreerdp|reminna|org.remmina.Remmina)$"]
 set $circle-steam [class="^(Steam|steam)$"]
-set $circle-sxiv [class="Sxiv"]
+set $circle-nsxiv [class="Nsxiv"]
 set $circle-term [instance="term"]
 set $circle-vid [class="mpv"]
 set $circle-vm [class="spicy"]
@@ -64,7 +65,7 @@ for_window $circle-nwim move workspace $dev,focus
 for_window $circle-obs move workspace $obs,focus
 for_window $circle-remote move workspace $remote,focus
 for_window $circle-steam move workspace $steam,focus
-for_window $circle-sxiv move workspace $gfx,focus
+for_window $circle-nsxiv move workspace $gfx,focus
 for_window $circle-term move workspace $term,focus
 for_window $circle-vid move workspace $gfx,focus
 for_window $circle-vm move workspace $vm,focus
@@ -170,8 +171,8 @@ bindsym Mod4+1 $circle next nwim
 bindsym Mod4+Shift+o $circle toggle obs
 bindsym Mod4+Control+5 $circle toggle remote
 bindsym Mod4+Shift+e $circle next steam
-bindsym Mod4+Control+c $circle next sxiv
-bindsym Mod4+Shift+c $circle subtag sxiv wallpaper
+bindsym Mod4+Control+c $circle next nsxiv
+bindsym Mod4+Shift+c $circle subtag nsxiv wallpaper
 bindsym Mod4+x $circle next term
 bindsym Mod4+b $circle next vid
 bindsym Mod4+Control+v $circle next vm
