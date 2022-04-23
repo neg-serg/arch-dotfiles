@@ -46,6 +46,8 @@ return require('packer').startup({function(use)
     use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
     use 'brooth/far.vim' -- better find and replace
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
+    use {'gelguy/wilder.nvim', config=[[require'plugcfg/wilder']]} -- better cmdline menu
+    use {'romgrk/fzy-lua-native'} -- fzy native lua integration
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -73,6 +75,7 @@ return require('packer').startup({function(use)
     use {'lewis6991/gitsigns.nvim',
         after='plenary.nvim', config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
     use 'tpope/vim-apathy' -- better include jump
+    use {'numirias/semshi', run=':UpdateRemotePlugins'}
     use {'tpope/vim-dispatch', config=[[require'plugcfg/vim-dispatch']],
         cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -119,7 +122,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'rhysd/conflict-marker.vim', config=[[require'plugcfg/conflict-marker']]} -- good conflict marker
+    use {'akinsho/git-conflict.nvim', config = function() require('git-conflict').setup() end}
     use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
     use 'tpope/vim-fugitive' -- git stuff old
 end
