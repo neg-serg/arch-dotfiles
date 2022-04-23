@@ -120,6 +120,14 @@ _exists git && {
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
     alias gd='git diff -w -U0 --word-diff-regex=[^[:space:]]'
     alias gdd="${intra_line_less} git diff ${intra_line_diff}"
+    alias add="git add"
+    alias checkout='git checkout'
+    alias commit='git commit'
+    alias fetch="git fetch"
+    alias pull="git pull"
+    alias push='git push'
+    alias stash="git stash"
+    alias status="git status"
 }
 _exists curl && {
     alias weather="curl 'wttr.in/?T'"
