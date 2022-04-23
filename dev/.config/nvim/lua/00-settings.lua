@@ -32,6 +32,11 @@ if vim.fn.executable('ugrep') == 1 then
     vim.o.grepprg="ugrep -RInk -j -u --tabs=1 --ignore-files"
     vim.o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
 end
+if vim.fn.executable("nvr") == 1 then
+    vim.env.GIT_EDITOR = "nvr -cc split +'setl bh=delete' --remote-wait"
+    vim.env.EDITOR = "nvr -l --remote"
+    vim.env.VISUAL = "nvr -l --remote"
+end
 -- use opt-in filetype.lua instead of vimscript default
 -- EXPERIMENTAL: https://github.com/neovim/neovim/pull/16600
 vim.g.do_filetype_lua = 1
