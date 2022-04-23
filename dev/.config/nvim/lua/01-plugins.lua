@@ -25,9 +25,9 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'norcalli/nvim_utils' -- neovim lua utils
-    use {'jedi2610/nvim-rooter.lua', config=[[require'plugcfg/nvim-rooter']]} -- -- autochdir for project root or for current dir
+    use {'jedi2610/nvim-rooter.lua', config=require'plugcfg/nvim-rooter'} -- -- autochdir for project root or for current dir
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use {'jghauser/mkdir.nvim', config = [[require('mkdir')]], event = 'BufWritePre'}
+    use {'jghauser/mkdir.nvim', config=require('mkdir'), event = 'BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim',
@@ -38,45 +38,45 @@ return require('packer').startup({function(use)
             'nvim-telescope/telescope-fzy-native.nvim', -- fzy integration
             'nvim-telescope/telescope-ui-select.nvim', -- telescope-based selection
             {'nvim-telescope/telescope-frecency.nvim', -- mru for telescope
-                config=[[require'telescope'.load_extension('frecency')]],
+                config=require'telescope'.load_extension('frecency'),
                 requires={'tami5/sqlite.lua'}
             }
         }
     }
-    use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
+    use {'luukvbaal/nnn.nvim', config=require('plugcfg/nnn')}
     use 'brooth/far.vim' -- better find and replace
-    use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
-    use {'gelguy/wilder.nvim', config=[[require'plugcfg/wilder']]} -- better cmdline menu
+    use {'haya14busa/vim-asterisk', config=require'plugcfg/vim-asterisk'} -- smartcase star
+    use {'gelguy/wilder.nvim', config=require'plugcfg/wilder'} -- better cmdline menu
     use {'romgrk/fzy-lua-native'} -- fzy native lua integration
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'onsails/lspkind-nvim' -- lsp pictograms
-    use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
+    use {'neovim/nvim-lspconfig', config=require('plugcfg/lspconfig')} -- lspconfig
     use {'hrsh7th/nvim-cmp',
-        config=[[require('plugcfg/nvim-cmp').init()]],
+        config=require('plugcfg/nvim-cmp').init(),
     } -- completion engine
     use {'hrsh7th/cmp-nvim-lua'} -- cmp neovim lua api support
     use {'hrsh7th/cmp-nvim-lsp'} -- cmp lsp support
     use {'hrsh7th/cmp-path'} -- cmp path completion support
     use {'lukas-reineke/cmp-under-comparator'} -- better nvim-cmp sorter
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
-    use {'j-hui/fidget.nvim', config=[[require'fidget'.setup{}]], after='nvim-lspconfig'} -- nvim-lsp progress
+    use {'j-hui/fidget.nvim', config=require'fidget'.setup{}, after='nvim-lspconfig'} -- nvim-lsp progress
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'jamessan/vim-gnupg', ft='gpg', opt=true} -- transparent work with gpg-encrypted files
-    use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
+    use {'numToStr/Comment.nvim', config=require('Comment').setup(), event='BufRead', opt=true}
     use {'windwp/nvim-autopairs',
-        config=[[require('plugcfg/nvim-autopairs')]],
+        config=require('plugcfg/nvim-autopairs'),
         event='InsertEnter'} -- try new autopairs
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim',
-        after='plenary.nvim', config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
+        after='plenary.nvim', config=require'plugcfg/gitsigns', event='BufRead'} -- async gitsigns
     use 'tpope/vim-apathy' -- better include jump
     use {'numirias/semshi', run=':UpdateRemotePlugins'}
-    use {'tpope/vim-dispatch', config=[[require'plugcfg/vim-dispatch']],
+    use {'tpope/vim-dispatch', config=require'plugcfg/vim-dispatch',
         cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
@@ -89,7 +89,7 @@ return require('packer').startup({function(use)
     use {'plasticboy/vim-markdown', ft='md', opt=true} -- markdown vim mode
     use {'nvim-neorg/neorg',
         after = {'nvim-treesitter', 'telescope.nvim'},
-        config = [[require'plugcfg/neorg']],
+        config=require'plugcfg/neorg',
         ft = 'norg',
     }
     use {'nvim-neorg/neorg-telescope', ft='norg'} -- neorg telescope integration
@@ -99,9 +99,9 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'AndrewRadev/splitjoin.vim' -- one-line <-> multiline converter
-    use {'andymass/vim-matchup', event='VimEnter', config=[[require'plugcfg/vim-matchup']]} -- generic matcher
-    use {'FooSoft/vim-argwrap', cmd='ArgWrap', opt=true, config=[[require'plugcfg/argwrap']]} -- vim arg wrapper
-    use {'junegunn/vim-easy-align', config=[[require'plugcfg/easyalign']]} -- use easy-align, instead of tabular
+    use {'andymass/vim-matchup', event='VimEnter', config=require'plugcfg/vim-matchup'} -- generic matcher
+    use {'FooSoft/vim-argwrap', cmd='ArgWrap', opt=true, config=require'plugcfg/argwrap'} -- vim arg wrapper
+    use {'junegunn/vim-easy-align', config=require'plugcfg/easyalign'} -- use easy-align, instead of tabular
     use 'svermeulen/vim-NotableFt' -- better f-t-bindings
     use 'tpope/vim-repeat' -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
@@ -110,19 +110,19 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=[[require'plugcfg/treesitter']]} -- better highlight
+    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', config=require'plugcfg/treesitter'} -- better highlight
     use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
     use 'RRethy/nvim-treesitter-endwise' -- ts-based endwise
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
-    use {'kyazdani42/nvim-web-devicons', config=[[require'plugcfg/nvim-web-devicons']]} -- fancy webicons
+    use {'kyazdani42/nvim-web-devicons', config=require'plugcfg/nvim-web-devicons'} -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
-    use {'neg-serg/neg', config=[[require'neg']]} -- my pure-dark neovim colorscheme
+    use {'neg-serg/neg', config=require'neg'} -- my pure-dark neovim colorscheme
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
-    use {'nathom/filetype.nvim', config=[[require'plugcfg/filetype-nvim']]} -- faster filetype alternative
+    use {'nathom/filetype.nvim', config=require'plugcfg/filetype-nvim'} -- faster filetype alternative
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'akinsho/git-conflict.nvim', config = function() require('git-conflict').setup() end}
+    use {'akinsho/git-conflict.nvim', config = require('git-conflict').setup()}
     use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
     use 'tpope/vim-fugitive' -- git stuff old
 end
