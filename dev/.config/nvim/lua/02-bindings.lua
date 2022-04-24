@@ -21,6 +21,13 @@ map('', '<down>', '<nop>')
 map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
+map('n', '_', "<Cmd>exe 'e ' . getcwd()<CR>")
+map('n', '<M-b>', '<Cmd>Telescope buffers<CR>')
+map('n', '<M-f>', '<Cmd>Telescope live_grep<CR>')
+map('n', '<M-C-o>', '<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
+map('n', '<M-o>', '<Cmd>Telescope lsp_document_symbols<CR>')
+map('n', '<M-d>', '<Cmd>Telescope lsp_document_diagnostics<CR>')
+
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
 map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
 map('n', '[Qleader]R', ':normal :<C-u>crewind<CR>', {silent=true})
