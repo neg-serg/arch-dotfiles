@@ -3,9 +3,25 @@ local cb = require'diffview.config'.diffview_callback
 
 require'diffview'.setup {
   diff_binaries = false,    -- Show diffs for binaries
+  enhanced_diff_hl = true,
   file_panel = {
+    position = "left",
     width = 35,
-    use_icons = true        -- Requires nvim-web-devicons
+    use_icons = true,        -- Requires nvim-web-devicons
+    height = 10,
+    listing_style = "tree",       -- One of 'list' or 'tree'
+    tree_options = {              -- Only applies when listing_style is 'tree'
+      flatten_dirs = true,
+      folder_statuses = "only_folded"  -- One of 'never', 'only_folded' or 'always'.
+    }
+  },
+  icons = {
+    folder_closed = "",
+    folder_open = "",
+  },
+  signs = {
+    fold_closed = "",
+    fold_open = "",
   },
   key_bindings = {
     -- The `view` bindings are active in the diff buffers, only when the current
