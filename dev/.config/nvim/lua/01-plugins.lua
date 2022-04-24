@@ -48,10 +48,13 @@ return require('packer').startup({function(use)
     }
     use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
     use 'brooth/far.vim' -- better find and replace
+    use 'nvim-pack/nvim-spectre' -- yet another find and replace
+    -- https://github.com/nvim-pack/nvim-spectre
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
     use {'gelguy/wilder.nvim', config=[[require'plugcfg/wilder']]} -- better cmdline menu
     use {'romgrk/fzy-lua-native'} -- fzy native lua integration
     use {'zsugabubus/crazy8.nvim'} -- indent autodetection
+    use {'ziontee113/syntax-tree-surfer'} -- experiment
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -80,7 +83,6 @@ return require('packer').startup({function(use)
     use {'lewis6991/gitsigns.nvim',
         after='plenary.nvim', config=[[require'plugcfg/gitsigns']], event='BufRead'} -- async gitsigns
     use 'tpope/vim-apathy' -- better include jump
-    use {'numirias/semshi', run=':UpdateRemotePlugins'}
     use {'tpope/vim-dispatch', config=[[require'plugcfg/vim-dispatch']],
         cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -129,7 +131,6 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     --use {'akinsho/git-conflict.nvim', config = require('git-conflict').setup()}
     use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
-    use 'tpope/vim-fugitive' -- git stuff old
 end
 	,config={
         display={
