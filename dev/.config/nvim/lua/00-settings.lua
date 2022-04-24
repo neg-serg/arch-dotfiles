@@ -3,7 +3,7 @@ vim.cmd([[
     autocmd VimEnter * :sleep 100m
     autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 ]])
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos"
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize"
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
     "2html_plugin",
