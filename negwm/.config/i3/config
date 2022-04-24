@@ -269,3 +269,5 @@ mode wm {
 	bindsym Control+C,$exit
 	bindsym Control+G,$exit
 }
+
+# vim: ft=i3config
