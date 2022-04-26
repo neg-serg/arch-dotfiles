@@ -46,27 +46,11 @@ require('lspconfig').pyright.setup {
   }
 }
 
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
--- vim.g.ale_fixers = {
---     ['json'] = 'jq',
---     ['cpp'] = {'clang', 'clangcheck', 'clangtidy'},
---     ['html'] = 'prettier',
---     ['scss'] = 'stylelint',
---     ['less'] = 'stylelint',
---     ['css'] = 'stylelint',
---     ['python'] = 'yapf',
---     ['rust'] = 'rustfmt'
--- }
--- vim.g.ale_linters = {
---     ['python'] = {'bandit', 'jedils', 'mypy',
---     'prospector', 'pycodestyle', 'pydocstyle', 'pyflakes', 'pylama', 'pylint',
---     'pyls', 'pyre', 'pyright', 'vulture'}
--- }
 
 local lsp_installer = require("nvim-lsp-installer")
 -- Register a handler that will be called for all installed servers.
