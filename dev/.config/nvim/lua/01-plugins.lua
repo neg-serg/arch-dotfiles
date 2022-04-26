@@ -129,7 +129,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    --use {'akinsho/git-conflict.nvim', config = require('git-conflict').setup()}
+    use {'akinsho/git-conflict.nvim', config = function() require('git-conflict').setup() end}
     use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
 end
 	,config={
