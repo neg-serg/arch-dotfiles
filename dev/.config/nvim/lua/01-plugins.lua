@@ -47,9 +47,6 @@ return require('packer').startup({function(use)
         }
     }
     use {'luukvbaal/nnn.nvim', config=[[require('plugcfg/nnn')]]}
-    use 'brooth/far.vim' -- better find and replace
-    use 'nvim-pack/nvim-spectre' -- yet another find and replace
-    -- https://github.com/nvim-pack/nvim-spectre
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
     use {'gelguy/wilder.nvim', config=[[require'plugcfg/wilder']]} -- better cmdline menu
     use {'romgrk/fzy-lua-native'} -- fzy native lua integration
