@@ -78,6 +78,11 @@ for_window [title="(?i)(?:copying|deleting|moving)"] floating enable
 for_window [class="steam_app_.*"] floating enable
 for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, focus
 for_window [title="Firefox — Sharing Indicator"] border pixel 1, sticky enable, move position 20 ppt -5 px
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="File Transfer*"] floating enable
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="pavucontrol-qt"] floating enable border normal
+for_window [class="qt5ct"] floating enable sticky enable border normal
 no_focus [class="zoom" instance="zoom" title="^zoom$"]
 no_focus [title="Firefox — Sharing Indicator"]
 no_focus [window_type="splash"]
@@ -197,61 +202,52 @@ mode resize {
 	bindsym Shift+d $actions resize right -4
 	bindsym Shift+k $actions resize top -4
 	bindsym Shift+w $actions resize top -4
-	bindsym Return,$exit
-	bindsym Escape,$exit
-	bindsym space,$exit
-	bindsym Control+C,$exit
-	bindsym Control+G,$exit
+	bindsym Return, $exit
+	bindsym Escape, $exit
+	bindsym space, $exit
+	bindsym Control+C, $exit
+	bindsym Control+G, $exit
 }
 
 bindsym Mod1+e mode "spec"
 mode spec {
-	bindsym e  [urgent=latest] focus,$exit
-	bindsym Shift+d  floating toggle,$exit
+	bindsym e  [urgent=latest] focus, $exit
+	bindsym Shift+d  floating toggle, $exit
+	bindsym l  exec i3lockr -p 8 , $exit
 
-	bindsym Shift+t $menu gtk_theme,$exit
-	bindsym Shift+i $menu icon_theme,$exit
-	bindsym i $menu pulse_input,$exit
-	bindsym o $menu pulse_output,$exit
-	bindsym m $menu xprop_show,$exit
-	bindsym t $scratchpad subtag im tel,$exit
-	bindsym w $scratchpad toggle webcam,$exit
-	bindsym f $circle subtag web firefox,$exit
-	bindsym 5 $circle subtag web tor,$exit
-	bindsym Return,$exit
-	bindsym Escape,$exit
-	bindsym space,$exit
-	bindsym Control+C,$exit
-	bindsym Control+G,$exit
+	bindsym Shift+t $menu gtk_theme, $exit
+	bindsym Shift+i $menu icon_theme, $exit
+	bindsym i $menu pulse_input, $exit
+	bindsym o $menu pulse_output, $exit
+	bindsym m $menu xprop_show, $exit
+	bindsym t $scratchpad subtag im tel, $exit
+	bindsym w $scratchpad toggle webcam, $exit
+	bindsym f $circle subtag web firefox, $exit
+	bindsym 5 $circle subtag web tor, $exit
+	bindsym Return, $exit
+	bindsym Escape, $exit
+	bindsym space, $exit
+	bindsym Control+C, $exit
+	bindsym Control+G, $exit
 }
 
 bindsym Mod4+minus mode "wm"
 mode wm {
-	bindsym grave layout default,$exit
-	bindsym minus layout splith,$exit
-	bindsym backslash layout splitv,$exit
-	bindsym t layout tabbed,$exit
-	bindsym Control+t layout toggle,$exit
+	bindsym grave layout default, $exit
+	bindsym minus layout splith, $exit
+	bindsym backslash layout splitv, $exit
+	bindsym t layout tabbed, $exit
+	bindsym Control+t layout toggle, $exit
 
-	bindsym h split horizontal,$exit
-	bindsym l split horizontal,$exit
-	bindsym j split vertical,$exit
-	bindsym k split vertical,$exit
+	bindsym h split horizontal, $exit
+	bindsym l split horizontal, $exit
+	bindsym j split vertical, $exit
+	bindsym k split vertical, $exit
 
 	bindsym s move bottom
 	bindsym a move left
 	bindsym d move right
 	bindsym w move top
-
-	bindsym Shift+w $actions hdown x2
-	bindsym Shift+a $actions hup x2
-	bindsym Shift+s $actions vleft x2
-	bindsym Shift+d $actions vright x2
-
-	bindsym 1 $actions 1
-	bindsym 2 $actions 2
-	bindsym 3 $actions 3
-	bindsym 4 $actions 4
 
 	bindsym Shift+plus $actions grow
 	bindsym x $actions maxhor
@@ -263,11 +259,13 @@ mode wm {
 	bindsym Shift+x $actions revert_maximize
 	bindsym Shift+y $actions revert_maximize
 	bindsym Shift+minus $actions shrink
-	bindsym Return,$exit
-	bindsym Escape,$exit
-	bindsym space,$exit
-	bindsym Control+C,$exit
-	bindsym Control+G,$exit
+	bindsym Shift+w $actions hdown x2
+	bindsym Shift+a $actions hup x2
+	bindsym Shift+s $actions vleft x2
+	bindsym Shift+d $actions vright x2
+	bindsym Return, $exit
+	bindsym Escape, $exit
+	bindsym space, $exit
+	bindsym Control+C, $exit
+	bindsym Control+G, $exit
 }
-
-# vim: ft=i3config
