@@ -36,7 +36,6 @@ set $scratchpad-teardrop [instance="teardrop"]
 set $scratchpad-torrment [instance="torrment"]
 set $scratchpad-transients [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"]
 set $scratchpad-webcam [instance="webcam"]
-
 for_window $scratchpad-discord floating enable
 for_window $scratchpad-im floating enable
 for_window $scratchpad-ncmpcpp floating enable
