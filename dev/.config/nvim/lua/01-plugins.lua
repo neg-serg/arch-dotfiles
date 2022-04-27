@@ -20,10 +20,7 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'lewis6991/impatient.nvim' -- faster loading
     use 'dstein64/vim-startuptime' -- startup time measurement
-    -- use { "tweekmonster/startuptime.vim" }
-    use {'antoinemadec/FixCursorHold.nvim',
-		setup = function() vim.g.cursorhold_updatetime = 100 end
-    } -- fix cursorhold slowdown
+    use {'antoinemadec/FixCursorHold.nvim', setup = function() vim.g.cursorhold_updatetime = 100 end} -- fix cursorhold slowdown
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
