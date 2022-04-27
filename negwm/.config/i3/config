@@ -116,20 +116,12 @@ bindsym Mod4+XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym Mod4+comma exec --no-startup-id playerctl previous
 bindsym Mod4+XF86AudioStop exec --no-startup-id playerctl stop
 
-bindsym XF86AudioLowerVolume $vol d
-bindsym XF86AudioRaiseVolume $vol u
-
 bindsym Mod4+Shift+a $menu attach
 bindsym Mod4+Shift+s $menu autoprop
 bindsym Mod4+Control+grave $menu cmd_menu
 bindsym Mod1+g $menu goto_win
 bindsym Mod4+Control+g $menu movews
 bindsym Mod1+Control+g $menu ws
-
-bindsym Mod4+grave $remember_focused focus_next_visible
-bindsym Mod4+Shift+grave $remember_focused focus_prev_visible
-bindsym Mod1+Tab $remember_focused switch
-bindsym Mod4+slash $remember_focused switch
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec flameshot gui
@@ -150,6 +142,25 @@ bindsym Mod4+space exec dunstctl close-all
 bindsym XF86Sleep exec sudo systemctl suspend
 bindsym Mod4+apostrophe reload
 bindsym Mod4+Shift+apostrophe restart
+
+bindsym Mod4+j focus down
+bindsym Mod4+h focus left
+bindsym Mod4+l focus right
+bindsym Mod4+k focus up
+
+bindsym XF86AudioLowerVolume $vol d
+bindsym XF86AudioRaiseVolume $vol u
+
+bindsym Mod4+grave $remember_focused focus_next_visible
+bindsym Mod4+Shift+grave $remember_focused focus_prev_visible
+bindsym Mod1+Tab $remember_focused switch
+bindsym Mod4+slash $remember_focused switch
+
+bindsym Mod4+Control+a $scratchpad dialog
+bindsym Mod4+Control+s $scratchpad geom_dump
+bindsym Mod4+Control+space $scratchpad geom_restore
+bindsym Mod4+s $scratchpad hide_current
+bindsym Mod4+3 $scratchpad next
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
 bindsym Mod4+Control+e $circle next lutris
@@ -170,17 +181,6 @@ bindsym Mod4+n $scratchpad toggle neomutt
 bindsym Mod4+Control+p $scratchpad toggle password
 bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
-
-bindsym Mod4+j focus down
-bindsym Mod4+h focus left
-bindsym Mod4+l focus right
-bindsym Mod4+k focus up
-
-bindsym Mod4+Control+a $scratchpad dialog
-bindsym Mod4+Control+s $scratchpad geom_dump
-bindsym Mod4+Control+space $scratchpad geom_restore
-bindsym Mod4+s $scratchpad hide_current
-bindsym Mod4+3 $scratchpad next
 
 bindsym Mod4+r mode "resize"
 mode resize {
