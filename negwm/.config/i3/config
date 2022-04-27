@@ -108,11 +108,6 @@ set $scratchpad nop scratchpad
 bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+Control+q  kill
 
-bindsym Mod4+j focus down
-bindsym Mod4+h focus left
-bindsym Mod4+l focus right
-bindsym Mod4+k focus up
-
 bindsym Mod4+XF86AudioNext exec --no-startup-id playerctl next
 bindsym Mod4+period exec --no-startup-id playerctl next
 bindsym Mod4+XF86AudioPlay exec --no-startup-id playerctl play
@@ -130,12 +125,6 @@ bindsym Mod4+Control+grave $menu cmd_menu
 bindsym Mod1+g $menu goto_win
 bindsym Mod4+Control+g $menu movews
 bindsym Mod1+Control+g $menu ws
-
-bindsym Mod4+Control+a $scratchpad dialog
-bindsym Mod4+Control+s $scratchpad geom_dump
-bindsym Mod4+Control+space $scratchpad geom_restore
-bindsym Mod4+s $scratchpad hide_current
-bindsym Mod4+3 $scratchpad next
 
 bindsym Mod4+grave $remember_focused focus_next_visible
 bindsym Mod4+Shift+grave $remember_focused focus_prev_visible
@@ -181,6 +170,17 @@ bindsym Mod4+x $circle next term
 bindsym Mod4+b $circle next vid
 bindsym Mod4+Control+v $circle next vm
 bindsym Mod4+w $circle next web
+
+bindsym Mod4+j focus down
+bindsym Mod4+h focus left
+bindsym Mod4+l focus right
+bindsym Mod4+k focus up
+
+bindsym Mod4+Control+a $scratchpad dialog
+bindsym Mod4+Control+s $scratchpad geom_dump
+bindsym Mod4+Control+space $scratchpad geom_restore
+bindsym Mod4+s $scratchpad hide_current
+bindsym Mod4+3 $scratchpad next
 
 bindsym Mod4+r mode "resize"
 mode resize {
