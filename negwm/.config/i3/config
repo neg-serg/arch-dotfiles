@@ -1,3 +1,6 @@
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec systemctl --user start --no-block i3-session.target
+exec_always systemctl --user restart --no-block negwm.service
 set $exit mode \"default\"
 set $i3 ${XDG_CONFIG_HOME}/negwm
 set $term "1 :: ︁ α:term"
@@ -86,9 +89,6 @@ no_focus [class="zoom" instance="zoom" title="^zoom$"]
 no_focus [title="Firefox — Sharing Indicator"]
 no_focus [window_type="splash"]
 
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec systemctl --user start --no-block i3-session.target
-exec_always systemctl --user restart --no-block negwm.service
 default_border normal
 default_floating_border normal
 font pango: Iosevka Bold 12
@@ -104,24 +104,6 @@ set $menu nop menu
 set $remember_focused nop remember_focused
 set $scratchpad nop scratchpad
 
-
-bindsym Mod4+q  fullscreen toggle
-bindsym Mod4+Control+q  kill
-
-bindsym Mod4+XF86AudioNext exec --no-startup-id playerctl next
-bindsym Mod4+period exec --no-startup-id playerctl next
-bindsym Mod4+XF86AudioPlay exec --no-startup-id playerctl play
-bindsym Mod4+Shift+2 exec --no-startup-id playerctl play-pause
-bindsym Mod4+XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym Mod4+comma exec --no-startup-id playerctl previous
-bindsym Mod4+XF86AudioStop exec --no-startup-id playerctl stop
-
-bindsym Mod4+Shift+a $menu attach
-bindsym Mod4+Shift+s $menu autoprop
-bindsym Mod4+Control+grave $menu cmd_menu
-bindsym Mod1+g $menu goto_win
-bindsym Mod4+Control+g $menu movews
-bindsym Mod1+Control+g $menu ws
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec flameshot gui
@@ -161,6 +143,25 @@ bindsym Mod4+Control+s $scratchpad geom_dump
 bindsym Mod4+Control+space $scratchpad geom_restore
 bindsym Mod4+s $scratchpad hide_current
 bindsym Mod4+3 $scratchpad next
+
+bindsym Mod4+Shift+a $menu attach
+bindsym Mod4+Shift+s $menu autoprop
+bindsym Mod4+Control+grave $menu cmd_menu
+bindsym Mod1+g $menu goto_win
+bindsym Mod4+Control+g $menu movews
+bindsym Mod1+Control+g $menu ws
+
+bindsym Mod4+q  fullscreen toggle
+bindsym Mod4+Control+q  kill
+
+bindsym Mod4+period exec --no-startup-id playerctl next
+bindsym Mod4+Shift+2 exec --no-startup-id playerctl play-pause
+bindsym Mod4+comma exec --no-startup-id playerctl previous
+
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPlay exec --no-startup-id playerctl play
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
 bindsym Mod4+Control+e $circle next lutris
