@@ -150,13 +150,6 @@ bindsym Mod4+space exec dunstctl close-all
 bindsym XF86Sleep exec sudo systemctl suspend
 bindsym Mod4+apostrophe reload
 bindsym Mod4+Shift+apostrophe restart
-bindsym Mod4+v $scratchpad toggle discord
-bindsym Mod4+e $scratchpad toggle im
-bindsym Mod4+f $scratchpad toggle ncmpcpp
-bindsym Mod4+n $scratchpad toggle neomutt
-bindsym Mod4+Control+p $scratchpad toggle password
-bindsym Mod4+d $scratchpad toggle teardrop
-bindsym Mod4+t $scratchpad toggle torrment
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
 bindsym Mod4+Control+e $circle next lutris
@@ -170,6 +163,13 @@ bindsym Mod4+x $circle next term
 bindsym Mod4+b $circle next vid
 bindsym Mod4+Control+v $circle next vm
 bindsym Mod4+w $circle next web
+bindsym Mod4+v $scratchpad toggle discord
+bindsym Mod4+e $scratchpad toggle im
+bindsym Mod4+f $scratchpad toggle ncmpcpp
+bindsym Mod4+n $scratchpad toggle neomutt
+bindsym Mod4+Control+p $scratchpad toggle password
+bindsym Mod4+d $scratchpad toggle teardrop
+bindsym Mod4+t $scratchpad toggle torrment
 
 bindsym Mod4+j focus down
 bindsym Mod4+h focus left
@@ -219,10 +219,10 @@ mode spec {
 	bindsym i $menu pulse_input, $exit
 	bindsym o $menu pulse_output, $exit
 	bindsym m $menu xprop_show, $exit
-	bindsym t $scratchpad subtag im tel, $exit
-	bindsym w $scratchpad toggle webcam, $exit
 	bindsym f $circle subtag web firefox, $exit
 	bindsym 5 $circle subtag web tor, $exit
+	bindsym t $scratchpad subtag im tel, $exit
+	bindsym w $scratchpad toggle webcam, $exit
 	bindsym Return, $exit
 	bindsym Escape, $exit
 	bindsym space, $exit
