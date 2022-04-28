@@ -3,4 +3,5 @@ find "$@" -type f -printf '%C@ %p\n' \
     | sort -rn --parallel 8 -S 16M \
     | cut -d ' ' -f 2- \
     | cut -d ':' -f 1 \
+    | ug -G -iE '\.(jpe?g|png|gif|svg|webp|tiff|heif|avif|ico|bmp)$' \
     | nsxiv -Zftoa -sd -i --
