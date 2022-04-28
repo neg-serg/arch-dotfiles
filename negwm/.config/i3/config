@@ -1,8 +1,6 @@
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec systemctl --user start --no-block i3-session.target
 exec_always systemctl --user restart --no-block negwm.service
-set $exit mode \"default\"
-set $i3 ${XDG_CONFIG_HOME}/negwm
 set $term "1 :: ︁ α:term"
 set $web "2 ::  β:web"
 set $dev "3 ::  δ:dev"
@@ -30,6 +28,12 @@ focus_wrapping workspace
 force_display_urgency_hint 2000 ms
 mouse_warping none
 workspace_layout tabbed
+default_border normal
+default_floating_border normal
+font pango: Iosevka Bold 12
+hide_edge_borders both
+show_marks yes
+title_align left
 set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
 set $scratchpad-ncmpcpp [class="ncmpcpp"]
@@ -46,7 +50,7 @@ for_window $scratchpad-neomutt floating enable
 for_window $scratchpad-password floating enable
 for_window $scratchpad-teardrop floating enable
 for_window $scratchpad-torrment floating enable
-for_window $scratchpad-transients move scratchpad, move absolute position 693 1310, resize set 1812 797
+for_window $scratchpad-transients move scratchpad, move absolute position 346 655, resize set 906 398
 for_window $scratchpad-webcam floating enable
 set $circle-bitwig [class="Bitwig Studio"]
 set $circle-doc [class="^(Zathura|cr3)$"]
@@ -89,12 +93,6 @@ no_focus [class="zoom" instance="zoom" title="^zoom$"]
 no_focus [title="Firefox — Sharing Indicator"]
 no_focus [window_type="splash"]
 
-default_border normal
-default_floating_border normal
-font pango: Iosevka Bold 12
-hide_edge_borders both
-show_marks yes
-title_align left
 set $actions nop actions
 set $circle nop circle
 set $conf_gen nop conf_gen
@@ -122,13 +120,14 @@ bindsym Mod4+Shift+m exec ~/bin/rofi-audio
 bindsym Mod4+Shift+y exec ~/bin/clip youtube-dw-list
 bindsym Mod4+space exec dunstctl close-all
 bindsym XF86Sleep exec sudo systemctl suspend
-bindsym Mod4+apostrophe reload
-bindsym Mod4+Shift+apostrophe restart
 
 bindsym Mod4+j focus down
 bindsym Mod4+h focus left
 bindsym Mod4+l focus right
 bindsym Mod4+k focus up
+
+bindsym Mod4+apostrophe  reload
+bindsym Mod4+Shift+apostrophe  restart
 
 bindsym XF86AudioLowerVolume $vol d
 bindsym XF86AudioRaiseVolume $vol u
@@ -202,47 +201,47 @@ mode resize {
 	bindsym Shift+d $actions resize right -4
 	bindsym Shift+k $actions resize top -4
 	bindsym Shift+w $actions resize top -4
-	bindsym Return, $exit
-	bindsym Escape, $exit
-	bindsym space, $exit
-	bindsym Control+C, $exit
-	bindsym Control+G, $exit
+	bindsym Return, mode "default"
+	bindsym Escape, mode "default"
+	bindsym space, mode "default"
+	bindsym Control+C, mode "default"
+	bindsym Control+G, mode "default"
 }
 
 bindsym Mod1+e mode "spec"
 mode spec {
-	bindsym e  [urgent=latest] focus, $exit
-	bindsym Shift+d  floating toggle, $exit
-	bindsym l  exec i3lockr -p 8 , $exit
+	bindsym e  [urgent=latest] focus, mode "default"
+	bindsym Shift+d  floating toggle, mode "default"
+	bindsym l  exec i3lockr -p 8 , mode "default"
 
-	bindsym Shift+t $menu gtk_theme, $exit
-	bindsym Shift+i $menu icon_theme, $exit
-	bindsym i $menu pulse_input, $exit
-	bindsym o $menu pulse_output, $exit
-	bindsym m $menu xprop_show, $exit
-	bindsym f $circle subtag web firefox, $exit
-	bindsym 5 $circle subtag web tor, $exit
-	bindsym t $scratchpad subtag im tel, $exit
-	bindsym w $scratchpad toggle webcam, $exit
-	bindsym Return, $exit
-	bindsym Escape, $exit
-	bindsym space, $exit
-	bindsym Control+C, $exit
-	bindsym Control+G, $exit
+	bindsym Shift+t $menu gtk_theme, mode "default"
+	bindsym Shift+i $menu icon_theme, mode "default"
+	bindsym i $menu pulse_input, mode "default"
+	bindsym o $menu pulse_output, mode "default"
+	bindsym m $menu xprop_show, mode "default"
+	bindsym f $circle subtag web firefox, mode "default"
+	bindsym 5 $circle subtag web tor, mode "default"
+	bindsym t $scratchpad subtag im tel, mode "default"
+	bindsym w $scratchpad toggle webcam, mode "default"
+	bindsym Return, mode "default"
+	bindsym Escape, mode "default"
+	bindsym space, mode "default"
+	bindsym Control+C, mode "default"
+	bindsym Control+G, mode "default"
 }
 
 bindsym Mod4+minus mode "wm"
 mode wm {
-	bindsym grave layout default, $exit
-	bindsym minus layout splith, $exit
-	bindsym backslash layout splitv, $exit
-	bindsym t layout tabbed, $exit
-	bindsym Control+t layout toggle, $exit
+	bindsym grave layout default, mode "default"
+	bindsym minus layout splith, mode "default"
+	bindsym backslash layout splitv, mode "default"
+	bindsym t layout tabbed, mode "default"
+	bindsym Control+t layout toggle, mode "default"
 
-	bindsym h split horizontal, $exit
-	bindsym l split horizontal, $exit
-	bindsym j split vertical, $exit
-	bindsym k split vertical, $exit
+	bindsym h split horizontal, mode "default"
+	bindsym l split horizontal, mode "default"
+	bindsym j split vertical, mode "default"
+	bindsym k split vertical, mode "default"
 
 	bindsym s move bottom
 	bindsym a move left
@@ -263,9 +262,9 @@ mode wm {
 	bindsym Shift+a $actions hup x2
 	bindsym Shift+s $actions vleft x2
 	bindsym Shift+d $actions vright x2
-	bindsym Return, $exit
-	bindsym Escape, $exit
-	bindsym space, $exit
-	bindsym Control+C, $exit
-	bindsym Control+G, $exit
+	bindsym Return, mode "default"
+	bindsym Escape, mode "default"
+	bindsym space, mode "default"
+	bindsym Control+C, mode "default"
+	bindsym Control+G, mode "default"
 }
