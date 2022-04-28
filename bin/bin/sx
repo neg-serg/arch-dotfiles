@@ -1,3 +1,6 @@
-#!/usr/bin/env zsh
-setopt +o nomatch
-nsxiv -Zftoa -sd -r ${@:-.}/*(oc)
+#!/usr/bin/env dash
+find "$@" -type f -printf '%C@ %p\n' \
+    | sort -rn --parallel 8 -S 16M \
+    | cut -d ' ' -f 2- \
+    | cut -d ':' -f 1 \
+    | nsxiv -Zftoa -sd -i --
