@@ -86,39 +86,34 @@ set $sys "10 ::  η:sys"
 set $vm "11 ::  λ:vm"
 set $wine "12 ::  μ:wine"
 
-client.background #000000ee
-client.focused #000011dd #000000ee #ddddee #112211 #0C0C0D
-client.focused_inactive #000000dd #000000ee #005fff #000000 #020204
-client.placeholder #000000ee #000000 #ffffff #000000 #0c0c0c
-client.unfocused #000000ee #000000 #315c70 #000000 #020204
-client.urgent #000000ee #2E2457 #4C407C #32275E #32275E
-set $actions nop actions
-set $circle nop circle
-set $conf_gen nop conf_gen
-set $executor nop executor
-set $fullscreen nop fullscreen
-set $menu nop menu
-set $remember_focused nop remember_focused
-set $scratchpad nop scratchpad
+# set_from_resource $background background
+# set_from_resource $foreground foreground
+client.background        #000000ee
+client.focused           #000011dd  #000000ee  #ddddee  #112211  #0C0C0D
+client.focused_inactive  #000000dd  #000000ee  #005fff  #000000  #020204
+client.placeholder       #000000ee  #000000    #ffffff  #000000  #0c0c0c
+client.unfocused         #000000ee  #000000    #315c70  #000000  #020204
+client.urgent            #000000ee  #2E2457    #4C407C  #32275E  #32275E
 
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec flameshot gui
-bindsym Mod1+grave exec rofi -show run -show-icons -disable-history -theme neg
-bindsym Mod4+8 exec playerctl volume 0.0 || amixer -q set Master 0 mute
-bindsym Mod4+c exec ~/bin/clip
-bindsym Mod4+g exec ~/bin/g
-bindsym Mod4+p exec ~/bin/rofi-tmux-urls
-bindsym Mod4+m exec ~/bin/music-rename current
-bindsym Mod4+Shift+6 exec ~/bin/wl
-bindsym Mod4+Shift+8 exec playerctl volume 1.0 || amixer -q set Master 65536 unmute
-bindsym Mod4+Shift+9 exec dunstctl history-pop
-bindsym Mod4+Shift+i exec ~/bin/rofi-nm
-bindsym Mod4+Shift+l exec ~/bin/rofi-lutris
-bindsym Mod4+Shift+m exec ~/bin/rofi-audio
-bindsym Mod4+Shift+y exec ~/bin/clip youtube-dw-list
-bindsym Mod4+space exec dunstctl close-all
-bindsym XF86Sleep exec sudo systemctl suspend
+
+bindsym Mod1+grave exec --no-startup-id rofi -show run -show-icons -disable-history -theme neg
+bindsym Mod4+8 exec --no-startup-id playerctl volume 0.0 || amixer -q set Master 0 mute
+bindsym Mod4+c exec --no-startup-id ~/bin/clip
+bindsym Mod4+g exec --no-startup-id ~/bin/g
+bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
+bindsym Mod4+m exec --no-startup-id ~/bin/music-rename current
+bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
+bindsym Mod4+Shift+8 exec --no-startup-id playerctl volume 1.0 || amixer -q set Master 65536 unmute
+bindsym Mod4+Shift+9 exec --no-startup-id dunstctl history-pop
+bindsym Mod4+Shift+i exec --no-startup-id ~/bin/rofi-nm
+bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
+bindsym Mod4+Shift+m exec --no-startup-id ~/bin/rofi-audio
+bindsym Mod4+Shift+y exec --no-startup-id ~/bin/clip youtube-dw-list
+bindsym Mod4+space exec --no-startup-id dunstctl close-all
+bindsym XF86Sleep exec --no-startup-id sudo systemctl suspend
 
 bindsym Mod4+j focus down
 bindsym Mod4+h focus left
@@ -142,6 +137,15 @@ bindsym Mod4+Control+space $scratchpad geom_restore
 bindsym Mod4+s $scratchpad hide_current
 bindsym Mod4+3 $scratchpad next
 
+bindsym Mod4+period exec --no-startup-id playerctl next
+bindsym Mod4+Shift+2 exec --no-startup-id playerctl play-pause
+bindsym Mod4+comma exec --no-startup-id playerctl previous
+
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPlay exec --no-startup-id playerctl play
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+
 bindsym Mod4+Shift+a $menu attach
 bindsym Mod4+Shift+s $menu autoprop
 bindsym Mod4+Control+grave $menu cmd_menu
@@ -151,15 +155,6 @@ bindsym Mod1+Control+g $menu ws
 
 bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+Control+q  kill
-
-bindsym Mod4+period exec --no-startup-id playerctl next
-bindsym Mod4+Shift+2 exec --no-startup-id playerctl play-pause
-bindsym Mod4+comma exec --no-startup-id playerctl previous
-
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPlay exec --no-startup-id playerctl play
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioStop exec --no-startup-id playerctl stop
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
 bindsym Mod4+Control+e $circle next lutris
@@ -210,8 +205,8 @@ mode resize {
 bindsym Mod1+e mode "spec"
 mode spec {
 	bindsym e  [urgent=latest] focus, mode "default"
-	bindsym Shift+d  floating toggle, mode "default"
 	bindsym l  exec i3lockr -p 8 , mode "default"
+	bindsym Shift+d  floating toggle, mode "default"
 
 	bindsym Shift+t $menu gtk_theme, mode "default"
 	bindsym Shift+i $menu icon_theme, mode "default"
@@ -242,10 +237,10 @@ mode wm {
 	bindsym j split vertical, mode "default"
 	bindsym k split vertical, mode "default"
 
-	bindsym s move bottom
-	bindsym a move left
-	bindsym d move right
 	bindsym w move top
+	bindsym a move left
+	bindsym s move bottom
+	bindsym d move right
 
 	bindsym Shift+plus $actions grow
 	bindsym x $actions maxhor
@@ -267,3 +262,12 @@ mode wm {
 	bindsym Control+C, mode "default"
 	bindsym Control+G, mode "default"
 }
+
+set $actions nop actions
+set $circle nop circle
+set $conf_gen nop conf_gen
+set $executor nop executor
+set $fullscreen nop fullscreen
+set $menu nop menu
+set $remember_focused nop remember_focused
+set $scratchpad nop scratchpad
