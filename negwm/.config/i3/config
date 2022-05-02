@@ -86,8 +86,6 @@ set $sys "10 ::  η:sys"
 set $vm "11 ::  λ:vm"
 set $wine "12 ::  μ:wine"
 
-# set_from_resource $background background
-# set_from_resource $foreground foreground
 client.background        #000000ee
 client.focused           #000011dd  #000000ee  #ddddee  #112211  #0C0C0D
 client.focused_inactive  #000000dd  #000000ee  #005fff  #000000  #020204
