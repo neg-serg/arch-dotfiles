@@ -12,6 +12,9 @@ font pango: Iosevka Bold 12
 hide_edge_borders both
 show_marks yes
 title_align left
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec systemctl --user start --no-block i3-session.target
+exec_always systemctl --user restart --no-block negwm.service
 set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
 set $scratchpad-ncmpcpp [class="ncmpcpp"]
@@ -70,9 +73,6 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 no_focus [class="zoom" instance="zoom" title="^zoom$"]
 no_focus [title="Firefox — Sharing Indicator"]
 no_focus [window_type="splash"]
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec systemctl --user start --no-block i3-session.target
-exec_always systemctl --user restart --no-block negwm.service
 set $term "1 :: ︁ α:term"
 set $web "2 ::  β:web"
 set $dev "3 ::  δ:dev"
