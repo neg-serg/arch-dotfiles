@@ -1,10 +1,14 @@
 local wilder = require('wilder')
-wilder.setup(
-    { modes = {':'}, },
-    { enable_cmdline_enter = 0, }
-)
+wilder.setup({
+  modes = {':'},
+  next_key = '<C-e>',
+  previous_key = '<S-Tab>',
+  accept_key = '<Tab>'
+})
+-- enable_cmdline_enter = 1,
 
 wilder.set_option('use_python_remote_plugin', 0)
+wilder.set_option('noselect', 0)
 
 wilder.set_option('pipeline', {
   wilder.branch(
@@ -19,25 +23,3 @@ wilder.set_option('pipeline', {
     wilder.vim_search_pipeline()
   )
 })
-
-vim.cmd[[
-call wilder#setup({
-      \ 'modes': [':'],
-      \ 'next_key': '<C-e>',
-      \ 'previous_key': '<S-Tab>',
-      \ 'accept_key': '<Tab>',
-      \ })
-call wilder#set_option('noselect', 0)
-]]
-
--- wilder.set_option('pipeline', {
---   wilder.branch(
---    -- wilder.python_search_pipeline({
---    --   pattern = wilder.python_fuzzy_pattern(),
---    --   sorter = wilder.python_difflib_sorter(),
---    --   -- can be set to 're2' for performance, requires pyre2 to be installed
---    --   -- see :h wilder#python_search() for more details
---    --   engine = 're',
---    -- })
---  ),
--- })

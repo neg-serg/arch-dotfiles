@@ -64,7 +64,6 @@ vim.g.mapleader = ','
 map('n', "<leader>.", "<Cmd>lua require'plugcfg/telescope';require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
 map('c', '<C-a>', '<home>', {noremap=true})
 map('c', '<C-b>', '<left>', {noremap=true})
-map('c', '<C-e>', '<end>', {noremap=true})
 map('c', '<C-n>', '<down>', {noremap=true})
 map('c', '<C-p>', '<up>', {noremap=true})
 map('c', '<C-d>', '<Del>', {noremap=true})

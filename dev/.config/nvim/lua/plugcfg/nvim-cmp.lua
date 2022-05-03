@@ -64,6 +64,7 @@ M.init = function()
       {name = 'buffer'},
       {name = 'path'},
       {name = 'neorg'},
+      -- {name = 'vsnip'},
     }),
     sorting = {
         comparators = {
