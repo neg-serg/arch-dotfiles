@@ -48,7 +48,6 @@ return require('packer').startup({function(use)
     use {'gelguy/wilder.nvim', config=[[require'plugcfg/wilder']]} -- better cmdline menu
     use {'romgrk/fzy-lua-native'} -- fzy native lua integration
     use {'zsugabubus/crazy8.nvim'} -- indent autodetection
-    use {'ziontee113/syntax-tree-surfer'} -- experiment
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -63,7 +62,6 @@ return require('packer').startup({function(use)
     use {'hrsh7th/cmp-path'} -- cmp path completion support
     use {'lukas-reineke/cmp-under-comparator'} -- better nvim-cmp sorter
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
-    use {'j-hui/fidget.nvim', config=[[require'fidget'.setup{}]], after='nvim-lspconfig'} -- nvim-lsp progress
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
