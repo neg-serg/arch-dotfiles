@@ -12,13 +12,8 @@ _exists() { (( $+commands[$1] )) }
     }
 }
 alias qe='cd ^.git*(/om[1]D)'
-if _exists lsc; then
-    alias ls='lsc'
-    alias l='lsc -l'
-else
-    alias ls='ls --color=auto'
-    alias l='ls'
-fi
+alias ls='ls --color=auto'
+alias l='ls'
 alias mv='mv -i'
 alias mk='mkdir -p'
 alias rd='rmdir'
