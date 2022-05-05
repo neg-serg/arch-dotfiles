@@ -250,6 +250,7 @@ mode wm {
 	bindsym Shift+x $actions revert_maximize
 	bindsym Shift+y $actions revert_maximize
 	bindsym Shift+minus $actions shrink
+
 	bindsym Shift+w $actions hdown x2
 	bindsym Shift+a $actions hup x2
 	bindsym Shift+s $actions vleft x2
