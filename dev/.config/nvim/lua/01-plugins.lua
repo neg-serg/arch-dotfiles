@@ -55,9 +55,7 @@ return require('packer').startup({function(use)
 	requires = "kyazdani42/nvim-web-devicons",
 	config = function() require'plugcfg/trouble' end}
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
-    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]],
-        branch="feat/completion-menu-borders"
-    } -- completion engine
+    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]]} -- completion engine
     use {'hrsh7th/cmp-nvim-lua'} -- cmp neovim lua api support
     use {'hrsh7th/cmp-nvim-lsp'} -- cmp lsp support
     use {'hrsh7th/cmp-path'} -- cmp path completion support
@@ -66,7 +64,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'L3MON4D3/LuaSnip'}  -- lua snippets
+    use {'quangnguyen30192/cmp-nvim-ultisnips'} -- ultisnippets integration
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'jamessan/vim-gnupg', ft='gpg', opt=true} -- transparent work with gpg-encrypted files
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
