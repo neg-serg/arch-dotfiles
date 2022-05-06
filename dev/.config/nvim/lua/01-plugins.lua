@@ -47,7 +47,6 @@ return require('packer').startup({function(use)
     use {'haya14busa/vim-asterisk', config=[[require'plugcfg/vim-asterisk']]} -- smartcase star
     use {'gelguy/wilder.nvim', config=[[require'plugcfg/wilder']]} -- better cmdline menu
     use {'romgrk/fzy-lua-native'} -- fzy native lua integration
-    use {'zsugabubus/crazy8.nvim'} -- indent autodetection
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -56,7 +55,9 @@ return require('packer').startup({function(use)
 	requires = "kyazdani42/nvim-web-devicons",
 	config = function() require'plugcfg/trouble' end}
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
-    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]]} -- completion engine
+    use {'hrsh7th/nvim-cmp', config=[[require('plugcfg/nvim-cmp').init()]],
+        branch="feat/completion-menu-borders"
+    } -- completion engine
     use {'hrsh7th/cmp-nvim-lua'} -- cmp neovim lua api support
     use {'hrsh7th/cmp-nvim-lsp'} -- cmp lsp support
     use {'hrsh7th/cmp-path'} -- cmp path completion support
