@@ -50,12 +50,20 @@ M.init = function()
     view = {
         entries = 'native'
     },
+    snippet = {
+        expand = function(args)
+            require'luasnip'.lsp_expand(args.body)
+        end
+    },
     window = {
+        completion = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}, scrollbar = "║"},
         documentation = {
-            border = 'single',
             winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
+            border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
+            scrollbar = "║"
     }},
     experimental = {
+      native_menu = false,
       ghost_text = true,
     },
     sources = cmp.config.sources({
@@ -64,7 +72,7 @@ M.init = function()
       {name = 'buffer'},
       {name = 'path'},
       {name = 'neorg'},
-      -- {name = 'vsnip'},
+      {name = 'luasnip', option = { use_show_condition = false }},
     }),
     sorting = {
         comparators = {
