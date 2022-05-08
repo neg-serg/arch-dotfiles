@@ -64,6 +64,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'TimUntersberger/neogit'} -- magit for neovim
     use {'quangnguyen30192/cmp-nvim-ultisnips'} -- ultisnippets integration
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'jamessan/vim-gnupg', ft='gpg', opt=true} -- transparent work with gpg-encrypted files
