@@ -1,8 +1,3 @@
--- Fix alacritty resize: github.com/neovim/neovim/issues/11330
-vim.cmd([[
-    autocmd VimEnter * :sleep 100m
-    autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
-]])
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize"
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {

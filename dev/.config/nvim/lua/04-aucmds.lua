@@ -53,3 +53,11 @@ au({'BufLeave','WinLeave'}, {command='setlocal nocursorline', group=cursor_line}
 
 au({'WinEnter','BufEnter','BufWinEnter'}, {callback=function() vim.wo.statusline=NegStatusline('active') end, group=statusline})
 au({'WinLeave','BufLeave','BufWinLeave'}, {callback=function() vim.wo.statusline=NegStatusline('inactive') end, group=statusline})
+
+-- Fix alacritty resize: github.com/neovim/neovim/issues/11330
+au({"VimEnter"}, {
+  callback = function()
+    local pid, WINCH = vim.fn.getpid(), vim.loop.constants.SIGWINCH
+    vim.defer_fn(function() vim.loop.kill(pid, WINCH) end, 20)
+  end
+})
