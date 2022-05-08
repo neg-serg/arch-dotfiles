@@ -97,5 +97,3 @@ map('n', '<leader>l', ':new +resize8 term://NEOVIM_TERMINAL=1 zsh<CR>', {silent=
 map('n', '[Qleader]e', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
 map('n', '[Qleader]f', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
 map('n', '[Qleader]c', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').git_commits{}<CR>", {silent=true, noremap=true})
-
-map('n', '<C-n>', ':Neogit<CR>', {noremap=true})
