@@ -122,8 +122,8 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'akinsho/git-conflict.nvim', config = function() require('git-conflict').setup() end}
     use {'sindrets/diffview.nvim', cmd={'DiffviewLoad'}, config=[[require'plugcfg/diffview']]} -- diff view for multiple files
-end
-	,config={
+end,
+    config={
         display={
             title = 'Packer',
             open_cmd = '85vnew \\[packer\\]', -- An optional command to open a window for packer's display
