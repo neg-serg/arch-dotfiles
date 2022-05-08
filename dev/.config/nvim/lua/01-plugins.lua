@@ -24,7 +24,6 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'norcalli/nvim_utils' -- neovim lua utils
     use {'jedi2610/nvim-rooter.lua', config=[[require'plugcfg/nvim-rooter']]} -- -- autochdir for project root or for current dir
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
     use {'jghauser/mkdir.nvim', config=[[require('mkdir')]], event = 'BufWritePre'}

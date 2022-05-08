@@ -29,7 +29,6 @@ if present then
    impatient.enable_profile()
 end
 
-loadrequire 'nvim_utils'
 loadrequire '00-helpers'
 loadrequire '00-settings'
 loadrequire 'packer_compiled'
