@@ -32,7 +32,7 @@ return require('packer').startup({function(use)
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim',
         cmd = 'Telescope',
-        module = { 'telescope', 'configs.telescope' },
+        module = {'telescope', 'configs.telescope'},
         requires={
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim', -- fzy integration
