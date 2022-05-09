@@ -3,5 +3,5 @@ Description=Session locker
 After=i3-wm.service
 
 [Service]
-ExecStart=/usr/bin/xss-lock --transfer-sleep-lock -- i3lock --nofork
+ExecStart=/usr/bin/xss-lock --transfer-sleep-lock -- i3lockr -p 8
 Restart=on-failure
