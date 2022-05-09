@@ -89,7 +89,6 @@ chromium
 .cxoffice
 cycle_settings.pyc
 .dbus
-dev/.config/nvim/plugin/
 dev/.config/nvim/sessions/
 dev/.config/nvim/sessions/default.vim
 dev/.config/pylint/
@@ -212,7 +211,6 @@ password.gpg
 pic
 .pip
 .pki
-plugin/
 polybar/.config/polybar/gmail/client_secrets.json
 .pry_history
 .pulse-cookie
