@@ -86,12 +86,21 @@ set $sys "10 ::  η:sys"
 set $vm "11 ::  λ:vm"
 set $wine "12 ::  μ:wine"
 
-client.background        #000000ee
-client.focused           #000011dd  #000000ee  #ddddee  #112211  #0C0C0D
-client.focused_inactive  #000000dd  #000000ee  #005fff  #000000  #020204
-client.placeholder       #000000ee  #000000    #ffffff  #000000  #0c0c0c
-client.unfocused         #000000ee  #000000    #315c70  #000000  #020204
-client.urgent            #000000ee  #2E2457    #4C407C  #32275E  #32275E
+set_from_resource        $bg     bg
+set_from_resource        $fg     fg
+set_from_resource        $fb     fb
+set_from_resource        $ib     ib
+set_from_resource        $ub     ub
+set_from_resource        $blue   blue
+set_from_resource        $actbr  actbr
+
+client.focused           $fb     $bg    $fg    $bg  $actbr
+client.focused_inactive  $ib     $bg    $fg    $bg  $bg
+client.placeholder       $bg     $bg    $fg    $bg  $bg
+client.unfocused         $bg     $bg    $blue  $bg  $bg
+client.urgent            $bg     $ub    $fg    $ub  $ib
+
+client.background        $bg
 
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
