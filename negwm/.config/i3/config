@@ -1,17 +1,25 @@
-default_orientation auto
 floating_modifier Mod4
 focus_follows_mouse no
-focus_on_window_activation smart
-focus_wrapping workspace
-force_display_urgency_hint 2000 ms
-mouse_warping none
-workspace_layout tabbed
 default_border normal
 default_floating_border normal
 font pango: Iosevka Bold 12
 hide_edge_borders both
-show_marks yes
-title_align left
+
+set_from_resource        $bg     bg
+set_from_resource        $fg     fg
+set_from_resource        $fb     fb
+set_from_resource        $ib     ib
+set_from_resource        $ub     ub
+set_from_resource        $blue   blue
+set_from_resource        $actbr  actbr
+
+client.focused           $fb     $bg    $fg    $bg  $actbr
+client.focused_inactive  $ib     $bg    $fg    $bg  $bg
+client.placeholder       $bg     $bg    $fg    $bg  $bg
+client.unfocused         $bg     $bg    $blue  $bg  $bg
+client.urgent            $bg     $ub    $fg    $ub  $ib
+
+client.background        $bg
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec systemctl --user start --no-block i3-session.target
 exec_always systemctl --user restart --no-block negwm.service
@@ -57,7 +65,7 @@ for_window $circle-term move workspace $term,focus
 for_window $circle-vid move workspace $gfx,focus
 for_window $circle-vm move workspace $vm,focus
 for_window $circle-web move workspace $web,focus
-for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 5
+for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 2
 for_window [class="^(Gcolor3|rdesktop|openssh-askpass)$"] floating enable
 for_window [class="^(inkscape|gimp)$"] move workspace $draw
 for_window [class="(?i)(?:steam|lutris)"] floating enable
@@ -86,21 +94,6 @@ set $sys "10 ::  η:sys"
 set $vm "11 ::  λ:vm"
 set $wine "12 ::  μ:wine"
 
-set_from_resource        $bg     bg
-set_from_resource        $fg     fg
-set_from_resource        $fb     fb
-set_from_resource        $ib     ib
-set_from_resource        $ub     ub
-set_from_resource        $blue   blue
-set_from_resource        $actbr  actbr
-
-client.focused           $fb     $bg    $fg    $bg  $actbr
-client.focused_inactive  $ib     $bg    $fg    $bg  $bg
-client.placeholder       $bg     $bg    $fg    $bg  $bg
-client.unfocused         $bg     $bg    $blue  $bg  $bg
-client.urgent            $bg     $ub    $fg    $ub  $ib
-
-client.background        $bg
 
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
@@ -110,17 +103,16 @@ bindsym Mod1+grave exec --no-startup-id rofi -show run -show-icons -disable-hist
 bindsym Mod4+8 exec --no-startup-id playerctl volume 0.0 || amixer -q set Master 0 mute
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+g exec --no-startup-id ~/bin/g
-bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+m exec --no-startup-id ~/bin/music-rename current
+bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
 bindsym Mod4+Shift+8 exec --no-startup-id playerctl volume 1.0 || amixer -q set Master 65536 unmute
 bindsym Mod4+Shift+9 exec --no-startup-id dunstctl history-pop
-bindsym Mod4+Shift+i exec --no-startup-id ~/bin/rofi-nm
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/rofi-audio
 bindsym Mod4+Shift+y exec --no-startup-id ~/bin/clip youtube-dw-list
 bindsym Mod4+space exec --no-startup-id dunstctl close-all
-bindsym XF86Sleep exec --no-startup-id sudo systemctl suspend
+bindsym XF86Sleep exec --no-startup-id systemctl suspend
 
 bindsym Mod4+j focus down
 bindsym Mod4+h focus left
@@ -129,9 +121,6 @@ bindsym Mod4+k focus up
 
 bindsym Mod4+apostrophe  reload
 bindsym Mod4+Shift+apostrophe  restart
-
-bindsym XF86AudioLowerVolume $vol d
-bindsym XF86AudioRaiseVolume $vol u
 
 bindsym Mod4+grave $remember_focused focus_next_visible
 bindsym Mod4+Shift+grave $remember_focused focus_prev_visible
@@ -147,6 +136,8 @@ bindsym Mod4+3 $scratchpad next
 bindsym Mod4+period exec --no-startup-id playerctl next
 bindsym Mod4+Shift+2 exec --no-startup-id playerctl play-pause
 bindsym Mod4+comma exec --no-startup-id playerctl previous
+bindsym XF86AudioLowerVolume exec --no-startup-id playerctl volume 0.05- || playerctl volume 0.01-
+bindsym XF86AudioRaiseVolume exec --no-startup-id playerctl volume 0.05+ || playerctl volume 0.01+
 
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPlay exec --no-startup-id playerctl play
