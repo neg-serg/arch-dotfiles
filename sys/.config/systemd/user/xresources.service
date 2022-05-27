@@ -1,5 +1,5 @@
 [Unit]
-Description=Merge xrdb settings
+Description=Merge xresources with xrdb
 PartOf=graphical-session.target
 
 [Service]
