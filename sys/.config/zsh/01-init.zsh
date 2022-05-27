@@ -64,7 +64,6 @@ _exists nvim && {
     typeset -gx VISUAL="${EDITOR}"
     typeset -gx MANPAGER="nvim +Man!"
 }
-typeset -gx PAGER="slit"
 typeset -gx TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 typeset -gx WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 typeset -gx LS_COLORS
