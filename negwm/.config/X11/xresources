@@ -1,0 +1,16 @@
+Sxiv.background: #000000
+Sxiv.font: Iosevka:style=Medium:size=17
+Sxiv.foreground: #3993AA
+Sxiv.selection:  #342EB9
+Xcursor.size: 48
+Xcursor.theme: Bibata-Original-Classic
+Xft.dpi: 162
+Xft.rgba: none
+
+*bg: #000000ee
+*fb: #005faf
+*ib: #285981
+*ub: #2E2457
+*fg: #899CA1
+*blue: #285981
+*actbr: #020204
