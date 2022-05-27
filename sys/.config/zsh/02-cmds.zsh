@@ -93,12 +93,16 @@ _exists yt-dlp && {
     alias yt='noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"'
     alias ytt='noglob ytfzf --preview-side=left -t'
 }
-_exists wget2 && alias wget='wget2'
+if _exists wget2; then
+    alias wget="wget2 --hsts-file=$XDG_DATA_HOME/wget-hsts"
+else
+    alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
+fi
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(bb fennel guile irb)
 local sudo_list=(chmod chown modprobe umount)
 local logind_sudo_list=(reboot halt poweroff)
-local noglob_list=(fc find ftp history lftp links2 locate lynx rake rsync scp sftp wget you-get)
+local noglob_list=(fc find ftp history lftp links2 locate lynx rake rsync scp sftp you-get)
 for c in ${sudo_list[@]}; {_exists "$c" && alias "$c=sudo $c"}
 for c in ${noglob_list[@]}; {_exists "$c" && alias "$c=noglob $c"}
 for c in ${rlwrap_list[@]}; {_exists "$c" && alias "$c=rlwrap $c"}
