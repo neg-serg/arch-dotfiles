@@ -57,6 +57,7 @@ alias :q="exit"
 alias emptydir='ls -ld **/*(/^F)'
 _exists paru && {alias yay='paru'; alias rmorphans='paru -Rs $(paru -Qqdt)'}
 _exists sudo && {alias sudo='sudo '; alias s='sudo '}
+_exists nvidia-settings && alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
 _exists plocate && alias locate='plocate'
 _exists dd && alias dd='dd status=progress'
 _exists hxd && alias hexdump='hxd'
@@ -111,6 +112,7 @@ for c in ${dev_null_list[@]}; {_exists "$c" && alias "$c=$c 2>/dev/null"}
 _exists lsof && alias ports='sudo lsof -Pni'
 for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
+_exists svn && alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
 _exists git && {
     alias gs='git status --short -b'
     alias gp='git push'

@@ -2,6 +2,7 @@
 skip_global_compinit=1
 typeset -gx ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 typeset -gx XDG_CONFIG_HOME="$HOME/.config"
+typeset -gx XDG_STATE_HOME="$HOME/.local/state"
 typeset -gx XDG_DATA_HOME="$HOME/.local/share"
 typeset -gx XDG_CACHE_HOME="$HOME/.cache"
 typeset -gx XDG_DOWNLOAD_DIR="$HOME/dw"
@@ -59,5 +60,8 @@ typeset -gx FZF_COMPLETION_TRIGGER='~~'
 [[ $(readlink -e ~/tmp) == "" ]] && rm -f ~/tmp
 [[ ! -L ${HOME}/tmp ]] && { rm -f ~/tmp && tmp_loc=$(mktemp -d) && ln -fs "${tmp_loc}" ${HOME}/tmp }
 typeset -gx LIBSEAT_BACKEND=logind
-typeset -gx RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+typeset -gx XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+typeset -gx XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+typeset -gx TERMINFO="$XDG_DATA_HOME"/terminfo
+typeset -gx TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 typeset -gx DISPLAY=:0
