@@ -83,7 +83,7 @@ class WallpaperManager():
         img_to_set = random.choice(self.images)
         if '.gif' == Path(img_to_set).suffix:
             p1 = subprocess.Popen(['pkill', 'xrootgif']); p1.wait()
-            p2 = subprocess.Popen(['xrootgif', img_to_set]); p2.wait()
+            p2 = subprocess.Popen(['xrootgif', '-p', '3', img_to_set]); p2.wait()
         else:
             os.system("pkill xrootgif &")
             subprocess.Popen(['hsetroot', '-cover', img_to_set])
