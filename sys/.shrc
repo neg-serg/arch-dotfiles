@@ -1,8 +1,0 @@
-alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-alias mpa="mpv -fs -ao null --input-unix-socket=${HOME}/tmp/mpv_socket"
-alias grep="grep --color=auto"
-alias u="umount"
-alias s="sudo"
-alias rd="rmdir"
-alias tree="tree --dirsfirst -C"
-alias gs='git status --short -b'
