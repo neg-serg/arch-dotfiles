@@ -1,6 +1,12 @@
 [Unit]
 Description=Modal keyboard driven interface for mouse manipulation
 PartOf=graphical-session.target
+After=dbus.socket
 
 [Service]
 ExecStart=/usr/bin/warpd -f
+Restart=always
+# Restart in 5 second intervals
+RestartSec=5
+# Try to restart up to 3 times
+StartLimitBurst=3
