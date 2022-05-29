@@ -5,7 +5,7 @@ PartOf=graphical-session.target
 [Service]
 Restart=on-failure
 ExecStartPre=%h/bin/xsettingsd-setup
-ExecStart=/usr/bin/xsettingsd -c %h/.xsettingsd
+ExecStart=/usr/bin/xsettingsd -c %h/.config/xsettingsd/xsettingsd.conf
 ExecReload=%h/bin/xsettingsd-setup
 ExecReload=/usr/bin/kill -HUP $MAINPID
 ExecReload=-/usr/bin/i3-msg restart
