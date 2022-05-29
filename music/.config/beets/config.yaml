@@ -32,14 +32,6 @@ color: yes
 
 ui:
   color: yes
-  colors:
-    text_success:         '40'
-    text_warning:         '137'
-    text_error:           '160'
-    text_highlight:       '106'
-    text_highlight_minor: '108'
-    action_default:       '197'
-    action:               '210'
 
 per_disc_numbering: no
 original_date: yes
