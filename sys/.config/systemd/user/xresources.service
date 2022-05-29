@@ -4,3 +4,4 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/xrdb -merge "$XDG_CONFIG_HOME/X11/xresources"
+Restart=on-failure
