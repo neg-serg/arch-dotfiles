@@ -14,6 +14,5 @@ Wants=pulseaudio.socket
 Wants=ssh-agent.service
 Wants=wallpaper.service
 Wants=xiccd.service
-Wants=xresources.service
 Wants=xsettingsd.service
 Wants=xss-lock.service

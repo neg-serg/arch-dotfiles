@@ -1,0 +1,11 @@
+[Unit]
+Description=X resource loader
+After=xorg.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xrdb -load "%E/X11/xresources"
+
+[Install]
+WantedBy=default.target
