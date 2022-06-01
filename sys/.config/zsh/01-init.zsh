@@ -138,6 +138,11 @@ fasd_init() {
     fi
 }
 
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 autoload -Uz chpwd
 autoload -Uz zcompare
 autoload -Uz h
