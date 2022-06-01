@@ -1,6 +1,5 @@
 [Unit]
 Description=Setup wallpaper on startup
-After=i3-wm.service
 
 [Service]
 Type=forking

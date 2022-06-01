@@ -3,4 +3,4 @@ Description=Merge xrdb settings
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/xrdb -merge %h/.Xresources
+ExecStart=/usr/bin/xrdb -merge %E/X11/xresources

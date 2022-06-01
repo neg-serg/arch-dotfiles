@@ -16,3 +16,4 @@ Wants=wallpaper.service
 Wants=xiccd.service
 Wants=xsettingsd.service
 Wants=xss-lock.service
+#Wants=xrdb.service
