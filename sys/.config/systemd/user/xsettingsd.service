@@ -1,6 +1,7 @@
 [Unit]
 Description=XSETTINGS daemon
 PartOf=graphical-session.target
+After=xorg.service
 
 [Service]
 Restart=on-failure
