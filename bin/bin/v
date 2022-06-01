@@ -1,9 +1,13 @@
 #!/usr/bin/env dash
-if [ ! -z $DISPLAY ]; then
-    echo 'circle next nwim' | /usr/bin/nc localhost 15555 -w 0
-    while ! xdotool search --sync --all --class '^nwim$' 2>&1 > /dev/null; do
-        :;
-    done
+if which nvr 2>&1 >/dev/null; then
+    if [ ! -z $DISPLAY ]; then
+        echo 'circle next nwim' | /usr/bin/nc localhost 15555 -w 0
+        while ! xdotool search --sync --all --class '^nwim$' 2>&1 > /dev/null; do
+            :;
+        done
+    fi
+    nvr --servername localhost:7777 +':if &buftype == "terminal" | :quit | :endif'
+    nvr --servername localhost:7777 """$@"""
+else
+    ${EDITOR:-vi} "$@"
 fi
-nvr --servername localhost:7777 +':if &buftype == "terminal" | :quit | :endif'
-nvr --servername localhost:7777 """$@"""
