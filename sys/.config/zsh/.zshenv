@@ -62,6 +62,7 @@ typeset -gx FZF_COMPLETION_TRIGGER='~~'
 typeset -gx LIBSEAT_BACKEND=logind
 typeset -gx XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 typeset -gx XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
+typeset -gx _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 typeset -gx TERMINFO="$XDG_DATA_HOME"/terminfo
 typeset -gx TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 typeset -gx DISPLAY=:0
