@@ -69,7 +69,7 @@ _exists dig && alias dig='dig +noall +answer'
 _exists mtr && alias mtrr='mtr -wzbe'
 _exists bpython && alias python='bpython'
 _exists dust && alias sp='dust -r'
-_exists duf && alias df='duf'
+_exists duf && alias df='duf -theme ansi'
 _exists btm && alias htop='btm -b'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
