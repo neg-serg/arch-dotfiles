@@ -16,18 +16,13 @@
   background-color: @blackdarkest;
 }
 
-#listview {
-	lines: 4;
-	columns: 10;
-}
-
 #window {
   background-color: @blackdarkest;
   location: south west;
   anchor: south west;
   y-offset: -2.5%;
   x-offset: 2%;
-  width: 80%;
+  width: 40%;
 }
 
 #message {
