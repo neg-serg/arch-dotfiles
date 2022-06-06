@@ -4,7 +4,7 @@
 
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
-    rofi -columns 6 -lines 10 -theme-str '#window { width: 1920; y-offset: -34; location: south west; anchor: south west; }' -i -no-auto-select "$@"
+    rofi -theme pass -i -no-auto-select "$@"
 }
 
 # default command to generate passwords
