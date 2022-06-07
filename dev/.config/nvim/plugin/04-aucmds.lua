@@ -21,7 +21,6 @@ au({'BufWritePost'}, {pattern={'*sxhkdrc'}, command='!pkill -USR1 sxhkd', group=
 au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='PackerCompile', group=main})
 au({'BufEnter'}, {command='set noreadonly', group=main})
 au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber', group=main})
-au({'TermClose'}, {command='call feedkeys("i")', group=main})
 au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
 au({'BufReadPost'}, {command=[[
     if line("'\"") > 1 && line("'\"") <= line("$") |
