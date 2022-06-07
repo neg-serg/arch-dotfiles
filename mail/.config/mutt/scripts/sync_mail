@@ -4,7 +4,7 @@
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
 export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
 
-MDIR="work gmail"
+MDIR="gmail"
 mbsync -a -c "$XDG_CONFIG_HOME"/isync/mbsyncrc
 notmuch new
 
