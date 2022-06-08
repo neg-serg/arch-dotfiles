@@ -99,6 +99,7 @@ bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+g exec --no-startup-id ~/bin/g
 bindsym Mod4+m exec --no-startup-id ~/bin/music-rename current
 bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
+bindsym Mod4+Shift+p exec --no-startup-id zsh -c /usr/bin/rofi-pass
 bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
 bindsym Mod4+Shift+8 exec --no-startup-id playerctl volume 1.0 || amixer -q set Master 65536 unmute
 bindsym Mod4+Shift+9 exec --no-startup-id dunstctl history-pop
