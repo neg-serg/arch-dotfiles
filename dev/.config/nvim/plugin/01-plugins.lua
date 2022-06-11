@@ -50,7 +50,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'onsails/lspkind-nvim' -- lsp pictograms
-    use {"folke/trouble.nvim",
+    use {'folke/trouble.nvim',
 	requires = "kyazdani42/nvim-web-devicons",
 	config = function() require'plugcfg/trouble' end}
     use {'neovim/nvim-lspconfig', config=[[require('plugcfg/lspconfig')]]} -- lspconfig
