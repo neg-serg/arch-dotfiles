@@ -30,10 +30,10 @@ return require('packer').startup({function(use)
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim',
-        cmd = 'Telescope',
         module = {'telescope', 'configs.telescope'},
         requires={
             'nvim-lua/plenary.nvim',
+            'Zane-/cder.nvim',
             'nvim-telescope/telescope-fzy-native.nvim', -- fzy integration
             'nvim-telescope/telescope-ui-select.nvim', -- telescope-based selection
             {'nvim-telescope/telescope-frecency.nvim', -- mru for telescope
