@@ -37,7 +37,7 @@ au({'InsertLeave'}, {command='setlocal nopaste', group=mode_change})
 
 au({'BufWritePost'}, {
     pattern='~/.config/xorg/Xdefaults',
-    command='!xrdb -merge ~/.config/xorg/Xdefaults',
+    command='!xrdb -merge ~/.config/X11/xresources',
     group=custom_updates
 })
 au({'BufWritePost'}, {pattern='fonts.conf', command='!fc-cache', group=custom_updates})
