@@ -1,15 +1,10 @@
 local tsconf = require'nvim-treesitter.configs'
-if not tsconf then
-   vim.cmd [[ echom 'Cannot load `nvim-treesitter.configs`' ]]
-   return
-end
-
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
 parser_configs.norg = {
     install_info = {
         url = "https://github.com/nvim-neorg/tree-sitter-norg",
-        files = { "src/parser.c", "src/scanner.cc" },
+        files = {"src/parser.c", "src/scanner.cc"},
         branch = "main",
     },
 }
@@ -26,7 +21,7 @@ parser_configs.norg_meta = {
     install_info = {
         url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
         branch = "main",
-        files = { "src/parser.c" },
+        files = {"src/parser.c"},
     },
 }
 
@@ -40,7 +35,7 @@ tsconf.setup {
     additional_vim_regex_highlighting = false,
     use_languagetree = true,
   },
-  endwise = { enable = true, },
+  endwise = {enable = true,},
   matchup = {
     enable = true, -- mandatory, false will disable the whole extension
     disable = {},  -- optional, list of language that will be disabled
