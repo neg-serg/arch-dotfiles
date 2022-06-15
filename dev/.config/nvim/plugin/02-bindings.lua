@@ -61,7 +61,7 @@ map('n', "`", "'")
 map('n', '<M-w>', ':bd<CR>', {silent=true})
 map('i', '<C-V>', '<C-R>+')
 vim.g.mapleader = ','
-map('n', "<leader>.", "<Cmd>lua require'plugcfg/telescope';require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
+map('n', "<leader>.", "<Cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
 map('c', '<C-a>', '<home>', {noremap=true})
 map('c', '<C-b>', '<left>', {noremap=true})
 map('c', '<C-n>', '<down>', {noremap=true})
@@ -93,6 +93,6 @@ vim.api.nvim_exec([[
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
 map('n', '<leader>l', ':new +resize8 term://NEOVIM_TERMINAL=1 zsh<CR>', {silent=true, noremap=true})
-map('n', '[Qleader]e', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
-map('n', '[Qleader]f', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
-map('n', '[Qleader]c', "<Cmd>lua require'plugcfg/telescope';require('telescope.builtin').git_commits{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]e', "<Cmd>lua require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]f', "<Cmd>lua require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]c', "<Cmd>lua require('telescope.builtin').git_commits{}<CR>", {silent=true, noremap=true})
