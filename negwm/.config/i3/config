@@ -43,7 +43,6 @@ for_window $scratchpad-transients move scratchpad, move absolute position 693 13
 for_window $scratchpad-webcam floating enable
 set $circle-bitwig [class="Bitwig Studio"]
 set $circle-doc [class="^(Zathura|cr3)$"]
-set $circle-lutris [class="^(Wine|Lutris)$"]
 set $circle-nwim [class="nwim"]
 set $circle-obs [class="obs"]
 set $circle-remote [class="^(xfreerdp|reminna|org.remmina.Remmina)$"]
@@ -55,7 +54,6 @@ set $circle-vm [class="spicy"]
 set $circle-web [class="^(firefox|firefoxdeveloperedition|Tor Browser|Chromium)$"]
 for_window $circle-bitwig move workspace $sound,focus
 for_window $circle-doc move workspace $doc,focus
-for_window $circle-lutris move workspace $steam,focus
 for_window $circle-nwim move workspace $dev,focus
 for_window $circle-obs move workspace $obs,focus
 for_window $circle-remote move workspace $remote,focus
@@ -150,7 +148,6 @@ bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+Control+q  kill
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
-bindsym Mod4+Control+e $circle next lutris
 bindsym Mod4+1 $circle next nwim
 bindsym Mod4+Shift+o $circle toggle obs
 bindsym Mod4+Control+5 $circle toggle remote
