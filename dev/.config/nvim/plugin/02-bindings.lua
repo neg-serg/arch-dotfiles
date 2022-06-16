@@ -22,11 +22,6 @@ map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
 map('n', '_', "<Cmd>exe 'e ' . getcwd()<CR>")
-map('n', '<M-b>', '<Cmd>Telescope buffers<CR>')
-map('n', '<M-f>', '<Cmd>Telescope live_grep<CR>')
-map('n', '<M-C-o>', '<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
-map('n', '<M-o>', '<Cmd>Telescope lsp_document_symbols<CR>')
-map('n', '<M-d>', '<Cmd>Telescope lsp_document_diagnostics<CR>')
 
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
 map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
@@ -61,7 +56,6 @@ map('n', "`", "'")
 map('n', '<M-w>', ':bd<CR>', {silent=true})
 map('i', '<C-V>', '<C-R>+')
 vim.g.mapleader = ','
-map('n', "<leader>.", "<Cmd>lua require('telescope').extensions.frecency.frecency(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
 map('c', '<C-a>', '<home>', {noremap=true})
 map('c', '<C-b>', '<left>', {noremap=true})
 map('c', '<C-n>', '<down>', {noremap=true})
@@ -93,6 +87,3 @@ vim.api.nvim_exec([[
     xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
 ]], true)
 map('n', '<leader>l', ':new +resize8 term://NEOVIM_TERMINAL=1 zsh<CR>', {silent=true, noremap=true})
-map('n', '[Qleader]e', "<Cmd>lua require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
-map('n', '[Qleader]f', "<Cmd>lua require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
-map('n', '[Qleader]c', "<Cmd>lua require('telescope.builtin').git_commits{}<CR>", {silent=true, noremap=true})
