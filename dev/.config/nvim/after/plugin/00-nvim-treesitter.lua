@@ -49,7 +49,7 @@ if _G.packer_plugins["nvim-treesitter"] and _G.packer_plugins["nvim-treesitter"]
       rainbow = {
         enable = true,
         extended_mode = false, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-        max_file_lines = 4000, -- Do not enable for files with more than 1000 lines, int
+        max_file_lines = 4000, -- Do not enable for files with more than 4000 lines, int
         colors = {'#4064be', '#4361b0', '#455fa3', '#465e9c', '#475c94', '#485a8c', '#485885'},
       },
       indent = {enable = true},
