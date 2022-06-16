@@ -35,7 +35,6 @@ return require('packer').startup({function(use)
             'Zane-/cder.nvim',
             'nvim-telescope/telescope-fzy-native.nvim', -- fzy integration
             'nvim-telescope/telescope-ui-select.nvim', -- telescope-based selection
-            'jvgrootveld/telescope-zoxide' -- zoxide integration
         }
     }
     use 'luukvbaal/nnn.nvim' -- nnn filemanager integration
