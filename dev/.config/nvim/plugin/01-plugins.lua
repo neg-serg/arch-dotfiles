@@ -66,8 +66,6 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'nvim-neorg/neorg', after={'nvim-treesitter','telescope.nvim'}, ft='norg'}
-    use {'nvim-neorg/neorg-telescope', ft='norg'} -- neorg telescope integration
     use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
