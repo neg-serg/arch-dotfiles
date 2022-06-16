@@ -63,7 +63,7 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
-    use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
+    use 'numToStr/Comment.nvim'
     use {'windwp/nvim-autopairs', event='InsertEnter'} -- try new autopairs
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim', after='plenary.nvim', event='BufRead'} -- async gitsigns
@@ -84,8 +84,8 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'AndrewRadev/splitjoin.vim' -- one-line <-> multiline converter
-    use {'andymass/vim-matchup', event='VimEnter'} -- generic matcher
-    use {'FooSoft/vim-argwrap', cmd='ArgWrap'} -- vim arg wrapper
+    use 'andymass/vim-matchup' -- generic matcher
+    use 'FooSoft/vim-argwrap' -- vim arg wrapper
     use 'junegunn/vim-easy-align' -- use easy-align, instead of tabular
     use 'svermeulen/vim-NotableFt' -- better f-t-bindings
     use 'tpope/vim-repeat' -- dot for surround
@@ -99,8 +99,7 @@ return require('packer').startup({function(use)
     use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
     use 'RRethy/nvim-treesitter-endwise' -- ts-based endwise
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
-    use 'kyazdani42/nvim-web-devicons' -- fancy webicons
-    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
+    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}} -- fancy webicons
     use 'neg-serg/neg' -- my pure-dark neovim colorscheme
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
     use 'nathom/filetype.nvim' -- faster filetype alternative
