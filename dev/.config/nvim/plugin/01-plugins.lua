@@ -1,5 +1,3 @@
-vim.cmd [[packadd packer.nvim]]
-
 local present, packer = pcall(require, 'packer')
 if not present then
     local packer_path=vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
@@ -14,7 +12,7 @@ if not present then
 end
 
 return require('packer').startup({function(use)
-    use {'wbthomason/packer.nvim', opt=true} -- lazy packer
+    use 'wbthomason/packer.nvim' -- lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -29,12 +27,10 @@ return require('packer').startup({function(use)
     use {'jghauser/mkdir.nvim', config=[[require('mkdir')]], event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use {'nvim-telescope/telescope.nvim',
-        requires={
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope-fzy-native.nvim', -- fzy integration
-        }
-    }
+    use {'nvim-telescope/telescope.nvim', requires={
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-fzy-native.nvim',
+    }}
     use 'luukvbaal/nnn.nvim' -- nnn filemanager integration
     use 'haya14busa/vim-asterisk' -- smartcase star
     use 'gelguy/wilder.nvim' -- better cmdline menu
@@ -42,26 +38,26 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'onsails/lspkind-nvim' -- lsp pictograms
     use {'folke/trouble.nvim', requires="kyazdani42/nvim-web-devicons"}
-    use 'neovim/nvim-lspconfig' -- lspconfig
-    use 'hrsh7th/nvim-cmp' -- completion engine
-    use 'hrsh7th/cmp-nvim-lua' -- cmp neovim lua api support
     use 'hrsh7th/cmp-nvim-lsp' -- cmp lsp support
+    use 'hrsh7th/cmp-nvim-lua' -- cmp neovim lua api support
     use 'hrsh7th/cmp-path' -- cmp path completion support
+    use 'hrsh7th/nvim-cmp' -- completion engine
     use 'lukas-reineke/cmp-under-comparator' -- better nvim-cmp sorter
+    use 'neovim/nvim-lspconfig' -- lspconfig
+    use 'onsails/lspkind-nvim' -- lsp pictograms
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
-    use 'numToStr/Comment.nvim'
-    use {'windwp/nvim-autopairs', event='InsertEnter'} -- try new autopairs
+    use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim', after='plenary.nvim', event='BufRead'} -- async gitsigns
+    use 'numToStr/Comment.nvim' -- commenter plugin
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', cmd={'Dispatch','Make','Focus','Start'}} -- provide async build
+    use {'windwp/nvim-autopairs', event='InsertEnter'} -- try new autopairs
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -70,9 +66,9 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
     use {'nvim-neorg/neorg', after={'nvim-treesitter','telescope.nvim'}, ft='norg'}
     use {'nvim-neorg/neorg-telescope', ft='norg'} -- neorg telescope integration
+    use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -80,22 +76,22 @@ return require('packer').startup({function(use)
     use 'andymass/vim-matchup' -- generic matcher
     use 'FooSoft/vim-argwrap' -- vim arg wrapper
     use 'junegunn/vim-easy-align' -- use easy-align, instead of tabular
+    use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
     use 'svermeulen/vim-NotableFt' -- better f-t-bindings
     use 'tpope/vim-repeat' -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
     use 'wellle/targets.vim' -- new text objects
-    use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'} -- better highlight
-    use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
-    use 'RRethy/nvim-treesitter-endwise' -- ts-based endwise
-    use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
-    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}} -- fancy webicons
-    use 'neg-serg/neg' -- my pure-dark neovim colorscheme
-    use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
     use 'nathom/filetype.nvim' -- faster filetype alternative
+    use 'neg-serg/neg' -- my pure-dark neovim colorscheme
+    use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
+    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'} -- better highlight
+    use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
+    use 'RRethy/nvim-treesitter-endwise' -- ts-based endwise
+    use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
+    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}} -- fancy webicons
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
