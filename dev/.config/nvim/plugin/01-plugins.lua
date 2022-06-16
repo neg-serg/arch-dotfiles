@@ -22,7 +22,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'jedi2610/nvim-rooter.lua' -- -- autochdir for project root or for current dir
+    use 'nyngwang/NeoRoot.lua' -- autochdir for project root or for current dir
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
     use {'jghauser/mkdir.nvim', config=[[require('mkdir')]], event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
@@ -53,7 +53,7 @@ return require('packer').startup({function(use)
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use 'lervag/vimtex' -- modern TeX support
-    use {'lewis6991/gitsigns.nvim', after='plenary.nvim', event='BufRead'} -- async gitsigns
+    use {'lewis6991/gitsigns.nvim', after='plenary.nvim'} -- async gitsigns
     use 'numToStr/Comment.nvim' -- commenter plugin
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', cmd={'Dispatch','Make','Focus','Start'}} -- provide async build
@@ -72,7 +72,6 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'AndrewRadev/splitjoin.vim' -- one-line <-> multiline converter
     use 'andymass/vim-matchup' -- generic matcher
     use 'FooSoft/vim-argwrap' -- vim arg wrapper
     use 'junegunn/vim-easy-align' -- use easy-align, instead of tabular

@@ -109,8 +109,10 @@ vim.opt.wildignore:append {
 	, "*.tgz" , "*.toc" , "*.wav" , "*.webm" , "*.xcf" , "*.xls" , "*.xlsx" , "*.zip"
 }
 vim.opt.hlsearch = true                                      -- Highlight search results (enforce
-vim.opt.shortmess:append 'aoOstTWAIcqFS'                     -- Shorting messages for all
-vim.opt.showmode = false                                     -- Dot not show the mode ("-- INSERT --" at the bottom
+vim.opt.shortmess:append 'aoOstTAIcqF'                       -- Shorting messages for all
+vim.opt.more = false                                         -- Do not ask to press enter
+vim.opt.showmode = false                                     -- Do not show the mode ("-- INSERT --" at the bottom)
+vim.opt.showcmd = false                                      -- Do not show command output
 vim.opt.showtabline = 0                                      -- Do not show tab line
 vim.opt.smartcase = true                                     -- Case sensitive when uc present
 vim.opt.softtabstop = 4                                      -- Let backspace delete indent
