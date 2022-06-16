@@ -95,8 +95,8 @@ _exists mpc && {
     alias unlove='mpc sendmessage mpdas unlove'
 }
 _exists yt-dlp && {
-    alias yt='noglob yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"'
-    alias ytt='noglob ytfzf --preview-side=left -t'
+    alias yt='yt-dlp -q --downloader aria2c -f "(bestvideo+bestaudio/best)"'
+    alias ytt='ytfzf --preview-side=left -t'
 }
 if _exists wget2; then
     alias wget="wget2 --hsts-file=$XDG_DATA_HOME/wget-hsts"
