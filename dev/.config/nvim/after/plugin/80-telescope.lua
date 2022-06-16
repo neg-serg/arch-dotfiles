@@ -39,17 +39,9 @@ if _G.packer_plugins["telescope.nvim"] and _G.packer_plugins["telescope.nvim"].l
             buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
         },
         extensions = {
-            frecency = {
-                show_unindexed = true,
-                db_safe_mode = false,
-                auto_validate = true,
-            },
             fzy_native = {
                 override_generic_sorter = true,
                 override_file_sorter = true,
-            },
-            ["ui-select"] = {
-                require("telescope.themes").get_dropdown{}
             },
         },
         pickers = {
@@ -75,8 +67,6 @@ if _G.packer_plugins["telescope.nvim"] and _G.packer_plugins["telescope.nvim"].l
     }
 
     require('telescope').load_extension('fzy_native')
-    require("telescope").load_extension("ui-select")
-    require('telescope').load_extension('cder')
 
     map('n', '<M-b>', '<Cmd>Telescope buffers<CR>')
     map('n', '<M-f>', '<Cmd>Telescope live_grep<CR>')

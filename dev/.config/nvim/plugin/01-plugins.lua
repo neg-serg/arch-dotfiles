@@ -32,9 +32,7 @@ return require('packer').startup({function(use)
     use {'nvim-telescope/telescope.nvim',
         requires={
             'nvim-lua/plenary.nvim',
-            'Zane-/cder.nvim',
             'nvim-telescope/telescope-fzy-native.nvim', -- fzy integration
-            'nvim-telescope/telescope-ui-select.nvim', -- telescope-based selection
         }
     }
     use 'luukvbaal/nnn.nvim' -- nnn filemanager integration
