@@ -600,3 +600,15 @@ end
 if _G.packer_plugins["git-conflict.nvim"] and _G.packer_plugins["git-conflict.nvim"].loaded then
     require('git-conflict').setup()
 end
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ neg-serg/neg                                                                 │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+if _G.packer_plugins["neg"] and _G.packer_plugins["neg"].loaded then
+    require'neg' -- my pure-dark neovim colorscheme
+end
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ antoinemadec/FixCursorHold.nvim                                              │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+if _G.packer_plugins["FixCursorHold.nvim"] and _G.packer_plugins["FixCursorHold.nvim"].loaded then
+    vim.g.cursorhold_updatetime = 100
+end

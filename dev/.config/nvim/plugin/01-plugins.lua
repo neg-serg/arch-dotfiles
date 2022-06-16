@@ -20,7 +20,7 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'lewis6991/impatient.nvim' -- faster loading
     use 'dstein64/vim-startuptime' -- startup time measurement
-    use {'antoinemadec/FixCursorHold.nvim', setup=function() vim.g.cursorhold_updatetime = 100 end} -- fix cursorhold slowdown
+    use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -61,14 +61,14 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'kevinhwang91/nvim-bqf', ft='qf', opt=true} -- better quickfix
-    use {'jamessan/vim-gnupg', ft='gpg', opt=true} -- transparent work with gpg-encrypted files
+    use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
+    use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'numToStr/Comment.nvim', config=[[require('Comment').setup()]], event='BufRead', opt=true}
     use {'windwp/nvim-autopairs', event='InsertEnter'} -- try new autopairs
     use 'lervag/vimtex' -- modern TeX support
     use {'lewis6991/gitsigns.nvim', after='plenary.nvim', event='BufRead'} -- async gitsigns
     use 'tpope/vim-apathy' -- better include jump
-    use {'tpope/vim-dispatch', cmd={'Dispatch', 'Make', 'Focus', 'Start'}, opt=true} -- provide async build
+    use {'tpope/vim-dispatch', cmd={'Dispatch','Make','Focus','Start'}} -- provide async build
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -77,17 +77,15 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'plasticboy/vim-markdown', ft='md', opt=true} -- markdown vim mode
-    use {'nvim-neorg/neorg', after = {'nvim-treesitter','telescope.nvim'}, ft='norg'}
+    use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
+    use {'nvim-neorg/neorg', after={'nvim-treesitter','telescope.nvim'}, ft='norg'}
     use {'nvim-neorg/neorg-telescope', ft='norg'} -- neorg telescope integration
-    use {'ellisonleao/glow.nvim', cmd='Glow', opt=true} -- glow preview in terminal
-    use {'jbyuki/nabla.nvim', opt=true} -- scentific notes in nvim
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'AndrewRadev/splitjoin.vim' -- one-line <-> multiline converter
     use {'andymass/vim-matchup', event='VimEnter'} -- generic matcher
-    use {'FooSoft/vim-argwrap', cmd='ArgWrap', opt=true} -- vim arg wrapper
+    use {'FooSoft/vim-argwrap', cmd='ArgWrap'} -- vim arg wrapper
     use 'junegunn/vim-easy-align' -- use easy-align, instead of tabular
     use 'svermeulen/vim-NotableFt' -- better f-t-bindings
     use 'tpope/vim-repeat' -- dot for surround
@@ -103,7 +101,7 @@ return require('packer').startup({function(use)
     use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
     use 'kyazdani42/nvim-web-devicons' -- fancy webicons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}}
-    use {'neg-serg/neg', config=[[require'neg']]} -- my pure-dark neovim colorscheme
+    use 'neg-serg/neg' -- my pure-dark neovim colorscheme
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
     use 'nathom/filetype.nvim' -- faster filetype alternative
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
