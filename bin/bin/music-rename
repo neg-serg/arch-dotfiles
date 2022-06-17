@@ -68,8 +68,8 @@ apply_rename_() {
 
     album="$(extract_field 'Album')"
 
-    if [[ -d "${1}" ]]; then
-        src="${1}"
+    if [[ -d "$1" ]]; then
+        src="$1"
     else
         src="$(builtin print "$(dirname ${1})")"
     fi
@@ -92,17 +92,21 @@ apply_rename_() {
 }
 
 main(){
+    [[ -z "${1// }" ]] && exit 0
     case "${1}" in
         c*)
             dirname="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')/$(dirname "$(mpc -f '%file%'|head -1)")"
             apply_rename_dir "${dirname}"
+            [[ -z $? ]] && dunstify "$@"
         ;;
         f*)
             shift
             apply_rename_files "$@"
+            [[ -z $? ]] && dunstify "$@"
         ;;
         *)
             for dir; apply_rename_dir "${dir}"
+            [[ -z $? ]] && dunstify "$@"
         ;;
     esac
 }
