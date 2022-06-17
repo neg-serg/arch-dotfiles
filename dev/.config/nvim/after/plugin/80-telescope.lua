@@ -43,6 +43,10 @@ if _G.packer_plugins["telescope.nvim"] and _G.packer_plugins["telescope.nvim"].l
                 override_generic_sorter = true,
                 override_file_sorter = true,
             },
+            file_browser = {
+                theme = "ivy",
+                hijack_netrw = true, -- disables netrw and use telescope-file-browser in its place
+            },
         },
         pickers = {
             find_files = {
@@ -67,6 +71,7 @@ if _G.packer_plugins["telescope.nvim"] and _G.packer_plugins["telescope.nvim"].l
     }
 
     require('telescope').load_extension('fzy_native')
+    require("telescope").load_extension('file_browser')
 
     map('n', '<M-b>', '<Cmd>Telescope buffers<CR>')
     map('n', '<M-f>', '<Cmd>Telescope live_grep<CR>')

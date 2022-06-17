@@ -29,9 +29,9 @@ return require('packer').startup({function(use)
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim', requires={
         'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-file-browser.nvim',
         'nvim-telescope/telescope-fzy-native.nvim',
     }}
-    use 'luukvbaal/nnn.nvim' -- nnn filemanager integration
     use 'haya14busa/vim-asterisk' -- smartcase star
     use 'gelguy/wilder.nvim' -- better cmdline menu
     use 'romgrk/fzy-lua-native' -- fzy native lua integration
