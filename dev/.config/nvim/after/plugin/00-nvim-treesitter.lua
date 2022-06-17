@@ -4,31 +4,6 @@
 if _G.packer_plugins["nvim-treesitter"] and _G.packer_plugins["nvim-treesitter"].loaded then
     local tsconf = require'nvim-treesitter.configs'
     local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
-
-    parser_configs.norg = {
-        install_info = {
-            url = "https://github.com/nvim-neorg/tree-sitter-norg",
-            files = {"src/parser.c", "src/scanner.cc"},
-            branch = "main",
-        },
-    }
-
-    parser_configs.norg_table = {
-        install_info = {
-            url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
-            files = { "src/parser.c" },
-            branch = "main",
-        },
-    }
-
-    parser_configs.norg_meta = {
-        install_info = {
-            url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
-            branch = "main",
-            files = {"src/parser.c"},
-        },
-    }
-
     tsconf.setup {
       -- ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
       -- Install parsers synchronously (only applied to `ensure_installed`)
