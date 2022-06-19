@@ -21,9 +21,7 @@ fpath=(
 )
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k # best prompt
 zinit load romkatv/zsh-defer # lazy loading
-zinit wait lucid for \
-    silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" neg-serg/fast-syntax-highlighting \
-    as"completion" zsh-users/zsh-completions pick"git-it-on.plugin.zsh" peterhurford/git-it-on.zsh #\
+zinit wait lucid for silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" neg-serg/fast-syntax-highlighting
 zinit ice depth=1
 
 source "${ZDOTDIR}/01-init.zsh"
