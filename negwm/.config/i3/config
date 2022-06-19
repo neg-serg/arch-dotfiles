@@ -27,7 +27,6 @@ set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
 set $scratchpad-ncmpcpp [class="ncmpcpp"]
 set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
-set $scratchpad-password [instance="1password"]
 set $scratchpad-teardrop [instance="teardrop"]
 set $scratchpad-torrment [instance="torrment"]
 set $scratchpad-transients [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"]
@@ -36,7 +35,6 @@ for_window $scratchpad-discord floating enable
 for_window $scratchpad-im floating enable
 for_window $scratchpad-ncmpcpp floating enable
 for_window $scratchpad-neomutt floating enable
-for_window $scratchpad-password floating enable
 for_window $scratchpad-teardrop floating enable
 for_window $scratchpad-torrment floating enable
 for_window $scratchpad-transients move scratchpad, move absolute position 693 1310, resize set 1812 797
@@ -162,7 +160,6 @@ bindsym Mod4+v $scratchpad toggle discord
 bindsym Mod4+e $scratchpad toggle im
 bindsym Mod4+f $scratchpad toggle ncmpcpp
 bindsym Mod4+n $scratchpad toggle neomutt
-bindsym Mod4+Control+p $scratchpad toggle password
 bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
 
