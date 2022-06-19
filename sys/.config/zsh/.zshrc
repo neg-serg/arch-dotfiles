@@ -19,9 +19,11 @@ fpath=(
     /usr/share/zsh/functions/{Misc,Zle,Completion}
     /usr/share/zsh/functions/Completion/*
 )
+
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k # best prompt
-zinit load romkatv/zsh-defer # lazy loading
-zinit wait lucid for silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" neg-serg/fast-syntax-highlighting
+zinit load romkatv/zsh-defer
+zinit wait lucid for silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" neg-serg/fast-syntax-highlighting \
+     blockf zsh-users/zsh-completions
 zinit ice depth=1
 
 source "${ZDOTDIR}/01-init.zsh"
