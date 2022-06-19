@@ -25,7 +25,6 @@ zinit wait lucid for \
     silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" neg-serg/fast-syntax-highlighting \
     as"completion" zsh-users/zsh-completions pick"git-it-on.plugin.zsh" peterhurford/git-it-on.zsh #\
 zinit ice depth=1
-zinit load wfxr/forgit # git-fzf integration
 
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
