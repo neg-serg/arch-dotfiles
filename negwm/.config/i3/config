@@ -13,11 +13,11 @@ set  $ub     #2E2457
 set  $blue   #285981
 set  $actbr  #020204
 
-client.focused           $fb     $bg    $fg    $bg  $actbr
-client.focused_inactive  $ib     $bg    $fg    $bg  $bg
-client.placeholder       $bg     $bg    $fg    $bg  $bg
-client.unfocused         $bg     $bg    $blue  $bg  $bg
-client.urgent            $bg     $ub    $fg    $ub  $ib
+client.focused           $fb  $bg  $fg    $bg  $actbr
+client.focused_inactive  $ib  $bg  $fg    $bg  $bg
+client.placeholder       $bg  $bg  $fg    $bg  $bg
+client.unfocused         $bg  $bg  $blue  $bg  $bg
+client.urgent            $bg  $ub  $fg    $ub  $ib
 
 client.background        $bg
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -92,8 +92,7 @@ bindsym Mod4+Shift+4 exec flameshot gui
 bindsym Mod1+grave exec --no-startup-id rofi -show run -show-icons -disable-history -theme neg
 bindsym Mod4+8 exec --no-startup-id playerctl volume 0.0 || amixer -q set Master 0 mute
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
-bindsym Mod4+g exec --no-startup-id ~/bin/g
-bindsym Mod4+m exec --no-startup-id ~/bin/music-rename current
+bindsym Mod4+m exec --no-startup-id zsh -c "~/bin/music-rename current"
 bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+Shift+p exec --no-startup-id zsh -c /usr/bin/rofi-pass
 bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
@@ -217,16 +216,17 @@ mode wm {
 	bindsym minus layout splith, mode "default"
 	bindsym backslash layout splitv, mode "default"
 	bindsym t layout tabbed, mode "default"
-	bindsym Control+t layout toggle, mode "default"
 
-	bindsym h split horizontal, mode "default"
-	bindsym l split horizontal, mode "default"
-	bindsym j split vertical, mode "default"
-	bindsym k split vertical, mode "default"
+	bindsym Tab layout toggle
 
-	bindsym w move top
+	bindsym Shift+h split horizontal, mode "default"
+	bindsym Shift+l split horizontal, mode "default"
+	bindsym Shift+j split vertical, mode "default"
+	bindsym Shift+k split vertical, mode "default"
+
+	bindsym w move up
 	bindsym a move left
-	bindsym s move bottom
+	bindsym s move down
 	bindsym d move right
 
 	bindsym Shift+plus $actions grow
