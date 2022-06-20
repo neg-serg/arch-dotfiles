@@ -4,16 +4,15 @@ map('n', '<C-j>', '<C-w>j', {nowait = true})
 map('n', '<C-k>', '<C-w>k', {nowait = true})
 map('n', '<C-l>', '<C-w>l', {nowait = true})
 map('n', '<C-h>', '<C-w>h', {nowait = true})
+
+map('n', '_', "<Cmd>exe 'e ' . getcwd()<CR>")
+
 map('n', 'q', '<NOP>')
 map('n', 'Q', '<NOP>')
-map('n', '<F1>', '')
-map('i', '<F1>', '')
+map('', '<F1>', '<NOP>')
 
 -- Escape as normal
 map('t', '<Esc>', '<C-\\><C-n>', {silent=true})
-map('n', '<Tab>', ':bn<CR>', {silent=true})
-map('n', '<S-Tab>', ':bp<CR>', {silent=true})
-map('n', '<leader><Tab>', ':b#<CR>', {silent=true})
 
 -- Don't use arrow keys
 map('', '<up>', '<nop>')
@@ -21,14 +20,13 @@ map('', '<down>', '<nop>')
 map('', '<left>', '<nop>')
 map('', '<right>', '<nop>')
 
-map('n', '_', "<Cmd>exe 'e ' . getcwd()<CR>")
-
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
 map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
 map('n', '[Qleader]R', ':normal :<C-u>crewind<CR>', {silent=true})
 map('n', '[Qleader]N', ':normal :<C-u>cfirst<CR>', {silent=true})
 map('n', '[Qleader]P', ':normal :<C-u>clast<CR>', {silent=true})
 map('n', '[Qleader]l', ':normal :<C-u>clist<CR>', {silent=true})
+
 map('n', '[Qleader]w', ':w!<cr>', {silent=true})
 map('n', '[Qleader]W', ':SudoWrite<cr>', {silent=true})
 -- Fix for floating windows
@@ -73,17 +71,6 @@ map('o', '<M-e>', '<End>', {noremap=true})
 map('o', '<M-f>', '<C-o>e<Right>', {noremap=true})
 map('i', '<C-a>', "<C-o>^", {noremap=true})
 map('i', '<C-e>', "<C-o>$", {noremap=true})
-vim.cmd('nnoremap <expr> G &wrap ? "G$g0" : "G"')
-vim.cmd('nnoremap <expr> 0 &wrap ? "g0" : "0"')
-vim.cmd('nnoremap <expr> $ &wrap ? "g$" : "$"')
-vim.cmd('nnoremap <expr> j (v:count == 0 ? "gj" : "j")')
-vim.cmd('nnoremap <expr> k (v:count == 0 ? "gk" : "k")')
 map('i', '<C-v>', 'paste#paste_cmd["i"]', {expr=true})
 map('v', '<C-v>', 'paste#paste_cmd["v"]', {expr=true})
--- thx to ralismark.xyz/2020/08/29/how-i-use-vim-1.html
--- Fixed I/A for visual
-vim.api.nvim_exec([[
-    xnoremap <expr> I mode() ==# 'v' ? "\<C-v>I" : mode() ==# 'V' ? "\<C-v>^o^I" : "I"
-    xnoremap <expr> A mode() ==# 'v' ? "\<C-v>A" : mode() ==# 'V' ? "\<C-v>Oo$A" : "A"
-]], true)
 map('n', '<leader>l', ':new +resize8 term://NEOVIM_TERMINAL=1 zsh<CR>', {silent=true, noremap=true})
