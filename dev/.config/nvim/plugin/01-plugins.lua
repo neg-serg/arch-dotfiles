@@ -22,7 +22,8 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'nyngwang/NeoRoot.lua' -- autochdir for project root or for current dir
+    use 'neg-serg/NeoRoot.lua' -- autochdir for project root or for current dir
+    use "ghillb/cybu.nvim" -- fancy menu changing
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
     use {'jghauser/mkdir.nvim', config=[[require('mkdir')]], event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
