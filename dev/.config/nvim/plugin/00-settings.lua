@@ -7,10 +7,6 @@ local disabled_built_ins = {
     "gzip",
     "logipat",
     "matchit",
-    "netrw",
-    "netrwFileHandlers",
-    "netrwPlugin",
-    "netrwSettings",
     "rrhelper",
     "spellfile_plugin",
     "tar",
@@ -146,3 +142,4 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }      -- Completion optio
 vim.opt.formatoptions = 'n1jcroqlj'                          -- Format settings
 vim.opt.cpoptions = '_$ABFWcdesa'                            -- Vim-exclusive stuff
 vim.opt.ruler = false                                        -- No ruler
+vim.opt.cmdheight = 1                                        -- Fancy cmdheight for neovim-nightly(disable for now)
