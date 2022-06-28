@@ -139,7 +139,17 @@ function N.StatusLineFileName()
 end
 
 function N.FormatAndEncoding()
-    return printf('%s | %s', encoding, format)
+    local ret = ''
+    if vim.o.ft ~= '' then
+        ret = ret .. ' ft=' .. vim.o.ft
+    end
+    if vim.o.encoding then
+        if ret ~= '' then
+            ret = ret .. ' | '
+        end
+        ret = ret .. 'enc=' .. vim.o.encoding
+    end
+    return ret
 end
 
 function N.VisualSelectionSize()
@@ -200,6 +210,7 @@ function N.activeLine()
     if vim.b.gitsigns_head then
         statusline = statusline .. N.GitBranch(vim.b.gitsigns_head .. vim.b.gitsigns_status)
     end
+    statusline = statusline .. N.FormatAndEncoding() .. '%#Git# '
     statusline = statusline .. '%1* %#Base#'
     return statusline
 end
