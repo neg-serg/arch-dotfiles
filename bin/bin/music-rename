@@ -83,7 +83,7 @@ apply_rename_() {
 
     if [[ $artist != "" && $year != "" && $album != "" ]]; then
         music_dirname="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')"
-        result="$music_dirname/$(basename "$(sed 's;/;·;g' <<< "${artist}${lhs}${year}${rhs}${album}")")"
+        result="$music_dirname/$(basename "$(sed 's; ;·;g' <<< "${artist}${lhs}${year}${rhs}${album}")")"
         if [[ $(realpath "$src") != $(realpath "$result") ]]; then
             mv -i "$src" "$result"
         fi
