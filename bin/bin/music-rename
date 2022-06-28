@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 set -e
-
 typeset -A conv_table
 
 trim() {
@@ -15,26 +14,26 @@ trim() {
 generate_convert_table() {
     for i in {900..989}; do
         q=${i:1:5}
-        conv_table[1$i]="1x${q}"
+        conv_table[1$i]="1x$q"
     done
 
     for i in {990..999}; do
         q=${i:2:5}
-        conv_table[1$i]="1x${q}"
+        conv_table[1$i]="1x$q"
     done
 
     i="000"
-    num=$(sed "s/^000/0/" <<< "${i}")
-    conv_table[2$i]="2x${num}"
+    num=$(sed "s/^000/0/" <<< "$i")
+    conv_table[2$i]="2x$num"
     for i in {001..035}; do
-        num=$(sed "s/^0*//" <<< "${i}")
+        num=$(sed "s/^0*//" <<< "$i")
         if [[ ${num} -lt 10 ]]; then
-            conv_table[2$i]="2x${num}"
+            conv_table[2$i]="2x$num"
         else
             j=10
             for q in {A..Z}; do
                 if [[ $j == $num ]]; then
-                    conv_table[2$i]="2x${q}"
+                    conv_table[2$i]="2x$q"
                 fi
                 ((j++))
             done
@@ -49,13 +48,13 @@ apply_rename_files() {
 }
 
 apply_rename_dir() {
-    Data=$(find "${1}" -exec albumdetails '{}' + 2>/dev/null)
+    Data=$(find "$1" -exec albumdetails '{}' + 2>/dev/null)
     dunstify "$Data"
     apply_rename_ "$@"
 }
 
 extract_field() {
-    rg "^$1:" <<< "${Data}" | cut -d ':' -f 2-
+    rg "^$1:" <<< "$Data" | cut -d ':' -f 2-
 }
 
 apply_rename_() {
@@ -65,7 +64,7 @@ apply_rename_() {
     generate_convert_table
 
     # take only first word from year
-    year=$(awk '{print $1}' <<< "${year}")
+    year=$(awk '{print $1}' <<< "$year")
     year=${year//$year/$conv_table[$year]}
 
     album="$(extract_field 'Album')"
@@ -73,23 +72,23 @@ apply_rename_() {
     if [[ -d "$1" ]]; then
         src="$1"
     else
-        src="$(builtin print "$(dirname ${1})")"
+        src="$(builtin print "$(dirname $1)")"
     fi
 
-    artist=$(trim "${artist}")
-    album=$(trim "${album}")
-    year=$(trim "${year}")
+    artist=$(trim "$artist")
+    album=$(trim "$album")
+    year=$(trim "$year")
     lhs='-⟨'
     rhs='⟩-'
 
-    if [[ ${artist} != "" && ${year} != "" && ${album} != "" ]]; then
+    if [[ $artist != "" && $year != "" && $album != "" ]]; then
         music_dirname="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')"
-        result="${music_dirname}/$(basename "$(sed 's;/;·;g' <<< "${artist}${lhs}${year}${rhs}${album}")")"
-        if [[ $(realpath "${src}") != $(realpath "${result}") ]]; then
-            mv -i "${src}" "${result}"
+        result="$music_dirname/$(basename "$(sed 's;/;·;g' <<< "${artist}${lhs}${year}${rhs}${album}")")"
+        if [[ $(realpath "$src") != $(realpath "$result") ]]; then
+            mv -i "$src" "$result"
         fi
-        ren -i "${result}"
-        rmdir "${src}" 2> /dev/null
+        ren -i "$result"
+        rmdir "$src" 2> /dev/null
     fi
 }
 
@@ -97,12 +96,12 @@ main(){
     [[ -z "${1// }" ]] && exit 0
     case "${1}" in
         c*)
-            dirname="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'${HOME}':')/$(dirname "$(mpc -f '%file%'|head -1)")"
-            apply_rename_dir "${dirname}"
+            dirname="$(awk '/music_directory/{print $2}' "$XDG_CONFIG_HOME/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'$HOME':')/$(dirname "$(mpc -f '%file%'|head -1)")"
+            apply_rename_dir "$dirname"
         ;;
         f*) shift; apply_rename_files "$@" ;;
         *)
-            for dir; apply_rename_dir "${dir}"
+            for dir; apply_rename_dir "$dir"
             dunstify "$@"
         ;;
     esac
