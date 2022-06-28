@@ -24,11 +24,9 @@ element-icon {
 
 #window {
   background-color: @blackdarkest;
-  width: 100%;
-  children: [ horibox ];
   padding: 0.1em;
-  location: south east;
-  anchor: south east;
+  location: south west;
+  anchor: south west;
   y-offset: -2.5%;
   x-offset: 0;
 }
@@ -46,14 +44,6 @@ element-icon {
 #textbox {
   text-color: @darkgray;
   background-color: @blackwidget;
-}
-
-#listview {
-  scrollbar: false;
-  layout: horizontal;
-  padding: 6px 6px 6px 6px;
-  margin: 0px 0px 0px 0px;
-  background: @blackdarkest;
 }
 
 #element {
@@ -107,15 +97,21 @@ element-icon {
   text-color: @maincolor;
 }
 
-listview {
-  layout: vertical;
+#listview {
+  layout: horizontal;
+  background: @blackdarkest;
+  dynamic: true;
+  fixed-columns: false;
+  fixed-height: false;
+  lines: 100;
+  margin: 0px 0px 0px 0px;
+  padding: 6px 6px 6px 6px;
+  scrollbar: false;
   spacing: 5px;
-  lines: 1;
-  columns: 14;
 }
 
 entry {
-  expand: false;
+  expand: true;
   width: 8em;
   padding: 8px 8px;
   background-color: @blackwidget;
