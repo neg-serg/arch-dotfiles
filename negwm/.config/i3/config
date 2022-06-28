@@ -202,6 +202,7 @@ mode spec {
 	bindsym f $circle subtag web firefox, mode "default"
 	bindsym 5 $circle subtag web tor, mode "default"
 	bindsym t $scratchpad subtag im tel, mode "default"
+	bindsym a $scratchpad toggle transients, mode "default"
 	bindsym w $scratchpad toggle webcam, mode "default"
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
