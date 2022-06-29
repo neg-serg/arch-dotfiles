@@ -13,13 +13,13 @@ if _exists ugrep; then
     alias fgrep='ug -F' # find string(s)
     alias pgrep='ug -P' # search with Perl regular expressions
     alias xgrep='ug -W' # search (ERE) and output text or hex for binary
-    # ---------------------------------------------------------------------
+    # ------------------------------------------------------------------
     alias zgrep='ug -zG' # search compressed files and archives with BRE
     alias zegrep='ug -zE' # search compressed files and archives with ERE
     alias zfgrep='ug -zF' # find string(s) in compressed files and/or archives
     alias zpgrep='ug -zP' # search compressed files and archives with Perl regular expressions
     alias zxgrep='ug -zW' # search (ERE) compressed files/archives and output text or hex for binary
-    # ---------------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------
     alias xdump='ug -X ""' # hexdump files without searching
     alias ugit='ug -R --ignore-files'
 else
@@ -37,9 +37,9 @@ _exists rg && {
     --colors=path:style:bold \
     --smart-case \
     --hidden'
-    alias rg="rg ${rg_options}"
-    alias -g RG="rg ${rg_options}"
-    alias -g zrg="rg ${rg_options} -z"
+    alias rg="rg $rg_options"
+    alias -g RG="rg $rg_options"
+    alias -g zrg="rg $rg_options -z"
 }
 alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
@@ -66,7 +66,7 @@ _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -Hu'
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
-_exists nvim && { alias vim='nvim'; alias nvim='v'; }
+_exists nvim && { alias nvim='v'; }
 _exists iostat && alias iostat='iostat -mtx'
 _exists iotop && alias iotop='sudo iotop -oPa'
 _exists patool && { alias se='patool extract'; alias pk='patool create'; }
@@ -113,7 +113,6 @@ _exists git && {
     intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
     alias gd='git diff -w -U0 --word-diff-regex=[^[:space:]]'
-    alias gdd="${intra_line_less} git diff ${intra_line_diff}"
     alias add="git add"
     alias checkout='git checkout'
     alias commit='git commit'
@@ -128,12 +127,10 @@ _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
 }
 _exists fzf && {
-    alias ttcmd="echo '' | fzf -q '$*' --prompt '│ ' --pointer '― ' --preview-window=up:99% --preview='eval {q}'"
-    bindings() { bindkey -L | fzf }
     logs() {
-      local cmd log_file
-      cmd="command find /var/log/ -type f -name '*log' 2>/dev/null"
-      log_file=$(eval "$cmd" | fzy --height 40% --min-height 25 --tac --tiebreak=length,begin,index --reverse --inline-info) && less "$log_file"
+        local cmd log_file
+        cmd="command find /var/log/ -type f -name '*log' 2>/dev/null"
+        log_file=$(eval "$cmd" | fzy --height 40% --min-height 25 --tac --tiebreak=length,begin,index --reverse --inline-info) && less "$log_file"
     }
 }
 _exists xev && alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
