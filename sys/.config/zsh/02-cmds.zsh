@@ -1,16 +1,5 @@
 _exists() { (( $+commands[$1] )) }
-[[ -x ~/bin/acol ]] && {
-    for t in du env lsblk lspci nmap; do
-        alias $t="acol $t"
-    done
-    mount() {
-        if [[ -z $1 ]]; then
-            acol mount "$@"
-        else
-            sudo mount "$@"
-        fi
-    }
-}
+[[ -x ~/bin/acol ]] && { for t in du env lsblk lspci nmap mount; alias $t="acol $t" }
 alias qe='cd ^.git*(/om[1]D)'
 alias ls='ls --color=auto'
 alias l='ls'
