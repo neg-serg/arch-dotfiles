@@ -2,7 +2,7 @@ zstyle ':acceptline:*' rehash true
 # allow one error for every three characters typed in approximate completer
 zstyle ':completion:*:approximate:' max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
 # don't complete backup files as executables
-zstyle ':completion:*:complete:-command-::commands' ignored-patterns '(aptitude-*|*\~)'
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
 # start menu completion only if it could find no unambiguous initial string
 zstyle ':completion:*:correct:*' insert-unambiguous true
 zstyle ':completion:*:corrections' format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%} - (%{${fg[cyan]}%}errors %e%{${reset_color}%})"
@@ -16,16 +16,10 @@ zstyle ':completion:*:expand:*' tag-order all-expansions
 zstyle ':completion:*:history-words' list false
 # autorehash for completion
 zstyle ':completion:*' rehash true
-# activate menu
-zstyle ':completion:*:history-words' menu yes
-# ignore duplicate entries
-zstyle ':completion:*:history-words' remove-all-dups yes
-zstyle ':completion:*:history-words' stop yes
 # match uppercase from lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # automatically load bash completion functions
 autoload -Uz bashcompinit && bashcompinit
-
 # separate matches into groups
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' group-name ''
@@ -48,7 +42,7 @@ zstyle ':completion:*:(mv|cp|file|mp|mpv):*' ignored-patterns '(#i)*.(url|mht)'
 zstyle ':completion:*:*:(mp|mpv):*' tag-order files
 zstyle ':completion:*:*:(mp|mpv):*' file-sort name
 zstyle ':completion:*:*:(mp|mpv):*' menu select auto
-zstyle ':completion:*:*:mp:*' file-patterns '(#i)*.(rmvb|mkv|vob|ts|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
+zstyle ':completion:*:*:(mp|mpv):*' file-patterns '(#i)*.(rmvb|mkv|vob|ts|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
 zstyle ':completion:*:default' \
     select-prompt \
     "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%}  %p%{${reset_color}%}"
@@ -59,21 +53,12 @@ zstyle ':completion:*:default' \
     format \
     "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
 zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS%ec=*} "ma=07;01;38;5;0;48;5;25"
-zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;75'
+zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;25'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
 # highlight the original input.
 zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
 # colorize username completion
 zstyle ':completion:*:*:*:*:users' list-colors "=*=$color[blue];$color[bg-black]"
-# Don't complete uninteresting users...
-zstyle ':completion:*:*:*:users' ignored-patterns \
-    adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
-    dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
-    hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
-    mailman mailnull mldonkey mysql nagios \
-    named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
-    operator pcap postfix postgres privoxy pulse pvm quagga radvd \
-    rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
 zstyle ':completion:*:wine:*' file-patterns '(#i)*.(exe):exe'
 # highlight parameters with uncommon names
 zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[cyan]"
@@ -91,9 +76,6 @@ zstyle ':completion:*:*:zathura:*' tag-order files
 zstyle ':completion:*:*:zathura:*' file-patterns '*(/)|*.{pdf,djvu}'
 # make them a little less short, after all (mostly adds -l option to the whatis calll)
 zstyle ':completion:*:command-descriptions' command '_call_whatis -l -s 1 -r .\*; _call_whatis -l -s 6 -r .\* 2>/dev/null'
-zstyle ':completion:*:*:task:*' verbose yes # taskwarrior
-zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u' # taskwarrior
-zstyle ':completion:*:*:task:*' group-name '' # taskwarrior
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro'
 # Use caching so that commands like apt and dpkg complete are useable
@@ -112,17 +94,16 @@ zstyle ':zle:backward-kill-word*' word-style standard
 zstyle ':zle:*kill*' word-chars '*?_-.[]~=&;!#$%^(){}<>'
 
 zshcache_time="$(date +%s%N)"
-
 autoload -Uz add-zsh-hook
 
 rehash_precmd() {
-  if [[ -a /var/cache/zsh/pacman ]]; then
-    local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
-    if (( zshcache_time < paccache_time )); then
-      rehash
-      zshcache_time="$paccache_time"
+    if [[ -a /var/cache/zsh/pacman ]]; then
+        local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
+        if (( zshcache_time < paccache_time )); then
+            rehash
+            zshcache_time="$paccache_time"
+        fi
     fi
-  fi
 }
 
 add-zsh-hook -Uz precmd rehash_precmd
