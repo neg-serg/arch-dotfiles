@@ -5,7 +5,7 @@ if _G.packer_plugins["nvim-treesitter"] and _G.packer_plugins["nvim-treesitter"]
     local tsconf = require'nvim-treesitter.configs'
     local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
     tsconf.setup {
-      -- ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+      ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
       context_commentstring = {enable = true},
