@@ -170,29 +170,29 @@ colors:
     - {index: 208, color: '#FFAA01'}
     - {index: 209, color: '#FFD37C'}
     - {index: 213, color: '#EBC3FF'}
-    - {index: 232, color: '#000508'}
-    - {index: 233, color: '#010C12'}
-    - {index: 234, color: '#04141C'}
-    - {index: 235, color: '#071B26'}
-    - {index: 236, color: '#0C2430'}
-    - {index: 237, color: '#102C3A'}
-    - {index: 238, color: '#163444'}
-    - {index: 239, color: '#1C3D4E'}
-    - {index: 240, color: '#234758'}
-    - {index: 241, color: '#2B5062'}
-    - {index: 242, color: '#34596C'}
-    - {index: 243, color: '#3F6476'}
-    - {index: 244, color: '#496E80'}
-    - {index: 245, color: '#54788A'}
-    - {index: 246, color: '#608394'}
-    - {index: 247, color: '#6D8E9E'}
-    - {index: 248, color: '#7C99A8'}
-    - {index: 249, color: '#8DA6B2'}
-    - {index: 250, color: '#95AFBC'}
-    - {index: 251, color: '#A4BBC6'}
-    - {index: 252, color: '#B7C8D0'}
-    - {index: 253, color: '#BFCAD0'}
-    - {index: 254, color: '#DBE1E4'}
+    - {index: 232, color: '#000408'}
+    - {index: 233, color: '#010912'}
+    - {index: 234, color: '#040f1c'}
+    - {index: 235, color: '#071526'}
+    - {index: 236, color: '#0c1c30'}
+    - {index: 237, color: '#10233a'}
+    - {index: 238, color: '#162b44'}
+    - {index: 239, color: '#1c334e'}
+    - {index: 240, color: '#233b58'}
+    - {index: 241, color: '#2b4462'}
+    - {index: 242, color: '#344d6c'}
+    - {index: 243, color: '#3f5876'}
+    - {index: 244, color: '#496280'}
+    - {index: 245, color: '#546c8a'}
+    - {index: 246, color: '#607794'}
+    - {index: 247, color: '#6d839e'}
+    - {index: 248, color: '#7c90a8'}
+    - {index: 249, color: '#8d9eb2'}
+    - {index: 250, color: '#95a7bc'}
+    - {index: 251, color: '#a4b3c6'}
+    - {index: 252, color: '#b7c2d0'}
+    - {index: 253, color: '#bfc8d0'}
+    - {index: 254, color: '#dbdfe4'}
     - {index: 255, color: '#EEEEEE'}
 
 cursor:
