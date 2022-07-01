@@ -1,13 +1,4 @@
-colors=cx=hb:ms=hiy:mc=hic:fn=hi+y+K:ln=hg:cn=hg:bn=hg:se=
-# The argument is a colon-separated list of one or more parameters `sl='
-# (selected line), `cx=' (context line), `mt=' (matched text), `ms=' (match
-# selected), `mc=' (match context), `fn=' (file name), `ln=' (line number),
-# `cn=' (column number), `bn=' (byte offset), `se=' (separator).  Parameter
-# values are ANSI SGR color codes or `k' (black), `r' (red), `g' (green), `y'
-# (yellow), `b' (blue), `m' (magenta), `c' (cyan), `w' (white).  Upper case
-# specifies background colors.  A `+' qualifies a color as bright.  A
-# foreground and a background color may be combined with font properties `n'
-# (normal), `f' (faint), `h' (highlight), `i' (invert), `u' (underline).
+colors='cx=00;38;5;110:fn=01;38;5;249:ln=01;38;5;4:cn=01;38;5;24:bn=1;32:se=36;ms=01;04;38;5;25'
 
 color
 confirm
