@@ -183,16 +183,16 @@ colors:
     - {index: 242, color: '#34596C'}
     - {index: 243, color: '#3F6476'}
     - {index: 244, color: '#496E80'}
-    - {index: 245, color: '#54788A'}
-    - {index: 246, color: '#608394'}
-    - {index: 247, color: '#6D8E9E'}
-    - {index: 248, color: '#7C99A8'}
-    - {index: 249, color: '#8DA6B2'}
-    - {index: 250, color: '#95AFBC'}
-    - {index: 251, color: '#A4BBC6'}
-    - {index: 252, color: '#B7C8D0'}
-    - {index: 253, color: '#BFCAD0'}
-    - {index: 254, color: '#DBE1E4'}
+    - {index: 245, color: '#78788A'}
+    - {index: 246, color: '#838394'}
+    - {index: 247, color: '#8E8E9E'}
+    - {index: 248, color: '#9999A8'}
+    - {index: 249, color: '#A6A6B2'}
+    - {index: 250, color: '#AFAFBC'}
+    - {index: 251, color: '#BBBBC6'}
+    - {index: 252, color: '#C8C8D0'}
+    - {index: 253, color: '#CACAD0'}
+    - {index: 254, color: '#E4E4E6'}
     - {index: 255, color: '#EEEEEE'}
 
 cursor:
