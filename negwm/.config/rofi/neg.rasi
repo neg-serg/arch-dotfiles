@@ -24,6 +24,7 @@ element-icon {
 
 #window {
     background-color: @blackdarkest;
+    width: 70%;
     padding: 0.1em;
     location: south west;
     anchor: south west;
