@@ -162,8 +162,8 @@ bindsym Mod4+n $scratchpad toggle neomutt
 bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
 
-bindsym Mod4+r mode "resize"
-mode resize {
+bindsym Mod4+r mode "%{T4}%{T-}"
+mode %{T4}%{T-} {
 	bindsym j $actions resize bottom 4
 	bindsym s $actions resize bottom 4
 	bindsym h $actions resize left 4
@@ -188,8 +188,8 @@ mode resize {
 	bindsym Control+G, mode "default"
 }
 
-bindsym Mod1+e mode "spec"
-mode spec {
+bindsym Mod1+e mode "%{T4}%{T-}"
+mode %{T4}%{T-} {
 	bindsym e  [urgent=latest] focus, mode "default"
 	bindsym l  exec i3lockr -p 8 , mode "default"
 	bindsym Shift+d  floating toggle, mode "default"
@@ -211,8 +211,8 @@ mode spec {
 	bindsym Control+G, mode "default"
 }
 
-bindsym Mod4+minus mode "wm"
-mode wm {
+bindsym Mod4+minus mode "%{T4}%{T-}"
+mode %{T4}%{T-} {
 	bindsym grave layout default, mode "default"
 	bindsym minus layout splith, mode "default"
 	bindsym backslash layout splitv, mode "default"
