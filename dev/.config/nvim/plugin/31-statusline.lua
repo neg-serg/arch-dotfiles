@@ -1,241 +1,218 @@
-local hi = vim.api.nvim_set_hl
+local lualine=require('lualine')
 
-hi(0, 'Base', {bg='NONE', fg='#234758'})
-hi(0, 'Decoration', {bg='NONE', fg='NONE'})
-hi(0, 'Filetype', {bg='NONE', fg='#007fb5'})
-hi(0, 'Git', {bg='NONE', fg='#005faf'})
-hi(0, 'StatusDelimiter', {bg='NONE', fg='#326e8c'})
-hi(0, 'StatusLine', {fg=black, bg='NONE'})
-hi(0, 'StatusRight', {bg='NONE', fg='#6c7e96'})
-hi(0, 'Mode', {bg='NONE', fg='#007fb5'})
-
-N = {}
-
-function N.FancyMode()
-    local modes = {}
-    local current_mode = api.nvim_get_mode()['mode']
-    modes.current_mode = setmetatable({
-        ['n'] = 'N',
-        ['no'] = 'N·Operator Pending',
-        ['v'] = 'V',
-        ['V']  = 'V·Line',
-        ['^V'] = 'V·Block',
-        ['s'] = 'Select',
-        ['S'] = 'S·Line',
-        ['^S'] = 'S·Block',
-        ['i'] = 'I',
-        ['ic'] = 'I',
-        ['ix'] = 'I',
-        ['R'] = 'Replace',
-        ['Rv'] = 'V·Replace',
-        ['c'] = 'CMD',
-        ['cv'] = 'VimEx',
-        ['ce'] = 'Ex',
-        ['r'] = 'Prompt',
-        ['rm'] = 'More',
-        ['r?'] = 'Confirm',
-        ['!'] = 'Shell',
-        ['t'] = 'T'
-    }, {
-        -- fix weird issues
-        __index = function(_, _)
-            return 'V·Block'
-        end
-    })
-    return modes.current_mode[current_mode]
-end
-
-function N.FizeSize()
-    local file = vim.fn.expand('%:p')
-    if string.len(file) == 0 then return '' end
-    return format_file_size_(file)
-end
-
-function NegJobs()
-    local n_jobs = 0
-    if vim.fn.exists('g:jobs') then
-        n_jobs = ' ' .. #vim.api.nvim_get_option('jobs')
-    end
-    if n_jobs ~= 0 then
-        return n_jobs
-    else
-        return ''
-    end
-end
-
-local conditions = {
-    buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
-    hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
-    check_git_workspace = function()
-        local filepath = vim.fn.expand('%:p:h')
-        local gitdir = vim.fn.finddir('.git', filepath .. ';')
-        return gitdir and #gitdir > 0 and #gitdir < #filepath
-    end
+local clr={
+    base='#234758',
+    bg='NONE',
+    blue='#005faf',
+    cyan='#008080',
+    fg='#54667a',
+    filename='#6587b3',
+    green='#007a51',
+    magenta='#c678dd',
+    red='#970d4f',
+    yellow='#ECBE7B',
 }
 
-function format_file_size_(file)
-    local size = vim.fn.getfsize(file)
-    if size <= 0 then return '' end
-    local sufixes = {'b','k','m','g'}
-    local i = 1
-    while size > 1024 do
-        size = size / 1024
-        i = i + 1
-    end
-    return string.format('%.1f%s', size, sufixes[i])
+local conditions={
+    buffer_not_empty=function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
+    hide_in_width=function()
+        return vim.fn.winwidth(0) > 80
+    end,
+    check_git_workspace=function()
+        local filepath=vim.fn.expand('%:p:h')
+        local gitdir=vim.fn.finddir('.git', filepath .. ';')
+        return gitdir and #gitdir > 0 and #gitdir < #filepath
+    end,
+}
+
+-- Config
+local config={
+    options={
+        -- Disable sections and component separators
+        component_separators='',
+        section_separators='',
+        theme={
+            -- We are going to use lualine_c an lualine_x as left and
+            -- right section. Both are highlighted by c theme .  So we
+            -- are just setting default looks o statusline
+            normal={c={fg=clr.fg, bg=clr.bg}},
+            inactive={c={fg=clr.fg, bg=clr.bg}},
+       },
+   },
+    sections={
+        -- these are to remove the defaults
+        lualine_a={},
+        lualine_b={},
+        lualine_y={},
+        lualine_z={},
+        -- These will be filled later
+        lualine_c={},
+        lualine_x={},
+   },
+    inactive_sections={
+        -- these are to remove the defaults
+        lualine_a={},
+        lualine_b={},
+        lualine_y={},
+        lualine_z={},
+        lualine_c={},
+        lualine_x={},
+   },
+}
+
+-- Inserts a component in lualine_c at left section
+local function ins_left(component)
+    table.insert(config.sections.lualine_c, component)
 end
 
-function hex_pos(statusline)
-    local line = vim.api.nvim_call_function('line', {"."})
-    line = string.format("%X", tostring(line))
-    local col = vim.api.nvim_call_function('col', {"."})
-    local delimiter = '%#StatusDelimiter# • %#StatusRight#'
-    col = delimiter  .. string.format("%X", tostring(col))
-    return statusline ..  line .. col
+-- Inserts a component in lualine_x ot right section
+local function ins_right(component)
+    table.insert(config.sections.lualine_x, component)
 end
 
-function N.StatusLinePWD()
-    if vim.fn.exists('b:statusline_pwd') then
-        vim.api.nvim_buf_set_var(
-            0,
-            'statusline_pwd',
-            vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-        )
-        local statusline_pwd = vim.api.nvim_buf_get_var(0, 'statusline_pwd')
-        if statusline_pwd ~= '~/' then
-            if #statusline_pwd <= 15 then
-                statusline_pwd = vim.fn.pathshorten(statusline_pwd)
+ins_left {
+    function() return '' end,
+    color={fg=clr.base}, -- Sets highlighting of component
+    padding={left=0, right=0}, -- We don't need space before this
+}
+
+ins_left {
+    function() return '' end,
+    color={fg=clr.blue}, -- Sets highlighting of component
+    padding={left=1, right=0}, -- We don't need space before this
+    cond=conditions.buffer_not_empty,
+}
+
+ins_left {
+    function() return vim.fn.fnamemodify(vim.fn.getcwd(), ':~') end,
+    cond=conditions.buffer_not_empty,
+}
+
+ins_left {
+    function() return '¦' end,
+    color={fg=clr.blue}, -- Sets highlighting of component
+    padding={left=0, right=0}, -- We don't need space before this
+    cond=conditions.buffer_not_empty,
+}
+
+ins_left {
+    'filename',
+    file_status=true,
+    path=1,
+    shorting_target=40,
+    cond=conditions.buffer_not_empty,
+    color={fg=clr.filename},
+}
+
+ins_left {
+    'diagnostics',
+    sources={'nvim_diagnostic'},
+    symbols={error=' ', warn=' ', info=' '},
+    diagnostics_color={
+        color_error={fg=clr.red},
+        color_warn={fg=clr.yellow},
+        color_info={fg=clr.cyan},
+   },
+}
+
+ins_left {function() return '%=' end,}
+
+ins_left {
+    -- Lsp server name .
+    function()
+        local msg=''
+        local buf_ft=vim.api.nvim_buf_get_option(0, 'filetype')
+        local clients=vim.lsp.get_active_clients()
+        if next(clients) == nil then
+            return msg
+        end
+        for _, client in ipairs(clients) do
+            local filetypes=client.config.filetypes
+            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                return client.name
             end
-            return statusline_pwd
-        else
-            return ''
         end
-    end
-    return vim.api.nvim_buf_get_var(0, 'statusline_pwd')
-end
+        return msg
+    end,
+    icon=' LSP:',
+    color={fg='#ffffff'},
+}
 
-function N.CheckMod()
-    if vim.api.nvim_buf_get_option(0, 'modified') == true then
-        hi(0, 'Modi', {bg='NONE', fg='#8fa7c7'})
-        hi(0, 'Filename', {bg='NONE', fg='#8fa7c7'})
-        return '  '
-    else
-        hi(0, 'Modi', {bg='NONE', fg='#6587b3'})
-        hi(0, 'Filename', {bg='NONE', fg='#8fa7c7'})
-        return ''
-    end
-end
+ins_right {'filesize', cond=conditions.buffer_not_empty,}
 
-function N.StatusLineFileName()
-    local name = vim.fn.expand('%:~:.')
-    name = vim.fn.simplify(name)
-    ratio = vim.fn.winwidth(0) / #name
-    if ratio <= 2 and ratio > 1 then
-        name = vim.fn.pathshorten(name)
-    elseif ratio <= 1 then
-        name = vim.fn.fnamemodify(name, ':t')
-    end
-    return name
-end
+-- Add components to right sections
+ins_right {
+    'o:encoding', -- option component same as &encoding in viml
+    fmt=string.upper, -- I'm not sure why it's upper case either ;)
+    cond=function() return conditions.hide_in_width() and conditions.buffer_not_empty() end,
+    color={fg=clr.green},
+    padding={right=0, left=0}
+}
 
-function N.FormatAndEncoding()
-    local ret = ''
-    if vim.o.ft ~= '' then
-        ret = ret .. ' ft=' .. vim.o.ft
-    end
-    if vim.o.encoding then
-        if ret ~= '' then
-            ret = ret .. ' | '
-        end
-        ret = ret .. 'enc=' .. vim.o.encoding
-    end
-    return ret
-end
+ins_right {
+    'fileformat',
+    fmt=string.upper,
+    icons_enabled=true, -- I think icons are cool but Eviline doesn't have them. sigh
+    cond=function() return conditions.hide_in_width() and conditions.buffer_not_empty() end,
+    color={fg=clr.green},
+}
 
-function N.VisualSelectionSize()
-    if vim.fn.mode():byte() == 22 then
-        return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
-            .. 'x'
-            .. (vim.fn.abs(vim.fn.virtcol('v') - vim.fn.virtcol('.')) + 1)
-            .. ' block '
-    elseif vim.fn.mode() == 'V' or (vim.fn.line('v') ~= vim.fn.line('.')) then
-        return (vim.fn.abs(vim.fn.line('v') - vim.fn.line('.')) + 1)
-            .. ' lines '
-    else
-        return ''
-    end
-end
+ins_right {'branch', icon='', color={fg=clr.blue},}
 
-function N.GitBranch(git)
-    if git == '' then
-        return ''
-    else
-        return ' ' .. git
-    end
-end
+ins_right {
+    'diff',
+    -- Is it me or the symbol for modified us really weird
+    symbols={added=' ', modified='柳', removed=' '},
+    diff_color={
+        added={fg=clr.green},
+        modified={fg=clr.fg},
+        removed={fg=clr.red},
+   },
+    cond=conditions.hide_in_width,
+}
 
-function N.activeLine()
-    local statusline = ""
-    statusline = statusline
-        .. '%#Base# '
-        .. N.VisualSelectionSize()
-    local pwd = N.StatusLinePWD()
-    if pwd ~= '' then
-        statusline = statusline .. '%#Git# %#String#' .. pwd
-    end
-    filename = N.StatusLineFileName():gsub("/", "%%#Base#/%%#Modi#")
-    if filename ~= '' then
-        statusline = statusline .. '%#Git# ¦ %#Modi#'
-    end
-    statusline = statusline .. filename
-        .. '%#Modi#' .. N.CheckMod()
-    if vim.api.nvim_get_option('readonly') then
-        statusline = statusline .. ''
-    end
-    statusline = statusline
-        .. '%#Decoration# %3* %= '
-        .. '%#Filetype#'
-        .. '%3*'
-        .. '%#StatusDelimiter#'
-        .. '%#String#' .. N.FizeSize() .. '%#Modi#'
-    if vim.api.nvim_get_option('modifiable') then
-        if vim.api.nvim_get_option('expandtab') then
-            statusline = statusline ..  '  '
-        else
-            statusline = statusline ..  '   '
-        end
-    end
-    statusline = statusline
-        .. vim.api.nvim_buf_get_option(0, 'shiftwidth') .. '%#Git# '
-    if vim.b.gitsigns_head then
-        statusline = statusline .. N.GitBranch(vim.b.gitsigns_head .. vim.b.gitsigns_status)
-    end
-    statusline = statusline .. N.FormatAndEncoding() .. '%#Git# '
-    statusline = statusline .. '%1* %#Base#'
-    return statusline
-end
+ins_right {
+    'location', padding={left=0, right=1}, color={fg=clr.fg},
+    cond=conditions.buffer_not_empty,
+}
 
-function N.inActiveLine()
-    local statusline = ""
-    statusline = statusline .. '%#Statement# '
-    local pwd = N.StatusLinePWD()
-    if pwd ~= '' then
-        statusline = statusline .. '%#String# ' .. pwd
-    end
-    filename = N.StatusLineFileName()
-    if filename ~= '' then
-        statusline = statusline .. '%#String# ¦ '
-        statusline = statusline .. filename
-    end
-    statusline = statusline .. '%= %#Statement#'
-    return statusline
-end
+ins_right {
+    -- mode component
+    function() return '' end,
+    color=function()
+        -- auto change color according to neovims mode
+        local mode_color={
+            n=clr.red,
+            i=clr.green,
+            v=clr.blue,
+            ['']=clr.blue,
+            V=clr.blue,
+            c=clr.magenta,
+            no=clr.red,
+            s=clr.fg,
+            S=clr.fg,
+            ['']=clr.fg,
+            ic=clr.yellow,
+            R=clr.blue,
+            Rv=clr.violet,
+            cv=clr.red,
+            ce=clr.red,
+            r=clr.cyan,
+            rm=clr.cyan,
+            ['r?']=clr.cyan,
+            ['!']=clr.red,
+            t=clr.red,
+       }
+        return {fg=mode_color[vim.fn.mode()]}
+    end,
+    padding={right=1},
+}
 
-_G.NegStatusline = setmetatable(N, {
-    __call = function(statusline, mode)
-        if mode == "active" then return N.activeLine() end
-        if mode == "inactive" then return N.inActiveLine() end
-    end
-})
+ins_right {
+    function() return '' end,
+    color={fg=clr.base}, -- Sets highlighting of component
+    padding={left=1},
+}
 
-return N
+-- Now don't forget to initialize lualine
+lualine.setup(config)
