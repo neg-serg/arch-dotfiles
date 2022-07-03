@@ -8,9 +8,6 @@ local hi_yank = gr("hi_yank", {clear=true})
 local cursor_line = gr("cursor_line", {clear=true})
 local statusline = gr("statusline", {clear=true})
 
-au({'BufWinEnter','BufEnter','VimEnter'}, {callback=function() vim.wo.statusline=NegStatusline('active') end, group=statusline})
-au({'BufWinLeave','BufLeave','WinLeave'}, {callback=function() vim.wo.statusline=NegStatusline('inactive') end, group=statusline})
-
 au({'Filetype'}, {command='setlocal formatoptions-=c formatoptions-=r formatoptions-=o', group=main})
 au({'FocusGained','BufEnter','FileChangedShell','WinEnter'}, {command='checktime', group=main})
 -- Disables automatic commenting on newline:
@@ -21,7 +18,7 @@ au({'Filetype'}, {
 })
 -- Update binds when sxhkdrc is updated.
 au({'BufWritePost'}, {pattern={'*sxhkdrc'}, command='!pkill -USR1 sxhkd', group=main})
-au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='PackerCompile', group=main})
+au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='source <afile> | PackerCompile', group=main})
 au({'BufEnter'}, {command='set noreadonly', group=main})
 au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber', group=main})
 au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
