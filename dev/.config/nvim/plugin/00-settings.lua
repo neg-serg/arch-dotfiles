@@ -143,3 +143,4 @@ vim.opt.formatoptions = 'n1jcroqlj'                          -- Format settings
 vim.opt.cpoptions = '_$ABFWcdesa'                            -- Vim-exclusive stuff
 vim.opt.ruler = false                                        -- No ruler
 vim.opt.cmdheight = 1                                        -- Fancy cmdheight for neovim-nightly(disable for now)
+vim.opt.laststatus = 3                                       -- One statusline for all
