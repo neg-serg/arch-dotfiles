@@ -33,10 +33,11 @@ return require('packer').startup({function(use)
         'nvim-telescope/telescope-file-browser.nvim',
         'nvim-telescope/telescope-fzy-native.nvim',
     }}
-    use {"nvim-telescope/telescope-frecency.nvim", requires = {"tami5/sqlite.lua"}}
+    use {"nvim-telescope/telescope-frecency.nvim", requires={"tami5/sqlite.lua"}}
     use 'haya14busa/vim-asterisk' -- smartcase star
     use 'gelguy/wilder.nvim' -- better cmdline menu
     use 'romgrk/fzy-lua-native' -- fzy native lua integration
+    use({"nvim-lualine/lualine.nvim", requires={"arkav/lualine-lsp-progress"} })
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
