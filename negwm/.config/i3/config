@@ -63,12 +63,10 @@ for_window $circle-vm move workspace $vm,focus
 for_window $circle-web move workspace $web,focus
 for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 2
 for_window [class="^(inkscape|gimp)$"] move workspace $draw
-for_window [class="(?i)(?:steam|qt5ct|gcolor3|rdesktop|openssh-askpass|pavucontrol-qt|lutris|steam_app_.*|mpv)"] floating enable
-for_window [title="(?i)(?:copying|alsamixer|deleting|moving|File Transfer.*)"] floating enable
+for_window [class="(?i)(?:steam|qt5ct|gcolor3|rdesktop|openssh-askpass|lutris|steam_app_.*|mpv)"] floating enable
 for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, focus
 for_window [title="Firefox — Sharing Indicator"] border pixel 1, sticky enable, move position 20 ppt -5 px
-for_window [title="i3_help"] floating enable sticky enable border normal
-no_focus [class="zoom" instance="zoom" title="^zoom$"]
+for_window [title="(?i)(?:File Transfer.*)"] floating enable
 no_focus [title="Firefox — Sharing Indicator"]
 no_focus [window_type="splash"]
 set $term "1 :: ︁ α:term"
@@ -90,19 +88,19 @@ bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec flameshot gui
 
 bindsym Mod1+grave exec --no-startup-id rofi -show run -show-icons -disable-history -theme neg
-bindsym Mod4+8 exec --no-startup-id playerctl volume 0.0 || amixer -q set Master 0 mute
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+m exec --no-startup-id zsh -c "~/bin/music-rename current"
 bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+Shift+p exec --no-startup-id zsh -c /usr/bin/rofi-pass
 bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
-bindsym Mod4+Shift+8 exec --no-startup-id playerctl volume 1.0 || amixer -q set Master 65536 unmute
 bindsym Mod4+Shift+9 exec --no-startup-id dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/rofi-audio
 bindsym Mod4+Shift+y exec --no-startup-id ~/bin/clip youtube-dw-list
 bindsym Mod4+space exec --no-startup-id dunstctl close-all
 bindsym XF86Sleep exec --no-startup-id systemctl suspend
+bindsym Mod4+8 exec --no-startup-id ~/bin/pl vol mute
+bindsym Mod4+Shift+8 exec --no-startup-id ~/bin/pl vol unmute
 
 bindsym Mod4+j focus down
 bindsym Mod4+h focus left
@@ -123,16 +121,16 @@ bindsym Mod4+Control+space $scratchpad geom_restore
 bindsym Mod4+s $scratchpad hide_current
 bindsym Mod4+3 $scratchpad next
 
-bindsym Mod4+period exec --no-startup-id playerctl next
-bindsym Mod4+Shift+2 exec --no-startup-id playerctl play-pause
-bindsym Mod4+comma exec --no-startup-id playerctl previous
-bindsym XF86AudioLowerVolume exec --no-startup-id playerctl volume 0.05- || playerctl volume 0.01-
-bindsym XF86AudioRaiseVolume exec --no-startup-id playerctl volume 0.05+ || playerctl volume 0.01+
+bindsym Mod4+period exec --no-startup-id ~/bin/pl cmd next
+bindsym Mod4+Shift+2 exec --no-startup-id ~/bin/pl cmd play-pause
+bindsym Mod4+comma exec --no-startup-id ~/bin/pl cmd previous
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pl vol down
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/bin/pl vol up
 
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPlay exec --no-startup-id playerctl play
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioNext exec --no-startup-id ~/bin/pl cmd next
+bindsym XF86AudioPlay exec --no-startup-id ~/bin/pl cmd play
+bindsym XF86AudioPrev exec --no-startup-id ~/bin/pl cmd previous
+bindsym XF86AudioStop exec --no-startup-id ~/bin/pl cmd stop
 
 bindsym Mod4+Shift+a $menu attach
 bindsym Mod4+Shift+s $menu autoprop
