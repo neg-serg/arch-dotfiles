@@ -55,11 +55,11 @@ if _G.packer_plugins["nvim-dap"] and _G.packer_plugins["nvim-dap"].loaded then
 
     local dap_keymap = {
         n = {
-            ["dc"] = 'continue()',
-            ["db"] = 'toggle_breakpoint()',
-            ["dB"] = "toggle_breakpoint(vim.fn.input('Breakpoint condition: '))",
-            ["dr"] = "repl.open()",
-            ["dR"] = "restart()",
+            ["c"] = 'continue()',
+            ["b"] = 'toggle_breakpoint()',
+            ["C"] = "toggle_breakpoint(vim.fn.input('Breakpoint condition: '))",
+            ["r"] = "repl.open()",
+            ["R"] = "restart()",
             ["dl"] = "repl.run_last()",
             ["di"] = "step_into()",
             ["do"] = "step_over()",
