@@ -3,11 +3,12 @@
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 if _G.packer_plugins["nvim-cmp"] and _G.packer_plugins["nvim-cmp"].loaded then
     local cmp = require('cmp')
+    local luasnip = require("luasnip")
 
     vim.cmd([[
-      hi CmpItemKindDefault guifg=#0C2430'
-      autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
-      ]])
+        hi CmpItemKindDefault guifg=#0C2430'
+        autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
+    ]])
 
     local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -18,7 +19,6 @@ if _G.packer_plugins["nvim-cmp"] and _G.packer_plugins["nvim-cmp"].loaded then
         mapping = {
             ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i','c'}),
             ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i','c'}),
-            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i','c'}),
             ['<C-e>'] = cmp.mapping({i = cmp.mapping.abort(), c = cmp.mapping.close(), }),
             -- disabled for autopairs mapping
             ['<CR>'] = cmp.mapping.confirm({
@@ -27,15 +27,15 @@ if _G.packer_plugins["nvim-cmp"] and _G.packer_plugins["nvim-cmp"].loaded then
             }),
             ['<Tab>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then luasnip.expand_or_jump()
                 elseif has_words_before() then cmp.complete()
                 else fallback()
                 end
             end, { 'i', 's', }),
             ['<S-Tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item()
-                else
-                    fallback()
+                if cmp.visible() then cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then luasnip.jump(-1)
+                else fallback()
                 end
             end, {'i','s',}),
         },
@@ -51,7 +51,9 @@ if _G.packer_plugins["nvim-cmp"] and _G.packer_plugins["nvim-cmp"].loaded then
             native_menu = false,
             ghost_text = true,
         },
+        snippet = {expand = function(args) require'luasnip'.lsp_expand(args.body) end},
         sources = cmp.config.sources({
+            {name = 'luasnip'},
             {name = 'nvim_lsp'},
             {name = 'nvim_lua'},
             {name = 'buffer'},

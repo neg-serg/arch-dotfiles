@@ -50,6 +50,9 @@ return require('packer').startup({function(use)
     use 'neovim/nvim-lspconfig' -- lspconfig
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
+    use 'L3MON4D3/LuaSnip' -- snippets engine
+    use 'rafamadriz/friendly-snippets' -- additional snippets
+    use 'saadparwaiz1/cmp_luasnip' -- lua snippets nvim-cmp support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
