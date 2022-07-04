@@ -4,13 +4,11 @@ local clr={
     base='#234758',
     bg='NONE',
     blue='#005faf',
-    cyan='#008080',
     fg='#54667a',
     filename='#6587b3',
     green='#007a51',
     magenta='#c678dd',
-    red='#970d4f',
-    yellow='#ECBE7B',
+    rasberry='#970d4f',
 }
 
 local conditions={
@@ -109,9 +107,9 @@ ins_left {
     sources={'nvim_diagnostic'},
     symbols={error=' ', warn=' ', info=' '},
     diagnostics_color={
-        color_error={fg=clr.red},
-        color_warn={fg=clr.yellow},
-        color_info={fg=clr.cyan},
+        color_error={fg=clr.rasberry},
+        color_warn={fg=clr.fg},
+        color_info={fg=clr.blue},
    },
 }
 
@@ -134,15 +132,24 @@ ins_left {
         end
         return msg
     end,
-    icon=' LSP:',
-    color={fg='#ffffff'},
+    icon='',
+    color={fg=clr.fg},
 }
 
-ins_right {'filesize', cond=conditions.buffer_not_empty,}
+ins_right {
+    'filesize', cond=conditions.buffer_not_empty,
+    padding={right=0, left=0}
+}
 
 -- Add components to right sections
 ins_right {
-    'o:encoding', -- option component same as &encoding in viml
+    function()
+        if vim.o.encoding ~= 'utf-8' then
+            return vim.o.encoding
+        else
+            return ''
+        end
+    end,
     fmt=string.upper, -- I'm not sure why it's upper case either ;)
     cond=function() return conditions.hide_in_width() and conditions.buffer_not_empty() end,
     color={fg=clr.green},
@@ -152,10 +159,12 @@ ins_right {
 ins_right {
     'fileformat',
     fmt=string.upper,
-    icons_enabled=true, -- I think icons are cool but Eviline doesn't have them. sigh
+    icons_enabled=true,
     cond=function() return conditions.hide_in_width() and conditions.buffer_not_empty() end,
     color={fg=clr.green},
 }
+
+ins_right {'filetype', padding={left=0, right=1}, color={fg=clr.fg},}
 
 ins_right {'branch', icon='', color={fg=clr.blue},}
 
@@ -166,7 +175,7 @@ ins_right {
     diff_color={
         added={fg=clr.green},
         modified={fg=clr.fg},
-        removed={fg=clr.red},
+        removed={fg=clr.rasberry},
    },
     cond=conditions.hide_in_width,
 }
@@ -177,35 +186,34 @@ ins_right {
 }
 
 ins_right {
-    -- mode component
-    function() return '' end,
+    function() return '' end,
     color=function()
         -- auto change color according to neovims mode
         local mode_color={
-            n=clr.red,
+            n=clr.fg,
             i=clr.green,
             v=clr.blue,
             ['']=clr.blue,
             V=clr.blue,
             c=clr.magenta,
-            no=clr.red,
+            no=clr.rasberry,
             s=clr.fg,
             S=clr.fg,
             ['']=clr.fg,
-            ic=clr.yellow,
+            ic=clr.fg,
             R=clr.blue,
-            Rv=clr.violet,
-            cv=clr.red,
-            ce=clr.red,
-            r=clr.cyan,
-            rm=clr.cyan,
-            ['r?']=clr.cyan,
-            ['!']=clr.red,
-            t=clr.red,
-       }
+            Rv=clr.blue,
+            cv=clr.rasberry,
+            ce=clr.rasberry,
+            r=clr.blue,
+            rm=clr.blue,
+            ['r?']=clr.blue,
+            ['!']=clr.rasberry,
+            t=clr.rasberry,
+        }
         return {fg=mode_color[vim.fn.mode()]}
     end,
-    padding={right=1},
+    padding={right=0, left=0},
 }
 
 ins_right {
