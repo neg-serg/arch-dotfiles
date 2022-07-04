@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 mp() {
     local args=""
@@ -73,4 +73,14 @@ main() {
     fi
 }
 
-main "$@"
+case $1 in
+    cmd) shift; playerctl "$@" ;;
+    vol)
+        case $2 in
+            mute) playerctl volume 0.0 || amixer -q set Master 0 mute ;;
+            unmute) playerctl volume 1.0 || amixer -q set Master 65536 unmute ;;
+            up) playerctl volume 0.05+ || playerctl volume 0.01+ ;;
+            down) playerctl volume 0.05- || playerctl volume 0.01- ;;
+        esac ;;
+    *) main "$@" ;;
+esac
