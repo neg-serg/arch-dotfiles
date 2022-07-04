@@ -47,7 +47,7 @@ sub-font="HelveticaNeue LT CYR 57 Cond"
 #--[OSD]---------------------------------------------------
 osd-font="Iosevka"
 osd-font-size=18
-osd-color='#cc53a6a6'
+osd-color='#bb6d839e'
 osd-border-color='#cc000000'
 osd-border-size=1
 osd-bar-align-y=0
