@@ -23,7 +23,7 @@ if _G.packer_plugins["nvim-cmp"] and _G.packer_plugins["nvim-cmp"].loaded then
             -- disabled for autopairs mapping
             ['<CR>'] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
+                select = false,
             }),
             ['<Tab>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then cmp.select_next_item()
