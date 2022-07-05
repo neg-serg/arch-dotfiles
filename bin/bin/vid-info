@@ -10,7 +10,7 @@ Options:
 
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
-year :: 2021
+year :: 2022
 
 """
 
@@ -20,12 +20,12 @@ import subprocess
 import json
 import math
 import datetime
-import enum
+from enum import Enum
 from docopt import docopt
 from pretty_printer import PrettyPrinter
 
 
-class SizeUnit(enum.Enum):
+class SizeUnit(Enum):
     """ Enum for size units """
     BYTES = 1
     KIB = 2
@@ -37,13 +37,13 @@ class SizeUnit(enum.Enum):
 def convert_unit(size_in_bytes, unit):
     """ Convert the size from bytes to other units like KB, MB or GB"""
     if unit == SizeUnit.KIB:
-        return size_in_bytes/1024
+        return size_in_bytes/0x400
     if unit == SizeUnit.MIB:
-        return size_in_bytes/(1024*1024)
+        return size_in_bytes/(0x400*0x400)
     if unit == SizeUnit.GIB:
-        return size_in_bytes/(1024*1024*1024)
+        return size_in_bytes/(0x400*0x400*0x400)
     if unit == SizeUnit.TIB:
-        return size_in_bytes/(1024*1024*1024*1024)
+        return size_in_bytes/(0x400*0x400*0x400*0x400)
     return size_in_bytes
 
 
@@ -89,9 +89,7 @@ def media_info(filename):
         seconds=math.floor(float(file_format['duration']))
     )))
 
-    size = math.floor(convert_unit(
-        float(file_format['size']), SizeUnit.MIB
-    ))
+    size = math.floor(convert_unit(float(file_format['size']), SizeUnit.MIB))
     out += pp.size(str(size), 'MIB')
 
     video_bitrate = math.floor(convert_unit(
