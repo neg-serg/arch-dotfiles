@@ -18,4 +18,42 @@ if _G.packer_plugins["nvim-autopairs"] and _G.packer_plugins["nvim-autopairs"].l
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
     cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({map_char={ tex=''}}))
+
+    local Rule = require('nvim-autopairs.rule')
+    local npairs = require('nvim-autopairs')
+    npairs.add_rules {
+        -- before   insert  after
+        --  (|)     ( |)	( | )
+        Rule(' ', ' ')
+            :with_pair(function (opts)
+                local pair = opts.line:sub(opts.col - 1, opts.col)
+                return vim.tbl_contains({ '()', '[]', '{}' }, pair)
+            end),
+        Rule('( ', ' )')
+            :with_pair(function() return false end)
+            :with_move(function(opts)
+                return opts.prev_char:match('.%)') ~= nil
+            end)
+            :use_key(')'),
+        Rule('{ ', ' }')
+            :with_pair(function() return false end)
+            :with_move(function(opts)
+                return opts.prev_char:match('.%}') ~= nil
+            end)
+            :use_key('}'),
+        Rule('[ ', ' ]')
+            :with_pair(function() return false end)
+            :with_move(function(opts)
+                return opts.prev_char:match('.%]') ~= nil
+            end)
+            :use_key(']'),
+        --[===[
+          arrow key on javascript
+              Before 	Insert    After
+              (item)= 	> 	    (item)=> { }
+        --]===]
+        Rule('%(.*%)%s*%=>$', ' {  }', { 'typescript', 'typescriptreact', 'javascript' })
+            :use_regex(true)
+            :set_end_pair_length(2),
+    }
 end
