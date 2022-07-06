@@ -63,7 +63,7 @@ return require('packer').startup({function(use)
     use 'numToStr/Comment.nvim' -- commenter plugin
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', cmd={'Dispatch','Make','Focus','Start'}} -- provide async build
-    use {'windwp/nvim-autopairs', event='InsertEnter'} -- try new autopairs
+    use {'windwp/nvim-autopairs'} -- super powerful autopairs
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
