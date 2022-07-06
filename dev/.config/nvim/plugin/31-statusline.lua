@@ -63,6 +63,15 @@ local function ins_left(component)
     table.insert(config.sections.lualine_c, component)
 end
 
+local function keymap()
+    if vim.opt.iminsert:get() > 0 and vim.b.keymap_name then
+        return '⌨ ' .. vim.b.keymap_name
+    end
+    return ''
+end
+
+local function window() return vim.api.nvim_win_get_number(0) end
+
 -- Inserts a component in lualine_x ot right section
 local function ins_right(component)
     table.insert(config.sections.lualine_x, component)
@@ -100,6 +109,28 @@ ins_left {
     shorting_target=40,
     cond=conditions.buffer_not_empty,
     color={fg=clr.filename},
+    -- local custom_fname = require('lualine.components.filename'):extend()
+    -- local highlight = require'lualine.highlight'
+    -- local default_status_colors = { saved = '#228B22', modified = '#C70039' }
+    --
+    -- function custom_fname:init(options)
+    --     custom_fname.super.init(self, options)
+    --     self.status_colors = {
+    --         saved = highlight.create_component_highlight_group(
+    --             {bg = default_status_colors.saved}, 'filename_status_saved', self.options),
+    --         modified = highlight.create_component_highlight_group(
+    --             {bg = default_status_colors.modified}, 'filename_status_modified', self.options),
+    --     }
+    --     if self.options.color == nil then self.options.color = '' end
+    -- end
+    --
+    -- function custom_fname:update_status()
+    --     local data = custom_fname.super.update_status(self)
+    --     data = highlight.component_format_highlight(vim.bo.modified
+    --         and self.status_colors.modified
+    --         or self.status_colors.saved) .. data
+    --     return data
+    -- end
 }
 
 ins_left {
@@ -168,8 +199,20 @@ ins_right {'filetype', padding={left=0, right=1}, color={fg=clr.fg},}
 
 ins_right {'branch', icon='', color={fg=clr.blue},}
 
+local function diff_source()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+        return {
+            added = gitsigns.added,
+            modified = gitsigns.changed,
+            removed = gitsigns.removed
+        }
+    end
+end
+
 ins_right {
     'diff',
+    source=diff_source,
     -- Is it me or the symbol for modified us really weird
     symbols={added=' ', modified='柳', removed=' '},
     diff_color={
