@@ -30,7 +30,6 @@ return require('packer').startup({function(use)
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim', requires={
         'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope-file-browser.nvim',
         'nvim-telescope/telescope-fzy-native.nvim',
         {"nvim-telescope/telescope-frecency.nvim", requires={"tami5/sqlite.lua"}}
     }}
