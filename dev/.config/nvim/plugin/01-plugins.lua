@@ -32,8 +32,8 @@ return require('packer').startup({function(use)
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-file-browser.nvim',
         'nvim-telescope/telescope-fzy-native.nvim',
+        {"nvim-telescope/telescope-frecency.nvim", requires={"tami5/sqlite.lua"}}
     }}
-    use {"nvim-telescope/telescope-frecency.nvim", requires={"tami5/sqlite.lua"}}
     use 'haya14busa/vim-asterisk' -- smartcase star
     use 'gelguy/wilder.nvim' -- better cmdline menu
     use 'romgrk/fzy-lua-native' -- fzy native lua integration
@@ -42,17 +42,19 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'folke/trouble.nvim', requires="kyazdani42/nvim-web-devicons"}
-    use 'hrsh7th/cmp-nvim-lsp' -- cmp lsp support
-    use 'hrsh7th/cmp-nvim-lua' -- cmp neovim lua api support
-    use 'hrsh7th/cmp-path' -- cmp path completion support
-    use 'hrsh7th/nvim-cmp' -- completion engine
-    use 'lukas-reineke/cmp-under-comparator' -- better nvim-cmp sorter
+    use {'hrsh7th/nvim-cmp', -- completion engine
+          requires = {
+            'hrsh7th/cmp-nvim-lsp', -- cmp lsp support
+            'hrsh7th/cmp-nvim-lua', -- cmp neovim lua api support
+            'hrsh7th/cmp-path', -- cmp path completion support
+            'lukas-reineke/cmp-under-comparator', -- better nvim-cmp sorter
+            'saadparwaiz1/cmp_luasnip', -- lua snippets nvim-cmp support
+    }}
     use 'neovim/nvim-lspconfig' -- lspconfig
     use 'onsails/lspkind-nvim' -- lsp pictograms
     use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
     use 'L3MON4D3/LuaSnip' -- snippets engine
     use 'rafamadriz/friendly-snippets' -- additional snippets
-    use 'saadparwaiz1/cmp_luasnip' -- lua snippets nvim-cmp support
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -90,9 +92,11 @@ return require('packer').startup({function(use)
     use 'nathom/filetype.nvim' -- faster filetype alternative
     use 'neg-serg/neg' -- my pure-dark neovim colorscheme
     use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
-    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'} -- better highlight
-    use 'p00f/nvim-ts-rainbow' -- treesitter-based rainbow
-    use 'RRethy/nvim-treesitter-endwise' -- ts-based endwise
+    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate',  -- better highlight
+          requires = {
+            'p00f/nvim-ts-rainbow', -- treesitter-based rainbow
+            'RRethy/nvim-treesitter-endwise', -- ts-based endwise
+    }}
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}} -- fancy webicons
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
