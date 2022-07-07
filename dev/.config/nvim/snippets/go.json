@@ -1,0 +1,26 @@
+{
+  "select": {
+    "prefix": "select",
+    "description": "Select statement",
+    "body": [
+      "select {",
+      "case$0",
+      "\\}"
+    ]
+  },
+  "map": {
+    "prefix": "map",
+    "description": "Map type",
+    "body": "map[${1:keytype}]${2:valtype}"
+  },
+  ":": {
+    "prefix": ":",
+    "description": "Variable declaration :=",
+    "body": "${1:name} := ${0:value}"
+  },
+  "json": {
+    "prefix": "json",
+    "description": "JSON field",
+    "body": "`json:\"${1:displayName}\"`"
+  }
+}

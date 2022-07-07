@@ -1,0 +1,7 @@
+{
+  "req": {
+    "prefix": "req",
+    "description": "require",
+    "body": "const $1 = require('$2${3:$1}')"
+  }
+}

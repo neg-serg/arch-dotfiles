@@ -1,0 +1,36 @@
+{
+  "#!": {
+    "prefix": "#!",
+    "description": "Shebang header",
+    "body": [
+      "#!/usr/bin/env lua",
+      "$0"
+    ],
+    "luasnip": {
+      "priority": -50
+    }
+  },
+  "forp": {
+    "prefix": "forp",
+    "description": "pair for loop",
+    "body": [
+      "for ${1:name},${2:val} in pairs(${3:table_name}) do",
+      "\t$0",
+      "end"
+    ]
+  },
+  "fori": {
+    "prefix": "fori",
+    "description": "ipair for foop",
+    "body": [
+      "for ${1:idx},${2:val} in ipairs(${3:table_name}) do",
+      "\t$0",
+      "end"
+    ]
+  },
+  "local": {
+    "prefix": "local",
+    "description": "local x = 1",
+    "body": "local ${1:x} = ${0:1}"
+  }
+}

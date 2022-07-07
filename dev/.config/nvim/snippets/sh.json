@@ -1,0 +1,60 @@
+{
+  "case": {
+    "prefix": "case",
+    "description": "case .. esac (case)",
+    "body": [
+      "case ${1:word} in",
+      "\t${2:pattern} )",
+      "\t\t$0;;",
+      "esac"
+    ]
+  },
+  "elif": {
+    "prefix": "elif",
+    "description": "elif .. (elif)",
+    "body": [
+      "elif ${2:[[ ${1:condition} ]]}; then",
+      "\t${0:#statements}"
+    ]
+  },
+  "for": {
+    "prefix": "for",
+    "description": "for ... done (for)",
+    "body": [
+      "for (( i = 0; i < ${1:10}; i++ )); do",
+      "\t${0:#statements}",
+      "done"
+    ]
+  },
+  "dirname": {
+    "prefix": "dirname",
+    "description": "current directory name",
+    "body": "__dirname=\"\\$( cd \"\\$( dirname \"\\${BASH_SOURCE[0]\\}\" )\" >/dev/null 2>&1 && pwd )\""
+  },
+  "if": {
+    "prefix": "if",
+    "description": "if [[ ]]",
+    "body": [
+      "if [[ ${1:expr} ]]; then",
+      "fi"
+    ]
+  },
+  "until": {
+    "prefix": "until",
+    "description": "until ... (done)",
+    "body": [
+      "until ${2:[[ ${1:condition} ]]}; do",
+      "\t${0:#statements}",
+      "done"
+    ]
+  },
+  "while": {
+    "prefix": "while",
+    "description": "while ... (done)",
+    "body": [
+      "while ${2:[[ ${1:condition} ]]}; do",
+      "\t${0:#statements}",
+      "done"
+    ]
+  }
+}
