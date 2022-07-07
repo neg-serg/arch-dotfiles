@@ -66,7 +66,7 @@ vim.opt.iminsert = 0                                         -- Write latin1 cha
 vim.opt.imsearch = 0                                         -- Search with latin1 characters first
 vim.opt.inccommand = 'nosplit'                               -- Better live substitution
 vim.cmd('set isfname+={,}')                                  -- Scan in filenames in such brackets
-vim.opt.jumpoptions = 'view'                                 -- Try to restore the |mark-view| in which the action occurred
+vim.opt.jumpoptions = 'stack'                                -- Stack jumpoptions
 vim.opt.linespace = 0                                        -- No extra spaces between rows
 vim.opt.matchtime = 0                                        -- Default time to hi brackets too long for me
 vim.opt.matchpairs:append '<:>'                              -- More matchpairs
