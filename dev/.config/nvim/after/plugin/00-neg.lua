@@ -1,6 +1,6 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ neg-serg/neg                                                                 │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-if _G.packer_plugins["neg"] and _G.packer_plugins["neg"].loaded then
-    require'neg' -- my pure-dark neovim colorscheme
+if _G.packer_plugins["neg.nvim"] and _G.packer_plugins["neg.nvim"].loaded then
+    require("neg").colorscheme()
 end

@@ -183,10 +183,10 @@ _G.packer_plugins = {
     path = "/home/neg/.local/share/nvim/site/pack/packer/opt/mkdir.nvim",
     url = "https://github.com/jghauser/mkdir.nvim"
   },
-  neg = {
+  ["neg.nvim"] = {
     loaded = true,
-    path = "/home/neg/.local/share/nvim/site/pack/packer/start/neg",
-    url = "https://github.com/neg-serg/neg"
+    path = "/home/neg/.local/share/nvim/site/pack/packer/start/neg.nvim",
+    url = "https://github.com/neg-serg/neg.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,

@@ -89,7 +89,7 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'nathom/filetype.nvim' -- faster filetype alternative
-    use 'neg-serg/neg' -- my pure-dark neovim colorscheme
+    use 'neg-serg/neg.nvim' -- my pure-dark neovim colorscheme
     use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate',  -- better highlight
           requires = {
