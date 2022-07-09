@@ -3,10 +3,6 @@ local g = vim.g
 local a = vim.api
 api = vim.api
 
-function _G.nvim_set_au(au_type, where, dispatch)
-    vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
-end
-
 function _G.map(mod, lhs, rhs, opt)
     a.nvim_set_keymap(mod, lhs, rhs, opt or {})
 end
@@ -14,7 +10,6 @@ end
 local M = {}
 
 function M.sudo_exec(cmd, print_output)
-    -- vim.api_nvim_set_keymap('c', 'w!!', "<esc>:lua require'utils'.sudo_write()<CR>", { silent = true })
     local password = vim.fn.inputsecret("Password: ")
     if not password or #password == 0 then
         M.warn("Invalid password, sudo aborted")
@@ -46,7 +41,7 @@ end
     vim.api.nvim_exec(string.format("write! %s", tmpfile), true)
     if M.sudo_exec(cmd) then
         M.info(string.format('\r\n"%s" written', filepath))
-        vim.cmd("e!")
+        vim.api.nvim_cmd({cmd='e!', args={}}, {})
     end
     vim.fn.delete(tmpfile)
 end

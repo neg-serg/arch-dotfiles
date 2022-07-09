@@ -65,7 +65,7 @@ vim.opt.ignorecase = true                                    -- Case insensitive
 vim.opt.iminsert = 0                                         -- Write latin1 characters first
 vim.opt.imsearch = 0                                         -- Search with latin1 characters first
 vim.opt.inccommand = 'nosplit'                               -- Better live substitution
-vim.cmd('set isfname+={,}')                                  -- Scan in filenames in such brackets
+vim.opt.isfname:append {','}                                 -- Scan in filenames in such brackets
 vim.opt.jumpoptions = 'stack'                                -- Stack jumpoptions
 vim.opt.linespace = 0                                        -- No extra spaces between rows
 vim.opt.matchtime = 0                                        -- Default time to hi brackets too long for me

@@ -1,30 +1,30 @@
-vim.cmd "cabbrev W w"
-vim.cmd "cabbrev W! w!"
-vim.cmd "cnoreabbrev Bd bd"
-vim.cmd "cnoreabbrev Cp cp"
-vim.cmd "cnoreabbrev E e"
-vim.cmd "cnoreabbrev gb Telescope git_branches"
-vim.cmd "cnoreabbrev gca Git commit --amend -v"
-vim.cmd "cnoreabbrev gcc Git checkout"
-vim.cmd "cnoreabbrev gc Git commit -v -m"
-vim.cmd "cnoreabbrev gd Gvdiff"
-vim.cmd "cnoreabbrev gl Telescope git_commits"
-vim.cmd "cnoreabbrev gmv Gmove"
-vim.cmd "cnoreabbrev gp Gpush"
-vim.cmd "cnoreabbrev grm Gremove"
-vim.cmd "cnoreabbrev gs Telescope git_status"
-vim.cmd "cnoreabbrev mkdir Mkdir"
-vim.cmd "cnoreabbrev QA qa"
-vim.cmd "cnoreabbrev QA! qa!"
-vim.cmd "cnoreabbrev Q q"
-vim.cmd "cnoreabbrev Q! q!"
-vim.cmd "cnoreabbrev Sp sp"
-vim.cmd "cnoreabbrev T Telescope"
-vim.cmd "cnoreabbrev VS vs"
-vim.cmd "cnoreabbrev wQ wq"
-vim.cmd "cnoreabbrev Wq wq"
-vim.cmd "cnoreabbrev WQ wq"
-vim.cmd "cnoreabbrev W w"
+vim.api.nvim_cmd({cmd='cabbrev', args={'W', 'w'}}, {})
+vim.api.nvim_cmd({cmd='cabbrev', args={'W!', 'w!'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'Bd', 'bd'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'Cp', 'cp'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'E', 'e'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gb', 'Telescope git_branches'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gca', 'Git commit --amend -v'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gcc', 'Git checkout'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gc', 'Git commit -v -m'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gd', 'Gvdiff'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gl', 'Telescope git_commits'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gmv', 'Gmove'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gp', 'Gpush'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'grm', 'Gremove'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'gs', 'Telescope git_status'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'mkdir', 'Mkdir'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'QA', 'qa'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'QA!', 'qa!'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'Q', 'q'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'Q!', 'q!'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'Sp', 'sp'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'T', 'Telescope'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'VS', 'vs'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'wQ', 'wq'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'Wq', 'wq'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'WQ', 'wq'}}, {})
+vim.api.nvim_cmd({cmd='cnoreabbrev', args={'W', 'w'}}, {})
 
 vim.api.nvim_exec([[
 function! CCR()
