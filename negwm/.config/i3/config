@@ -107,6 +107,9 @@ bindsym Mod4+h focus left
 bindsym Mod4+l focus right
 bindsym Mod4+k focus up
 
+bindsym Mod4+Shift+bracketleft move workspace to output left
+bindsym Mod4+Shift+bracketright move workspace to output right
+
 bindsym Mod4+apostrophe  reload
 bindsym Mod4+Shift+apostrophe  restart
 
