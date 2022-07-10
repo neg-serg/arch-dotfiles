@@ -28,7 +28,8 @@ return require('packer').startup({function(use)
     use {'jghauser/mkdir.nvim', config=[[require('mkdir')]], event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use {'nvim-telescope/telescope.nvim', requires={
+    use {'nvim-telescope/telescope.nvim',
+        requires={
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-fzy-native.nvim',
         {"nvim-telescope/telescope-frecency.nvim", requires={"tami5/sqlite.lua"}}
@@ -42,7 +43,7 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'folke/trouble.nvim', requires="kyazdani42/nvim-web-devicons"}
     use {'hrsh7th/nvim-cmp', -- completion engine
-          requires = {
+        requires = {
             'hrsh7th/cmp-nvim-lsp', -- cmp lsp support
             'hrsh7th/cmp-nvim-lua', -- cmp neovim lua api support
             'hrsh7th/cmp-path', -- cmp path completion support
@@ -92,7 +93,7 @@ return require('packer').startup({function(use)
     use 'neg-serg/neg.nvim' -- my pure-dark neovim colorscheme
     use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate',  -- better highlight
-          requires = {
+        requires = {
             'p00f/nvim-ts-rainbow', -- treesitter-based rainbow
             'RRethy/nvim-treesitter-endwise', -- ts-based endwise
     }}
