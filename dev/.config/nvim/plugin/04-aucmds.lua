@@ -22,11 +22,25 @@ au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='source <afile> | Pack
 au({'BufEnter'}, {command='set noreadonly', group=main})
 au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber', group=main})
 au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
-au({'BufReadPost'}, {command=[[
-    if line("'\"") > 1 && line("'\"") <= line("$") |
-        exe "normal! g'\"" |
-    endif ]],
-    group=main
+au("BufReadPost", {
+  group = main,
+  desc = "auto line return",
+  callback = function()
+    vim.api.nvim_create_autocmd("FileType", {
+        buffer = 0,
+        once = true,
+        callback = function()
+            local types = _t({"nofile", "fugitive", "gitcommit", "gitrebase", "commit", "rebase", })
+            if vim.fn.expand("%") == "" or types:contains(vim.bo.filetype) then
+                return
+            end
+            local line = vim.fn.line
+            if line([['"]]) > 0 and line([['"]]) <= line("$") then
+                vim.api.nvim_command("normal! " .. [[g`"zv']])
+            end
+        end,
+    })
+  end,
 })
 
 -- Clear search context when entering insert mode, which implicitly stops the

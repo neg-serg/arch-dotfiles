@@ -19,6 +19,7 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
+vim.g.netrw_banner = 0 -- Do not show netrw banner
 if vim.fn.executable('ugrep') == 1 then
     vim.o.grepprg="ugrep -RInk -j -u --tabs=1 --ignore-files"
     vim.o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
@@ -58,6 +59,7 @@ vim.opt.cinoptions = 'b1,g0,N-s,t0,(0,W4'                    -- See :h cinoption
 vim.opt.clipboard = 'unnamedplus'                            -- Always clipboard all operations
 vim.opt.copyindent = true                                    -- Copy the previous indentation on autoindenting
 vim.opt.diffopt:append {'internal','algorithm:patience'}     -- Better diff algorithm
+vim.opt.diffopt:append("indent-heuristic")                   -- Use the indent heuristic for the internal diff library.
 vim.opt.eadirection = 'hor'                                  -- Ver/hor/both - where does equalalways apply
 vim.opt.expandtab = true                                     -- Tabs are spaces = not tabs
 vim.opt.fileencodings = 'utf-8,default'                      -- Less file encodings

@@ -10,18 +10,21 @@ if not present then
         error("Couldn't clone packer !\nPacker path: " .. packer_path .. "\n" .. packer)
     end
 end
-
+vim.api.nvim_cmd({cmd='packadd', args={'packer.nvim'}}, {})
 return require('packer').startup({function(use)
-    use 'wbthomason/packer.nvim' -- lazy packer
+    use {'wbthomason/packer.nvim', event='VimEnter'} -- lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'lewis6991/impatient.nvim' -- faster loading
-    use 'dstein64/vim-startuptime' -- startup time measurement
+    use 'nathom/filetype.nvim' -- faster filetype alternative
+    use {'dstein64/vim-startuptime', cmd='StartupTime'} -- startup time measurement
     use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'kyazdani42/nvim-web-devicons', event='UIEnter'} -- better icons
+    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}, event='UIEnter'} -- fancy webicons
     use 'neg-serg/NeoRoot.lua' -- autochdir for project root or for current dir
     use 'ghillb/cybu.nvim' -- fancy menu changing
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
@@ -35,7 +38,11 @@ return require('packer').startup({function(use)
         {"nvim-telescope/telescope-frecency.nvim", requires={"tami5/sqlite.lua"}}
     }}
     use 'haya14busa/vim-asterisk' -- smartcase star
-    use 'gelguy/wilder.nvim' -- better cmdline menu
+    use {'gelguy/wilder.nvim',
+        config=function() require('cfg.wilder') end,
+        run=":UpdateRemotePlugins",
+        event="VimEnter",
+    } -- better cmdline menu
     use 'romgrk/fzy-lua-native' -- fzy native lua integration
     use({"nvim-lualine/lualine.nvim", requires={"arkav/lualine-lsp-progress"} })
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -61,11 +68,20 @@ return require('packer').startup({function(use)
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use 'lervag/vimtex' -- modern TeX support
-    use {'lewis6991/gitsigns.nvim', after='plenary.nvim'} -- async gitsigns
+    use {'lewis6991/gitsigns.nvim',
+        requires='plenary.nvim',
+        config=function() require("cfg.gitsigns") end,
+        event={"BufNewFile","BufRead"},
+    } -- async gitsigns
     use 'numToStr/Comment.nvim' -- commenter plugin
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', cmd={'Dispatch','Make','Focus','Start'}} -- provide async build
-    use {'windwp/nvim-autopairs'} -- super powerful autopairs
+    use {'windwp/nvim-autopairs',
+        wants="nvim-cmp",
+        config=function() require("cfg.autopairs") end,
+        event={"InsertEnter"},
+    } -- super powerful autopairs
+    use({ "willchao612/vim-diagon", cmd = "Diagon"}) -- creates diagrams from text. Requires diagon from snap.
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -78,18 +94,24 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'andymass/vim-matchup' -- generic matcher
+    use {'andymass/vim-matchup',
+        config=function() require("cfg.matchup") end,
+        event = {"BufRead", "BufNewFile"},
+    }
+    -- generic matcher
     use 'FooSoft/vim-argwrap' -- vim arg wrapper
-    use 'junegunn/vim-easy-align' -- use easy-align, instead of tabular
+    use {'junegunn/vim-easy-align',
+        config=function() require('cfg.vim-easy-align') end,
+        keys={'ga'},
+    } -- use easy-align, instead of tabular
     use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
     use 'svermeulen/vim-NotableFt' -- better f-t-bindings
-    use 'tpope/vim-repeat' -- dot for surround
+    use {'tpope/vim-repeat', event={"BufRead","BufNewFile"}} -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
     use 'wellle/targets.vim' -- new text objects
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'nathom/filetype.nvim' -- faster filetype alternative
     use 'neg-serg/neg.nvim' -- my pure-dark neovim colorscheme
     use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate',  -- better highlight
@@ -98,7 +120,6 @@ return require('packer').startup({function(use)
             'RRethy/nvim-treesitter-endwise', -- ts-based endwise
     }}
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
-    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}} -- fancy webicons
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
