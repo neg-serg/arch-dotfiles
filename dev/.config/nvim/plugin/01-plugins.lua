@@ -12,7 +12,7 @@ if not present then
 end
 vim.api.nvim_cmd({cmd='packadd', args={'packer.nvim'}}, {})
 return require('packer').startup({function(use)
-    use {'wbthomason/packer.nvim', event='VimEnter'} -- lazy packer
+    use {'wbthomason/packer.nvim', event='VimEnter', opt=true} -- lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -93,7 +93,7 @@ return require('packer').startup({function(use)
             {"rcarriga/nvim-dap-ui"},
             {"theHamsta/nvim-dap-virtual-text"},  -- virtual debugging text support
         },
-        config=function() require("settings.nvim-dap") end,
+        config=function() require("cfg.nvim-dap") end,
         after={"nvim-dap-ui","nvim-dap-virtual-text"},
         event={"BufNewFile","BufRead" },
     }
