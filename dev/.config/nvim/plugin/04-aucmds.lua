@@ -8,6 +8,21 @@ local hi_yank = gr("hi_yank", {clear=true})
 local cursor_line = gr("cursor_line", {clear=true})
 local statusline = gr("statusline", {clear=true})
 
+local function restore_cursor()
+    au({"FileType"}, { buffer=0, once=true,
+        callback = function()
+            local types = {"nofile", "fugitive", "gitcommit", "gitrebase", "commit", "rebase", }
+            if vim.fn.expand("%") == "" or types[vim.bo.filetype] ~= nil then
+                return
+            end
+            local line = vim.fn.line
+            if line([['"]]) > 0 and line([['"]]) <= line("$") then
+                vim.api.nvim_command("normal! " .. [[g`"zv']])
+            end
+        end,
+    })
+end
+
 au({'Filetype'}, {command='setlocal formatoptions-=c formatoptions-=r formatoptions-=o', group=main})
 au({'FocusGained','BufEnter','FileChangedShell','WinEnter'}, {command='checktime', group=main})
 -- Disables automatic commenting on newline:
@@ -22,26 +37,7 @@ au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='source <afile> | Pack
 au({'BufEnter'}, {command='set noreadonly', group=main})
 au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber', group=main})
 au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
-au("BufReadPost", {
-    group = main,
-    desc = "auto line return",
-    callback = function()
-        vim.api.nvim_create_autocmd("FileType", {
-            buffer = 0,
-            once = true,
-            callback = function()
-                local types = {"nofile", "fugitive", "gitcommit", "gitrebase", "commit", "rebase", }
-                if vim.fn.expand("%") == "" or types[vim.bo.filetype] ~= nil then
-                    return
-                end
-                local line = vim.fn.line
-                if line([['"]]) > 0 and line([['"]]) <= line("$") then
-                    vim.api.nvim_command("normal! " .. [[g`"zv']])
-                end
-            end,
-        })
-    end,
-})
+au({"BufReadPost"}, {callback=restore_cursor, group=main, desc="auto line return"})
 
 -- Clear search context when entering insert mode, which implicitly stops the
 -- highlighting of whatever was searched for with hlsearch on. It should also
