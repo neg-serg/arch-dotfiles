@@ -104,6 +104,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use 'tommcdo/vim-exchange'
     use {'andymass/vim-matchup',
         config=function() require("cfg.matchup") end,
         event = {"BufRead", "BufNewFile"},
