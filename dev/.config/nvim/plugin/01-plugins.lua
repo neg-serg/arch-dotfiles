@@ -26,9 +26,12 @@ return require('packer').startup({function(use)
     use {'kyazdani42/nvim-web-devicons', event='UIEnter'} -- better icons
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}, event='UIEnter'} -- fancy webicons
     use 'neg-serg/NeoRoot.lua' -- autochdir for project root or for current dir
-    use 'ghillb/cybu.nvim' -- fancy menu changing
+    use {'ghillb/cybu.nvim', -- fancy menu changing
+         config=function() require('cfg.cybu') end,
+         keys={'<Tab>', '<S-Tab>'},
+    }
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use {'jghauser/mkdir.nvim', config=[[require('mkdir')]], event='BufWritePre'}
+    use {'jghauser/mkdir.nvim', config=function() require('mkdir') end, event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim',
@@ -83,7 +86,7 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
-    use 'lervag/vimtex' -- modern TeX support
+    use {'lervag/vimtex', ft={'tex','latex'}} -- modern TeX support
     use {'numToStr/Comment.nvim',
         config=function() require("cfg.comment") end,
         event={"BufNewFile","BufRead"},
@@ -115,7 +118,7 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'tommcdo/vim-exchange'
+    use 'tommcdo/vim-exchange' -- experiment with exchange
     use {'andymass/vim-matchup',
         config=function() require("cfg.matchup") end,
         event = {"BufRead","BufNewFile"},
