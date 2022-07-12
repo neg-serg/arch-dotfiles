@@ -51,28 +51,39 @@ return require('packer').startup({function(use)
     use {'folke/trouble.nvim', requires="kyazdani42/nvim-web-devicons"}
     use {'hrsh7th/nvim-cmp', -- completion engine
         requires = {
-            'hrsh7th/cmp-nvim-lsp', -- cmp lsp support
-            'hrsh7th/cmp-nvim-lua', -- cmp neovim lua api support
-            'hrsh7th/cmp-path', -- cmp path completion support
-            'lukas-reineke/cmp-under-comparator', -- better nvim-cmp sorter
-            'saadparwaiz1/cmp_luasnip', -- lua snippets nvim-cmp support
+            {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
+            {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}, -- cmp neovim lua api support
+            {'hrsh7th/cmp-path', after='nvim-cmp'}, -- cmp path completion support
+            {'lukas-reineke/cmp-under-comparator', after='nvim-cmp'}, -- better nvim-cmp sorter
+            {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
+            {'L3MON4D3/LuaSnip', -- snippets engine
+                requires='rafamadriz/friendly-snippets', -- additional snippets'
+                config=function() require('cfg.luasnip') end,
+                event={"BufRead","BufNewFile","InsertEnter"}
+            },
+            {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'}, -- lua snippets nvim-cmp support
+            after={'LuaSnip','nvim-treesitter'},
+            config=function() require("cfg.cmp") end,
+            event={"BufRead","BufNewFile","InsertEnter"}
     }}
-    use 'neovim/nvim-lspconfig' -- lspconfig
     use 'onsails/lspkind-nvim' -- lsp pictograms
-    use 'williamboman/nvim-lsp-installer' -- lsp-servers autoinstaller
-    use 'L3MON4D3/LuaSnip' -- snippets engine
-    use 'rafamadriz/friendly-snippets' -- additional snippets
+    use {'williamboman/nvim-lsp-installer', -- lsp-servers autoinstaller
+        'neovim/nvim-lspconfig', -- lspconfig
+        config=function()
+            require("cfg.lsp_installer")
+            require("cfg.lsp")
+        end,
+        wants={"nvim-cmp"},
+        event={"BufRead","BufNewFile","InsertEnter"},
+        after={"nvim-lspconfig","nvim-cmp","cmp-nvim-lsp"},
+        cmd="LspInstallInfo"
+    }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use 'lervag/vimtex' -- modern TeX support
-    use {'lewis6991/gitsigns.nvim',
-        requires='plenary.nvim',
-        config=function() require("cfg.gitsigns") end,
-        event={"BufNewFile","BufRead"},
-    } -- async gitsigns
     use {'numToStr/Comment.nvim',
         config=function() require("cfg.comment") end,
         event={"BufNewFile","BufRead"},
@@ -88,15 +99,15 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {"mfussenegger/nvim-dap", -- neovim debugger protocol support
-        requires = {
-            {"rcarriga/nvim-dap-ui"},
-            {"theHamsta/nvim-dap-virtual-text"},  -- virtual debugging text support
-        },
-        config=function() require("cfg.nvim-dap") end,
-        after={"nvim-dap-ui","nvim-dap-virtual-text"},
-        event={"BufNewFile","BufRead" },
-    }
+    -- use {"mfussenegger/nvim-dap", -- neovim debugger protocol support
+    --     requires = {
+    --         {"rcarriga/nvim-dap-ui"},
+    --         {"theHamsta/nvim-dap-virtual-text"},  -- virtual debugging text support
+    --     },
+    --     config=function() require("cfg.nvim-dap") end,
+    --     after={"nvim-dap-ui","nvim-dap-virtual-text"},
+    --     event={"BufNewFile","BufRead" },
+    -- }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -107,7 +118,7 @@ return require('packer').startup({function(use)
     use 'tommcdo/vim-exchange'
     use {'andymass/vim-matchup',
         config=function() require("cfg.matchup") end,
-        event = {"BufRead", "BufNewFile"},
+        event = {"BufRead","BufNewFile"},
     }
     -- generic matcher
     use 'FooSoft/vim-argwrap' -- vim arg wrapper
@@ -124,18 +135,29 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'neg-serg/neg.nvim' -- my pure-dark neovim colorscheme
-    use 'nvim-treesitter/nvim-treesitter-refactor' -- refactor modules for ts
-    use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate',  -- better highlight
+    use {'nvim-treesitter/nvim-treesitter',
+        cmd="TSUpdate",
+        event={"BufRead","BufNewFile","InsertEnter"},
+        run=':TSUpdate',  -- better highlight
+        config=function() require("cfg.treesitter") end,
         requires = {
             'p00f/nvim-ts-rainbow', -- treesitter-based rainbow
             'RRethy/nvim-treesitter-endwise', -- ts-based endwise
+            'nvim-treesitter/nvim-treesitter-refactor', -- refactor modules for ts
     }}
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'akinsho/git-conflict.nvim'
-    use {'sindrets/diffview.nvim', cmd={'DiffviewOpen'}, config=[[require("diffview").setup()]], opt=true} -- diff view for multiple files
+    use {'sindrets/diffview.nvim', -- diff view for multiple files
+        cmd={'DiffviewOpen'}, config=function() require("diffview").setup() end, opt=true
+    }
+    use {'lewis6991/gitsigns.nvim',
+        requires='plenary.nvim',
+        config=function() require("cfg.gitsigns") end,
+        event={"BufNewFile","BufRead"},
+    } -- async gitsigns
 end,
     config={
         display={
@@ -149,117 +171,3 @@ end,
         profile = {enable = true, threshold = 0.0001},
     }
 })
-
--- -- Programming {{{
---     -- LSP {{{
---     use({
---       "williamboman/nvim-lsp-installer",
---       {
---         "neovim/nvim-lspconfig",
---         config = function()
---           require("settings.lsp_installer")
---           require("settings.lsp")
---         end,
---         wants = { "nvim-cmp", "lua-dev.nvim", "null-ls.nvim" },
---         event = { "BufRead", "BufNewFile", "InsertEnter" },
---         cond  = { full_start },
---       },
---       after = {
---         "nvim-lspconfig",
---         "nvim-cmp",
---         "cmp-nvim-lsp",
---         "null-ls.nvim",
---       },
---       cmd  = "LspInstallInfo",
---       cond = full_start,
---     })
--- -- Programming {{{
---     -- LSP {{{
---     use({
---       "williamboman/nvim-lsp-installer",
---       {
---         "neovim/nvim-lspconfig",
---         config = function()
---           require("settings.lsp_installer")
---           require("settings.lsp")
---         end,
---         wants = { "nvim-cmp", "lua-dev.nvim", "null-ls.nvim" },
---         event = { "BufRead", "BufNewFile", "InsertEnter" },
---         cond  = { full_start },
---       },
---       after = {
---         "nvim-lspconfig",
---         "nvim-cmp",
---         "cmp-nvim-lsp",
---         "null-ls.nvim",
---       },
---       cmd  = "LspInstallInfo",
---       cond = full_start,
---     })
---
---     -- CMP {{{
---     use({
---       "hrsh7th/nvim-cmp",
---       requires = {
---         { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
---         { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
---         { "hrsh7th/cmp-buffer",   after = "nvim-cmp" },
---         { "hrsh7th/cmp-path",     after = "nvim-cmp" },
---         { "hrsh7th/cmp-cmdline",  after = "nvim-cmp" },
---         { "hrsh7th/cmp-calc",     after = "nvim-cmp" },
---         { "lukas-reineke/cmp-rg", after = "nvim-cmp" },
---         { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
---         {
---           "L3MON4D3/LuaSnip",
---           requires = "rafamadriz/friendly-snippets",
---           config   = function() require("settings.luasnip") end,
---           event    = { "BufRead", "BufNewFile", "InsertEnter" },
---           cond     = full_start,
---         },
---         { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
---       },
---       after  = { "LuaSnip", "nvim-treesitter" } ,
---       config = function() require("settings.cmp") end,
---       event = { "BufRead", "BufNewFile", "InsertEnter" },
---       cond   = full_start,
---     })
---     -- }}}
---
---     -- Treesitter {{{
---     use({
---       "nvim-treesitter/nvim-treesitter",
---       requires = {
---         {
---           "nvim-treesitter/nvim-treesitter-textobjects",
---           after = "nvim-treesitter",
---           -- This is actually the nvim-treesitter config, but it's
---           -- here to make lazy loading happy.
---           config = function() require("settings.treesitter") end,
---         },
---         {
---           "nvim-treesitter/nvim-treesitter-refactor",
---           after  = "nvim-treesitter",
---           config = function() require("settings.treesitter_refactor") end,
---         },
---         {
---           "David-Kunz/treesitter-unit",
---           after  = "nvim-treesitter",
---           config = function() require("settings.treesitter_unit") end,
---         },
---         {
---           "nvim-treesitter/playground",
---           after = "nvim-treesitter",
---           run   = ":TSInstall query",
---           cmd   = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
---           cond  = full_start,
---         },
---         {
---           "JoosepAlviste/nvim-ts-context-commentstring",
---           after    = "nvim-treesitter",
---         },
---       },
---       run = ":TSUpdate",
---       cmd = "TSUpdate",
---       event = { "BufRead", "BufNewFile", "InsertEnter" },
---     })
---

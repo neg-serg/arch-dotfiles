@@ -3,11 +3,23 @@
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 require('gitsigns').setup {
     signs = {
-        add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-        change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-        delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-        topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-        changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+        add          = {hl = 'GitSignsAdd'   , text = '│', show_count = true, numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+        change       = {hl = 'GitSignsChange', text = '│', show_count = true, numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+        delete       = {hl = 'GitSignsDelete', text = '_', show_count = true, numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+        topdelete    = {hl = 'GitSignsDelete', text = '‾', show_count = true, numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+        changedelete = {hl = 'GitSignsChange', text = '~', show_count = true, numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    },
+    count_chars = {
+        [1] = "",
+        [2] = "₂",
+        [3] = "₃",
+        [4] = "₄",
+        [5] = "₅",
+        [6] = "₆",
+        [7] = "₇",
+        [8] = "₈",
+        [9] = "₉",
+        ["+"] = "₊",
     },
     numhl = false,
     linehl = false,
@@ -22,5 +34,5 @@ require('gitsigns').setup {
     sign_priority = 6,
     update_debounce = 100,
     status_formatter = nil, -- Use default
-    diff_opts = { algorithm = "histogram", internal = true, indent_heuristic = true, },
+    diff_opts = { algorithm="patience", internal=true, indent_heuristic=true,},
 }
