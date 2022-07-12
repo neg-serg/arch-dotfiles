@@ -24,7 +24,10 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kyazdani42/nvim-web-devicons', event='UIEnter'} -- better icons
-    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'}, event='UIEnter'} -- fancy webicons
+    use {'yamatsum/nvim-nonicons',
+        requires={'kyazdani42/nvim-web-devicons'},
+        after='nvim-web-devicons',
+        event='UIEnter'} -- fancy webicons
     use 'neg-serg/NeoRoot.lua' -- autochdir for project root or for current dir
     use {'ghillb/cybu.nvim', -- fancy menu changing
          config=function() require('cfg.cybu') end,
@@ -144,12 +147,12 @@ return require('packer').startup({function(use)
         run=':TSUpdate',  -- better highlight
         config=function() require("cfg.treesitter") end,
         requires = {
-            {"nvim-treesitter/nvim-treesitter-textobjects",
-                after="nvim-treesitter",
-                config=function() require("cfg.treesitter") end,},
-            'p00f/nvim-ts-rainbow', -- treesitter-based rainbow
-            'RRethy/nvim-treesitter-endwise', -- ts-based endwise
-            'nvim-treesitter/nvim-treesitter-refactor', -- refactor modules for ts
+            {'nvim-treesitter/nvim-treesitter-textobjects',
+                after='nvim-treesitter',
+                config=function() require('cfg.treesitter') end,},
+            {'p00f/nvim-ts-rainbow', after='nvim-treesitter'}, -- treesitter-based rainbow
+            {'RRethy/nvim-treesitter-endwise', after='nvim-treesitter'}, -- ts-based endwise
+            {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'} -- refactor modules for ts
     }}
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
