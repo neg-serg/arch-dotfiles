@@ -141,6 +141,9 @@ return require('packer').startup({function(use)
         run=':TSUpdate',  -- better highlight
         config=function() require("cfg.treesitter") end,
         requires = {
+            {"nvim-treesitter/nvim-treesitter-textobjects",
+                after="nvim-treesitter",
+                config=function() require("cfg.treesitter") end,},
             'p00f/nvim-ts-rainbow', -- treesitter-based rainbow
             'RRethy/nvim-treesitter-endwise', -- ts-based endwise
             'nvim-treesitter/nvim-treesitter-refactor', -- refactor modules for ts
