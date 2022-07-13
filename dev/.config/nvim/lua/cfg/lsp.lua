@@ -43,14 +43,12 @@ vim.diagnostic.config({
 })
 
 require('lspconfig').pyright.setup {
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  }
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150}
 }
 
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    vim.fn.sign_define(hl, {text=icon, texthl=hl, numhl=hl})
 end
