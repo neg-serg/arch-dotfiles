@@ -52,10 +52,10 @@ end
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.setup()
 
-nvim_lsp.bashls.setup { on_attach = on_attach }
-nvim_lsp.dockerls.setup { on_attach = on_attach }
 nvim_lsp.pyright.setup { on_attach = on_attach, flags = {debounce_text_changes = 150} }
-nvim_lsp.sumneko_lua.setup { on_attach = on_attach }
-nvim_lsp.tsserver.setup { on_attach = on_attach }
-nvim_lsp.vimls.setup { on_attach = on_attach }
-nvim_lsp.yamlls.setup { on_attach = on_attach }
+-- nvim_lsp.bashls.setup { on_attach = on_attach }
+-- nvim_lsp.dockerls.setup { on_attach = on_attach }
+-- nvim_lsp.sumneko_lua.setup { on_attach = on_attach }
+-- nvim_lsp.tsserver.setup { on_attach = on_attach }
+-- nvim_lsp.vimls.setup { on_attach = on_attach }
+-- nvim_lsp.yamlls.setup { on_attach = on_attach }
