@@ -69,16 +69,18 @@ return require('packer').startup({function(use)
             {'onsails/lspkind-nvim'}, -- lsp pictograms
             {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
         },
-        event={"BufRead","BufNewFile","InsertEnter"}
+        event={"InsertEnter"}
     }
     use {{'L3MON4D3/LuaSnip', -- snippets engine
             requires='rafamadriz/friendly-snippets', -- additional snippets'
             config=function() require('cfg.luasnip') end},
         {'saadparwaiz1/cmp_luasnip', after={'LuaSnip', 'nvim-cmp'}}, -- lua snippets nvim-cmp support
+        event={"InsertEnter"}
     }
     use {'neovim/nvim-lspconfig', -- lsp config
         config=function() require('cfg.lsp') end,
-        requires={'williamboman/nvim-lsp-installer'}
+        requires={'williamboman/nvim-lsp-installer'},
+        event={"InsertEnter"}
     }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
