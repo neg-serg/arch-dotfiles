@@ -54,7 +54,12 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'folke/trouble.nvim', requires="kyazdani42/nvim-web-devicons"}
+    use {'folke/trouble.nvim',
+        requires={'kyazdani42/nvim-web-devicons', after='trouble.nvim'},
+        cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
+        config=function() require'cfg.trouble' end,
+        keys={'<leader>xx'},
+    }
     use {'hrsh7th/nvim-cmp', -- completion engine
         requires = {
             {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
