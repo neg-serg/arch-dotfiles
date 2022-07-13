@@ -40,7 +40,11 @@ return require('packer').startup({function(use)
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-fzy-native.nvim',
             {"nvim-telescope/telescope-frecency.nvim", requires={"tami5/sqlite.lua"}}
-        }}
+        },
+        cmd='Telescope',
+        keys='<leader>.',
+        config=function() require('cfg.telescope') end,
+    }
     use 'haya14busa/vim-asterisk' -- smartcase star
     use {'gelguy/wilder.nvim',
         config=function() require('cfg.wilder') end,
