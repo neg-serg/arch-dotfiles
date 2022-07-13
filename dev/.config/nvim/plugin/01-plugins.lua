@@ -24,10 +24,8 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'kyazdani42/nvim-web-devicons', event='UIEnter'} -- better icons
-    use {'yamatsum/nvim-nonicons',
-        requires={'kyazdani42/nvim-web-devicons'},
-        after='nvim-web-devicons',
-        event='UIEnter'} -- fancy webicons
+    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
+         after='nvim-web-devicons'} -- fancy webicons
     use 'neg-serg/NeoRoot.lua' -- autochdir for project root or for current dir
     use {'ghillb/cybu.nvim', -- fancy menu changing
          config=function() require('cfg.cybu') end,
@@ -58,36 +56,29 @@ return require('packer').startup({function(use)
         requires={'kyazdani42/nvim-web-devicons', after='trouble.nvim'},
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
-        keys={'<leader>xx'},
+        keys={'<leader>xx'}, opt=true
     }
     use {'hrsh7th/nvim-cmp', -- completion engine
-        requires = {
-            {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
-            {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}, -- cmp neovim lua api support
-            {'hrsh7th/cmp-path', after='nvim-cmp'}, -- cmp path completion support
-            {'lukas-reineke/cmp-under-comparator', after='nvim-cmp'}, -- better nvim-cmp sorter
-            {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
-            {'L3MON4D3/LuaSnip', -- snippets engine
-                requires='rafamadriz/friendly-snippets', -- additional snippets'
-                config=function() require('cfg.luasnip') end,
-                event={"BufRead","BufNewFile","InsertEnter"}
-            },
-            {'saadparwaiz1/cmp_luasnip', after='nvim-cmp'}, -- lua snippets nvim-cmp support
-            after={'LuaSnip','nvim-treesitter'},
-            config=function() require("cfg.cmp") end,
-            event={"BufRead","BufNewFile","InsertEnter"}
-    }}
-    use 'onsails/lspkind-nvim' -- lsp pictograms
-    use {'williamboman/nvim-lsp-installer', -- lsp-servers autoinstaller
-        'neovim/nvim-lspconfig', -- lspconfig
-        config=function()
-            require("cfg.lsp_installer")
-            require("cfg.lsp")
-        end,
-        wants={"nvim-cmp"},
-        event={"BufRead","BufNewFile","InsertEnter"},
-        after={"nvim-lspconfig","nvim-cmp","cmp-nvim-lsp"},
-        cmd="LspInstallInfo"
+        config=function() require('cfg.cmp') end,
+        after={'LuaSnip'},
+        requires={
+            {'hrsh7th/cmp-nvim-lsp', after={'nvim-lspconfig'}}, -- cmp lsp support
+            {'hrsh7th/cmp-nvim-lsp-signature-help', after={'nvim-lspconfig'}}, -- experiment with signature-help
+            {'onsails/lspkind-nvim'}, -- lsp pictograms
+            {'hrsh7th/cmp-nvim-lua'}, -- cmp neovim lua api support
+            {'hrsh7th/cmp-path'}, -- cmp path completion support
+            {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
+        },
+        -- event={"BufRead","BufNewFile","InsertEnter"}
+    }
+    use {'neovim/nvim-lspconfig', -- lsp config
+        config=function() require('cfg.lsp') end,
+        requires={'williamboman/nvim-lsp-installer'}
+    }
+    use {{'L3MON4D3/LuaSnip', -- snippets engine
+            requires='rafamadriz/friendly-snippets', -- additional snippets'
+            config=function() require('cfg.luasnip') end},
+        {'saadparwaiz1/cmp_luasnip', after='LuaSnip'}, -- lua snippets nvim-cmp support
     }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
@@ -165,8 +156,8 @@ return require('packer').startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'akinsho/git-conflict.nvim'
     use {'sindrets/diffview.nvim', -- diff view for multiple files
-        cmd={'DiffviewOpen'}, config=function() require("diffview").setup() end, opt=true
-    }
+        cmd={'DiffviewOpen'}, requires={'kyazdani42/nvim-web-devicons','nvim-lua/plenary.nvim'},
+        opt=true}
     use {'lewis6991/gitsigns.nvim',
         requires='plenary.nvim',
         config=function() require("cfg.gitsigns") end,
