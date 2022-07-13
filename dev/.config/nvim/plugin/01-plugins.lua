@@ -62,23 +62,23 @@ return require('packer').startup({function(use)
         config=function() require('cfg.cmp') end,
         after={'LuaSnip'},
         requires={
-            {'hrsh7th/cmp-nvim-lsp', after={'nvim-lspconfig'}}, -- cmp lsp support
-            {'hrsh7th/cmp-nvim-lsp-signature-help', after={'nvim-lspconfig'}}, -- experiment with signature-help
+            {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
+            {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
+            {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}, -- cmp neovim lua api support
+            {'hrsh7th/cmp-path', after='nvim-cmp'}, -- cmp path completion support
             {'onsails/lspkind-nvim'}, -- lsp pictograms
-            {'hrsh7th/cmp-nvim-lua'}, -- cmp neovim lua api support
-            {'hrsh7th/cmp-path'}, -- cmp path completion support
             {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
         },
-        -- event={"BufRead","BufNewFile","InsertEnter"}
-    }
-    use {'neovim/nvim-lspconfig', -- lsp config
-        config=function() require('cfg.lsp') end,
-        requires={'williamboman/nvim-lsp-installer'}
+        event={"BufRead","BufNewFile","InsertEnter"}
     }
     use {{'L3MON4D3/LuaSnip', -- snippets engine
             requires='rafamadriz/friendly-snippets', -- additional snippets'
             config=function() require('cfg.luasnip') end},
-        {'saadparwaiz1/cmp_luasnip', after='LuaSnip'}, -- lua snippets nvim-cmp support
+        {'saadparwaiz1/cmp_luasnip', after={'LuaSnip', 'nvim-cmp'}}, -- lua snippets nvim-cmp support
+    }
+    use {'neovim/nvim-lspconfig', -- lsp config
+        config=function() require('cfg.lsp') end,
+        requires={'williamboman/nvim-lsp-installer'}
     }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
