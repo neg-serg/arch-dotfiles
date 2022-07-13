@@ -55,9 +55,7 @@ cmp.setup({
         {name = 'luasnip'},
         {name = 'nvim_lsp'},
         {name = 'nvim_lua'},
-        {name = 'buffer'},
         {name = 'path'},
-        {name = 'neorg'},
     }),
     sorting = {
         comparators = {
