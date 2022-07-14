@@ -41,6 +41,7 @@ return require('packer').startup({function(use)
     use {'nvim-telescope/telescope.nvim',
         requires={
             'nvim-lua/plenary.nvim',
+            'romgrk/fzy-lua-native', -- fzy native lua integration
             'nvim-telescope/telescope-fzy-native.nvim',
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
         },
@@ -53,7 +54,6 @@ return require('packer').startup({function(use)
         config=function() require('cfg.wilder') end,
         run=':UpdateRemotePlugins',
         event='VimEnter'} -- better cmdline menu
-    use 'romgrk/fzy-lua-native' -- fzy native lua integration
     use({'nvim-lualine/lualine.nvim', requires={'arkav/lualine-lsp-progress'} })
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
