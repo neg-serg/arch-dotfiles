@@ -71,7 +71,8 @@ return require('packer').startup({function(use)
         }, event={'InsertEnter'}}
     use {{'L3MON4D3/LuaSnip', -- snippets engine
             requires='rafamadriz/friendly-snippets', -- additional snippets'
-            config=function() require('cfg.luasnip') end},
+            config=function() require('cfg.luasnip') end,
+            event={"InsertEnter"}},
         {'saadparwaiz1/cmp_luasnip', after={'LuaSnip', 'nvim-cmp'}}, -- lua snippets nvim-cmp support
         event={"InsertEnter"}}
     use {'neovim/nvim-lspconfig', -- lsp config
