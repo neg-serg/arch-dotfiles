@@ -44,8 +44,9 @@ return require('packer').startup({function(use)
             'nvim-telescope/telescope-fzy-native.nvim',
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
         },
-        cmd='Telescope',
-        keys='<leader>.',
+        module='telescope',
+        keys={'<M-b>', '<M-f>', '<M-C-o>', '<M-o>', '<M-d>',
+            '<leader>.', '[Qleader]e', '[Qleader]f', '[Qleader]c'},
         config=function() require('cfg.telescope') end}
     use 'haya14busa/vim-asterisk' -- smartcase star
     use {'gelguy/wilder.nvim',
@@ -76,7 +77,7 @@ return require('packer').startup({function(use)
     use {{'L3MON4D3/LuaSnip', -- snippets engine
             requires='rafamadriz/friendly-snippets', -- additional snippets'
             config=function() require('cfg.luasnip') end,
-            event={"InsertEnter"}},
+            event={"BufRead","BufNewFile","InsertEnter"}},
         {'saadparwaiz1/cmp_luasnip', after={'LuaSnip', 'nvim-cmp'}}, -- lua snippets nvim-cmp support
         event={"InsertEnter"}}
     use {'neovim/nvim-lspconfig', -- lsp config

@@ -67,11 +67,11 @@ require('telescope').setup{
 
 require('telescope').load_extension('fzy_native')
 
-map('n', '<M-b>', '<Cmd>Telescope buffers<CR>')
-map('n', '<M-f>', '<Cmd>Telescope live_grep<CR>')
-map('n', '<M-C-o>', '<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>')
-map('n', '<M-o>', '<Cmd>Telescope lsp_document_symbols<CR>')
-map('n', '<M-d>', '<Cmd>Telescope lsp_document_diagnostics<CR>')
+map('n', '<M-b>', '<Cmd>lua require("telescope").buffers<CR>')
+map('n', '<M-f>', '<Cmd>lua require("telescope").live_grep<CR>')
+map('n', '<M-C-o>', '<Cmd>lua require("telescope").lsp_dynamic_workspace_symbols<CR>')
+map('n', '<M-o>', '<Cmd>lua require("telescope").lsp_document_symbols<CR>')
+map('n', '<M-d>', '<Cmd>lua require("telescope").lsp_document_diagnostics<CR>')
 map('n', "<leader>.", "<Cmd>lua require('telescope').load_extension('frecency'); require('telescope.builtin').oldfiles(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
 map('n', '[Qleader]e', "<Cmd>lua require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
 map('n', '[Qleader]f', "<Cmd>lua require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
