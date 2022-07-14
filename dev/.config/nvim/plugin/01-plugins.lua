@@ -149,7 +149,11 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'akinsho/git-conflict.nvim'
+    use {'akinsho/git-conflict.nvim', -- visualize and resolve git conflicts
+        config=function() require'cfg.gitconflict' end,
+        cmd={'GitConflictChooseOurs', 'GitConflictChooseTheirs', 'GitConflictChooseBoth',
+            'GitConflictChooseNone', 'GitConflictNextConflict', 'GitConflictPrevConflict',
+            'GitConflictListQf'}}
     use {'sindrets/diffview.nvim', -- diff view for multiple files
         cmd={'DiffviewOpen'}, requires={'kyazdani42/nvim-web-devicons','nvim-lua/plenary.nvim'},
         opt=true}
