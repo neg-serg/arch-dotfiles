@@ -17,16 +17,20 @@ return require('packer').startup({function(use)
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'lewis6991/impatient.nvim' -- faster loading
-    use 'nathom/filetype.nvim' -- faster filetype alternative
+    use {'nathom/filetype.nvim',-- faster filetype alternative
+         config=function() require'cfg.filetype' end}
     use {'dstein64/vim-startuptime', cmd='StartupTime'} -- startup time measurement
-    use 'antoinemadec/FixCursorHold.nvim' -- fix cursorhold slowdown
+    use {'antoinemadec/FixCursorHold.nvim', -- fix cursorhold slowdown
+         config=function() vim.g.cursorhold_updatetime = 100 end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'kyazdani42/nvim-web-devicons', event='UIEnter'} -- better icons
+    use {'kyazdani42/nvim-web-devicons', -- better icons
+        config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
          after='nvim-web-devicons'} -- fancy webicons
-    use 'neg-serg/NeoRoot.lua' -- autochdir for project root or for current dir
+    use {'neg-serg/NeoRoot.lua', -- autochdir for project root or for current dir
+         config=function() require'cfg.neoroot' end}
     use {'ghillb/cybu.nvim', -- fancy menu changing
          config=function() require('cfg.cybu') end,
          keys={'<Tab>', '<S-Tab>'}}

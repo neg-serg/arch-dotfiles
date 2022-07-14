@@ -1,6 +1,9 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ antoinemadec/FixCursorHold.nvim                                              │
+-- │ █▓▒░ nyngwang/NeoRoot.lua                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-if _G.packer_plugins["FixCursorHold.nvim"] and _G.packer_plugins["FixCursorHold.nvim"].loaded then
-    vim.g.cursorhold_updatetime = 100
-end
+require('neo-root').setup {
+  CUR_MODE = 1 -- 1 for file/buffer mode, 2 for proj-mode
+}
+vim.cmd'au BufWinEnter * NeoRoot'
+vim.keymap.set('n', '<Space>r', function() vim.cmd('NeoRootSwitchMode') end, NOREF_NOERR_TRUNC)
+vim.keymap.set('n', '<Space>R', function() vim.cmd('NeoRootChange') end, NOREF_NOERR_TRUNC)
