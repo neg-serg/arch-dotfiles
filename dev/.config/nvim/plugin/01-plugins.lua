@@ -98,15 +98,15 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    -- use {'mfussenegger/nvim-dap', -- neovim debugger protocol support
-    --     requires = {
-    --         {'rcarriga/nvim-dap-ui'},
-    --         {'theHamsta/nvim-dap-virtual-text'},  -- virtual debugging text support
-    --     },
-    --     config=function() require('cfg.nvim-dap') end,
-    --     after={'nvim-dap-ui','nvim-dap-virtual-text'},
-    --     event={'BufNewFile','BufRead' },
-    -- }
+    use {'mfussenegger/nvim-dap', -- neovim debugger protocol support
+        requires = {
+            {'rcarriga/nvim-dap-ui'}, -- better ui for nvim-dap
+            {'theHamsta/nvim-dap-virtual-text'},  -- virtual debugging text support
+        },
+        config=function() require('cfg.nvim-dap') end,
+        after={'nvim-dap-ui','nvim-dap-virtual-text'},
+        event={'BufNewFile','BufRead' },
+    }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘

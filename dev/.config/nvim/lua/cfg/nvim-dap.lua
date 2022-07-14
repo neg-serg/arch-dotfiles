@@ -1,83 +1,62 @@
--- ┌───────────────────────────────────────────────────────────────────────────────────┐
--- │ █▓▒░ mfussenegger/nvim-dap                                                        │
--- └───────────────────────────────────────────────────────────────────────────────────┘
-local M = {}
-local vim_fn = vim.fn
-local api = vim.api
-local dap  = require('dap')
-dap.adapters.python = {
-      type = 'executable';
-      command = 'python';
-      args = { '-m', 'debugpy.adapter' };
-}
-dap.configurations.python = {
-  {
-    type = 'python';
-    request = 'launch';
-    name = "Launch file";
-    program = "${file}";
-  },
-}
-dap.adapters.cpp = {
-    type = 'executable',
-    name = "cppdbg",
-    command = "lldb-vscode",
-    args = {},
-    attach = {
-        pidProperty = "processId",
-        pidSelect = "ask"
-    }
-}
+require("dapui").setup()
+local dap = require("dap")
+local dapui = require("dapui")
+local widgets = require("dap.ui.widgets")
 
-local function build_cpp()
-    local file_name = vim_fn.expand('%:p')
-    local file_name_no_extension = vim_fn.expand('%:p:r')
-    vim_fn.system('g++ '..file_name..' -g -std=c++11 -D LOCAL_SYS -o '..file_name_no_extension)
+local function opt(msg)
+    return { desc = "DAP: " .. msg }
 end
 
-dap.configurations.cpp  = {
+-- stylua: ignore start
+vim.keymap.set("n", "<leader>db",  function() dap.toggle_breakpoint() end, opt("breakpoint"))
+vim.keymap.set("n", "<F2>",        function() dap.continue()          end, opt("continue"))
+vim.keymap.set("n", "<F3>",        function() dap.step_into()         end, opt("step into"))
+vim.keymap.set("n", "<F4>",        function() dap.step_over()         end, opt("step over"))
+vim.keymap.set("n", "<F5>",        function() dap.step_out()          end, opt("step out"))
+vim.keymap.set("n", "<leader>dui", function() dapui.toggle()          end, opt("toggle ui"))
+vim.keymap.set("n", "<leader>duh", function() widgets.hover()         end, opt("hover"))
+vim.keymap.set("n", "<leader>duf", function() widgets.centered_float(widgets.scopes) end, opt("float view"))
+-- stylua: ignore end
+
+vim.keymap.set("n", "<leader>dB", function()
+    dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, opt("contitional breakpoint"))
+vim.keymap.set("n", "<leader>dl", function()
+    dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+end, opt("log point message"))
+
+dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+end
+
+dap.listeners.after.event_terminated["dapui_config"] = function()
+    dapui.close()
+end
+
+dap.listeners.after.event_exited["dapui_config"] = function()
+    dapui.close()
+end
+
+dap.configurations.lua = {
     {
-        type = "cpp",
-        name = "run_file",
-        request = "launch",
-        program = function ()
-            build_cpp()
-            return vim_fn.expand('%:p:r')
+        type = "nlua",
+        request = "attach",
+        name = "Attach to running Neovim instance",
+        host = function()
+            local value = vim.fn.input("Host [127.0.0.1]: ")
+            if value ~= "" then
+                return value
+            end
+            return "127.0.0.1"
         end,
-        args = {},
-        cwd = vim_fn.getcwd(),
-        externalConsole = false,
-        MIMode ="gdb",
-        MIDebuggerPath = "gdb"
-    }
+        port = function()
+            local val = tonumber(vim.fn.input("Port: "))
+            assert(val, "Please provide a port number")
+            return val
+        end,
+    },
 }
 
-local dap_keymap = {
-    n = {
-        ["c"] = 'continue()',
-        ["b"] = 'toggle_breakpoint()',
-        ["C"] = "toggle_breakpoint(vim.fn.input('Breakpoint condition: '))",
-        ["r"] = "repl.open()",
-        ["R"] = "restart()",
-        ["dl"] = "repl.run_last()",
-        ["di"] = "step_into()",
-        ["do"] = "step_over()",
-        ["dO"] = "step_out()",
-    }
-}
+require("nvim-dap-virtual-text").setup()
 
-local function set_keymap()
-    for mode,map in pairs(dap_keymap) do
-        for k,v in pairs(map) do
-            api.nvim_buf_set_keymap(0, mode , "<leader>"..k, '<cmd>lua require"dap".'..v..'<CR>', {
-                    nowait = true, noremap = true, silent = true
-                })
-        end
-    end
-end
-
-function M.on_attach()
-    set_keymap()
-end
-
-M.init()
+-- vim: fdm=marker
