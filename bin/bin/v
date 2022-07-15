@@ -6,7 +6,11 @@ if which nvr 2>&1 >/dev/null; then
             :;
         done
     fi
-    nvr --servername localhost:7777 +':if &buftype == "terminal" | :quit | :endif'
+    if [ $# -eq 0 ]; then
+        exit 1
+    else
+        nvr --servername localhost:7777 +':if &buftype == "terminal" | :quit | :endif'
+    fi
     nvr --servername localhost:7777 """$@"""
 else
     ${EDITOR:-vi} "$@"
