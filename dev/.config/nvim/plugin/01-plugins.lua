@@ -43,6 +43,7 @@ return require('packer').startup({function(use)
             'nvim-lua/plenary.nvim',
             'romgrk/fzy-lua-native', -- fzy native lua integration
             'nvim-telescope/telescope-fzy-native.nvim',
+            'nvim-telescope/telescope-media-files.nvim', -- media files preview
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
         },
         module='telescope',

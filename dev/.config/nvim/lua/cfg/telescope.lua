@@ -22,7 +22,24 @@ require('telescope').setup{
             vertical = {mirror = false},
         },
         file_sorter = require("telescope.sorters").get_fzy_sorter,
-        file_ignore_patterns = { "node_modules", ".git" },
+        file_ignore_patterns = {
+            "__pycache__/", "__pycache__/*",
+
+			"build/",       "gradle/",  "node_modules/", "node_modules/*",
+			"smalljre_*/*", "target/",  "vendor/*",
+
+			".dart_tool/",  ".git/",   ".github/", ".gradle/",      ".idea/",        ".vscode/",
+
+			"%.sqlite3",    "%.ipynb", "%.lock",   "%.pdb",
+			"%.dll",        "%.class", "%.exe",    "%.cache", "%.pdf",  "%.dylib",
+			"%.jar",        "%.docx",  "%.met",    "%.burp",  "%.mp4",  "%.mkv", "%.rar",
+			"%.zip",        "%.7z",    "%.tar",    "%.bz2",   "%.epub", "%.flac","%.tar.gz",
+        },
+        media_files = {
+			-- filetypes whitelist
+			filetypes = {"png", "jpg", "mp4", "webm", "pdf"},
+			find_cmd = "fd" -- find command (defaults to `fd`)
+		},
         generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
         path_display = { shorten = 5 },
         winblend = 8,
@@ -66,6 +83,7 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('media_files')
 
 map('n', '<M-b>', '<Cmd>lua require("telescope").buffers<CR>')
 map('n', '<M-f>', '<Cmd>lua require("telescope").live_grep<CR>')
