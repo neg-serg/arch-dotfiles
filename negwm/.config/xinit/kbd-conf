@@ -1,11 +1,3 @@
 #!/usr/bin/env dash
 setxkbmap -layout 'us,ru' -option 'grp:lalt_lshift_toggle,ctrl:nocaps,pointerkeys' -variant altgr-intl -model pc104
 pkill unclutter; unclutter --fork --timeout 1 --jitter 50 --ignore-scrolling
-pkill xcape
-if [ ! -z $COMPACT_KEYBOARD ]; then
-    xmodmap -e "keycode 9 = grave asciitilde"
-    xmodmap -e "keycode 49 = Escape"
-    xcape -t 140 -e 'Control_L=Escape'
-else
-    xmodmap "$XDG_CONFIG_HOME/xinit/xmodmap-default"
-fi
