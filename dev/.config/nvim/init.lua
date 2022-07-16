@@ -1,3 +1,4 @@
+require'filetype_nvim'
 if false then
     local present, impatient = pcall(require, "impatient")
     if present then
