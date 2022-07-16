@@ -90,7 +90,7 @@ cmp.setup({
                 Snippet = "",
                 Color = "",
                 File = "",
-                Reference = "",
+                Reference = "",
                 Folder = "",
                 EnumMember = "",
                 Constant = "",
