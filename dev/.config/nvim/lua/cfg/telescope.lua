@@ -21,7 +21,7 @@ require('telescope').setup{
             horizontal = {mirror = false},
             vertical = {mirror = false},
         },
-        file_sorter = require("telescope.sorters").get_fzy_sorter,
+        file_sorter = require'telescope.sorters'.get_fzy_sorter,
         file_ignore_patterns = {
             "__pycache__/", "__pycache__/*",
 
@@ -59,6 +59,12 @@ require('telescope').setup{
             override_generic_sorter = true,
             override_file_sorter = true,
         },
+        frecency = {
+            show_scores = false,
+            show_unindexed = true,
+            ignore_patterns = { "*.git/*" },
+            workspaces = {}
+        },
     },
     pickers = {
         find_files = {
@@ -90,7 +96,7 @@ map('n', '<M-f>', '<Cmd>lua require"telescope.builtin".live_grep()<CR>')
 map('n', '<M-C-o>', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>')
 map('n', '<M-o>', '<Cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>')
 map('n', '<M-d>', '<Cmd>lua require"telescope.builtin".lsp_document_diagnostics()<CR>')
-map('n', "<leader>.", "<Cmd>lua require('telescope').load_extension('frecency'); require('telescope.builtin').oldfiles(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
-map('n', '[Qleader]e', "<Cmd>lua require('telescope.builtin').find_files{}<CR>", {silent=true, noremap=true})
-map('n', '[Qleader]f', "<Cmd>lua require('telescope.builtin').live_grep{}<CR>", {silent=true, noremap=true})
-map('n', '[Qleader]c', "<Cmd>lua require('telescope.builtin').git_commits{}<CR>", {silent=true, noremap=true})
+map('n', "<leader>.", "<Cmd>lua require'telescope'.load_extension'frecency'; require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
+map('n', '[Qleader]e', "<Cmd>lua require'telescope.builtin'.find_files{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]f', "<Cmd>lua require'telescope.builtin'.live_grep{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]c', "<Cmd>lua require'telescope.builtin'.git_commits{}<CR>", {silent=true, noremap=true})
