@@ -13,15 +13,17 @@ require("trouble").setup {
     group = true, -- group results by file
     padding = true, -- add an extra new line on top of the list
     action_keys = { -- key mappings for actions in the trouble list
+        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+        close_folds = "zM", -- close all folds
         close = "q", -- close the list
+        jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+        open_folds = "zR", -- open all folds
+        open_split = { "<c-x>" }, -- open buffer in new split
+        open_vsplit = { "<c-v>" }, -- open buffer in new vsplit
+        preview = "p", -- preview the diagnostic location
         refresh = "R", -- manually refresh
-        jump = "<cr>", -- jump to the diagnostic or open / close folds
         toggle_mode = "m", -- toggle between "workspace" and "document" mode
         toggle_preview = "P", -- toggle auto_preview
-        preview = "p", -- preview the diagnostic location
-        close_folds = "zM", -- close all folds
-        cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
-        open_folds = "zR", -- open all folds
         previous = "k", -- preview item
         next = "j" -- next item
     },
