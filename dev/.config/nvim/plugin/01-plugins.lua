@@ -1,18 +1,11 @@
-local present, packer = pcall(require, 'packer')
-if not present then
-    local packer_path=vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-    vim.fn.delete(packer_path, 'rf')
-    vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_path})
-    present, packer = pcall(require, 'packer')
-    if present then
-        print 'Packer cloned successfully.'
-    else
-        error("Couldn't clone packer !\nPacker path: " .. packer_path .. "\n" .. packer)
-    end
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 vim.api.nvim_cmd({cmd='packadd', args={'packer.nvim'}}, {})
-return require('packer').startup({function(use)
-    use {'wbthomason/packer.nvim', event='VimEnter', opt=true} -- lazy packer
+return require'packer'.startup({function(use)
+    use {'wbthomason/packer.nvim', event='VimEnter'} -- lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -25,6 +18,8 @@ return require('packer').startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'ggandor/leap.nvim', -- fast motion plugin
+        config = function() require 'cfg.leap' end}
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
@@ -32,10 +27,10 @@ return require('packer').startup({function(use)
     use {'neg-serg/NeoRoot.lua', -- autochdir for project root or for current dir
          config=function() require'cfg.neoroot' end}
     use {'ghillb/cybu.nvim', -- fancy menu changing
-         config=function() require('cfg.cybu') end,
+         config=function() require'cfg.cybu' end,
          keys={'<Tab>', '<S-Tab>'}}
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use {'jghauser/mkdir.nvim', config=function() require('mkdir') end, event='BufWritePre'}
+    use {'jghauser/mkdir.nvim', config=function() require'mkdir' end, event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim',
@@ -49,10 +44,10 @@ return require('packer').startup({function(use)
         module='telescope',
         keys={'<M-b>', '<M-f>', '<M-C-o>', '<M-o>', '<M-d>',
             '<leader>.', '[Qleader]e', '[Qleader]f', '[Qleader]c'},
-        config=function() require('cfg.telescope') end}
+        config=function() require'cfg.telescope' end}
     use 'haya14busa/vim-asterisk' -- smartcase star
     use {'gelguy/wilder.nvim',
-        config=function() require('cfg.wilder') end,
+        config=function() require'cfg.wilder' end,
         run=':UpdateRemotePlugins',
         event='VimEnter'} -- better cmdline menu
     use({'nvim-lualine/lualine.nvim', requires={'arkav/lualine-lsp-progress'} })
@@ -65,7 +60,7 @@ return require('packer').startup({function(use)
         config=function() require'cfg.trouble' end,
         keys={'<leader>xx'}, opt=true}
     use {'hrsh7th/nvim-cmp', -- completion engine
-        config=function() require('cfg.cmp') end,
+        config=function() require'cfg.cmp' end,
         after={'LuaSnip'},
         requires={
             {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
@@ -77,29 +72,35 @@ return require('packer').startup({function(use)
         }, event={'InsertEnter'}}
     use {{'L3MON4D3/LuaSnip', -- snippets engine
             requires='rafamadriz/friendly-snippets', -- additional snippets'
-            config=function() require('cfg.luasnip') end,
-            event={"BufRead","BufNewFile","InsertEnter"}},
+            config=function() require'cfg.luasnip' end,
+            event={'BufRead','BufNewFile','InsertEnter'}},
         {'saadparwaiz1/cmp_luasnip', after={'LuaSnip', 'nvim-cmp'}}, -- lua snippets nvim-cmp support
-        event={"InsertEnter"}}
+        event={'InsertEnter'}}
     use {'neovim/nvim-lspconfig', -- lsp config
-        config=function() require('cfg.lsp') end,
+        config=function() require'cfg.lsp' end,
         requires={'williamboman/nvim-lsp-installer'},
         event={'InsertEnter'}}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'danymat/neogen', -- annotation toolkit
+        config=function() require'cfg.neogen' end,
+        requires='nvim-treesitter/nvim-treesitter'}
+    use {'folke/todo-comments.nvim', -- better todo highlight
+        requires='nvim-lua/plenary.nvim',
+        config=function() require'todo-comments'.setup{} end}
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'lervag/vimtex', ft={'tex','latex'}} -- modern TeX support
     use {'numToStr/Comment.nvim',
-        config=function() require("cfg.comment") end,
+        config=function() require'cfg.comment' end,
         event={'BufNewFile','BufRead'}} -- commenter plugin
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', cmd={'Dispatch','Make','Focus','Start'}} -- provide async build
-    use {'windwp/nvim-autopairs',
+    use {'windwp/nvim-autopairs', -- super powerful autopairs
         wants='nvim-cmp',
-        config=function() require('cfg.autopairs') end,
-        event={'InsertEnter'}} -- super powerful autopairs
+        config=function() require'cfg.autopairs' end,
+        event={'InsertEnter'}}
     use{'willchao612/vim-diagon', cmd='Diagon'} -- creates diagrams from text. Requires diagon from snap.
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
@@ -107,31 +108,36 @@ return require('packer').startup({function(use)
     use {'mfussenegger/nvim-dap', -- neovim debugger protocol support
         requires = {
             {'rcarriga/nvim-dap-ui'}, -- better ui for nvim-dap
-            {'theHamsta/nvim-dap-virtual-text'},  -- virtual debugging text support
-        },
-        config=function() require('cfg.nvim-dap') end,
+            {'theHamsta/nvim-dap-virtual-text'}},  -- virtual debugging text support
+        config=function() require'cfg.nvim-dap' end,
         after={'nvim-dap-ui','nvim-dap-virtual-text'},
-        event={'BufNewFile','BufRead' },
-    }
+        event={'BufNewFile','BufRead'}}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
+    use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
+        config=function() require'cfg.bullets' end}
+    use {'lukas-reineke/headlines.nvim', -- adds highlights for text ft, like md, org, norg
+        ft={'markdown','vimwiki','org'},
+        config=function() require 'cfg.headlines' end}
+    use {'github.com/jbyuki/nabla.nvim', -- take your scentific notes in Neovim
+        ft={'markdown','vimwiki','org','tex'},
+        config=function() vim.api.nvim_set_keymap("n", '<leader>p', ':lua require"nabla".popup()<CR>') end
+    }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'tommcdo/vim-exchange' -- experiment with exchange
-    use {'andymass/vim-matchup',
-        config=function() require("cfg.matchup") end,
-        event = {"BufRead","BufNewFile"}}
-    -- generic matcher
+    use {'andymass/vim-matchup', -- generic matcher
+        config=function() require'cfg.matchup' end,
+        event={'BufRead','BufNewFile'}}
     use 'FooSoft/vim-argwrap' -- vim arg wrapper
-    use {'junegunn/vim-easy-align',
-        config=function() require('cfg.vim-easy-align') end,
-        keys={'ga'}} -- use easy-align, instead of tabular
+    use {'junegunn/vim-easy-align', -- use easy-align, instead of tabular
+        config=function() require'cfg.vim-easy-align' end, keys={'ga'}}
     use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
     use 'svermeulen/vim-NotableFt' -- better f-t-bindings
-    use {'tpope/vim-repeat', event={"BufRead","BufNewFile"}} -- dot for surround
+    use {'tpope/vim-repeat', event={'BufRead','BufNewFile'}} -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
     use 'wellle/targets.vim' -- new text objects
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -142,11 +148,11 @@ return require('packer').startup({function(use)
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
         run=':TSUpdate',  -- better highlight
-        config=function() require('cfg.treesitter') end,
+        config=function() require'cfg.treesitter' end,
         requires = {
             {'nvim-treesitter/nvim-treesitter-textobjects',
                 after='nvim-treesitter',
-                config=function() require('cfg.treesitter') end,},
+                config=function() require'cfg.treesitter' end,},
             {'p00f/nvim-ts-rainbow', after='nvim-treesitter'}, -- treesitter-based rainbow
             {'RRethy/nvim-treesitter-endwise', after='nvim-treesitter'}, -- ts-based endwise
             {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'} -- refactor modules for ts
@@ -165,7 +171,7 @@ return require('packer').startup({function(use)
         opt=true}
     use {'lewis6991/gitsigns.nvim',
         requires='plenary.nvim',
-        config=function() require('cfg.gitsigns') end,
+        config=function() require'cfg.gitsigns' end,
         event={'BufNewFile','BufRead'}} -- async gitsigns
 end,
     config={
