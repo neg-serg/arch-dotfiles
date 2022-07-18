@@ -88,8 +88,8 @@ require('telescope').setup{
     },
 }
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('media_files')
+require'telescope'.load_extension'fzy_native'
+require'telescope'.load_extension'media_files'
 
 map('n', '<M-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>')
 map('n', '<M-f>', '<Cmd>lua require"telescope.builtin".live_grep()<CR>')
