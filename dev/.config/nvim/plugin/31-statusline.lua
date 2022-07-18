@@ -63,18 +63,16 @@ local function ins_left(component)
     table.insert(config.sections.lualine_c, component)
 end
 
+-- Inserts a component in lualine_x ot right section
+local function ins_right(component)
+    table.insert(config.sections.lualine_x, component)
+end
+
 local function keymap()
     if vim.opt.iminsert:get() > 0 and vim.b.keymap_name then
         return '⌨ ' .. vim.b.keymap_name
     end
     return ''
-end
-
-local function window() return vim.api.nvim_win_get_number(0) end
-
--- Inserts a component in lualine_x ot right section
-local function ins_right(component)
-    table.insert(config.sections.lualine_x, component)
 end
 
 ins_left {
@@ -144,28 +142,7 @@ ins_left {
    },
 }
 
-ins_left {function() return '%=' end,}
-
-ins_left {
-    -- Lsp server name .
-    function()
-        local msg=''
-        local buf_ft=vim.api.nvim_buf_get_option(0, 'filetype')
-        local clients=vim.lsp.get_active_clients()
-        if next(clients) == nil then
-            return msg
-        end
-        for _, client in ipairs(clients) do
-            local filetypes=client.config.filetypes
-            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                return client.name
-            end
-        end
-        return msg
-    end,
-    icon='',
-    color={fg=clr.fg},
-}
+ins_left {function() return keymap() end, sources={'keymap'}}
 
 ins_right {
     'filesize', cond=conditions.buffer_not_empty,
@@ -193,6 +170,28 @@ ins_right {
     icons_enabled=true,
     cond=function() return conditions.hide_in_width() and conditions.buffer_not_empty() end,
     color={fg=clr.green},
+}
+
+ins_right {
+    -- Lsp server name .
+    function()
+        local msg=''
+        local buf_ft=vim.api.nvim_buf_get_option(0, 'filetype')
+        local clients=vim.lsp.get_active_clients()
+        if next(clients) == nil then
+            return msg
+        end
+        for _, client in ipairs(clients) do
+            local filetypes=client.config.filetypes
+            if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                return client.name
+            end
+        end
+        return msg
+    end,
+    padding={right=1, left=0},
+    icon='',
+    color={fg=clr.base},
 }
 
 ins_right {'filetype', padding={left=0, right=1}, color={fg=clr.fg},}
