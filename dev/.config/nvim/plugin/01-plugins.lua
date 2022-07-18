@@ -1,11 +1,11 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 vim.api.nvim_cmd({cmd='packadd', args={'packer.nvim'}}, {})
 return require'packer'.startup({function(use)
-    use {'wbthomason/packer.nvim', event='VimEnter'} -- lazy packer
+    use {'wbthomason/packer.nvim'} -- lazy packer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -118,13 +118,9 @@ return require'packer'.startup({function(use)
     use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
-    use {'lukas-reineke/headlines.nvim', -- adds highlights for text ft, like md, org, norg
-        ft={'markdown','vimwiki','org'},
+    use {'lukas-reineke/headlines.nvim', -- adds highlights for text ft, like md, norg
+        ft={'markdown','vimwiki'},
         config=function() require 'cfg.headlines' end}
-    use {'github.com/jbyuki/nabla.nvim', -- take your scentific notes in Neovim
-        ft={'markdown','vimwiki','org','tex'},
-        config=function() vim.api.nvim_set_keymap("n", '<leader>p', ':lua require"nabla".popup()<CR>') end
-    }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
