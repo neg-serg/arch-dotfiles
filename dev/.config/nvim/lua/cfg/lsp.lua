@@ -5,7 +5,7 @@ local nvim_lsp = require('lspconfig')
 local util = require 'lspconfig/util'
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     -- Enable completion triggered by <c-x><c-o>
@@ -43,7 +43,7 @@ vim.diagnostic.config({
     severity_sort = false,
 })
 
-local signs_fancy = { Error = "🔥", Warn = "💩", Info = "💬", Hint = "💡", }
+-- local signs_fancy = { Error = "🔥", Warn = "💩", Info = "💬", Hint = "💡", }
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
@@ -64,7 +64,7 @@ nvim_lsp.pyright.setup {
             'Pipfile',
             'pyrightconfig.json',
         }
-        return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+        return util.root_pattern(table.unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
     end,
     cmd={"pyright-langserver", "--stdio"},
     filetypes={"python"},
