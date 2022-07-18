@@ -2,6 +2,7 @@
 -- │ █▓▒░ neovim/nvim-lspconfig                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 local nvim_lsp = require('lspconfig')
+local util = require 'lspconfig/util'
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -52,10 +53,52 @@ end
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.setup()
 
-nvim_lsp.pyright.setup { on_attach = on_attach, flags = {debounce_text_changes = 150} }
--- nvim_lsp.bashls.setup { on_attach = on_attach }
--- nvim_lsp.dockerls.setup { on_attach = on_attach }
--- nvim_lsp.sumneko_lua.setup { on_attach = on_attach }
--- nvim_lsp.tsserver.setup { on_attach = on_attach }
--- nvim_lsp.vimls.setup { on_attach = on_attach }
--- nvim_lsp.yamlls.setup { on_attach = on_attach }
+nvim_lsp.pyright.setup {
+    on_attach=on_attach,
+    root_dir = function(fname)
+        local root_files = {
+            'pyproject.toml',
+            'setup.py',
+            'setup.cfg',
+            'requirements.txt',
+            'Pipfile',
+            'pyrightconfig.json',
+        }
+        return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+    end,
+    cmd={"pyright-langserver", "--stdio"},
+    filetypes={"python"},
+    flags={debounce_text_changes=150},
+    settings={
+        python={
+            analysis={
+                autoImportCompletions=true,
+                autoSearchPaths=true,
+                diagnosticMode="openFilesOnly", -- or "workspace"
+                stubPath="typings", --or ""
+                typeshedPaths={},
+                useLibraryCodeForTypes=true,
+            },
+            linting={enabled=false},
+        }
+    },
+    single_file_support=true
+}
+nvim_lsp.bashls.setup {on_attach=on_attach}
+nvim_lsp.dockerls.setup {on_attach=on_attach}
+nvim_lsp.sumneko_lua.setup {settings={Lua={diagnostics={globals={'vim'}}}}, on_attach=on_attach}
+nvim_lsp.tsserver.setup {on_attach=on_attach}
+nvim_lsp.vimls.setup {on_attach=on_attach}
+nvim_lsp.yamlls.setup {on_attach=on_attach}
+nvim_lsp.rust_analyzer.setup {
+    on_attach=on_attach,
+    settings={
+        ["rust-analyzer"]={
+            assist={importMergeBehavior="last", importPrefix="by_self"},
+            diagnostics={disabled={"unresolved-import"}},
+            cargo={loadOutDirsFromCheck=true},
+            procMacro={enable=true},
+            checkOnSave={command="clippy"},
+        }},
+    capabilities=require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
