@@ -77,7 +77,8 @@ nvim_lsp.pyright.setup {
 }
 nvim_lsp.bashls.setup {on_attach=on_attach}
 nvim_lsp.dockerls.setup {on_attach=on_attach}
-nvim_lsp.sumneko_lua.setup {settings={Lua={diagnostics={globals={'vim'}}}}, on_attach=on_attach}
+nvim_lsp.sumneko_lua.setup {settings={Lua={diagnostics={
+    globals={'vim','use','require','rocks','use_rocks'}}}}, on_attach=on_attach}
 nvim_lsp.tsserver.setup {on_attach=on_attach}
 nvim_lsp.vimls.setup {on_attach=on_attach}
 nvim_lsp.yamlls.setup {on_attach=on_attach}
