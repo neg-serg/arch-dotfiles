@@ -5,10 +5,8 @@ typeset -A conv_table
 
 trim() {
     local var="$@"
-    # remove leading whitespace characters
-    var="${var#"${var%%[![:space:]]*}"}"
-    # remove trailing whitespace characters
-    echo -n "${var%"${var##*[![:space:]]}"}"
+    var="${var#"${var%%[![:space:]]*}"}" # remove leading whitespace characters
+    echo -n "${var%"${var##*[![:space:]]}"}" # remove trailing whitespace characters
 }
 
 generate_convert_table() {
@@ -41,23 +39,23 @@ generate_convert_table() {
     done
 }
 
-apply_rename_files() {
+rename_files() {
     Data=$(albumdetails "$@")
-    dunstify "$Data"
-    apply_rename_ "$@"
+    rename "$@"
 }
 
-apply_rename_dir() {
-    Data=$(find "$1" -exec albumdetails '{}' + 2>/dev/null)
-    dunstify "$Data"
-    apply_rename_ "$@"
+rename_dir() {
+    if [[ ! -z "$1" ]]; then
+        Data=$(find "$1" -exec albumdetails '{}' + 2>/dev/null)
+        rename "$@"
+    fi
 }
 
 extract_field() {
     rg "^$1:" <<< "$Data" | cut -d ':' -f 2-
 }
 
-apply_rename_() {
+rename() {
     artist="$(extract_field 'Artist')"
     year="$(extract_field 'Year')"
 
@@ -97,12 +95,11 @@ main(){
     case "${1}" in
         c*)
             dirname="$(awk '/music_directory/{print $2}' "$XDG_CONFIG_HOME/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'$HOME':')/$(dirname "$(mpc -f '%file%'|head -1)")"
-            apply_rename_dir "$dirname"
+            rename_dir "$dirname"
         ;;
-        f*) shift; apply_rename_files "$@" ;;
+        f*) shift; rename_files "$@" ;;
         *)
-            for dir; apply_rename_dir "$dir"
-            dunstify "$@"
+            for dir; rename_dir "$dir"
         ;;
     esac
 }
