@@ -10,27 +10,21 @@ local on_attach = function(_, bufnr)
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
     local opts = {noremap=true, silent=true}
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', '<C-K>', '<Cmd>lua require"lsp_signature".signature()<cr>', opts)
-    buf_set_keymap('n', ']g', '<Cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-    buf_set_keymap('n', '[g', '<Cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua require"telescope.builtin".lsp_definitions()<cr>', opts)
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-    buf_set_keymap('n', 'ge', '<Cmd>lua vim.diagnostic.open_float(0, { scope = "line", })<cr>', opts)
-    buf_set_keymap('n', 'gi', '<Cmd>lua require"telescope.builtin".lsp_implementations()<cr>', opts)
-    buf_set_keymap('n', 'gr', '<Cmd>lua require"telescope.builtin".lsp_references()<cr>', opts)
-    buf_set_keymap('n', 'gt', '<Cmd>lua require"telescope.builtin".lsp_type_definitions()<cr>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    buf_set_keymap('n', '<leader>ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<C-K>', '<Cmd>lua require"lsp_signature".signature()<CR>', opts)
+    buf_set_keymap('n', ']g', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '[g', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'ge', '<Cmd>lua vim.diagnostic.open_float(0, { scope = "line", })<CR>', opts)
+    buf_set_keymap('n', 'gi', '<Cmd>lua require"telescope.builtin".lsp_implementations()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<Cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)
+    buf_set_keymap('n', 'gt', '<Cmd>lua require"telescope.builtin".lsp_type_definitions()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', '<leader>A', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', '<leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '<leader>ga', '<Cmd>lua require"telescope.builtin".lsp_code_actions()<cr>', opts)
-    buf_set_keymap('n', '<leader>ge', '<Cmd>lua require"telescope.builtin".lsp_document_diagnostics()<cr>', opts)
-    buf_set_keymap('n', '<leader>gf', '<Cmd>lua vim.lsp.buf.formatting()<cr>', opts)
+    buf_set_keymap('n', '<leader>ge', '<Cmd>lua require"telescope.builtin".diagnostics()<CR>', opts)
+    buf_set_keymap('n', '<leader>gf', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     buf_set_keymap('n', '<leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '<leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('v', '<leader>ga', '<Cmd>lua require"telescope.builtin".lsp_range_code_actions()<cr>', opts)
 end
 
 vim.diagnostic.config({
@@ -54,8 +48,8 @@ lsp_installer.setup()
 nvim_lsp.pyright.setup {
     on_attach=on_attach,
     root_dir = function(fname)
-        local root_files = {'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'pyrightconfig.json'}
-        return util.root_pattern(table.unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+        return util.root_pattern('.git','setup.py', 'setup.cfg','pyproject.toml','requirements.txt','Pipfile','pyrightconfig.json')(fname) or
+            util.path.dirname(fname)
     end,
     cmd={"pyright-langserver", "--stdio"},
     filetypes={"python"},
