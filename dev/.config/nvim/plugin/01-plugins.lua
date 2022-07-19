@@ -20,6 +20,7 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'ggandor/leap.nvim', -- fast motion plugin
         config = function() require 'cfg.leap' end}
+    use {'akinsho/toggleterm.nvim', tag='2*', config=function() require'cfg.toggleterm' end}
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
@@ -33,7 +34,7 @@ return require'packer'.startup({function(use)
     use {'jghauser/mkdir.nvim', config=function() require'mkdir' end, event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use {'nvim-telescope/telescope.nvim',
+    use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         requires={
             'nvim-lua/plenary.nvim', -- lua functions
             'romgrk/fzy-lua-native', -- fzy native lua integration
