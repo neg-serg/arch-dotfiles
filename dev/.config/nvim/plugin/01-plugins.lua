@@ -20,7 +20,10 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'ggandor/leap.nvim', -- fast motion plugin
         config = function() require 'cfg.leap' end}
-    use {'akinsho/toggleterm.nvim', tag='2*', config=function() require'cfg.toggleterm' end}
+    use {'akinsho/toggleterm.nvim', tag='2*',
+        config=function() require'cfg.toggleterm' end,
+        keys={'<leader>l'}
+    }
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
@@ -87,9 +90,6 @@ return require'packer'.startup({function(use)
     use {'danymat/neogen', -- annotation toolkit
         config=function() require'cfg.neogen' end,
         requires='nvim-treesitter/nvim-treesitter'}
-    use {'folke/todo-comments.nvim', -- better todo highlight
-        requires='nvim-lua/plenary.nvim',
-        config=function() require'todo-comments'.setup{} end}
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'lervag/vimtex', ft={'tex','latex'}} -- modern TeX support
