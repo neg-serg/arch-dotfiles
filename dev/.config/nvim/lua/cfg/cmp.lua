@@ -46,10 +46,7 @@ cmp.setup({
             border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
             scrollbar = "║"
         }},
-    experimental = {
-        native_menu = false,
-        ghost_text = true,
-    },
+    experimental = { ghost_text = true, },
     snippet = {expand = function(args) require'luasnip'.lsp_expand(args.body) end},
     cmp.setup.filetype('org', {
         sources = cmp.config.sources({
@@ -123,7 +120,4 @@ cmp.setup({
             },
         }),
     },
-})
-cmp.setup.cmdline('/', {
-    sources = { {name = 'buffer'}, },
 })
