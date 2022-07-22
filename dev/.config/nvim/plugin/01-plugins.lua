@@ -49,12 +49,14 @@ return require'packer'.startup({function(use)
         keys={'<M-b>', '<M-f>', '<M-C-o>', '<M-o>', '<M-d>',
             '<leader>.', '[Qleader]e', '[Qleader]f', '[Qleader]c'},
         config=function() require'cfg.telescope' end}
-    use 'haya14busa/vim-asterisk' -- smartcase star
+    use {'haya14busa/vim-asterisk', -- smartcase star
+        config=function() require'cfg.asterisk' end}
     use {'gelguy/wilder.nvim', -- fancy cmdline completion
         config=function() require'cfg.wilder' end,
         run=':UpdateRemotePlugins',
         event='VimEnter'} -- better cmdline menu
-    use({'nvim-lualine/lualine.nvim', requires={'arkav/lualine-lsp-progress'} })
+    use({'nvim-lualine/lualine.nvim', requires={'arkav/lualine-lsp-progress'},
+        config=function() require'cfg.statusline' end})
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -97,7 +99,9 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.comment' end,
         event={'BufNewFile','BufRead'}} -- commenter plugin
     use 'tpope/vim-apathy' -- better include jump
-    use {'tpope/vim-dispatch', cmd={'Dispatch','Make','Focus','Start'}} -- provide async build
+    use {'tpope/vim-dispatch', -- provide async build
+        config=function() require'cfg.dispatch' end,
+        cmd={'Dispatch','Make','Focus','Start'}}
     use {'windwp/nvim-autopairs', -- super powerful autopairs
         wants='nvim-cmp',
         config=function() require'cfg.autopairs' end,
@@ -129,7 +133,8 @@ return require'packer'.startup({function(use)
     use {'andymass/vim-matchup', -- generic matcher
         config=function() require'cfg.matchup' end,
         event={'BufRead','BufNewFile'}}
-    use 'FooSoft/vim-argwrap' -- vim arg wrapper
+    use {'FooSoft/vim-argwrap', -- vim arg wrapper
+        config=function() require'cfg.argwrap' end}
     use {'junegunn/vim-easy-align', -- use easy-align, instead of tabular
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}}
     use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
@@ -140,7 +145,8 @@ return require'packer'.startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'neg-serg/neg.nvim' -- my pure-dark neovim colorscheme
+    use {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
+        config=function() vim.cmd[[colorscheme neg]] end}
     use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
@@ -177,7 +183,6 @@ end,
             open_cmd='85vnew \\[packer\\]', -- An optional command to open a window for packer's display
             keybindings={toggle_info='<TAB>'},
         },
-        compile_path=vim.fn.stdpath('config')..'/plugin/packer_compiled.lua',
         auto_clean=true,
         compile_on_sync=true,
         profile={enable=true, threshold=0.0001},
