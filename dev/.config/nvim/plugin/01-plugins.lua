@@ -27,7 +27,7 @@ return require'packer'.startup({function(use)
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
-         after='nvim-web-devicons'} -- fancy webicons
+         after='nvim-web-devicons', event='UIEnter'} -- fancy webicons
     use {'neg-serg/NeoRoot.lua', -- autochdir for project root or for current dir
          config=function() require'cfg.neoroot' end}
     use {'ghillb/cybu.nvim', -- fancy menu changing
