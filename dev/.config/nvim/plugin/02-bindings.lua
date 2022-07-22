@@ -15,10 +15,10 @@ map('', '<F1>', '<NOP>')
 map('t', '<Esc>', '<C-\\><C-n>', {silent=true})
 
 -- Don't use arrow keys
-map('', '<up>', '<nop>')
-map('', '<down>', '<nop>')
-map('', '<left>', '<nop>')
-map('', '<right>', '<nop>')
+map('', '<up>', '<NOP>')
+map('', '<down>', '<NOP>')
+map('', '<left>', '<NOP>')
+map('', '<right>', '<NOP>')
 
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
 map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
