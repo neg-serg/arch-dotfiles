@@ -173,13 +173,13 @@ return require'packer'.startup({function(use)
 end,
     config={
         display={
-            title = 'Packer',
-            open_cmd = '85vnew \\[packer\\]', -- An optional command to open a window for packer's display
-            keybindings = {toggle_info = '<TAB>'},
+            title='Packer',
+            open_cmd='85vnew \\[packer\\]', -- An optional command to open a window for packer's display
+            keybindings={toggle_info='<TAB>'},
         },
-        compile_path = vim.fn.stdpath('config')..'/plugin/packer_compiled.lua',
-        auto_clean = true,
-        compile_on_sync = true,
-        profile = {enable = true, threshold = 0.0001},
+        compile_path=vim.fn.stdpath('config')..'/plugin/packer_compiled.lua',
+        auto_clean=true,
+        compile_on_sync=true,
+        profile={enable=true, threshold=0.0001},
     }
 })
