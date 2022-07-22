@@ -2,7 +2,8 @@ vim.g.NotableFtUseDefaults = false
 map('n', ';', '<plug>NotableFtRepeatSearchForward', {silent=true})
 map('n', ',', '<plug>NotableFtRepeatSearchBackward', {silent=true})
 map('n', 'f', '<plug>NotableFtSearchFForward', {silent=true})
-map('n', 'F', '<plug>NotableFtSearchFBackward', {silent=true})
+map('n', 't', '<plug>NotableFtSearchTForward', {silent=true})
+map('n', 'T', '<plug>NotableFtSearchTBackward', {silent=true})
 
 map('x', ';', '<plug>NotableFtRepeatSearchForward', {silent=true})
 map('x', ',', '<plug>NotableFtRepeatSearchBackward', {silent=true})
