@@ -1,4 +1,4 @@
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize"
+vim.o.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize'
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
     '2html_plugin',
@@ -28,17 +28,17 @@ local disabled_built_ins = {
     'zipPlugin',
 }
 for _, plugin in pairs(disabled_built_ins) do
-    vim.g["loaded_" .. plugin] = 1
+    vim.g['loaded_' .. plugin] = 1
 end
 vim.g.netrw_banner = 0 -- Do not show netrw banner
 if vim.fn.executable('ugrep') == 1 then
-    vim.o.grepprg="ugrep -RInk -j -u --tabs=1 --ignore-files"
+    vim.o.grepprg='ugrep -RInk -j -u --tabs=1 --ignore-files'
     vim.o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
 end
-if vim.fn.executable("nvr") == 1 then
+if vim.fn.executable('nvr') == 1 then
     vim.env.GIT_EDITOR = "nvr -cc split +'setl bh=delete' --remote-wait"
-    vim.env.EDITOR = "nvr -l --remote"
-    vim.env.VISUAL = "nvr -l --remote"
+    vim.env.EDITOR = 'nvr -l --remote'
+    vim.env.VISUAL = 'nvr -l --remote'
 end
 vim.opt.exrc = false
 vim.opt.secure = true
@@ -77,7 +77,6 @@ vim.opt.imsearch = 0                                         -- Search with lati
 vim.opt.inccommand = 'nosplit'                               -- Better live substitution
 vim.opt.isfname:append {','}                                 -- Scan in filenames in such brackets
 vim.opt.jumpoptions = 'stack'                                -- Stack jumpoptions
-vim.opt.linespace = 0                                        -- No extra spaces between rows
 vim.opt.matchtime = 0                                        -- Default time to hi brackets too long for me
 vim.opt.matchpairs:append '<:>'                              -- More matchpairs
 vim.opt.maxfuncdepth = 100                                   -- Maximum depth of function calls for user functions
@@ -148,7 +147,7 @@ vim.opt.undolevels = 1000                                    -- Maximum number o
 vim.opt.undoreload = 10000                                   -- Maximum number lines to save for undo on a buffer reload
 vim.opt.shada = "!,'100,<50,s100,h,:100,%,/100"              -- Shada settings
 vim.opt.background = 'dark'                                  -- Dark background
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }      -- Completion options
+vim.opt.completeopt = {'menu','menuone','noselect'}          -- Completion options
 vim.opt.formatoptions = 'n1jcroqlj'                          -- Format settings
 vim.opt.cpoptions = '_$ABFWcdesa'                            -- Vim-exclusive stuff
 vim.opt.ruler = false                                        -- No ruler
