@@ -48,6 +48,7 @@ bindkey '^@' fasd-complete
 bindkey '^m' special-accept-line
 bindkey " "  magic-space
 bindkey ",." zleiab
+bindkey "^I" fzf-on-tab
 bindkey . rationalise-dot
 bindkey -M isearch . self-insert # without this, typing a . aborts incremental history search
 bindkey '^xM' inplace_mk_dirs # load the lookup subsystem if it's available on the system
