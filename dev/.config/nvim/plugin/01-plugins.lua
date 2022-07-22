@@ -136,7 +136,10 @@ return require'packer'.startup({function(use)
     use {'junegunn/vim-easy-align', -- use easy-align, instead of tabular
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}}
     use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
-    use 'svermeulen/vim-NotableFt' -- better f-t-bindings
+    use {'phaazon/hop.nvim', -- speed motions
+        config=function() require'cfg.hop' end}
+    use {'svermeulen/vim-NotableFt', -- better f-t-bindings
+        config=function() require 'cfg.ft' end}
     use {'tpope/vim-repeat', event={'BufRead','BufNewFile'}} -- dot for surround
     use 'tpope/vim-surround' -- new commands to vim for generic brackets
     use 'wellle/targets.vim' -- new text objects
