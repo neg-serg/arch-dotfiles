@@ -14,7 +14,7 @@ return require'packer'.startup({function(use)
          config=function() require'cfg.filetype' end}
     use {'dstein64/vim-startuptime', cmd='StartupTime'} -- startup time measurement
     use {'antoinemadec/FixCursorHold.nvim', -- fix cursorhold slowdown
-         config=function() vim.g.cursorhold_updatetime = 100 end}
+         config=function() vim.g.cursorhold_updatetime=100 end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -109,7 +109,7 @@ return require'packer'.startup({function(use)
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'mfussenegger/nvim-dap', -- neovim debugger protocol support
-        requires = {
+        requires={
             {'rcarriga/nvim-dap-ui'}, -- better ui for nvim-dap
             {'theHamsta/nvim-dap-virtual-text'}},  -- virtual debugging text support
         config=function() require'cfg.nvim-dap' end,
@@ -154,7 +154,7 @@ return require'packer'.startup({function(use)
         event={'BufRead','BufNewFile','InsertEnter'},
         run=':TSUpdate',  -- better highlight
         config=function() require'cfg.treesitter' end,
-        requires = {
+        requires={
             {'nvim-treesitter/nvim-treesitter-textobjects',
                 after='nvim-treesitter',
                 config=function() require'cfg.treesitter' end,},
