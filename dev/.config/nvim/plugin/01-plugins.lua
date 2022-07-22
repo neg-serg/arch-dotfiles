@@ -20,7 +20,7 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'ggandor/leap.nvim', -- fast motion plugin
         config = function() require 'cfg.leap' end}
-    use {'akinsho/toggleterm.nvim', tag='2*',
+    use {'akinsho/toggleterm.nvim', tag='2*', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
         keys={'<leader>l'}
     }
@@ -34,7 +34,8 @@ return require'packer'.startup({function(use)
          config=function() require'cfg.cybu' end,
          keys={'<Tab>', '<S-Tab>'}}
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
-    use {'jghauser/mkdir.nvim', config=function() require'mkdir' end, event='BufWritePre'}
+    use {'jghauser/mkdir.nvim', -- auto make dir when needed
+        config=function() require'mkdir' end, event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
@@ -50,7 +51,7 @@ return require'packer'.startup({function(use)
             '<leader>.', '[Qleader]e', '[Qleader]f', '[Qleader]c'},
         config=function() require'cfg.telescope' end}
     use 'haya14busa/vim-asterisk' -- smartcase star
-    use {'gelguy/wilder.nvim',
+    use {'gelguy/wilder.nvim', -- fancy cmdline completion
         config=function() require'cfg.wilder' end,
         run=':UpdateRemotePlugins',
         event='VimEnter'} -- better cmdline menu
@@ -58,7 +59,7 @@ return require'packer'.startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'folke/trouble.nvim',
+    use {'folke/trouble.nvim', -- pretty list for diagnostics
         requires={'kyazdani42/nvim-web-devicons', after='trouble.nvim'},
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
@@ -93,7 +94,7 @@ return require'packer'.startup({function(use)
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', ft='qf'} -- better quickfix
     use {'lervag/vimtex', ft={'tex','latex'}} -- modern TeX support
-    use {'numToStr/Comment.nvim',
+    use {'numToStr/Comment.nvim', -- modern commenter
         config=function() require'cfg.comment' end,
         event={'BufNewFile','BufRead'}} -- commenter plugin
     use 'tpope/vim-apathy' -- better include jump
@@ -141,7 +142,7 @@ return require'packer'.startup({function(use)
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use 'neg-serg/neg.nvim' -- my pure-dark neovim colorscheme
-    use {'nvim-treesitter/nvim-treesitter',
+    use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
         run=':TSUpdate',  -- better highlight
