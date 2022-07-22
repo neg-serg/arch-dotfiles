@@ -1,0 +1,6 @@
+local line=$BUFFER
+if [[ $line == "" ]]; then
+    zle fzf-file-widget
+else
+    zle fzf-completion
+fi
