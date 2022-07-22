@@ -5,8 +5,6 @@ local main = gr("main", {clear=true})
 local mode_change = gr("mode_change", {clear=true})
 local custom_updates = gr("custom_updates", {clear=true})
 local hi_yank = gr("hi_yank", {clear=true})
-local cursor_line = gr("cursor_line", {clear=true})
-local statusline = gr("statusline", {clear=true})
 
 local function restore_cursor()
     au({"FileType"}, { buffer=0, once=true,
