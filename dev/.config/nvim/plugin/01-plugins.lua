@@ -20,10 +20,9 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'ggandor/leap.nvim', -- fast motion plugin
         config = function() require 'cfg.leap' end}
-    use {'akinsho/toggleterm.nvim', tag='2*', -- better way to toggle term
+    use {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
-        keys={'<leader>l'}
-    }
+        keys={'<leader>l'}}
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
