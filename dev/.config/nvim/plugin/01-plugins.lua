@@ -124,6 +124,7 @@ return require'packer'.startup({function(use)
     use {'lukas-reineke/headlines.nvim', -- adds highlights for text ft, like md, norg
         ft={'markdown','vimwiki'},
         config=function() require 'cfg.headlines' end}
+    use {"potamides/pantran.nvim", config=function() require'cfg.translate' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
