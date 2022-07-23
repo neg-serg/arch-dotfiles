@@ -52,7 +52,7 @@ return require'packer'.startup({function(use)
     use {'gelguy/wilder.nvim', -- fancy cmdline completion
         config=function() require'cfg.wilder' end,
         run=':UpdateRemotePlugins',
-        event='VimEnter'} -- better cmdline menu
+        event='CmdlineEnter'} -- better cmdline menu
     use {'windwp/windline.nvim', -- most modern statusline
         config=function() require'cfg.wildline' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -148,7 +148,7 @@ return require'packer'.startup({function(use)
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
-        config=function() vim.cmd[[colorscheme neg]] end}
+        config=function() vim.cmd'colorscheme neg' end}
     use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
