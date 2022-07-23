@@ -35,12 +35,12 @@ basic.vi_mode = {
 
 basic.square_mode_left = {
     hl_colors = colors_mode,
-    text = function() return {{'', state.mode[2]}} end,
+    text = function() return {{'', 'Normal'}} end,
 }
 
 basic.square_mode_right = {
     hl_colors = colors_mode,
-    text = function() return {{'', state.mode[2]}} end,
+    text = function() return {{'', 'Normal'}} end,
 }
 
 basic.lsp_diagnos = {
