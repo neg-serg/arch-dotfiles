@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-set -eu
-
-if [ "$#" -eq 3 ]; then
+if [[ "$#" == 3 ]]; then
     INPUT_LINE_NUMBER=${1:-0}
     CURSOR_LINE=${2:-1}
     CURSOR_COLUMN=${3:-1}
@@ -10,10 +8,13 @@ else
     AUTOCMD_TERMCLOSE_CMD="normal G"
 fi
 
-exec nvim 63<&0 0</dev/null \
+nvim 63<&0 0</dev/null \
     -u NONE \
+    -c "set nonumber nolist showtabline=0 foldcolumn=0" \
+    -c "autocmd TermOpen * normal G" \
     -c "map <silent> q :qa!<CR>" \
-    -c "set shell=bash scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus" \
+    -c "map <silent> <C-c> :qa!<CR>" \
+    -c "set shell=zsh scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus" \
     -c "autocmd TermEnter * stopinsert" \
     -c "autocmd TermClose * ${AUTOCMD_TERMCLOSE_CMD}" \
     -c 'terminal sed </dev/fd/63 -e "s/'$'\x1b'']8;;file:[^\]*[\]//g" && sleep 0.01 && printf "'$'\x1b'']2;"'
