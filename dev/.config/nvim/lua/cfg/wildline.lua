@@ -2,13 +2,10 @@ local windline = require('windline')
 local helper = require('windline.helpers')
 local b_components = require('windline.components.basic')
 local cache_utils = require('windline.cache_utils')
-local utils = require('windline.utils')
 local state = _G.WindLine.state
 
 local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
-
-local fn = vim.fn
 
 local hl_list = {
     Black = {'white', 'black'},
@@ -33,23 +30,17 @@ local colors_mode = {
 basic.vi_mode = {
     name = 'vi_mode',
     hl_colors = colors_mode,
-    text = function()
-        return {{' ', state.mode[2]}}
-    end,
+    text = function() return {{' ', state.mode[2]}} end,
 }
 
 basic.square_mode_left = {
     hl_colors = colors_mode,
-    text = function()
-        return {{'', state.mode[2]}}
-    end,
+    text = function() return {{'', state.mode[2]}} end,
 }
 
 basic.square_mode_right = {
     hl_colors = colors_mode,
-    text = function()
-        return {{'', state.mode[2]}}
-    end,
+    text = function() return {{'', state.mode[2]}} end,
 }
 
 basic.lsp_diagnos = {
@@ -63,46 +54,56 @@ basic.lsp_diagnos = {
     text = function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {
-                {lsp_comps.lsp_error({format = '  %s', show_zero = true}), 'red'},
-                {lsp_comps.lsp_warning({format = '  %s', show_zero = true}), 'yellow'},
-                {lsp_comps.lsp_hint({format = '  %s', show_zero = true}), 'blue'},
+                {lsp_comps.lsp_error({format = '  %s', show_zero = false}), 'red'},
+                {lsp_comps.lsp_warning({format = '  %s', show_zero = false}), 'yellow'},
+                {lsp_comps.lsp_hint({format = '  %s', show_zero = false}), 'blue'},
             }
         end
         return ''
     end,
 }
 
-local function get_buf_name(modify, shorten)
-    return function(bufnr)
-        local bufname = fn.bufname(bufnr)
-        bufname = fn.fnamemodify(bufname, modify)
-        if shorten then
-            return fn.pathshorten(bufname)
-        end
-        return bufname
-    end
-end
-
-local function file_name(default, modify)
+local function dir_name(default, modify)
     default = default or '[No Name]'
     modify = modify or 'name'
-    local fnc_name = get_buf_name(':t')
-    if modify == 'unique' then
-        fnc_name = utils.get_unique_bufname
-    elseif modify == 'full' then
-        fnc_name = get_buf_name('%:p', true)
-    end
-    return function(bufnr)
-        local name = fnc_name(bufnr)
-        if name == '' then
-            name = default
+    return function()
+        local dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+        if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+            return dir
+        else
+            return default
         end
-        return name .. ' '
     end
 end
 
-local cache_file_name = function(default, modify)
-    return cache_utils.cache_on_buffer('BufEnter', 'WL_filename', file_name(default, modify))
+local function delimiter()
+    return function()
+        if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+            return ' ¦'
+        else
+            return ''
+        end
+    end
+end
+
+local function dir_symbol()
+    return function()
+        if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+            return ' '
+        else
+            return ''
+        end
+    end
+end
+
+local cache_dir_name = function(default, modify)
+    return cache_utils.cache_on_buffer('BufEnter', 'WL_filename', dir_name(default, modify))
+end
+local cache_delimiter = function()
+    return cache_utils.cache_on_buffer('BufEnter', 'delimiter', delimiter())
+end
+local cache_dir_symbol = function()
+    return cache_utils.cache_on_buffer('BufEnter', 'dir_symbol', dir_symbol())
 end
 
 basic.file = {
@@ -111,21 +112,22 @@ basic.file = {
         default = hl_list.Black,
         white = {'white', 'black'},
         cyan = {'cyan', 'black'},
+        blue = {'blue', 'black'},
     },
     text = function(_, _, width)
         if width > breakpoint_width then
             return {
+                {cache_dir_symbol(), 'blue'},
                 {' ', ''},
-                {cache_file_name(), 'default'},
+                {cache_dir_name(), 'default'},
+                {cache_delimiter(), 'blue'},
                 {' ', ''},
+                {b_components.file_name(''), 'cyan'},
                 {b_components.file_modified(' '), 'cyan'},
-                {' ', ''},
-                {b_components.cache_file_size(), 'default'},
             }
         else
             return {
-                {cache_file_name(), 'default'},
-                {' ', ''},
+                {cache_dir_name(), 'cyan'},
                 {b_components.cache_file_size(), 'default'},
                 {' ', ''},
                 {b_components.file_modified(' '), 'cyan'},
@@ -142,9 +144,7 @@ basic.file_right = {
     },
     text = function(_, _, width)
         if width < breakpoint_width then
-            return {
-                {b_components.progress_lua, ''},
-            }
+            return {{b_components.progress_lua, ''}}
         end
     end,
 }
@@ -154,15 +154,16 @@ basic.git = {
     hl_colors = {
         green = {'green', 'black'},
         red = {'red', 'black'},
+        white = {'white', 'black'},
         blue = {'blue', 'black'},
    },
     width = breakpoint_width,
     text = function(bufnr)
         if git_comps.is_git(bufnr) then
             return {
-                {git_comps.diff_added({format = '  %s', show_zero = true}), 'green'},
-                {git_comps.diff_removed({format = '  %s', show_zero = true}), 'red'},
-                {git_comps.diff_changed({format = ' 柳%s', show_zero = true}), 'blue'},
+                {git_comps.diff_added({format = '  %s', show_zero = false}), 'green'},
+                {git_comps.diff_changed({format = ' 柳%s', show_zero = false}), 'white'},
+                {git_comps.diff_removed({format = '  %s', show_zero = false}), 'red'},
            }
         end
         return ''
@@ -174,12 +175,9 @@ local quickfix = {
     active = {
         {'🚦 Quickfix ', {'white', 'black'}},
         {helper.separators.slant_right, {'black', 'base'}},
-        {
-            function()
-                return vim.fn.getqflist({title = 0}).title
-            end,
-            {'blue', 'base'},
-        },
+        {function()
+            return vim.fn.getqflist({title = 0}).title
+        end, {'blue', 'base'}},
         {' Total : %L ', {'blue', 'base'}},
         {helper.separators.slant_right, {'base', 'InactiveBg'}},
         {' ', {'InactiveFg', 'InactiveBg'}},
@@ -207,9 +205,7 @@ local explorer = {
 basic.lsp_name = {
     width = breakpoint_width,
     name = 'lsp_name',
-    hl_colors = {
-        cyan = {'cyan', 'black'},
-    },
+    hl_colors = {cyan = {'cyan', 'black'}},
     text = function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {{lsp_comps.lsp_name(), 'cyan'}}
@@ -227,10 +223,12 @@ local default = {
         basic.file,
         basic.lsp_diagnos,
         basic.divider,
+        {b_components.cache_file_size(), {'white','black'}},
+        {' ', hl_list.Black},
         basic.file_right,
         basic.lsp_name,
         basic.git,
-        {git_comps.git_branch(), {'cyan', 'black'}, breakpoint_width},
+        {git_comps.git_branch({icon='  '}), {'blue', 'black'}, breakpoint_width},
         {' ', hl_list.Black},
         basic.vi_mode,
         basic.square_mode_right,
@@ -276,7 +274,6 @@ windline.setup({
             ActiveBg = 'NONE',
             FileName = colors.cyan,
         }
-
         return colors
     end,
     statuslines = {

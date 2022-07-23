@@ -53,8 +53,6 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.wilder' end,
         run=':UpdateRemotePlugins',
         event='VimEnter'} -- better cmdline menu
-    -- use({'nvim-lualine/lualine.nvim',
-    --     config=function() require'cfg.statusline' end})
     use {'windwp/windline.nvim',
         config=function()
             require'cfg.wildline'
