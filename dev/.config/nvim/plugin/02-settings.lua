@@ -1,4 +1,4 @@
-vim.o.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize'
+vim.opt.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize'
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
     '2html_plugin',
@@ -32,8 +32,8 @@ for _, plugin in pairs(disabled_built_ins) do
 end
 vim.g.netrw_banner = 0 -- Do not show netrw banner
 if vim.fn.executable('ugrep') == 1 then
-    vim.o.grepprg='ugrep -RInk -j -u --tabs=1 --ignore-files'
-    vim.o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
+    vim.opt.grepprg='ugrep -RInk -j -u --tabs=1 --ignore-files'
+    vim.opt.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
 end
 if vim.fn.executable('nvr') == 1 then
     vim.env.GIT_EDITOR = "nvr -cc split +'setl bh=delete' --remote-wait"
