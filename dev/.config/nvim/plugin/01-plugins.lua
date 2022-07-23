@@ -62,7 +62,7 @@ return require'packer'.startup({function(use)
         requires={'kyazdani42/nvim-web-devicons', after='trouble.nvim'},
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
-        keys={'<leader>xx'}, opt=true}
+        keys={'<leader>X'}, opt=true}
     use {'hrsh7th/nvim-cmp', -- completion engine
         config=function() require'cfg.cmp' end,
         after={'LuaSnip'},
