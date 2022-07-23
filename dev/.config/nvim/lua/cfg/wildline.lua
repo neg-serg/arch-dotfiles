@@ -1,62 +1,62 @@
-local windline = require('windline')
-local helper = require('windline.helpers')
-local b_components = require('windline.components.basic')
-local cache_utils = require('windline.cache_utils')
-local state = _G.WindLine.state
+local windline=require('windline')
+local helper=require('windline.helpers')
+local b_components=require('windline.components.basic')
+local cache_utils=require('windline.cache_utils')
+local state=_G.WindLine.state
 
-local lsp_comps = require('windline.components.lsp')
-local git_comps = require('windline.components.git')
+local lsp_comps=require('windline.components.lsp')
+local git_comps=require('windline.components.git')
 
-local hl_list = {
-    Black = {'white', 'black'},
-    White = {'black', 'white'},
-    Inactive = {'InactiveFg', 'InactiveBg'},
-    Active = {'ActiveFg', 'ActiveBg'},
+local hl_list={
+    Black={'white', 'black'},
+    White={'black', 'white'},
+    Inactive={'InactiveFg', 'InactiveBg'},
+    Active={'ActiveFg', 'ActiveBg'},
 }
-local basic = {}
+local basic={}
 
-local breakpoint_width = 90
-basic.divider = {b_components.divider, ''}
-basic.bg = {' ', 'StatusLine'}
+local breakpoint_width=90
+basic.divider={b_components.divider, ''}
+basic.bg={' ', 'StatusLine'}
 
-local colors_mode = {
-    Normal = {'base', 'black'},
-    Insert = {'green', 'black'},
-    Visual = {'blue', 'black'},
-    Replace = {'blue_light', 'black'},
-    Command = {'cyan', 'black'},
-}
-
-basic.vi_mode = {
-    name = 'vi_mode',
-    hl_colors = colors_mode,
-    text = function() return {{' ', state.mode[2]}} end,
+local colors_mode={
+    Normal={'base', 'black'},
+    Insert={'green', 'black'},
+    Visual={'blue', 'black'},
+    Replace={'blue_light', 'black'},
+    Command={'cyan', 'black'},
 }
 
-basic.square_mode_left = {
-    hl_colors = colors_mode,
-    text = function() return {{'', 'Normal'}} end,
+basic.vi_mode={
+    name='vi_mode',
+    hl_colors=colors_mode,
+    text=function() return {{' ', state.mode[2]}} end,
 }
 
-basic.square_mode_right = {
-    hl_colors = colors_mode,
-    text = function() return {{'', 'Normal'}} end,
+basic.square_mode_left={
+    hl_colors=colors_mode,
+    text=function() return {{'', 'Normal'}} end,
 }
 
-basic.lsp_diagnos = {
-    name = 'diagnostic',
-    hl_colors = {
-        red = {'red', 'black'},
-        yellow = {'yellow', 'black'},
-        blue = {'blue', 'black'},
+basic.square_mode_right={
+    hl_colors=colors_mode,
+    text=function() return {{'', 'Normal'}} end,
+}
+
+basic.lsp_diagnos={
+    name='diagnostic',
+    hl_colors={
+        red={'red','black'},
+        yellow={'yellow','black'},
+        blue={'blue','black'},
     },
-    width = breakpoint_width,
-    text = function(bufnr)
+    width=breakpoint_width,
+    text=function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {
-                {lsp_comps.lsp_error({format = '  %s', show_zero = false}), 'red'},
-                {lsp_comps.lsp_warning({format = '  %s', show_zero = false}), 'yellow'},
-                {lsp_comps.lsp_hint({format = '  %s', show_zero = false}), 'blue'},
+                {lsp_comps.lsp_error({format='  %s', show_zero=false}), 'red'},
+                {lsp_comps.lsp_warning({format='  %s', show_zero=false}), 'yellow'},
+                {lsp_comps.lsp_hint({format='  %s', show_zero=false}), 'blue'},
             }
         end
         return ''
@@ -123,26 +123,26 @@ basic.file = {
                 {cache_delimiter(), 'blue'},
                 {' ', ''},
                 {b_components.file_name(''), 'cyan'},
-                {b_components.file_modified(' '), 'cyan'},
+                {b_components.file_modified(' '), 'blue'},
             }
         else
             return {
                 {cache_dir_name(), 'cyan'},
                 {b_components.cache_file_size(), 'default'},
                 {' ', ''},
-                {b_components.file_modified(' '), 'cyan'},
+                {b_components.file_modified(' '), 'blue'},
             }
         end
     end,
 }
 
-basic.file_right = {
-    hl_colors = {
-        default = hl_list.Black,
-        white = {'white', 'black'},
-        cyan = {'cyan', 'black'},
+basic.file_right={
+    hl_colors={
+        default=hl_list.Black,
+        white={'white', 'black'},
+        cyan={'cyan', 'black'},
     },
-    text = function(_, _, width)
+    text=function(_, _, width)
         if width < breakpoint_width then
             return {{b_components.progress_lua, ''}}
         end
@@ -150,33 +150,33 @@ basic.file_right = {
 }
 
 basic.git = {
-    name = 'git',
-    hl_colors = {
-        green = {'green', 'black'},
-        red = {'red', 'black'},
-        white = {'white', 'black'},
-        blue = {'blue', 'black'},
-   },
+    name='git',
+    hl_colors={
+        green={'green', 'black'},
+        red={'red', 'black'},
+        white={'white', 'black'},
+        blue={'blue', 'black'},
+    },
     width = breakpoint_width,
     text = function(bufnr)
         if git_comps.is_git(bufnr) then
             return {
-                {git_comps.diff_added({format = '  %s', show_zero = false}), 'green'},
-                {git_comps.diff_changed({format = ' 柳%s', show_zero = false}), 'white'},
-                {git_comps.diff_removed({format = '  %s', show_zero = false}), 'red'},
-           }
+                {git_comps.diff_added({format='  %s', show_zero=false}), 'green'},
+                {git_comps.diff_changed({format=' 柳%s', show_zero=false}), 'white'},
+                {git_comps.diff_removed({format='  %s', show_zero=false}), 'red'},
+            }
         end
         return ''
     end,
 }
 
-local quickfix = {
-    filetypes = {'qf', 'Trouble'},
-    active = {
+local quickfix={
+    filetypes={'qf', 'Trouble'},
+    active={
         {'🚦 Quickfix ', {'white', 'black'}},
         {helper.separators.slant_right, {'black', 'base'}},
         {function()
-            return vim.fn.getqflist({title = 0}).title
+            return vim.fn.getqflist({title=0}).title
         end, {'blue', 'base'}},
         {' Total : %L ', {'blue', 'base'}},
         {helper.separators.slant_right, {'base', 'InactiveBg'}},
@@ -185,40 +185,39 @@ local quickfix = {
         {helper.separators.slant_right, {'InactiveBg', 'black'}},
         {'🧛 ', {'white', 'black'}},
     },
-
-    always_active = true,
-    show_last_status = true,
+    always_active=true,
+    show_last_status=true,
 }
 
-local explorer = {
-    filetypes = {'fern', 'NvimTree', 'lir'},
-    active = {
+local explorer={
+    filetypes={'fern', 'NvimTree', 'lir'},
+    active={
         {'  ', {'black', 'red'}},
         {helper.separators.slant_right, {'red', 'NormalBg'}},
         {b_components.divider, ''},
-        {b_components.file_name(''), {'white', 'NormalBg'}},
+        {b_components.file_name(''), {'white', 'NormalBg'}},
     },
-    always_active = true,
-    show_last_status = true,
+    always_active=true,
+    show_last_status=true,
 }
 
-basic.lsp_name = {
-    width = breakpoint_width,
-    name = 'lsp_name',
-    hl_colors = {cyan = {'cyan', 'black'}},
-    text = function(bufnr)
+basic.lsp_name={
+    width=breakpoint_width,
+    name='lsp_name',
+    hl_colors={cyan={'cyan', 'black'}},
+    text=function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {{lsp_comps.lsp_name(), 'cyan'}}
         end
         return {
-            {b_components.cache_file_type({icon = true}), 'cyan'},
+            {b_components.cache_file_type({icon=true}), 'cyan'},
         }
     end,
 }
 
-local default = {
-    filetypes = {'default'},
-    active = {
+local default={
+    filetypes={'default'},
+    active={
         basic.square_mode_left,
         basic.file,
         basic.lsp_diagnos,
@@ -233,50 +232,48 @@ local default = {
         basic.vi_mode,
         basic.square_mode_right,
     },
-    inactive = {
+    inactive={
         {b_components.full_file_name, hl_list.Inactive},
         basic.divider,
         {b_components.progress, hl_list.Inactive},
     },
 }
 
-local telescope = {
-    filetypes = {'TelescopePrompt'},
-    active = {
-        {'  ', {'white', 'black'} },
-    },
-    --- for global statusline (laststatus = 3).
+local telescope={
+    filetypes={'TelescopePrompt'},
+    active={{'  ',{'white','black'}}},
+    --- for global statusline (laststatus=3).
     --- by default it skip all floating window on global statusline but you can
     --- change it here
-    global_show_float = false
+    global_show_float=false
 }
 
 windline.setup({
-    colors_name = function(colors)
-        colors = {
-            black = 'NONE',
-            black_light = 'NONE',
-            white = '#54667a',
-            red = '#970d4f',
-            green = '#007a51',
-            blue = '#005faf',
-            yellow = '#c678dd',
-            magenta = '#c678dd',
-            base = '#234758',
-            blue_light = "#517f8d",
-            cyan = '#6587b3',
+    colors_name=function(colors)
+        colors={
+            black='NONE',
+            black_light='NONE',
+            white='#54667a',
+            red='#970d4f',
+            green='#007a51',
+            blue='#005faf',
+            yellow='#c678dd',
+            magenta='#c678dd',
+            base='#234758',
+            blue_light="#517f8d",
+            cyan='#6587b3',
 
-            NormalFg = "#ff0000",
-            NormalBg = "#282828",
-            InactiveFg = '#c6c6c6',
-            InactiveBg = '#3c3836',
-            ActiveFg = '#54667a',
-            ActiveBg = 'NONE',
-            FileName = colors.cyan,
+            NormalFg="#ff0000",
+            NormalBg="#282828",
+            InactiveFg='#c6c6c6',
+            InactiveBg='#3c3836',
+            ActiveFg='#54667a',
+            ActiveBg='NONE',
+            FileName=colors.cyan,
         }
         return colors
     end,
-    statuslines = {
+    statuslines={
         default,
         quickfix,
         explorer,
