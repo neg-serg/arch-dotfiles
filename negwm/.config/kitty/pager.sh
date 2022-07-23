@@ -14,7 +14,7 @@ nvim 63<&0 0</dev/null \
     -c "autocmd TermOpen * normal G" \
     -c "map <silent> q :qa!<CR>" \
     -c "map <silent> <C-c> :qa!<CR>" \
-    -c "set shell=zsh scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus" \
+    -c "set shell=zsh scrollback=0 termguicolors laststatus=0 clipboard+=unnamedplus" \
     -c "autocmd TermEnter * stopinsert" \
     -c "autocmd TermClose * ${AUTOCMD_TERMCLOSE_CMD}" \
     -c 'terminal sed </dev/fd/63 -e "s/'$'\x1b'']8;;file:[^\]*[\]//g" && sleep 0.01 && printf "'$'\x1b'']2;"'
