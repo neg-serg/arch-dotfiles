@@ -9,7 +9,6 @@ return require'packer'.startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use 'lewis6991/impatient.nvim' -- faster loading
     use {'nathom/filetype.nvim',-- faster filetype alternative
          config=function() require'cfg.filetype' end}
     use {'dstein64/vim-startuptime', cmd='StartupTime'} -- startup time measurement
