@@ -53,11 +53,10 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.wilder' end,
         run=':UpdateRemotePlugins',
         event='VimEnter'} -- better cmdline menu
-    use {'windwp/windline.nvim',
-        config=function()
-            require'cfg.wildline'
-        end
-    }
+    use {'VonHeikemen/fine-cmdline.nvim', requires={{'MunifTanjim/nui.nvim'}},
+        config=function() require'cfg.cmdline' end}
+    use {'windwp/windline.nvim', -- most modern statusline
+        config=function() require'cfg.wildline' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
