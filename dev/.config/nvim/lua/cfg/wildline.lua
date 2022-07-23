@@ -64,7 +64,7 @@ basic.lsp_diagnos = {
 }
 
 local function dir_name(default, modify)
-    default = default or '[No Name]'
+    default = default or ''
     modify = modify or 'name'
     return function()
         local dir = vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
