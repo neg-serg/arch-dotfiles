@@ -182,11 +182,11 @@ end,
         display={
             title='Packer',
             open_cmd='85vnew \\[packer\\]', -- An optional command to open a window for packer's display
-            compile_path = require('packer.util').join_paths(vim.fn.stdpath('data'), 'lua', 'packer_compiled.lua'),
             keybindings={toggle_info='<TAB>'},
         },
         auto_clean=true,
         compile_on_sync=true,
-        profile={enable=true, threshold=0.0001},
+        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+        profile={enable=false, threshold=0.0001},
     }
 })
