@@ -40,7 +40,6 @@ if vim.fn.executable('nvr') == 1 then
     vim.env.EDITOR = 'nvr -l --remote'
     vim.env.VISUAL = 'nvr -l --remote'
 end
-vim.opt.secure = true
 vim.opt.path = vim.env.XDG_CONFIG_HOME .. '/nvim,' ..
 	vim.env.XDG_CONFIG_HOME .. '/nvim/after,' ..
 	vim.env.HOME .. '/.local/share/nvim/site/' ..
@@ -122,10 +121,7 @@ vim.opt.mouse = 'a'                                          -- Add mouse suppor
 vim.opt.backupdir = vim.env.HOME .. '/trash/'                -- Setup backupdir
 vim.opt.directory = vim.env.HOME .. '/trash/'                -- Directory for swap files
 vim.opt.undodir = vim.env.HOME .. '/trash/'                  -- Setup undo dir
-vim.opt.swapfile = false                                     -- No swap file
 vim.opt.undofile = true                                      -- Enable undofile
-vim.opt.undolevels = 1000                                    -- Maximum number of changes that can be undone
-vim.opt.undoreload = 10000                                   -- Maximum number lines to save for undo on a buffer reload
 vim.opt.shada = "!,'100,<50,s100,h,:100,%,/100"              -- Shada settings
 vim.opt.completeopt = {'menu','menuone','noselect'}          -- Completion options
 vim.opt.formatoptions = 'n1jcroqlj'                          -- Format settings
