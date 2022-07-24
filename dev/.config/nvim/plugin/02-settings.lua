@@ -42,7 +42,6 @@ if vim.fn.executable('nvr') == 1 then
 end
 vim.opt.exrc = false
 vim.opt.secure = true
-vim.opt.termguicolors = true
 vim.opt.path = vim.env.XDG_CONFIG_HOME .. '/nvim,' ..
 	vim.env.XDG_CONFIG_HOME .. '/nvim/after,' ..
 	vim.env.HOME .. '/.local/share/nvim/site/' ..
@@ -51,14 +50,9 @@ vim.opt.fillchars:append { eob = " " }                       -- Disable ~ symbol
 vim.opt.formatprg = 'par -140'                               -- Better format
 vim.opt.report = 0                                           -- No report on substitution
 vim.opt.fileformats = 'unix,dos,mac'                         -- File format fallback
-vim.opt.synmaxcol = 256                                      -- No syntax hi for too long lines
 vim.opt.conceallevel = 1                                     -- Enable conceal without hide
 vim.opt.concealcursor = 'niv'                                -- Conceal cursor
 vim.opt.keymap = 'russian-jcukenwin'                         -- Add ru keymap
-vim.opt.magic = true                                         -- Use magic
-vim.opt.listchars = {}                                       -- Disable listchars
-vim.opt.hidden = true                                        -- It hides buffers instead of closing them
-vim.opt.lazyredraw = true                                    -- Reduce useless redrawing
 vim.opt.backup = true                                        -- Backuping is good
 vim.opt.writebackup = true                                   -- Backuping is good for write
 vim.opt.cindent = true                                       -- Smart indenting for c-like code
@@ -74,36 +68,25 @@ vim.opt.gdefault = true                                      -- This makes searc
 vim.opt.ignorecase = true                                    -- Case insensitive search
 vim.opt.iminsert = 0                                         -- Write latin1 characters first
 vim.opt.imsearch = 0                                         -- Search with latin1 characters first
-vim.opt.inccommand = 'nosplit'                               -- Better live substitution
 vim.opt.isfname:append {','}                                 -- Scan in filenames in such brackets
 vim.opt.jumpoptions = 'stack'                                -- Stack jumpoptions
 vim.opt.matchtime = 0                                        -- Default time to hi brackets too long for me
 vim.opt.matchpairs:append '<:>'                              -- More matchpairs
-vim.opt.maxfuncdepth = 100                                   -- Maximum depth of function calls for user functions
-vim.opt.maxmapdepth = 1000                                   -- Maximum number of times a mapping is done without resulting in a character to be used.
-vim.opt.maxmempattern = 1000                                 -- Maximum amount of memory (in Kbyte to use for pattern matching.
-vim.opt.autochdir = false                                    -- Dont change pwd automaticly because of problems with plugins
-vim.opt.autoread = true                                      -- Autoread file on change
 vim.opt.autowrite = false                                    -- Dont autowrite by default
 vim.opt.foldenable = false                                   -- Disable folds as
 vim.opt.joinspaces = false                                   -- Prevents inserting two spaces after punctuation on a join (J
 vim.opt.showmatch = false                                    -- Show matching brackets/parenthesis
-vim.opt.spell = false                                        -- Disable spell checking by default
-vim.opt.number = false                                       -- Line numbers on / off
 vim.opt.numberwidth = 3                                      -- Shorter number width
 vim.opt.signcolumn = 'auto:1'                                -- Merge sign and numbers
 vim.opt.pumblend = 15                                        -- setup pmenu transparency
 vim.opt.pumheight = 10                                       -- Do not make pmenu too wide
 vim.opt.scrolljump = 0                                       -- Lines to scroll when cursor leaves screen
 vim.opt.scrolloff  = 0                                       -- Minimum lines to keep above and below cursor
-vim.opt.scrollback = 0                                       -- Disable scrollback
 vim.opt.sidescrolloff = 0                                    -- Min num of scr columns to keep to the left and to the
+vim.opt.scrollback = 1                                       -- Disable scrollback
 vim.opt.shiftround = false                                   -- Makes indenting a multiple of shiftwidth
 vim.opt.shiftwidth = 4                                       -- Spaces for autoindents
 vim.opt.termguicolors = true                                 -- Enable termguicolors
-vim.opt.confirm = false                                      -- Disable no write
-vim.opt.incsearch = true                                     -- Move cursor during search
-vim.opt.wildmenu = true                                      -- Command line completion mode
 vim.opt.wildignorecase = true                                -- Ignore case for wildmenu
 vim.opt.wildignore:append {
 	"*.7z" , "*.aux" , "*.avi" , "*.bak" , "*.bib" , "*.class" , "*.cls" , "*.cmi"
@@ -113,7 +96,7 @@ vim.opt.wildignore:append {
 	, "*.pem" , "*.png" , "*.rar" , "*.sty" , "*.svg" , "*.swp" , "*.swp*." , "*.tar"
 	, "*.tgz" , "*.toc" , "*.wav" , "*.webm" , "*.xcf" , "*.xls" , "*.xlsx" , "*.zip"
 }
-vim.opt.hlsearch = true                                      -- Highlight search results (enforce
+vim.opt.hlsearch = true                                      -- Highlight search results
 vim.opt.shortmess:append 'aoOstTAIcqF'                       -- Shorting messages for all
 vim.opt.more = false                                         -- Do not ask to press enter
 vim.opt.showmode = false                                     -- Do not show the mode ("-- INSERT --" at the bottom)
@@ -131,7 +114,6 @@ vim.opt.updatetime = 100                                     -- Faster diagnosti
 vim.opt.redrawtime = 1500                                    -- Shorter redrawtime
 vim.opt.virtualedit = 'onemore,block'                        -- Allow for cursor beyond last character
 vim.opt.whichwrap = 'b,s,h,l,<,>,[,]'                        -- Backspace and cursor keys wrap too
-vim.opt.wildmode = 'full'                                    -- Command <Tab> completion = list matches = then longest common part = then all.
 vim.opt.wildoptions = 'pum'                                  -- Wild options
 vim.opt.winblend = 15                                        -- Pseudo-transparency for floating windows
 vim.opt.winminheight = 0                                     -- Windows can be 0 line high
@@ -146,7 +128,6 @@ vim.opt.undofile = true                                      -- Enable undofile
 vim.opt.undolevels = 1000                                    -- Maximum number of changes that can be undone
 vim.opt.undoreload = 10000                                   -- Maximum number lines to save for undo on a buffer reload
 vim.opt.shada = "!,'100,<50,s100,h,:100,%,/100"              -- Shada settings
-vim.opt.background = 'dark'                                  -- Dark background
 vim.opt.completeopt = {'menu','menuone','noselect'}          -- Completion options
 vim.opt.formatoptions = 'n1jcroqlj'                          -- Format settings
 vim.opt.cpoptions = '_$ABFWcdesa'                            -- Vim-exclusive stuff
