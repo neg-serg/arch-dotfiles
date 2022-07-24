@@ -1,7 +1,9 @@
 require'filetype_nvim'
 
 require'01-helpers'
-require'01-plugins'
+if vim.g.plugin_operations then
+    require'01-plugins'
+end
 require'02-bindings'
 require'02-settings'
 require'04-aucmds'
