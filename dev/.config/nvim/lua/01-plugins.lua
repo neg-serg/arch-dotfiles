@@ -24,8 +24,8 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
          after='nvim-web-devicons', event='UIEnter'} -- fancy webicons
-    use {'neg-serg/NeoRoot.lua', -- autochdir for project root or for current dir
-         config=function() require'cfg.neoroot' end}
+    -- use {'neg-serg/NeoRoot.lua', -- autochdir for project root or for current dir
+    --      config=function() require'cfg.neoroot' end}
     use {'ghillb/cybu.nvim', -- fancy menu changing
          config=function() require'cfg.cybu' end,
          keys={'<Tab>', '<S-Tab>'}}
@@ -171,8 +171,10 @@ return require'packer'.startup({function(use)
             'GitConflictChooseNone', 'GitConflictNextConflict', 'GitConflictPrevConflict',
             'GitConflictListQf'}}
     use {'sindrets/diffview.nvim', -- diff view for multiple files
-        cmd={'DiffviewOpen'}, requires={'kyazdani42/nvim-web-devicons','nvim-lua/plenary.nvim'},
-        opt=true}
+        config=function() require'cfg.diffview' end,
+        cmd={'DiffviewOpen','DiffviewFileHistory'},
+        requires={'kyazdani42/nvim-web-devicons','nvim-lua/plenary.nvim'},
+        keys={'<C-S-G>'}, opt=true}
     use {'lewis6991/gitsigns.nvim',
         requires='plenary.nvim',
         config=function() require'cfg.gitsigns' end,
