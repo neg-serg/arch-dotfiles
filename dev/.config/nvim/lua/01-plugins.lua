@@ -20,6 +20,8 @@ return require'packer'.startup({function(use)
     use {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
         keys={'<leader>l'}}
+    use {'ahmedkhalf/project.nvim',
+        config = function() require('project_nvim').setup {} end}
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
