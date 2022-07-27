@@ -20,14 +20,11 @@ return require'packer'.startup({function(use)
     use {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
         keys={'<leader>l'}}
-    use {'ahmedkhalf/project.nvim',
-        config = function() require('project_nvim').setup {} end}
+    use {'ahmedkhalf/project.nvim', config = function() require'cfg.project' end}
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end, event='UIEnter'}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
          after='nvim-web-devicons', event='UIEnter'} -- fancy webicons
-    -- use {'neg-serg/NeoRoot.lua', -- autochdir for project root or for current dir
-    --      config=function() require'cfg.neoroot' end}
     use {'ghillb/cybu.nvim', -- fancy menu changing
          config=function() require'cfg.cybu' end,
          keys={'<Tab>', '<S-Tab>'}}
