@@ -43,7 +43,7 @@ return require'packer'.startup({function(use)
         },
         module='telescope',
         keys={'<M-b>', '<M-f>', '<M-C-o>', '<M-o>', '<M-d>',
-            '<leader>.', '[Qleader]e', '[Qleader]f', '[Qleader]c'},
+            '<leader>.', '[Qleader]e', '[Qleader]f', '[Qleader]c', '[Qleader]p'},
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end}

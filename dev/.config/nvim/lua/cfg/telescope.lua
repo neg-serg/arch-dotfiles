@@ -99,3 +99,4 @@ map('n', '<M-d>', '<Cmd>lua require"telescope.builtin".lsp_document_diagnostics(
 map('n', "<leader>.", "<Cmd>lua require'telescope'.load_extension'frecency'; require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({layout_config = {height = 8}, border=false}))<CR>", {noremap=true, silent=true})
 map('n', '[Qleader]e', "<Cmd>lua require'telescope.builtin'.find_files{}<CR>", {silent=true, noremap=true})
 map('n', '[Qleader]c', "<Cmd>lua require'telescope.builtin'.git_commits{}<CR>", {silent=true, noremap=true})
+map('n', '[Qleader]p', "<Cmd>lua require'telescope'.load_extension'projects'<CR>:Telescope projects<CR>", {silent=true, noremap=true})
