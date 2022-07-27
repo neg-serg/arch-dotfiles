@@ -1,26 +1,4 @@
 vim.api.nvim_exec([[
-function! CreateFoldersAndWrite(bang)
-    let l:one = expand('%:p')
-    let l:two = substitute(l:one, '^[A-Za-z]*', '', '')
-    if l:one != l:two
-        echo 'Sorry but buffer is not a real file'
-        return
-    endif
-    silent execute('!mkdir -p %:h')
-    try
-        if (a:bang)
-            execute(':w!')
-        else
-            execute(':w')
-        endif
-    catch "E166: Can't open linked file for writing"
-        redraw!
-        SudoWrite
-    endtry
-endfunction
-]], true)
-
-vim.api.nvim_exec([[
 function! Redir(cmd, rng, start, end)
 	for win in range(1, winnr('$'))
 		if getwinvar(win, 'scratch')
@@ -52,7 +30,6 @@ endfunction
 ]], true)
 
 vim.api.nvim_cmd({cmd="command!", args={'-bang', '-nargs=*', '-complete=file', 'E', 'e<bang>', '<args>'}}, {})
-vim.api.nvim_cmd({cmd="command!", args={'-bang', 'W', ':call CreateFoldersAndWrite(<bang>0)'}}, {})
 vim.api.nvim_cmd({cmd="command!", args={'-bang', '-nargs=*', '-complete=file', 'Wq', 'wq<bang>', '<args>'}}, {})
 vim.api.nvim_cmd({cmd="command!", args={'-bang', '-nargs=*', '-complete=file', 'WQ', 'wq<bang>', '<args>'}}, {})
 vim.api.nvim_cmd({cmd="command!", args={'-bang', 'Q', 'q<bang>'}}, {})
