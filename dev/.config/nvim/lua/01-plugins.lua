@@ -155,7 +155,7 @@ return require'packer'.startup({function(use)
         requires={
             {'nvim-treesitter/nvim-treesitter-textobjects',
                 after='nvim-treesitter',
-                config=function() require'cfg.treesitter' end,},
+                config=function() require'cfg.treesitter' end},
             {'p00f/nvim-ts-rainbow', after='nvim-treesitter'}, -- treesitter-based rainbow
             {'RRethy/nvim-treesitter-endwise', after='nvim-treesitter'}, -- ts-based endwise
             {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'} -- refactor modules for ts
@@ -174,7 +174,7 @@ return require'packer'.startup({function(use)
         cmd={'DiffviewOpen','DiffviewFileHistory'},
         requires={'kyazdani42/nvim-web-devicons','nvim-lua/plenary.nvim'},
         keys={'<C-S-G>'}, opt=true}
-    use {'lewis6991/gitsigns.nvim',
+    use {'lewis6991/gitsigns.nvim', -- fast git decorations
         requires='plenary.nvim',
         config=function() require'cfg.gitsigns' end,
         event={'BufNewFile','BufRead'}} -- async gitsigns
