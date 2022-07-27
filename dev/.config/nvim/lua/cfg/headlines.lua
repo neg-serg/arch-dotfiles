@@ -41,12 +41,7 @@ require("headlines").setup {
     },
 }
 
-vim.cmd [[highlight Headline1 guibg=#1e2718]]
-vim.cmd [[highlight Headline2 guibg=#21262d]]
-vim.cmd [[highlight CodeBlock guibg=#1c1c1c]]
-vim.cmd [[highlight Dash guibg=#D19A66 gui=bold]]
-vim.cmd("hi MdHeadlineLevel1 guifg=#7388de")
-vim.cmd("hi MdHeadlineLevel2 guifg=#7388de")
-vim.cmd("hi MdHeadlineLevel3 guifg=#7388de")
-vim.cmd("hi MdHeadlineLevel4 guifg=#7388de")
-vim.cmd("hi MdHeadlineLevel5 guifg=#a373FF")
+vim.cmd [[highlight Headline1 guibg=#10233a]]
+vim.cmd [[highlight Headline2 guibg=#040f1c]]
+vim.cmd [[highlight CodeBlock guibg=#1c334e]]
+vim.cmd [[highlight Dash guibg=#0c1c30 gui=bold]]
