@@ -1,10 +1,5 @@
-local o = vim.o
-local g = vim.g
-local a = vim.api
-api = vim.api
-
 function _G.map(mod, lhs, rhs, opt)
-    a.nvim_set_keymap(mod, lhs, rhs, opt or {})
+    vim.api.nvim_set_keymap(mod, lhs, rhs, opt or {})
 end
 
 local M = {}
