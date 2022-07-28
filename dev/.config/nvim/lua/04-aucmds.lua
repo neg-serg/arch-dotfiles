@@ -28,6 +28,10 @@ au({'Filetype'}, {
     pattern={'help', 'startuptime', 'qf', 'lspinfo'},
     command='nnoremap <buffer><silent> q :close<CR>',
     group=main})
+au({"BufNewFile","BufRead"}, {
+    group=main,
+    pattern="**/systemd/**/*.service",
+    callback=function() vim.bo.filetype="systemd" end})
 -- Update binds when sxhkdrc is updated.
 au({'BufWritePost'}, {pattern={'*sxhkdrc'}, command='!pkill -USR1 sxhkd', group=main})
 au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='source <afile> | PackerCompile', group=main})
