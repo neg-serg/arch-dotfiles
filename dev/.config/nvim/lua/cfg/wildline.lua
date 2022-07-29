@@ -27,20 +27,10 @@ local colors_mode={
     Command={'cyan', 'black'},
 }
 
-basic.vi_mode={
-    name='vi_mode',
+basic.mode_indicator={
+    name='mode_indicator',
     hl_colors=colors_mode,
-    text=function() return {{' ', state.mode[2]}} end,
-}
-
-basic.square_mode_left={
-    hl_colors=colors_mode,
-    text=function() return {{'', 'Normal'}} end,
-}
-
-basic.square_mode_right={
-    hl_colors=colors_mode,
-    text=function() return {{'', 'Normal'}} end,
+    text=function() return {{'', state.mode[2]}} end,
 }
 
 basic.lsp_diagnos={
@@ -89,7 +79,7 @@ end
 local function dir_symbol()
     return function()
         if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-            return ' '
+            return ''
         else
             return ''
         end
@@ -218,7 +208,6 @@ basic.lsp_name={
 local default={
     filetypes={'default'},
     active={
-        basic.square_mode_left,
         basic.file,
         basic.lsp_diagnos,
         basic.divider,
@@ -229,8 +218,7 @@ local default={
         basic.git,
         {git_comps.git_branch({icon='  '}), {'blue', 'black'}, breakpoint_width},
         {' ', hl_list.Black},
-        basic.vi_mode,
-        basic.square_mode_right,
+        basic.mode_indicator,
     },
     inactive={
         {b_components.full_file_name, hl_list.Inactive},
