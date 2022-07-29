@@ -92,7 +92,6 @@ o.wildignore = '*.7z,*.aux,*.avi,*.bak,*.bib,*.class,*.cls,*.cmi,' ..
 '*.nav,*.o,*.ods,*.odt,*.ogg,*.opus,*.out,*.pdf,*.pem,' ..
 '*.png,*.rar,*.sty,*.svg,*.swp,*.swp*.,*.tar,*.tgz,' ..
 '*.toc,*.wav,*.webm,*.xcf,*.xls,*.xlsx,*.zip'
-o.hlsearch = true                                      -- Highlight search results
 o.shortmess='OcsliFatfnToAIqx'                         -- Shorting messages for all
 o.more = false                                         -- Do not ask to press enter
 o.showmode = false                                     -- Do not show the mode ("-- INSERT --" at the bottom)
