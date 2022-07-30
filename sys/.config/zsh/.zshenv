@@ -44,8 +44,8 @@ else
     typeset -gx FZF_TMUX=0
 fi
 typeset -gx FZF_DEFAULT_OPTS="
---color=bg+:#000000,bg:#000000,spinner:#395573,hl:#496E80
---color=fg:#4f5d78,header:#4779B3,info:#34596C,pointer:#444090
+--color=bg+:#000000,bg:#000000,spinner:#3f5876,hl:#546c8a
+--color=fg:#4f5d78,header:#4779B3,info:#3f5876,pointer:#005faf
 --color=marker:#04141C,fg+:#8DA6B2,prompt:#005faf,hl+:#005faf
 --info=inline
 --multi
