@@ -133,7 +133,8 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.argwrap' end}
     use {'junegunn/vim-easy-align', -- use easy-align, instead of tabular
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}}
-    use 'ntpeters/vim-better-whitespace' -- delete whitespaces with ease
+    use {'ntpeters/vim-better-whitespace', -- delete whitespaces with ease
+         config=function() require'cfg.whitespace' end}
     use {'phaazon/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end}
     use {'svermeulen/vim-NotableFt', -- better f-t-bindings
