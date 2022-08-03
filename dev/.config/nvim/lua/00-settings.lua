@@ -1,4 +1,6 @@
 local o = vim.opt
+local env_ = vim.env
+local home_ = env_.HOME
 o.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize'
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins = {
@@ -37,13 +39,13 @@ if vim.fn.executable('ugrep') == 1 then
     o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
 end
 if vim.fn.executable('nvr') == 1 then
-    vim.env.GIT_EDITOR = "nvr -cc split +'setl bh=delete' --remote-wait"
-    vim.env.EDITOR = 'nvr -l --remote'
-    vim.env.VISUAL = 'nvr -l --remote'
+    env_.GIT_EDITOR = "nvr -cc split +'setl bh=delete' --remote-wait"
+    env_.EDITOR = 'nvr -l --remote'
+    env_.VISUAL = 'nvr -l --remote'
 end
-o.path = vim.env.XDG_CONFIG_HOME .. '/nvim,' ..
-	vim.env.XDG_CONFIG_HOME .. '/nvim/after,' ..
-	vim.env.HOME .. '/.local/share/nvim/site/' ..
+o.path = env_.XDG_CONFIG_HOME .. '/nvim,' ..
+	env_.XDG_CONFIG_HOME .. '/nvim/after,' ..
+	home_ .. '/.local/share/nvim/site/' ..
 		',.,..,/usr/include,./include,../include,*'
 o.fillchars={eob=' '}                                  -- Disable ~ symbol
 o.formatprg = 'par -140'                               -- Better format
@@ -115,9 +117,9 @@ o.winminheight = 0                                     -- Windows can be 0 line 
 o.winminwidth = 0                                      -- Windows can be 0 line width
 o.wrap = false                                         -- Do not wrap lines by default
 o.mouse = 'a'                                          -- Add mouse support
-o.backupdir = vim.env.HOME .. '/trash/'                -- Setup backupdir
-o.directory = vim.env.HOME .. '/trash/'                -- Directory for swap files
-o.undodir = vim.env.HOME .. '/trash/'                  -- Setup undo dir
+o.backupdir = home_ .. '/trash/'                -- Setup backupdir
+o.directory = home_ .. '/trash/'                -- Directory for swap files
+o.undodir = home_ .. '/trash/'                  -- Setup undo dir
 o.undofile = true                                      -- Enable undofile
 o.swapfile = false                                     -- Do not use swapfiles
 o.shada = "!,'100,<50,s100,h,:100,%,/100"              -- Shada settings
