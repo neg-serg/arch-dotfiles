@@ -27,7 +27,7 @@ tsconf.setup {
     },
     indent = {enable = true},
     autotag = {enable = false},
-    textobjects = { --{{{
+    textobjects = {
         select = {
             enable = true,
             keymaps = {
@@ -41,9 +41,8 @@ tsconf.setup {
                 ["ia"] = "@parameter.inner",
                 ["as"] = "@statement.outer",
             },
-        }, --}}}
+        },
     },
-    -- autopairs = {enable = true},
 }
 
 local ft_to_lang = require('nvim-treesitter.parsers').ft_to_lang
