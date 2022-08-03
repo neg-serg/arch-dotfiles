@@ -3,8 +3,8 @@
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 require('gitsigns').setup {
     signs = {
-        add={hl='GitSignsAdd', text='│', show_count=false, numhl='GitSignsAddNr', linehl='GitSignsAddLn'},
-        change={hl='GitSignsChange', text='│', show_count=false, numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+        add={hl='GitSignsAdd', text='▎', show_count=false, numhl='GitSignsAddNr', linehl='GitSignsAddLn'},
+        change={hl='GitSignsChange', text='▎', show_count=false, numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
         delete={hl='GitSignsDelete', text='_', show_count=false, numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
         topdelete={hl='GitSignsDelete', text='‾', show_count=false, numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
         changedelete={hl='GitSignsChange', text='~', show_count=false, numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
