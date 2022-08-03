@@ -73,8 +73,8 @@ return require'packer'.startup({function(use)
             {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
         }, event={'InsertEnter'}}
     use {{'L3MON4D3/LuaSnip', -- snippets engine
-            requires='rafamadriz/friendly-snippets', -- additional snippets'
             config=function() require'cfg.luasnip' end,
+            requires='rafamadriz/friendly-snippets', -- additional snippets'
             event={'BufRead','BufNewFile','InsertEnter'}},
         {'saadparwaiz1/cmp_luasnip', after={'LuaSnip', 'nvim-cmp'}}, -- lua snippets nvim-cmp support
         event={'InsertEnter'}}
@@ -99,9 +99,8 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.dispatch' end,
         cmd={'Dispatch','Make','Focus','Start'}}
     use {'windwp/nvim-autopairs', -- super powerful autopairs
-        wants='nvim-cmp',
         config=function() require'cfg.autopairs' end,
-        event={'InsertEnter'}}
+        wants='nvim-cmp', event={'InsertEnter'}}
     use{'willchao612/vim-diagon', cmd='Diagon'} -- creates diagrams from text. Requires diagon from snap.
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
