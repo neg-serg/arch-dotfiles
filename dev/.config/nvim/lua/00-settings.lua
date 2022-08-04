@@ -34,6 +34,7 @@ for _, plugin in pairs(disabled_built_ins) do
     vim.g['loaded_' .. plugin] = 1
 end
 vim.g.netrw_banner = 0 -- Do not show netrw banner
+vim.g.netrw_fastbrowse = 0 -- Try to fix weird netrw window
 if vim.fn.executable('ugrep') == 1 then
     o.grepprg='ugrep -RInk -j -u --tabs=1 --ignore-files'
     o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
@@ -117,9 +118,9 @@ o.winminheight = 0                                     -- Windows can be 0 line 
 o.winminwidth = 0                                      -- Windows can be 0 line width
 o.wrap = false                                         -- Do not wrap lines by default
 o.mouse = 'a'                                          -- Add mouse support
-o.backupdir = home_ .. '/trash/'                -- Setup backupdir
-o.directory = home_ .. '/trash/'                -- Directory for swap files
-o.undodir = home_ .. '/trash/'                  -- Setup undo dir
+o.backupdir = home_ .. '/trash/'                       -- Setup backupdir
+o.directory = home_ .. '/trash/'                       -- Directory for swap files
+o.undodir = home_ .. '/trash/'                         -- Setup undo dir
 o.undofile = true                                      -- Enable undofile
 o.swapfile = false                                     -- Do not use swapfiles
 o.shada = "!,'100,<50,s100,h,:100,%,/100"              -- Shada settings
