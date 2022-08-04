@@ -73,3 +73,24 @@ map('i', '<C-a>', "<C-o>^", {noremap=true})
 map('i', '<C-e>', "<C-o>$", {noremap=true})
 map('i', '<C-v>', 'paste#paste_cmd["i"]', {expr=true})
 map('v', '<C-v>', 'paste#paste_cmd["v"]', {expr=true})
+
+-- _G.enhance_nice_block = function(key)
+--   if not packer_plugins['vim-niceblock'].loaded then
+--     vim.cmd([[packadd vim-niceblock]])
+--   end
+--   local map = {
+--     I = '<Plug>(niceblock-I)',
+--     ['gI'] = '<Plug>(niceblock-gI)',
+--     A = '<Plug>(niceblock-A)',
+--   }
+--   return map[key]
+-- end
+
+-- xmap({
+--   --   { 'gcc', ':ProComment<CR>', opts(noremap, silent) },
+--   { 'ga', cu('Lspsaga code_action'), opts(noremap, silent) },
+--   -- nice_block
+--   { 'I', _G.enhance_nice_block('I'), opts(expr, remap) },
+--   { 'gI', _G.enhance_nice_block('gI'), opts(expr, remap) },
+--   { 'A', _G.enhance_nice_block('A'), opts(expr, remap) },
+-- })
