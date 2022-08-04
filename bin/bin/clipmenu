@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-: "${CM_LAUNCHER=dmenu}"
+: "${CM_LAUNCHER=rofi}"
 : "${CM_DIR="${XDG_RUNTIME_DIR-"${TMPDIR-/tmp}"}"}"
 : "${CM_HISTLENGTH=200}"
+
 
 major_version=6
 
@@ -10,6 +11,10 @@ shopt -s nullglob
 
 cache_dir=$CM_DIR/clipmenu.$major_version.$USER
 cache_file=$cache_dir/line_cache
+
+list_clips() {
+    LC_ALL=C sort -rnk 1 < "$cache_file" | cut -d' ' -f2- | awk '!seen[$0]++'
+}
 
 if [[ $1 == --help ]] || [[ $1 == -h ]]; then
     cat << 'EOF'
@@ -36,22 +41,9 @@ if [[ "$CM_LAUNCHER" == fzf ]]; then
 fi
 
 # rofi supports dmenu-like arguments through the -dmenu flag
-[[ "$CM_LAUNCHER" == rofi ]] && set -- -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip -dmenu "$@"
+[[ "$CM_LAUNCHER" == rofi ]] && set -- -lines 10 -theme clip -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' "$@"
 
-list_clips() {
-    LC_ALL=C sort -rnk 1 < "$cache_file" | cut -d' ' -f2- | awk '!seen[$0]++'
-}
-
-if [[ "$CM_LAUNCHER" == rofi-script ]]; then
-    if (( $# )); then
-        chosen_line="${!#}"
-    else
-        list_clips
-        exit
-    fi
-else
-    chosen_line=$(list_clips | "$CM_LAUNCHER" "${launcher_args[@]}" "$@")
-fi
+chosen_line=$(list_clips | "$CM_LAUNCHER" "${launcher_args[@]}" "$@")
 
 [[ $chosen_line ]] || exit 1
 file=$cache_dir/$(cksum <<< "$chosen_line")
