@@ -55,6 +55,10 @@ while true; do
 	# The shell only does integer operations, so make sure to first multiply and
 	# then divide
 	value=$((lines * multiply_by / divide_by))
-	printf "$FORMAT\\n" "$value"
+    if (( value > 0 )); then
+        printf "$FORMAT\\n" "$value"
+    else
+        echo ''
+    fi
 	sleep $INTERVAL
 done
