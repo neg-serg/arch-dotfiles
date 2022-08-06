@@ -6,6 +6,8 @@ gamma-auto
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
 x11-bypass-compositor=no
+no-hidpi-window-scale
+window-scale=0.5 # scale window size
 #--[Decoding]----------------------------------------------
 cache=auto
 scale=ewa_lanczossharp
