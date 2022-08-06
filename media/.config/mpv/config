@@ -1,90 +1,101 @@
+#--[Main]--------------------------------------------------
 input-ipc-server=/tmp/mpvsocket
-vo-vdpau-colorkey="#000000"
-icc-profile-auto
-target-prim=auto
+
 gamma-auto
+icc-profile-auto
+no-hidpi-window-scale
+target-prim=auto
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
-x11-bypass-compositor=no
-no-hidpi-window-scale
+vo-vdpau-colorkey="#000000"
 window-scale=0.5 # scale window size
+x11-bypass-compositor=no
+
 #--[Decoding]----------------------------------------------
 cache=auto
-scale=ewa_lanczossharp
-cscale=ewa_lanczossharp
-sigmoid-upscaling=yes
-dscale=mitchell
-dither-depth=auto
 correct-downscaling
-linear-downscaling=yes
-vd-lavc-threads=8
-vulkan-swap-mode=immediate
-vo=gpu
-interpolation=no
+cscale=ewa_lanczossharp
+dither-depth=auto
+dscale=mitchell
 hwdec-codecs=all
 hwdec=auto
+interpolation=no
+linear-downscaling=yes
+scale=ewa_lanczossharp
+sigmoid-upscaling=yes
+vd-lavc-threads=8
 video-sync=display-resample
+vo=gpu
+vulkan-swap-mode=immediate
+
 #--[Antiringing]-------------------------------------------
-scale-antiring=0.7 # luma upscale deringing
-dscale-antiring=0.7 # luma downscale deringing
 cscale-antiring=0.7 # chroma upscale deringing
+dscale-antiring=0.7 # luma downscale deringing
+scale-antiring=0.7 # luma upscale deringing
+
 #--[Volume]------------------------------------------------
-volume=100
-volume-max=100
 ao=alsa,pipewire,jack
+volume-max=100
+volume=100
+
 #--[Language]----------------------------------------------
-slang=ru,rus
 alang=en
+slang=ru,rus
+
 #--[Geometry]----------------------------------------------
+fullscreen=yes
 geometry=100%:100%
 no-border
-fullscreen=yes
+
 #--[Subtitles]---------------------------------------------
-sub-scale=.4
-sub-gauss=.82
-sub-gray=yes
 sub-auto=fuzzy
 sub-font="Helvetica Neue LT Std"
 sub-font="HelveticaNeue LT CYR 57 Cond"
+sub-gauss=.82
+sub-gray=yes
+sub-scale=.4
+
 #--[OSD]---------------------------------------------------
-osd-font="Iosevka"
-osd-font-size=18
-osd-color='#bb6d839e'
+cursor-autohide=500
+osd-bar-align-y=0
+osd-bar-align-y=0.95
+osd-bar-h=3
 osd-border-color='#cc000000'
 osd-border-size=1
-osd-bar-align-y=0
-osd-bar-h=3
-osd-bar-align-y=0.95
+osd-color='#bb6d839e'
+osd-font-size=18
+osd-font="Iosevka"
 osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
-cursor-autohide=500
+
 #--[Youtube-DL]--------------------------------------------
 ytdl
 ytdl-format=bestvideo+bestaudio/best
+
 #--[ETC]---------------------------------------------------
 screenshot-template="~/dw/scr-%F_%P"
 
 [extension.flac]
-term-osd=auto
-term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
+term-osd-bar=yes
+term-osd=auto
 
 [extension.mp3]
-term-osd=auto
-term-osd-bar=yes
 term-osd-bar-chars = "──╼ ·"
+term-osd-bar=yes
+term-osd=auto
 
 [4k60] # 4K @ 60fps (3840x2160 UHDTV)
-profile-desc=cond:((p["video-params/w"]>1920 and p["video-params/h"]>1080) and p["estimated-vf-fps"]>=31)
 deband=no # turn off debanding because presume wide color gamut
 interpolation=no # turn off interpolation because already 60fps
+profile-desc=cond:((p["video-params/w"]>1920 and p["video-params/h"]>1080) and p["estimated-vf-fps"]>=31)
 
 [4k30] # 4K @ 30fps (3840x2160 UHDTV)
-profile-desc=cond:((p["video-params/w"]>1920 and p["video-params/h"]>1080) and p["estimated-vf-fps"]<31)
 deband=no # turn off debanding because presume wide color gamut
+profile-desc=cond:((p["video-params/w"]>1920 and p["video-params/h"]>1080) and p["estimated-vf-fps"]<31)
 
 [full-hd60] # 1920x1080 @ 60fps (progressive ATSC)
-profile-desc=cond:((p["video-params/w"]==1920 and p["video-params/h"]==1080) and not p["video-frame-info/interlaced"] and p["estimated-vf-fps"]>=31)
 interpolation=no # turn off interpolation because already 60fps
+profile-desc=cond:((p["video-params/w"]==1920 and p["video-params/h"]==1080) and not p["video-frame-info/interlaced"] and p["estimated-vf-fps"]>=31)
 
 [full-hd30] # 1920x1080 @ 30fps (progressive Blu-ray)
 profile-desc=cond:((p["video-params/w"]==1920 and p["video-params/h"]==1080) and not p["video-frame-info/interlaced"] and p["estimated-vf-fps"]<31)
@@ -94,8 +105,8 @@ profile-desc=cond:((p["video-params/w"]==1920 and p["video-params/h"]==1080) and
 vf=bwdif # apply FFMPEG's bwdif deinterlacer
 
 [hd] # 1280x720 @ 60 fps (HDTV, Blu-ray - progressive)
-profile-desc=cond:(p["video-params/w"]==1280 and p["video-params/h"] == 720)
 interpolation=no # turn off interpolation because already 60fps
+profile-desc=cond:(p["video-params/w"]==1280 and p["video-params/h"] == 720)
 
 [sdtv-pal] # 352x576, 480x576, 544x576, 720x576 @ 30fps (PAL broadcast or DVD - interlaced)
 profile-desc=cond:((p["video-params/w"]==352 or p["video-params/w"]==480 or p["video-params/w"]==544 or p["video-params/w"]==720) and p["video-params/h"] == 576)
