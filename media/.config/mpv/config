@@ -8,7 +8,6 @@ target-prim=auto
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
 vo-vdpau-colorkey="#000000"
-window-scale=0.5 # scale window size
 x11-bypass-compositor=no
 
 #--[Decoding]----------------------------------------------
