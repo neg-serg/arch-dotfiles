@@ -8,6 +8,7 @@ Restart=always
 RestartSec=2
 ExecStart=/usr/bin/udiskie -2
 Restart=always
+LogNamespace=negwm
 
 [Install]
 WantedBy=default.target

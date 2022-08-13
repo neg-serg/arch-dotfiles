@@ -5,3 +5,4 @@ PartOf=graphical-session.target
 [Service]
 ExecStart=/usr/bin/xiccd --edid
 Restart=on-failure
+LogNamespace=negwm

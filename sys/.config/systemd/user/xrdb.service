@@ -4,3 +4,4 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/xrdb -merge %E/X11/xresources
+LogNamespace=negwm

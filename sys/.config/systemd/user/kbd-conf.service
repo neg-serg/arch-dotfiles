@@ -5,3 +5,4 @@ After=dbus.service
 [Service]
 Type=forking
 ExecStart=%E/xinit/kbd-conf
+LogNamespace=negwm

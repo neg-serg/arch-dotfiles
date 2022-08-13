@@ -5,6 +5,7 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/openrgb --server -p neg.orp
+LogNamespace=negwm
 
 [Install]
 WantedBy=default.target

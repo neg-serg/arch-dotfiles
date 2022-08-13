@@ -14,3 +14,4 @@ Restart=always
 RestartSec=5
 # Try to restart up to 3 times
 StartLimitBurst=3
+LogNamespace=negwm

@@ -5,3 +5,4 @@ Description=Setup wallpaper on startup
 Type=forking
 ExecStart=%h/bin/wl -r
 Restart=on-failure
+LogNamespace=negwm

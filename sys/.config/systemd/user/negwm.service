@@ -8,3 +8,4 @@ StartLimitIntervalSec=1
 Type=simple
 ExecStart=/usr/bin/env dash %E/negwm/bin/run
 Restart=on-failure
+LogNamespace=negwm

@@ -9,3 +9,4 @@ ExecStop=%h/.local/bin/polybar-msg cmd quit
 Restart=on-failure
 RestartSec=3
 StartLimitBurst=30
+LogNamespace=negwm
