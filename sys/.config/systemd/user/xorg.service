@@ -11,7 +11,6 @@ Environment="XSERVERRC=%E/xinit/xserverrc"
 ExecStartPre=/usr/bin/dbus-update-activation-environment --all
 ExecStart=/usr/bin/xinit /usr/bin/i3 -- :0 -nolisten tcp vt1
 SuccessExitStatus=0 1
-LogNamespace=negwm
 
 [Install]
 Alias=x11.service

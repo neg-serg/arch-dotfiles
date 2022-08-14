@@ -5,4 +5,3 @@ After=xorg.service
 [Service]
 ExecStart=/usr/bin/xss-lock --transfer-sleep-lock -- i3lockr -p 8
 Restart=on-failure
-LogNamespace=negwm

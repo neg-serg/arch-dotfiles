@@ -4,4 +4,3 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/xset s off -dpms
-LogNamespace=negwm

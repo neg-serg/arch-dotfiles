@@ -7,7 +7,6 @@ Type=simple
 ExecStart=/usr/bin/tmux -S /home/neg/.config/negwm/cache/tmux_sockets/term.socket new-session -s term -d
 ExecStop=/usr/bin/tmux -S /home/neg/.config/negwm/cache/tmux_sockets/term.socket kill-session -t term
 RemainAfterExit=yes
-LogNamespace=negwm
 
 [Install]
 WantedBy=default.target

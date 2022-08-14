@@ -4,7 +4,6 @@ Description=Keep track of media player activity
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/playerctld daemon
-LogNamespace=negwm
 
 [Install]
 WantedBy=default.target
