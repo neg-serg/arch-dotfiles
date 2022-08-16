@@ -58,26 +58,26 @@ setopt rc_quotes # quotes with ''
 _exists() { (( $+commands[$1] )) }
 watch=(notme root) # watch for everyone but me and root
 typeset -U path cdpath fpath manpath # automatically remove duplicates from these arrays
-typeset -gx PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin:/opt/cuda/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin
+export PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin:/opt/cuda/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin
 _exists nvim && {
-    typeset -gx EDITOR="nvim"
-    typeset -gx VISUAL="${EDITOR}"
-    typeset -gx MANPAGER="nvim +Man!"
+    export EDITOR="nvim"
+    export VISUAL="${EDITOR}"
+    export MANPAGER="nvim +Man!"
 }
-typeset -gx TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
-typeset -gx WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-typeset -gx LS_COLORS
-typeset -gx HISTFILE=${ZDOTDIR}/zsh_history
-typeset -gx SAVEHIST=10000000
-typeset -gx HISTSIZE=$(( $SAVEHIST * 1.10 ))
-typeset -gx HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
-typeset -gx RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-typeset -gx VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
-typeset -gx PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-typeset -gx NB_DIR="$XDG_DATA_HOME/nb"
-typeset -gx NBRC_PATH="$XDG_CONFIG_HOME/nbrc"
-typeset -gx GNUPGHOME="$XDG_DATA_HOME"/gnupg
-typeset -gx CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
+export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+export LS_COLORS
+export HISTFILE=${ZDOTDIR}/zsh_history
+export SAVEHIST=10000000
+export HISTSIZE=$(( $SAVEHIST * 1.10 ))
+export HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
+export PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
+export NB_DIR="$XDG_DATA_HOME/nb"
+export NBRC_PATH="$XDG_CONFIG_HOME/nbrc"
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 unfunction _exists
 
 _zpcompinit_custom() {
