@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """ Print network interface download / upload rate """
 
+import sys
 import threading
 import time
 from collections import deque
 import psutil
 
 
-def calc_ul_dl(rate, delta=1, interface="net1"):
+def calc_ul_dl(rate, delta=1, interface="net0"):
     """ Calculate upload/download rate """
     time0 = time.time()
     while interface not in psutil.net_io_counters(pernic=True):
@@ -40,7 +41,12 @@ def print_rate(rate):
 
 # Create the ul/dl thread and a deque of length 1 to hold the ul/dl- values
 transfer_rate = deque(maxlen=1)
-t = threading.Thread(target=calc_ul_dl, args=(transfer_rate,))
+if sys.argv[1:]:
+    interface=sys.argv[1]
+else:
+    interface='net0'
+
+t = threading.Thread(target=calc_ul_dl, args=(transfer_rate,), kwargs={'interface': interface})
 
 # The program will exit if there are only daemonic threads left.
 t.daemon = True
