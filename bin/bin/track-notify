@@ -26,7 +26,7 @@ prefix=(
 notify() {
     info=()
     track_metadata="$(sox --i "${track_path}" 2> /dev/null)"
-    if [[ ! -z $? ]]; then dunstify 'sox not working'; fi
+    if [[ $? -gt 0 ]]; then dunstify "sox not working with code $?"; fi
     finger="$(awk -F '=' 'BEGIN{IGNORECASE=1}/(Artist|Album|Year)/{print $2}' <<< "$track_metadata")"
     info[1]=""
     info[2]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^artist=/{print $2}' <<< ${track_metadata})"
