@@ -11,6 +11,7 @@
     blackdarkest: #04090999;
     selectcolor: #002d59;
     darkgray: #315c70;
+    ultra: #005faf55;
 
     font: "Iosevka Medium 24";
     background-color: @blackdarkest;
@@ -39,7 +40,7 @@
 
 #element {
     padding: 0 4mm;
-    border-color: @ultra;
+    border-color: @mainbg;
     border-radius: 8px 8px 8px 8px;
     border: 2px 0px 2px 0px;
 }
