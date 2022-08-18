@@ -27,7 +27,6 @@ configuration {
     kb-accept-custom:              "Control+Return";
     kb-row-up:                     "Up,Control+p,Shift+Tab,Shift+ISO_Left_Tab,Alt+k";
     kb-row-down:                   "Down,Control+n,Alt+j";
-    kb-row-tab:                    "Tab";
     kb-page-prev:                  "Page_Up";
     kb-page-next:                  "Page_Down";
     kb-row-first:                  "Home,KP_Home";
