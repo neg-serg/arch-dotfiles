@@ -33,6 +33,10 @@ return require'packer'.startup({function(use)
         config=function() require'mkdir' end, event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
+    use {'renerocksai/telekasten.nvim', -- better md wiki stuff
+        after='telescope.nvim',
+        config=function() require'cfg.telekasten' end,
+        module='telescope'}
     use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         requires={
             'nvim-lua/plenary.nvim', -- lua functions
