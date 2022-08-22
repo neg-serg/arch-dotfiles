@@ -1,7 +1,5 @@
 floating_modifier Mod4
 focus_follows_mouse no
-default_border normal
-default_floating_border normal
 font pango: Iosevka Bold 12
 hide_edge_borders both
 
