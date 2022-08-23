@@ -110,7 +110,7 @@ bindsym Mod4+2 focus child
 bindsym Mod4+Shift+bracketleft move workspace to output left
 bindsym Mod4+Shift+bracketright move workspace to output right
 
-bindsym Mod4+apostrophe  reload
+bindsym Mod4+apostrophe  reload; exec --no-startup-id systemctl --user restart negwm
 bindsym Mod4+Shift+apostrophe  restart
 
 bindsym Mod4+grave $remember_focused focus_next_visible
