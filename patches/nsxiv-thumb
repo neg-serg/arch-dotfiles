@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+
+set -e
+
+OPENER="${OPENER:-"xdg-open"}"
+CACHEDIR="${NSXIV_THUMB_CACHE_DIR:-"${XDG_CACHE_HOME:-"$HOME/.cache"}/nsxiv-extra/nsxiv-thumb"}"
+# extension of thumbnails. can be jpg or png.
+EXT="jpg"
+# maximum number of processes. 0 is as many as your system can handle.
+MAXPROCS="${NSXIV_THUMB_MAX_PROCS:-"$(($(nproc) * 4))"}"
+
+[ "$#" -gt 0 ] && {
+    cd "$1" || exit 1
+}
+
+mkdir -p -- "$CACHEDIR"
+tmpdir="$(mktemp -d)" || {
+    printf "%s: %s\n" "${0##*/}" "could not create temporary directory"
+    exit 1
+}
+trap 'rm -rf -- "$tmpdir"' TERM INT EXIT HUP
+
+find '.' -mindepth 1 -maxdepth 1 \( -type f -o -type l \) -printf "%P\0" \
+    | xargs -r0 -n 1 -P "$MAXPROCS" sh -c '
+        set -e
+
+        cachedir='\'"$CACHEDIR"\''
+        tmpdir='\'"$tmpdir"\''
+        ext='\'"$EXT"\''
+        file="$1"
+        realpath="$(realpath -- "$file")"
+
+        case "$(file -b --mime-type -- "$realpath")" in
+            video/*) :;;
+            *) exit 0;;
+        esac
+        
+        hash="$(stat --printf "%F%i%n%s%W%Y" -- "$realpath" | sha512sum | cut -d" " -f1)"
+        thumbfl="$cachedir/$hash.$ext"
+        [ -f "$thumbfl" ] || ffmpegthumbnailer -i "$file" -o "$thumbfl" -m -s 384 2> /dev/null
+        cp -- "$thumbfl" "$tmpdir/$file.$ext"
+    ' --
+
+{ nsxiv -0otp -- "$tmpdir"; rm -rf -- "${tmpdir:?}" > /dev/null; } \
+    | sed -z "s|\.$EXT$||;s|^.*/||" \
+    | sort -z \
+    | xargs -r0 -I FILE "$OPENER" ./FILE

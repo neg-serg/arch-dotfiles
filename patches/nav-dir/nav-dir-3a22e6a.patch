@@ -1,0 +1,92 @@
+From acd5562bdcb669f84a172258094b744cd3c38ff4 Mon Sep 17 00:00:00 2001
+From: NRK <nrk@disroot.org>
+Date: Thu, 10 Mar 2022 19:06:14 +0600
+Subject: [PATCH] add keybinding to jump to next/prev directory
+
+---
+ commands.c   | 34 ++++++++++++++++++++++++++++++++++
+ commands.h   |  2 ++
+ config.def.h |  2 ++
+ 3 files changed, 38 insertions(+)
+
+diff --git a/commands.c b/commands.c
+index 9ee83ec..8f15315 100644
+--- a/commands.c
++++ b/commands.c
+@@ -406,6 +406,40 @@ bool ci_slideshow(arg_t _)
+ 	return true;
+ }
+ 
++bool cg_nav_dir(arg_t d)
++{
++	const int dx = d > 0 ? 1 : -1;
++	int i = fileidx + dx, og = fileidx;
++	bool again = d < 0;
++	size_t sdir_len = strrchr(files[og].path, '/') - files[og].path;
++
++	while (i < filecnt && i >= 0) {
++		size_t ddir_len = strrchr(files[i].path, '/') - files[i].path;
++		if (sdir_len != ddir_len ||
++		    strncmp(files[og].path, files[i].path, sdir_len) != 0)
++		{
++			if (!again)
++				break;
++			og = i;
++			sdir_len = strrchr(files[og].path, '/') - files[og].path;
++			again = false;
++		}
++		i += dx;
++	}
++	if (d < 0 && i >= -1)
++		++i;
++
++	if (i < filecnt && i >= 0 && fileidx != i) {
++		if (mode == MODE_IMAGE) {
++			load_image(i);
++			return true;
++		} else {
++			return tns_move_selection(&tns, d < 0 ? DIR_LEFT : DIR_RIGHT, ABS(i - fileidx));
++		}
++	}
++	return false;
++}
++
+ bool ct_move_sel(arg_t dir)
+ {
+ 	bool dirty = tns_move_selection(&tns, dir, prefix);
+diff --git a/commands.h b/commands.h
+index 74e2638..833bcc6 100644
+--- a/commands.h
++++ b/commands.h
+@@ -20,6 +20,7 @@ bool cg_toggle_fullscreen(arg_t);
+ bool cg_toggle_image_mark(arg_t);
+ bool cg_unmark_all(arg_t);
+ bool cg_zoom(arg_t);
++bool cg_nav_dir(arg_t);
+ /* image mode */
+ bool ci_alternate(arg_t);
+ bool ci_cursor_navigate(arg_t);
+@@ -63,6 +64,7 @@ bool ct_select(arg_t);
+ #define g_toggle_image_mark { cg_toggle_image_mark, MODE_ALL }
+ #define g_unmark_all { cg_unmark_all, MODE_ALL }
+ #define g_zoom { cg_zoom, MODE_ALL }
++#define g_nav_dir { cg_nav_dir, MODE_ALL }
+ 
+ /* image mode */
+ #define i_alternate { ci_alternate, MODE_IMAGE }
+diff --git a/config.def.h b/config.def.h
+index 1e102fe..da5b673 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -83,6 +83,8 @@ static const KeySym KEYHANDLER_ABORT = XK_Escape;
+ static const keymap_t keys[] = {
+ 	/* modifiers    key               function              argument */
+ 	{ 0,            XK_q,             g_quit,               0 },
++	{ ControlMask,  XK_N,             g_nav_dir,            +1 },
++	{ ControlMask,  XK_P,             g_nav_dir,            -1 },
+ 	{ 0,            XK_Return,        g_switch_mode,        None },
+ 	{ 0,            XK_f,             g_toggle_fullscreen,  None },
+ 	{ 0,            XK_b,             g_toggle_bar,         None },
+-- 
+2.35.1
+
