@@ -61,7 +61,7 @@ for_window $circle-vm move workspace $vm,focus
 for_window $circle-web move workspace $web,focus
 for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 2
 for_window [class="^(inkscape|gimp)$"] move workspace $draw
-for_window [class="(?i)(?:steam|qt5ct|gcolor3|rdesktop|openssh-askpass|lutris|steam_app_.*|mpv)"] floating enable
+for_window [class="(?i)(?:steam|qt5ct|gcolor3|rdesktop|openssh-askpass|lutris|steam_app_.*)"] floating enable
 for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, focus
 for_window [title="Firefox — Sharing Indicator"] border pixel 1, sticky enable, move position 20 ppt -5 px
 for_window [title="(?i)(?:File Transfer.*)"] floating enable
