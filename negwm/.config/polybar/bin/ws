@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3 -u
 
 """ Current workspace printing daemon.
 
@@ -9,7 +9,7 @@ leading to i3 wm dead-lock.
 Also it print current keybinding mode.
 
 Usage:
-    ./polybar_ws.py
+    ./ws
 
 Suppoused to be used inside polybar.
 
@@ -17,15 +17,14 @@ Config example:
 
 [module/ws]
 type = custom/script
-exec = PYTHONPATH=${XDG_CONFIG_HOME}/negwm python -u -m bin.polybar_ws 2> /dev/null
-exec-if = sleep 1
+exec = python -u $XDG_CONFIG_HOME/polybar/bin/ws 2> /dev/null
 format = <label>
 tail = true
 
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
 github :: https://github.com/neg-serg?tab=repositories
-year :: 2021
+year :: 2022
 
 """
 

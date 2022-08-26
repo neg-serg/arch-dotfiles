@@ -6,7 +6,7 @@ This daemon prints current MPD volume like `tail -f` echo server, so there is
 no need to use busy waiting to extract information from it.
 
 Usage:
-    ./polybar_mpd.py
+    ./mpd
 
 Suppoused to be used inside polybar.
 
@@ -14,15 +14,13 @@ Config example:
 
 [module/mpd]
 type = custom/script
-interval = 0
-exec = PYTHONPATH=${XDG_CONFIG_HOME}/negwm python -u -m bin.polybar_mpd 2> /dev/null
-exec-if = sleep 1
+exec = python -u $XDG_CONFIG_HOME/polybar/bin/mpd
 tail = true
 
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
 github :: https://github.com/neg-serg?tab=repositories
-year :: 2021
+year :: 2022
 
 """
 
