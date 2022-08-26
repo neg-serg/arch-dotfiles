@@ -1,13 +1,10 @@
 #!/bin/sh
 # shellcheck disable=SC2016,SC2059
-
 KEYBOARD_ID="keyd virtual device"
-
 # cpm: characters per minute
 # wpm: words per minute (1 word = 5 characters)
 METRIC=cpm
 FORMAT="%d $METRIC"
-
 INTERVAL=20
 
 # If you have a keyboard layout that is not listed here yet, create a condition
@@ -55,7 +52,7 @@ while true; do
 	# The shell only does integer operations, so make sure to first multiply and
 	# then divide
 	value=$((lines * multiply_by / divide_by))
-    if (( value > 0 )); then
+    if (( value > 24 )); then
         printf "$FORMAT\\n" "$value"
     else
         echo ''
