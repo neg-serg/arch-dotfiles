@@ -42,8 +42,8 @@ require('telekasten').setup({
 
 local opts={silent=true, noremap=true}
 map('n', '<M-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
-map('n', '<leader>zf', '<Cmd>lua require("telekasten").find_notes()<CR>'
-map('n', '<leader>zd', '<Cmd>lua require("telekasten").find_daily_notes()<CR>'
+map('n', '<leader>zf', '<Cmd>lua require("telekasten").find_notes()<CR>', opts)
+map('n', '<leader>zd', '<Cmd>lua require("telekasten").find_daily_notes()<CR>', opts)
 map('n', '<leader>zg', '<Cmd>lua require("telekasten").search_notes()<CR>', opts)
 map('n', '<leader>zz', '<Cmd>lua require("telekasten").follow_link()<CR>', opts)
 map('n', '<leader>zT', '<Cmd>lua require("telekasten").goto_today()<CR>', opts)
