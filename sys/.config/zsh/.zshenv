@@ -19,6 +19,7 @@ typeset -gx CARGO_HOME="$XDG_DATA_HOME"/cargo
 typeset -gx CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
 typeset -gx CCACHE_DIR="$XDG_CACHE_HOME"/ccache
 typeset -gx RUSTC_WRAPPER=sccache
+typeset -gx GHCUP_USE_XDG_DIRS=1
 typeset -gx HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
 typeset -gx NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
 typeset -gx NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
