@@ -29,4 +29,8 @@ alias mv='mv -i'
 alias ls='ls --color=auto -pFhv --quoting-style=shell-escape'
 alias la='ls --color=auto -ApFhv'
 alias ll='ls --color=auto -AlpFhv'
+
+bind 'set show-all-if-ambiguous on'
+bind 'set completion-ignore-case on'
+bind 'TAB:menu-complete'
 # vim: ft=sh
