@@ -58,7 +58,7 @@ setopt rc_quotes # quotes with ''
 _exists() { (( $+commands[$1] )) }
 watch=(notme root) # watch for everyone but me and root
 typeset -U path cdpath fpath manpath # automatically remove duplicates from these arrays
-typeset -gx PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin:/opt/cuda/bin:$HOME/.local/share/cargo/bin:$HOME/.local/bin
+typeset -gx PATH=/usr/bin:$HOME/bin:/usr/local/bin:/sbin:/bin:/usr/bin/core_perl:/opt/go/bin:/opt/cuda/bin:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
 _exists nvim && {
     typeset -gx EDITOR="nvim"
     typeset -gx VISUAL="${EDITOR}"
