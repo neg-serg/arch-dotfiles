@@ -941,9 +941,9 @@ update_ytfzf () {
 	if sed -n '1p' < "$updatefile" | grep -q '#!/bin/sh'; then
 		chmod 755 "$updatefile"
 		if [ "$(uname)" = "Darwin" ]; then
-			sudo cp "$updatefile" "/usr/local/bin/ytfzf"
+            doas cp "$updatefile" "/usr/local/bin/ytfzf"
 		else
-			sudo cp "$updatefile" "/usr/bin/ytfzf"
+            doas cp "$updatefile" "/usr/bin/ytfzf"
 		fi
 	else
 		printf "%bFailed to update ytfzf. Try again later.%b" "$c_red" "$c_reset"
