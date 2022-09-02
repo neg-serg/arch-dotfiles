@@ -53,7 +53,8 @@ typeset -gx FZF_DEFAULT_OPTS="
 --prompt='❯> ' --pointer='•' --marker='✓'
 --bind 'ctrl-space:select-all'
 --bind 'ctrl-y:execute-silent(echo {+} | xclip -i)'
---bind 'ctrl-t:execute(echo {+} | xargs -o ~/bin/v)+abort'
+--bind 'ctrl-t:accept'
+--bind 'tab:execute(echo {+} | xargs -o ~/bin/v)+abort'
 --bind 'ctrl-j:execute(echo {+} | xargs -o ~/bin/v)+abort'
 --bind 'ctrl-v:execute(echo {+} | xargs -o nvim)'"
 typeset -gx FZF_CTRL_R_OPTS="--sort --exact --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
