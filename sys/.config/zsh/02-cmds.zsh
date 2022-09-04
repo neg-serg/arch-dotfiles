@@ -46,6 +46,7 @@ alias :q="exit"
 alias emptydir='ls -ld **/*(/^F)'
 _exists paru && {alias yay='paru'; alias rmorphans='paru -Rs $(paru -Qqdt)'}
 _exists sudo && {alias sudo='sudo '; alias s='sudo '}
+_exists doas && {alias doas='doas '; alias s='doas '}
 _exists nvidia-settings && alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
 _exists plocate && alias locate='plocate'
 _exists dd && alias dd='dd status=progress'
