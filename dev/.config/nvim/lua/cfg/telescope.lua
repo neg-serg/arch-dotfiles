@@ -93,7 +93,7 @@ require'telescope'.load_extension'media_files'
 
 local opts={silent=true, noremap=true}
 map('n', '<M-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
-map('n', '<C-f>', '<Cmd>lua require"telescope.builtin".live_grep()<CR>', opts)
+map('n', '<C-f>', "<Cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({layout_config={height=14},border=false}))<CR>", opts)
 map('n', '<M-C-o>', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>', opts)
 map('n', '<M-o>', '<Cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>', opts)
 map('n', '<M-d>', '<Cmd>lua require"telescope.builtin".lsp_document_diagnostics()<CR>', opts)
