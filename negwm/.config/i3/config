@@ -120,6 +120,7 @@ bindsym Mod4+Shift+bracketleft move workspace to output left
 bindsym Mod4+Shift+bracketright move workspace to output right
 
 bindsym Mod4+apostrophe  reload; exec --no-startup-id systemctl --user restart negwm
+bindsym Mod4+backslash  reload; exec --no-startup-id systemctl --user restart negwm; exec --no-startup-id polybar-msg cmd restart
 bindsym Mod4+Shift+apostrophe  restart
 
 bindsym Mod4+grave $remember_focused focus_next_visible
@@ -151,8 +152,12 @@ bindsym Mod1+g $menu goto_win
 bindsym Mod4+Control+g $menu movews
 bindsym Mod1+Control+g $menu ws
 
-bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+Control+q  kill
+bindsym Mod4+5  [floating] floating disable, unmark "^_all_$"
+bindsym Mod4+Shift+g  mark --replace _all_, move scratchpad
+bindsym Mod4+g  [con_mark="^_all_$"] scratchpad show
+bindsym Mod4+q  fullscreen toggle
+bindsym Mod4+y  sticky toggle
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
 bindsym Mod4+1 $circle next nwim
