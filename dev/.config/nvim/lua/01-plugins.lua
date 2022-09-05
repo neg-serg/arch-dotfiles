@@ -1,5 +1,5 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local fn=vim.fn
+local install_path=fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
@@ -20,11 +20,11 @@ return require'packer'.startup({function(use)
     use {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
         keys={'<leader>l'}}
-    use {'ahmedkhalf/project.nvim', config = function() require'cfg.project' end}
-    use {'kyazdani42/nvim-web-devicons', -- better icons
-        config=function() require'cfg.devicons' end, event='UIEnter'}
+    use {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
-         after='nvim-web-devicons', event='UIEnter'} -- fancy webicons
+         after='nvim-web-devicons'} -- fancy webicons
+    use {'kyazdani42/nvim-web-devicons', -- better icons
+        config=function() require'cfg.devicons' end}
     use {'ghillb/cybu.nvim', -- fancy menu changing
          config=function() require'cfg.cybu' end,
          keys={'<Tab>', '<S-Tab>'}}
@@ -150,6 +150,7 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end}
+    use {'shaunsingh/moonlight.nvim'} -- experimental colorscheme
     use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
@@ -190,7 +191,7 @@ end,
         },
         auto_clean=true,
         compile_on_sync=true,
-        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+        compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
         profile={enable=false, threshold=0.0001},
     }
 })
