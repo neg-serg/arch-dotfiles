@@ -275,3 +275,5 @@ set $fullscreen nop fullscreen
 set $menu nop menu
 set $remember_focused nop remember_focused
 set $scratchpad nop scratchpad
+
+# vim:filetype=i3config
