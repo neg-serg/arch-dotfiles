@@ -45,6 +45,7 @@ alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
 alias emptydir='ls -ld **/*(/^F)'
 _exists paru && {alias yay='paru'; alias rmorphans='paru -Rs $(paru -Qqdt)'}
+_exists reflector && _exists doas && alias mirrors='doas /usr/bin/reflector --score 100 --fastest 10 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
 _exists sudo && {alias sudo='sudo '; alias s='sudo '}
 _exists doas && {alias doas='doas '; alias s='doas '}
 _exists nvidia-settings && alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
