@@ -192,6 +192,6 @@ end,
         auto_clean=true,
         compile_on_sync=true,
         compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
-        profile={enable=false, threshold=0.0001},
+        profile={enable=true, threshold=0.0001},
     }
 })
