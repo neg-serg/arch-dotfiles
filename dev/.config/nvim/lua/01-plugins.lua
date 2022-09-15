@@ -105,7 +105,7 @@ return require'packer'.startup({function(use)
     use {'windwp/nvim-autopairs', -- super powerful autopairs
         config=function() require'cfg.autopairs' end,
         wants='nvim-cmp', event={'InsertEnter'}}
-    use{'willchao612/vim-diagon', cmd='Diagon'} -- creates diagrams from text. Requires diagon from snap.
+    use {'willchao612/vim-diagon', cmd='Diagon'} -- creates diagrams from text. Requires diagon from snap.
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -182,16 +182,14 @@ return require'packer'.startup({function(use)
         requires='plenary.nvim',
         config=function() require'cfg.gitsigns' end,
         event={'BufNewFile','BufRead'}} -- async gitsigns
-end,
-    config={
-        display={
-            title='Packer',
-            open_cmd='85vnew \\[packer\\]', -- An optional command to open a window for packer's display
-            keybindings={toggle_info='<TAB>'},
-        },
-        auto_clean=true,
-        compile_on_sync=true,
-        compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
-        profile={enable=true, threshold=0.0001},
-    }
+end, config={
+    display={
+        title='Packer',
+        open_cmd='85vnew \\[packer\\]', -- An optional command to open a window for packer's display
+        keybindings={toggle_info='<TAB>'},
+    },
+    auto_clean=true,
+    compile_on_sync=true,
+    compile_path=vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+    profile={enable=true, threshold=0.0001}}
 })
