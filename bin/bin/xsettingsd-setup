@@ -39,5 +39,5 @@ xrandr --dpi $dpi
     echo Xft/RGBA \"$( [ $dpi -gt 144 ] && echo none || echo rgb )\"
     echo Gdk/WindowScalingFactor $( [ $dpi -gt 144 ] && echo -n 2 || echo -n 1 )
     echo Gdk/UnscaledDPI $((96*1024))
-} > ~/.config/xsettingsd/xsettingsd.conf
+} $XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf
 /usr/bin/xsettingsd -c $XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf
