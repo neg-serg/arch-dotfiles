@@ -42,8 +42,8 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, {text=icon, texthl=hl, numhl=hl})
 end
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.setup()
+local mason=require("mason")
+mason.setup()
 
 nvim_lsp.pyright.setup {
     on_attach=on_attach,

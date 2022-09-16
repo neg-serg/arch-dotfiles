@@ -84,7 +84,7 @@ return require'packer'.startup({function(use)
         event={'InsertEnter'}}
     use {'neovim/nvim-lspconfig', -- lsp config
         config=function() require'cfg.lsp' end,
-        requires={'williamboman/nvim-lsp-installer'},
+        requires={'williamboman/mason.nvim'},
         event={'InsertEnter'}}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
