@@ -7,6 +7,16 @@ import time
 from collections import deque
 import psutil
 
+def active_interface():
+    ret = ''
+    rt = open('/proc/net/route', 'r')
+    for line in rt.read().split('\n'):
+        split = line.split()
+        if split and split[1] == '00000000':
+            ret = split[0]
+            break
+    rt.close()
+    return ret
 
 def calc_ul_dl(rate, delta=1, interface="net0"):
     """ Calculate upload/download rate """
@@ -44,7 +54,11 @@ transfer_rate = deque(maxlen=1)
 if sys.argv[1:]:
     interface=sys.argv[1]
 else:
-    interface='net0'
+    iface = active_interface()
+    if iface:
+        interface=iface
+    else:
+        interface='net0'
 
 t = threading.Thread(target=calc_ul_dl, args=(transfer_rate,), kwargs={'interface': interface})
 
