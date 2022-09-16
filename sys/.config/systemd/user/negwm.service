@@ -3,6 +3,7 @@ Description=negwm window manager mod for i3wm
 PartOf=graphical-session.target
 StartLimitBurst=5
 StartLimitIntervalSec=1
+Requires=xsettingsd.service
 
 [Service]
 Type=simple

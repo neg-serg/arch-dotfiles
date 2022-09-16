@@ -2,10 +2,9 @@
 Description=i3 session
 BindsTo=graphical-session.target
 
+Wants=xsettingsd.service
 Wants=dpms-off.service
-Wants=gsd-xsettings.service
 Wants=kdb-conf.service
-Wants=negwm-autostart.service
 Wants=negwm.service
 Wants=picom.service
 Wants=policykit-agent.service
@@ -14,6 +13,5 @@ Wants=pulseaudio.socket
 Wants=ssh-agent.service
 Wants=wallpaper.service
 Wants=xiccd.service
-Wants=xsettingsd.service
 Wants=xss-lock.service
-#Wants=xrdb.service
+Wants=negwm-autostart.service
