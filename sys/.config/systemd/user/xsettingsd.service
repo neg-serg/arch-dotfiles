@@ -5,8 +5,7 @@ After=xorg.service
 
 [Service]
 Restart=on-failure
-ExecStartPre=%h/bin/xsettingsd-setup
-ExecStart=/usr/bin/xsettingsd -c %h/.config/xsettingsd/xsettingsd.conf
+ExecStart=%h/bin/xsettingsd-setup
 ExecReload=%h/bin/xsettingsd-setup
 ExecReload=/usr/bin/kill -HUP $MAINPID
 ExecReload=-/usr/bin/i3-msg restart
