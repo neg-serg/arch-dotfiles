@@ -52,6 +52,7 @@ _exists nvidia-settings && alias nvidia-settings="nvidia-settings --config=$XDG_
 _exists plocate && alias locate='plocate'
 _exists dd && alias dd='dd status=progress'
 _exists hxd && alias hexdump='hxd'
+_exists ssh && alias ssh='TERM=xterm-256color ssh'
 _exists prettyping && alias ping='prettyping'
 _exists khal && alias cal='khal calendar'
 _exists handlr && alias e='handlr open'
