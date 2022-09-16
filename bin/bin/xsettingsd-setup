@@ -43,5 +43,6 @@ xrandr --dpi $dpi
     cat  ~/bin/xsettingsd
     echo Xft/DPI $((dpi*1024)) # 98304 for 27'' 4k is ok
     echo Xft/RGBA \"$( [ $dpi -gt 144 ] && echo none || echo rgb )\"
-    echo Gdk/WindowScalingFactor $( [ $dpi -gt 144 ] && echo -n 1 || echo -n 1 )
+    echo Gdk/WindowScalingFactor $( [ $dpi -gt 144 ] && echo -n 2 || echo -n 1 )
+    echo Gdk/UnscaledDPI $((96*1024))
 } > ~/.config/xsettingsd/xsettingsd.conf
