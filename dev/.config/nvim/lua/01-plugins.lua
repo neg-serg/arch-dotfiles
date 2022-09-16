@@ -126,6 +126,9 @@ return require'packer'.startup({function(use)
         ft={'markdown','vimwiki'},
         config=function() require 'cfg.headlines' end}
     use {"potamides/pantran.nvim", config=function() require'cfg.translate' end}
+    use {'gaoDean/autolist.nvim', -- nice autoindent plugin
+        config=function () require'cfg.autolist' end}
+    use {'superhawk610/ascii-blocks.nvim'} -- box printer
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
