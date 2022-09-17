@@ -152,3 +152,5 @@ zle_highlight=(region:bg=228 paste:none)
 zsh-defer _zpcompinit_custom
 zsh-defer fasd_init
 zsh-defer dircolors_init
+
+# vim: ft=zsh:nowrap

@@ -139,3 +139,5 @@ _exists fzf && {
 _exists xev && alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 autoload zc
 unfunction _exists
+
+# vim: ft=zsh:nowrap

@@ -55,3 +55,5 @@ bindkey '^xM' inplace_mk_dirs # load the lookup subsystem if it's available on t
 
 for b in '3D' '3C' '5A' '5B'; bindkey "^[[1;$b" _nothing
 neg_dirs
+
+# vim: ft=zsh:nowrap

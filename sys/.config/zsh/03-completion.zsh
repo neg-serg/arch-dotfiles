@@ -107,3 +107,5 @@ rehash_precmd() {
 }
 
 add-zsh-hook -Uz precmd rehash_precmd
+
+# vim: ft=zsh:nowrap
