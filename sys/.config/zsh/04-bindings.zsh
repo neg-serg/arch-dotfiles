@@ -24,11 +24,11 @@ autoload -Uz fg-widget && zle -N fg-widget
 autoload -Uz redraw-prompt
 autoload -Uz magic-abbrev-expand && zle -N magic-abbrev-expand
 autoload -Uz special-accept-line && zle -N special-accept-line
-_nothing() {}; zle -N _nothing
+_nothing(){}; zle -N _nothing
 
 autoload -Uz cd-rotate
-cd-back() { cd-rotate +1 }
-cd-forward() { cd-rotate -0 }
+cd-back(){ cd-rotate +1 }
+cd-forward(){ cd-rotate -0 }
 zle -N cd-back && zle -N cd-forward
 bindkey "^[-" cd-forward
 bindkey "^[=" cd-back
