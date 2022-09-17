@@ -1,5 +1,6 @@
 local diffview = require'diffview'
 local cb = require 'diffview.config'.diffview_callback
+local actions = require("diffview.actions")
 
 diffview.setup {
     diff_binaries=false, -- Show diffs for binaries
@@ -21,6 +22,47 @@ diffview.setup {
         DiffviewFileHistory={},
     },
     hooks={}, -- See ':h diffview-config-hooks'
+    view={
+        default={layout="diff2_horizontal"},
+        merge_tool={
+            layout="diff3_horizontal",
+            disable_diagnostics=true,   -- Temporarily disable diagnostics for conflict buffers while in the view.
+        },
+        file_history={layout="diff2_horizontal"},
+    },
+    keymaps={
+        view={
+            ["g<C-x>"]=actions.cycle_layout,          -- Cycle through available layouts.
+            ["[x"]=actions.prev_conflict,             -- In the merge_tool: jump to the previous conflict
+            ["]x"]=actions.next_conflict,             -- In the merge_tool: jump to the next conflict
+            ["<leader>co"]=actions.conflict_choose("ours"),   -- Choose the OURS version of a conflict
+            ["<leader>ct"]=actions.conflict_choose("theirs"), -- Choose the THEIRS version of a conflict
+            ["<leader>cb"]=actions.conflict_choose("base"),   -- Choose the BASE version of a conflict
+            ["<leader>ca"]=actions.conflict_choose("all"),    -- Choose all the versions of a conflict
+            ["dx"]=actions.conflict_choose("none"),   -- Delete the conflict region
+        },
+        diff1={ --[[ Mappings in single window diff layouts ]] },
+        diff2={ --[[ Mappings in 2-way diff layouts ]] },
+        diff3={
+            -- Mappings in 3-way diff layouts
+            {{"n","x"},"2do",actions.diffget("ours")},  -- Obtain the diff hunk from the OURS version of the file
+            {{"n","x"},"3do",actions.diffget("theirs")},-- Obtain the diff hunk from the THEIRS version of the file
+        },
+        diff4={
+            -- Mappings in 4-way diff layouts
+            {{"n","x"},"1do",actions.diffget("base")},  -- Obtain the diff hunk from the BASE version of the file
+            {{"n","x"},"2do",actions.diffget("ours")},  -- Obtain the diff hunk from the OURS version of the file
+            {{"n","x"},"3do",actions.diffget("theirs")},-- Obtain the diff hunk from the THEIRS version of the file
+        },
+        file_panel={
+            ["g<C-x>"]=actions.cycle_layout,
+            ["[x"]=actions.prev_conflict,
+            ["]x"]=actions.next_conflict,
+        },
+        file_history_panel={
+            ["g<C-x>"]=actions.cycle_layout,
+        },
+    },
     key_bindings={
         disable_defaults=false, -- Disable the default key bindings
         -- The `view` bindings are active in the diff buffers, only when the current
