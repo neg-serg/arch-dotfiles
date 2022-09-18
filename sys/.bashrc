@@ -24,11 +24,22 @@ shopt -qs histappend histreedit histverify
 shopt -qs hostcomplete
 shopt -s nocaseglob nocasematch
 
-alias utc='date -u'
-alias mv='mv -i'
-alias ls='ls --color=auto -pFhv --quoting-style=shell-escape'
+alias dnfgl="dnf grouplist"
+alias dnfl="dnf list"
+alias dnfli="dnf list installed"
+alias dnfmc="dnf makecache"
+alias dnfp="dnf info"
+alias dnfs="dnf search"
 alias la='ls --color=auto -ApFhv'
 alias ll='ls --color=auto -AlpFhv'
+alias ls='ls --color=auto -pFhv --quoting-style=shell-escape'
+alias mv='mv -i'
+alias utc='date -u'
+alias yl="yum list"
+alias yli="yum list installed"
+alias ymc="yum makecache"
+alias yp="yum info"
+alias ys="yum search"
 
 bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
