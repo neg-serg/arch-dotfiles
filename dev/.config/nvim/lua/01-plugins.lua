@@ -122,9 +122,6 @@ return require'packer'.startup({function(use)
     use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
-    use {'lukas-reineke/headlines.nvim', -- adds highlights for text ft, like md, norg
-        ft={'markdown','vimwiki'},
-        config=function() require 'cfg.headlines' end}
     use {"potamides/pantran.nvim", config=function() require'cfg.translate' end}
     use {'gaoDean/autolist.nvim', -- nice autoindent plugin
         config=function () require'cfg.autolist' end}
