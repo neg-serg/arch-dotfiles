@@ -122,7 +122,7 @@ return require'packer'.startup({function(use)
     use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
-    use {"potamides/pantran.nvim", config=function() require'cfg.translate' end}
+    use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
     use {'gaoDean/autolist.nvim', -- nice autoindent plugin
         config=function () require'cfg.autolist' end}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
@@ -142,15 +142,14 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.hop' end}
     use {'svermeulen/vim-NotableFt', -- better f-t-bindings
         config=function() require 'cfg.ft' end}
-    use {'tpope/vim-repeat', event={'BufRead','BufNewFile'}} -- dot for surround
-    use 'tpope/vim-surround' -- new commands to vim for generic brackets
+    use {'kylechui/nvim-surround', -- alternative surround
+        config=function() require'cfg.surround' end}
     use 'wellle/targets.vim' -- new text objects
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end}
-    use {'shaunsingh/moonlight.nvim'} -- experimental colorscheme
     use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
