@@ -31,6 +31,5 @@ zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 source "${ZDOTDIR}/04-bindings.zsh"
 [[ $NEOVIM_TERMINAL ]] && source "${ZDOTDIR}/08-neovim-cd.zsh"
-zsh-defer source "${ZDOTDIR}/09-timer.zsh"
 
 # vim: ft=zsh:nowrap
