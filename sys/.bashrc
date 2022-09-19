@@ -30,6 +30,7 @@ alias dnfli="dnf list installed"
 alias dnfmc="dnf makecache"
 alias dnfp="dnf info"
 alias dnfs="dnf search"
+alias k=kubectl
 alias la='ls --color=auto -ApFhv'
 alias ll='ls --color=auto -AlpFhv'
 alias ls='ls --color=auto -pFhv --quoting-style=shell-escape'
