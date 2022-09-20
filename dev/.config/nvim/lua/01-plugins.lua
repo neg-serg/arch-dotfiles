@@ -126,6 +126,8 @@ return require'packer'.startup({function(use)
     use {'gaoDean/autolist.nvim', -- nice autoindent plugin
         config=function () require'cfg.autolist' end}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
+    use {'edluffy/hologram.nvim', -- preview pictures
+        config=function()require('hologram').setup{auto_display=true} end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
