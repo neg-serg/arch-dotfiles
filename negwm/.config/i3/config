@@ -206,7 +206,7 @@ mode %{T4}%{T-} {
 bindsym Mod1+e mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym e  [urgent=latest] focus, mode "default"
-	bindsym l  exec i3lockr -p 8 , mode "default"
+	bindsym l  exec ~/bin/x11lock, mode "default"
 	bindsym Shift+d  floating toggle, mode "default"
 
 	bindsym Shift+t $menu gtk_theme, mode "default"
