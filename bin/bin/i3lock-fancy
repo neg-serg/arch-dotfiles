@@ -9,9 +9,8 @@ effect=(-filter Gaussian -resize 20% -define "filter:sigma=1.5" -resize 500.5%)
 # effect=(-scale 2.5% -resize 4000%)
 font="Iosevka-Medium-Italic"
 image=$(mktemp --suffix=.jpg)
-shot=(maim -m 4)
+shot=(maim -m 3)
 i3lock_cmd=(i3lock -i "$image")
-shot_custom=false
 
 opts="Options:
     -h, --help       This help menu.
@@ -33,31 +32,29 @@ trap 'rm -f "$image"' EXIT
 temp="$(getopt -o :hdnpglt:f: -l help,listfonts,nofork,pixelate,greyscale,text:,font: --name "$0" -- "$@")"
 eval set -- "$temp"
 
-# l10n support
 text="Type password to unlock"
 case "${LANG:-}" in
-    af_* ) text="Tik wagwoord om te ontsluit" ;; # Afrikaans
-    cs_* ) text="Pro odemčení zadajte heslo" ;; # Czech
-    de_* ) text="Bitte Passwort eingeben" ;; # Deutsch
-    en_* ) text="Type password to unlock" ;; # English
-    es_* ) text="Ingrese su contraseña" ;; # Española
-    fr_* ) text="Entrez votre mot de passe" ;; # Français
-    hi_* ) text="अनलॉक करने के लिए पासवर्ड टाईप करें" ;; #Hindi
-    id_* ) text="Masukkan kata sandi Anda" ;; # Bahasa Indonesia
-    it_* ) text="Inserisci la password" ;; # Italian
-    ja_* ) text="パスワードを入力してください" ;; # Japanese
-    lv_* ) text="Ievadi paroli" ;; # Latvian
-    nb_* ) text="Skriv inn passord" ;; # Norwegian
-    pl_* ) text="Podaj hasło" ;; # Polish
-    ru_* ) text="Введите пароль" ;; # Russian
-    zh_* ) text="请输入密码以解锁" ;; # Chinese
-    * ) text="Type password to unlock" ;; # Default to English
+    af_*) text="Tik wagwoord om te ontsluit" ;; # Afrikaans
+    cs_*) text="Pro odemčení zadajte heslo" ;; # Czech
+    de_*) text="Bitte Passwort eingeben" ;; # Deutsch
+    en_*) text="Type password to unlock" ;; # English
+    es_*) text="Ingrese su contraseña" ;; # Española
+    fr_*) text="Entrez votre mot de passe" ;; # Français
+    hi_*) text="अनलॉक करने के लिए पासवर्ड टाईप करें" ;; #Hindi
+    id_*) text="Masukkan kata sandi Anda" ;; # Bahasa Indonesia
+    it_*) text="Inserisci la password" ;; # Italian
+    ja_*) text="パスワードを入力してください" ;; # Japanese
+    lv_*) text="Ievadi paroli" ;; # Latvian
+    nb_*) text="Skriv inn passord" ;; # Norwegian
+    pl_*) text="Podaj hasło" ;; # Polish
+    ru_*) text="Введите пароль" ;; # Russian
+    zh_*) text="请输入密码以解锁" ;; # Chinese
+    *) text="Type password to unlock" ;; # Default to English
 esac
 
 while true ; do
     case "$1" in
-        -h|--help)
-            printf "Usage: %s [options]\n\n%s\n\n" "${0##*/}" "$opts"; exit 1 ;;
+        -h|--help) printf "Usage: %s [options]\n\n%s\n\n" "${0##*/}" "$opts"; exit 1 ;;
         -g|--greyscale) hue=(-level "0%,100%,0.6" -set colorspace Gray -average) ; shift ;;
         -f|--font)
             case "$2" in
@@ -65,21 +62,18 @@ while true ; do
                 *) font=$2 ; shift 2 ;;
             esac ;;
         -t|--text) text=$2 ; shift 2 ;;
-        -l|--listfonts)
-	    convert -list font | awk -F: '/Font: / { print $2 }' | sort -du | command -- ${PAGER:-less}
-	    exit 0 ;;
+        -l|--listfonts) convert -list font | awk -F: '/Font: / { print $2 }' | sort -du | command -- ${PAGER:-less}; exit 0 ;;
 	-n|--nofork) i3lock_cmd+=(--nofork) ; shift ;;
         --) shift; shot_custom=true; break ;;
         *) echo "error" ; exit 1 ;;
     esac
 done
-if "$shot_custom" && [[ $# -gt 0 ]]; then
-    shot=("$@");
-fi
-command -- "${shot[@]}" "$image"
+${shot[@]} "$image"
 value="60" #brightness value to compare to
-color=$(MAGICK_OCL_DEVICE=false OMP_NUM_THREADS=16 convert "$image" -gravity center -crop 100x100+0+0 +repage -colorspace hsb \
+color=$(MAGICK_OCL_DEVICE=false OMP_NUM_THREADS=32 \
+    convert "$image" -gravity center -crop 100x100+0+0 +repage -colorspace hsb \
     -resize 1x1 txt:- | awk -F '[%$]' 'NR==2{gsub(",",""); printf "%.0f\n", $(NF-1)}');
+
 if [[ $color -gt $value ]]; then #white background image and black text
     bw="black"
     icon="/usr/share/i3lock-fancy/icons/lockdark.png"
@@ -99,7 +93,7 @@ else #black
         "--verif-color=00000000" "--wrong-color=ff000000" "--time-color=00000000" \
         "--date-color=00000000" "--layout-color=00000000")
 fi
-MAGICK_OCL_DEVICE=false OMP_NUM_THREADS=16 convert \
+MAGICK_OCL_DEVICE=false OMP_NUM_THREADS=32 convert \
     "$image" "${hue[@]}" "${effect[@]}" \
     -font "$font" -pointsize 26 -fill "$bw" -gravity center \
     -annotate +0+160 "$text" "$icon" -gravity center -composite "$image"
