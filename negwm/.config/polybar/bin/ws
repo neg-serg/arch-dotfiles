@@ -52,7 +52,10 @@ class polybar_ws():
     async def on_ws_focus(self, _, event):
         """ Get workspace name and throw event. """
         ws_name = event.current.name
-        self.ws_name = ws_name.split(' :: ')[1:][0]
+        try:
+            self.ws_name = ws_name.split(' :: ')[1:][0]
+        except IndexError:
+            self.ws_name = ws_name
         await self.update_status()
 
     @staticmethod
@@ -100,7 +103,7 @@ class polybar_ws():
     async def update_status(self):
         """ Print workspace information here. Event-based. """
         workspace = self.ws_name
-        if not workspace[0].isalpha():
+        if not (workspace[0].isalpha() or workspace.isnumeric()):
             workspace = polybar_ws.colorize(
                 workspace[0], color=self.ws_color
             ) + workspace[1] + '%{F#8BAAC7}' + \
