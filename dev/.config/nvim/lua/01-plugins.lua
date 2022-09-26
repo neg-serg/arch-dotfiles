@@ -120,6 +120,7 @@ return require'packer'.startup({function(use)
 -- │ █▓▒░ Text                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'plasticboy/vim-markdown', ft='md'} -- markdown vim mode
+    use {'mzlogin/vim-markdown-toc', ft='md'} -- table of contents generator
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
     use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
