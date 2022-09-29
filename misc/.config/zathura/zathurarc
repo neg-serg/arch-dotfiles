@@ -48,6 +48,18 @@ map <C-2> set "first-page-column 2"
 
 set statusbar-home-tilde true
 set window-title-home-tilde true
+set window-title-basename true
+set window-title-page true
+set statusbar-basename false
+# Align internal links to the left (e.g. index), thx to Badacadabra
+set link-hadjust true
+# Optimal adjustment of the document when it is loaded
+set adjust-open best-fit
+# Show text loader when a document is loading
+set render-loading true
+
+# Enable SyncTex
+set synctex true
 
 # setting recolor-keep true will keep any color your pdf has.
 # if it is false, it'll just be black and white
