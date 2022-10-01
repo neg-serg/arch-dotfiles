@@ -2,7 +2,7 @@ Sxiv.background:  #000000
 Sxiv.font:        Iosevka:style=Medium:size=17
 Sxiv.foreground:  #3993AA
 Sxiv.selection:   #342EB9
-Xcursor.size:     48
-Xcursor.theme:    Bibata-Original-Classic
+Xcursor.size:     64
+Xcursor.theme:    Hacked-White
 Xft.dpi:          162
 Xft.rgba:         none
