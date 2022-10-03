@@ -21,7 +21,7 @@ linear-downscaling=yes
 scale=ewa_lanczossharp
 sigmoid-upscaling=yes
 vd-lavc-threads=8
-video-sync=display-resample
+; video-sync=display-resample
 vo=gpu
 vulkan-swap-mode=immediate
 #--[Antiringing]-------------------------------------------
