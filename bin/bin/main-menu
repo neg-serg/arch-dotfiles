@@ -1,20 +1,20 @@
 #!/usr/bin/env dash
 
-mpd_menu='title_copy artist_copy album_copy pipewire_output alsa_output'
+main_menu='title_copy artist_copy album_copy pipewire_output alsa_output game_start game_end'
 blue="<span weight='bold' color='#395573'>"
 norm="<span weight='bold' color='#6C7E96'>"
 close="</span>"
 
 generate_menu() {
     count=0
-    for item in $mpd_menu; do
+    for item in $main_menu; do
         count=$((count+1))
         echo "$count:$blue⟬</span>$item$blue⟭</span>"
     done
 }
 
 handler() {
-    alsa_name='Gustard X26Pro'
+    dac_name='Gustard X26Pro'
     timeout="5s"
     while IFS= read -r arg; do
         if echo $arg | rg "title_copy" > /dev/null; then
@@ -26,14 +26,18 @@ handler() {
         elif echo $arg | rg "pipewire_output" > /dev/null; then
             mpc pause
             mpc enable PipeWire
-            mpc disable "$alsa_name" && mpc play
+            mpc disable "$dac_name" && mpc play
         elif echo $arg | rg "alsa_output" > /dev/null; then
             mpc pause
-            mpc enable "$alsa_name"
+            mpc enable "$dac_name"
             mpc disable PipeWire
             mpc play
             sleep "$timeout";
             mpc play
+        elif echo $arg | rg "game_start" > /dev/null; then
+            ~/bin/game_start
+        elif echo $arg | rg "game_end" > /dev/null; then
+            ~/bin/game_end
         fi
     done
 }
