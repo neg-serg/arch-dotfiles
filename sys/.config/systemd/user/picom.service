@@ -6,7 +6,7 @@ PartOf=graphical-session.target
 StartLimitIntervalSec=60
 
 [Service]
-ExecStart=/usr/bin/picom --dbus --experimental-backends --backend glx
+ExecStart=/usr/bin/picom --dbus --backend glx
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 # Try to restart no matter how the process ended
 Restart=always
