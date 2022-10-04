@@ -1,6 +1,5 @@
 # Main beets config
 plugins: >
-  acousticbrainz
   bpm
   chroma
   discogs
