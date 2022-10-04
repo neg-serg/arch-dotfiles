@@ -39,22 +39,22 @@ for_window $scratchpad-transients move scratchpad, move absolute position 693 13
 for_window $scratchpad-webcam floating enable
 set $circle-bitwig [class="Bitwig Studio"]
 set $circle-doc [class="^(Zathura|cr3)$"]
+set $circle-nsxiv [class="Nsxiv"]
 set $circle-nwim [class="nwim"]
 set $circle-obs [class="obs"]
 set $circle-remote [class="^(xfreerdp|reminna|org.remmina.Remmina)$"]
 set $circle-steam [class="^(Steam|steam)$"]
-set $circle-nsxiv [class="Nsxiv"]
 set $circle-term [instance="term"]
 set $circle-vid [class="mpv"]
 set $circle-vm [class="spicy"]
 set $circle-web [class="^(firefox|firefoxdeveloperedition|Tor Browser|Chromium)$"]
 for_window $circle-bitwig move workspace $sound,focus
 for_window $circle-doc move workspace $doc,focus
+for_window $circle-nsxiv move workspace $gfx,focus
 for_window $circle-nwim move workspace $dev,focus
 for_window $circle-obs move workspace $obs,focus
 for_window $circle-remote move workspace $remote,focus
 for_window $circle-steam move workspace $steam,focus
-for_window $circle-nsxiv move workspace $gfx,focus
 for_window $circle-term move workspace $term,focus
 for_window $circle-vid move workspace $gfx,focus
 for_window $circle-vm move workspace $vm,focus
@@ -101,7 +101,7 @@ bindsym Mod4+Shift+p exec --no-startup-id zsh -c /usr/bin/rofi-pass
 bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
 bindsym Mod4+Shift+9 exec --no-startup-id dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
-bindsym Mod4+Shift+m exec --no-startup-id ~/bin/rofi-audio
+bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
 bindsym Mod4+Shift+y exec --no-startup-id ~/bin/clip youtube-dw-list
 bindsym Mod4+space exec --no-startup-id dunstctl close-all
 bindsym XF86Sleep exec --no-startup-id systemctl suspend
@@ -159,12 +159,12 @@ bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+y  sticky toggle
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
+bindsym Mod4+Control+c $circle next nsxiv
+bindsym Mod4+Shift+c $circle subtag nsxiv wallpaper
 bindsym Mod4+1 $circle next nwim
 bindsym Mod4+Shift+o $circle toggle obs
 bindsym Mod4+Control+5 $circle toggle remote
 bindsym Mod4+Shift+e $circle next steam
-bindsym Mod4+Control+c $circle next nsxiv
-bindsym Mod4+Shift+c $circle subtag nsxiv wallpaper
 bindsym Mod4+x $circle next term
 bindsym Mod4+b $circle next vid
 bindsym Mod4+Control+v $circle next vm
