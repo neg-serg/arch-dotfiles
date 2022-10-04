@@ -1,9 +1,11 @@
 #!/usr/bin/env dash
 
-main_menu='title_copy artist_copy album_copy pipewire_output alsa_output game_start game_end'
 blue="<span weight='bold' color='#395573'>"
-norm="<span weight='bold' color='#6C7E96'>"
 close="</span>"
+dac_name='Gustard X26Pro'
+norm="<span weight='bold' color='#6C7E96'>"
+
+main_menu='title_copy artist_copy album_copy pipewire_output alsa_output game_start game_end'
 
 generate_menu() {
     count=0
@@ -14,7 +16,6 @@ generate_menu() {
 }
 
 handler() {
-    dac_name='Gustard X26Pro'
     timeout="5s"
     while IFS= read -r arg; do
         if echo $arg | rg "title_copy" > /dev/null; then
@@ -42,11 +43,11 @@ handler() {
     done
 }
 
-neg_rofi_bg="#000000"
-neg_rofi_fg="#6C7E96"
-neg_rofi_hlfg="#aaaaaa"
-neg_rofi_hlbg="#194558"
-neg_rofi_bc="#202020"
+rofi_bg="#000000"
+rofi_fg="#6C7E96"
+rofi_hlfg="#aaaaaa"
+rofi_hlbg="#194558"
+rofi_bc="#202020"
 pref="$blue⟬$closeMPD action$blue⟭$close"
 rofi_options="-auto-select -markup-rows -b -lines 1 -theme neg -dmenu -p '❯>'"
 generate_menu | eval "rofi $rofi_colors $rofi_options" | handler
