@@ -1,0 +1,38 @@
+require("noice").setup({
+    cmdline={
+        view="cmdline",
+    },
+    routes={
+        {
+            filter={
+                event="msg_show",
+                kind="",
+                find="[w]",
+            },
+            opts={skip=true},
+        },
+        {
+            filter={
+                event="msg_show",
+                kind="",
+                find="line less",
+            },
+            opts={skip=true},
+        },
+        {
+            filter={
+                event="msg_show",
+                kind="",
+                find="Pattern not found:",
+            },
+            opts={skip=true},
+        },
+        {
+            filter={
+                event="cmdline",
+                find="^%s*[/?]",
+            },
+            view="cmdline",
+        },
+    },
+})

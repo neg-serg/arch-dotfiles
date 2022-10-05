@@ -46,8 +46,8 @@ return require'packer'.startup({function(use)
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
         },
         module='telescope',
-        keys={'<M-b>', '<M-f>', '<M-C-o>', '<M-o>', '<M-d>',
-            '<leader>.', '[Qleader]e', '[Qleader]f', '[Qleader]c', '[Qleader]p'},
+        keys={'<M-b>','<M-f>','<M-C-o>','<M-o>','<M-d>',
+              '<leader>.','[Qleader]e','[Qleader]f','[Qleader]c','[Qleader]p'},
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end}
@@ -57,6 +57,14 @@ return require'packer'.startup({function(use)
         event='CmdlineEnter'} -- better cmdline menu
     use {'windwp/windline.nvim', -- most modern statusline
         config=function() require'cfg.wildline' end}
+    use{'rcarriga/nvim-notify',
+        config=function() require'cfg.notify' end
+    }
+    use({"folke/noice.nvim",
+        event="VimEnter",
+        config=function() require'cfg.noice' end,
+        requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
+    })
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -128,7 +136,9 @@ return require'packer'.startup({function(use)
         config=function () require'cfg.autolist' end}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
     use {'edluffy/hologram.nvim', -- preview pictures
-        config=function()require('hologram').setup{auto_display=true} end}
+        config=function()require('hologram').setup{auto_display=true} end,
+        ft='md'
+    }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
