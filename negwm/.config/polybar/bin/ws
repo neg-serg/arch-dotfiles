@@ -73,10 +73,7 @@ class polybar_ws():
                     if ret == "default":
                         self.binding_mode = ''
                     else:
-                        self.binding_mode = \
-                            polybar_ws.colorize(
-                                ret, color=self.binding_color, fontnum=7
-                            ) + ' '
+                        self.binding_mode = polybar_ws.colorize(ret, color=self.binding_color) + ' '
                     await self.update_status()
 
     async def special_reload(self):
