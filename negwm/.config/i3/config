@@ -18,9 +18,9 @@ client.unfocused         $bg  $bg  $blue  $bg  $bg
 client.urgent            $bg  $ub  $fg    $ub  $ib
 
 client.background        $bg
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec systemctl --user start --no-block i3-session.target
-exec_always systemctl --user restart --no-block negwm.service
+exec systemctl --user restart --no-block negwm.service
+exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec_always systemctl --user start --no-block i3-session.target
 set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
 set $scratchpad-ncmpcpp [class="ncmpcpp"]
@@ -274,8 +274,8 @@ mode %{T4} {
 	bindsym r exec --no-startup-id ~/bin/wl-convert retro
 	bindsym n exec --no-startup-id ~/bin/wl-convert normal
 
-	bindsym q  , mode "default"
 	bindsym Space  , mode "default"
+	bindsym q  , mode "default"
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
 	bindsym space, mode "default"
