@@ -276,6 +276,8 @@ mode %{T4} {
 
 	bindsym Space  , mode "default"
 	bindsym q  , mode "default"
+	bindsym c $circle next nsxiv, mode "default"
+	bindsym Shift+c $circle subtag nsxiv wallpaper, mode "default"
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
 	bindsym space, mode "default"
