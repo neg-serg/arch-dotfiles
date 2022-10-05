@@ -12,7 +12,6 @@ set_retro(){
         convert "$img" -colors 12 "$HOME/tmp/retro__$(basename $img)"
     fi
     hsetroot -cover "$HOME/tmp/retro__$(basename $img)"
-    "$HOME/tmp/retro__$(basename $img)"
 }
 
 set_normal(){
@@ -20,7 +19,7 @@ set_normal(){
 }
 
 img=$(~/bin/wl -l|tail -1)
-img=${1/#\~/$HOME}
+img=${img/#\~/$HOME}
 
 case "$1" in
     mono) set_mono "$img" ;;
