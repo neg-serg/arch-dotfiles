@@ -75,18 +75,18 @@ for_window [window_role="^(pop-up|task_dialog)$"] floating enable
 
 no_focus [title="Firefox — Sharing Indicator"]
 no_focus [window_type="splash"]
-set $term "1 :: ︁ α:term"
-set $web "2 ::  β:web"
-set $dev "3 ::  δ:dev"
-set $doc "4 ::  γ:doc"
-set $draw "5 ::  ζ:draw"
-set $gfx "6 :: ߷ θ:gfx"
-set $obs "7 :: ✽ ρ:obs"
-set $pic "8 ::  ξ:pic"
-set $steam "9 ::  ι:steam"
-set $sys "10 ::  η:sys"
-set $vm "11 ::  λ:vm"
-set $wine "12 ::  μ:wine"
+set $term "1 :: ︁ 𐌰:term"
+set $web "2 ::  𐌱:web"
+set $dev "3 ::  𐌲:dev"
+set $doc "4 ::  𐌳:doc"
+set $draw "5 ::  𐌴:draw"
+set $gfx "6 :: ߷ 𐌵:gfx"
+set $obs "7 :: ✽ 𐌶:obs"
+set $pic "8 ::  𐌷:pic"
+set $steam "9 ::  𐌸:steam"
+set $sys "10 ::  𐌹:sys"
+set $vm "11 ::  𐌺:vm"
+set $wine "12 ::  𐌻:wine"
 
 
 bindsym Mod4+4 exec ~/bin/screenshot
