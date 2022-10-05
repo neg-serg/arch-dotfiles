@@ -70,20 +70,33 @@ wall() {
         fill) wallarg="-fill";;
         full) wallarg="-full";;
         cover) wallarg="-full";;
-        mono) specarg="plus";;
+        mono) specarg="mono";;
+        retro) specarg="retro";;
     esac
     tee "$tmp_wall"
     if [ -z $specarg ]; then
         while read wall; do
             hsetroot $wallarg "$wall" &
         done < "$tmp_wall"
-    else
-        while read wall; do
-            convert "$wall" -colors 2 "$cache/__$(basename $wall)"
-            hsetroot -full "$cache/__$(basename $wall)"
-            rm "$cache/__$(basename $wall)"
+    elif [ $specarg = 'mono' ]; then
+        while read wall; do make_mono "$wall"
+        done < "$tmp_wall"
+    elif [ $specarg = 'retro' ]; then
+        while read wall; do make_retro "$wall"
         done < "$tmp_wall"
     fi
+}
+
+make_mono(){
+    convert "$1" -colors 2 "$cache/mono__$(basename $1)"
+    hsetroot -full "$cache/mono__$(basename $1)"
+    rm "$cache/mono__$(basename $1)"
+}
+
+make_retro(){
+    convert "$1" -colors 12 "$cache/retro__$(basename $1)"
+    hsetroot -full "$cache/retro__$(basename $1)"
+    rm "$cache/retro__$(basename $1)"
 }
 
 finish() {
@@ -105,5 +118,6 @@ case "$1" in
     "C-3") wall "full" ;;
     "C-4") wall "tile" ;;
     "C-5") wall "mono" ;;
+    "C-6") wall "retro" ;;
     "C-w") wall "cover" ;;
 esac
