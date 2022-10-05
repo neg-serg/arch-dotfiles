@@ -6,6 +6,7 @@ This script sets wallpaper and maintain wallpaper history.
 Usage:
     wl
     wl -l | --list
+    wl -f | --list-fancy
     wl -r | --random
     wl -s | --show
     wl -c | --copy
@@ -107,10 +108,19 @@ class WallpaperManager():
         raw_wall_history = self.get_wall_history()
         self.write_wall_history(raw_wall_history)
 
-    def print_for_user(self):
+    def print_fancy(self):
         """ Only print wallpaper history """
         raw_wall_history = self.get_wall_history()
         self.print_wall_history(raw_wall_history)
+
+    def print_for_user(self):
+        """ Only print wallpaper history """
+        home = str(Path.home())
+        for line in self.get_wall_history():
+            if line.startswith(home):
+                line = '~/' + line.split(home)[1]
+                file_name = str(Path(line))
+                print(f'{file_name}')
 
     def open_image_viewer(self):
         """ Open image viewer with wallpapers history """
@@ -142,6 +152,8 @@ def main():
         wall_manager.set_wallpaper()
     elif cmd_args['-l'] or cmd_args['--list']:
         wall_manager.print_for_user()
+    elif cmd_args['-f'] or cmd_args['--list-fancy']:
+        wall_manager.print_fancy()
     elif cmd_args['-s'] or cmd_args['--show']:
         wall_manager.open_image_viewer()
     elif cmd_args['-c'] or cmd_args['--copy']:
