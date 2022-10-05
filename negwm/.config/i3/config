@@ -98,7 +98,6 @@ bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+m exec --no-startup-id zsh -c "~/bin/music-rename current"
 bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+Shift+p exec --no-startup-id zsh -c /usr/bin/rofi-pass
-bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
 bindsym Mod4+Shift+9 exec --no-startup-id dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
@@ -259,6 +258,24 @@ mode %{T4}%{T-} {
 	bindsym Shift+a $actions hup x2
 	bindsym Shift+s $actions vleft x2
 	bindsym Shift+d $actions vright x2
+	bindsym Return, mode "default"
+	bindsym Escape, mode "default"
+	bindsym space, mode "default"
+	bindsym Control+C, mode "default"
+	bindsym Control+G, mode "default"
+}
+
+bindsym Mod4+Shift+6 mode "%{T4}"
+mode %{T4} {
+	bindsym 6 exec --no-startup-id ~/bin/wl
+	bindsym Shift+6 exec --no-startup-id ~/bin/wl
+	bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
+	bindsym m exec --no-startup-id ~/bin/wl-convert mono
+	bindsym r exec --no-startup-id ~/bin/wl-convert retro
+	bindsym n exec --no-startup-id ~/bin/wl-convert normal
+
+	bindsym q  , mode "default"
+	bindsym Space  , mode "default"
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
 	bindsym space, mode "default"
