@@ -51,20 +51,16 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end}
-    use {'gelguy/wilder.nvim', -- fancy cmdline completion
-        config=function() require'cfg.wilder' end,
-        run=':UpdateRemotePlugins',
-        event='CmdlineEnter'} -- better cmdline menu
     use {'windwp/windline.nvim', -- most modern statusline
         config=function() require'cfg.wildline' end}
     use{'rcarriga/nvim-notify',
         config=function() require'cfg.notify' end
     }
-    -- use({"folke/noice.nvim",
-    --     event="VimEnter",
-    --     config=function() require'cfg.noice' end,
-    --     requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
-    -- })
+    use({"folke/noice.nvim",
+        event="VimEnter",
+        config=function() require'cfg.noice' end,
+        requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
+    })
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -149,8 +145,6 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.argwrap' end}
     use {'junegunn/vim-easy-align', -- use easy-align, instead of tabular
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}}
-    use {'ntpeters/vim-better-whitespace', -- delete whitespaces with ease
-         config=function() require'cfg.whitespace' end}
     use {'phaazon/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end}
     use {'svermeulen/vim-NotableFt', -- better f-t-bindings
