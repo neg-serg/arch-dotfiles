@@ -1,3 +1,1 @@
-#!/usr/bin/env dash
-port=15555
-echo "$@" | nc localhost $port -v -w 0
+/home/neg/.config/negwm/bin/send
