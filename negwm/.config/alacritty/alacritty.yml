@@ -12,7 +12,7 @@ window:
   decorations: none
   dynamic_padding: false
   dynamic_title: false
-  gtk_theme_variant: dark
+  decorations_theme_variant: dark
   startup_mode: Windowed
   opacity: 0.88
 
