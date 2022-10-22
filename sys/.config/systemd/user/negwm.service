@@ -7,5 +7,5 @@ Requires=xsettingsd.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/env dash %E/negwm/bin/run
+ExecStart=%h/bin/negwm
 Restart=on-failure
