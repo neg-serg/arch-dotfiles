@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
 if which nvr 2>&1 >/dev/null; then
     if [ ! -z $DISPLAY ]; then
-        send 'circle next nwim'
+        negwm send 'circle next nwim'
         while ! xdotool search --sync --all --class '^nwim$' 2>&1 > /dev/null; do
             :;
         done

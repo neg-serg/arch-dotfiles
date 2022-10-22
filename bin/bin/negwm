@@ -1,11 +1,25 @@
-#!/usr/bin/env python
-import sys
-import negwm.main
+#!/usr/bin/env sh
 
+NEGWM_CMD="""$(cat <<EOF
+import sys
 if len(sys.argv) - 1 and sys.argv[1] == '-d': 
     import pdb
     pdb.run('negwm.main.run()')
+    sys.exit(0)
 else:
+    import negwm.main
     negwm.main.run()
+    sys.exit(0)
+EOF
+)
+"""
 
-# vim:filetype=python
+if [ $# -gt 1 ] && [ $1 = 'send' ]; then
+    port=15555
+    shift
+    echo "$@" | /usr/bin/nc localhost $port -w 0
+else
+    /usr/bin/env python -c "$NEGWM_CMD"
+fi
+
+# vim:filetype=sh
