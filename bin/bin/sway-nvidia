@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 sway_nvidia() {
     GBM_BACKEND=nvidia-drm \

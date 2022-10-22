@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 echo /dev/video[0-9]* | xargs \
 mpv --fullscreen=no \
     --x11-name="webcam" \

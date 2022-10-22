@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 term_socket="$XDG_CONFIG_HOME/negwm/cache/tmux_sockets/term.socket"
 tmux -S "$term_socket" 'capture-pane'

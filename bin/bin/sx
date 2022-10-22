@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 find "$@" -type f -printf '%C@ %p\n' \
     | sort -rn --parallel 8 -S 16M \
     | cut -d ' ' -f 2- \

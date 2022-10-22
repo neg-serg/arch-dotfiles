@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 scr_dir=~/tmp/shots
 filename="screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"
 summary_="$scr_dir/$filename"

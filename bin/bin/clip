@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 read_command() {
     rofi_cmd="rofi -dmenu -matching glob -dmenu -p ❯>"
     cmd_=$(echo -n "sort tac"| tr -s ' ' '\n' | eval $rofi_cmd)

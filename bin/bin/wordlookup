@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 word="$(xclip -o)"
 def=$(curl -s "https://api.dictionaryapi.dev/api/v2/entries/en_US/$word")
 # res=$(echo $def | jq '.[].meanings[].definitions|map(.definition)' 2>/dev/null \

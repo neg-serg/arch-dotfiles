@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 main() {
     for arg in "$@"; do
         [ -d "$arg" ] && find "$arg" -maxdepth 1 -type f -print0 | xargs -0n10 -P 10 ~/bin/vid-info &

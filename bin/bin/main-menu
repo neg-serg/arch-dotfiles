@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 blue="<span weight='bold' color='#395573'>"
 close="</span>"

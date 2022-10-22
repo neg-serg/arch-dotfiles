@@ -1,2 +1,2 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 optipng -o7 "$1" && advpng -z4 "$1" && advdef -z4 "$1"

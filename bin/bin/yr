@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 main() {
     ${XDG_CONFIG_HOME}/i3/bin/send bscratch toggle youtube
