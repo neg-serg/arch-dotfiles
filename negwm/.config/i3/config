@@ -269,11 +269,11 @@ mode %{T4}%{T-} {
 bindsym Mod4+Shift+6 mode "%{T4}"
 mode %{T4} {
 	bindsym 6 exec --no-startup-id ~/bin/wl
-	bindsym Shift+6 exec --no-startup-id ~/bin/wl
 	bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
+	bindsym Shift+6 exec --no-startup-id ~/bin/wl
 	bindsym m exec --no-startup-id ~/bin/wl-convert mono
-	bindsym r exec --no-startup-id ~/bin/wl-convert retro
 	bindsym n exec --no-startup-id ~/bin/wl-convert normal
+	bindsym r exec --no-startup-id ~/bin/wl-convert retro
 
 	bindsym Space  , mode "default"
 	bindsym q  , mode "default"
