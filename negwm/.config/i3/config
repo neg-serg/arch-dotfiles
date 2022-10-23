@@ -20,25 +20,9 @@ client.unfocused         $bg  $bg  $blue  $bg  $bg
 client.urgent            $bg  $ub  $fg    $ub  $ib
 
 client.background        $bg
-exec systemctl --user restart --no-block negwm.service
+exec systemctl --user restart --no-block negwm
 exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec_always systemctl --user start --no-block i3-session.target
-set $scratchpad-discord [class="discord"]
-set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
-set $scratchpad-ncmpcpp [class="ncmpcpp"]
-set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
-set $scratchpad-teardrop [instance="teardrop"]
-set $scratchpad-torrment [instance="torrment"]
-set $scratchpad-transients [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"]
-set $scratchpad-webcam [instance="webcam"]
-for_window $scratchpad-discord floating enable
-for_window $scratchpad-im floating enable
-for_window $scratchpad-ncmpcpp floating enable
-for_window $scratchpad-neomutt floating enable
-for_window $scratchpad-teardrop floating enable
-for_window $scratchpad-torrment floating enable
-for_window $scratchpad-transients move scratchpad, move absolute position 693 1310, resize set 1812 797
-for_window $scratchpad-webcam floating enable
 set $circle-bitwig [class="Bitwig Studio"]
 set $circle-doc [class="^(Zathura|cr3)$"]
 set $circle-nsxiv [class="Nsxiv"]
@@ -61,6 +45,22 @@ for_window $circle-term move workspace $term,focus
 for_window $circle-vid move workspace $gfx,focus
 for_window $circle-vm move workspace $vm,focus
 for_window $circle-web move workspace $web,focus
+set $scratchpad-discord [class="discord"]
+set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
+set $scratchpad-ncmpcpp [class="ncmpcpp"]
+set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
+set $scratchpad-teardrop [instance="teardrop"]
+set $scratchpad-torrment [instance="torrment"]
+set $scratchpad-transients [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"]
+set $scratchpad-webcam [instance="webcam"]
+for_window $scratchpad-discord floating enable
+for_window $scratchpad-im floating enable
+for_window $scratchpad-ncmpcpp floating enable
+for_window $scratchpad-neomutt floating enable
+for_window $scratchpad-teardrop floating enable
+for_window $scratchpad-torrment floating enable
+for_window $scratchpad-transients move scratchpad, move absolute position 693 1310, resize set 1812 797
+for_window $scratchpad-webcam floating enable
 for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 2
 
 for_window [class="(?i)(alacr|k)itty"] border none
