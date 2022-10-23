@@ -91,22 +91,22 @@ set $wine "12 ::  𐌻:wine"
 
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
-bindsym Mod4+Shift+4 exec flameshot gui
+bindsym Mod4+Shift+4 exec /usr/bin/flameshot gui
 
-bindsym Mod1+grave exec --no-startup-id rofi -show run -show-icons -disable-history -theme neg || rofi -show run || dmenu_run
+bindsym Mod1+grave exec --no-startup-id /usr/bin/rofi -show run -show-icons -disable-history -theme neg || rofi -show run || dmenu_run
 bindsym Mod4+8 exec --no-startup-id ~/bin/pl vol mute
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
-bindsym Mod4+m exec --no-startup-id zsh -c "~/bin/music-rename current"
+bindsym Mod4+m exec --no-startup-id /bin/zsh -c "~/bin/music-rename current"
 bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+Shift+8 exec --no-startup-id ~/bin/pl vol unmute
-bindsym Mod4+Shift+9 exec --no-startup-id dunstctl history-pop
+bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
-bindsym Mod4+Shift+p exec --no-startup-id zsh -c /usr/bin/rofi-pass
+bindsym Mod4+Shift+p exec --no-startup-id /bin/zsh -c /usr/bin/rofi-pass
 bindsym Mod4+Shift+y exec --no-startup-id ~/bin/clip youtube-dw-list
-bindsym Mod4+space exec --no-startup-id dunstctl close-all
-bindsym Mod4+Return exec --no-startup-id i3-sensible-terminal
-bindsym XF86Sleep exec --no-startup-id systemctl suspend
+bindsym Mod4+space exec --no-startup-id /usr/bin/dunstctl close-all
+bindsym Mod4+Return exec --no-startup-id /usr/bin/i3-sensible-terminal
+bindsym XF86Sleep exec --no-startup-id /usr/bin/systemctl suspend
 
 bindsym Mod4+h focus left
 bindsym Mod4+j focus down
@@ -244,6 +244,11 @@ mode %{T4}%{T-} {
 	bindsym s move down
 	bindsym d move right
 
+	bindsym Shift+w $actions hdown x2
+	bindsym Shift+a $actions hup x2
+	bindsym Shift+s $actions vleft x2
+	bindsym Shift+d $actions vright x2
+
 	bindsym Shift+plus $actions grow
 	bindsym x $actions maxhor
 	bindsym m $actions maximize
@@ -254,11 +259,6 @@ mode %{T4}%{T-} {
 	bindsym Shift+x $actions revert_maximize
 	bindsym Shift+y $actions revert_maximize
 	bindsym Shift+minus $actions shrink
-
-	bindsym Shift+w $actions hdown x2
-	bindsym Shift+a $actions hup x2
-	bindsym Shift+s $actions vleft x2
-	bindsym Shift+d $actions vright x2
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
 	bindsym space, mode "default"
