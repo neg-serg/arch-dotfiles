@@ -81,5 +81,4 @@ visualizer_in_stereo = "no"
 visualizer_color = 091,097,108,104,99,105,111
 visualizer_look = "▞▋"
 visualizer_type = ellipse
-execute_on_song_change="~/bin/track-notify"
 #  vim: set ts=2 sw=2 tw=0 :

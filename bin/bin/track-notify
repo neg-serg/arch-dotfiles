@@ -27,7 +27,7 @@ notify() {
     info=()
     track_metadata="$(sox --i "${track_path}" 2> /dev/null)"
     if [[ $? -gt 0 ]]; then dunstify "sox not working with code $?"; fi
-    finger="$(awk -F '=' 'BEGIN{IGNORECASE=1}/(Artist|Album|Year)/{print $2}' <<< "$track_metadata")"
+    finger="$(awk -F '=' 'BEGIN{}/(Artist|Album|Year)/{print $2}' <<< "$track_metadata")"
     info[1]=""
     info[2]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^artist=/{print $2}' <<< ${track_metadata})"
     info[3]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^album=/{print $2}' <<< ${track_metadata})"
@@ -71,17 +71,6 @@ notify() {
     fi
 }
 
-show_notify() {
-    if [[ ! -e "${cover_lock}" ]]; then
-        notify
-    elif [[ -s "${cover_lock}" ]]; then
-        if [[ "$(< "${cover_lock}")" != "$(sed '1d' <<< $(echo -n "${body}"))" ]]; then
-            notify
-        fi
-    fi
-    mv "${track_cover}" "${prev_track_cover}"
-}
-
 extract_and_dump_cover_if_none(){
     if [[ ! -e ${track_cover} ]]; then
         ffmpeg -y -i "$(mpc --format "$mpd_music_dir"/%file% | head -n 1)" "${track_cover}" > /dev/null 2>&1
@@ -92,16 +81,11 @@ main(){
     [[ -e  /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
     extract_and_dump_cover_if_none
     [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
-    fd "${prev_track_cover}" --changed-before '12min' -x rm '{}'
+    find "$(dirname ${prev_track_cover})" -name "$(basename ${prev_track_cover})" -mmin -12 -type f -exec rm {} + 2>&1 > /dev/null
     if [[ -e ${track_cover} ]]; then
-        [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
         # send notification with compatible track_cover
-        if [[ ! -e "${prev_track_cover}" ]]; then
-            show_notify
-        else
-            if ! ${HOME}/bin/cmp-imgs.py "${track_cover}" "${prev_track_cover}"; then
-                show_notify
-            fi
+        if [[ $(~/bin/cmp-imgs.py "${track_cover}" "${prev_track_cover}") == 'ok' ]]; then
+            notify
         fi
     fi
 }
