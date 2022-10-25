@@ -264,3 +264,4 @@ zsh_history
 zsh/.zsh/.zcompdump
 zsh/.zsh/zcomp-sanctum
 *.zwc
+__pycache__
