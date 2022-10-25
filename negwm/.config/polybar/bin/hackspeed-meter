@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 # shellcheck disable=SC2016,SC2059
 KEYBOARD_ID='keyd virtual keyboard'
 # cpm: characters per minute
@@ -37,7 +37,7 @@ trap 'rm "$hackspeed_cache"' EXIT
 
 # Write a dot to our cache for each key press
 printf '' > "$hackspeed_cache"
-xinput test "$KEYBOARD_ID" | \
+xinput test "$(xinput list --id-only $KEYBOARD_ID)" | \
 	stdbuf -o0 awk '$1 == "key" && $2 == "press" && ('"$CONDITION"') {printf "."}' >> "$hackspeed_cache" &
 
 while true; do
