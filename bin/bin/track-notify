@@ -1,13 +1,15 @@
 #!/usr/bin/env zsh
-
 pics="$(realpath ${HOME}/tmp/mpd-covers)"
-cover_lock="${pics}/notify.lock"
-magic_pie='8143'
+magic_pie='9174'
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
 track_path="$(mpc --format "$mpd_music_dir"/%file% | head -n 1)"
 track_dir=$(dirname "$track_path")
-prev_track_cover="${pics}/prev_track_cover.png"
-track_cover="$track_dir/cover.jpg"
+if playerctl metadata mpris:artUrl > /dev/null; then
+    art="$(playerctl metadata mpris:artUrl)"
+else
+    exit 1
+fi
+cover_cache=$pics/cache
 
 nr(){ print "<span weight='Bold' color='#b8c5d9'>$1</span>" }
 fa(){ print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>" }
@@ -25,22 +27,22 @@ prefix=(
 
 notify() {
     info=()
-    track_metadata="$(sox --i "${track_path}" 2> /dev/null)"
-    if [[ $? -gt 0 ]]; then dunstify "sox not working with code $?"; fi
-    finger="$(awk -F '=' 'BEGIN{}/(Artist|Album|Year)/{print $2}' <<< "$track_metadata")"
+    track_metadata="$(sox --i "$track_path" 2> /dev/null)"
+    ret=$?
+    if (( ret>0 )); then print "sox not working with code $ret"; exit 1; fi
     info[1]=""
-    info[2]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^artist=/{print $2}' <<< ${track_metadata})"
-    info[3]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^album=/{print $2}' <<< ${track_metadata})"
-    info[4]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^label=/{print $2}' <<< ${track_metadata})"
-    info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^year=/{print $2}' <<< ${track_metadata})"
+    info[2]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^artist=/{print $2}' <<< $track_metadata)"
+    info[3]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^album=/{print $2}' <<< $track_metadata)"
+    info[4]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^label=/{print $2}' <<< $track_metadata)"
+    info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^year=/{print $2}' <<< $track_metadata)"
     if [[ -z $info[5] ]]; then
-        info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^date=/{print $2}' <<< ${track_metadata})"
+        info[5]="$(awk -F '=' 'BEGIN{IGNORECASE=1}/^date=/{print $2}' <<< $track_metadata)"
     fi
-    info[6]="$(xargs <<< $(awk -F '=' 'BEGIN{IGNORECASE=1}/^genre=/{print $2}' <<< ${track_metadata}))"
+    info[6]="$(xargs <<< $(awk -F '=' 'BEGIN{IGNORECASE=1}/^genre=/{print $2}' <<< $track_metadata))"
 
     for i in {2..6}; do
         if [[ ! -z "${info[i]}" ]]; then
-            info[i]="${prefix[i]}$(nr ${info[i]})\n"
+            info[i]="$prefix[i]$(nr ${info[i]})\n"
         else
             info[i]="\n"
         fi
@@ -56,19 +58,16 @@ notify() {
     if (se ~ /MPEG/) printf "mpeg·"; \
     if (se ~ /Direct Stream Digital/) printf "dsd·"; \
         print br"·"sr"K/"pr"·"ch}' <<< ${track_metadata})"
-    [[ ${audio_quality// } != "·K/·" ]] && info[7]="${prefix[7]}$(nr ${audio_quality})\n" || info[7]="\n"
+    [[ ${audio_quality// } != "·K/·" ]] && info[7]="${prefix[7]}$(nr $audio_quality)\n" || info[7]="\n"
 
     for i in ${info[@]};
         [[ ${i} != "\n" ]] && output="${output}${i}"
     output="\n${output}\n​"
 
-    if [[ -e "$track_cover" ]]; then
-        dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
-            -u "normal" \
-            -i "${track_cover}" "" "${output}" > /tmp/notify_id \
-            -r ${magic_pie}
-        echo -n "${finger}" > "${cover_lock}"
-    fi
+    dunstify -p -a "mpd" -h "string:fgcolor:#17272D" \
+        -u "normal" \
+        -i "$art" "" "$output" > /tmp/notify_id \
+        -r "$magic_pie" -t 4000
 }
 
 extract_and_dump_cover_if_none(){
@@ -80,14 +79,22 @@ extract_and_dump_cover_if_none(){
 main(){
     [[ -e  /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
     extract_and_dump_cover_if_none
-    [[ ! -d "${pics}" ]] && mkdir -p "${pics}"
-    find "$(dirname ${prev_track_cover})" -name "$(basename ${prev_track_cover})" -mmin -12 -type f -exec rm {} + 2>&1 > /dev/null
-    if [[ -e ${track_cover} ]]; then
-        # send notification with compatible track_cover
-        if [[ $(~/bin/cmp-imgs.py "${track_cover}" "${prev_track_cover}") == 'ok' ]]; then
-            notify
-        fi
+    p="file://"
+    [[ ! -d "${pics}" ]] && mkdir -p "$pics"
+    [[ "$(cat $cover_cache|sed -e "s;^$p;;")" == '' ]] && notify && exit 0
+
+    Art=$(echo $art|sed -e "s;^$p;;")
+    Cache=$(cat $cover_cache|sed -e "s;^$p;;")
+
+    echo "~/bin/cmp-imgs.py $Art $Cache"
+    if [[ $(~/bin/cmp-imgs.py $Art $Cache) == 'ok' ]]; then
+        notify
+        exit 0
     fi
+}
+
+TRAPEXIT() {
+    echo "$art" > "$cover_cache"
 }
 
 main "$@"
