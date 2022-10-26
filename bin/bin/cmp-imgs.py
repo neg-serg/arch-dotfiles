@@ -14,6 +14,6 @@ if len(sys.argv) == 3:
     img2=Image.open(sys.argv[2])
     ret=(dhash(img1) == dhash(img2))
     if ret:
-        print('')
+        print('fail')
     else:
         print('ok')
