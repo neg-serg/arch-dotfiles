@@ -1,15 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env dash
 word="$(xclip -o)"
 def=$(curl -s "https://api.dictionaryapi.dev/api/v2/entries/en_US/$word")
-# res=$(echo $def | jq '.[].meanings[].definitions|map(.definition)' 2>/dev/null \
-#     | sed '1d;$d' \
-#     | awk 'sub(/  "/,"")')
+res=$(echo $def | jq '.[].meanings[].definitions|map(.definition)' 2>/dev/null \
+    | sed '1d;$d' \
+    | awk 'sub(/  "/,"")')
 
-# res=$(echo $def | jq '.[].meanings[].definitions|map(.definition)')
+res=$(echo $def | jq '.[].meanings[].definitions|map(.definition)')
+notify-send -u low -t 10000 "$word" "$res"
 
-# echo $res
-# notify-send -u low -t 10000 "$word" "$res"
-
-# for t in "$(echo $def | jq -c '.[].meanings[].definitions|map(.definition)|select(.!=null)')"; do
-#     echo "$t"
-# done
+for t in "$(echo $def | jq -c '.[].meanings[].definitions|map(.definition)|select(.!=null)')"; do
+    echo "$t"
+done
