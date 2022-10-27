@@ -4,8 +4,9 @@ magic_pie='9174'
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
 track_path="$(mpc --format "$mpd_music_dir"/%file% | head -n 1)"
 track_dir=$(dirname "$track_path")
-if playerctl metadata mpris:artUrl > /dev/null; then
-    art="$(playerctl metadata mpris:artUrl)"
+art_="$(playerctl metadata mpris:artUrl)"
+if [[ $art_ != "" ]]; then
+    art="$art_"
 else
     exit 1
 fi
@@ -70,31 +71,6 @@ notify() {
         -r "$magic_pie" -t 4000
 }
 
-extract_and_dump_cover_if_none(){
-    if [[ ! -e ${track_cover} ]]; then
-        ffmpeg -y -i "$(mpc --format "$mpd_music_dir"/%file% | head -n 1)" "${track_cover}" > /dev/null 2>&1
-    fi
-}
-
-main(){
-    [[ -e  /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
-    extract_and_dump_cover_if_none
-    p="file://"
-    [[ ! -d "${pics}" ]] && mkdir -p "$pics"
-    [[ "$(cat $cover_cache|sed -e "s;^$p;;")" == '' ]] && notify && exit 0
-
-    Art=$(echo $art|sed -e "s;^$p;;")
-    Cache=$(cat $cover_cache|sed -e "s;^$p;;")
-
-    echo "~/bin/cmp-imgs.py $Art $Cache"
-    if [[ $(~/bin/cmp-imgs.py $Art $Cache) == 'ok' ]]; then
-        notify
-        exit 0
-    fi
-}
-
-TRAPEXIT() {
-    echo "$art" > "$cover_cache"
-}
-
-main "$@"
+[[ -e  /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
+[[ ! -d "${pics}" ]] && mkdir -p "$pics"
+notify
