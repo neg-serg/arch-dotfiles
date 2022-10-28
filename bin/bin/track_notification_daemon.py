@@ -27,7 +27,7 @@ def on_track_change(t, data):
                 subprocess.Popen(['track-notify'])
             elif md5sums[-1] != md5sums[-2]:
                 subprocess.Popen(['track-notify'])
-                del md5sums[:-2]
+            del md5sums[:-2]
 
 player.connect('metadata', on_track_change)
 
