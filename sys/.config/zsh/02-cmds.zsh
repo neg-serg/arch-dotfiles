@@ -127,8 +127,9 @@ _exists git && {
     alias status="git status"
 }
 _exists curl && {
-    alias weather="curl 'wttr.in/?T'"
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
+    alias ipinfo='curl -sf "https://ipinfo.io/json"'
+    alias weather="curl 'wttr.in/?T'"
     sprunge() { curl -F "sprunge=<-" http://sprunge.us <"$1" ;}
 }
 _exists fzf && {
