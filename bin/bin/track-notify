@@ -4,7 +4,7 @@ magic_pie='9174'
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
 track_path="$(mpc --format "$mpd_music_dir"/%file% | head -n 1)"
 track_dir=$(dirname "$track_path")
-art_="$(playerctl metadata mpris:artUrl)"
+art_="$1"
 if [[ $art_ != "" ]]; then
     art="$art_"
 else
