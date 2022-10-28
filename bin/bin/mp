@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 main() {
     for arg in "$@"; do
-        [ -d "$arg" ] && find "$arg" -maxdepth 1 -type f -print0 | xargs -0n10 -P 10 ~/bin/vid-info &
+        [ -d "$arg" ] && find "$arg" -maxdepth 1 -type f -print0 | xargs -0n10 -P 10 vid-info &
     done
     {
         args=""
         for arg in "$@"; do
             [ -f "$arg" ] && args="$args$(printf '%s\0' "$arg")";
         done
-        echo -n "$args" | xargs -0n10 -P 10 ~/bin/vid-info
+        echo -n "$args" | xargs -0n10 -P 10 vid-info
     } &
     mpv --vo=gpu --quiet "$@" > $HOME/tmp/mpv.log
 }
