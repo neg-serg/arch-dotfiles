@@ -4,8 +4,8 @@ After=sockets.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/tmux -S /home/neg/.config/negwm/cache/tmux_sockets/term.socket new-session -s term -d
-ExecStop=/usr/bin/tmux -S /home/neg/.config/negwm/cache/tmux_sockets/term.socket kill-session -t term
+ExecStart=/usr/bin/tmux -S %h/.cache/negwm/tmux_sockets/term.socket new-session -s term -d
+ExecStop=/usr/bin/tmux -S %h/.cache/negwm/tmux_sockets/term.socket kill-session -t term
 RemainAfterExit=yes
 
 [Install]
