@@ -16,7 +16,6 @@ grid_exit: c
 exit: esc
 drag: v
 copy_and_exit: c
-hint: Activate x
 grid: g
 screen: s
 left: h
