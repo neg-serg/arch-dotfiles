@@ -56,11 +56,13 @@ return require'packer'.startup({function(use)
     use{'rcarriga/nvim-notify',
         config=function() require'cfg.notify' end
     }
-    use({"folke/noice.nvim",
-        event="VimEnter",
-        config=function() require'cfg.noice' end,
-        requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
-    })
+    if use_noice then
+        use({"folke/noice.nvim",
+            event="VimEnter",
+            config=function() require'cfg.noice' end,
+            requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
+        })
+    end
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
