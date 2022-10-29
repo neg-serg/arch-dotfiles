@@ -26,10 +26,12 @@ def on_track_change(player, data):
         except subprocess.CalledProcessError:
             pass
         if player:
+            import os
+            track_notify=os.path.expanduser('~/bin/track-notify')
             if len(md5sums) == 1:
-                subprocess.Popen(['track-notify', cover])
+                subprocess.Popen([track_notify, cover])
             elif md5sums[-1] != md5sums[-2]:
-                subprocess.Popen(['track-notify', cover])
+                subprocess.Popen([track_notify, cover])
             del md5sums[:-2]
 
 player.connect('metadata', on_track_change)
