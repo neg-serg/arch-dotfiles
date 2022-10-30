@@ -51,24 +51,22 @@ set $scratchpad-ncmpcpp [class="ncmpcpp"]
 set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
 set $scratchpad-teardrop [instance="teardrop"]
 set $scratchpad-torrment [instance="torrment"]
-set $scratchpad-transients [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"]
+set $scratchpad-transients [instance="Places" window_role="^(GtkFileChooserDialog|gimp-file-open)$"]
 set $scratchpad-webcam [instance="webcam"]
-for_window $scratchpad-discord floating enable
-for_window $scratchpad-im floating enable
-for_window $scratchpad-ncmpcpp floating enable
-for_window $scratchpad-neomutt floating enable
-for_window $scratchpad-teardrop floating enable
-for_window $scratchpad-torrment floating enable
-for_window $scratchpad-transients move scratchpad, move absolute position 693 1310, resize set 1812 797
-for_window $scratchpad-webcam floating enable
+for_window $scratchpad-discord floating enable, resize set move absolute position 1936 825, resize set 1898 1273
+for_window $scratchpad-im floating enable, resize set move absolute position 2536 2, resize set 1304 2109
+for_window $scratchpad-ncmpcpp floating enable, resize set move absolute position 753 1205, resize set 2251 828
+for_window $scratchpad-neomutt floating enable, resize set move absolute position 104 0, resize set 3670 2228
+for_window $scratchpad-teardrop floating enable, resize set move absolute position 0 0, resize set 3840 1300
+for_window $scratchpad-torrment floating enable, resize set move absolute position 0 0, resize set 3840 1300
+for_window $scratchpad-transients floating enable, resize set move absolute position 693 1310, resize set 1812 797
+for_window $scratchpad-webcam floating enable, resize set move absolute position 1368 268, resize set 2463 1880
 for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 2
 
 for_window [class="(?i)(alacr|k)itty"] border none
 for_window [class="(?i)\.exe"] floating enable, border none, move position center
 for_window [class="^(inkscape|gimp)$"] move workspace $draw
 for_window [class="(?i)(?:qt5ct|gcolor3|rdesktop|openssh-askpass|lutris|steam_app_.*|wine)"] floating enable
-for_window [class=zoom] border none
-for_window [class=zoom title="(?i)(participants|settings)"] floating enable
 for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, focus
 for_window [title="(?i)(?:File Transfer.*)"] floating enable
 for_window [window_role="browser"] border none
