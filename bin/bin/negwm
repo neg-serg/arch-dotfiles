@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/sh -x
 
 NEGWM_CMD="""$(cat <<EOF
 import sys
@@ -14,10 +14,23 @@ EOF
 )
 """
 
-if [ $# -gt 1 ] && [ $1 = 'send' ]; then
-    port=15555
-    shift
-    echo "$@" | /usr/bin/nc localhost $port -w 0
+port=15555
+negwm_path="$HOME/src/negwm"
+
+if [ $# -gt 0 ]; then
+    if [ $1 = 'send' ]; then
+        shift
+        echo "$@" | /usr/bin/nc localhost $port -w 0
+    elif [ $1 = 'update' ]; then
+        echo HER
+        if [ -d $negwm_path ]; then 
+            echo here
+            pip install ~/src/negwm
+        else
+            echo pere2
+            pip install git+https://github.com/neg-serg/negwm
+        fi
+    fi
 else
     /usr/bin/env python -c "$NEGWM_CMD"
 fi
