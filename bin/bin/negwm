@@ -1,14 +1,9 @@
 #!/usr/bin/sh
-
 NEGWM_CMD="""$(cat <<EOF
 import sys
 if len(sys.argv) - 1 and sys.argv[1] == '-d': 
     import pdb
     pdb.run('negwm.main.run()')
-    sys.exit(0)
-else:
-    import negwm.main
-    negwm.main.run()
     sys.exit(0)
 EOF
 )
@@ -17,22 +12,20 @@ EOF
 port=15555
 negwm_path="$HOME/src/negwm"
 
-if [ $# -gt 0 ]; then
-    if [ $1 = 'send' ]; then
-        shift
-        echo "$@" | /usr/bin/nc localhost $port -w 0
-    elif [ $1 = 'update' ]; then
-        echo HER
-        if [ -d $negwm_path ]; then 
-            echo here
-            pip install ~/src/negwm
-        else
-            echo pere2
-            pip install git+https://github.com/neg-serg/negwm
-        fi
+if [ $# -gt 0 ] && [ $1 = 'send' ]; then
+    shift
+    echo "$@" | /usr/bin/nc localhost $port -w 0
+elif [ $# -gt 0 ] && [ $1 = 'update' ]; then
+    echo HER
+    if [ -d $negwm_path ]; then
+        pip install ~/src/negwm
+    else
+        pip install git+https://github.com/neg-serg/negwm
     fi
-else
+elif [ $# -gt 0 ] && [ $1 = 'debug' ]; then
     /usr/bin/env python -c "$NEGWM_CMD"
+else 
+    /usr/bin/env python -m negwm "$@"
 fi
 
 # vim:filetype=sh
