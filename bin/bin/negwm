@@ -1,4 +1,4 @@
-#!/usr/bin/sh -x
+#!/usr/bin/sh
 
 NEGWM_CMD="""$(cat <<EOF
 import sys
