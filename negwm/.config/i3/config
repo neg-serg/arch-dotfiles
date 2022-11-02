@@ -142,12 +142,11 @@ bindsym XF86AudioPlay exec --no-startup-id ~/bin/pl cmd play
 bindsym XF86AudioPrev exec --no-startup-id ~/bin/pl cmd previous
 bindsym XF86AudioStop exec --no-startup-id ~/bin/pl cmd stop
 
-bindsym Mod4+Shift+a $menu attach
-bindsym Mod4+Shift+s $menu move_window
-bindsym Mod4+Control+grave $menu i3_menu
-bindsym Mod1+g $menu goto_win
-bindsym Mod4+Control+g $menu movews
-bindsym Mod1+Control+g $menu ws
+bindsym Mod4+Shift+a  exec ~/src/negwm/menu/winact attach
+bindsym Mod4+Shift+s  exec ~/src/negwm/menu/winact move
+bindsym Mod4+Control+grave  exec ~/src/negwm/menu/i3menu
+bindsym Mod1+g  exec ~/src/negwm/menu/winact win
+bindsym Mod1+Control+g  exec ~/src/negwm/menu/winact ws
 
 bindsym Mod4+Control+q  kill
 bindsym Mod4+5  [floating] floating disable, unmark "^_all_$"
@@ -205,12 +204,12 @@ mode %{T4}%{T-} {
 	bindsym e  [urgent=latest] focus, mode "default"
 	bindsym l  exec ~/bin/x11lock, mode "default"
 	bindsym Shift+d  floating toggle, mode "default"
+	bindsym i  exec ~/src/negwm/negwm/bin/menu/pulse input, mode "default"
+	bindsym o  exec ~/src/negwm/negwm/bin/menu/pulse output, mode "default"
+	bindsym m  exec ~/src/negwm/negwm/bin/menu/xprop, mode "default"
 
 	bindsym Shift+t $menu gtk_theme, mode "default"
 	bindsym Shift+i $menu icon_theme, mode "default"
-	bindsym i $menu pulse_input, mode "default"
-	bindsym o $menu pulse_output, mode "default"
-	bindsym m $menu xprop_show, mode "default"
 	bindsym f $circle subtag web firefox, mode "default"
 	bindsym 5 $circle subtag web tor, mode "default"
 	bindsym t $scratchpad subtag im tel, mode "default"
@@ -289,7 +288,7 @@ set $circle nop circle
 set $conf_gen nop conf_gen
 set $executor nop executor
 set $fullscreen nop fullscreen
-set $menu nop menu
+set $reflection nop reflection
 set $remember_focused nop remember_focused
 set $scratchpad nop scratchpad
 # vim:filetype=i3config
