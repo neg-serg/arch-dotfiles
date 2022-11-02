@@ -36,7 +36,7 @@
 
 #element {
     padding: 0 4mm;
-    border-color: @ultra;
+    border-color: @blackdarkest;
     border-radius: 8px 8px 8px 8px;
     border: 2px 0px 2px 0px;
 }
