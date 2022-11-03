@@ -13,6 +13,8 @@ set  $ub     #2E2457
 set  $blue   #285981
 set  $actbr  #020204
 
+set $menu exec ~/src/negwm/menu
+
 client.focused           $fb  $bg  $fg    $bg  $actbr
 client.focused_inactive  $ib  $bg  $fg    $bg  $bg
 client.placeholder       $bg  $bg  $fg    $bg  $bg
@@ -142,11 +144,12 @@ bindsym XF86AudioPlay exec --no-startup-id ~/bin/pl cmd play
 bindsym XF86AudioPrev exec --no-startup-id ~/bin/pl cmd previous
 bindsym XF86AudioStop exec --no-startup-id ~/bin/pl cmd stop
 
-bindsym Mod4+Shift+a  exec ~/src/negwm/menu/winact attach
-bindsym Mod4+Shift+s  exec ~/src/negwm/menu/winact move
-bindsym Mod4+Control+grave  exec ~/src/negwm/menu/i3menu
-bindsym Mod1+g  exec ~/src/negwm/menu/winact win
-bindsym Mod1+Control+g  exec ~/src/negwm/menu/winact ws
+bindsym Mod1+Control+g  $menu/winact ws
+bindsym Mod1+g  $menu/winact win
+bindsym Mod4+Control+grave  $menu/i3menu
+bindsym Mod4+Shift+a  $menu/winact attach
+bindsym Mod4+Shift+s  $menu/props
+bindsym Mod4+Shift+d  $menu/props del
 
 bindsym Mod4+Control+q  kill
 bindsym Mod4+5  [floating] floating disable, unmark "^_all_$"
@@ -204,12 +207,11 @@ mode %{T4}%{T-} {
 	bindsym e  [urgent=latest] focus, mode "default"
 	bindsym l  exec ~/bin/x11lock, mode "default"
 	bindsym Shift+d  floating toggle, mode "default"
-	bindsym i  exec ~/src/negwm/negwm/bin/menu/pulse input, mode "default"
-	bindsym o  exec ~/src/negwm/negwm/bin/menu/pulse output, mode "default"
-	bindsym m  exec ~/src/negwm/negwm/bin/menu/xprop, mode "default"
-
-	bindsym Shift+t $menu gtk_theme, mode "default"
-	bindsym Shift+i $menu icon_theme, mode "default"
+	bindsym i  $menu/pulse input, mode "default"
+	bindsym o  $menu/pulse output, mode "default"
+	bindsym m  $menu/xprop, mode "default"
+	bindsym Shift+t  $menu/xsettings gtk, mode "default"
+	bindsym Shift+i  $menu/xsettings icon, mode "default"
 	bindsym f $circle subtag web firefox, mode "default"
 	bindsym 5 $circle subtag web tor, mode "default"
 	bindsym t $scratchpad subtag im tel, mode "default"
