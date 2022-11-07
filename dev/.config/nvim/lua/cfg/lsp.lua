@@ -75,15 +75,3 @@ nvim_lsp.sumneko_lua.setup {settings={Lua={diagnostics={
 nvim_lsp.tsserver.setup {on_attach=on_attach}
 nvim_lsp.vimls.setup {on_attach=on_attach}
 nvim_lsp.yamlls.setup {on_attach=on_attach}
-nvim_lsp.rust_analyzer.setup {
-    on_attach=on_attach,
-    settings={
-        ["rust-analyzer"]={
-            assist={importMergeBehavior="last", importPrefix="by_self"},
-            diagnostics={disabled={"unresolved-import"}},
-            cargo={loadOutDirsFromCheck=true},
-            procMacro={enable=true},
-            checkOnSave={command="clippy"},
-        }},
-    capabilities=require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-}

@@ -56,13 +56,11 @@ return require'packer'.startup({function(use)
     use{'rcarriga/nvim-notify',
         config=function() require'cfg.notify' end
     }
-    if use_noice then
-        use({"folke/noice.nvim",
-            event="VimEnter",
-            config=function() require'cfg.noice' end,
-            requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
-        })
-    end
+    use({"folke/noice.nvim",
+        event="VimEnter",
+        config=function() require'cfg.noice' end,
+        requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
+    })
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -72,22 +70,18 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.trouble' end,
         keys={'<leader>X'}, opt=true}
     use {'hrsh7th/nvim-cmp', -- completion engine
-        config=function() require'cfg.cmp' end,
-        after={'LuaSnip'},
+        config=function() require'cfg.cmp' end, after={'LuaSnip'},
         requires={
             {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
+            {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
             {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
             {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}, -- cmp neovim lua api support
             {'hrsh7th/cmp-path', after='nvim-cmp'}, -- cmp path completion support
-            {'onsails/lspkind-nvim'}, -- lsp pictograms
-            {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
-        }, event={'InsertEnter'}}
-    use {{'L3MON4D3/LuaSnip', -- snippets engine
-            config=function() require'cfg.luasnip' end,
-            requires='rafamadriz/friendly-snippets', -- additional snippets'
-            event={'BufRead','BufNewFile','InsertEnter'}},
-        {'saadparwaiz1/cmp_luasnip', after={'LuaSnip', 'nvim-cmp'}}, -- lua snippets nvim-cmp support
-        event={'InsertEnter'}}
+    }}
+    use {'L3MON4D3/LuaSnip', -- snippets engine
+        config=function() require'cfg.luasnip' end,
+        requires='rafamadriz/friendly-snippets', -- additional snippets'
+        event={'BufRead','BufNewFile','InsertEnter'}}
     use {'neovim/nvim-lspconfig', -- lsp config
         config=function() require'cfg.lsp' end,
         requires={'williamboman/mason.nvim'},
@@ -110,7 +104,7 @@ return require'packer'.startup({function(use)
         cmd={'Dispatch','Make','Focus','Start'}}
     use {'windwp/nvim-autopairs', -- super powerful autopairs
         config=function() require'cfg.autopairs' end,
-        wants='nvim-cmp', event={'InsertEnter'}}
+        event={'InsertEnter'}}
     use {'willchao612/vim-diagon', cmd='Diagon'} -- creates diagrams from text. Requires diagon from snap.
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Debug                                                                        │
