@@ -47,8 +47,16 @@ alias :q="exit"
 alias emptydir='ls -ld **/*(/^F)'
 _exists paru && {alias yay='paru'; alias rmorphans='paru -Rs $(paru -Qqdt)'}
 _exists reflector && _exists doas && alias mirrors='doas /usr/bin/reflector --score 100 --fastest 10 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
-_exists sudo && {alias sudo='sudo '; alias s='sudo '}
-_exists doas && {alias doas='doas '; alias s='doas '}
+_exists doas && {
+    alias doas='doas '; alias s='doas '
+    local doas_list=(chmod chown modprobe umount)
+    local logind_doas_list=(reboot halt poweroff)
+    _exists iotop && alias iotop='doas iotop -oPa'
+    _exists lsof && alias ports='doas lsof -Pni'
+    for c in ${doas_list[@]}; {_exists "$c" && alias "$c=doas $c"}
+    for i in ${logind_doas_list[@]}; alias "${i}=doas ${sysctl_pref} ${i}"
+    unset doas_list noglob_list rlwrap_list nocorrect_list logind_doas_list
+}
 _exists nvidia-settings && alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
 _exists plocate && alias locate='plocate'
 _exists dd && alias dd='dd status=progress'
@@ -72,7 +80,6 @@ _exists objdump && alias objdump='objdump -M intel -d'
 _exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
 _exists nvim && { alias nvim='v'; }
 _exists iostat && alias iostat='iostat -mtx'
-_exists iotop && alias iotop='sudo iotop -oPa'
 _exists patool && { alias se='patool extract'; alias pk='patool create'; }
 _exists xz && alias xz='xz --threads=0'
 _exists pigz && alias gzip='pigz'
@@ -98,17 +105,11 @@ else
 fi
 _exists imgur_screenshot && alias img='imgur-screenshot'
 local rlwrap_list=(bb fennel guile irb)
-local sudo_list=(chmod chown modprobe umount)
-local logind_sudo_list=(reboot halt poweroff)
 local noglob_list=(fc find ftp history lftp links2 locate lynx rake rsync scp sftp you-get)
-for c in ${sudo_list[@]}; {_exists "$c" && alias "$c=sudo $c"}
 for c in ${noglob_list[@]}; {_exists "$c" && alias "$c=noglob $c"}
 for c in ${rlwrap_list[@]}; {_exists "$c" && alias "$c=rlwrap $c"}
 for c in ${nocorrect_list[@]}; {_exists "$c" && alias "$c=nocorrect $c"}
 for c in ${dev_null_list[@]}; {_exists "$c" && alias "$c=$c 2>/dev/null"}
-_exists lsof && alias ports='sudo lsof -Pni'
-for i in ${logind_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
-unset sudo_list noglob_list rlwrap_list nocorrect_list logind_sudo_list
 _exists svn && alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
 _exists git && {
     alias gs='git status --short -b'
