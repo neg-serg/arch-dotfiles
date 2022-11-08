@@ -1,6 +1,6 @@
 [Unit]
 Description=Session locker
-After=xorg.service
+After=x11.service
 
 [Service]
 ExecStart=/usr/bin/xss-lock --transfer-sleep-lock -- i3lockr -p 8
