@@ -5,7 +5,7 @@ StartLimitIntervalSec=60
 
 [Service]
 ExecStart=/usr/bin/polybar -q main
-ExecStop=%h/.local/bin/polybar-msg cmd quit
+ExecStop=/usr/bin/polybar-msg cmd quit
 Restart=on-failure
 RestartSec=3
 StartLimitBurst=30
