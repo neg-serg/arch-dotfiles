@@ -1,10 +1,14 @@
 #!/usr/bin/env python
-
-# noqa: E402
-import gi
-gi.require_version('Playerctl', '2.0')
-from gi.repository import Playerctl, GLib
+import sys
 import subprocess
+# noqa: E402
+try:
+    import gi
+    gi.require_version('Playerctl', '2.0')
+    from gi.repository import Playerctl, GLib
+except:
+    print('There is no playerctl, abort')
+    sys.exit(0)
 
 player=Playerctl.Player()
 md5sums=[]
