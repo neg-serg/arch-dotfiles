@@ -13,7 +13,6 @@ typeset -gx NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
 typeset -gx NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
 typeset -gx WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 typeset -gx PYLINTHOME="$XDG_CONFIG_HOME"/pylint
-typeset -gx XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 typeset -gx GNUPGHOME="$XDG_DATA_HOME"/gnupg
 typeset -gx PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 typeset -gx QT_QPA_PLATFORMTHEME="qt5ct"
@@ -58,4 +57,3 @@ typeset -gx XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 typeset -gx _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 typeset -gx TERMINFO="$XDG_DATA_HOME"/terminfo
 typeset -gx TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
-typeset -gx DISPLAY=:0
