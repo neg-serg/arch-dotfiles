@@ -1,18 +1,6 @@
 # Skip the not really helping Ubuntu global compinit
 skip_global_compinit=1
 typeset -gx ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-typeset -gx XDG_CONFIG_HOME="$HOME/.config"
-typeset -gx XDG_STATE_HOME="$HOME/.local/state"
-typeset -gx XDG_DATA_HOME="$HOME/.local/share"
-typeset -gx XDG_CACHE_HOME="$HOME/.cache"
-typeset -gx XDG_DOWNLOAD_DIR="$HOME/dw"
-typeset -gx XDG_MUSIC_DIR="$HOME/music"
-typeset -gx XDG_DESKTOP_DIR="$HOME/.local/desktop"
-typeset -gx XDG_TEMPLATES_DIR="$HOME/1st_level/templates"
-typeset -gx XDG_DOCUMENTS_DIR="$HOME/doc/"
-typeset -gx XDG_PICTURES_DIR="$HOME/pic"
-typeset -gx XDG_VIDEOS_DIR="$HOME/vid"
-typeset -gx XDG_PUBLICSHARE_DIR="$HOME/1st_level/upload/share"
 typeset -gx XINITRC="$XDG_CONFIG_HOME"/xinit/xinitrc
 typeset -gx XSERVERRC="$XDG_CONFIG_HOME"/xinit/xserverrc
 typeset -gx CARGO_HOME="$XDG_DATA_HOME"/cargo
