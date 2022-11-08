@@ -71,13 +71,6 @@ typeset -gx HISTFILE=${ZDOTDIR}/zsh_history
 typeset -gx SAVEHIST=10000000
 typeset -gx HISTSIZE=$(( $SAVEHIST * 1.10 ))
 typeset -gx HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
-typeset -gx RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-typeset -gx VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
-typeset -gx PARALLEL_HOME="$XDG_CONFIG_HOME"/parallel
-typeset -gx NB_DIR="$XDG_DATA_HOME/nb"
-typeset -gx NBRC_PATH="$XDG_CONFIG_HOME/nbrc"
-typeset -gx GNUPGHOME="$XDG_DATA_HOME"/gnupg
-typeset -gx CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 unfunction _exists
 
 _zpcompinit_custom() {
