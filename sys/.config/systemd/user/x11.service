@@ -13,6 +13,5 @@ ExecStart=/usr/bin/xinit /usr/bin/i3 -- :0 -nolisten tcp vt1
 SuccessExitStatus=0 1
 
 [Install]
-Alias=x11.service
 Also=x11.socket x11.target
 WantedBy=default.target
