@@ -2,14 +2,12 @@ export PATH=/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
 unset SSH_ASKPASS
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
-export INPUTRC=${XDG_CONFIG_HOME}/inputrc
+export INPUTRC=$XDG_CONFIG_HOME/inputrc
 export BROWSER="firefox"
-export EXA_COLORS="da=00;38;5;250:uu=0:gu=0"
 export LS_COLORS GREP_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
-export MPV_HOME="${HOME}/.config/mpv"
-export MANWIDTH=${MANWIDTH:-80}
-export STEAM_RUNTIME=1
+export MPV_HOME="$HOME/.config/mpv"
+export MANWIDTH=$MANWIDTH:-80
 export FZF_DEFAULT_OPTS="
 --color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3
 --color=fg:#617287,header:#4779B3,info:#2b768d,pointer:#395573
