@@ -1,7 +1,9 @@
 [Unit]
 Description=my xinput settings
-After=dbus.service
+Requires=x11.service
 
 [Service]
 Type=forking
 ExecStart=%E/xinit/kbd-conf
+Restart=on-failure
+RestartSec=5

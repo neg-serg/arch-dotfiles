@@ -2,6 +2,7 @@
 Description=XSETTINGS daemon
 PartOf=graphical-session.target
 After=x11.service
+Requires=x11.service
 
 [Service]
 Restart=on-failure
