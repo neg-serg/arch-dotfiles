@@ -101,6 +101,18 @@
     "prefix": "getmetatable",
     "scope": "source.lua"
   },
+  "class": {
+    "prefix": "cl",
+    "body": [
+      "${1:className} = {}\n",
+      "$1.${2:new} = function($3)",
+      "\tlocal ${4:varName} = ${5:{}}\n",
+      "\t${6: --code}\n",
+      "\treturn $4",
+      "end"
+    ],
+    "description": "Create a class"
+  },
   "if": {
     "body": "if ${1:condition} then\n\t${0:-- body}\nend",
     "description": "if",
