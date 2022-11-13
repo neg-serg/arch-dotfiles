@@ -213,15 +213,6 @@
       "\t${25:pass}"
     ]
   },
-  "roprop": {
-    "prefix": "roprop",
-    "description": "Read Only Property",
-    "body": [
-      "@property",
-      "def ${1:name}(self):",
-      "\t${2:return self._$1}$0"
-    ]
-  },
   "ife": {
     "prefix": "ife",
     "description": "If / Else",
@@ -248,11 +239,6 @@
     "prefix": "pdb",
     "description": "Set PDB breakpoint",
     "body": "import pdb; pdb.set_trace()"
-  },
-  "ipdb": {
-    "prefix": "ipdb",
-    "description": "Set IPDB breakpoint",
-    "body": "import ipdb; ipdb.set_trace()"
   },
   "pudb": {
     "prefix": "pudb",
@@ -304,29 +290,53 @@
   },
   "while": {
     "prefix": "while",
-    "description": "while",
-    "body": [
-      "while $1:",
-      "\t$2"
-    ]
+    "body": "while ${1:condition}:\n\t${2:pass}$0",
+    "description": "Code snippet to create a while loop structure."
   },
-  "try": {
+  "while/else": {
+    "prefix": "while/else",
+    "body": ["while ${1:expression}:", "\t${2:pass}", "else:", "\t${3:pass}"],
+    "description": "Code snippet for a while loop with else"
+  },
+  "try:except:": {
     "prefix": "try",
-    "description": "try/except",
-    "body": [
-      "try:",
-      "\t$1",
-      "except $2${3: as $4}:",
-      "\t$5"
-    ]
+    "body": "try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}$0",
+    "description": "Code Snippet for a try and except blocks."
+  },
+  "try:except:else:finally": {
+    "prefix": "tryef",
+    "body": "try:\n\t${1:pass}\nexcept${2: ${3:Exception} as ${4:e}}:\n\t${5:raise}\nelse:\n\t${6:pass}\nfinally:\n\t${7:pass}$0",
+    "description": "Code Snippet for a try/except/finally with else statement."
+  },
+  "try:except:else": {
+    "prefix": "trye",
+    "body": "try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}\nelse:\n\t${5:pass}$0",
+    "description": "Code Snippet for a try/except with else statement."
+  },
+  "try:except:finally": {
+    "prefix": "tryf",
+    "body": "try:\n\t${1:pass}\nexcept ${2:Exception} as ${3:e}:\n\t${4:raise $3}\nfinally:\n\t${5:pass}$0",
+    "description": "Code Snippet for a try/except/finally."
+  },
+  "with": {
+    "prefix": "with",
+    "body": ["with ${1:expression} as ${2:target}:", "\t${3:pass}"],
+    "description": "Code snippet for a with statement"
   },
   "for": {
-    "prefix": "for",
-    "description": "for...in",
-    "body": [
-      "for $1 in $2:",
-      "\t$3"
-    ]
+      "prefix": "for",
+      "body": "for ${1:value} in ${2:iterable}:\n\t${3:pass}$0",
+      "description": "Code snippet to create a for loop structure."
+  },
+  "for/else": {
+      "prefix": "for/else",
+      "body": [
+          "for ${1:target_list} in ${2:expression_list}:",
+          "\t${3:pass}",
+          "else:",
+          "\t${4:pass}"
+      ],
+      "description": "Code snippet for a for loop with else"
   },
   "def": {
     "prefix": "def",
@@ -337,12 +347,9 @@
     ]
   },
   "class": {
-    "prefix": "class",
-    "description": "class",
-    "body": [
-      "class $1${2:($3)}:",
-      "\t$4"
-    ]
+      "prefix": "class",
+      "body": ["class ${1:classname}(${2:object}):", "\t${3:pass}"],
+      "description": "Code snippet for a class definition"
   },
   "const": {
     "prefix": "const",
@@ -352,13 +359,25 @@
       "\t$2"
     ]
   },
-  "defm": {
-    "prefix": "defm",
-    "description": "method",
-    "body": [
-      "def $1(self, $2):",
-      "\t$3"
-    ]
+  "New class": {
+      "prefix": "classi",
+      "body": "class ${1:ClassName}(${2:object}):\n\t\"\"\"${3:docstring for $1.}\"\"\"\n\tdef __init__(self, ${4:arg}):\n\t\t${5:super($1, self).__init__()}\n\t\tself.arg = arg\n\t\t$0",
+      "description": "Code snippet for a class definition."
+  },
+  "New method": {
+      "prefix": "defs",
+      "body": "def ${1:mname}(self, ${2:arg}):\n\t${3:pass}$0",
+      "description": "Code snippet for a class method definition."
+  },
+  "New function": {
+      "prefix": "def",
+      "body": "def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
+      "description": "Code snippet for function definition."
+  },
+  "New async function": {
+      "prefix": "adef",
+      "body": "async def ${1:fname}(${2:arg}):\n\t${3:pass}$0",
+      "description": "Code snippet for async function definition."
   },
   "lamb": {
     "prefix": "lamb",
@@ -366,14 +385,25 @@
     "body": "lambda $1: $2"
   },
   "imp": {
-    "prefix": "imp",
+    "prefix": "im",
     "description": "import",
-    "body": "import $1"
+    "body": "import ${1:package/module}$0",
+    "description": "Import a package or module"
   },
-  "from": {
-    "prefix": "from",
-    "description": "from...import",
-    "body": "from $1 import $2"
+  "from ... import ...": {
+      "prefix": "fim",
+      "body": "from ${1:package/module} import ${2:names}$0",
+      "description": "Import statement that allows individual objects from the module to be imported directly into the caller’s symbol table."
+  },
+  "self": {
+    "prefix": ".",
+    "body": "self.$0",
+    "description": "Shortend snippet to reference the self property in an object."
+  },
+  "__magic__": {
+    "prefix": "__",
+    "body": "__${1:init}__$0",
+    "description": "Code snippet to create magic methods."
   },
   "#!2": {
     "prefix": "#!2",
@@ -384,5 +414,50 @@
       "",
       "$1"
     ]
-  }
+  },
+  "List comprehension": {
+        "prefix": "lc",
+        "body": "[${1:value} for ${2:value} in ${3:iterable}]$0",
+        "description" : "List comprehension for creating a list based on existing lists."
+    },
+    "List comprehension if else": {
+        "prefix": "lcie",
+        "body": "[${1:value} if ${2:condition} else ${3:condition} for ${4:value} in ${5:iterable}]$0", 
+        "description" : "List comprehension for creating a list based on existing lists, with conditional if-else statement."
+    },
+    "List comprehension if filter": {
+        "prefix": "lci",
+        "body": "[${1:value} for ${2:value} in ${3:iterable} if ${4:condition}$0]", 
+        "description" : "List comprehension for creating a list based on existing lists, with conditional if statement."
+    },
+    "Dictionary comprehension": {
+        "prefix": "dc",
+        "body": "{${1:key}: ${2:value} for ${3:key}, ${4:value} in ${5:iterable}}$0", 
+        "description" : "Handy and faster way to create dictories based on existing dictionaries."
+    },
+    "Dictionary comprehension if filter": {
+        "prefix": "dci",
+        "body": "{${1:key}: ${2:value} for ${3:key}, ${4:value} in ${5:iterable} if ${6:condition}}$0", 
+        "description" : "Handy and faster way to create dictories based on existing dictionaries, with conditional if statement."
+    },
+    "Set comprehension": {
+        "prefix": "sc",
+        "body": "{${1:value} for ${2:value} in ${3:iterable}}$0", 
+        "description" : "Create a set based on existing iterables."
+    },
+    "Set Comprehension if filter": {
+        "prefix": "sci",
+        "body": "{${1:value} for ${2:value} in ${3:iterable} if ${4:condition}}$0", 
+        "description" : "Create a set based on existing iterables, with condition if statement."
+    },
+    "Generator comprehension": {
+        "prefix": "gc",
+        "body": "(${1:key} for ${2:value} in ${3:iterable})$0", 
+        "description" : "Create a generator based on existing iterables."
+    },
+    "Generator comprehension if filter": {
+        "prefix": "gci",
+        "body": "(${1:key} for ${2:value} in ${3:iterable} if ${4:condition})$0", 
+        "description" : "Create a generator based on existing iterables, with condition if statement."
+    }
 }
