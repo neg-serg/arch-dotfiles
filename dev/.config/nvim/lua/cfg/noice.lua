@@ -14,27 +14,22 @@ require("noice").setup({
     lsp = {
         progress = {
             enabled = true,
-            -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
-            -- See the section on formatting for more details on how to customize.
-            --- @type NoiceFormat|string
             format = "lsp_progress",
-            --- @type NoiceFormat|string
             format_done = "lsp_progress_done",
             throttle = 1000 / 30, -- frequency to update lsp progress message
             view = "mini",
         },
         override = {
             -- override the default lsp markdown formatter with Noice
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             -- override the lsp markdown formatter with Noice
-            ["vim.lsp.util.stylize_markdown"] = false,
+            ["vim.lsp.util.stylize_markdown"] = true,
             -- override cmp documentation with Noice (needs the other options to work)
-            ["cmp.entry.get_documentation"] = false,
+            ["cmp.entry.get_documentation"] = true,
         },
         hover = {
             enabled = true,
             view = nil, -- when nil, use defaults from documentation
-            ---@type NoiceViewOptions
             opts = {}, -- merged with defaults from documentation
         },
         signature = {
@@ -46,7 +41,6 @@ require("noice").setup({
                 throttle = 50, -- Debounce lsp signature help request by 50ms
             },
             view = nil, -- when nil, use defaults from documentation
-            ---@type NoiceViewOptions
             opts = {}, -- merged with defaults from documentation
         },
         message = {
@@ -57,22 +51,18 @@ require("noice").setup({
         },
         popupmenu = {
             enabled = true, -- enables the Noice popupmenu UI
-            ---@type 'nui'|'cmp'
             backend = "nui", -- backend to use to show regular cmdline completions
-            ---@type NoicePopupmenuItemKind|false
-            -- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
             kind_icons = {}, -- set to `false` to disable icons
         },
         -- defaults for hover and signature help
         documentation = {
             view = "hover",
-            ---@type NoiceViewOptions
             opts = {
                 lang = "markdown",
                 replace = true,
                 render = "plain",
                 format = { "{message}" },
-                win_options = { concealcursor = "n", conceallevel = 3 },
+                win_options = {concealcursor = "n", conceallevel = 3},
             },
         },
     },
