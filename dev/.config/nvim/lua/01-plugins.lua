@@ -153,6 +153,7 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end}
+    use {'Tsuzat/NeoSolarized.nvim'} -- NeoSolarized colorscheme
     use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
