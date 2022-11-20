@@ -43,15 +43,12 @@ zstyle ':completion:*:*:(mp|mpv):*' tag-order files
 zstyle ':completion:*:*:(mp|mpv):*' file-sort name
 zstyle ':completion:*:*:(mp|mpv):*' menu select auto
 zstyle ':completion:*:*:(mp|mpv):*' file-patterns '(#i)*.(rmvb|mkv|vob|ts|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|alac|ogg|flac|rm|wv|m4v):files:mpv\ play *(-/):directories:directories'
-zstyle ':completion:*:default' \
-    select-prompt \
-    "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%}  %p%{${reset_color}%}"
+zstyle ':completion:*:default' select-prompt \
+    "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%} Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%} %p%{${reset_color}%}"
     zstyle ':completion:*:default' \
-    list-prompt \
-    "%{${fg[cyan]}%}Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[cyan]}%}  Continue?%{${reset_color}%}"
+    list-prompt "%{${fg[cyan]}%}Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[cyan]}%}  Continue?%{${reset_color}%}"
     zstyle ':completion:*:warnings' \
-    format \
-    "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
+    format "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
 zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS%ec=*} "ma=07;01;38;5;0;48;5;25"
 zstyle ':completion:*:options' list-colors '=^(-- *)=00;38;5;25'
 zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
