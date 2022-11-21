@@ -26,17 +26,19 @@ else
     alias grep='grep --color=auto'
 fi
 _exists rg && {
-    local rg_options='--max-columns=0 \
-    --max-columns-preview \
-    --glob=\!git/\* \
-    --colors=match:fg:25 \
-    --colors=match:style:underline \
-    --colors=line:fg:cyan \
-    --colors=line:style:bold \
-    --colors=path:fg:249 \
-    --colors=path:style:bold \
-    --smart-case \
-    --hidden'
+    local rg_options=(
+        --max-columns=0
+        --max-columns-preview
+        --glob=\!git/\*
+        --colors=match:fg:25
+        --colors=match:style:underline
+        --colors=line:fg:cyan
+        --colors=line:style:bold
+        --colors=path:fg:249
+        --colors=path:style:bold
+        --smart-case
+        --hidden
+    )
     alias rg="rg $rg_options"
     alias -g RG="rg $rg_options"
     alias -g zrg="rg $rg_options -z"
@@ -48,7 +50,7 @@ alias emptydir='ls -ld **/*(/^F)'
 _exists paru && {alias yay='paru'; alias rmorphans='paru -Rs $(paru -Qqdt)'}
 _exists reflector && _exists doas && alias mirrors='doas /usr/bin/reflector --score 100 --fastest 10 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
 _exists doas && {
-    alias doas='doas '; alias s='doas '
+    alias {doas,s}='doas '
     local doas_list=(chmod chown modprobe umount)
     local logind_doas_list=(reboot halt poweroff)
     _exists iotop && alias iotop='doas iotop -oPa'
@@ -66,10 +68,8 @@ _exists prettyping && alias ping='prettyping'
 _exists khal && alias cal='khal calendar'
 _exists handlr && alias e='handlr open'
 _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
-_exists pass && alias pass='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
 _exists dig && alias dig='dig +noall +answer'
 _exists mtr && alias mtrr='mtr -wzbe'
-_exists bpython && alias python='bpython'
 _exists dust && alias sp='dust -r'
 _exists duf && alias df='duf -theme ansi'
 _exists btm && alias htop='btm -b'
@@ -112,12 +112,12 @@ for c in ${nocorrect_list[@]}; {_exists "$c" && alias "$c=nocorrect $c"}
 for c in ${dev_null_list[@]}; {_exists "$c" && alias "$c=$c 2>/dev/null"}
 _exists svn && alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
 _exists git && {
-    alias gs='git status --short -b'
+    alias gd='git diff -w -U0 --word-diff-regex=[^[:space:]]'
     alias gp='git push'
+    alias gs='git status --short -b'
     # http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
     intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
-    alias gd='git diff -w -U0 --word-diff-regex=[^[:space:]]'
     alias add="git add"
     alias checkout='git checkout'
     alias commit='git commit'
@@ -137,11 +137,10 @@ _exists fzf && {
     logs() {
         local cmd log_file
         cmd="command find /var/log/ -type f -name '*log' 2>/dev/null"
-        log_file=$(eval "$cmd" | fzy --height 40% --min-height 25 --tac --tiebreak=length,begin,index --reverse --inline-info) && less "$log_file"
+        log_file=$(eval "$cmd" | fzf --height 40% --min-height 25 --tac --tiebreak=length,begin,index --reverse --inline-info) && $PAGER "$log_file"
     }
 }
 _exists xev && alias xev="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 autoload zc
 unfunction _exists
-
 # vim: ft=zsh:nowrap
