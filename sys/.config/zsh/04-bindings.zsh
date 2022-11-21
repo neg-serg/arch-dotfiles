@@ -11,8 +11,6 @@ neg_dirs(){
 }
 
 bindkey -e
-typeset -gx KEYTIMEOUT=10
-
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 

@@ -2,7 +2,7 @@
 skip_global_compinit=1
 [[ -z "${HOME}/src/1st_level/pacaur" ]] && mkdir -p "${HOME}/src/1st_level/pacaur"
 typeset -gx WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
-typeset -gx KEYTIMEOUT=6
+typeset -gx KEYTIMEOUT=10
 typeset -gx ESCDELAY=1
 typeset -gx FZF_DEFAULT_OPTS="
 --color=bg+:#000000,bg:#000000,spinner:#3f5876,hl:#546c8a
