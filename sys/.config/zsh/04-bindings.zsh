@@ -14,14 +14,15 @@ bindkey -e
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 
-autoload -Uz zleiab && zle -N zleiab
-autoload -Uz inplace_mk_dirs && zle -N inplace_mk_dirs
-autoload -Uz imv
-autoload -Uz rationalise-dot && zle -N rationalise-dot
 autoload -Uz fg-widget && zle -N fg-widget
-autoload -Uz redraw-prompt
+autoload -Uz imv
+autoload -Uz inplace_mk_dirs && zle -N inplace_mk_dirs
 autoload -Uz magic-abbrev-expand && zle -N magic-abbrev-expand
+autoload -Uz rationalise-dot && zle -N rationalise-dot
+autoload -Uz redraw-prompt
 autoload -Uz special-accept-line && zle -N special-accept-line
+autoload -Uz zleiab && zle -N zleiab
+
 _nothing(){}; zle -N _nothing
 
 autoload -Uz cd-rotate
@@ -33,10 +34,12 @@ bindkey "^[=" cd-back
 
 autoload up-line-or-beginning-search && zle -N up-line-or-beginning-search
 autoload down-line-or-beginning-search && zle -N down-line-or-beginning-search
+
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 bindkey "^p" up-line-or-beginning-search
 bindkey "^n" down-line-or-beginning-search
+
 bindkey " " magic-abbrev-expand
 bindkey . rationalise-dot
 bindkey "^xD" describe-key-briefly
