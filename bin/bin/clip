@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
+[ -z $USE_GPASTE ] && USE_GPASTE=true
+alias yt='yt-dlp --downloader aria2c -f "(bestvideo+bestaudio/best)"'
+
 read_command() {
     rofi_cmd="rofi -dmenu -matching glob -dmenu -p ❯>"
     cmd_=$(echo -n "sort tac"| tr -s ' ' '\n' | eval $rofi_cmd)
@@ -59,11 +62,17 @@ clipboard_pipe() {
 }
 
 clip_main() {
-    rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip"
-    selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval $rofi_cmd)"
-    num="$(echo "$selection" | awk -F ': ' '{print $1}')"
-    uuid="$(gpaste-client --oneline | awk -F ':' '{print $1}' | sed -n "$(echo -n $num)p")"
-    gpaste-client select "$uuid"
+    if [ $USE_GPASTE = true ]; then
+        if which gpaste-client 2>&1 >/dev/null; then
+            rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip.rasi"
+            selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval $rofi_cmd)"
+            num="$(echo "$selection" | awk -F ': ' '{print $1}')"
+            uuid="$(gpaste-client --oneline | awk -F ':' '{print $1}' | sed -n "$(echo -n $num)p")"
+            gpaste-client select "$uuid"
+        fi
+    else
+        CM_HISTLENGTH=16 clipmenu -i --font 'Iosevka' --nb '#000000'
+    fi
 }
 
 yr() {
@@ -74,21 +83,23 @@ yr() {
 }
 
 youtube_url() {
-    gpaste-client \
-        | rg -E 'https.*(youtube|vimeo).com' \
-        | cut -f2- -d ' ' \
-        | rofi -lines 7 -dmenu -p '⟬youtube⟭ ❯>'
+    if [ $USE_GPASTE = true ]; then
+        gpaste-client \
+            | rg -E 'https.*(youtube|vimeo).com' \
+            | cut -f2- -d ' ' \
+            | rofi -lines 7 -dmenu -p '⟬youtube⟭ ❯>'
+    else
+        CM_OUTPUT_CLIP=1 clipmenu \
+            | rg -E 'https.*(youtube|vimeo).com' \
+            | cut -f2- -d ' ' \
+            | rofi -lines 7 -dmenu -p '⟬youtube⟭ ❯>'
+    fi
 }
 
 case "$1" in
     pipe) shift; clipboard_pipe "$@" ;;
-    youtube-view) shift; yr "$(xclip -o)" ;;
-    translate)
-        shift;
-        trans_result="$(gpaste-client get 0 | xargs -0n1 transline)"
-        dunstify "$trans_result"
-    ;;
-    youtube-dw) shift; cd $XDG_VIDEOS_DIR/new; youtube-dl "$(xclip -o)" ;;
-    youtube-dw-list) shift; cd $XDG_VIDEOS_DIR/new; youtube-dl "$(youtube_url)" ;;
+    youtube-view) shift; ~/bin/yr "$(xclip -o)" ;;
+    youtube-dw) shift; cd $XDG_VIDEOS_DIR/new && yt "$(xclip -o)" ;;
+    youtube-dw-list) shift; cd $XDG_VIDEOS_DIR/new && yt "$(youtube_url)" ;;
     *) clip_main ;;
 esac
