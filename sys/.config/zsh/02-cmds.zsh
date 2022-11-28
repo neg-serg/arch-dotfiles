@@ -72,7 +72,7 @@ _exists dig && alias dig='dig +noall +answer'
 _exists mtr && alias mtrr='mtr -wzbe'
 _exists dust && alias sp='dust -r'
 _exists duf && alias df='duf -theme ansi'
-_exists btm && alias htop='btm -b'
+_exists btm && alias htop='btm -b -T --mem_as_value'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
 _exists fd && alias fd='fd -Hu'
