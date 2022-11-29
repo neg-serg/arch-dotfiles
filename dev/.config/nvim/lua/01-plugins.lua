@@ -124,6 +124,7 @@ return require'packer'.startup({function(use)
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
     use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
+    use {'uga-rosa/translate.nvim'}
     use {'gaoDean/autolist.nvim', -- nice autoindent plugin
         config=function () require'cfg.autolist' end}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
@@ -153,6 +154,8 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end}
+    use {'xiyaowong/nvim-transparent', -- Force transparency
+        config=function() require 'cfg.transparent' end}
     use {'Tsuzat/NeoSolarized.nvim'} -- NeoSolarized colorscheme
     use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
