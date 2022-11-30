@@ -3,7 +3,7 @@ NEGWM_CMD="""$(cat <<EOF
 import sys
 if len(sys.argv) - 1 and sys.argv[1] == '-d': 
     import pdb
-    pdb.run('negwm.main.run()')
+    pdb.run('negwm.main.NegWM.main()')
     sys.exit(0)
 EOF
 )
