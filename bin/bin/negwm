@@ -1,14 +1,4 @@
 #!/usr/bin/sh
-NEGWM_CMD="""$(cat <<EOF
-import sys
-if len(sys.argv) - 1 and sys.argv[1] == '-d': 
-    import pdb
-    pdb.run('negwm.main.NegWM.main()')
-    sys.exit(0)
-EOF
-)
-"""
-
 port=15555
 negwm_path="$HOME/src/negwm"
 
@@ -23,7 +13,7 @@ elif [ $# -gt 0 ] && [ $1 = 'update' ]; then
         pip install git+https://github.com/neg-serg/negwm
     fi
 elif [ $# -gt 0 ] && [ $1 = 'debug' ]; then
-    /usr/bin/env python -c "$NEGWM_CMD"
+    /usr/bin/env python -m pdb -m negwm
 else 
     /usr/bin/env python -m negwm "$@"
 fi
