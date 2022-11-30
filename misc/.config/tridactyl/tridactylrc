@@ -8,6 +8,7 @@ set visualenterauto false
 set wordpattern [^\s\/]+
 set tabopencontaineraware false
 set tabopenpos last
+set statusstylepretty true
 set incsearch true
 set modeindicator false
 set modeindicatorshowkeys false
