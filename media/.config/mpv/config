@@ -1,6 +1,5 @@
 #--[Main]--------------------------------------------------
 input-ipc-server=/tmp/mpvsocket
-gamma-auto
 icc-profile-auto
 no-hidpi-window-scale
 target-prim=auto
@@ -21,7 +20,7 @@ linear-downscaling=yes
 scale=ewa_lanczossharp
 sigmoid-upscaling=yes
 vd-lavc-threads=8
-; video-sync=display-resample
+# video-sync=display-resample
 vo=gpu
 vulkan-swap-mode=immediate
 #--[Antiringing]-------------------------------------------
