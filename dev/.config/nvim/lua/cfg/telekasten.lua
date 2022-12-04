@@ -37,7 +37,7 @@ require('telekasten').setup({
     template_handling="smart",
     new_note_location="smart",
     rename_update_links=true,
-    media_previewer = "telescope-media-files",
+    media_previewer="telescope-media-files",
 })
 
 local opts={silent=true, noremap=true}

@@ -46,7 +46,7 @@ return require'packer'.startup({function(use)
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
         },
         module='telescope',
-        keys={'<M-b>','<M-f>','<M-C-o>','<M-o>','<M-d>',
+        keys={'<M-b>','<M-C-o>','<M-o>','<M-d>','<C-f>',
               '<leader>.','[Qleader]e','[Qleader]f','[Qleader]c','[Qleader]p'},
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star
@@ -54,8 +54,7 @@ return require'packer'.startup({function(use)
     use {'windwp/windline.nvim', -- most modern statusline
         config=function() require'cfg.wildline' end}
     use{'rcarriga/nvim-notify',
-        config=function() require'cfg.notify' end
-    }
+        config=function() require'cfg.notify' end}
     use({"folke/noice.nvim",
         event="VimEnter",
         config=function() require'cfg.noice' end,
@@ -101,6 +100,7 @@ return require'packer'.startup({function(use)
     use 'tpope/vim-apathy' -- better include jump
     use {'tpope/vim-dispatch', -- provide async build
         config=function() require'cfg.dispatch' end,
+        keys={'MK','MC','[QLeader]cc','[QLeader]mc'},
         cmd={'Dispatch','Make','Focus','Start'}}
     use {'windwp/nvim-autopairs', -- super powerful autopairs
         config=function() require'cfg.autopairs' end,
@@ -124,12 +124,12 @@ return require'packer'.startup({function(use)
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
     use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
-    use {'uga-rosa/translate.nvim'}
+    use {'uga-rosa/translate.nvim'} -- translator interface
     use {'gaoDean/autolist.nvim', -- nice autoindent plugin
-        config=function () require'cfg.autolist' end}
+        config=function() require'cfg.autolist' end}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
     use {'edluffy/hologram.nvim', -- preview pictures
-        config=function()require('hologram').setup{auto_display=true} end,
+        config=function() require'hologram'.setup{auto_display=true} end,
         ft='md'
     }
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -145,7 +145,7 @@ return require'packer'.startup({function(use)
     use {'phaazon/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end}
     use {'svermeulen/vim-NotableFt', -- better f-t-bindings
-        config=function() require 'cfg.ft' end}
+        config=function() require'cfg.ft' end}
     use {'kylechui/nvim-surround', -- alternative surround
         config=function() require'cfg.surround' end}
     use 'wellle/targets.vim' -- new text objects
@@ -155,7 +155,7 @@ return require'packer'.startup({function(use)
     use {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end}
     use {'xiyaowong/nvim-transparent', -- Force transparency
-        config=function() require 'cfg.transparent' end}
+        config=function() require'cfg.transparent' end}
     use {'Tsuzat/NeoSolarized.nvim'} -- NeoSolarized colorscheme
     use {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',

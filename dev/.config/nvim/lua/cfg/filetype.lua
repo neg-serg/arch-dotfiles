@@ -2,7 +2,7 @@
 -- │ █▓▒░ nathom/filetype.nvim                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 require("filetype").setup({
-    overrides = {
-        shebang = { dash = "sh", },
+    overrides={
+        shebang={dash="sh",},
     },
 })

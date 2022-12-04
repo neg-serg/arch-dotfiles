@@ -1,4 +1,5 @@
-vim.g.NotableFtUseDefaults = false
+vim.g.NotableFtUseDefaults=false
+
 map('n', ';', '<plug>NotableFtRepeatSearchForward', {silent=true})
 map('n', ',', '<plug>NotableFtRepeatSearchBackward', {silent=true})
 map('n', 'f', '<plug>NotableFtSearchFForward', {silent=true})

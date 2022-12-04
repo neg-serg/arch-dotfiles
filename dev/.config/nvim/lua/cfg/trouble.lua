@@ -1,7 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ folke/trouble.nvim                                                           │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-map('n', ',xx', '<cmd>TroubleToggle<cr>')
+map('n', '<leader>X', '<cmd>TroubleToggle<cr>')
 
 require("trouble").setup {
     position = "bottom", -- position of the list can be: bottom, top, left, right
