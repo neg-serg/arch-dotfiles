@@ -4,10 +4,10 @@ screen_activation_key: A-M-s
 activation_key: M-0
 hint_oneshot_key: A-M-l
 repeat_interval: 20
-speed: 700
-max_speed: 2000
-acceleration: 700
-accelerator_acceleration: 2900
+speed: 400
+max_speed: 1500
+acceleration: 300
+accelerator_acceleration: 1800
 accelerator: a
 buttons: m , .
 oneshot_buttons: n - /
