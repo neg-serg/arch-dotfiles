@@ -1,29 +1,26 @@
 #!/usr/bin/env zsh
-pics="$(realpath ${HOME}/tmp/mpd-covers)"
 magic_pie='9174'
 mpd_music_dir="$(awk '/music_directory/{print $2}' ${XDG_CONFIG_HOME}/mpd/mpd.conf|tr -d '"'|sed 's:^~:'${HOME}':')"
 track_path="$(mpc --format "$mpd_music_dir"/%file% | head -n 1)"
-track_dir=$(dirname "$track_path")
 art_="$1"
+E='</span>'
 if [[ $art_ != "" ]]; then
     art="$art_"
 else
     exit 1
 fi
-cover_cache=$pics/cache
 
 nr(){ print "<span weight='Bold' color='#b8c5d9'>$1</span>" }
-fa(){ print "<span color=\'$1\' font-family = 'Font Awesome 6 Pro'>" }
-E(){ print '</span>' }
+fa(){ print "<span color=\'$1\' font-family='Font Awesome 6 Pro'>" }
 prefix=(
     ''                        # track name    [1]
-    "$(fa '#004E4E')   $(E)" # artist        [2]
-    "$(fa '#004E4E')   $(E)" # album         [3]
-    "$(fa '#004E4E')   $(E)" # label         [4]
-    "$(fa '#004E4E')   $(E)" # audio_quality [5]
-    "$(fa '#004E4E')   $(E)" # genre         [6]
-    "$(fa '#004E4E')   $(E)" # quality       [7]
-    "$(fa '#004E4E')   $(E)" # year          [8]
+    "$(fa '#004E4E')   $E" # artist        [2]
+    "$(fa '#004E4E')   $E" # album         [3]
+    "$(fa '#004E4E')   $E" # label         [4]
+    "$(fa '#004E4E')   $E" # audio_quality [5]
+    "$(fa '#004E4E')   $E" # genre         [6]
+    "$(fa '#004E4E')   $E" # quality       [7]
+    "$(fa '#004E4E')   $E" # year          [8]
 )
 
 notify() {
@@ -71,6 +68,5 @@ notify() {
         -r "$magic_pie" -t 4000
 }
 
-[[ -e  /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
-[[ ! -d "${pics}" ]] && mkdir -p "$pics"
+[[ -e /tmp/notify_id ]] && dunstify -C "$(< /tmp/notify_id)" -r ${magic_pie}
 notify
