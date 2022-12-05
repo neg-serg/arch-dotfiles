@@ -152,9 +152,6 @@ bindsym Mod4+Shift+s  $menu/props
 bindsym Mod4+Shift+d  $menu/props del
 
 bindsym Mod4+Control+q  kill
-bindsym Mod4+5  [floating] floating disable, unmark "^_all_$"
-bindsym Mod4+Shift+g  mark --replace _all_, move scratchpad
-bindsym Mod4+g  [con_mark="^_all_$"] scratchpad show
 bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+y  sticky toggle
 bindsym Mod4+Control+b $circle next bitwig
