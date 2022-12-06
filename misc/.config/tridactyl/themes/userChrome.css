@@ -3,49 +3,67 @@ See the above repository for updates as well as full license text. */
 
 /* Moves the main toolbar (#nav-bar) to the bottom of the window */
 
-@-moz-document url(chrome://browser/content/browser.xhtml)
-{
-    -moz-appearance:none;
+@-moz-document url(chrome://browser/content/browser.xhtml)  {
+  -moz-appearance:none;
 
     :root:not([inFullscreen]) {
-        --uc-bottom-toolbar-height: calc(39px + var(--toolbarbutton-outer-padding));
-    }
+    --uc-bottom-toolbar-height: calc(39px + var(--toolbarbutton-outer-padding));
+  }
 
-    :root[uidensity="compact"]:not([inFullscreen]) {
-        --uc-bottom-toolbar-height: calc(32px + var(--toolbarbutton-outer-padding));
-    }
+  :root[uidensity="compact"]:not([inFullscreen]) {
+    --uc-bottom-toolbar-height: calc(32px + var(--toolbarbutton-outer-padding));
+  }
 
-    #browser,
-    #customization-container {
-        margin-bottom: var(--uc-bottom-toolbar-height, 0px);
-    }
+  #browser,
+  #customization-container {
+    margin-bottom: var(--uc-bottom-toolbar-height, 0px);
+  }
 
-    #nav-bar {
-        position: fixed !important;
-        bottom: 0px;
-        display: flex;
-        width: 100%;
-        z-index: 1;
-    }
+  #nav-bar {
+    position: fixed !important;
+    bottom: 0px;
+    display: flex;
+    width: 100%;
+    z-index: 1;
+  }
 
-    #nav-bar-customization-target {
-        flex-grow: 1;
-    }
+  #nav-bar-customization-target {
+    flex-grow: 1;
+  }
 
-    #urlbar[breakout][breakout-extend] {
-        display: flex !important;
-        flex-direction: column-reverse;
-        bottom: -2px !important; /* Change to 3-5 px if using compact_urlbar_megabar.css depending on toolbar density */
-        top: auto !important;
-    }
+  #urlbar[breakout][breakout-extend] {
+    display: flex !important;
+    flex-direction: column-reverse;
+    bottom: -2px !important;
+    /* Change to 3-5 px if using compact_urlbar_megabar.css depending on toolbar density */
+    top: auto !important;
+  }
 
-    .urlbarView-body-inner {
-        border-top-style: none !important;
-    }
+  .urlbarView-body-inner {
+    border-top-style: none !important;
+  }
 }
 
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"){
-    #alltabs-button{visibility: collapse !important;}
-    #TabsToolbar {visibility: collapse !important;}
-    #tabbrowser-tabs {visibility: collapse !important;}
+/* remove gap after pinned tabs */
+
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
+  > #tabbrowser-arrowscrollbox
+  > .tabbrowser-tab[first-visible-unpinned-tab] {
+  margin-inline-start: 0 !important;
+}
+
+/* Hides the list-all-tabs button*/
+
+#alltabs-button {
+  display: var(--uc-show-all-tabs-button) !important;
+}
+
+#TabsToolbar {
+  visibility: collapse;
+}
+
+:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) {
+  max-height: 1px;
+  min-height: calc(0px);
+  overflow: hidden;
 }
