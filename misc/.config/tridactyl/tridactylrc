@@ -31,8 +31,8 @@ set keytranslatemodes.inputmaps true
 set keytranslatemodes.exmaps true
 set keytranslatemodes.ignoremaps true
 
+set searchurls.!aw https://wiki.archlinux.org/index.php?title=Special:Search&search=
 set searchurls.bandcamp https://bandcamp.com/search?q=%s
-set searchurls.crates https://crates.io/search?q=%s
 set searchurls.g https://google.com/search?q=%s
 set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
 set searchurls.gi https://google.com/search?q=%s&tbm=isch
@@ -46,14 +46,16 @@ set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 set searchurls.steam https://store.steampowered.com/search/?term=%s
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
 set searchurls.y https://youtube.com/results?search_query=%s
+
 jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 
+blacklistadd 192.168.1.1
+blacklistadd 192.168.88.1
 blacklistadd calendar.google.com
 blacklistadd docs.google.com
 blacklistadd drive.google.com
 blacklistadd e.mail.ru
 blacklistadd keep.google.com
-blacklistadd 192.168.88.1
 
 bind --mode=normal u undo tab
 bind --mode=normal U undo tab
@@ -85,19 +87,9 @@ bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, 
 bindurl lkml.org/lkml gl js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) + 1].querySelector("a").href
 bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) - 1].querySelector("a").href
 
-" Add helper commands that Mozillians think make Firefox irredeemably
-" insecure. For details, read the comment at the top of this file.
-command fixamo_quiet_custom jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
-bind --mode=normal W saveas --overwrite ~/dw
-" Make Tridactyl work on more sites at the expense of some security. For
-" details, read the comment at the top of this file.
-" set csp clobber
-fixamo_quiet_custom
-
 " thx to: https://github.com/vishes-shell/dotfiles/blob/master/.config/tridactyl/tridactylrc
 " Ctrl-F should use the browser's native 'find' functionality.
-unbind <C-f>
-bind --mode=normal ,. fillcmdline find
+bind --mode=normal / fillcmdline find
 bind --mode=normal <Tab> findnext 1
 bind --mode=normal <S-Tab> findnext -1
 bind ,, nohlsearch
@@ -106,18 +98,29 @@ bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//
 " As above but execute it and open terminal in folder
 bind zG js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
-setpref general.warnOnAboutConfig false
-setpref extensions.webextensions.restrictedDomains ""
-setpref xpinstall.signatures.required false
 setpref accessibility.typeaheadfind.flashBar 0
-setpref pdfjs.disabled true
+setpref browser.bookmarks.addedImportButton = false
+setpref browser.bookmarks.restore_default_bookmarks = false
+setpref browser.contentblocking.category = "standard"
 setpref browser.download.dir "~/dw"
-setpref permissions.default.desktop-notification 2
+setpref browser.newtabpage.activity-stream.telemetry = false
+setpref browser.ping-centre.telemetry = false
+setpref browser.region.update.region = "US"
+setpref browser.search.isUS = true
+setpref browser.search.region = "US"
+setpref distribution.searchplugins.defaultLocale = "en-US"
+setpref extensions.webextensions.restrictedDomains ""
+setpref general.useragent.locale = "en-US"
+setpref general.warnOnAboutConfig false
 setpref gfx.color_management.enabled true
 setpref gfx.color_management.enablev4 true
 setpref gfx.color_management.mode 1
-
-set searchurls.!aw https://wiki.archlinux.org/index.php?title=Special:Search&search=
+setpref network.trr.confirmation_telemetry_enabled = false
+setpref pdfjs.disabled true
+setpref permissions.default.desktop-notification 2
+setpref privacy.resistFingerprinting.block_mozAddonManager true
+setpref toolkit.telemetry.reportingpolicy.firstRun = false
+setpref xpinstall.signatures.required false
 
 unbindurl mail\.google\.com j
 unbindurl mail\.google\.com k
@@ -184,19 +187,19 @@ command hint_focus hint -;
 bind ;C composite hint_focus; !s xdotool key Menu
 
 quickmark A magazine.artstation.com/
-quickmark c www.twitch.tv/cooller
 quickmark E projecteuler.net/
-quickmark e www.ektoplazm.com/
 quickmark G github.com/neg-serg
-quickmark g gmail.com
-quickmark k www.reddit.com/r/MechanicalKeyboards/
 quickmark L gen.lib.rus.ec
-quickmark l www.last.fm/user/e7z0x1
-quickmark s store.steampowered.com
 quickmark S uso.kkx.one
-quickmark u www.reddit.com/r/unixporn
+quickmark V patreon.com/m/834691/posts?filters[tag]=Tutorial
+quickmark c twitch.tv/cooller
+quickmark e ektoplazm.com/
+quickmark g gmail.com
+quickmark k reddit.com/r/MechanicalKeyboards/
+quickmark l last.fm/user/e7z0x1
+quickmark s store.steampowered.com
+quickmark u reddit.com/r/unixporn
 quickmark v vk.com
-quickmark V www.patreon.com/m/834691/posts?filters[tag]=Tutorial
 quickmark y youtube.com/
 
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
