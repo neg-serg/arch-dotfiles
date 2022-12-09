@@ -120,12 +120,19 @@ _exists git && {
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
     alias add="git add"
     alias checkout='git checkout'
-    alias commit='git commit'
     alias fetch="git fetch"
     alias pull="git pull"
     alias push='git push'
     alias stash="git stash"
     alias status="git status"
+    if _exists gum; then commit(){
+        if [[ $# -eq 0 ]]; then
+            git commit -m "$(gum input --width 50 --placeholder "Summary of changes")" \
+               -m "$(gum write --width 80 --placeholder "Details of changes (CTRL+D to finish)")"
+        else
+            git commit "$@"
+        fi
+    } else alias commit='git commit'; fi
 }
 _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
