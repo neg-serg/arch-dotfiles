@@ -48,7 +48,7 @@ end
 o.path=env_.XDG_CONFIG_HOME .. '/nvim,' ..
 	env_.XDG_CONFIG_HOME .. '/nvim/after,' ..
 	home_ .. '/.local/share/nvim/site/' ..
-		',.,..,/usr/include,./include,../include,*'
+		',.,..,/usr/include,./include,../include,**'
 o.fillchars={eob=' '}                          -- Disable ~ symbol
 o.formatprg='par -140'                       -- Better format
 o.report=0                                   -- No report on substitution
