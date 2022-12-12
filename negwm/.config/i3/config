@@ -68,7 +68,7 @@ for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %ti
 for_window [class="(?i)(alacr|k)itty"] border none
 for_window [class="(?i)\.exe"] floating enable, border none, move position center
 for_window [class="^(inkscape|gimp)$"] move workspace $draw
-for_window [class="(?i)(?:qt5ct|gcolor3|rdesktop|openssh-askpass|lutris|steam_app_.*|wine)"] floating enable
+for_window [class="(?i)(?:qt5ct|gcolor3|rdesktop|nvidia-settings|openssh-askpass|lutris|steam_app_.*|wine)"] floating enable
 for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, focus
 for_window [title="(?i)(?:File Transfer.*)"] floating enable
 for_window [window_role="browser"] border none
@@ -115,6 +115,9 @@ bindsym Mod4+l focus right
 bindsym Mod4+2 focus parent
 bindsym Mod4+7 focus child
 
+bindsym Mod1+a focus parent
+bindsym Mod1+c focus child
+
 bindsym Mod4+Shift+bracketleft move workspace to output left
 bindsym Mod4+Shift+bracketright move workspace to output right
 
@@ -154,6 +157,10 @@ bindsym Mod4+Shift+d  $menu/props del
 bindsym Mod4+Control+q  kill
 bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+y  sticky toggle
+bindsym Mod1+Control+s  layout stacking
+bindsym Mod1+Control+w  layout tabbed
+bindsym Mod1+Control+t  layout tabbed
+bindsym Mod1+Control+e  layout toggle split
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
 bindsym Mod4+Control+c $circle next nsxiv
