@@ -60,6 +60,8 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.noice' end,
         requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
     })
+    use{'stevearc/dressing.nvim', -- better select ui
+        config=function() require'cfg.dressing' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -130,8 +132,7 @@ return require'packer'.startup({function(use)
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
     use {'edluffy/hologram.nvim', -- preview pictures
         config=function() require'hologram'.setup{auto_display=true} end,
-        ft='md'
-    }
+        ft='md'}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
