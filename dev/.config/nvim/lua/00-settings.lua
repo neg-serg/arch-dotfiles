@@ -14,6 +14,7 @@ local disabled_built_ins={
     'gzip',
     'logipat',
     'matchit',
+    'matchparen',
     'optwin',
     'perl_provider',
     'rplugin',
