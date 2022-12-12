@@ -25,7 +25,7 @@ tsconf.setup {
         max_file_lines=4000, -- Do not enable for files with more than 4000 lines, int
         colors={'#4064be', '#4361b0', '#455fa3', '#465e9c', '#475c94', '#485a8c', '#485885'},
     },
-    indent={enable=true},
+    indent={enable=false},
     autotag={enable=false},
     textobjects={
         select={
