@@ -1,6 +1,7 @@
 local o=vim.opt
 local env_=vim.env
 local home_=env_.HOME
+local config_home_=env_.XDG_CONFIG_HOME
 o.sessionoptions='blank,buffers,curdir,folds,help,tabpages,winsize'
 -- thx to https://www.reddit.com/r/neovim/comments/opipij/guide_tips_and_tricks_to_reduce_startup_and/
 local disabled_built_ins={
@@ -45,8 +46,8 @@ if vim.fn.executable('nvr') == 1 then
     env_.EDITOR='nvr -l --remote'
     env_.VISUAL='nvr -l --remote'
 end
-o.path=env_.XDG_CONFIG_HOME .. '/nvim,' ..
-	env_.XDG_CONFIG_HOME .. '/nvim/after,' ..
+o.path=config_home_ .. '/nvim,' ..
+	config_home_ .. '/nvim/after,' ..
 	home_ .. '/.local/share/nvim/site/' ..
 		',.,..,/usr/include,./include,../include,**'
 o.fillchars={eob=' '}                          -- Disable ~ symbol
