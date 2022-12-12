@@ -149,6 +149,7 @@ return require'packer'.startup({function(use)
     use {'kylechui/nvim-surround', -- alternative surround
         config=function() require'cfg.surround' end}
     use 'wellle/targets.vim' -- new text objects
+    use 'lambdalisue/suda.vim' -- sudo write commands
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
