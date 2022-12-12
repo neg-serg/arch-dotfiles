@@ -65,6 +65,7 @@ require('telescope').setup{
             ignore_patterns={ "*.git/*" },
             workspaces={}
         },
+        ['ui-select'] = {require'telescope.themes'.get_dropdown({})},
     },
     pickers={
         find_files={
