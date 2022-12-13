@@ -41,8 +41,24 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, {text=icon, texthl=hl, numhl=hl})
 end
 
-local mason=require("mason")
+local mason=require'mason'
+local mason_lspconfig=require'mason-lspconfig'
 mason.setup()
+mason_lspconfig.setup({ensure_installed={
+    'bashls',
+    'clangd',
+    'dockerls',
+    'hls',
+    'jsonls',
+    'pyright',
+    'remark_ls',
+    'rust_analyzer',
+    'salt_ls',
+    'sumneko_lua',
+    'taplo',
+    'terraformls',
+    'yamlls',
+}})
 
 nvim_lsp.pyright.setup {
     on_attach=on_attach,
