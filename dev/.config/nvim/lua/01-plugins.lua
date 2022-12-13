@@ -21,6 +21,7 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.toggleterm' end,
         keys={'<leader>l'}}
     use {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end}
+    use {'folke/persistence.nvim', config=function() require'cfg.persistence' end}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
          after='nvim-web-devicons'} -- fancy webicons
     use {'kyazdani42/nvim-web-devicons', -- better icons
@@ -85,7 +86,7 @@ return require'packer'.startup({function(use)
         event={'BufRead','BufNewFile','InsertEnter'}}
     use {'neovim/nvim-lspconfig', -- lsp config
         config=function() require'cfg.lsp' end,
-        requires={'williamboman/mason.nvim'},
+        requires={'williamboman/mason.nvim', 'williamboman/mason-lspconfig'},
         event={'InsertEnter'}}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
