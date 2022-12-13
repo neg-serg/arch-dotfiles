@@ -187,7 +187,7 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.diffview' end,
         cmd={'DiffviewOpen','DiffviewFileHistory'},
         requires={'kyazdani42/nvim-web-devicons','nvim-lua/plenary.nvim'},
-        keys={'<C-S-G>'}, opt=true}
+        keys={'<C-S-G>','\\a','\\c','\\r','\\f','\\0','\\1','\\2','\\3','\\4'},opt=true}
     use {'lewis6991/gitsigns.nvim', -- fast git decorations
         requires='plenary.nvim',
         config=function() require'cfg.gitsigns' end,

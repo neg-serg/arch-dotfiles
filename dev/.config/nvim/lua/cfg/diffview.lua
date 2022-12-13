@@ -127,4 +127,13 @@ diffview.setup {
     },
 }
 
-map('n','<C-S-g>', '<Cmd>DiffviewFileHistory<CR>')
+map('n', '<C-S-g>', '<Cmd>DiffviewFileHistory<CR>')
+map('n', '\\a', '<Cmd>DiffviewOpen<CR>')
+map('n', '\\c', '<Cmd>DiffviewClose<CR>')
+map('n', '\\r', '<Cmd>DiffviewRefresh<CR>')
+map('n', '\\f', '<Cmd>DiffviewToggleFiles<CR>')
+map('n', '\\0', '<Cmd>DiffviewOpen HEAD<CR>')
+map('n', '\\1', '<Cmd>DiffviewOpen HEAD^<CR>')
+map('n', '\\2', '<Cmd>DiffviewOpen HEAD^^<CR>')
+map('n', '\\3', '<Cmd>DiffviewOpen HEAD^^^<CR>')
+map('n', '\\4', '<Cmd>DiffviewOpen HEAD^^^^<CR>')
