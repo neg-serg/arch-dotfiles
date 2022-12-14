@@ -158,9 +158,8 @@ bindsym Mod4+Control+q  kill
 bindsym Mod4+q  fullscreen toggle
 bindsym Mod4+y  sticky toggle
 bindsym Mod1+Control+s  layout stacking
-bindsym Mod1+Control+w  layout tabbed
-bindsym Mod1+Control+t  layout tabbed
 bindsym Mod1+Control+e  layout toggle split
+bindsym Mod1+Control+t  layout tabbed
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+o $circle next doc
 bindsym Mod4+Control+c $circle next nsxiv
