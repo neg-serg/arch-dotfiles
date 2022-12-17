@@ -4,6 +4,6 @@ Nsxiv.foreground:   #3993AA
 Nsxiv.selection:    #342EB9
 Nsxiv.window.alpha: 1.0
 Xcursor.size:       64
-Xcursor.theme:      Hacked-White
+Xcursor.theme:      ArcMidnight
 Xft.dpi:            162
 Xft.rgba:           none
