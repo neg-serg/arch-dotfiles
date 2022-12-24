@@ -1,9 +1,12 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ folke/trouble.nvim                                                           │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+local status, trouble = pcall(require, 'trouble')
+if (not status) then return end
+
 map('n', '<leader>X', '<cmd>TroubleToggle<cr>')
 
-require('trouble').setup {
+trouble.setup {
     position = 'bottom', -- position of the list can be: bottom, top, left, right
     height = 10, -- height of the trouble list
     icons = true, -- use dev-icons for filenames

@@ -1,5 +1,8 @@
 local home=vim.fn.expand("~/1st_level/")
-require('telekasten').setup({
+local status, telekasten = pcall(require, 'telekasten')
+if (not status) then return end
+
+telekasten.setup({
     home=home,
     take_over_my_home=true, -- if true, telekasten will be enabled when opening a note within the configured home
     auto_set_filetype=true,

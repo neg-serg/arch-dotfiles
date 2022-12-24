@@ -1,3 +1,5 @@
+local ok, bqf = pcall(require, 'bqf')
+if not ok then return end
 -- format qf window to make it tolerable code from https://github.com/kevinhwang91/nvim-bqf
 function _G.qftf(info)
     local items
@@ -51,7 +53,7 @@ end
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
 
 -- use mostly the same shortcuts used for the file explorer
-require'bqf'.setup {
+bqf.setup {
     auto_enable = true,
     func_map = {
         tab = 't',

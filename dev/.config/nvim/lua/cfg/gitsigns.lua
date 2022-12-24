@@ -1,7 +1,9 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ lewis6991/gitsigns.nvim                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-require('gitsigns').setup {
+local status, gitsigns = pcall(require, 'gitsigns')
+if (not status) then return end
+gitsigns.setup {
     signs={
         add={hl='GitSignsAdd', text='▎', show_count=false, numhl='GitSignsAddNr', linehl='GitSignsAddLn'},
         change={hl='GitSignsChange', text='▎', show_count=false, numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},

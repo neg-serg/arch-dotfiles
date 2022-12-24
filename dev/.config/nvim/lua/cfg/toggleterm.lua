@@ -1,4 +1,6 @@
-require'toggleterm'.setup({
+local status, toggleterm = pcall(require, 'toggleterm')
+if (not status) then return end
+toggleterm.setup({
     size=10,
     open_mapping='<F4>',
     hide_numbers=true,

@@ -1,6 +1,8 @@
-map('n', '<Space>', "<cmd>HopLineStart<cr>")
-map('n', 'F', "<cmd>HopChar2<cr>")
-require'hop'.setup({keys = 'wersdfa'})
+local status, hop = pcall(require, 'hop')
+if (not status) then return end
+map('n', '<Space>', '<cmd>HopLineStart<cr>')
+map('n', 'F', '<cmd>HopChar2<cr>')
+hop.setup({keys = 'wersdfa'})
 local hi = vim.api.nvim_set_hl
 
 hi(0, 'HopNextKey', {bg = '', fg = '#367cb0'})

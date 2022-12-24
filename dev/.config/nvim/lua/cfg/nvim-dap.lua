@@ -1,7 +1,8 @@
-require("dapui").setup()
-local dap = require("dap")
-local dapui = require("dapui")
-local widgets = require("dap.ui.widgets")
+local status, dapui = pcall(require, 'dapui')
+if (not status) then return end
+dapui.setup()
+local dap = require('dap')
+local widgets = require('dap.ui.widgets')
 
 local function opt(msg)
     return { desc = "DAP: " .. msg }

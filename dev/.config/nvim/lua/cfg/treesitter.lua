@@ -1,7 +1,8 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ nvim-treesitter/nvim-treesitter                                              │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-local tsconf=require'nvim-treesitter.configs'
+local status, tsconf = pcall(require, 'nvim-treesitter.configs')
+if (not status) then return end
 tsconf.setup {
     ensure_installed="all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     -- Install parsers synchronously (only applied to `ensure_installed`)

@@ -1,8 +1,10 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ hrsh7th/nvim-cmp                                                             │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-local cmp = require('cmp')
-local luasnip = require("luasnip")
+local ok, cmp = pcall(require, 'cmp')
+if not ok then return end
+local ok_snip, luasnip = pcall(require, 'luasnip')
+if not ok_snip then return end
 
 vim.cmd([[
     hi CmpItemKindDefault guifg=#0C2430'

@@ -1,4 +1,6 @@
-require("nvim-surround").setup({
+local status, nvim_surround = pcall(require, 'nvim-surround')
+if (not status) then return end
+nvim_surround.setup({
     -- Configuration here, or leave empty to use defaults
     keymaps={
         normal='cs',
