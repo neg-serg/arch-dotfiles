@@ -1,4 +1,5 @@
-local windline=require('windline')
+local status, windline = pcall(require, 'windline')
+if (not status) then return end
 local helper=require('windline.helpers')
 local b_components=require('windline.components.basic')
 local cache_utils=require('windline.cache_utils')
