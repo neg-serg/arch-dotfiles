@@ -43,7 +43,7 @@ telescope.setup{
 			find_cmd="fd" -- find command (defaults to `fd`)
 		},
         generic_sorter= require'telescope.sorters'.get_generic_fuzzy_sorter,
-        path_display={ shorten=5 },
+        path_display={ shorten=8 },
         winblend=8,
         border={},
         borderchars={'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
