@@ -53,7 +53,7 @@ return require'packer'.startup({function(use)
     use {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end}
     use {'windwp/windline.nvim', -- most modern statusline
-        config=function() require'cfg.wildline' end}
+        config=function() require'cfg.windline' end}
     use{'rcarriga/nvim-notify',
         config=function() require'cfg.notify' end}
     use({"folke/noice.nvim",
