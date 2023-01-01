@@ -115,8 +115,8 @@ bindsym Mod4+l focus right
 bindsym Mod4+2 focus parent
 bindsym Mod4+7 focus child
 
-bindsym Mod1+a focus parent
-bindsym Mod1+c focus child
+bindsym Mod1+Control+a focus parent
+bindsym Mod1+Control+c focus child
 
 bindsym Mod4+Shift+bracketleft move workspace to output left
 bindsym Mod4+Shift+bracketright move workspace to output right
