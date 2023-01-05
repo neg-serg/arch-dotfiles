@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-[ ! -z "$1" ] && ps uwwwp $(pgrep -f "$@")
+[ -n "$1" ] && ps uwwwp $(pgrep -f "$@")
