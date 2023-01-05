@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
-[ -z $USE_GPASTE ] && USE_GPASTE=true
+[ -z "$USE_GPASTE" ] && USE_GPASTE=true
 alias yt='yt-dlp --downloader aria2c -f "(bestvideo+bestaudio/best)"'
 
 read_command() {
     rofi_cmd="rofi -dmenu -matching glob -dmenu -p ❯>"
-    cmd_=$(echo -n "sort tac"| tr -s ' ' '\n' | eval $rofi_cmd)
-    echo $cmd_
+    cmd_=$(command echo -n "sort tac"| tr -s ' ' '\n' | eval "$rofi_cmd")
+    echo "$cmd_"
 }
 
 send_key() {
@@ -19,12 +19,12 @@ clipboard_pipe() {
     out=""
     paste=false
     window=$(xdotool getwindowfocus|tr -d '\n')
-
     while true; do
         case "$1" in
+            --) shift; break ;;
             -p | --paste) paste=true; shift ;;
             -c | -e | --command)
-                if [[ $2 != "" ]]; then
+                if [ "$2" != "" ]; then
                     cmd="$2"
                 else
                     cmd="$(read_command)"
@@ -32,27 +32,23 @@ clipboard_pipe() {
                 shift
             ;;
             *) cmd="$(read_command)" ;;
-            --) shift; break ;;
         esac
-        if [[ $paste == true ]]; then
-            echo -n | xclip -i # clear clipboard first
+        if [ "$paste" = true ]; then
+            command echo -n | xclip -i # clear clipboard first
             send_key 'Control_L+c'; send_key 'Control_L+v'
         fi
-        if [[ $cmd != "" ]]; then
+        if [ "$cmd" != "" ]; then
             # read the selection
             selection=$(xclip -o)
-            if [[ $selection == "" && $paste ]]; then
+            if [ "$selection" = "" ] && [ "$paste" ]; then
                 echo "no input, aborting..."
                 exit 1
             fi
-
             # put it into the clipboard (and clear it first so Klipper doesn't interfere)
-            echo -n | xclip -i -sel clipboard
-
+            command echo -n | xclip -i -sel clipboard
             clipboard=$(xclip -o)
             out=$($clipboard | $cmd )
             $out | xclip -i -sel clipboard
-
             exit 0
         else
             dunstify "you need to specify a command"
@@ -62,12 +58,12 @@ clipboard_pipe() {
 }
 
 clip_main() {
-    if [ $USE_GPASTE = true ]; then
-        if which gpaste-client 2>&1 >/dev/null; then
+    if [ "$USE_GPASTE" = true ]; then
+        if which gpaste-client >/dev/null 2>&1; then
             rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip.rasi"
-            selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval $rofi_cmd)"
+            selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval "$rofi_cmd")"
             num="$(echo "$selection" | awk -F ': ' '{print $1}')"
-            uuid="$(gpaste-client --oneline | awk -F ':' '{print $1}' | sed -n "$(echo -n $num)p")"
+            uuid="$(gpaste-client --oneline | awk -F ':' '{print $1}' | sed -n "$num""p")"
             gpaste-client select "$uuid"
         fi
     else
@@ -76,14 +72,14 @@ clip_main() {
 }
 
 yr() {
-    $XDG_CONFIG_HOME/i3/bin/send bscratch toggle youtube
+    "$HOME/bin/send" bscratch toggle youtube
     sleep 1s
     echo "$@" | xsel -i
     xdotool key shift+Insert
 }
 
 youtube_url() {
-    if [ $USE_GPASTE = true ]; then
+    if [ "$USE_GPASTE" = true ]; then
         gpaste-client \
             | rg -E 'https.*(youtube|vimeo).com' \
             | cut -f2- -d ' ' \
@@ -99,7 +95,7 @@ youtube_url() {
 case "$1" in
     pipe) shift; clipboard_pipe "$@" ;;
     youtube-view) shift; ~/bin/yr "$(xclip -o)" ;;
-    youtube-dw) shift; cd $XDG_VIDEOS_DIR/new && yt "$(xclip -o)" ;;
-    youtube-dw-list) shift; cd $XDG_VIDEOS_DIR/new && yt "$(youtube_url)" ;;
+    youtube-dw) shift; cd "$XDG_VIDEOS_DIR/new" && yt "$(xclip -o)" ;;
+    youtube-dw-list) shift; cd "$XDG_VIDEOS_DIR/new" && yt "$(youtube_url)" ;;
     *) clip_main ;;
 esac
