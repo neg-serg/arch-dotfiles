@@ -2,17 +2,17 @@
 port=15555
 negwm_path="$HOME/src/negwm"
 
-if [ $# -gt 0 ] && [ $1 = 'send' ]; then
+if [ $# -gt 0 ] && [ "$1" = 'send' ]; then
     shift
     echo "$@" | /usr/bin/nc localhost $port -w 0
-elif [ $# -gt 0 ] && [ $1 = 'update' ]; then
+elif [ $# -gt 0 ] && [ "$1" = 'update' ]; then
     echo HER
-    if [ -d $negwm_path ]; then
+    if [ -d "$negwm_path" ]; then
         pip install ~/src/negwm
     else
         pip install git+https://github.com/neg-serg/negwm
     fi
-elif [ $# -gt 0 ] && [ $1 = 'debug' ]; then
+elif [ $# -gt 0 ] && [ "$1" = 'debug' ]; then
     /usr/bin/env python -m pdb -m negwm
 else 
     /usr/bin/env python -m negwm "$@"
