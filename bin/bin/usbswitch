@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # A tool for attaching and detaching devices to virtual machines, written in bash.
 # Author: Eden Tyler-Moss https://github.com/ajmar
 # License: GNU GPLv3
