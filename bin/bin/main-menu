@@ -1,9 +1,7 @@
 #!/usr/bin/env sh
 
 blue="<span weight='bold' color='#395573'>"
-close="</span>"
 dac_name='Gustard X26Pro'
-norm="<span weight='bold' color='#6C7E96'>"
 
 main_menu='title_copy artist_copy album_copy pipewire_output alsa_output game_start game_end'
 
@@ -18,36 +16,30 @@ generate_menu() {
 handler() {
     timeout="5s"
     while IFS= read -r arg; do
-        if echo $arg | rg "title_copy" > /dev/null; then
+        if echo "$arg" | rg "title_copy" > /dev/null; then
             mpc current | xsel -bi
-        elif echo $arg | rg "album_copy" > /dev/null; then
+        elif echo "$arg" | rg "album_copy" > /dev/null; then
             mpc current -f "[%album%]"|xsel -bi
-        elif echo $arg | rg "artist_copy" > /dev/null; then
+        elif echo "$arg" | rg "artist_copy" > /dev/null; then
             mpc current -f "[%artist%]"|xsel -bi
-        elif echo $arg | rg "pipewire_output" > /dev/null; then
+        elif echo "$arg" | rg "pipewire_output" > /dev/null; then
             mpc pause
             mpc enable PipeWire
             mpc disable "$dac_name" && mpc play
-        elif echo $arg | rg "alsa_output" > /dev/null; then
+        elif echo "$arg" | rg "alsa_output" > /dev/null; then
             mpc pause
             mpc enable "$dac_name"
             mpc disable PipeWire
             mpc play
             sleep "$timeout";
             mpc play
-        elif echo $arg | rg "game_start" > /dev/null; then
+        elif echo "$arg" | rg "game_start" > /dev/null; then
             ~/bin/game_start
-        elif echo $arg | rg "game_end" > /dev/null; then
+        elif echo "$arg" | rg "game_end" > /dev/null; then
             ~/bin/game_end
         fi
     done
 }
 
-rofi_bg="#000000"
-rofi_fg="#6C7E96"
-rofi_hlfg="#aaaaaa"
-rofi_hlbg="#194558"
-rofi_bc="#202020"
-pref="$blue⟬$closeMPD action$blue⟭$close"
 rofi_options="-auto-select -markup-rows -b -lines 1 -theme neg -dmenu -p '❯>'"
-generate_menu | eval "rofi $rofi_colors $rofi_options" | handler
+generate_menu | eval "rofi $rofi_options" | handler
