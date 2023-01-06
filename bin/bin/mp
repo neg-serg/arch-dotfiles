@@ -8,9 +8,9 @@ main() {
         for arg in "$@"; do
             [ -f "$arg" ] && args="$args$(printf '%s\0' "$arg")";
         done
-        echo -n "$args" | xargs -0n10 -P 10 vid-info
+        command echo -n "$args" | xargs -0n10 -P 10 vid-info
     } &
-    mpv --vo=gpu --quiet "$@" > $HOME/tmp/mpv.log
+    mpv --vo=gpu --quiet "$@" > "$HOME/tmp/mpv.log"
 }
 
 main "$@"
