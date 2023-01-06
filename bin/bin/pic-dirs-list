@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . $ENV
-if [ ! -z "$XDG_PICTURES_DIR" ]; then
-    inotifywait -q -m -e DELETE,ISDIR -e CREATE,ISDIR "$XDG_PICTURES_DIR"/ | while read events; do
+if [ -n "$XDG_PICTURES_DIR" ]; then
+    inotifywait -q -m -e DELETE,ISDIR -e CREATE,ISDIR "$XDG_PICTURES_DIR"/ | while read -r _; do
     find "$XDG_PICTURES_DIR" -maxdepth 3 \
         -not -path "$XDG_PICTURES_DIR/.git/*" \
         -not -path "$XDG_PICTURES_DIR/.git" -type d -print0 \
