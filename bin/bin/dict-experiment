@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
-
+#!/usr/bin/env sh
 xclip -o | trans -hl rus -t rus -e google -b | yad --geometry=300x800+1550+100 --text-info --no-buttons --wrap --sticky
 exit 0
