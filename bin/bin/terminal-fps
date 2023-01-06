@@ -31,20 +31,20 @@ printf -v dummy_line_n "%${COLUMNS}s\n"   ''
 printf -v dummy_frame  "%$((LINES - 1))s" ''
 
 for ((ch = 0; ch < 10; ch++)); do
-  line_str=${dummy_line// /$ch}
-  line_n_str=${dummy_line_n// /$ch}
-  frame_str="${dummy_frame// /$line_n_str}$line_str"
-  frame_str_r="frame_str$ch"
+    line_str=${dummy_line// /$ch}
+    line_n_str=${dummy_line_n// /$ch}
+    frame_str="${dummy_frame// /$line_n_str}$line_str"
+    frame_str_r="frame_str$ch"
 
-  eval "$frame_str_r=\"$frame_str\""
+    eval "$frame_str_r=\"$frame_str\""
 done
 
 t_start=$(date +%s.%N)
 for ((i = 0; i < FRAMES; i++)); do
-  for ((ch = 0; ch < 10; ch++)); do
-    frame_str="frame_str$ch"
-    echo -ne "\033[H${!frame_str}"
-  done
+    for ((ch = 0; ch < 10; ch++)); do
+        frame_str="frame_str$ch"
+        echo -ne "\033[H${!frame_str}"
+    done
 done
 t_end=$(date +%s.%N)
 
