@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
-
-while read file; do
+while read -r file; do
 	case "$1" in
 		"w") setbg "$file" & ;;
 		"c")
@@ -20,7 +19,7 @@ while read file; do
 		"f")
 			convert -flop "$file" "$file" ;;
 		"y")
-			echo -n "$file" | xclip -selection clipboard &&
+			command echo -n "$file" | xclip -selection clipboard &&
 			notify-send "$file copied to clipboard" & ;;
 		"Y")
 				readlink -f "$file" | xclip -selection clipboard &&
