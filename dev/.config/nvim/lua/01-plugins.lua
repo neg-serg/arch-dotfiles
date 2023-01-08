@@ -66,11 +66,6 @@ return require'packer'.startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'folke/trouble.nvim', -- pretty list for diagnostics
-        requires={'kyazdani42/nvim-web-devicons', after='trouble.nvim'},
-        cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
-        config=function() require'cfg.trouble' end,
-        keys={'<leader>X'}, opt=true}
     use {'hrsh7th/nvim-cmp', -- completion engine
         config=function() require'cfg.cmp' end, after={'LuaSnip'},
         requires={
@@ -91,6 +86,11 @@ return require'packer'.startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'folke/trouble.nvim', -- pretty list for diagnostics
+        requires={'kyazdani42/nvim-web-devicons', after='trouble.nvim'},
+        cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
+        config=function() require'cfg.trouble' end,
+        keys={'<leader>X'}, opt=true}
     use {'danymat/neogen', -- annotation toolkit
         config=function() require'cfg.neogen' end,
         requires='nvim-treesitter/nvim-treesitter'}
