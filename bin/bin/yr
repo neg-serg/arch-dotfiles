@@ -1,12 +1,6 @@
 #!/usr/bin/env sh
 
-main() {
-    ${XDG_CONFIG_HOME}/i3/bin/send bscratch toggle youtube
-    echo "$@" | xsel -i
-    while ! xdotool search --sync --all --classname '^youtube-get$' 2>&1 > /dev/null; do
-        :;
-    done
-    xdotool key shift+Insert
-}
-
-main "$@"
+"${HOME}/bin/send" bscratch toggle youtube
+echo "$@" | xsel -i
+while ! xdotool search --sync --all --classname '^youtube-get$' > /dev/null 2>&1; do :; done
+xdotool key shift+Insert
