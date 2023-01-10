@@ -82,12 +82,11 @@ element-icon {
 }
 
 #listview {
-    layout: horizontal;
     background: @blackdarkest;
+    columns: 12;
     dynamic: true;
     fixed-columns: false;
-    fixed-height: false;
-    lines: 100;
+    lines: 2;
     margin: 0px 0px 0px 0px;
     padding: 6px 6px 6px 6px;
     scrollbar: false;
