@@ -6,6 +6,7 @@ sway_nvidia() {
     __GL_GSYNC_ALLOWED=0 \
     __GL_VRR_ALLOWED=0 \
     WLR_NO_HARDWARE_CURSORS=1 \
+    WLR_RENDERER=vulkan \
     WLR_DRM_NO_ATOMIC=1 \
     GDK_BACKEND=wayland \
     MOZ_ENABLE_WAYLAND=1 \
