@@ -81,7 +81,12 @@ return require'packer'.startup({function(use)
         event={'BufRead','BufNewFile','InsertEnter'}}
     use {'neovim/nvim-lspconfig', -- lsp config
         config=function() require'cfg.lsp' end,
-        requires={'williamboman/mason.nvim', 'williamboman/mason-lspconfig'},
+        requires={
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig',
+            'jay-babu/mason-null-ls.nvim',
+            'jose-elias-alvarez/null-ls.nvim',
+        },
         event={'InsertEnter'}}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
