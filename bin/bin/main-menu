@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 blue="<span weight='bold' color='#395573'>"
-dac_name='Gustard X26Pro'
+dac_name='SMSL SU9-PRO'
 
 main_menu='title_copy artist_copy album_copy pipewire_output alsa_output game_start game_end'
 
