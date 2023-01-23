@@ -175,7 +175,7 @@ return require'packer'.startup({function(use)
             {'nvim-treesitter/nvim-treesitter-textobjects',
                 after='nvim-treesitter',
                 config=function() require'cfg.treesitter' end},
-            {'p00f/nvim-ts-rainbow', after='nvim-treesitter'}, -- treesitter-based rainbow
+            {'https://gitlab.com/HiPhish/nvim-ts-rainbow2', after='nvim-treesitter'}, -- treesitter-based rainbow
             {'RRethy/nvim-treesitter-endwise', after='nvim-treesitter'}, -- ts-based endwise
             {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'} -- refactor modules for ts
     }}
