@@ -43,6 +43,24 @@
     commit = 4
     whitespace = 54
     colorMoved = default
+[delta]
+    decorations = true
+    inspect-raw-lines = true
+    line-numbers-left-format = ""
+    line-numbers-right-format = ""
+    minus-emph-style = "#781f34" bold "#000000"
+    minus-style = "#781f34" "#000000"
+    navigate = true
+    plus-emph-style = "#357B63" bold "#000000"
+    plus-style = "#017978" "#000000"
+    side-by-side = false
+    syntax-theme = "ansi"
+    whitespace-error-style = 22 reverse
+    zero-style = "#6C7E96"
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-decoration-style = none
+    file-style = bold yellow ul
 [man]
     viewer = nvimpager -p
 [receive]
@@ -57,18 +75,6 @@
     patch = !git --no-pager diff --no-color
 	hub = !hub
 	undo = "reset --soft HEAD^"
-[difftool "nwim"]
-    cmd = ~/bin/v -d $LOCAL $REMOTE
-[merge]
-    tool = nvim
-[mergetool]
-    prompt = true
-[mergetool "nwim"]
-    cmd = ~/bin/v -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
-[mergetool "nvim"]
-    cmd = /usr/bin/nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
-[credential]
-    helper = cache --timeout=28800
 [interactive]
     diffFilter = delta --color-only
 [filter "lfs"]
@@ -85,23 +91,18 @@
 [url "git@github.com:"]
     pushInsteadOf = "https://github.com/"
     pushInsteadOf = "git://github.com/"
-[delta]
-    inspect-raw-lines = true
-    side-by-side = false
-    decorations = true
-    line-numbers-left-format = ""
-    line-numbers-right-format = ""
-    syntax-theme = "ansi"
-    zero-style = "#6C7E96"
-    minus-style = "#781f34" "#1a0010"
-    minus-emph-style = "#781f34" bold "#1a0010"
-    plus-style = "#6C7E96" "#072530"
-    plus-emph-style = "#6C7E96" bold "#072530"
-    whitespace-error-style = 22 reverse
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
 [rerere]
     enabled = true
     autoupdate = true
+[difftool "nwim"]
+    cmd = ~/bin/v -d $LOCAL $REMOTE
+[merge]
+    tool = nvim
+[mergetool]
+    prompt = true
+[mergetool "nwim"]
+    cmd = ~/bin/v -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
+[mergetool "nvim"]
+    cmd = /usr/bin/nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[credential]
+    helper = cache --timeout=28800
