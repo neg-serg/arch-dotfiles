@@ -46,17 +46,18 @@
 [delta]
     decorations = true
     inspect-raw-lines = true
+    light = false
     line-numbers-left-format = ""
     line-numbers-right-format = ""
+    navigate = true
+    side-by-side = false
+    syntax-theme = "base16-256"
     minus-emph-style = "#781f34" bold "#000000"
     minus-style = "#781f34" "#000000"
-    navigate = true
+    whitespace-error-style = 22 reverse
     plus-emph-style = "#357B63" bold "#000000"
     plus-style = "#017978" "#000000"
-    side-by-side = false
-    syntax-theme = "ansi"
-    whitespace-error-style = 22 reverse
-    zero-style = "#6C7E96"
+    zero-style = "#c6c6c6"
 [delta "decorations"]
     commit-decoration-style = bold yellow box ul
     file-decoration-style = none
