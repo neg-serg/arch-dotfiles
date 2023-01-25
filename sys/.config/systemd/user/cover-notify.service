@@ -5,7 +5,7 @@ After=sound.target
 
 [Service]
 Type=simple
-ExecStart=%h/bin/track-notification-daemon.py
+ExecStart=%h/bin/track-notification-daemon
 
 [Install]
 WantedBy=default.target
