@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
-
-"${HOME}/bin/send" bscratch toggle youtube
+negwm send 'scratchpad toggle youtube'
 echo "$@" | xsel -i
 while ! xdotool search --sync --all --classname '^youtube-get$' > /dev/null 2>&1; do :; done
 xdotool key shift+Insert

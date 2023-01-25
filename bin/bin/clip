@@ -72,7 +72,7 @@ clip_main() {
 }
 
 yr() {
-    "$HOME/bin/send" bscratch toggle youtube
+    negwm send 'scratchpad toggle youtube'
     sleep 1s
     echo "$@" | xsel -i
     xdotool key shift+Insert
