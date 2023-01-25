@@ -59,7 +59,7 @@ clipboard_pipe() {
 
 clip_main() {
     if [ "$USE_GPASTE" = true ]; then
-        if which gpaste-client >/dev/null 2>&1; then
+        if command -v gpaste-client >/dev/null 2>&1; then
             rofi_cmd="rofi -dmenu -lines 10 -no-plugins -sort -i -matching glob -dmenu -p '⟬clip⟭ ❯>' -theme clip.rasi"
             selection="$(gpaste-client --oneline --raw | head -50 | nl -s ': ' -n rz -w 2 | eval "$rofi_cmd")"
             num="$(echo "$selection" | awk -F ': ' '{print $1}')"
