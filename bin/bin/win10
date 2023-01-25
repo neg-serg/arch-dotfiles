@@ -4,7 +4,7 @@ zshexit(){
     [[ ${qemu_run_success} == true ]] && finish
 }
 
-qemu::msg(){ echo "QEMU :: [$@]"; notify-send "QEMU :: [$@]" }
+qemu::msg(){ echo "QEMU :: [$@]"; dunstify "QEMU :: [$@]" }
 
 # -- [qemu ifdown] --
 # #!/usr/bin/env dash

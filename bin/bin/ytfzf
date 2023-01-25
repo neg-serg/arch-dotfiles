@@ -929,7 +929,7 @@ send_notify () {
 		message=$(printf "$video_name\nChannel: $video_channel")
 		video_thumb="$config_dir/default_thumb.png"
 	fi
-	notify-send "Current playing" "$message" -i "$video_thumb"
+	dunstify "Current playing" "$message" -i "$video_thumb"
 	unset number_video video_name video_channel message video_thumb
 }
 
@@ -1189,7 +1189,7 @@ fi
 #if both are true, it defaults to using fzf, and if fzf isnt installed it will throw an error
 #so print this error instead and set $show_thumbnails to 0
 if [ $is_ext_menu -eq 1 -a $show_thumbnails -eq 1 ]; then
-	if ! notify-send "Currently thumbnails do not work in external menus" 1> /dev/null 2>&1; then
+	if ! dunstify "Currently thumbnails do not work in external menus" 1> /dev/null 2>&1; then
 	    printf "\033[31mCurrently thumbnails do not work in external menus\033[0m\n"
 	fi
 	show_thumbnails=0
@@ -1248,13 +1248,11 @@ while true; do
 	get_sub_lang
 	play_url
 	save_before_exit
-
 	#if looping and searching_again arent on then exit
 	if [ $enable_loop -eq 0 ] && [ $search_again -eq 0 ] ; then
 		delete_thumbnails
 		exit
 	fi
-
 	#if -s was specified make another search query
 	if [ $search_again -eq 1 ]; then
 		search_query=
