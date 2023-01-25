@@ -3,5 +3,5 @@ Description=Startup stuff depended on negwm
 Requires=negwm.service
 
 [Service]
-ExecStart=/bin/dash -c "echo 'circle next term' | /usr/bin/nc localhost 15555 -w 0"
+ExecStart=/bin/sh -c "echo 'circle next term' | /usr/bin/nc localhost 15555 -w 0"
 Restart=on-failure
