@@ -1,0 +1,7 @@
+[Unit]
+Description=Startup with dex
+Requires=negwm.service
+
+[Service]
+ExecStart=/usr/bin/dex -a
+Restart=on-failure
