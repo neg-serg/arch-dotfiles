@@ -34,9 +34,9 @@ handler() {
             sleep "$timeout";
             mpc play
         elif echo "$arg" | rg "game_start" > /dev/null; then
-            ~/bin/game_start
+            ~/bin/game start
         elif echo "$arg" | rg "game_end" > /dev/null; then
-            ~/bin/game_end
+            ~/bin/game end
         fi
     done
 }
