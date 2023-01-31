@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 HOST=mail.ru
 if ! ping=$(ping -n -c 1 -W 1 $HOST 2>/dev/null); then
     echo "%{F#5C0100}#%{F-}"

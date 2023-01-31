@@ -1,6 +1,0 @@
-#!/usr/bin/env dash
-if xprop -id $(xdotool getwindowfocus) | awk -F '=' '$1~/WM_CLASS/{print $2}' |tr -d '[:space:]' |rg "term" 2>&1 > /dev/null; then
-    tmux -S ~/.config/negwm/cache/tmux_sockets/term.socket lsw | awk '$2~/*$/{print $1 $2}'
-else
-    echo ''
-fi

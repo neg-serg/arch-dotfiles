@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env sh
 
 get_icon() {
     case $1 in
@@ -26,7 +26,6 @@ CITY="Moscow"
 UNITS="metric"
 SYMBOL="°"
 API="https://api.openweathermap.org/data/2.5"
-
 if [ -n "$CITY" ]; then
     if [ "$CITY" -eq "$CITY" ] 2>/dev/null; then
         CITY_PARAM="id=$CITY"
@@ -42,7 +41,6 @@ else
         weather=$(curl -sf "$API/weather?appid=$KEY&lat=$location_lat&lon=$location_lon&units=$UNITS")
     fi
 fi
-
 if [ -n "$weather" ]; then
     weather_temp=$(echo "$weather" | jq ".main.temp" | cut -d "." -f 1)
     weather_icon=$(echo "$weather" | jq -r ".weather[0].icon")
