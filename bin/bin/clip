@@ -94,7 +94,7 @@ youtube_url() {
 
 case "$1" in
     pipe) shift; clipboard_pipe "$@" ;;
-    youtube-view) shift; ~/bin/yr "$(xclip -o)" ;;
+    youtube-view) shift; ~/bin/yr clip ;;
     youtube-dw) shift; cd "$XDG_VIDEOS_DIR/new" && yt "$(xclip -o)" ;;
     youtube-dw-list) shift; cd "$XDG_VIDEOS_DIR/new" && yt "$(youtube_url)" ;;
     *) clip_main ;;
