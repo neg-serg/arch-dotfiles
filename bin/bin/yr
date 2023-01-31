@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 negwm send 'scratchpad toggle youtube'
-echo "$@" | xsel -i
-while ! xdotool search --sync --all --classname '^youtube-get$' > /dev/null 2>&1; do :; done
-xdotool key shift+Insert
+while ! xdotool search --sync --all --classname '^youtube$' > /dev/null 2>&1; do :; done
+if [ "$1" = 'clip' ]; then
+    xdotool key Insert
+    xdotool key Return
+fi
