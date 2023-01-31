@@ -55,6 +55,7 @@ set $scratchpad-teardrop [instance="teardrop"]
 set $scratchpad-torrment [instance="torrment"]
 set $scratchpad-transients [instance="Places" window_role="^(GtkFileChooserDialog|gimp-file-open)$"]
 set $scratchpad-webcam [instance="webcam"]
+set $scratchpad-youtube [instance="youtube"]
 for_window $scratchpad-discord floating enable, move absolute position 1936 825, resize set 1898 1273
 for_window $scratchpad-im floating enable, move absolute position 2536 2, resize set 1304 2109
 for_window $scratchpad-ncmpcpp floating enable, move absolute position 753 1205, resize set 2251 828
@@ -63,6 +64,7 @@ for_window $scratchpad-teardrop floating enable, move absolute position 0 0, res
 for_window $scratchpad-torrment floating enable, move absolute position 0 0, resize set 3840 1300
 for_window $scratchpad-transients floating enable, move absolute position 693 1310, resize set 1812 797
 for_window $scratchpad-webcam floating enable, move absolute position 1368 268, resize set 2463 1880
+for_window $scratchpad-youtube floating enable, move absolute position 131 0, resize set 3553 1851
 for_window [class=".*"] title_format "<span foreground='#395573'> >_ </span> %title", border pixel 2
 
 for_window [class="(?i)(alacr|k)itty"] border none
@@ -103,7 +105,6 @@ bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
 bindsym Mod4+Shift+p exec --no-startup-id /bin/zsh -c /usr/bin/rofi-pass
-bindsym Mod4+Shift+y exec --no-startup-id ~/bin/clip youtube-dw-list
 bindsym Mod4+space exec --no-startup-id /usr/bin/dunstctl close-all
 bindsym Mod4+Return exec --no-startup-id /usr/bin/i3-sensible-terminal
 bindsym XF86Sleep exec --no-startup-id /usr/bin/systemctl suspend
@@ -179,6 +180,7 @@ bindsym Mod4+f $scratchpad toggle ncmpcpp
 bindsym Mod4+n $scratchpad toggle neomutt
 bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
+bindsym Mod4+Shift+y $scratchpad toggle youtube
 
 bindsym Mod4+r mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
