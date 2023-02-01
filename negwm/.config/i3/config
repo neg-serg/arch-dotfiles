@@ -257,10 +257,10 @@ mode %{T4}%{T-} {
 	bindsym s move down
 	bindsym d move right
 
-	bindsym Shift+w $actions hdown x2
-	bindsym Shift+a $actions hup x2
-	bindsym Shift+s $actions vleft x2
-	bindsym Shift+d $actions vright x2
+	bindsym Shift+w $actions x2 hdown
+	bindsym Shift+a $actions x2 hup
+	bindsym Shift+s $actions x2 vleft
+	bindsym Shift+d $actions x2 vright
 
 	bindsym Shift+plus $actions grow
 	bindsym x $actions maxhor
