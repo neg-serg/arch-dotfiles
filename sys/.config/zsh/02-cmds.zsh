@@ -29,7 +29,7 @@ _exists rg && {
     local rg_options=(
         --max-columns=0
         --max-columns-preview
-        --glob=\!git/\*
+        --glob="'!*.git*'"
         --colors=match:fg:25
         --colors=match:style:underline
         --colors=line:fg:cyan
