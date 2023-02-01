@@ -301,7 +301,7 @@ mode %{T4} {
 
 set $actions nop actions
 set $circle nop circle
-set $conf_gen nop conf_gen
+set $configurator nop configurator
 set $executor nop executor
 set $fullscreen nop fullscreen
 set $reflection nop reflection
