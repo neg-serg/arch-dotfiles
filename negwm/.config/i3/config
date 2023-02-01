@@ -134,10 +134,10 @@ bindsym Mod4+apostrophe  reload; exec --no-startup-id systemctl --user restart n
 bindsym Mod4+backslash  reload; exec --no-startup-id systemctl --user restart negwm; exec --no-startup-id polybar-msg cmd restart
 bindsym Mod4+Shift+apostrophe  restart
 
-bindsym Mod4+grave $remember_focused focus_next_visible
-bindsym Mod4+Shift+grave $remember_focused focus_prev_visible
-bindsym Mod1+Tab $remember_focused switch
-bindsym Mod4+slash $remember_focused switch
+bindsym Mod4+grave $lastgo focus_next_visible
+bindsym Mod4+Shift+grave $lastgo focus_prev_visible
+bindsym Mod1+Tab $lastgo switch
+bindsym Mod4+slash $lastgo switch
 
 bindsym Mod4+Control+a $scratchpad dialog
 bindsym Mod4+Control+s $scratchpad geom_dump
@@ -304,7 +304,7 @@ set $circle nop circle
 set $configurator nop configurator
 set $executor nop executor
 set $fullscreen nop fullscreen
+set $lastgo nop lastgo
 set $reflection nop reflection
-set $remember_focused nop remember_focused
 set $scratchpad nop scratchpad
 # vim:filetype=i3config
