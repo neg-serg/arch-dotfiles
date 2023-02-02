@@ -9,7 +9,7 @@ text/html=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
 x-scheme-handler/chrome=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
 x-scheme-handler/http=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
 x-scheme-handler/https=firefox.desktop;firefox.desktop;userapp-Pale Moon-SWVWB1.desktop;
-x-scheme-handler/tg=userapp-Kotatogram Desktop-T3KXD1.desktop;userapp-Telegram Desktop-MAA5E1.desktop;
+x-scheme-handler/tg=userapp-Kotatogram Desktop-T3KXD1.desktop;userapp-Telegram Desktop-MAA5E1.desktop;org.telegram.desktop.desktop;
 text/x-python3=wine-extension-txt.desktop;
 
 [Default Applications]
@@ -26,7 +26,8 @@ x-scheme-handler/chrome=firefox.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/terminal=Alacritty.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-MAA5E1.desktop
+x-scheme-handler/tg=org.telegram.desktop.desktop
 x-scheme-handler/ftp=userapp-Pale Moon-SWVWB1.desktop
 x-scheme-handler/nxm=vortex-downloads-handler.desktop
 x-scheme-handler/nxm-protocol=vortex-downloads-handler.desktop
+x-scheme-handler/vkteams=vkteamsdesktop.desktop
