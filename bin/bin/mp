@@ -6,7 +6,7 @@ main() {
     {
         args=""
         for arg in "$@"; do
-            [ -f "$arg" ] && args="$args$(printf '%s\0' "$arg")";
+            [ -f "$arg" ] && args="$args$(printf '%s' "$arg")";
         done
         command echo -n "$args" | xargs -0n10 -P 10 vid-info
     } &
