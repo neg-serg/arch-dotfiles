@@ -4,7 +4,7 @@ negwm_path="$HOME/src/negwm"
 
 if [ $# -gt 0 ] && [ "$1" = 'send' ]; then
     shift
-    echo "$@" | /usr/bin/nc localhost $port -N
+    echo "$@" | /usr/bin/nc localhost $port -w 0
 elif [ $# -gt 0 ] && [ "$1" = 'update' ]; then
     if [ -d "$negwm_path" ]; then
         pip install ~/src/negwm
