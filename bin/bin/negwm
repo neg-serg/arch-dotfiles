@@ -6,7 +6,6 @@ if [ $# -gt 0 ] && [ "$1" = 'send' ]; then
     shift
     echo "$@" | /usr/bin/nc localhost $port -w 0
 elif [ $# -gt 0 ] && [ "$1" = 'update' ]; then
-    echo HER
     if [ -d "$negwm_path" ]; then
         pip install ~/src/negwm
     else
@@ -17,5 +16,4 @@ elif [ $# -gt 0 ] && [ "$1" = 'debug' ]; then
 else 
     /usr/bin/env python -m negwm "$@"
 fi
-
 # vim:filetype=sh
