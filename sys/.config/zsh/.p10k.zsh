@@ -369,8 +369,9 @@
       local meta='%f'           # default foreground
       local clean='%249F'       # green foreground
       local modified='%63F'     # yellow foreground
-      local untracked='%30F'    # blue foreground
+      local untracked='%30F'    # violet foreground
       local conflicted='%196F'  # red foreground
+      local new='%26F'          # blue foreground
     else
       # Styling for incomplete and stale Git status.
       local meta='%244F'       # grey foreground
@@ -378,6 +379,7 @@
       local modified='%244F'   # grey foreground
       local untracked='%244F'  # grey foreground
       local conflicted='%244F' # grey foreground
+      local new='%244F'        # grey foreground
     fi
 
     local res
@@ -423,7 +425,7 @@
     (( VCS_STATUS_COMMITS_BEHIND )) && res+="${clean}←${VCS_STATUS_COMMITS_BEHIND}"
     # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
     (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=""
-    (( VCS_STATUS_COMMITS_AHEAD )) && res+="${clean}→${VCS_STATUS_COMMITS_AHEAD}"
+    (( VCS_STATUS_COMMITS_AHEAD )) && res+="${new}→${VCS_STATUS_COMMITS_AHEAD}"
     # ⇠42 if behind the push remote.
     (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
     (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=""
