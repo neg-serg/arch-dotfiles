@@ -1570,56 +1570,52 @@
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%fat '
 
+  function instant_prompt_neg() {
+      prompt_neg
+  }
+
   function prompt_neg() {
     setopt sh_word_split
-    _neg_full_path="$PWD"
+    full_path="$PWD"
     mainc="%(?.%F{4}.%F{4})"
     tildac="%(?.%F{2}.%F{4})"
     prompt_end=" %F{25}❯%B%F{26}>%B%f"
     neg_user_pretok="%f"
-
     [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_pretoken="${mainc}%f"
     [[ ${UID} -ne 0 ]] && _neg_promptcolor="${tildac}" && _neg_user_token="${mainc}${prompt_end}"
-
-    _neg_dyn_pwd=""
-    _neg_tilda_path=${_neg_full_path/${HOME}/\~}
+    dyn_pwd=""
+    tilda_path=${full_path/${HOME}/\~}
     # write the home directory as a tilda
-    [[ ${_neg_tilda_path[2,-1]} == "/" ]] && _neg_tilda_path=${_neg_tilda_path[2,-1]}
+    [[ ${tilda_path[2,-1]} == "/" ]] && tilda_path=${tilda_path[2,-1]}
     # otherwise the first element of split_path would be empty.
-    _neg_forwards_in_tilda_path=${_neg_tilda_path//[^["\/"]/}
+    forward_tilda=${tilda_path//[^["\/"]/}
     # remove everything that is not a "/"
-    _neg_number_of_elements_in_tilda_path=$(( $#_neg_forwards_in_tilda_path + 1 ))
+    neg_num=$(( $#forward_tilda + 1 ))
     # we removed the first forward slash, so we need one more element than the number of slashes
-    _neg_saveIFS="${IFS}"
+    IFS_="${IFS}"
     IFS="/"
-    _neg_split_path=(${_neg_tilda_path})
+    _neg_split_path=(${tilda_path})
     _neg_start_of_loop=1
-    _neg_end_of_loop=${_neg_number_of_elements_in_tilda_path}
+    _neg_end_of_loop=${neg_num}
     for i in {$_neg_start_of_loop..$_neg_end_of_loop}; do
         if [[ $i == $_neg_end_of_loop ]]; then
-            _neg_to_be_added=$_neg_split_path[i]'/'
-            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+          to_be_added=$_neg_split_path[i]'/'
+          dyn_pwd=${dyn_pwd}${to_be_added}
         else
-            _neg_to_be_added=${_neg_split_path[i]}
-            _neg_to_be_added=${_neg_to_be_added}"%F{4}/%F{249}"
-            _neg_dyn_pwd=${_neg_dyn_pwd}${_neg_to_be_added}
+          to_be_added=${_neg_split_path[i]}
+          to_be_added=${to_be_added}"%F{4}/%F{249}"
+          dyn_pwd=${dyn_pwd}${to_be_added}
         fi
     done
-    IFS=${_neg_saveIFS}
-    [[ ${_neg_full_path/${HOME}/\~} != ${_neg_full_path} ]] && _neg_dyn_pwd=${_neg_dyn_pwd/\/~/~}
+    IFS=${IFS_}
+    [[ ${full_path/${HOME}/\~} != ${full_path} ]] && dyn_pwd=${dyn_pwd/\/~/~}
     # remove the slash in front of ${HOME}
-    neg_prompt="%F${_neg_promptcolor}${_neg_dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
-
-    output=""
-    if [[ $_neg_full_path = $HOME ]]; then
-        output=""
-        p10k segment -f 25 -t "$output${prompt_end}"
+    neg_prompt="%F${_neg_promptcolor}${dyn_pwd[0,-2]}%F{0}$_neg_user_token%b%k%f"
+    if [[ $full_path = $HOME ]]; then
+      p10k segment -f 25 -t "${prompt_end}"
     else
-        output=" $output"
-        output+="${neg_user_pretok}%f%40<..<${neg_prompt}"
-        p10k segment -f 25 -t "$output"
+      p10k segment -f 25 -t " ${neg_user_pretok}%f%40<..<${neg_prompt}"
     fi
-
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
