@@ -20,7 +20,7 @@ tail = true
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
 github :: https://github.com/neg-serg?tab=repositories
-year :: 2022
+year :: 2023
 
 """
 
@@ -28,15 +28,15 @@ import asyncio
 import sys
 import time
 
+
 class polybar_mpd():
-    addr = '::1'
-    port = '6600'
+    addr, port = '::1', '6600'
     buf_size = 2048
     fg = '%{F#ffCFCFDB}'
+    fg_dark = '%{F#ccCFCFDB}'
     hi_color = '%{F#395573}'
     wave = '%{T4} %{T-}'
     fg_end = "%{F-}"
-    time_color = '%{F#ffCFCFDB}'
     delim = '%{F#657491}―%{F}'
 
     def __init__(self, _):
@@ -53,13 +53,19 @@ class polybar_mpd():
 
     @staticmethod
     def pretty_printing(song_data):
-        artist = f"{polybar_mpd.fg}{song_data.get('Artist', '')}"
-        title = f"{polybar_mpd.fg}{song_data.get('Title', '')}"
+        vol = song_data.get('volume', '')
+        if vol and int(vol) == 0:
+            fg = polybar_mpd.fg_dark
+        else:
+            fg = polybar_mpd.fg
+        fg_end = polybar_mpd.fg_end
+        artist = f"{fg}{song_data.get('Artist', '')}"
+        title = f"{fg}{song_data.get('Title', '')}"
         t = song_data.get('time', '')
-        lhs = f"{polybar_mpd.hi_color} {polybar_mpd.wave}{polybar_mpd.fg_end}"
-        delim = f"{polybar_mpd.hi_color}/{polybar_mpd.fg_end}"
+        lhs = f"{polybar_mpd.hi_color} {polybar_mpd.wave}{fg_end}"
+        delim = f"{polybar_mpd.hi_color}/{fg_end}"
         if artist and title and t:
-            duration = f'%{{T5}}{polybar_mpd.time_color}{t[0].strip()}{delim}{polybar_mpd.time_color}{t[1].strip()}%{{T-}}\n'
+            duration = f'%{{T5}}{fg}{t[0].strip()}{delim}{fg}{t[1].strip()}%{{T-}}\n'
             sys.stdout.write(f'{lhs}{artist} {polybar_mpd.delim} {title} {duration}')
 
     @staticmethod
@@ -73,7 +79,7 @@ class polybar_mpd():
         ret = raw_song_data.decode('utf-8').split('\n')
         for tok in ret:
             tok = tok.split(':', maxsplit=1)
-            for t in ['Artist', 'Title', 'time', 'state']:
+            for t in ['Artist', 'Title', 'time', 'state', 'volume']:
                 if tok[0] == t:
                     song_data[t] = tok[1].strip()
                     if tok[0] == 'time':
@@ -92,7 +98,7 @@ class polybar_mpd():
         return data.startswith(b'OK')
 
     async def current_song_loop(self) -> None:
-        """ Update MPD volume here and print it. """
+        """ Update MPD current song info and print it. """
         verbose = False
         try:
             reader, writer = await asyncio.open_connection(
@@ -110,6 +116,7 @@ class polybar_mpd():
                 else:
                     sys.stdout.write('\n')
                 await asyncio.sleep(0.1)
+
 
 if __name__ == '__main__':
     loop = asyncio.new_event_loop()
