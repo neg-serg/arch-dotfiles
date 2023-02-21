@@ -33,7 +33,7 @@ class polybar_mpd():
     addr, port = '::1', '6600'
     buf_size = 2048
     fg = '%{F#ffCFCFDB}'
-    fg_dark = '%{F#ccCFCFDB}'
+    fg_dark = '%{F#aaCFCFDB}'
     hi_color = '%{F#395573}'
     wave = '%{T4} %{T-}'
     fg_end = "%{F-}"
