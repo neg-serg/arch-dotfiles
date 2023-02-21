@@ -29,14 +29,14 @@ import sys
 import time
 
 
-class polybar_mpd():
+class mpd():
     addr, port = '::1', '6600'
     buf_size = 2048
     fg = '%{F#ffCFCFDB}'
     fg_dark = '%{F#aaCFCFDB}'
     hi_color = '%{F#395573}'
     wave = '%{T4} %{T-}'
-    fg_end = "%{F-}"
+    fe = "%{F-}"
     delim = '%{F#657491}―%{F}'
 
     def __init__(self, _):
@@ -55,18 +55,18 @@ class polybar_mpd():
     def pretty_printing(song_data):
         vol = song_data.get('volume', '')
         if vol and int(vol) == 0:
-            fg = polybar_mpd.fg_dark
+            fg = mpd.fg_dark
         else:
-            fg = polybar_mpd.fg
-        fg_end = polybar_mpd.fg_end
+            fg = mpd.fg
+        fe = mpd.fe
         artist = f"{fg}{song_data.get('Artist', '')}"
         title = f"{fg}{song_data.get('Title', '')}"
         t = song_data.get('time', '')
-        lhs = f"{polybar_mpd.hi_color} {polybar_mpd.wave}{fg_end}"
-        delim = f"{polybar_mpd.hi_color}/{fg_end}"
+        lhs = f"{mpd.hi_color} {mpd.wave}{fe}"
+        delim = f"{mpd.hi_color}/{fe}"
         if artist and title and t:
             duration = f'%{{T5}}{fg}{t[0].strip()}{delim}{fg}{t[1].strip()}%{{T-}}\n'
-            sys.stdout.write(f'{lhs}{artist} {polybar_mpd.delim} {title} {duration}')
+            sys.stdout.write(f'{lhs}{artist} {mpd.delim} {title} {duration}')
 
     @staticmethod
     def time_convert(n) -> str:
@@ -75,7 +75,7 @@ class polybar_mpd():
     async def update_mpd_stat(self, reader, writer) -> dict:
         song_data = {}
         writer.write(self.get_song_data_cmd.encode(encoding='utf-8'))
-        raw_song_data = await reader.read(polybar_mpd.buf_size)
+        raw_song_data = await reader.read(mpd.buf_size)
         ret = raw_song_data.decode('utf-8').split('\n')
         for tok in ret:
             tok = tok.split(':', maxsplit=1)
@@ -87,8 +87,8 @@ class polybar_mpd():
                         current_time = float(t[0].strip())
                         total_time = float(t[1].strip())
                         song_data['time'] = [
-                            polybar_mpd.time_convert(current_time),
-                            polybar_mpd.time_convert(total_time)
+                            mpd.time_convert(current_time),
+                            mpd.time_convert(total_time)
                         ]
         return song_data
 
@@ -102,17 +102,17 @@ class polybar_mpd():
         verbose = False
         try:
             reader, writer = await asyncio.open_connection(
-                host=polybar_mpd.addr, port=polybar_mpd.port
+                host=mpd.addr, port=mpd.port
             )
         except ConnectionRefusedError:
             if verbose:
-                print(f'MPD: Cannot connect via [{polybar_mpd.addr, polybar_mpd.port}]')
+                print(f'MPD: Cannot connect via [{mpd.addr, mpd.port}]')
             return
         if await self.mpd_stat_at_start(reader, writer):
             while True:
                 song_data = await self.update_mpd_stat(reader, writer)
                 if song_data.get('state', '') == 'play':
-                    polybar_mpd.pretty_printing(song_data)
+                    mpd.pretty_printing(song_data)
                 else:
                     sys.stdout.write('\n')
                 await asyncio.sleep(0.1)
@@ -122,6 +122,6 @@ if __name__ == '__main__':
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     try:
-        polybar_mpd(loop)
+        mpd(loop)
     except KeyboardInterrupt:
         pass
