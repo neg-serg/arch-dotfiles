@@ -56,10 +56,10 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.windline' end}
     use{'rcarriga/nvim-notify',
         config=function() require'cfg.notify' end}
-    use({"folke/noice.nvim",
-        event="VimEnter",
+    use({'folke/noice.nvim',
+        event='VimEnter',
         config=function() require'cfg.noice' end,
-        requires={"MunifTanjim/nui.nvim","rcarriga/nvim-notify"}
+        requires={'MunifTanjim/nui.nvim','rcarriga/nvim-notify'}
     })
     use{'stevearc/dressing.nvim', -- better select ui
         config=function() require'cfg.dressing' end}
