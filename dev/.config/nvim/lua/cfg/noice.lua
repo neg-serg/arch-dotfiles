@@ -2,31 +2,38 @@ local status, noice = pcall(require, 'noice')
 if (not status) then return end
 
 noice.setup({
-    cmdline={
-        view="cmdline",
+    cmdline={view='cmdline'},
+    presets={
+        bottom_search=false, -- use a classic bottom cmdline for search
+        command_palette=false, -- position the cmdline and popupmenu together
+        long_message_to_split=true, -- long messages will be sent to a split
+        inc_rename=false, -- enables an input dialog for inc-rename.nvim
     },
     routes={
-        {filter={event="cmdline",  find="^%s*[/?]",}, view="cmdline",},
-        {filter={event="msg_show", kind="", find="line less",},opts={skip=true},},
-        {filter={event="msg_show", kind="", find="written",}, opts={skip=true},},
-        {filter={event="msg_show", kind="", find="1 time",}, opts={skip=true},},
-        {filter={event="msg_show", kind="", find="Nothing to repeat",}, opts={skip=true},},
-        {filter={event="msg_show", kind="", find="more line",}, opts={skip=true},},
-        {filter={event="msg_show", kind="", find="line yanked",}, opts={skip=true},},
+        {filter={event='cmdline', find='^%s*[/?]',}, view='cmdline',},
+        {filter={event='msg_show', kind='search_count',}, opts={skip=true},},
+        {filter={event='msg_show', find='E486',},opts={skip=true},},
+        {filter={event='msg_show', find='^/.*$',},opts={skip=true},},
+        {filter={event='msg_show', kind='', find='line less',},opts={skip=true},},
+        {filter={event='msg_show', kind='', find='written',}, opts={skip=true},},
+        {filter={event='msg_show', kind='', find='1 time',}, opts={skip=true},},
+        {filter={event='msg_show', kind='', find='Nothing to repeat',}, opts={skip=true},},
+        {filter={event='msg_show', kind='', find='more line',}, opts={skip=true},},
+        {filter={event='msg_show', kind='', find='line yanked',}, opts={skip=true},},
     },
     lsp={
         progress={
             enabled=true,
-            format="lsp_progress",
-            format_done="lsp_progress_done",
+            format='lsp_progress',
+            format_done='lsp_progress_done',
             throttle=1000 / 30, -- frequency to update lsp progress message
-            view="mini",
+            view='mini',
         },
         override={
             -- override the default lsp markdown formatter with Noice
-            ["vim.lsp.util.convert_input_to_markdown_lines"]=true,
+            ['vim.lsp.util.convert_input_to_markdown_lines']=true,
             -- override the lsp markdown formatter with Noice
-            ["vim.lsp.util.stylize_markdown"]=true,
+            ['vim.lsp.util.stylize_markdown']=true,
         },
         hover={
             enabled=true,
@@ -52,18 +59,18 @@ noice.setup({
         },
         popupmenu={
             enabled=true, -- enables the Noice popupmenu UI
-            backend="nui", -- backend to use to show regular cmdline completions
+            backend='nui', -- backend to use to show regular cmdline completions
             kind_icons={}, -- set to `false` to disable icons
         },
         -- defaults for hover and signature help
         documentation={
-            view="hover",
+            view='hover',
             opts={
-                lang="markdown",
+                lang='markdown',
                 replace=true,
-                render="plain",
-                format={ "{message}" },
-                win_options={concealcursor="n", conceallevel=3},
+                render='plain',
+                format={'{message}'},
+                win_options={concealcursor='n', conceallevel=3},
             },
         },
     },
