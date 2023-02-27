@@ -1,6 +1,6 @@
 floating_modifier Mod4
 focus_follows_mouse no
-font pango: Iosevka Bold 12
+font pango: Iosevka Bold 14
 hide_edge_borders both
 
 set  $bg     #000000ee
