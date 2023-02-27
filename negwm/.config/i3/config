@@ -1,37 +1,39 @@
 floating_modifier Mod4
+tiling_drag modifier
 focus_follows_mouse no
 font pango: Iosevka Bold 14
 hide_edge_borders both
 
-set  $bg     #000000ee
+set  $bg     #000000ff
 set  $fg     #899CA1
-set  $fb     #005faf
 set  $ib     #285981
 set  $ub     #2E2457
-set  $blue   #285981
-set  $actbr  #020204
+set  $bl     #285981
 
-set $menu exec ~/src/negwm/menu
-
-client.focused           $fb  $bg  $fg    $bg  $actbr
-client.focused_inactive  $ib  $bg  $fg    $bg  $bg
-# client.placeholder       $bg  $bg  $fg    $bg  $bg
-# client.unfocused         $bg  $bg  $blue  $bg  $bg
-# client.urgent            $bg  $ub  $fg    $ub  $ib
+# <colorclass>          <border> <bg> <text> <indicator> <child_border>
+client.focused           $bg     $bg  $fg    $bg         $bg
+client.focused_inactive  $bg     $bg  $fg    $bg         $bg
+client.placeholder       $bg     $bg  $fg    $bg         $bg
+client.unfocused         $bg     $bg  $bl    $bg         $bg
+client.urgent            $bg     $bg  $fg    $ub         $bg
 client.background        $bg
 
 exec systemctl --user restart --no-block negwm
 exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec_always systemctl --user start --no-block i3-session.target
 
+for_window [all] title_window_icon on
+for_window [all] title_format "<b>%title</b>"
+for_window [tiling] border none
+
 for_window [class="(?i)(alacr|k)itty"] border none
 for_window [class="(?i)\.exe"] floating enable, border none, move position center
 for_window [class="^(inkscape|gimp)$"] move workspace $draw
-for_window [class="(?i)(?:qt5ct|gcolor3|rdesktop|nvidia-settings|openssh-askpass|lutris|steam_app_.*|wine)"] floating enable
-for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, focus
-for_window [title="(?i)(?:File Transfer.*)"] floating enable
+for_window [class="(?i)(?:qt5ct|gcolor3|rdesktop|nvidia-settings|openssh-askpass|lutris|steam_app_.*|wine)"] floating enable, border normal
+for_window [instance="^(gpartedbin|recoll)$"] move workspace $sys, floating enable, border normal, focus
+for_window [title="(?i)(?:File Transfer.*)"] floating enable, border normal
 for_window [window_role="browser"] border none
-for_window [window_role="^(pop-up|task_dialog)$"] floating enable
+for_window [window_role="^(pop-up|task_dialog)$"] floating enable, border normal
 for_window [floating_from="auto" title="Firefox — Sharing Indicator"] border none, sticky enable, move position 10 ppt -5 px
 for_window [floating_from="auto" title=" is sharing your screen.$"] border none, sticky enable, move position 10 ppt -5 px
 
@@ -39,7 +41,7 @@ no_focus [floating_from="auto" title=" is sharing your screen.$"]
 no_focus [floating_from="auto" title="Firefox — Sharing Indicator"]
 no_focus [window_type="splash"]
 
-tiling_drag modifier
+set $menu exec ~/src/negwm/menu
 
 # ╒═══════╕
 # │ NegWM │
