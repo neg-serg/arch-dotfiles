@@ -123,7 +123,7 @@ bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec /usr/bin/flameshot gui
 
-bindsym Mod1+grave exec --no-startup-id /usr/bin/rofi -modi drun -show drun -show-icons -drun-match-fields name || rofi -show run || dmenu_run
+bindsym Mod1+grave exec --no-startup-id /usr/bin/rofi -modi drun -show drun -show-icons -drun-match-fields name -display-drun '~>' || rofi -show run || dmenu_run
 bindsym Mod4+8 exec --no-startup-id ~/bin/pl vol mute
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+m exec --no-startup-id /bin/zsh -c "~/bin/music-rename current"
