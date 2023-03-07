@@ -8,6 +8,7 @@
     format = "<span font_desc='Iosevka Medium 14' foreground='#2e72ac'>%s</span>\n%b"
     frame_color = "#000000"
     frame_width = 10
+    gap_size = 4
     height = 350
     hide_duplicate_count = true
     horizontal_padding = 6
@@ -26,11 +27,11 @@
     offset = 0x54
     origin = bottom-right
     padding = 0
+    progress_bar = true
     progress_bar_frame_width = 1
     progress_bar_height = 6
     progress_bar_max_width = 300
     progress_bar_min_width = 150
-    progress_bar = true
     scale = 0
     separator_color = frame
     separator_height = 4
