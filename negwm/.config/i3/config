@@ -183,7 +183,7 @@ bindsym Mod4+Shift+a $menu/winact attach
 bindsym Mod4+Shift+s $menu/props
 bindsym Mod4+Shift+d $menu/props del
 
-bindsym Mod4+Control+q kill
+bindsym Mod4+Escape kill
 bindsym Mod4+q fullscreen toggle
 bindsym Mod4+y sticky toggle
 bindsym Mod1+Control+s layout stacking
