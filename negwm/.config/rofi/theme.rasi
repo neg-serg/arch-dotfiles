@@ -15,4 +15,5 @@
 
     font: "Iosevka Medium 24";
     background-color: @blackdarkest;
+    text-color: @fgwhite;
 }

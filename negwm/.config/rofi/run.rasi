@@ -1,28 +1,54 @@
 @import "theme.rasi"
 
-element-icon {
-    size: 2.2ch;
-    background-color: transparent;
-}
-
 #window {
     background-color: @blackdarkest;
-    width: 70%;
+    width: 100%;
     padding: 0.1em;
     location: south west;
     anchor: south west;
     y-offset: -2.5%;
     x-offset: 0;
+    children:   [ horibox ];
+}
+
+horibox {
+    orientation: horizontal;
+    text-color: @fgwhite;
+    children:   [ prompt, entry, listview ];
+}
+
+listview {
+    layout:     horizontal;
+    spacing:    5px;
+    lines:      100;
+}
+
+entry {
+    expand:     false;
+    width:      10em;
+}
+
+element {
+    padding: 0px 2px;
+}
+
+element selected {
+    background-color: SteelBlue;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element-icon {
+    size: 2.2ch;
+    background-color: transparent;
 }
 
 #message {
     padding: 6px 6px;
     background-color: @blackwidget;
-}
-
-#horibox {
-    children: [ prompt, entry, listview ];
-    orientation: horizontal;
 }
 
 #textbox {
@@ -61,6 +87,11 @@ element-icon {
     text-color: @fgwhite;
 }
 
+#element.selected.urgent {
+    background-color: @blackdarkest;
+    text-color: @urgentcolor;
+}
+
 #element.selected.active {
     background-color: @selectcolor;
     text-color: @maincolor;
@@ -76,34 +107,10 @@ element-icon {
     text-color: @maincolor;
 }
 
-#listview {
-    background: @blackdarkest;
-    columns: 12;
-    dynamic: true;
-    fixed-columns: false;
-    lines: 2;
-    margin: 0px 0px 0px 0px;
-    padding: 6px 6px 6px 6px;
-    scrollbar: false;
-    spacing: 5px;
-}
-
-entry {
-    expand: true;
-    width: 8em;
-    padding: 8px 8px;
-    background-color: @blackwidget;
-    text-color: @fgwhite;
-}
-
 #scrollbar {
     background-color: @blackwidget;
     handle-color: @darkgray;
     handle-width: 2px;
-}
-
-#sidebar {
-    background-color: @blackwidget;
 }
 
 #button {
@@ -131,9 +138,4 @@ entry {
     padding: 8px 8px;
     text-color: @maincolor;
     background-color: @blackwidget;
-}
-
-element-text {
-    background-color: inherit;
-    text-color: inherit;
 }
