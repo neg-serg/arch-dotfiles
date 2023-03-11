@@ -43,6 +43,14 @@ no_focus [window_type="splash"]
 
 set $menu exec ~/src/negwm/menu
 
+set $i3l vstack to workspace $term
+set $i3l hstack 0.6 up to workspace $web
+set $i3l spiral 0.6 to workspace $dev
+set $i3l 3columns 0.66 0.5 2 left to workspace $draw
+set $i3l 2columns right to workspace $gfx
+set $i3l companion 0.3 0.4 up to workspace $obs
+set $i3l autosplit to workspace $pic
+
 # ╒═══════╕
 # │ NegWM │
 # ╘═══════╛
@@ -68,17 +76,17 @@ set $circle-term [instance="term"]
 set $circle-vid [class="mpv"]
 set $circle-vm [class="spicy"]
 set $circle-web [class="^(firefox|firefoxdeveloperedition|Tor Browser|Chromium)$"]
-for_window $circle-bitwig move workspace $sound,focus
-for_window $circle-doc move workspace $doc,focus
-for_window $circle-nsxiv move workspace $gfx,focus
-for_window $circle-dev move workspace $dev,focus
-for_window $circle-obs move workspace $obs,focus
-for_window $circle-remote move workspace $remote,focus
-for_window $circle-games move workspace $games,focus
-for_window $circle-term move workspace $term,focus
-for_window $circle-vid move workspace $gfx,focus
-for_window $circle-vm move workspace $vm,focus
-for_window $circle-web move workspace $web,focus
+for_window $circle-bitwig move to workspace $sound,focus
+for_window $circle-doc move to workspace $doc,focus
+for_window $circle-nsxiv move to workspace $gfx,focus
+for_window $circle-dev move to workspace $dev,focus
+for_window $circle-obs move to workspace $obs,focus
+for_window $circle-remote move to workspace $remote,focus
+for_window $circle-games move to workspace $games,focus
+for_window $circle-term move to workspace $term,focus
+for_window $circle-vid move to workspace $gfx,focus
+for_window $circle-vm move to workspace $vm,focus
+for_window $circle-web move to workspace $web,focus
 
 set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
