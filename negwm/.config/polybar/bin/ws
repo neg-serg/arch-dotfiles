@@ -24,7 +24,7 @@ tail = true
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
 github :: https://github.com/neg-serg?tab=repositories
-year :: 2022
+year :: 2023
 
 """
 
@@ -53,7 +53,7 @@ class polybar_ws():
         """ Get workspace name and throw event. """
         ws_name = event.current.name
         try:
-            self.ws_name = ws_name.split(' :: ')[1:][0]
+            self.ws_name = ws_name.split('::')[1:][0]
         except IndexError:
             self.ws_name = ws_name
         await self.update_status()
@@ -92,7 +92,7 @@ class polybar_ws():
         for ws in workspaces:
             if ws.focused:
                 ws_name = ws.name
-                self.ws_name = ws_name.split(' :: ')[1:][0]
+                self.ws_name = ws_name.split('::')[1:][0]
                 break
         await self.update_status()
         await self.conn.main()
