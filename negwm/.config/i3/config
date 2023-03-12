@@ -43,17 +43,7 @@ no_focus [window_type="splash"]
 
 set $menu exec ~/src/negwm/menu
 
-set $i3l vstack to workspace $term
-set $i3l hstack 0.6 up to workspace $web
-set $i3l spiral 0.6 to workspace $dev
-set $i3l 3columns 0.66 0.5 2 left to workspace $draw
-set $i3l 2columns right to workspace $gfx
-set $i3l companion 0.3 0.4 up to workspace $obs
-set $i3l autosplit to workspace $pic
-
-# ╒═══════╕
-# │ NegWM │
-# ╘═══════╛
+# :>> NegWM
 # ╒═════════════════╕
 # │ Module bindings │
 # ╘═════════════════╛
@@ -110,18 +100,18 @@ for_window $scratchpad-youtube floating enable, move absolute position 131 0, re
 # ╒═══════════════════════════╕
 # │ Config section workspaces │
 # ╘═══════════════════════════╛
-set $term "1 :: ︁ 𐌰:term"
-set $web "2 ::  𐌱:web"
-set $dev "3 ::  𐌲:dev"
-set $doc "4 ::  𐌳:doc"
-set $draw "5 ::  𐌴:draw"
-set $gfx "6 :: ߷ 𐌵:gfx"
-set $obs "7 :: ✽ 𐌶:obs"
-set $pic "8 ::  𐌷:pic"
-set $games "9 ::  𐌸:games"
-set $sys "10 ::  𐌹:sys"
-set $vm "11 ::  𐌺:vm"
-set $wine "12 ::  𐌻:wine"
+set $term "1::︁ 𐌰:term"
+set $web "2:: 𐌱:web"
+set $dev "3:: 𐌲:dev"
+set $doc "4:: 𐌳:doc"
+set $draw "5:: 𐌴:draw"
+set $gfx "6::߷ 𐌵:gfx"
+set $obs "7::✽ 𐌶:obs"
+set $pic "8:: 𐌷:pic"
+set $games "9:: 𐌸:games"
+set $sys "10:: 𐌹:sys"
+set $vm "11:: 𐌺:vm"
+set $wine "12:: 𐌻:wine"
 
 # ╒════════════════════════╕
 # │ Config section default │
