@@ -35,5 +35,8 @@ RestrictNamespaces=yes
 # ("Failed at step CAPABILITIES spawning /usr/bin/mpd: Operation not
 # permitted")
 
+Restart=on-failure
+RestartSec=5
+
 [Install]
 WantedBy=default.target
