@@ -40,6 +40,7 @@ source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
 source "${ZDOTDIR}/04-bindings.zsh"
+[[ -e "${XDG_CONFIG_HOME}/broot/launcher/bash/br" ]] && source "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 [[ $NEOVIM_TERMINAL ]] && source "${ZDOTDIR}/08-neovim-cd.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
