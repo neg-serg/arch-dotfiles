@@ -46,3 +46,5 @@ bind 'set show-all-if-ambiguous on'
 bind 'set completion-ignore-case on'
 bind 'TAB:menu-complete'
 # vim: ft=sh
+
+source /home/neg/.config/broot/launcher/bash/br
