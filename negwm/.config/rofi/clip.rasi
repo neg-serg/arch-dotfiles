@@ -1,12 +1,5 @@
 @import "theme.rasi"
-
-#window {
-    background-color: @blackdarkest;
-    location: south west;
-    anchor: south west;
-    y-offset: -2.5%;
-    width: 40%;
-}
+@import "win/left_btm.rasi"
 
 #message {
     padding: 6px 6px;

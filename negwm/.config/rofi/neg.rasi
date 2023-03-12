@@ -1,18 +1,10 @@
 @import "theme.rasi"
+/* @import "win/gap_btm.rasi" */
+@import "win/no_gap.rasi"
 
 element-icon {
     size: 2.2ch;
     background-color: transparent;
-}
-
-#window {
-    background-color: @blackdarkest;
-    width: 70%;
-    padding: 0.1em;
-    location: south west;
-    anchor: south west;
-    y-offset: -2.5%;
-    x-offset: 0;
 }
 
 #message {
