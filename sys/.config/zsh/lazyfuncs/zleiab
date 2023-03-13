@@ -1,12 +1,14 @@
 local -A abk=(
-    'G'    '|& rg -i '
-    'Z'    '|& rg -iz '
     'C'    '| wc -l'
-    'E'    '| head'
-    'T'    '| tail'
+    'E'    '|& v -'
+    'G'    '|& rg -i '
+    'H'    '| head'
     'Q'    '&>/dev/null'
     'S'    '| sort -h '
-    'V'    '|& v -'
+    'T'    '| tail'
+    'V'    '|& rg -iv '
+    'Z'    '|& rg -iz '
+
     "e1"   "!-2$"
     "e2"   "!-3$"
     "e3"   "!-4$"
