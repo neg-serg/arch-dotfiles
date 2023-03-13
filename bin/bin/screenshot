@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 scr_dir=~/dw/shots
+[ ! -d "$scr_dir" ] && mkdir "$scr_dir"
 filename="screenshot-$(date +%Y-%m-%d_%H-%M-%S).bmp"
 summary_="$scr_dir/$filename"
-[ ! -d "$scr_dir" ] && mkdir "$scr_dir"
 arglist=" -p 0 "
 
 Shot() { arglist="$arglist $summary_"; maim -m 1 $arglist; ~/bin/pic-notify "$summary_"; }
