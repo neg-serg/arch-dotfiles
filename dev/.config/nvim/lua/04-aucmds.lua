@@ -52,3 +52,6 @@ au({'BufWritePost'}, {pattern='fonts.conf', command='!fc-cache', group=custom_up
 au({'TextYankPost'}, {
     callback=function() require'vim.highlight'.on_yank({timeout=60, higroup="Search"}) end,
     group=hi_yank})
+au({'DirChanged'}, {pattern={'window','tab','tabpage','global'}, callback=function()
+    vim.cmd("silent !zoxide add " .. vim.fn.getcwd())
+end,group=main})
