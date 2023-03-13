@@ -3,4 +3,4 @@ Description=Mailbox synchronization service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/dash %E/mutt/scripts/sync_mail
+ExecStart=/bin/sh %E/mutt/scripts/sync_mail
