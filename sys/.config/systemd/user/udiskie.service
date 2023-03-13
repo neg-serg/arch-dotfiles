@@ -3,12 +3,11 @@ Description=handle automounting
 After=dbus.service
 
 [Service]
-Type=simple
+ExecStart=/usr/bin/udiskie
+Restart=always
 Restart=always
 RestartSec=2
 StartLimitBurst=8
-ExecStart=/usr/bin/udiskie
-Restart=always
 
 [Install]
 WantedBy=default.target

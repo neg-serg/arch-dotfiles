@@ -6,6 +6,5 @@ StartLimitIntervalSec=1
 Requires=xsettingsd.service
 
 [Service]
-Type=simple
 ExecStart=%h/bin/negwm
 Restart=on-failure

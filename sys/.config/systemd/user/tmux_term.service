@@ -3,7 +3,6 @@ Description=Start tmux in detached session
 After=sockets.target
 
 [Service]
-Type=simple
 ExecStart=/usr/bin/tmux -S %h/.cache/negwm/tmux_sockets/term.socket new-session -s term -d
 ExecStop=/usr/bin/tmux -S %h/.cache/negwm/tmux_sockets/term.socket kill-session -t term
 RemainAfterExit=yes
