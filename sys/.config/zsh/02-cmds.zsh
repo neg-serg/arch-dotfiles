@@ -127,14 +127,7 @@ _exists git && {
     alias push='git push'
     alias stash="git stash"
     alias status="git status"
-    if _exists gum; then commit(){
-        if [[ $# -eq 0 ]]; then
-            git commit -m "$(gum input --width 50 --placeholder "Summary of changes")" \
-               -m "$(gum write --width 80 --placeholder "Details of changes (CTRL+D to finish)")"
-        else
-            git commit "$@"
-        fi
-    } else alias commit='git commit'; fi
+    _exists gum && { zautoload -Uz commit } || alias commit='git commit'
 }
 _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
