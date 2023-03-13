@@ -43,6 +43,7 @@ return require'packer'.startup({function(use)
             'nvim-lua/plenary.nvim', -- lua functions
             'romgrk/fzy-lua-native', -- fzy native lua integration
             'crispgm/telescope-heading.nvim', -- telescope jump heading
+            'debugloop/telescope-undo.nvim', -- telescope show undo
             'nvim-telescope/telescope-fzy-native.nvim', -- telescope with fzy native
             'natecraddock/telescope-zf-native.nvim', -- telescope experimental zf native
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
