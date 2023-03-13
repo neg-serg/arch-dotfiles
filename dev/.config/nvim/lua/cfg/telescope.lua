@@ -3,6 +3,8 @@
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 local status, telescope = pcall(require, 'telescope')
 if (not status) then return end
+local sorters = require'telescope.sorters'
+local previewers = require'telescope.previewers'
 telescope.setup{
     defaults={
         vimgrep_arguments={
@@ -23,15 +25,12 @@ telescope.setup{
             horizontal={mirror=false},
             vertical={mirror=false},
         },
-        file_sorter=require'telescope.sorters'.get_zf_sorter,
+        file_sorter=sorters.get_zf_sorter,
         file_ignore_patterns={
             "__pycache__/", "__pycache__/*",
-
 			"build/",       "gradle/",  "node_modules/", "node_modules/*",
 			"smalljre_*/*", "target/",  "vendor/*",
-
 			".dart_tool/",  ".git/",   ".github/", ".gradle/",      ".idea/",        ".vscode/",
-
 			"%.sqlite3",    "%.ipynb", "%.lock",   "%.pdb",
 			"%.dll",        "%.class", "%.exe",    "%.cache", "%.pdf",  "%.dylib",
 			"%.jar",        "%.docx",  "%.met",    "%.burp",  "%.mp4",  "%.mkv", "%.rar",
@@ -42,7 +41,7 @@ telescope.setup{
 			filetypes={"png", "jpg", "mp4", "webm", "pdf"},
 			find_cmd="fd" -- find command (defaults to `fd`)
 		},
-        generic_sorter= require'telescope.sorters'.get_generic_fuzzy_sorter,
+        generic_sorter=sorters.get_generic_fuzzy_sorter,
         path_display={ shorten=8 },
         winblend=8,
         border={},
@@ -50,11 +49,10 @@ telescope.setup{
         color_devicons=true,
         use_less=false,
         set_env={['COLORTERM']='truecolor'},
-        file_previewer=require'telescope.previewers'.vim_buffer_cat.new,
-        grep_previewer=require'telescope.previewers'.vim_buffer_vimgrep.new,
-        qflist_previewer=require'telescope.previewers'.vim_buffer_qflist.new,
-        -- Developer configurations: Not meant for general override
-        buffer_previewer_maker=require'telescope.previewers'.buffer_previewer_maker
+        file_previewer=previewers.vim_buffer_cat.new,
+        grep_previewer=previewers.vim_buffer_vimgrep.new,
+        qflist_previewer=previewers.vim_buffer_qflist.new,
+        buffer_previewer_maker=previewers.buffer_previewer_maker
     },
     extensions={
         fzy_native={
@@ -62,17 +60,10 @@ telescope.setup{
             override_file_sorter=true,
         },
         zoxide={
-            prompt_title="[ Walking on the shoulders of TJ ]",
             mappings={
-                default={
-                    after_action=function(selection)
-                        print("Update to (" .. selection.z_score .. ") " .. selection.path)
-                    end
-                },
-                ["<C-s>"]={
-                    before_action=function(selection) print("before C-s") end,
+                ["<Tab>"]={
                     action=function(selection)
-                        vim.cmd.edit(selection.path)
+                        telescope.builtin.find_files{cwd=selection.path}
                     end
                 },
             },
@@ -123,9 +114,7 @@ telescope.setup{
             sorting_strategy="descending",
             prompt_title=false,
             find_command={'rg','--files','--hidden','-g','!.git'},
-            layout_config={
-                height=12
-            },
+            layout_config={height=12},
         },
         oldfiles={
             theme="ivy",
