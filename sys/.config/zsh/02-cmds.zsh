@@ -3,6 +3,7 @@ _exists() { (( $+commands[$1] )) }
 alias qe='cd ^.git*(/om[1]D)'
 alias ls='ls --time-style=+"%d.%m.%Y %H:%M" --color=auto --hyperlink=auto'
 alias l='ls'
+alias ll='ls -lah'
 alias mv='mv -i'
 alias mk='mkdir -p'
 alias rd='rmdir'
