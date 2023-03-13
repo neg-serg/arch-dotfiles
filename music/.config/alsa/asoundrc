@@ -1,0 +1,12 @@
+defaults.pcm.surround21.card off
+defaults.pcm.surround21.device off
+defaults.pcm.surround40.card off
+defaults.pcm.surround40.device off
+defaults.pcm.surround41.card off
+defaults.pcm.surround41.device off
+defaults.pcm.surround50.card off
+defaults.pcm.surround50.device off
+defaults.pcm.surround51.card off
+defaults.pcm.surround51.device off
+defaults.pcm.surround71.card off
+defaults.pcm.surround71.device off 
