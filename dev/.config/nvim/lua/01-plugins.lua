@@ -42,12 +42,13 @@ return require'packer'.startup({function(use)
         requires={
             'nvim-lua/plenary.nvim', -- lua functions
             'romgrk/fzy-lua-native', -- fzy native lua integration
+            'crispgm/telescope-heading.nvim', -- telescope jump heading
             'nvim-telescope/telescope-fzy-native.nvim', -- telescope with fzy native
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
         },
         module='telescope',
-        keys={'<M-b>','<M-C-o>','<M-o>','<M-d>','<C-f>',
+        keys={'<S-b>','<M-C-o>','<M-o>','<M-d>','<C-f>',
               '<leader>.','[Qleader]e','[Qleader]f','[Qleader]c','[Qleader]p'},
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star

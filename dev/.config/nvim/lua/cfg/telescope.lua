@@ -93,9 +93,10 @@ telescope.setup{
 
 require'telescope'.load_extension'fzy_native'
 require'telescope'.load_extension'media_files'
+require'telescope'.load_extension'heading'
 
 local opts={silent=true, noremap=true}
-map('n', '<M-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
+map('n', '<S-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
 map('n', '<C-f>', "<Cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({layout_config={height=14},border=false}))<CR>", opts)
 map('n', '<M-C-o>', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>', opts)
 map('n', '<M-o>', '<Cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>', opts)
