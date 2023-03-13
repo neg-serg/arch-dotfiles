@@ -1,13 +1,12 @@
 #!/usr/bin/env sh
-. $ENV
 shots=$HOME/dw/shots
 if [ -n "$shots" ]; then
     inotifywait -q -m -e CREATE "$shots"/ | while read -r _; do
-    find "$shots" -name *.bmp \
+    find "$shots" -name "*.bmp" \
         -not -path "$XDG_PICTURES_DIR/.git/*" \
         -not -path "$XDG_PICTURES_DIR/.git" \
-        | parallel convert -quality 10 {} {.}.png
-    find "$shots" -name *.bmp \
+        | parallel convert -quality 10 '{}' '{.}.png'
+    find "$shots" -name "*.bmp" \
         -not -path "$XDG_PICTURES_DIR/.git/*" \
         -not -path "$XDG_PICTURES_DIR/.git" \
         -delete
