@@ -23,7 +23,7 @@ telescope.setup{
             horizontal={mirror=false},
             vertical={mirror=false},
         },
-        file_sorter=require'telescope.sorters'.get_fzf_sorter,
+        file_sorter=require'telescope.sorters'.get_zf_sorter,
         file_ignore_patterns={
             "__pycache__/", "__pycache__/*",
 
@@ -67,7 +67,18 @@ telescope.setup{
             ignore_patterns={ "*.git/*" },
             workspaces={}
         },
-        ['ui-select'] = {require'telescope.themes'.get_dropdown({})},
+        ['zf-native']={
+            file={
+                enable = true, -- override default telescope file sorter
+                highlight_results = true, -- highlight matching text in results
+                match_filename = true, -- enable zf filename match priority
+            },
+            generic={
+                enable = true, -- override default telescope generic item sorter
+                highlight_results = true, -- highlight matching text in results
+                match_filename = false, -- disable zf filename match priority
+            },
+        },
     },
     pickers={
         find_files={
@@ -91,7 +102,8 @@ telescope.setup{
     },
 }
 
-require'telescope'.load_extension'fzy_native'
+-- require'telescope'.load_extension'fzy_native'
+require'telescope'.load_extension'zf-native'
 require'telescope'.load_extension'media_files'
 require'telescope'.load_extension'heading'
 

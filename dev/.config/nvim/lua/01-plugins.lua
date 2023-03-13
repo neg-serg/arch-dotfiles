@@ -44,6 +44,7 @@ return require'packer'.startup({function(use)
             'romgrk/fzy-lua-native', -- fzy native lua integration
             'crispgm/telescope-heading.nvim', -- telescope jump heading
             'nvim-telescope/telescope-fzy-native.nvim', -- telescope with fzy native
+            'natecraddock/telescope-zf-native.nvim', -- telescope experimental zf native
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
         },
