@@ -20,7 +20,7 @@ send_notify() {
 }
 
 main() {
-    shots_pikz="$HOME/tmp/shots"
+    shots_pikz="$HOME/dw/shots"
     [ ! -d "$shots_pikz" ] && mkdir -p "$shots_pikz"
     echo "${img}" | xclip
     send_notify
