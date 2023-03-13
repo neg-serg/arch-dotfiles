@@ -61,6 +61,22 @@ telescope.setup{
             override_generic_sorter=true,
             override_file_sorter=true,
         },
+        zoxide={
+            prompt_title="[ Walking on the shoulders of TJ ]",
+            mappings={
+                default={
+                    after_action=function(selection)
+                        print("Update to (" .. selection.z_score .. ") " .. selection.path)
+                    end
+                },
+                ["<C-s>"]={
+                    before_action=function(selection) print("before C-s") end,
+                    action=function(selection)
+                        vim.cmd.edit(selection.path)
+                    end
+                },
+            },
+        },
         undo = {
             use_delta = true,
             use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
@@ -126,13 +142,14 @@ require'telescope'.load_extension'zf-native'
 require'telescope'.load_extension'media_files'
 require'telescope'.load_extension'heading'
 require'telescope'.load_extension'undo'
+require'telescope'.load_extension'zoxide'
 
 local opts={silent=true, noremap=true}
 map('n', '<S-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
+map('n', 'cd', '<Cmd>lua require"telescope".extensions.zoxide.list(require"telescope.themes".get_ivy({layout_config={height=8},border=false}))<CR>', opts)
 map('n', '<C-f>', "<Cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({layout_config={height=14},border=false}))<CR>", opts)
 map('n', '<M-C-o>', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>', opts)
 map('n', '<M-o>', '<Cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>', opts)
 map('n', "<leader>.", "<Cmd>lua require'telescope'.load_extension'frecency'; require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({layout_config={height=8},border=false}))<CR>", opts)
 map('n', '[Qleader]e', "<Cmd>lua require'telescope.builtin'.find_files{}<CR>", opts)
 map('n', '[Qleader]c', "<Cmd>lua require'telescope.builtin'.git_commits{}<CR>", opts)
-map('n', '[Qleader]p', "<Cmd>lua require'telescope'.load_extension'projects'<CR><Cmd>Telescope projects<CR>", opts)

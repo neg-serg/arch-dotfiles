@@ -20,8 +20,8 @@ return require'packer'.startup({function(use)
     use {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
         keys={'<leader>l'}}
-    use {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end}
     use {'folke/persistence.nvim', config=function() require'cfg.persistence' end}
+    use {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
          after='nvim-web-devicons'} -- fancy webicons
     use {'kyazdani42/nvim-web-devicons', -- better icons
@@ -40,17 +40,18 @@ return require'packer'.startup({function(use)
         module='telescope'}
     use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         requires={
-            'nvim-lua/plenary.nvim', -- lua functions
-            'romgrk/fzy-lua-native', -- fzy native lua integration
             'crispgm/telescope-heading.nvim', -- telescope jump heading
             'debugloop/telescope-undo.nvim', -- telescope show undo
-            'nvim-telescope/telescope-fzy-native.nvim', -- telescope with fzy native
+            'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
             'natecraddock/telescope-zf-native.nvim', -- telescope experimental zf native
+            'nvim-lua/plenary.nvim', -- lua functions
+            'nvim-telescope/telescope-fzy-native.nvim', -- telescope with fzy native
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
-            {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}}
+            'romgrk/fzy-lua-native', -- fzy native lua integration
+            {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}},
         },
         module='telescope',
-        keys={'<S-b>','<M-C-o>','<M-o>','<M-d>','<C-f>',
+        keys={'cd','<M-C-o>','<M-o>','<M-d>','<C-f>',
               '<leader>.','[Qleader]e','[Qleader]f','[Qleader]c','[Qleader]p'},
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star

@@ -41,9 +41,6 @@ map('n', ',,', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<CR><C-l>')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 map('n', '<C-g>', 'g<C-g>')
--- Easier to type, and I never use the default behavior.
-map('n', 'H', '^')
-map('n', 'L', 'g_')
 map('n', 'e', '[Qleader]')
 -- Swap implementations of ` and ' jump to markers
 -- By default, ' jumps to the marked line, ` jumps to the marked line and
