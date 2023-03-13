@@ -77,7 +77,7 @@ _exists duf && alias df='duf -theme ansi' || alias df='df -hT'
 _exists btm && alias htop='btm -b -T --mem_as_value'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
-_exists fd && alias fd='fd -Hu'
+_exists fd && {alias fd='fd -Hu --ignore-vcs' && alias fda='fd -Hu'}
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
 _exists nvim && { alias nvim='v'; }
