@@ -7,6 +7,7 @@ StartLimitIntervalSec=60
 Requires=x11.service
 
 [Service]
+Type=forking
 ExecStart=/usr/bin/picom --dbus --backend glx
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 Restart=on-failure

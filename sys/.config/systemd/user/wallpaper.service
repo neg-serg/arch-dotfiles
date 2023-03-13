@@ -3,7 +3,7 @@ Description=Setup wallpaper on startup
 After=picom.service
 
 [Service]
-Type=forking
+Type=oneshot
 ExecStart=%h/bin/wl -r
 Restart=on-failure
 RestartSec=1

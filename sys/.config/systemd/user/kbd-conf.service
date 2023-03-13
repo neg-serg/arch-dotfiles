@@ -3,7 +3,7 @@ Description=my xinput settings
 Requires=x11.service
 
 [Service]
-Type=forking
+Type=oneshot
 ExecStart=%E/xinit/kbd-conf
 Restart=on-failure
 StartLimitBurst=10

@@ -5,6 +5,7 @@ After=x11.service
 Requires=x11.service
 
 [Service]
+Type=oneshot
 Restart=on-failure
 ExecStart=%h/bin/xsettingsd-setup
 ExecReload=%h/bin/xsettingsd-setup

@@ -3,7 +3,7 @@ Description=Keep track of media player activity
 After=network.target sound.target
 
 [Service]
-Type=oneshot
+Type=forking
 ExecStart=/usr/bin/playerctld daemon
 RestartSec=3
 StartLimitBurst=30

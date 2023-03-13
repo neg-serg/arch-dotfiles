@@ -3,6 +3,7 @@ Description=Optimize screenshots
 After=sockets.target
 
 [Service]
+Type=forking
 ExecStart=/bin/sh -c '%h/bin/shot-optimizer'
 WorkingDirectory=%h/dw/shots
 PassEnvironment=HOME

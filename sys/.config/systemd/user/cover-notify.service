@@ -3,6 +3,7 @@ Description=Music track notification with cover
 After=network.target sound.target playerctld.service
 
 [Service]
+Type=forking
 ExecStart=%h/bin/track-notification-daemon
 
 [Install]
