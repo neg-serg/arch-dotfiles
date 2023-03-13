@@ -6,6 +6,7 @@ After=dbus.service
 Type=simple
 Restart=always
 RestartSec=2
+StartLimitBurst=8
 ExecStart=/usr/bin/udiskie
 Restart=always
 

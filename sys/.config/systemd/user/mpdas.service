@@ -1,6 +1,7 @@
 [Unit]
 Description=mpdas last.fm scrobbler
-After=network.target sound.target mpd.service
+After=network.target sound.target
+Requires=mpd.service
 
 [Service]
 ExecStart=/usr/sbin/mpdas -c %E/mpdas/neg.rc

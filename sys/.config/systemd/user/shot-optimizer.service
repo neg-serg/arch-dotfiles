@@ -3,8 +3,8 @@ Description=Optimize screenshots
 After=sockets.target
 
 [Service]
-Type=simple
 ExecStart=/bin/sh -c '%h/bin/shot-optimizer'
+WorkingDirectory=%h/dw/shots
 PassEnvironment=HOME
 Restart=on-failure
 RestartSec=1

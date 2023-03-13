@@ -6,4 +6,4 @@ Requires=x11.service
 Type=forking
 ExecStart=%E/xinit/kbd-conf
 Restart=on-failure
-RestartSec=5
+StartLimitBurst=10

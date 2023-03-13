@@ -5,6 +5,8 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/openrgb --server -p neg.orp
+RestartSec=30
+StartLimitBurst=8
 
 [Install]
 WantedBy=default.target

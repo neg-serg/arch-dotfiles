@@ -7,6 +7,7 @@ Type=notify
 ExecStart=/usr/bin/transmission-daemon -g %E/transmission-daemon -f --log-error
 Restart=on-failure
 RestartSec=30
+StartLimitBurst=8
 ExecReload=/bin/kill -s HUP $MAINPID
 
 [Install]
