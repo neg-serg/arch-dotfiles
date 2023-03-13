@@ -98,9 +98,6 @@ return require'packer'.startup({function(use)
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
         keys={'<leader>X'}, opt=true}
-    use {'danymat/neogen', -- annotation toolkit
-        config=function() require'cfg.neogen' end,
-        requires='nvim-treesitter/nvim-treesitter'}
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', -- better quickfix
         config=function() require'cfg.bqf' end, ft='qf'}
