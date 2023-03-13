@@ -125,12 +125,12 @@ bindsym Mod1+grave exec --no-startup-id /usr/bin/rofi -modi drun -show drun -sho
 bindsym Mod4+8 exec --no-startup-id ~/bin/pl vol mute
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+m exec --no-startup-id /bin/zsh -c "~/bin/music-rename current"
-bindsym Mod4+p exec --no-startup-id ~/bin/rofi-tmux-urls
+bindsym Mod4+Shift+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+Shift+8 exec --no-startup-id ~/bin/pl vol unmute
 bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
-bindsym Mod4+Shift+p exec --no-startup-id /bin/zsh -c /usr/bin/rofi-pass
+bindsym Mod4+p exec --no-startup-id /bin/zsh -c /usr/bin/rofi-pass
 bindsym Mod4+space exec --no-startup-id /usr/bin/dunstctl close-all
 bindsym Mod4+Return exec --no-startup-id /usr/bin/i3-sensible-terminal
 bindsym XF86Sleep exec --no-startup-id /usr/bin/systemctl suspend
@@ -139,7 +139,6 @@ bindsym Mod4+h focus left
 bindsym Mod4+j focus down
 bindsym Mod4+k focus up
 bindsym Mod4+l focus right
-bindsym Mod4+2 focus parent
 bindsym Mod4+7 focus child
 
 bindsym Mod1+Control+a focus parent
