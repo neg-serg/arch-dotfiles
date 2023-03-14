@@ -44,9 +44,7 @@ no_focus [window_type="splash"]
 set $menu exec ~/src/negwm/menu
 
 # :>> NegWM
-# ╒═════════════════╕
-# │ Module bindings │
-# ╘═════════════════╛
+# :>> Module bindings
 set $actions nop actions
 set $circle nop circle
 set $configurator nop configurator
@@ -97,9 +95,7 @@ for_window $scratchpad-transients floating enable, move absolute position 693 13
 for_window $scratchpad-webcam floating enable, move absolute position 1368 268, resize set 2463 1880
 for_window $scratchpad-youtube floating enable, move absolute position 131 0, resize set 3553 1851
 
-# ╒═══════════════════════════╕
-# │ Config section workspaces │
-# ╘═══════════════════════════╛
+# :>> Config section workspaces
 set $term "1::︁ 𐌰:term"
 set $web "2:: 𐌱:web"
 set $dev "3:: 𐌲:dev"
@@ -113,9 +109,7 @@ set $sys "10:: 𐌹:sys"
 set $vm "11:: 𐌺:vm"
 set $wine "12:: 𐌻:wine"
 
-# ╒════════════════════════╕
-# │ Config section default │
-# ╘════════════════════════╛
+# :>> Config section default
 
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
@@ -207,9 +201,7 @@ bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
 bindsym Mod4+Shift+y $scratchpad toggle youtube
 
-# ╒═══════════════════════╕
-# │ Config section resize │
-# ╘═══════════════════════╛
+# :>> Config section resize
 bindsym Mod4+r mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym j $actions resize bottom 4
@@ -236,9 +228,7 @@ mode %{T4}%{T-} {
 	bindsym Control+G, mode "default"
 }
 
-# ╒═════════════════════╕
-# │ Config section spec │
-# ╘═════════════════════╛
+# :>> Config section spec
 bindsym Mod1+e mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym e [urgent=latest] focus, mode "default"
@@ -261,9 +251,7 @@ mode %{T4}%{T-} {
 	bindsym Control+G, mode "default"
 }
 
-# ╒═══════════════════╕
-# │ Config section wm │
-# ╘═══════════════════╛
+# :>> Config section wm
 bindsym Mod4+minus mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym grave layout default, mode "default"
@@ -305,9 +293,7 @@ mode %{T4}%{T-} {
 	bindsym Control+G, mode "default"
 }
 
-# ╒══════════════════════════╕
-# │ Config section wallpaper │
-# ╘══════════════════════════╛
+# :>> Config section wallpaper
 bindsym Mod4+Shift+6 mode "%{T4}"
 mode %{T4} {
 	bindsym 6 exec --no-startup-id ~/bin/wl
