@@ -44,7 +44,6 @@ telekasten.setup({
 })
 
 local opts={silent=true, noremap=true}
-map('n', '<M-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
 map('n', '<leader>zf', '<Cmd>lua require("telekasten").find_notes()<CR>', opts)
 map('n', '<leader>zd', '<Cmd>lua require("telekasten").find_daily_notes()<CR>', opts)
 map('n', '<leader>zg', '<Cmd>lua require("telekasten").search_notes()<CR>', opts)
@@ -56,7 +55,6 @@ map('n', '<leader>zn', '<Cmd>lua require("telekasten").new_note()<CR>', opts)
 map('n', '<leader>zN', '<Cmd>lua require("telekasten").new_templated_note()<CR>', opts)
 map('n', '<leader>zy', '<Cmd>lua require("telekasten").yank_notelink()<CR>', opts)
 map('n', '<leader>zc', '<Cmd>lua require("telekasten").show_calendar()<CR>', opts)
-map('n', '<leader>zC', '<Cmd>CalendarT<CR>', opts)
 map('n', '<leader>zi', '<Cmd>lua require("telekasten").paste_img_and_link()<CR>', opts)
 map('n', '<leader>zt', '<Cmd>lua require("telekasten").toggle_todo()<CR>', opts)
 map('n', '<leader>zb', '<Cmd>lua require("telekasten").show_backlinks()<CR>', opts)
