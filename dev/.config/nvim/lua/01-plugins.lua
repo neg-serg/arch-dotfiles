@@ -53,7 +53,6 @@ return require'packer'.startup({function(use)
         module='telescope',
         keys={'cd','<M-C-o>','<M-o>','<M-d>','<C-f>',
               '<leader>.','[Qleader]e','[Qleader]f','[Qleader]c','[Qleader]p'},
-        config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end}
     use {'windwp/windline.nvim', -- most modern statusline
@@ -133,8 +132,6 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.bullets' end}
     use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
     use {'uga-rosa/translate.nvim'} -- translator interface
-    use {'gaoDean/autolist.nvim', -- nice autoindent plugin
-        config=function() require'cfg.autolist' end}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
     use {'edluffy/hologram.nvim', -- preview pictures
         config=function() require'hologram'.setup{auto_display=true} end,
