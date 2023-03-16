@@ -6,7 +6,7 @@ send_notify() {
     c2="<span weight='bold' color='#245361'>"
     b="<span weight='bold'>"
     clear="</span>"
-    header="⟬${img%%.bmp}.png⟭"
+    header="⟬$(echo "$img"|sed -e "s/.bmp$/.png/")⟭"
     header="$(echo "$header" | sed -e "s:$HOME:~:" \
                 -e "s:\/:$c1/$clear:g" \
                 -e "s:\(⟬\|⟭\):$c1\1$clear:g" -e "s:~:$c2~$clear:g")"
@@ -22,7 +22,7 @@ send_notify() {
 main() {
     shots_pikz="$HOME/tmp/shots"
     [ ! -d "$shots_pikz" ] && mkdir -p "$shots_pikz"
-    echo "${img%%.bmp}.png" | xclip
+    echo "$img"|sed -e "s/.bmp$/.png/" | xclip
     send_notify
 }
 
