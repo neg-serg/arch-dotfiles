@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-. $ENV
 if [ -n "$XDG_PICTURES_DIR" ]; then
     inotifywait -q -m -e DELETE,ISDIR -e CREATE,ISDIR "$XDG_PICTURES_DIR"/ | while read -r _; do
     find "$XDG_PICTURES_DIR" -maxdepth 3 \
