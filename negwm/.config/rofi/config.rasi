@@ -1,7 +1,7 @@
 configuration {
-    terminal:                      "alacritty";
+    terminal:                      "kitty";
     run-command:                   "{cmd}";
-    run-shell-command:             "alacritty -e {cmd}";
+    run-shell-command:             "kitty {cmd}";
     sort:                          true;
     parse-hosts:                   false;
     auto-select:                   false;
