@@ -13,7 +13,7 @@
     darkgray: #315c70;
     ultra: #005faf55;
 
-    font: "Iosevka Medium 17";
+    font: "Iosevka Medium 14";
     background-color: @blackdarkest;
     text-color: @fgwhite;
 }
