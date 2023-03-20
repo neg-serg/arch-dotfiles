@@ -133,6 +133,9 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.bullets' end}
     use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
     use {'uga-rosa/translate.nvim'} -- translator interface
+    use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup{} end,
+        ft={'org'},
+        requires={'nvim-treesitter/nvim-treesitter'}}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
     use {'edluffy/hologram.nvim', -- preview pictures
         config=function() require'hologram'.setup{auto_display=true} end,
