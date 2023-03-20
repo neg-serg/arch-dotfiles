@@ -50,14 +50,6 @@ cmp.setup({
         }},
     experimental = { ghost_text = true, },
     snippet = {expand = function(args) require'luasnip'.lsp_expand(args.body) end},
-    cmp.setup.filetype('org', {
-        sources = cmp.config.sources({
-            {name = 'luasnip'},
-            {name = 'orgmode'},
-            {name = 'buffer'},
-            {name = 'path'},
-        })
-    }),
     cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
             {name = 'cmp_git'},  -- You can specify the `cmp_git` source if you were installed it.
