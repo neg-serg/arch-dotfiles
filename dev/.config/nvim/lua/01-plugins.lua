@@ -98,6 +98,7 @@ return require'packer'.startup({function(use)
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
         keys={'<leader>X'}, opt=true}
+    use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
     use {'kevinhwang91/nvim-bqf', -- better quickfix
         config=function() require'cfg.bqf' end, ft='qf'}
@@ -131,8 +132,6 @@ return require'packer'.startup({function(use)
     use {'mzlogin/vim-markdown-toc', ft='md'} -- table of contents generator
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
-    use {'potamides/pantran.nvim', config=function() require'cfg.translate' end}
-    use {'uga-rosa/translate.nvim'} -- translator interface
     use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup{} end,
         ft={'org'},
         requires={'nvim-treesitter/nvim-treesitter'}}
