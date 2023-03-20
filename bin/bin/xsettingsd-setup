@@ -27,22 +27,21 @@ done | tr '\n' ' ')
 dpi=${dpis%% *}
 dpi=${dpi:-96}
 echo "using ${dpi}dpi" >&2
+xrandr --dpi "$dpi"
+xsettingsd_cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
 {
     echo Xft.dpi: "$dpi"
     echo Xft.rgba: "$( [ "$dpi" -gt 144 ] && echo none || echo rgb )"
 } | xrdb -merge
-xrandr --dpi "$dpi"
-# Build xsettingsd
 {
-    cat  ~/bin/xsettingsd
+    cat ~/bin/xsettingsd
     echo Xft/DPI $((dpi*1024)) # 98304 for 27'' 4k is ok
     echo Xft/RGBA \""$( [ "$dpi" -gt 144 ] && echo none || echo rgb )"\"
-    echo Gdk/WindowScalingFactor "$((dpi/96))"
-    echo Gdk/UnscaledDPI $(( dpi*1024/(dpi/96) ))
-} > "$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
-pid=$(xprop -name xsettingsd _NET_WM_PID 2> /dev/null | awk '{print $NF}')
-if [ -z "$pid" ]; then
-    /usr/bin/xsettingsd -c "$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
+    echo Gdk/WindowScalingFactor "$( [ "$dpi" -gt 144 ] && command echo -n 2 || command echo -n 1 )"
+    echo Gdk/UnscaledDPI $((96*1024))
+} > "$xsettingsd_cfg"
+if [ ! "$(pgrep -f /usr/bin/xsettingsd|wc -l)" -ge 1 ]; then
+    /usr/bin/xsettingsd -c "$xsettingsd_cfg"
 else
-    kill -HUP "$pid"
+    for t in $(pgrep -f /usr/bin/xsettingsd); do kill -HUP "$t"; done
 fi
