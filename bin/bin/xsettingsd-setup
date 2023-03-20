@@ -1,8 +1,6 @@
 #!/bin/sh
 showdpi() {
-    output=$1
-    pixels=$2
-    mm=$3
+    output=$1 pixels=$2 mm=$3
     # Compute DPI
     dpi=$((pixels * 254 / 10 / mm))
     # For laptop screens, we need to apply a correction factor as the
@@ -41,7 +39,7 @@ xsettingsd_cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
     echo Gdk/UnscaledDPI $((96*1024))
 } > "$xsettingsd_cfg"
 if [ ! "$(pgrep -f /usr/bin/xsettingsd|wc -l)" -ge 1 ]; then
-    /usr/bin/xsettingsd -c "$xsettingsd_cfg"
+    xsettingsd -c "$xsettingsd_cfg"
 else
-    for t in $(pgrep -f /usr/bin/xsettingsd); do kill -HUP "$t"; done
+    for t in $(pgrep -f xsettingsd); do kill -HUP "$t"; done
 fi
