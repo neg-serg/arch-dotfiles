@@ -19,6 +19,8 @@ client.urgent            $bg     $bg  $fg    $ub         $bg
 client.background        $bg
 
 exec systemctl --user restart --no-block negwm
+exec i3-msg restart
+exec ~/bin/wl -r
 exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec_always systemctl --user start --no-block i3-session.target
 
