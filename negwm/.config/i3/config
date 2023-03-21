@@ -204,14 +204,14 @@ bindsym Mod4+Shift+y $scratchpad toggle youtube
 # :>> Config section resize
 bindsym Mod4+r mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
-	bindsym j $actions resize bottom 4
-	bindsym s $actions resize bottom 4
-	bindsym h $actions resize left 4
-	bindsym a $actions resize left 4
-	bindsym l $actions resize right 4
-	bindsym d $actions resize right 4
-	bindsym k $actions resize top 4
-	bindsym w $actions resize top 4
+	bindsym j $actions resize bottom 20
+	bindsym s $actions resize bottom 20
+	bindsym h $actions resize left 20
+	bindsym a $actions resize left 20
+	bindsym l $actions resize right 20
+	bindsym d $actions resize right 20
+	bindsym k $actions resize top 20
+	bindsym w $actions resize top 20
 
 	bindsym Shift+j $actions resize bottom -4
 	bindsym Shift+s $actions resize bottom -4
