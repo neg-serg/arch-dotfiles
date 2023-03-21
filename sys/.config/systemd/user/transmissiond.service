@@ -5,6 +5,7 @@ After=network.target
 [Service]
 Type=notify
 ExecStart=/usr/bin/transmission-daemon -g %E/transmission-daemon -f --log-error
+ConditionPathExists=/usr/bin/transmission-daemon
 Restart=on-failure
 RestartSec=30
 StartLimitBurst=8

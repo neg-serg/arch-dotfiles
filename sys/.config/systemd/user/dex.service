@@ -1,6 +1,7 @@
 [Unit]
 Description=Startup with dex
 Requires=negwm.service
+ConditionPathExists=/usr/bin/dex
 
 [Service]
 ExecStart=/usr/bin/dex -a
