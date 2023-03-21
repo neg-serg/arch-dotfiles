@@ -35,8 +35,8 @@ xsettingsd_cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
     echo 'Nsxiv.foreground:                 #3993AA'
     echo 'Nsxiv.selection:                  #342EB9'
     echo 'Nsxiv.window.alpha:               1.0'
-    awk '/Gtk/CursorThemeSize/{print "Xcursor.size: "$2}' ~/bin/xsettingsd
-    awk '/CursorThemeName/{print "Xcursor.theme: "$2}'    ~/bin/xsettingsd
+    awk '/CursorThemeSize/{print "Xcursor.size: "$2}' ~/bin/xsettingsd
+    awk '/CursorThemeName/{print "Xcursor.theme: "$2}' ~/bin/xsettingsd | tr -d '"'
 } | xrdb -merge
 {
     cat ~/bin/xsettingsd

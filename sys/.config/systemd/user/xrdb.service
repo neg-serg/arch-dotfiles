@@ -1,7 +1,0 @@
-[Unit]
-Description=Merge xrdb settings
-PartOf=graphical-session.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/xrdb -merge %E/X11/xresources
