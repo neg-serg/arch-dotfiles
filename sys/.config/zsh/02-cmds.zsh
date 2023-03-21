@@ -9,15 +9,15 @@ alias mk='mkdir -p'
 alias rd='rmdir'
 if _exists ugrep; then
     # ------------------------------------------------------------------
-    alias grep='ug -G' # search with basic regular expressions (BRE)
     alias egrep='ug -E' # search with extended regular expressions (ERE)
+    alias epgrep='ug -P' # search with Perl regular expressions
     alias fgrep='ug -F' # find string(s)
-    alias pgrep='ug -P' # search with Perl regular expressions
+    alias grep='ug -G' # search with basic regular expressions (BRE)
     alias xgrep='ug -W' # search (ERE) and output text or hex for binary
     # ------------------------------------------------------------------
-    alias zgrep='ug -zG' # search compressed files and archives with BRE
     alias zegrep='ug -zE' # search compressed files and archives with ERE
     alias zfgrep='ug -zF' # find string(s) in compressed files and/or archives
+    alias zgrep='ug -zG' # search compressed files and archives with BRE
     alias zpgrep='ug -zP' # search compressed files and archives with Perl regular expressions
     alias zxgrep='ug -zW' # search (ERE) compressed files/archives and output text or hex for binary
     # ----------------------------------------------------------------------------------------------
