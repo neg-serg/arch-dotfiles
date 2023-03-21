@@ -30,6 +30,13 @@ xsettingsd_cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
 {
     echo Xft.dpi: "$dpi"
     echo Xft.rgba: "$( [ "$dpi" -gt 144 ] && echo none || echo rgb )"
+    echo 'Nsxiv.background:                 #000000'
+    echo 'Nsxiv.font:                       Iosevka:style=Medium:size=17'
+    echo 'Nsxiv.foreground:                 #3993AA'
+    echo 'Nsxiv.selection:                  #342EB9'
+    echo 'Nsxiv.window.alpha:               1.0'
+    awk '/Gtk/CursorThemeSize/{print "Xcursor.size: "$2}' ~/bin/xsettingsd
+    awk '/CursorThemeName/{print "Xcursor.theme: "$2}'    ~/bin/xsettingsd
 } | xrdb -merge
 {
     cat ~/bin/xsettingsd
