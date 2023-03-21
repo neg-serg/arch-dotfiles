@@ -1,11 +1,10 @@
 #!/bin/sh
 showdpi() {
     output=$1 pixels=$2 mm=$3
-    # Compute DPI
     dpi=$((pixels * 254 / 10 / mm))
-    # For laptop screens, we need to apply a correction factor as the
-    # screen is nearer
     case $output in
+        # For laptop screens, we need to apply a correction factor as the
+        # screen is nearer
         eDP-1|eDP1) corrected=$((dpi * 96/144)) ;;
         *) corrected=$dpi ;;
     esac
@@ -26,7 +25,7 @@ dpi=${dpis%% *}
 dpi=${dpi:-96}
 echo "using ${dpi}dpi" >&2
 xrandr --dpi "$dpi"
-xsettingsd_cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
+cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
 {
     echo Xft.dpi: "$dpi"
     echo Xft.rgba: "$( [ "$dpi" -gt 144 ] && echo none || echo rgb )"
@@ -35,18 +34,18 @@ xsettingsd_cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
     echo 'Nsxiv.foreground:                 #3993AA'
     echo 'Nsxiv.selection:                  #342EB9'
     echo 'Nsxiv.window.alpha:               1.0'
-    awk '/CursorThemeSize/{print "Xcursor.size: "$2}' ~/bin/xsettingsd
-    awk '/CursorThemeName/{print "Xcursor.theme: "$2}' ~/bin/xsettingsd | tr -d '"'
+    awk '/CursorThemeSize/{print "Xcursor.size: "$2}' "$XDG_CONFIG_HOME/xinit/xsettingsd"
+    awk '/CursorThemeName/{print "Xcursor.theme: "$2}' "$XDG_CONFIG_HOME/xinit/xsettingsd" | tr -d '"'
 } | xrdb -merge
 {
-    cat ~/bin/xsettingsd
+    cat "$XDG_CONFIG_HOME/xinit/xsettingsd"
     echo Xft/DPI $((dpi*1024)) # 98304 for 27'' 4k is ok
     echo Xft/RGBA \""$( [ "$dpi" -gt 144 ] && echo none || echo rgb )"\"
     echo Gdk/WindowScalingFactor "$( [ "$dpi" -gt 144 ] && command echo -n 2 || command echo -n 1 )"
     echo Gdk/UnscaledDPI $((96*1024))
-} > "$xsettingsd_cfg"
+} > "$cfg"
 if [ ! "$(pgrep -f /usr/bin/xsettingsd|wc -l)" -ge 1 ]; then
-    xsettingsd -c "$xsettingsd_cfg"
+    xsettingsd -c "$cfg"
 else
     for t in $(pgrep -f xsettingsd); do kill -HUP "$t"; done
 fi
