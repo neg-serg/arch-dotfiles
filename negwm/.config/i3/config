@@ -80,6 +80,7 @@ for_window $circle-web move to workspace $web,focus
 
 set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
+set $scratchpad-nb [class="nb"]
 set $scratchpad-ncmpcpp [class="ncmpcpp"]
 set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
 set $scratchpad-teardrop [instance="teardrop"]
@@ -89,6 +90,7 @@ set $scratchpad-webcam [instance="webcam"]
 set $scratchpad-youtube [instance="youtube"]
 for_window $scratchpad-discord floating enable, move absolute position 1936 825, resize set 1898 1273
 for_window $scratchpad-im floating enable, move absolute position 2536 2, resize set 1304 2109
+for_window $scratchpad-nb floating enable, move absolute position 41 1144, resize set 3752 954
 for_window $scratchpad-ncmpcpp floating enable, move absolute position 753 1205, resize set 2251 828
 for_window $scratchpad-neomutt floating enable, move absolute position 104 0, resize set 3670 2228
 for_window $scratchpad-teardrop floating enable, move absolute position 0 0, resize set 3840 1300
@@ -197,6 +199,7 @@ bindsym Mod4+Control+v $circle next vm
 bindsym Mod4+w $circle next web
 bindsym Mod4+v $scratchpad toggle discord
 bindsym Mod4+e $scratchpad toggle im
+bindsym Mod4+i $scratchpad toggle nb
 bindsym Mod4+f $scratchpad toggle ncmpcpp
 bindsym Mod4+n $scratchpad toggle neomutt
 bindsym Mod4+d $scratchpad toggle teardrop
