@@ -9,7 +9,6 @@ Wants=negwm.service
 Wants=picom.service
 Wants=polybar.service
 Wants=ssh-agent.service
-Wants=wallpaper.service
 Wants=xiccd.service
 Wants=xss-lock.service
 Wants=negwm-autostart.service
