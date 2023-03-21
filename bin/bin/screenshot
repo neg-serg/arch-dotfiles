@@ -22,11 +22,19 @@ Menu() {
     esac
 }
 
+OCR() {
+    maim -u -s -b 5 -l -c 0.3,0.4,0.6,0.4 -d 0.1 \
+        | tesseract --dpi 96 -l eng - - \
+        | xclip -selection clipboard -t text/plain
+    notify-send -i ebook-reader "OCR" "Saved to clipboard"
+}
+
 case "$1" in
     -r) Select "$@";;
     -c) Current "$@";;
     -d) Delay "$@";;
     -m) Menu "$@";;
+    -o) OCR "$@" ;; # thx to vincentbernat
     --help) show_help;;
     -h) show_help;;
     *) Full "$@";;
