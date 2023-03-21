@@ -1,0 +1,10 @@
+[Unit]
+Description=Unclutter to hide cursor
+PartOf=graphical-session.target
+StartLimitIntervalSec=60
+
+[Service]
+ExecStart=/usr/bin/unclutter --timeout 3 --jitter 50 --ignore-scrolling --start-hidden
+Restart=on-failure
+RestartSec=3
+StartLimitBurst=30

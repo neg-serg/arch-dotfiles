@@ -13,3 +13,4 @@ Wants=xiccd.service
 Wants=xss-lock.service
 Wants=negwm-autostart.service
 Wants=dex.service
+Wants=unclutter.service
