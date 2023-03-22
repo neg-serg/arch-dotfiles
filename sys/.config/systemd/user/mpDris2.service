@@ -1,11 +1,11 @@
 [Unit]
 Description=mpDris2 - Music Player Daemon D-Bus bridge
 Requires=mpd.service
+ConditionPathExists=/usr/bin/mpDris2
 
 [Service]
 Restart=on-failure
 ExecStart=/usr/bin/mpDris2 --use-journal
-ConditionPathExists=/usr/bin/mpDris2
 BusName=org.mpris.MediaPlayer2.mpd
 
 [Install]

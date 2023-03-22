@@ -2,11 +2,11 @@
 Description=Music Player Daemon
 Documentation=man:mpd(1) man:mpd.conf(5)
 After=network.target sound.target
+ConditionPathExists=/usr/bin/mpd
 
 [Service]
 Type=notify
 ExecStart=/usr/bin/mpd --no-daemon
-ConditionPathExists=/usr/bin/mpd
 
 # Enable this setting to ask systemd to watch over MPD, see
 # systemd.service(5).  This is disabled by default because it causes
