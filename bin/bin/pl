@@ -55,22 +55,25 @@ pl_rofi() {
 
 main() {
     set_maxdepth=false
-    if [[ $1 != "rofi" ]]; then
-        if [[ $1 == "1st_level" ]]; then
-            set_maxdepth=true
-            shift
-        fi
-        pl "$@"
-        exit
-    else
+    run=pl
+    if [[ $1 == "rofi" ]]; then
+        run=pl_rofi
         shift;
-        if [[ $1 == "1st_level" ]]; then
-            set_maxdepth=true
-            shift
-        fi
-        pl_rofi "$@"
-        exit
     fi
+    if [[ $1 == "rofi-filebrowser" ]]; then
+        run=(rofi -modi file-browser-extended -show file-browser-extended \
+            -file-browser-dir "~/vid/new" -file-browser-depth 2 \
+            -file-browser-open-multi-key "kb-accept-alt" \
+            -file-browser-open-custom-key "kb-custom-11" \
+            -file-browser-hide-hidden-symbol "" \
+            -file-browser-path-sep "/" -theme clip \
+            -file-browser-cmd 'mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu'
+        )
+        shift
+    fi
+    if [[ $1 == "1st_level" ]]; then set_maxdepth=true; shift; fi
+    $run "$@"
+    exit
 }
 
 case $1 in
