@@ -135,11 +135,11 @@ require'telescope'.load_extension'zoxide'
 
 local opts={silent=true, noremap=true}
 map('n', '<S-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
-map('n', '<S-e>', "<Cmd>ProjectRoot<CR><Cmd>lua require'telescope.builtin'.find_files{}<CR>", opts)
+map('n', '[Qleader]e', "<Cmd>ProjectRoot<CR><Cmd>lua require'telescope.builtin'.find_files{}<CR>", opts)
 map('n', 'cd', '<Cmd>lua require"telescope".extensions.zoxide.list(require"telescope.themes".get_ivy({layout_config={height=8},border=false}))<CR>', opts)
 map('n', '<C-f>', "<Cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({layout_config={height=14},border=false}))<CR>", opts)
 map('n', '<M-C-o>', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>', opts)
 map('n', '<M-o>', '<Cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>', opts)
 map('n', "<leader>.", "<Cmd>lua require'telescope'.load_extension'frecency'; require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({layout_config={height=8},border=false}))<CR>", opts)
-map('n', '[Qleader]e', "<Cmd>lua require'telescope.builtin'.find_files{}<CR>", opts)
+map('n', '<S-e>', "<Cmd>lua require'telescope.builtin'.find_files{}<CR>", opts)
 map('n', '[Qleader]c', "<Cmd>lua require'telescope.builtin'.git_commits{}<CR>", opts)
