@@ -6,6 +6,7 @@ Requires=x11.service
 
 [Service]
 Restart=on-failure
+ExecStartPre=-/usr/bin/mkdir %E/xsettingsd
 ExecStart=%h/bin/xsettingsd-setup
 ExecReload=/usr/bin/i3-msg reload
 ExecReload=/bin/systemctl --user try-restart polybar.service
