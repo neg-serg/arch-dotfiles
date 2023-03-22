@@ -5,6 +5,7 @@ Requires=mpd.service
 [Service]
 Restart=on-failure
 ExecStart=/usr/bin/mpDris2 --use-journal
+ConditionPathExists=/usr/bin/mpDris2
 BusName=org.mpris.MediaPlayer2.mpd
 
 [Install]
