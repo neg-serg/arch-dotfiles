@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Event handler for inputplug
+event="$1"; device="$2"; use="$3"; name="$4"
+# # Load the given keymap
+# xkb() {
+#     xkbcomp -i ${device} -w 0 -I$HOME/.config/i3/dotfiles/xkb \
+#         $HOME/.config/i3/dotfiles/xkb/$1.xkb ${DISPLAY}
+# }
+
+case $event in
+    XIDeviceDisabled) exit 0 ;;
+    XISlaveRemoved) exit 0 ;;
+esac
+printf "input-event: $use: [%3d] $event $name\n" "$device"
+
+set +x
+case "$event,$use,$(uname -n),$name" in
+    *,XISlaveKeyboard,*,"Yubico YubiKey OTP+FIDO+CCID")
+        #ssh-add -e /usr/lib/x86_64-linux-gnu/libykcs11.so 2> /dev/null
+        #ssh-add -s /usr/lib/x86_64-linux-gnu/libykcs11.so
+        ;;
+    *,XISlaveKeyboard,*,"IQUNIX IQUNIX ZX75 Mechanical Keyboard") ;;
+    *,XISlaveKeyboard,*) ;;
+    *,XISlavePointer,*,"Logitech USB Receiver Mouse") xinput set-ptr-feedback "$device" 30 5 2 ;;
+    *,XISlavePointer,*,"TPPS/2 IBM TrackPoint") xinput set-prop "$device" "libinput Accel Speed" 1 ;;
+    *,XISlavePointer,*,"ELAN Touchscreen") xinput disable "$device" ;;
+    *,XISlavePointer,*,"Wacom HID "*" Finger") xinput disable "$device" ;;
+esac

@@ -1,0 +1,7 @@
+[Unit]
+Description=XInput event monitor
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/inputplug -d -0 -c %h/bin/input-event
+Restart=on-failure
