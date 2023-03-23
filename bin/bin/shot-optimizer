@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-shots=$HOME/dw/shots
+shots=$HOME/pic/shots
 [ ! -d "$shots" ] && mkdir "$shots"
 if [ -n "$shots" ]; then
     inotifywait -q -m -e CREATE "$shots"/ | while read -r _; do

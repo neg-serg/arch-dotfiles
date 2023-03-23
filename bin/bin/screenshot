@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-scr_dir=~/dw/shots
+scr_dir=$HOME/pic/shots
 [ ! -d "$scr_dir" ] && mkdir "$scr_dir"
 filename="screenshot-$(date +%Y-%m-%d_%H-%M-%S).bmp"
 summary_="$scr_dir/$filename"
