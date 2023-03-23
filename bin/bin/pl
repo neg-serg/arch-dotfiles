@@ -53,6 +53,29 @@ pl_rofi() {
     popd
 }
 
+mpd_status(){ playerctl -p mpd status }
+mpv_status(){ playerctl -p mpv status }
+vol(){ playerctl -p "$1" volume "$2" }
+vset(){
+    if [[ $(mpd_status) != 'Stopped' ]]; then
+        vol mpd "$1"
+    elif [[ $(mpv_status) != 'Stopped' ]]; then
+        vol mpv "$1"
+    else 
+        playerctl volume "$1"
+    fi
+}
+
+vchange(){
+    if [[ $(mpd_status) != 'Stopped' ]]; then
+        vol mpd "$1" || playerctl -p mpd volume "$[$1/5]$2"
+    elif [[ $(mpv_status) != 'Stopped' ]]; then
+        vol mpv "$1" || playerctl -p mpv volume "$[$1/5]$2"
+    else 
+        playerctl volume "$1" || playerctl volume "$[$1/5]$2"
+    fi
+}
+
 main() {
     set_maxdepth=false
     run=pl
@@ -80,38 +103,10 @@ case $1 in
     cmd) shift; playerctl "$@" ;;
     vol)
         case $2 in
-            mute)
-                if [[ $(playerctl -p mpd status) != 'Stopped' ]]; then
-                    playerctl -p mpd volume 0.0
-                elif [[ $(playerctl -p mpv status) != 'Stopped' ]]; then
-                    playerctl -p mpv volume 0.0
-                else playerctl volume 0.0 || amixer -q set Master 0 mute
-                fi
-            ;;
-            unmute)
-                if [[ $(playerctl -p mpd status) != 'Stopped' ]]; then
-                    playerctl -p mpd volume 1.0
-                elif [[ $(playerctl -p mpv status) != 'Stopped' ]]; then
-                    playerctl -p mpv volume 1.0
-                else playerctl volume 1.0 || amixer -q set Master 65536 unmute
-                fi
-            ;;
-            up)
-                if [[ $(playerctl -p mpd status) != 'Stopped' ]]; then
-                    playerctl -p mpd volume 0.05+ || playerctl -p mpd volume 0.01+
-                elif [[ $(playerctl -p mpv status) != 'Stopped' ]]; then
-                    playerctl -p mpv volume 0.05+ || playerctl -p mpv volume 0.01+
-                else playerctl volume 0.05+ || playerctl volume 0.01+
-                fi
-            ;;
-            down)
-                if [[ $(playerctl -p mpd status) != 'Stopped' ]]; then
-                    playerctl -p mpd volume 0.05- || playerctl -p mpd volume 0.01-
-                elif [[ $(playerctl -p mpv status) != 'Stopped' ]]; then
-                    playerctl -p mpv volume 0.05- || playerctl -p mpv volume 0.01-
-                else playerctl volume 0.05- || playerctl volume 0.01-
-                fi
-            ;;
+            mute) vset 0.0 || amixer -q set Master 0 mute ;;
+            unmute) vset 1.0 || amixer -q set Master 65536 unmute ;;
+            up) vchange 0.05 + ;;
+            down) vchange 0.05 - ;;
         esac ;;
     *) main "$@" ;;
 esac
