@@ -132,6 +132,7 @@ _exists git && {
     else
         alias commit='git commit'
     fi
+    nb(){ git -C ~/1st_level add . && git -C ~/1st_level commit -am 'update notes' && git -C ~/1st_level push }
 }
 _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
