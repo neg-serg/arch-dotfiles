@@ -6,7 +6,6 @@ StartLimitIntervalSec=60
 [Service]
 ExecStart=/usr/bin/polybar -q main
 ExecStop=/usr/bin/polybar-msg cmd quit
-Environment=POLYBAR_DPI=85
 Restart=on-failure
 RestartSec=3
 StartLimitBurst=30
