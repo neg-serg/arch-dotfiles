@@ -133,6 +133,7 @@ _exists git && {
         alias commit='git commit'
     fi
     nb(){ 
+        for r in "$HOME/.dotfiles" "$HOME/src/negwm" "$HOME/1st_level"; do git -C "$r" pull; done
         if [[ $(git -C ~/1st_level status --short -b |wc -l) -ge 2 ]]; then
             zk -W ~/1st_level index
             git -C ~/1st_level add . \
@@ -145,7 +146,7 @@ _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
     alias ipinfo='curl -sf "https://ipinfo.io/json"'
     alias weather="curl 'wttr.in/?T'"
-    sprunge() { curl -F "sprunge=<-" http://sprunge.us <"$1" ;}
+    sprunge(){ curl -F "sprunge=<-" http://sprunge.us <"$1" ;}
 }
 _exists fzf && {
     logs() {
