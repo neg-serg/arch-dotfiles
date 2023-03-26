@@ -31,6 +31,7 @@ _exists rg && {
         --max-columns=0
         --max-columns-preview
         --glob="'!*.git*'"
+        --glob="'!*.obsidian'"
         --colors=match:fg:25
         --colors=match:style:underline
         --colors=line:fg:cyan
