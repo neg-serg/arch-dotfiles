@@ -6,7 +6,7 @@ Net/ThemeName "Flat-Remix-GTK-Blue-Darkest-Solid-NoBorder"
 Net/IconThemeName "kora"
 Net/EnableEventSounds 0
 Gtk/CursorThemeName "Alkano-aio"
-Gtk/CursorThemeSize 64
+Gtk/CursorThemeSize 43
 Gtk/FontName "Iosevka Medium 10"
 Gtk/KeyThemeName "Emacs"
 Gtk/ButtonImages 1
