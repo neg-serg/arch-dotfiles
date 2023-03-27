@@ -100,18 +100,18 @@ for_window $scratchpad-webcam floating enable, move absolute position 1368 268, 
 for_window $scratchpad-youtube floating enable, move absolute position 131 0, resize set 3553 1851
 
 # :>> Config section workspaces
-set $term "1::︁ 𐌰:term"
-set $web "2:: 𐌱:web"
-set $dev "3:: 𐌲:dev"
-set $doc "4:: 𐌳:doc"
-set $draw "5:: 𐌴:draw"
-set $gfx "6::߷ 𐌵:gfx"
-set $obs "7::✽ 𐌶:obs"
-set $pic "8:: 𐌷:pic"
-set $games "9:: 𐌸:games"
-set $sys "10:: 𐌹:sys"
-set $vm "11:: 𐌺:vm"
-set $wine "12:: 𐌻:wine"
+set $term "︁ 𐌰:term"
+set $web " 𐌱:web"
+set $dev " 𐌲:dev"
+set $doc " 𐌳:doc"
+set $draw " 𐌴:draw"
+set $gfx "߷ 𐌵:gfx"
+set $obs "✽ 𐌶:obs"
+set $pic " 𐌷:pic"
+set $games " 𐌸:games"
+set $sys " 𐌹:sys"
+set $vm " 𐌺:vm"
+set $wine " 𐌻:wine"
 
 # :>> Config section default
 
