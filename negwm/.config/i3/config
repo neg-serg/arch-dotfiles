@@ -299,8 +299,8 @@ mode %{T4}%{T-} {
 }
 
 # :>> Config section wallpaper
-bindsym Mod4+Shift+6 mode "%{T4}"
-mode %{T4} {
+bindsym Mod4+Shift+6 mode "%{T4}%{T-}"
+mode %{T4}%{T-} {
 	bindsym 6 exec --no-startup-id ~/bin/wl
 	bindsym Mod4+Shift+6 exec --no-startup-id ~/bin/wl
 	bindsym Shift+6 exec --no-startup-id ~/bin/wl
