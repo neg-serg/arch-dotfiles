@@ -34,10 +34,6 @@ return require'packer'.startup({function(use)
         config=function() require'mkdir' end, event='BufWritePre'}
     use {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, opt=true} -- undo tree
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
-    use {'renerocksai/telekasten.nvim', -- better md wiki stuff
-        after='telescope.nvim',
-        config=function() require'cfg.telekasten' end,
-        module='telescope'}
     use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         requires={
             'crispgm/telescope-heading.nvim', -- telescope jump heading
@@ -139,6 +135,9 @@ return require'packer'.startup({function(use)
     use {'edluffy/hologram.nvim', -- preview pictures
         config=function() require'hologram'.setup{auto_display=true} end,
         ft='md'}
+    use {'renerocksai/telekasten.nvim', -- better md wiki stuff
+         event={'BufNewFile','BufRead'},
+         config=function() require'cfg.telekasten' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
