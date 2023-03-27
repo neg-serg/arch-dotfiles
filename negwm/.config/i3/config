@@ -90,7 +90,7 @@ set $scratchpad-webcam [instance="webcam"]
 set $scratchpad-youtube [instance="youtube"]
 for_window $scratchpad-discord floating enable, move absolute position 1936 825, resize set 1898 1273
 for_window $scratchpad-im floating enable, move absolute position 2536 2, resize set 1304 2109
-for_window $scratchpad-nb floating enable, move absolute position 41 1144, resize set 3752 954
+for_window $scratchpad-nb floating enable, move absolute position 24 279, resize set 3795 1809
 for_window $scratchpad-ncmpcpp floating enable, move absolute position 753 1205, resize set 2251 828
 for_window $scratchpad-neomutt floating enable, move absolute position 104 0, resize set 3670 2228
 for_window $scratchpad-teardrop floating enable, move absolute position 0 0, resize set 3840 1300
