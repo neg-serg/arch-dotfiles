@@ -52,10 +52,7 @@ class polybar_ws():
     async def on_ws_focus(self, _, event):
         """ Get workspace name and throw event. """
         ws_name = event.current.name
-        try:
-            self.ws_name = ws_name.split('::')[1:][0]
-        except IndexError:
-            self.ws_name = ws_name
+        self.ws_name = ws_name
         await self.update_status()
 
     @staticmethod
@@ -91,8 +88,7 @@ class polybar_ws():
         workspaces = await self.conn.get_workspaces()
         for ws in workspaces:
             if ws.focused:
-                ws_name = ws.name
-                self.ws_name = ws_name.split('::')[1:][0]
+                self.ws_name = ws.name
                 break
         await self.update_status()
         await self.conn.main()
