@@ -27,7 +27,6 @@ telekasten.setup({
     close_after_yanking=false,
     insert_after_inserting=true,
     tag_notation='#tag',
-    -- command palette theme: dropdown (window) or ivy (bottom panel)
     command_palette_theme="ivy",
     show_tags_theme="ivy",
     subdirs_in_links=true, -- when linking to a note in subdir/, create a [[subdir/title]] link instead of a [[title only]] link
