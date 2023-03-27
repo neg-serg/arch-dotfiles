@@ -44,7 +44,12 @@ cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
     echo Gdk/WindowScalingFactor "$( [ "$dpi" -gt 144 ] && command echo -n 2 || command echo -n 1 )"
     echo Gdk/UnscaledDPI $((96*1024))
 } > "$cfg"
-export POLYBAR_DPI="$(echo "$dpi/1.5" | bc)"
+if [ "$(hostname)" != 'telfir' ]; then
+    POLYBAR_DPI="$(echo "$dpi/1.5" | bc)"
+    export POLYBAR_DPI
+else
+    export POLYBAR_DPI=85
+fi
 systemctl --user import-environment POLYBAR_DPI
 if [ ! "$(pgrep -f /usr/bin/xsettingsd|wc -l)" -ge 1 ]; then
     xsettingsd -c "$cfg"
