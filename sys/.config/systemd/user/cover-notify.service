@@ -1,6 +1,6 @@
 [Unit]
 Description=Music track notification with cover
-After=network.target sound.target playerctld.service
+After=network.target sound.target playerctld.service mpd.service mpDris2.service
 
 [Service]
 Type=simple
