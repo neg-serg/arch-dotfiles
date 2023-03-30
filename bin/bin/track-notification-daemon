@@ -1,6 +1,52 @@
 #!/usr/bin/env python
 import sys
 import subprocess
+import logging
+from systemd import journal
+
+def remove_prefix(text, prefix):
+    return text[text.startswith(prefix) and len(prefix):]
+
+# Not used now, I think there is no need in this, thx to mpDris2
+def compare_images() -> str:
+    from PIL import Image
+    from imagehash import dhash
+    img1,img2=Image.open(sys.argv[1]),Image.open(sys.argv[2])
+    if dhash(img1) == dhash(img2):
+        return 'fail'
+    else:
+        return 'ok'
+
+def on_track_change(player, data):
+    if data is None or not data:
+        log.error('No data')
+        return 0
+    cover=data['mpris:artUrl']
+    if cover:
+        try:
+            cover=remove_prefix(cover, 'file://')
+            cover_sum=subprocess.check_output(
+                ["md5sum", cover]
+            ).decode("utf-8").strip()
+            md5sums.append(cover_sum.split()[0])
+        except subprocess.CalledProcessError:
+            log.error('Cannot do mpd5sum for file')
+        if player:
+            import os
+            track_notify=os.path.expanduser('~/bin/track-notify')
+            if len(md5sums) == 1:
+                subprocess.Popen([track_notify, cover])
+            elif md5sums[-1] != md5sums[-2]:
+                subprocess.Popen([track_notify, cover])
+            del md5sums[:-2]
+        else:
+            log.error('There is no player')
+    else:
+        log.error('No cover')
+
+log=logging.getLogger()
+log.addHandler(journal.JournalHandler())
+
 # noqa: E402
 try:
     import gi
@@ -13,44 +59,5 @@ except:
 player=Playerctl.Player()
 md5sums=[]
 
-def remove_prefix(text, prefix):
-    return text[text.startswith(prefix) and len(prefix):]
-
-def on_track_change(player, data):
-    if data is None or not data:
-        return 0
-    cover=data['mpris:artUrl']
-    if cover:
-        try:
-            cover=remove_prefix(cover, 'file://')
-            cover_sum=subprocess.check_output(
-                ["md5sum", cover]
-            ).decode("utf-8").strip()
-            md5sums.append(cover_sum.split()[0])
-        except subprocess.CalledProcessError:
-            pass
-        if player:
-            import os
-            track_notify=os.path.expanduser('~/bin/track-notify')
-            if len(md5sums) == 1:
-                subprocess.Popen([track_notify, cover])
-            elif md5sums[-1] != md5sums[-2]:
-                subprocess.Popen([track_notify, cover])
-            del md5sums[:-2]
-
 player.connect('metadata', on_track_change)
-
 GLib.MainLoop().run()
-
-# How to compare images
-
-# import os
-# import sys
-# from PIL import Image
-# from imagehash import dhash
-#
-# img1,img2=Image.open(sys.argv[1]),Image.open(sys.argv[2])
-# if dhash(img1) == dhash(img2):
-#     print('fail')
-# else:
-#     print('ok')
