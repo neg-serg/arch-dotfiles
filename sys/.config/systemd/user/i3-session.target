@@ -1,9 +1,8 @@
 [Unit]
 Description=i3 session
 BindsTo=graphical-session.target
-
 Wants=xsettingsd.service
-Wants=dpms-off.service
+Wants=misc-x.service
 Wants=kdb-conf.service
 Wants=negwm.service
 Wants=picom.service

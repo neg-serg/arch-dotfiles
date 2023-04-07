@@ -1,0 +1,11 @@
+[Unit]
+Description=Various xsettings
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xset -b
+ExecStart=/usr/bin/xsetroot -cursor_name left_ptr
+ExecStart=/usr/bin/xset s off -dpms
+StartLimitBurst=10
+RemainAfterExit=false

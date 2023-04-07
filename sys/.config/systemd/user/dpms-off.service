@@ -1,8 +1,0 @@
-[Unit]
-Description=Disable dpms
-PartOf=graphical-session.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/xset s off -dpms
-StartLimitBurst=10
