@@ -1,0 +1,5 @@
+[Path]
+PathChanged=/tmp/polybar_activator
+
+[Install]
+WantedBy=graphical-session.target

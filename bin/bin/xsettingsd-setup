@@ -52,6 +52,7 @@ else
 fi
 systemctl --user import-environment POLYBAR_DPI
 if [ ! "$(pgrep -f /usr/bin/xsettingsd|wc -l)" -ge 1 ]; then
+    touch /tmp/polybar_activator
     xsettingsd -c "$cfg"
 else
     for t in $(pgrep -f xsettingsd); do kill -HUP "$t"; done

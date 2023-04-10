@@ -1,12 +1,12 @@
 [Unit]
 Description=i3 session
 BindsTo=graphical-session.target
+WantedBy=polybar.service
 Wants=xsettingsd.service
 Wants=misc-x.service
 Wants=kdb-conf.service
 Wants=negwm.service
 Wants=picom.service
-Wants=polybar.service
 Wants=ssh-agent.service
 Wants=xiccd.service
 Wants=xss-lock.service

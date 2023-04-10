@@ -2,7 +2,8 @@
 Description=Polybar statusbar
 PartOf=graphical-session.target
 StartLimitIntervalSec=60
-After=xsettingsd.service
+Requires=xsettingsd.service
+BindsTo=xsettingsd.service
 
 [Service]
 ExecStart=/usr/bin/polybar -q main
