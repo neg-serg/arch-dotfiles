@@ -6,6 +6,9 @@ Requires=xsettingsd.service
 BindsTo=xsettingsd.service
 
 [Service]
+Type=notify
+NotifyAccess=all
+WatchdogSignal=SIGTERM
 ExecStart=/usr/bin/polybar -q main
 ExecStop=/usr/bin/polybar-msg cmd quit
 Restart=on-failure
