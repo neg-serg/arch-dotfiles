@@ -231,10 +231,6 @@ local default={
 local telescope={
     filetypes={'TelescopePrompt'},
     active={{'  ',{'white','black'}}},
-    --- for global statusline (laststatus=3).
-    --- by default it skip all floating window on global statusline but you can
-    --- change it here
-    global_show_float=false
 }
 
 windline.setup({
