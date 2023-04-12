@@ -36,7 +36,7 @@ au({"BufNewFile","BufRead"}, {
 au({'BufWritePost'}, {pattern={'*sxhkdrc'}, command='!pkill -USR1 sxhkd', group=main})
 au({'BufWritePost'}, {pattern={'01-plugins.lua'}, command='source <afile> | PackerCompile', group=main})
 au({'BufEnter'}, {command='set noreadonly', group=main})
-au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber | let &l:stl="%=  terminal %="', group=main})
+au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber | let &l:stl=" terminal %="', group=main})
 au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
 au({"BufReadPost"}, {callback=restore_cursor, group=main, desc="auto line return"})
 -- Clear search context when entering insert mode, which implicitly stops the
