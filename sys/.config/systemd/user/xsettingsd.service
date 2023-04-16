@@ -8,6 +8,7 @@ Requires=x11.service
 Restart=on-failure
 ExecStartPre=-/usr/bin/mkdir %E/xsettingsd
 ExecStart=%h/bin/xsettingsd-setup
+ExecReload=/usr/bin/kill -HUP $MAINPID
 ExecReload=/usr/bin/i3-msg reload
 ExecReload=/bin/systemctl --user try-restart polybar.service
 ExecReload=/bin/systemctl --user try-reload-or-restart picom.service
