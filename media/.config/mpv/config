@@ -1,26 +1,24 @@
 #--[Main]--------------------------------------------------
 input-ipc-server=/tmp/mpvsocket
-icc-profile-auto
+# icc-profile-auto
 no-hidpi-window-scale
 target-prim=auto
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
-vo-vdpau-colorkey="#000000"
-x11-bypass-compositor=no
+x11-bypass-compositor=yes
 #--[Decoding]----------------------------------------------
 cache=auto
 correct-downscaling
-cscale=ewa_lanczossharp
-dither-depth=auto
+# cscale=ewa_lanczossharp
+# dither-depth=auto
 dscale=mitchell
 hwdec-codecs=all
 hwdec=auto
 interpolation=no
 linear-downscaling=yes
-scale=ewa_lanczossharp
+# scale=ewa_lanczossharp
 sigmoid-upscaling=yes
 vd-lavc-threads=8
-# video-sync=display-resample
 vo=gpu
 vulkan-swap-mode=immediate
 #--[Antiringing]-------------------------------------------
