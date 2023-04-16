@@ -9,7 +9,7 @@ mp() {
     done
     {for arg; [[ -f "${arg}" ]] && args+="$(printf '%s\0' "${arg}")";
     xargs -0n10 -P 10 ~/bin/vid-info <<< "${args}"} &
-    mpv --input-ipc-server=/tmp/mpvsocket --vo=vdpau "$@" > ${HOME}/tmp/mpv.log
+    mpv --input-ipc-server=/tmp/mpvsocket --vo=gpu "$@" > ${HOME}/tmp/mpv.log
 }
 
 pl() {

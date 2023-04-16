@@ -89,8 +89,8 @@ _exists pigz && alias gzip='pigz'
 _exists pbzip2 && alias bzip2='pbzip2'
 _exists zstd && alias zstd='zstd --threads=0'
 _exists mpv && {
-    alias mpa="mpv --vo=vdpau -mute "$@" > ${HOME}/tmp/mpv.log"
-    alias mpi="mpv --vo=vdpau --interpolation=yes --tscale='oversample' \
+    alias mpa="mpv --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
+    alias mpi="mpv --vo=gpu --interpolation=yes --tscale='oversample' \
         --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
 }
 _exists mpc && {
