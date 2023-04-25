@@ -1,0 +1,12 @@
+[Unit]
+Description=i3 window manager
+PartOf=graphical-session.target
+After=i3-session.target
+Wants=i3-session.target
+
+[Service]
+ExecStart=/usr/bin/i3
+ExecReload=/usr/bin/i3-msg reload
+ExecReload=/bin/systemctl --user restart negwm.service
+ExecStopPost=/bin/systemctl --user stop --no-block graphical-session.target
+Restart=on-failure
