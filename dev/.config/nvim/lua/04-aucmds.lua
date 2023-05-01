@@ -43,7 +43,6 @@ au({"BufReadPost"}, {callback=restore_cursor, group=main, desc="auto line return
 -- highlighting of whatever was searched for with hlsearch on. It should also
 -- not be persisted between sessions.
 au({'BufReadPre','FileReadPre'}, {command=[[let @/ = '']], group=mode_change})
-au({'InsertLeave'}, {command='setlocal nopaste', group=mode_change})
 au({'BufWritePost'}, {
     pattern='~/.config/xorg/Xdefaults',
     command='!xrdb -merge ~/.config/X11/xresources',
