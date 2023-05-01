@@ -9,8 +9,6 @@ return require'packer'.startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Performance / Fixes                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'nathom/filetype.nvim',-- faster filetype alternative
-         config=function() require'cfg.filetype' end}
     use {'dstein64/vim-startuptime', cmd='StartupTime'} -- startup time measurement
     use {'antoinemadec/FixCursorHold.nvim', -- fix cursorhold slowdown
          config=function() vim.g.cursorhold_updatetime=100 end, opt=true}
