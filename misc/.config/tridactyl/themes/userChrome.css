@@ -45,7 +45,6 @@ See the above repository for updates as well as full license text. */
 }
 
 /* remove gap after pinned tabs */
-
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])
   > #tabbrowser-arrowscrollbox
   > .tabbrowser-tab[first-visible-unpinned-tab] {
@@ -53,17 +52,10 @@ See the above repository for updates as well as full license text. */
 }
 
 /* Hides the list-all-tabs button*/
-
 #alltabs-button {
   display: var(--uc-show-all-tabs-button) !important;
 }
 
 #TabsToolbar {
   visibility: collapse;
-}
-
-:root:not([customizing]) #navigator-toolbox:not(:hover):not(:focus-within) {
-  max-height: 1px;
-  min-height: calc(0px);
-  overflow: hidden;
 }
