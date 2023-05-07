@@ -88,16 +88,16 @@ set $scratchpad-torrment [instance="torrment"]
 set $scratchpad-transients [instance="Places" window_role="^(GtkFileChooserDialog|gimp-file-open)$"]
 set $scratchpad-webcam [instance="webcam"]
 set $scratchpad-youtube [instance="youtube"]
-for_window $scratchpad-discord floating enable, move absolute position 1936 825, resize set 1898 1273
-for_window $scratchpad-im floating enable, move absolute position 2536 2, resize set 1304 2109
-for_window $scratchpad-nb floating enable, move absolute position 24 279, resize set 3795 1809
-for_window $scratchpad-ncmpcpp floating enable, move absolute position 753 1205, resize set 2251 828
-for_window $scratchpad-neomutt floating enable, move absolute position 104 0, resize set 3670 2228
-for_window $scratchpad-teardrop floating enable, move absolute position 0 0, resize set 3840 1300
-for_window $scratchpad-torrment floating enable, move absolute position 0 0, resize set 3840 1300
-for_window $scratchpad-transients floating enable, move absolute position 693 1310, resize set 1812 797
-for_window $scratchpad-webcam floating enable, move absolute position 1368 268, resize set 2463 1880
-for_window $scratchpad-youtube floating enable, move absolute position 131 0, resize set 3553 1851
+for_window $scratchpad-discord floating enable, move absolute position 1734 550, resize set 1700 848
+for_window $scratchpad-im floating enable, move absolute position 2271 1, resize set 1168 1406
+for_window $scratchpad-nb floating enable, move absolute position 21 186, resize set 3399 1206
+for_window $scratchpad-ncmpcpp floating enable, move absolute position 674 803, resize set 2016 552
+for_window $scratchpad-neomutt floating enable, move absolute position 93 0, resize set 3287 1485
+for_window $scratchpad-teardrop floating enable, move absolute position 0 0, resize set 3440 866
+for_window $scratchpad-torrment floating enable, move absolute position 0 0, resize set 3440 866
+for_window $scratchpad-transients floating enable, move absolute position 620 873, resize set 1623 531
+for_window $scratchpad-webcam floating enable, move absolute position 1225 178, resize set 2206 1253
+for_window $scratchpad-youtube floating enable, move absolute position 117 0, resize set 3182 1234
 
 # :>> Config section workspaces
 set $term "︁ 𐌰:term"
@@ -128,6 +128,7 @@ bindsym Mod4+Shift+8 exec --no-startup-id ~/bin/pl vol unmute
 bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
+bindsym Mod4+Shift+x exec --no-startup-id xrandr --auto
 bindsym Mod4+p exec --no-startup-id /bin/zsh -c /usr/bin/rofi-pass
 bindsym Mod4+space exec --no-startup-id /usr/bin/dunstctl close-all
 bindsym Mod4+Return exec --no-startup-id /usr/bin/i3-sensible-terminal
