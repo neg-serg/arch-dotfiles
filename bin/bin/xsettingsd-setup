@@ -3,8 +3,6 @@ showdpi() {
     output=$1 pixels=$2 mm=$3
     dpi=$((pixels * 254 / 10 / mm))
     case $output in
-        # For laptop screens, we need to apply a correction factor as the
-        # screen is nearer
         eDP-1|eDP1) corrected=$((dpi * 96/144)) ;;
         *) corrected=$dpi ;;
     esac
@@ -19,6 +17,7 @@ showdpi() {
 dpis=$(xrandr --current \
     | sed -En 's/^([^ ]+)* connected.* ([0-9]+)x.* ([0-9]+)mm x .*/\1 \2 \3/p' \
     | while read -r output pixels mm; do
+    if [ $mm -eq 1 ]; then mm=796; fi
     showdpi "$output" "$pixels" "$mm"
 done | tr '\n' ' ')
 dpi=${dpis%% *}
@@ -40,8 +39,8 @@ cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
 {
     cat "$XDG_CONFIG_HOME/xinit/xsettingsd"
     echo Xft/DPI $((dpi*1024)) # 98304 for 27'' 4k is ok
-    echo Xft/RGBA \""$( [ "$dpi" -gt 144 ] && echo none || echo rgb )"\"
-    echo Gdk/WindowScalingFactor "$( [ "$dpi" -gt 144 ] && command echo -n 2 || command echo -n 1 )"
+    echo Xft/RGBA \""$( [ "$dpi" -ge 120 ] && echo none || echo rgb )"\"
+    echo Gdk/WindowScalingFactor "$( [ "$dpi" -ge 120 ] && command echo -n 2 || command echo -n 1 )"
     echo Gdk/UnscaledDPI $((96*1024))
 } > "$cfg"
 if [ "$(hostname)" != 'telfir' ]; then
