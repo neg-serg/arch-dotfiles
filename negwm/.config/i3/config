@@ -128,7 +128,7 @@ bindsym Mod4+Shift+8 exec --no-startup-id ~/bin/pl vol unmute
 bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
-bindsym Mod4+Shift+x exec --no-startup-id /bin/zsh -c "~/bin/game start; ~/bin/game end"
+bindsym Mod4+Shift+x exec --no-startup-id /bin/zsh -c "~/bin/game start && ~/bin/game end"
 bindsym Mod4+p exec --no-startup-id /bin/zsh -c /usr/bin/rofi-pass
 bindsym Mod4+space exec --no-startup-id /usr/bin/dunstctl close-all
 bindsym Mod4+Return exec --no-startup-id /usr/bin/i3-sensible-terminal
