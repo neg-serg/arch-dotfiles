@@ -47,6 +47,8 @@ set searchurls.steam https://store.steampowered.com/search/?term=%s
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
 set searchurls.y https://youtube.com/results?search_query=%s
 
+jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
+
 blacklistadd 192.168.1.1
 blacklistadd 192.168.88.1
 blacklistadd calendar.google.com
@@ -96,10 +98,19 @@ bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//
 " As above but execute it and open terminal in folder
 bind zG js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
+setpref accessibility.typeaheadfind.flashBar 0
+setpref browser.bookmarks.addedImportButton = false
+setpref browser.bookmarks.restore_default_bookmarks = false
+setpref browser.contentblocking.category = "standard"
 setpref browser.download.dir "~/dw"
 setpref browser.newtabpage.activity-stream.telemetry = false
 setpref browser.ping-centre.telemetry = false
+setpref browser.region.update.region = "US"
+setpref browser.search.isUS = true
+setpref browser.search.region = "US"
+setpref distribution.searchplugins.defaultLocale = "en-US"
 setpref extensions.webextensions.restrictedDomains ""
+setpref general.useragent.locale = "en-US"
 setpref general.warnOnAboutConfig false
 setpref gfx.color_management.enabled true
 setpref gfx.color_management.enablev4 true
@@ -107,7 +118,9 @@ setpref gfx.color_management.mode 1
 setpref network.trr.confirmation_telemetry_enabled = false
 setpref pdfjs.disabled true
 setpref permissions.default.desktop-notification 2
+setpref privacy.resistFingerprinting.block_mozAddonManager true
 setpref toolkit.telemetry.reportingpolicy.firstRun = false
+setpref xpinstall.signatures.required false
 
 unbindurl mail\.google\.com j
 unbindurl mail\.google\.com k
