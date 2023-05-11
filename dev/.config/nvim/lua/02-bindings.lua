@@ -70,3 +70,6 @@ map('i', '<C-a>', "<C-o>^", {noremap=true})
 map('i', '<C-e>', "<C-o>$", {noremap=true})
 map('i', '<C-v>', 'paste#paste_cmd["i"]', {expr=true})
 map('v', '<C-v>', 'paste#paste_cmd["v"]', {expr=true})
+-- Navigate buffers, thx to nvim-basic-ide
+map('n', '<S-l>', ':bnext<CR>', {silent=true})
+map('n', '<S-h>', ':bprevious<CR>', {silent=true})
