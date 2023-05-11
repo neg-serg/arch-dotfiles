@@ -23,7 +23,7 @@ local on_attach=function(_, bufnr)
     buf_set_keymap('n', '<leader>A', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', '<leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     buf_set_keymap('n', '<leader>ge', '<Cmd>lua require"telescope.builtin".diagnostics()<CR>', opts)
-    buf_set_keymap('n', '<leader>gf', '<Cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
     buf_set_keymap('n', '<leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
