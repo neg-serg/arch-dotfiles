@@ -68,7 +68,6 @@ set $circle-vm [class="spicy"]
 set $circle-web [class="^(firefox|firefoxdeveloperedition|Tor Browser|Chromium)$"]
 for_window $circle-bitwig move to workspace $sound,focus
 for_window $circle-doc move to workspace $doc,focus
-for_window $circle-nsxiv move to workspace $gfx,focus
 for_window $circle-dev move to workspace $dev,focus
 for_window $circle-obs move to workspace $obs,focus
 for_window $circle-remote move to workspace $remote,focus
