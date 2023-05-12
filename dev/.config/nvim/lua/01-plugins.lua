@@ -59,6 +59,7 @@ return require'packer'.startup({function(use)
     })
     use{'stevearc/dressing.nvim', -- better select ui
         config=function() require'cfg.dressing' end}
+    use{'stevearc/oil.nvim', config=function() require('oil').setup() end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
