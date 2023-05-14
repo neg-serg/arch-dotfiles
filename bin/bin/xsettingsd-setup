@@ -45,7 +45,7 @@ DPI_BIG_ENOUGH=${DPI_BIG_ENOUGH:-120}
     echo Gdk/UnscaledDPI $((96*1024))
 } > "$cfg"
 if [ "$(hostname)" != 'telfir' ]; then
-    POLYBAR_DPI="$(echo "$dpi/1.5" | bc)"
+    POLYBAR_DPI="$(echo "$dpi/1.85" | bc)"
 else
     POLYBAR_DPI=65
 fi
