@@ -58,20 +58,13 @@ mason_lspconfig.setup({ensure_installed={
     'terraformls',
     'yamlls',
 }})
-require("mason-null-ls").setup({
-    ensure_installed = {
-        -- Opt to list sources here, when available in mason.
-    },
-    automatic_installation = false,
-    automatic_setup = true, -- Recommended, but optional
-})
--- require("null-ls").setup(
---     sources = {
---         -- Anything not supported by mason.
---     }
--- )
 
-require 'mason-null-ls'.setup_handlers() -- If `automatic_setup` is true.
+require'mason'.setup()
+require'mason-null-ls'.setup({
+    ensure_installed = {},
+    automatic_installation = false,
+    automatic_setup = true
+})
 
 nvim_lsp.pyright.setup {
     on_attach=on_attach,
