@@ -25,9 +25,10 @@ dpi=${dpi:-96}
 echo "using ${dpi}dpi" >&2
 xrandr --dpi "$dpi"
 cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
+DPI_BIG_ENOUGH=${DPI_BIG_ENOUGH:-120}
 {
     echo Xft.dpi: "$dpi"
-    echo Xft.rgba: "$( [ "$dpi" -gt 144 ] && echo none || echo rgb )"
+    echo Xft.rgba: "$( [ "$dpi" -ge "$DPI_BIG_ENOUGH" ] && echo none || echo rgb )"
     echo 'Nsxiv.background:                 #000000'
     echo 'Nsxiv.font:                       Iosevka:style=Medium:size=17'
     echo 'Nsxiv.foreground:                 #3993AA'
@@ -39,8 +40,8 @@ cfg="$XDG_CONFIG_HOME/xsettingsd/xsettingsd.conf"
 {
     cat "$XDG_CONFIG_HOME/xinit/xsettingsd"
     echo Xft/DPI $((dpi*1024)) # 98304 for 27'' 4k is ok
-    echo Xft/RGBA \""$( [ "$dpi" -ge 120 ] && echo none || echo rgb )"\"
-    echo Gdk/WindowScalingFactor "$( [ "$dpi" -ge 120 ] && command echo -n 2 || command echo -n 1 )"
+    echo Xft/RGBA \""$( [ "$dpi" -ge "$DPI_BIG_ENOUGH" ] && echo none || echo rgb )"\"
+    echo Gdk/WindowScalingFactor "$( [ "$dpi" -ge "$DPI_BIG_ENOUGH" ] && command echo -n 2 || command echo -n 1 )"
     echo Gdk/UnscaledDPI $((96*1024))
 } > "$cfg"
 if [ "$(hostname)" != 'telfir' ]; then
