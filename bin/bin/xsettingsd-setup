@@ -17,7 +17,7 @@ showdpi() {
 dpis=$(xrandr --current \
     | sed -En 's/^([^ ]+)* connected.* ([0-9]+)x.* ([0-9]+)mm x .*/\1 \2 \3/p' \
     | while read -r output pixels mm; do
-    if [ "$mm" -eq 1 ]; then mm=796; fi # samsung g8 oled fix
+    if [ "$mm" -eq 1 ]; then mm=796; fi # Samsung G8 OLED fix
     showdpi "$output" "$pixels" "$mm"
 done | tr '\n' ' ')
 dpi=${dpis%% *}
