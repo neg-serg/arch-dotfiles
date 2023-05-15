@@ -2,8 +2,7 @@
 
 blue="<span weight='bold' color='#395573'>"
 dac_name='SMSL SU9-PRO'
-
-main_menu='title_copy artist_copy album_copy pipewire_output alsa_output game_start game_end'
+main_menu='title_copy artist_copy album_copy path_copy pipewire_output alsa_output game_start game_end'
 
 generate_menu() {
     count=0
@@ -22,6 +21,9 @@ handler() {
             mpc current -f "[%album%]"|xsel -bi
         elif echo "$arg" | rg "artist_copy" > /dev/null; then
             mpc current -f "[%artist%]"|xsel -bi
+        elif echo "$arg" | rg "path_copy" > /dev/null; then
+            mpd_music_dir="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'"${HOME}"':')"
+            echo "$mpd_music_dir/$(mpc -f '%file%' current)" | xsel -bi
         elif echo "$arg" | rg "pipewire_output" > /dev/null; then
             mpc pause
             mpc enable PipeWire
