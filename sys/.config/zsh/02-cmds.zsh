@@ -26,6 +26,10 @@ if _exists ugrep; then
 else
     alias grep='grep --color=auto'
 fi
+_exists pueue && {
+    alias p='pueue'
+    alias pa{d,}='pueue add -- '
+}
 _exists rg && {
     local rg_options=(
         --max-columns=0
@@ -49,7 +53,10 @@ _exists xargs && alias x='xargs'
 alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
 alias emptydir='ls -ld **/*(/^F)'
-_exists paru && {alias yay='paru'; alias rmorphans='paru -Rs $(paru -Qqdt)'}
+_exists paru && {
+    _exists pueue && yay(){ if [[ $# > 1 ]]; then paru "$@"; else pa paru -Syyu --noconfirm; fi } || alias yay='paru'
+    alias rmorphans='paru -Rs $(paru -Qqdt)'
+}
 _exists pacman && {alias fat="LC_ALL=C pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nk 2 | grep MiB"}
 _exists reflector && _exists doas && alias mirrors='doas /usr/bin/reflector --score 100 --fastest 10 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
 _exists doas && {
