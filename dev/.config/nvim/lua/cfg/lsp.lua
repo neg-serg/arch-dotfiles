@@ -43,6 +43,7 @@ end
 
 local mason=require'mason'
 local mason_lspconfig=require'mason-lspconfig'
+local mason_null_ls=require'mason-null-ls'
 mason.setup()
 mason_lspconfig.setup({ensure_installed={
     'bashls',
@@ -58,11 +59,9 @@ mason_lspconfig.setup({ensure_installed={
     'terraformls',
     'yamlls',
 }})
-
-require'mason'.setup()
-require'mason-null-ls'.setup({
+mason_null_ls.setup({
     ensure_installed = {},
-    automatic_installation = false,
+    automatic_installation = true,
     automatic_setup = true
 })
 
