@@ -140,15 +140,6 @@ _exists git && {
     else
         alias commit='git commit'
     fi
-    nb(){ 
-        for r in "$HOME/1st_level"; do git -C "$r" pull; done
-        if [[ $(git -C ~/1st_level status --short -b |wc -l) -ge 2 ]]; then
-            zk -W ~/1st_level index
-            git -C ~/1st_level add . \
-                && git -C ~/1st_level commit -am "update notes $(date '+%d-%m-%Y %H:%M:%S')" \
-                && git -C ~/1st_level push
-        fi 
-    }
 }
 _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
