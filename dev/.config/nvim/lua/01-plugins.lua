@@ -131,9 +131,6 @@ return require'packer'.startup({function(use)
         ft={'org'},
         requires={'nvim-treesitter/nvim-treesitter'}}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
-    use {'edluffy/hologram.nvim', -- preview pictures
-        config=function() require'hologram'.setup{auto_display=true} end,
-        ft='md'}
     use {'renerocksai/telekasten.nvim', -- better md wiki stuff
          event={'BufNewFile','BufRead'},
          config=function() require'cfg.telekasten' end}
