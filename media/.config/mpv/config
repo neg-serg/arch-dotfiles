@@ -1,5 +1,5 @@
 #--[Main]--------------------------------------------------
-input-ipc-server=/tmp/mpvsocket
+input-ipc-server=~/.config/mpv/socket
 # icc-profile-auto
 no-hidpi-window-scale
 target-prim=auto
