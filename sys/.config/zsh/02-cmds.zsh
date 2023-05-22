@@ -101,6 +101,7 @@ _exists mpv && {
     alias mpi="mpv --vo=gpu --interpolation=yes --tscale='oversample' \
         --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
 }
+_exists mpvc && { alias mpvc="mpvc -S ${XDG_CONFIG_HOME}/mpv/socket" }
 _exists mpc && {
     alias love='mpc sendmessage mpdas love'
     alias unlove='mpc sendmessage mpdas unlove'
