@@ -76,6 +76,7 @@ _exists hxd && alias hexdump='hxd'
 _exists ssh && alias ssh='TERM=xterm-256color ssh'
 _exists prettyping && alias ping='prettyping'
 _exists khal && alias cal='khal calendar'
+_exists umimatrix && alias matrix='unimatrix -l Aang -s 95'
 _exists handlr && alias e='handlr open'
 _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY,DEL,REMOVE,SKIP,SYMSAFE,MISC,NAME,PROGRESS,STATS'
 _exists dig && alias dig='dig +noall +answer'
@@ -144,7 +145,8 @@ _exists git && {
 _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
     alias ipinfo='curl -sf "https://ipinfo.io/json"'
-    alias weather="curl 'wttr.in/?T'"
+    alias we="curl 'wttr.in/?T'"
+    alias wem="curl wttr.in/Moscow\?lang=ru"
     sprunge(){ curl -F "sprunge=<-" http://sprunge.us <"$1" ;}
 }
 _exists fzf && {
