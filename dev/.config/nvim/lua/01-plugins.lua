@@ -85,6 +85,12 @@ return require'packer'.startup({function(use)
             'jose-elias-alvarez/null-ls.nvim',
         },
         event={'InsertEnter'}}
+    use {'glepnir/lspsaga.nvim',
+        opt=true, branch='main', event='LspAttach',
+        config=function() require'cfg.lspsaga' end,
+        requires={
+            {'nvim-tree/nvim-web-devicons'},
+            {'nvim-treesitter/nvim-treesitter'} }}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
