@@ -23,32 +23,6 @@ SEPARATOR_SYMBOL, SOFT_SEPARATOR_SYMBOL = ("", "")
 RIGHT_MARGIN = 1
 REFRESH_TIME = 1
 ICON = "  "
-UNPLUGGED_ICONS = {
-    10: "",
-    20: "",
-    30: "",
-    40: "",
-    50: "",
-    60: "",
-    70: "",
-    80: "",
-    90: "",
-    100: "",
-}
-PLUGGED_ICONS = {
-    1: "",
-}
-UNPLUGGED_COLORS = {
-    15: as_rgb(color_as_int(opts.color1)),
-    16: as_rgb(color_as_int(opts.color15)),
-}
-PLUGGED_COLORS = {
-    15: as_rgb(color_as_int(opts.color1)),
-    16: as_rgb(color_as_int(opts.color6)),
-    99: as_rgb(color_as_int(opts.color6)),
-    100: as_rgb(color_as_int(opts.color2)),
-}
-
 
 def _draw_icon(screen: Screen, index: int) -> int:
     if index != 1:
