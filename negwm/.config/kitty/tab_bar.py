@@ -14,8 +14,8 @@ from kitty.tab_bar import (
 )
 
 opts = get_options()
-icon_fg = as_rgb(color_as_int(opts.color16))
-icon_bg = as_rgb(color_as_int(opts.color2))
+icon_fg = as_rgb(color_as_int(opts.color24))
+icon_bg = as_rgb(color_as_int(opts.color0))
 bat_text_color = as_rgb(color_as_int(opts.color15))
 clock_color = as_rgb(color_as_int(opts.color15))
 date_color = as_rgb(color_as_int(opts.color8))
@@ -74,7 +74,6 @@ def _draw_right_status(screen: Screen, is_last: bool) -> int:
     screen.cursor.fg = 0
     screen.cursor.bg = 0
     return screen.cursor.x
-
 
 def _redraw_tab_bar(_):
     tm = get_boss().active_tab_manager
