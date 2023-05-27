@@ -52,7 +52,14 @@ o.path=config_home_ .. '/nvim,' ..
 	config_home_ .. '/nvim/after,' ..
 	home_ .. '/.local/share/nvim/site/' ..
 		',.,..,/usr/include,./include,../include,**'
-o.fillchars={eob=' '}                          -- Disable ~ symbol
+o.fillchars={
+  foldopen="",
+  foldclose="",
+  fold=" ",
+  foldsep=" ",
+  diff="╱",
+  eob=" ", -- Disable ~ symbol
+}
 o.formatprg='par -140'                       -- Better format
 o.report=0                                   -- No report on substitution
 o.fileformats='unix,dos,mac'                 -- File format fallback
