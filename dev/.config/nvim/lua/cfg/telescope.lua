@@ -6,6 +6,7 @@ if (not status) then return end
 local sorters = require'telescope.sorters'
 local previewers = require'telescope.previewers'
 local builtin = require'telescope.builtin'
+local actions = require'telescope.actions'
 telescope.setup{
     defaults={
         vimgrep_arguments={
@@ -64,9 +65,9 @@ telescope.setup{
             mappings={
                 ["<Enter>"]={action=function(selection) builtin.find_files{cwd=selection.path} end},
                 ["<Tab>"]={action=function(selection) builtin.find_files{cwd=selection.path} end},
-                ["<C-j>"] = actions.cycle_history_next,
-				["<C-k>"] = actions.cycle_history_prev,
-				["<Esc>"] = actions.close,
+                ["<C-j>"]=actions.cycle_history_next,
+				["<C-k>"]=actions.cycle_history_prev,
+				["<Esc>"]=actions.close,
                 ["<C-Enter>"]={
                     action=function(_) end
                 },
@@ -85,9 +86,9 @@ telescope.setup{
                     -- installing as a dependency of telescope in it's `requirements` and loading this
                     -- extension from there instead of having the separate plugin definition as outlined
                     -- above.
-                    ["<cr>"] = require("telescope-undo.actions").yank_additions,
-                    ["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
-                    ["<C-cr>"] = require("telescope-undo.actions").restore,
+                    ["<CR>"] = require("telescope-undo.actions").yank_additions,
+                    ["<S-CR>"] = require("telescope-undo.actions").yank_deletions,
+                    ["<C-CR>"] = require("telescope-undo.actions").restore,
                 },
             },
         },
