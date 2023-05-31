@@ -16,6 +16,34 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
+local kind_icons = {
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "",
+	Variable = "",
+	Class = "",
+	Interface = "",
+	Module = "",
+	Property = "",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+}
+
 cmp.setup({
     mapping = {
         ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i','c'}),
@@ -42,7 +70,6 @@ cmp.setup({
     },
     view = {entries = 'native'},
     window = {
-        completion = {border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}, scrollbar = "║"},
         documentation = {
             winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
             border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
@@ -63,6 +90,10 @@ cmp.setup({
         {name = 'luasnip'},
         {name = 'path'},
     }),
+    -- confirm_opts = {
+    --     behavior = cmp.ConfirmBehavior.Replace,
+    --     select = false,
+    -- },
     sorting = {
         comparators = {
             cmp.config.compare.offset,
@@ -75,5 +106,13 @@ cmp.setup({
             cmp.config.compare.order,
         },
     },
-    formatting = {},
+    -- experimental = {
+    --     ghost_text = true,
+    -- },
+    formatting = {
+		format = function(_, vim_item)
+			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+			return vim_item
+		end,
+	},
 })
