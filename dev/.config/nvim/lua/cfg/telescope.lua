@@ -64,6 +64,9 @@ telescope.setup{
             mappings={
                 ["<Enter>"]={action=function(selection) builtin.find_files{cwd=selection.path} end},
                 ["<Tab>"]={action=function(selection) builtin.find_files{cwd=selection.path} end},
+                ["<C-j>"] = actions.cycle_history_next,
+				["<C-k>"] = actions.cycle_history_prev,
+				["<Esc>"] = actions.close,
                 ["<C-Enter>"]={
                     action=function(_) end
                 },
