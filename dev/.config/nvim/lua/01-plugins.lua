@@ -52,11 +52,6 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.asterisk' end}
     use {'windwp/windline.nvim', -- most modern statusline
         config=function() require'cfg.windline' end}
-    use({'folke/noice.nvim',
-        event='VimEnter',
-        config=function() require'cfg.noice' end,
-        requires={'MunifTanjim/nui.nvim'}
-    })
     use{'stevearc/dressing.nvim', -- better select ui
         config=function() require'cfg.dressing' end}
     use{'stevearc/oil.nvim', config=function() require('oil').setup() end}
@@ -68,8 +63,8 @@ return require'packer'.startup({function(use)
         requires={
             {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
             {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
-            {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
             {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}, -- cmp neovim lua api support
+            {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
             {'hrsh7th/cmp-path', after='nvim-cmp'}, -- cmp path completion support
     }}
     use {'L3MON4D3/LuaSnip', -- snippets engine
