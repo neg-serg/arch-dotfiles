@@ -139,5 +139,5 @@ o.completeopt='menu,menuone,noselect'        -- Completion options
 o.formatoptions='n1jcroqlj'                  -- Format settings
 o.cpoptions='_$ABFWcdesa'                    -- Vim-exclusive stuff
 o.ruler=false                                -- No ruler
-o.cmdheight=1                                -- Fancy cmdheight for neovim-nightly(disable for now)
+o.cmdheight=0                                -- Fancy cmdheight for neovim
 o.laststatus=3                               -- One statusline for all
