@@ -1,0 +1,11 @@
+.cache
+.elixir_ls
+.git
+.hg
+.licenses
+.sass-cache
+.svn
+.yarn
+.node_modules
+tags
+tmp
