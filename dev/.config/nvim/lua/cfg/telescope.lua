@@ -143,7 +143,7 @@ map('n', "<leader>.", "<Cmd>lua require'telescope'.load_extension'frecency'; req
 map('n', '<C-f>', "<Cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({layout_config={height=14},border=false}))<CR>", opts)
 map('n', '<M-C-o>', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>', opts)
 map('n', '<M-o>', '<Cmd>lua require"telescope.builtin".lsp_document_symbols()<CR>', opts)
-map('n', '<S-b>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
+map('n', '<M-l>', '<Cmd>lua require"telescope.builtin".buffers()<CR>', opts)
 map('n', '[Qleader]c', "<Cmd>lua require'telescope.builtin'.git_commits{}<CR>", opts)
 map('n', '[Qleader]d', "<Cmd>ProjectRoot<CR><Cmd>lua require'telescope.builtin'.find_files{}<CR>", opts)
 map('n', '[Qleader]e', "<Cmd>lua require'telescope.builtin'.find_files{}<CR>", opts)
