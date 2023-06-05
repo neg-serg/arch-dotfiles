@@ -31,6 +31,7 @@ zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k 
 zinit load romkatv/zsh-defer
 zinit load QuarticCat/zsh-smartcache
 zinit load olets/zsh-abbr
+zinit load hlissner/zsh-autopair
 zinit ice wait'!0'
 zinit wait lucid for \
     silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
