@@ -5,5 +5,10 @@
 --follow
 --hidden
 
---glob
-!.git/
+--glob=!.git/
+--glob=!node_modules/
+--glob=!yarn.lock
+--glob=!package-lock.json
+--glob=!.yarn/
+--glob=!_build/
+--glob=!tags
