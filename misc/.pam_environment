@@ -1,0 +1,69 @@
+AURDEST  DEFAULT=${HOME}/src/1st_level/pacaur
+BROWSER  DEFAULT=firefox
+CARGO_HOME  DEFAULT=${XDG_DATA_HOME}/cargo
+CCACHE_CONFIGPATH  DEFAULT=${XDG_CONFIG_HOME}/ccache.config
+CCACHE_DIR  DEFAULT=${XDG_CACHE_HOME}/ccache
+CUDA_CACHE_PATH  DEFAULT=${XDG_CACHE_HOME}/nv
+DISPLAY  DEFAULT=${REMOTEHOST}:0 OVERRIDE=${DISPLAY}
+GHCUP_USE_XDG_DIRS  DEFAULT=true
+GNUPGHOME  DEFAULT=${XDG_DATA_HOME}/gnupg
+GNUPGHOME  DEFAULT=${XDG_DATA_HOME}/gnupg
+GOPATH  DEFAULT=/opt/go
+GREP_COLOR  DEFAULT='37;45'
+GREP_COLORS  DEFAULT='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
+HTTPIE_CONFIG_DIR  DEFAULT=${XDG_CONFIG_HOME}/httpie
+INPUTRC  DEFAULT=$XDG_CONFIG_HOME/inputrc
+LIBSEAT_BACKEND  DEFAULT=logind
+LS_COLORS GREP_COLORS
+MANWIDTH  DEFAULT=$MANWIDTH:-80
+MPV_HOME  DEFAULT=${XDG_CONFIG_HOME}/mpv
+NBRC_PATH  DEFAULT=${XDG_CONFIG_HOME}/nbrc
+NB_DIR  DEFAULT=${XDG_DATA_HOME}/nb
+NMBGIT  DEFAULT=${XDG_DATA_HOME}/notmuch/nmbug
+NOTMUCH_CONFIG  DEFAULT=${XDG_CONFIG_HOME}/notmuch/notmuchrc
+PARALLEL_HOME  DEFAULT=${XDG_CONFIG_HOME}/parallel
+PASSWORD_STORE_DIR  DEFAULT=${XDG_DATA_HOME}/pass
+PASSWORD_STORE_ENABLE_EXTENSIONS DEFAULT=true
+PATH  DEFAULT=/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
+PYLINTHOME  DEFAULT=${XDG_CONFIG_HOME}/pylint
+QT_QPA_PLATFORMTHEME  DEFAULT=qt5ct
+RUSTC_WRAPPER  DEFAULT=sccache
+RUSTUP_HOME  DEFAULT=${XDG_DATA_HOME}/rustup
+SSH_AUTH_SOCK  DEFAULT=${XDG_RUNTIME_DIR}/keyring/ssh
+TERMINFO  DEFAULT=${XDG_DATA_HOME}/terminfo
+TERMINFO_DIRS  DEFAULT=${XDG_DATA_HOME}/terminfo:/usr/share/terminfo
+VAGRANT_HOME  DEFAULT=${XDG_DATA_HOME}/vagrant
+WINEPREFIX  DEFAULT=${XDG_DATA_HOME}/wineprefixes/default
+WORDCHARS  DEFAULT='*?_-.[]~&;!#$%^(){}<>~` '
+XAUTHORITY  DEFAULT=${XDG_RUNTIME_DIR}/Xauthority
+XDG_CACHE_HOME  DEFAULT=${HOME}/.cache
+XDG_CONFIG_HOME  DEFAULT=${HOME}/.config
+XDG_DATA_HOME  DEFAULT=${HOME}/.local/share
+XDG_DESKTOP_DIR  DEFAULT=${HOME}/.local/desktop
+XDG_DOCUMENTS_DIR  DEFAULT=${HOME}/doc/
+XDG_DOWNLOAD_DIR  DEFAULT=${HOME}/dw
+XDG_MUSIC_DIR  DEFAULT=${HOME}/music
+XDG_PICTURES_DIR  DEFAULT=${HOME}/pic
+XDG_PUBLICSHARE_DIR  DEFAULT=${HOME}/1st_level/upload/share
+XDG_STATE_HOME  DEFAULT=${HOME}/.local/state
+XDG_TEMPLATES_DIR  DEFAULT=${HOME}/1st_level/templates
+XDG_VIDEOS_DIR  DEFAULT=${HOME}/vid
+XINITRC  DEFAULT=${XDG_CONFIG_HOME}/xinit/xinitrc
+XSERVERRC  DEFAULT=${XDG_CONFIG_HOME}/xinit/xserverrc
+ZDOTDIR  DEFAULT=${XDG_CONFIG_HOME}/zsh
+_JAVA_OPTIONS  DEFAULT=-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java
+
+FZF_CTRL_R_OPTS  DEFAULT="--sort --exact --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+FZF_CTRL_T_OPTS  DEFAULT="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+FZF_DEFAULT_OPTS  DEFAULT="\
+--color=bg+:#184454,bg:#000000,spinner:#395573,hl:#4779B3\
+--color=fg:#617287,header:#4779B3,info:#2b768d,pointer:#395573\
+--color=marker:#395573,fg+:#e5ebf1,prompt:#2b768d,hl+:#4779B3\
+--info=inline\
+--multi\
+--prompt='∼ ' --pointer='▶' --marker='✓'\
+--bind 'ctrl-space:select-all'\
+--bind 'ctrl-y:execute-silent(echo {+} | xclip -i)'\
+--bind 'ctrl-t:execute(echo {+} | xargs -o ~/bin/v)+abort'\
+--bind 'ctrl-j:execute(echo {+} | xargs -o ~/bin/v)+abort'\
+--bind 'ctrl-v:execute(echo {+} | xargs -o nvim)'"
