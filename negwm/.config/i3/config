@@ -77,27 +77,6 @@ for_window $circle-vid move to workspace $gfx,focus
 for_window $circle-vm move to workspace $vm,focus
 for_window $circle-web move to workspace $web,focus
 
-set $scratchpad-discord [class="discord"]
-set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
-set $scratchpad-nb [class="nb"]
-set $scratchpad-ncmpcpp [class="ncmpcpp"]
-set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
-set $scratchpad-teardrop [instance="teardrop"]
-set $scratchpad-torrment [instance="torrment"]
-set $scratchpad-transients [instance="Places" window_role="^(GtkFileChooserDialog|gimp-file-open)$"]
-set $scratchpad-webcam [instance="webcam"]
-set $scratchpad-youtube [instance="youtube"]
-for_window $scratchpad-discord floating enable, move absolute position 1734 550, resize set 1700 848
-for_window $scratchpad-im floating enable, move absolute position 2271 1, resize set 1168 1406
-for_window $scratchpad-nb floating enable, move absolute position 21 186, resize set 3399 1206
-for_window $scratchpad-ncmpcpp floating enable, move absolute position 674 803, resize set 2016 552
-for_window $scratchpad-neomutt floating enable, move absolute position 93 0, resize set 3287 1485
-for_window $scratchpad-teardrop floating enable, move absolute position 0 0, resize set 3440 866
-for_window $scratchpad-torrment floating enable, move absolute position 0 0, resize set 3440 866
-for_window $scratchpad-transients floating enable, move absolute position 620 873, resize set 1623 531
-for_window $scratchpad-webcam floating enable, move absolute position 1225 178, resize set 2206 1253
-for_window $scratchpad-youtube floating enable, move absolute position 117 0, resize set 3182 1234
-
 # :>> Config section workspaces
 set $term "︁ 𐌰:term"
 set $web " 𐌱:web"
