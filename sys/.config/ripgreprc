@@ -12,3 +12,4 @@
 --glob=!.yarn/
 --glob=!_build/
 --glob=!tags
+--glob=!.pub-cache
