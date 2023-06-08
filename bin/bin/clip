@@ -67,7 +67,8 @@ clip_main() {
             gpaste-client select "$uuid"
         fi
     else
-        CM_HISTLENGTH=16 clipmenu -i --font 'Iosevka' --nb '#000000'
+        CM_HISTLENGTH=16 clipmenu -i --font 'Iosevka' --nb '#000000' || \
+            rofi -show clipboard -modi 'clipboard:greenclip print'
     fi
 }
 
@@ -94,8 +95,8 @@ youtube_url() {
 
 case "$1" in
     pipe) shift; clipboard_pipe "$@" ;;
-    youtube-view) shift; ~/bin/yr clip ;;
-    youtube-dw) shift; cd "$XDG_VIDEOS_DIR/new" && yt "$(xclip -o)" ;;
     youtube-dw-list) shift; cd "$XDG_VIDEOS_DIR/new" && yt "$(youtube_url)" ;;
+    youtube-dw) shift; cd "$XDG_VIDEOS_DIR/new" && yt "$(xclip -o)" ;;
+    youtube-view) shift; ~/bin/yr clip ;;
     *) clip_main ;;
 esac
