@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 all_tabs="$(
     kitten @ ls | jq -r '
@@ -10,6 +10,5 @@ all_tabs="$(
         | @tsv
     ' | column -ts $'\t'
 )"
-
 new_tab_id="$(fzf --reverse <<< "${all_tabs}" | awk '{ print $2 }')"
 kitty @ focus-tab -m "${new_tab_id}"
