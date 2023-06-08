@@ -73,9 +73,11 @@
     algorithm = patience
     colorMoved = default
 [alias]
+    ap = add --patch # thx to https://nuclearsquid.com/writings/git-add/
+    hub = !hub
     patch = !git --no-pager diff --no-color
-	hub = !hub
-	undo = "reset --soft HEAD^"
+    subpull = submodule foreach git pull
+    undo = "reset --soft HEAD^"
 [interactive]
     diffFilter = delta --color-only
 [filter "lfs"]
@@ -89,6 +91,7 @@
     rebase = true
 [rebase]
     autoStash = true
+    autosquash = true
 [url "git@github.com:"]
     pushInsteadOf = "https://github.com/"
     pushInsteadOf = "git://github.com/"
@@ -98,12 +101,14 @@
 [difftool "nwim"]
     cmd = ~/bin/v -d $LOCAL $REMOTE
 [merge]
-    tool = nvim
+    tool = nvimdiff
 [mergetool]
     prompt = true
 [mergetool "nwim"]
     cmd = ~/bin/v -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
-[mergetool "nvim"]
-    cmd = /usr/bin/nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[mergetool "nvimdiff"]
+    keepBackup = true
+    cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+    trustExitCode = true
 [credential]
     helper = cache --timeout=28800
