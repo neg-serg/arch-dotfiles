@@ -50,6 +50,7 @@ _exists rg && {
     alias -g zrg="rg $rg_options -z"
 }
 _exists xargs && alias x='xargs'
+_exists erd && alias tree='erd'
 _exists bat && alias cat='bat --paging=never'
 alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
