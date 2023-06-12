@@ -150,7 +150,7 @@ _exists git && {
 }
 _exists curl && {
     alias cht='f(){ curl -s "cheat.sh/$(echo -n "$*"|jq -sRr @uri)";};f'
-    alias ipinfo='curl -sf "https://ipinfo.io/json"'
+    alias moon='curl wttr.in/Moon'
     alias we="curl 'wttr.in/?T'"
     alias wem="curl wttr.in/Moscow\?lang=ru"
     sprunge(){ curl -F "sprunge=<-" http://sprunge.us <"$1" ;}
