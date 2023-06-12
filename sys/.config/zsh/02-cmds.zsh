@@ -140,6 +140,7 @@ _exists git && {
     alias push='git push'
     alias stash="git stash"
     alias status="git status"
+    alias uncommit="git reset --soft 'HEAD^'"
     if _exists gum; then
         autoload -Uz commit
     else
