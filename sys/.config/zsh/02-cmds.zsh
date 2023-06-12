@@ -1,8 +1,8 @@
 _exists() { (( $+commands[$1] )) }
 [[ -x ~/bin/acol ]] && { for t in du env lsblk lspci nmap mount; alias $t="acol $t" }
 alias qe='cd ^.git*(/om[1]D)'
-alias ls='ls --time-style=+"%d.%m.%Y %H:%M" --color=auto --hyperlink=auto'
-alias l='ls'
+alias ls="${aliases[ls]:-ls} --time-style=+\"%d.%m.%Y %H:%M\" --color=auto --hyperlink=auto"
+alias l="${aliases[ls]:-ls}"
 alias ll='ls -lah'
 alias mv='mv -i'
 alias mk='mkdir -p'
@@ -59,7 +59,6 @@ _exists paru && {
     alias rmorphans='paru -Rs $(paru -Qqdt)'
 }
 _exists pacman && {alias fat="LC_ALL=C pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nk 2 | grep MiB"}
-_exists reflector && _exists doas && alias mirrors='doas /usr/bin/reflector --score 100 --fastest 10 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
 _exists doas && {
     alias {doas,s}='doas '
     local doas_list=(chmod chown modprobe umount)
@@ -69,12 +68,13 @@ _exists doas && {
     for c in ${doas_list[@]}; {_exists "$c" && alias "$c=doas $c"}
     for i in ${logind_doas_list[@]}; alias "${i}=doas ${sysctl_pref} ${i}"
     unset doas_list noglob_list rlwrap_list nocorrect_list logind_doas_list
+    _exists reflector && alias mirrors='doas /usr/bin/reflector --score 100 --fastest 10 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
 }
 _exists nvidia-settings && alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings"
 _exists plocate && alias locate='plocate'
 _exists dd && alias dd='dd status=progress'
 _exists hxd && alias hexdump='hxd'
-_exists ssh && alias ssh='TERM=xterm-256color ssh'
+_exists ssh && alias ssh="TERM=xterm-256color ${aliases[ssh]:-ssh}"
 _exists prettyping && alias ping='prettyping'
 _exists khal && alias cal='khal calendar'
 _exists umimatrix && alias matrix='unimatrix -l Aang -s 95'
@@ -90,7 +90,7 @@ _exists ip && alias ip='ip -c'
 _exists fd && {alias fd='fd -H --ignore-vcs' && alias fda='fd -Hu'}
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
-_exists nvim && { alias nvim='v'; }
+_exists nvim && alias nvim='v'
 _exists iostat && alias iostat='iostat -mtx'
 _exists patool && { alias se='patool extract'; alias pk='patool create'; }
 _exists xz && alias xz='xz --threads=0'
@@ -98,8 +98,9 @@ _exists pigz && alias gzip='pigz'
 _exists pbzip2 && alias bzip2='pbzip2'
 _exists zstd && alias zstd='zstd --threads=0'
 _exists mpv && {
-    alias mpa="mpv --vo=gpu -mute "$@" > ${HOME}/tmp/mpv.log"
-    alias mpi="mpv --vo=gpu --interpolation=yes --tscale='oversample' \
+    alias mpv="mpv --vo=gpu"
+    alias mpa="${aliases[mpv]:-mpv} -mute "$@" > ${HOME}/tmp/mpv.log"
+    alias mpi="${aliases[mpv]:-mpv} --interpolation=yes --tscale='oversample' \
         --video-sync='display-resample' "$@" > ${HOME}/tmp/mpv.log"
 }
 _exists mpvc && { alias mpvc="mpvc -S ${XDG_CONFIG_HOME}/mpv/socket" }
