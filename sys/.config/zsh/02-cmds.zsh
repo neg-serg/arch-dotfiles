@@ -141,6 +141,7 @@ _exists git && {
     alias stash="git stash"
     alias status="git status"
     alias uncommit="git reset --soft 'HEAD^'"
+    alias resolve="git mergetool --tool=nwim"
     if _exists gum; then
         autoload -Uz commit
     else
