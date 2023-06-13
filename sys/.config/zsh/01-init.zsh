@@ -64,14 +64,15 @@ _exists nvim && {
     typeset -gx VISUAL="${EDITOR}"
     typeset -gx MANPAGER="nvim +Man!"
 }
+unfunction _exists
+
 typeset -gx TIMEFMT="[37m[34m⟬[37m[37m%J[34m⟭[39m[34m⟬[37m%U[34m⟭[39m[34m⟬[37muser %S[34m⟭[39m[34m⟬[37msystem %P[34m⟭[39m[34m⟬[37mcpu %*E total[34m⟭[39m[34m[39m[34m⟬[37mMem: %M kb max[34m⟭[39m"
 typeset -gx WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 typeset -gx LS_COLORS
 typeset -gx HISTFILE=${ZDOTDIR}/zsh_history
 typeset -gx SAVEHIST=10000000
-typeset -gx HISTSIZE=$(( $SAVEHIST * 1.10 ))
-typeset -gx HISTORY_IGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
-unfunction _exists
+typeset -gx HISTSIZE=$((SAVEHIST * 1.10))
+typeset -gx HISTORY_IGNORE="&:l:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 
 _zpcompinit_custom() {
     setopt extendedglob local_options
