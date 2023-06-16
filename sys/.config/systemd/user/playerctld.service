@@ -1,6 +1,7 @@
 [Unit]
 Description=Keep track of media player activity
 After=network.target sound.target
+BindsTo=mpd.service
 
 [Service]
 Type=forking
