@@ -54,7 +54,8 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.windline' end}
     use{'stevearc/dressing.nvim', -- better select ui
         config=function() require'cfg.dressing' end}
-    use{'stevearc/oil.nvim', config=function() require('oil').setup() end}
+    use{'stevearc/oil.nvim',  -- nice netrw replacement
+        config=function() require('oil').setup() end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
