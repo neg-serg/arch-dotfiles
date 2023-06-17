@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+/usr/bin/rofi \
+        -modi drun \
+        -show drun \
+        -show-icons \
+        -drun-match-fields name \
+        -display-drun \'~>\' \
+        -theme run \
+        || rofi -show run \
+        || dmenu_run
