@@ -6,6 +6,7 @@ target-prim=auto
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
 x11-bypass-compositor=yes
+video-sync=display-resample
 #--[Decoding]----------------------------------------------
 cache=auto
 correct-downscaling
@@ -44,6 +45,8 @@ sub-gauss=.82
 sub-gray=yes
 sub-scale=.4
 #--[OSD]---------------------------------------------------
+osc=no
+osd-bar=no
 cursor-autohide=500
 osd-bar-align-y=0
 osd-bar-align-y=0.95
@@ -51,7 +54,7 @@ osd-bar-h=3
 osd-border-color='#cc000000'
 osd-border-size=1
 osd-color='#bb6d839e'
-osd-font-size=18
+osd-font-size=24
 osd-font="Iosevka"
 osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
 #--[Youtube-DL]--------------------------------------------
