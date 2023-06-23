@@ -34,15 +34,20 @@ def on_track_change(player, data):
         if player:
             import os
             track_notify=os.path.expanduser('~/bin/track-notify')
-            if len(md5sums) == 1:
+            if not md5sums:
+                log.error('No md5sums')
+                sys.exit()
+            elif len(md5sums) == 1:
                 subprocess.Popen([track_notify, cover])
             elif md5sums[-1] != md5sums[-2]:
                 subprocess.Popen([track_notify, cover])
             del md5sums[:-2]
         else:
             log.error('There is no player')
+            sys.exit()
     else:
         log.error('No cover')
+        sys.exit()
 
 log=logging.getLogger()
 log.addHandler(journal.JournalHandler())
