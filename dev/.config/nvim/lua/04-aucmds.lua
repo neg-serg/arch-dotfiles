@@ -2,6 +2,7 @@ local au = vim.api.nvim_create_autocmd
 local gr = vim.api.nvim_create_augroup
 
 local main = gr("main", {clear=true})
+local shada = gr("shada", {clear=true})
 local mode_change = gr("mode_change", {clear=true})
 local custom_updates = gr("custom_updates", {clear=true})
 local hi_yank = gr("hi_yank", {clear=true})
@@ -53,4 +54,7 @@ au({'TextYankPost'}, {
     group=hi_yank})
 au({'DirChanged'}, {pattern={'window','tab','tabpage','global'}, callback=function()
     vim.cmd("silent !zoxide add " .. vim.fn.getcwd())
-end,group=main})
+    end,group=main})
+if true == false then
+    au({'CursorHold','TextYankPost','FocusGained','FocusLost'}, {pattern={'*'}, command='if exists(":rshada") | rshada | wshada | endif', group=shada})
+end
