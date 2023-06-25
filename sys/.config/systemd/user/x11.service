@@ -9,7 +9,7 @@ Before=x11.target
 Environment=XDG_SESSION_TYPE=x11
 Environment="XSERVERRC=%E/xinit/xserverrc"
 ExecStartPre=/usr/bin/dbus-update-activation-environment --all
-ExecStart=/usr/bin/xinit /usr/bin/i3 -- :0 -nolisten tcp vt1
+ExecStart=/usr/bin/xinit /usr/bin/dbus-run-session /usr/bin/i3 -- :0 -nolisten tcp vt1
 SuccessExitStatus=0 1
 
 [Install]
