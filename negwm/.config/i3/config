@@ -79,7 +79,6 @@ for_window $circle-web move to workspace $web,focus
 
 set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
-set $scratchpad-nb [class="nb"]
 set $scratchpad-ncmpcpp [class="ncmpcpp"]
 set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
 set $scratchpad-teardrop [instance="teardrop"]
@@ -89,7 +88,6 @@ set $scratchpad-webcam [instance="webcam"]
 set $scratchpad-youtube [instance="youtube"]
 for_window $scratchpad-discord floating enable, move absolute position 1734 550, resize set 1700 848
 for_window $scratchpad-im floating enable, move absolute position 2271 1, resize set 1168 1406
-for_window $scratchpad-nb floating enable, move absolute position 21 186, resize set 3399 1206
 for_window $scratchpad-ncmpcpp floating enable, move absolute position 674 803, resize set 2016 552
 for_window $scratchpad-neomutt floating enable, move absolute position 93 0, resize set 3287 1485
 for_window $scratchpad-teardrop floating enable, move absolute position 0 0, resize set 3440 866
@@ -118,17 +116,16 @@ bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec /usr/bin/flameshot gui
 
-bindsym Mod1+grave exec --no-startup-id /usr/bin/rofi -modi drun -show drun -show-icons -drun-match-fields name -display-drun '~>' -theme run || rofi -show run || dmenu_run
+bindsym Mod1+grave exec --no-startup-id ~/bin/rofi-run
 bindsym Mod4+8 exec --no-startup-id ~/bin/pl vol mute
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+m exec --no-startup-id /bin/zsh -c "~/bin/music-rename current"
-bindsym Mod4+Shift+p exec --no-startup-id ~/bin/rofi-tmux-urls
 bindsym Mod4+Shift+8 exec --no-startup-id ~/bin/pl vol unmute
 bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
-bindsym Mod4+Shift+x exec --no-startup-id /bin/zsh -c "~/bin/game start && ~/bin/game end"
-bindsym Mod4+p exec --no-startup-id /bin/zsh -c /usr/bin/rofi-pass
+bindsym Mod4+Shift+x exec --no-startup-id sh -c "~/bin/game start && ~/bin/game end"
+bindsym Mod4+p exec --no-startup-id /usr/bin/rofi-pass
 bindsym Mod4+space exec --no-startup-id /usr/bin/dunstctl close-all
 bindsym Mod4+Return exec --no-startup-id /usr/bin/i3-sensible-terminal
 bindsym XF86Sleep exec --no-startup-id /usr/bin/systemctl suspend
@@ -199,7 +196,6 @@ bindsym Mod4+Control+v $circle next vm
 bindsym Mod4+w $circle next web
 bindsym Mod4+v $scratchpad toggle discord
 bindsym Mod4+e $scratchpad toggle im
-bindsym Mod4+i $scratchpad toggle nb
 bindsym Mod4+f $scratchpad toggle ncmpcpp
 bindsym Mod4+n $scratchpad toggle neomutt
 bindsym Mod4+d $scratchpad toggle teardrop
@@ -239,8 +235,8 @@ mode %{T4}%{T-} {
 	bindsym e [urgent=latest] focus, mode "default"
 	bindsym l exec ~/bin/x11lock, mode "default"
 	bindsym Shift+d floating toggle, mode "default"
-	bindsym i $menu/pulse input, mode "default"
-	bindsym o $menu/pulse output, mode "default"
+	bindsym i $menu/audio input, mode "default"
+	bindsym o $menu/audio output, mode "default"
 	bindsym m $menu/xprop, mode "default"
 	bindsym Shift+t $menu/xsettings gtk, mode "default"
 	bindsym Shift+i $menu/xsettings icon, mode "default"
