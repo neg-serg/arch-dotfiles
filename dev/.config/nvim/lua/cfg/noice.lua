@@ -2,12 +2,19 @@ local status, noice = pcall(require, 'noice')
 if (not status) then return end
 
 noice.setup({
-    cmdline={view='cmdline'},
+    cmdline={
+        view="cmdline",
+        format={
+            IncRename={ title=" Rename " },
+            substitute={ pattern="^:%%?s/", icon=" ", ft="regex", title="" },
+            input={ icon=" ", lang="text", view="cmdline_popup", title="" },
+        },
+    },
     presets={
         bottom_search=true, -- use a classic bottom cmdline for search
-        command_palette=nil, -- position the cmdline and popupmenu together
+        command_palette=false, -- position the cmdline and popupmenu together
         long_message_to_split=true, -- long messages will be sent to a split
-        lsp_doc_border=false, -- add a border to hover docs and signature help
+        lsp_doc_border=true, -- add a border to hover docs and signature help
         inc_rename=true, -- enables an input dialog for inc-rename.nvim
     },
     smart_move = {
@@ -17,7 +24,7 @@ noice.setup({
         excluded_filetypes = { "cmp_menu", "cmp_docs", "notify" },
     },
     routes={
-        {filter={event='cmdline', find='^%s*[/?]',}, view='cmdline',},
+        -- {filter={event='cmdline', find='^%s*[/?]',}, view='cmdline',},
         {filter={event='msg_show', kind='search_count',}, opts={skip=true},},
         {filter={event='msg_show', find='E486',},opts={skip=true},},
         {filter={event='msg_show', find='^/.*$',},opts={skip=true},},
@@ -27,6 +34,27 @@ noice.setup({
         {filter={event='msg_show', kind='', find='Nothing to repeat',}, opts={skip=true},},
         {filter={event='msg_show', kind='', find='more line',}, opts={skip=true},},
         {filter={event='msg_show', kind='', find='line yanked',}, opts={skip=true},},
+    },
+    views={
+        vsplit={ size={ width="auto" } },
+        split={ win_options={ winhighlight={ Normal="Normal" } } },
+        popup={
+            border={ style=border, padding={ 0, 1 } },
+        },
+        cmdline_popup={
+            position={ row=5, col="50%" },
+            size={ width="auto", height="auto" },
+            border={ style=border, padding={ 0, 1 } },
+        },
+        confirm={
+            border={ style=border, padding={ 0, 1 }, text={ top="" } },
+        },
+        popupmenu={
+            relative="editor",
+            size={ width=60, height=8 },
+            border={ style=border, padding={ 0, 1 } },
+            win_options={ winhighlight={ Normal="NotifyFloat", FloatBorder="FloatBorder" } },
+        },
     },
     lsp={
         progress={
@@ -43,8 +71,6 @@ noice.setup({
         },
         hover={
             enabled=true,
-            view=nil, -- when nil, use defaults from documentation
-            opts={}, -- merged with defaults from documentation
         },
         signature={
             enabled=true,
@@ -54,30 +80,23 @@ noice.setup({
                 luasnip=true, -- Will open signature help when jumping to Luasnip insert nodes
                 throttle=50, -- Debounce lsp signature help request by 50ms
             },
-            view=nil, -- when nil, use defaults from documentation
-            opts={}, -- merged with defaults from documentation
         },
-        message={
+        documentation={
+          opts={
+            border={ style=border },
+            position={ row=2 },
+          },
+        },
+        messages={
             -- Messages shown by lsp servers
             enabled=true,
             view="notify",
             opts={},
         },
         popupmenu={
-            enabled=false, -- enables the Noice popupmenu UI
-            backend='cmp', -- backend to use to show regular cmdline completions
+            enabled=true, -- enables the Noice popupmenu UI
+            backend='nui', -- backend to use to show regular cmdline completions
             kind_icons={}, -- set to `false` to disable icons
-        },
-        -- defaults for hover and signature help
-        documentation={
-            view='hover',
-            opts={
-                lang='markdown',
-                replace=true,
-                render='plain',
-                format={'{message}'},
-                win_options={concealcursor='n', conceallevel=3},
-            },
         },
     },
 })
