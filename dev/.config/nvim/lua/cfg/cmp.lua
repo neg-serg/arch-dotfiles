@@ -69,13 +69,7 @@ cmp.setup({
         end, {'i','s',}),
     },
     view = {entries = 'native'},
-    -- window = {
-    --     documentation = {
-    --         winhighlight = 'FloatBorder:FloatBorder,Normal:Normal',
-    --         border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"},
-    --         scrollbar = "║"
-    --     }},
-    experimental = { ghost_text = true, },
+    window = {documentation = cmp.config.disable,},
     snippet = {expand = function(args) require'luasnip'.lsp_expand(args.body) end},
     cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
@@ -90,10 +84,10 @@ cmp.setup({
         {name = 'luasnip'},
         {name = 'path'},
     }),
-    -- confirm_opts = {
-    --     behavior = cmp.ConfirmBehavior.Replace,
-    --     select = false,
-    -- },
+    confirm_opts = {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+    },
     sorting = {
         comparators = {
             cmp.config.compare.offset,
