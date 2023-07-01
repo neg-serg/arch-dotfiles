@@ -101,3 +101,7 @@ transmission-daemon. It's the most beautiful transmission-client as I know.
 ## Games
 
 **dos** -- configs for dos emulators.
+
+## Support
+
+If you like my stuff, you can [buy me a coffee](https://www.buymeacoffee.com/negserg).
