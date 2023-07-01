@@ -1,40 +1,35 @@
-// enable url reading in safari sk extension:
-// document.getElementById("localPathForSettings").style.display = ""
-
 const actions = {};
 const util = {};
 const {
-  aceVimMap,
-  mapkey,
-  unmap,
-  vunmap,
-  iunmap,
-  imap,
-  imapkey,
-  getClickableElements,
-  vmapkey,
-  vmap,
-  map,
-  cmap,
-  addSearchAlias,
-  removeSearchAlias,
-  tabOpenLink,
-  readText,
-  Clipboard,
-  Front,
-  Hints,
-  Visual,
-  Normal,
-  RUNTIME,
+    aceVimMap,
+    mapkey,
+    unmap,
+    vunmap,
+    iunmap,
+    imap,
+    imapkey,
+    getClickableElements,
+    vmapkey,
+    vmap,
+    map,
+    cmap,
+    addSearchAlias,
+    removeSearchAlias,
+    tabOpenLink,
+    readText,
+    Clipboard,
+    Front,
+    Hints,
+    Visual,
+    Normal,
+    RUNTIME,
 } = api;
 
 function dbg(s) {
-  console.log("[megakeys]: " + s);
+    console.log("[megakeys]: " + s);
 }
 
-// -----------------------------------------------------------------------------------------------------------------------
 // -- [ SETTINGS ]
-// -----------------------------------------------------------------------------------------------------------------------
 settings.defaultSearchEngine = "g"; // (b)rave, (n)eeva, etc
 settings.focusAfterClosed = "right";
 settings.hintAlign = "left";
@@ -59,12 +54,8 @@ settings.tabsMRUOrder = false;
 // Input box true
 settings.cursorAtEndOfInput = false;
 
-// -----------------------------------------------------------------------------------------------------------------------
 // -- [ HINTS ]
-// -----------------------------------------------------------------------------------------------------------------------
-
 Hints.characters = "qwertasdfgzxcvb";
-// Hints.characters = "asdfgyuiopqwertnmzxcvb";
 // Link Hints
 Hints.style(`
     font-family: 'JetBrainsMono Nerd Font Mono', 'SF Pro', monospace;
@@ -77,11 +68,10 @@ Hints.style(`
     text-align: center;
     padding: 5px;
     line-height: 1;
-  `);
+`);
 
 // Text Hints
-Hints.style(
-  `
+Hints.style(`
     font-family: 'JetBrainsMono Nerd Font Mono', 'SF Pro', monospace;
     font-size: 15px;
     font-weight: bold;
@@ -92,23 +82,21 @@ Hints.style(
     text-align: center;
     padding: 5px;
     line-height: 1;
-  `,
-  "text"
+  `, "text"
 );
 
 // set visual-mode style
 Visual.style(
-  "marks",
-  "background-color: #A3BE8C; border: 1px solid #3B4252 !important; text-decoration: underline;"
+    "marks",
+    "background-color: #A3BE8C; border: 1px solid #3B4252 !important; text-decoration: underline;"
 );
 Visual.style(
-  "cursor",
-  "background-color: #E5E9F0 !important; border: 1px solid #6272a4 !important; border-bottom: 2px solid green !important; padding: 2px !important; outline: 1px solid rgba(255,255,255,.75) !important;"
+    "cursor",
+    "background-color: #E5E9F0 !important; border: 1px solid #6272a4 !important; border-bottom: 2px solid green !important; padding: 2px !important; outline: 1px solid rgba(255,255,255,.75) !important;"
 );
 
 // -- UNMAPS
 // (Unused; unmap these first so they can be mapped to other things)
-//
 // could use this: `unmapAllExcept([])`
 // https://github.com/brookhong/Surfingkeys/discussions/1679#discussioncomment-2285766
 mapkey("w", "Move current tab to another window", function () {
@@ -133,7 +121,7 @@ unmap(";dh"); // Delete history older than 30 days
 unmap("<Alt-p>"); // pin/unpin current tab
 unmap("<Alt-m>"); // mute/unmute current tab
 
-// Search selection
+// Unmap search selection
 unmap("sg");
 unmap("sd");
 unmap("sb");
@@ -142,25 +130,6 @@ unmap("ss");
 unmap("sh");
 unmap("sy");
 
-/* (Search selection doesn't make sense for normal mode) */
-unmap("sg");
-unmap("sd");
-unmap("sb");
-unmap("sw");
-unmap("ss");
-unmap("sh");
-unmap("sy");
-
-unmap("<Ctrl-t>");
-unmap("<Ctrl-g>");
-
-// -- VISUAL
-vmap("H", "0");
-vmap("L", "$");
-// vunmap("gr");
-// vunmap("q");
-
-// -- Tab navigation
 // previous/next tab
 map("<Ctrl-l>", "R");
 map("<Ctrl-h>", "E");
@@ -175,9 +144,6 @@ map("<Ctrl-b>", "e");
 map("gt", "T");
 map("<Ctrl-g>", "T");
 map("<Ctrl-t>", "t");
-// unmap("t"); // we'll use Ctrl-t instead
-// unmap("T"); // we'll use Ctrl-g instead
-
 // history Back/Forward
 map("H", "S");
 map("L", "D");
@@ -186,11 +152,9 @@ map("gH", "g0");
 map("gL", "g$");
 // open link in new tab
 map("F", "gf");
-
 mapkey("gl", "#4Go to last used tab", function () {
   RUNTIME("goToLastTab");
 });
-
 mapkey("::", "#8Open commands", function () {
   Front.openOmnibar({ type: "Commands" });
 });
@@ -198,7 +162,6 @@ mapkey("::", "#8Open commands", function () {
 // -- Clipboard
 unmap("yg");
 unmap("ygh");
-
 // -- disable neovim related things
 unmap(";v");
 unmap("<Ctrl-i>");
@@ -208,7 +171,6 @@ unmap("<Ctrl-Alt-i>");
 // github default shortcut lists                              //
 // https:help.github.com/articles/using-keyboard-shortcuts/   //
 ////////////////////////////////////////////////////////////////
-
 const mapkeyGithub = (...args) => mapkey(...args, { domain: /github\.com/i });
 
 mapkeyGithub("yp", "Copy project path", () => {
@@ -315,83 +277,37 @@ aceVimMap("<C-c>", "<Esc>", "insert");
 
 // custom actions
 actions.showSquirt = () => {
-  const script = document.createElement("script");
-  script.innerHTML = `(() => {
-    const sq = window.sq || {}
-    window.sq = sq
-    if (sq.script) {
-      sq.again()
-    } else if (sq.context !== "inner") {
-      sq.bookmarkletVersion = "0.3.0"
-      sq.iframeQueryParams = { host: "//squirt.io" }
-      sq.script = document.createElement("script")
-      sq.script.src = \`\${sq.iframeQueryParams.host}/bookmarklet/frame.outer.js\`
-      document.body.appendChild(sq.script)
-    }
-  })()`;
-  document.body.appendChild(script);
+    const script = document.createElement("script");
+    script.innerHTML = `(() => {
+        const sq = window.sq || {}
+        window.sq = sq
+        if (sq.script) {
+            sq.again()
+        } else if (sq.context !== "inner") {
+            sq.bookmarkletVersion = "0.3.0"
+            sq.iframeQueryParams = { host: "//squirt.io" }
+            sq.script = document.createElement("script")
+            sq.script.src = \`\${sq.iframeQueryParams.host}/bookmarklet/frame.outer.js\`
+            document.body.appendChild(sq.script)
+        }
+    })()`;
+    document.body.appendChild(script);
 };
 unmap(";s");
 mapkey(";s", "-> Open Squirt", actions.showSquirt);
 
 actions.sendToInstapaper = () => {
-  const script = document.createElement("script");
-  script.innerHTML = `(() => { var d=document;try{if(!d.body)throw(0);window.location='http://www.instapaper.com/text?u='+encodeURIComponent(d.location.href);}catch(e){alert('Please wait until the page has loaded.');} })()`;
-  document.body.appendChild(script);
+    const script = document.createElement("script");
+    script.innerHTML = `(() => { var d=document;try{if(!d.body)throw(0);window.location='http://www.instapaper.com/text?u='+encodeURIComponent(d.location.href);}catch(e){alert('Please wait until the page has loaded.');} })()`;
+    document.body.appendChild(script);
 };
 unmap(";i");
 mapkey(";i", "-> Send to Instapaper", actions.sendToInstapaper);
 
-// add search engines
-// REF: https://gist.github.com/chixing/82767d49380294ad7b298554e2c0e59b
-removeSearchAlias("b");
-addSearchAlias(
-  "b",
-  "brave",
-  "https://search.brave.com/search?q=",
-  "s",
-  "https://search.brave.com/search?q=",
-  function (response) {
-    var res = JSON.parse(response.text);
-    return res.map(function (r) {
-      return r.phrase;
-    });
-  }
-);
-
-removeSearchAlias("n");
-addSearchAlias(
-  "n",
-  "neeva",
-  "https://neeva.com/search?q=",
-  "s",
-  "https://neeva.com/search?q=",
-  function (response) {
-    var res = JSON.parse(response.text);
-    return res.map(function (r) {
-      return r.phrase;
-    });
-  }
-);
-
-addSearchAlias(
-  "hd",
-  "hexdocs",
-  "https://hexdocs.pm/",
-  "",
-  "https://hexdocs.pm/",
-  function (response) {
-    var res = JSON.parse(response.text);
-    return res.map(function (r) {
-      return r.phrase;
-    });
-  }
-);
-
 // set theme
 settings.theme = `
   :root {
-    --font: "JetBrainsMono Nerd Font Mono", Arial, sans-serif;
+    --font: "Iosevka", Arial, sans-serif;
     --font-size: 16px;
     --font-weight: bold;
     --fg: #E5E9F0;
@@ -675,46 +591,15 @@ const embiggenInputs = () => {
   }
 };
 
-// const handleFocus = () => {
-//   document.addEventListener("focus", (evt) => {
-//     console.log("focus");
-//     window.setTimeout(() => {
-//       const firenvim = document.querySelector("body span[tabindex='-1']");
-//       console.log("firenvim?");
-//       console.debug(inspect(firenvim));
-//     }, 2000);
-//     // console.debug(`initial click ${evt.target}`);
-//     if (evt.target.nodeName === "TEXTAREA") {
-//       console.debug(evt.target);
-//       // let el = evt.target;
-//       // // el.style = `height: ${el.clientHeight + 500}px`;
-//       // el.style = `height: 800px`;
-//       evt.target.style = `min-height: 250px`;
-//     } else {
-//       let textareas = document.querySelectorAll("textarea");
-//       textareas.forEach((el) => {
-//         el.style = ``;
-//       });
-//     }
-//   });
-// };
-
 const handleLoaded = (evt) => {
-  console.debug(`loaded via ${inspect(evt)}`);
-  embiggenInputs();
-  // handleFocus();
+    console.debug(`loaded via ${inspect(evt)}`);
+    embiggenInputs();
 };
 
 const runningAt = (() => {
-  let getBackgroundPage = chrome?.extension?.getBackgroundPage;
-  if (getBackgroundPage) {
-    return getBackgroundPage() === window ? "BACKGROUND" : "POPUP";
-  }
-  return chrome?.runtime?.onMessage ? "CONTENT" : "WEB";
+    let getBackgroundPage = chrome?.extension?.getBackgroundPage;
+    if (getBackgroundPage) {
+        return getBackgroundPage() === window ? "BACKGROUND" : "POPUP";
+    }
+    return chrome?.runtime?.onMessage ? "CONTENT" : "WEB";
 })();
-
-// if (["complete", "loaded", "interactive"].indexOf(document.readyState) >= 0) {
-//   handleLoaded();
-// } else {
-//   document.addEventListener("DOMContentLoaded", (evt) => handleLoaded(evt));
-// }
