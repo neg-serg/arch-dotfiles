@@ -2,7 +2,20 @@
 
 blue="<span weight='bold' color='#395573'>"
 dac_name='SMSL SU9-PRO'
-main_menu='title_copy artist_copy album_copy path_copy pipewire_output alsa_output game_start game_end'
+main_menu='
+title_copy
+artist_copy
+album_copy
+path_copy
+pipewire_output
+alsa_output
+game_start
+game_end
+bt_headphones
+󰊿translate
+󰟸touchpad
+󱃖termbin
+'
 
 generate_menu() {
     count=0
@@ -12,33 +25,112 @@ generate_menu() {
     done
 }
 
+title_copy(){
+    mpc current | xsel -bi
+}
+
+album_copy(){
+    mpc current -f "[%album%]"|xsel -bi
+}
+
+artist_copy(){
+    mpc current -f "[%artist%]"|xsel -bi
+}
+
+path_copy(){
+    mpd_music_dir="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'"${HOME}"':')"
+    echo "$mpd_music_dir/$(mpc -f '%file%' current)" | xsel -bi
+}
+
+pipewire_output(){
+    mpc pause
+    mpc enable PipeWire
+    mpc disable "$dac_name" && mpc play
+}
+
+alsa_output(){
+    mpc pause
+    mpc enable "$dac_name"
+    mpc disable PipeWire
+    mpc play
+    sleep "$timeout";
+    mpc play
+}
+
+game_start(){
+    ~/bin/game start
+}
+
+game_end(){
+    ~/bin/game end
+}
+
+bt_headphones(){
+    data="$APP_DATA/menu/data.json"
+    mac=$(jq -r ".[] | select(.name==\"Galaxy Buds+\") .mac" "$data")
+    state=$(bluetoothctl info "$mac" | awk '/Connected:/{print $2}')
+    if [ "$state" = "no" ]; then
+        bluetoothctl connect "$mac"
+        notify-send --hint=string:x-dunst-stack-tag:headphones "Galaxy Buds+ connected"
+    else
+        bluetoothctl disconnect "$mac"
+        notify-send --hint=string:x-dunst-stack-tag:headphones "Galaxy Buds+ disconnected"
+    fi
+}
+
+touchpad(){
+    device="DELL0825:00 06CB:7E92 Touchpad"
+    state=$(xinput list-props "$device" | grep "Device Enabled" | grep -o "[01]$")
+
+    if [ "$state" == "1" ]; then
+        xinput --disable "$device"
+        notify-send --hint=string:x-dunst-stack-tag:touchpad "Touchpad disabled"
+    else
+        xinput --enable "$device"
+        notify-send --hint=string:x-dunst-stack-tag:touchpad "Touchpad enabled"
+    fi
+}
+
+translate(){
+    text="$(xsel -o)"
+    translate="$(trans -brief :ru "$text")"
+    notify-send -t $((${#text} * 150)) "$translate"
+    play-sound "cyclist.ogg"
+}
+
+termbin(){
+    url=$(xsel -p | nc termbin.com 9999)
+    echo "$url" | xsel -ib
+    echo "$url" | xsel -ip
+    notify-send "$url copied to clipboard"
+    play-sound "direct.ogg"
+}
+
 handler() {
     timeout="5s"
     while IFS= read -r arg; do
         if echo "$arg" | rg "title_copy" > /dev/null; then
-            mpc current | xsel -bi
+            title_copy
         elif echo "$arg" | rg "album_copy" > /dev/null; then
-            mpc current -f "[%album%]"|xsel -bi
+            album_copy
         elif echo "$arg" | rg "artist_copy" > /dev/null; then
-            mpc current -f "[%artist%]"|xsel -bi
+            artist_copy
         elif echo "$arg" | rg "path_copy" > /dev/null; then
-            mpd_music_dir="$(awk '/music_directory/{print $2}' "${XDG_CONFIG_HOME}/mpd/mpd.conf"|tr -d '"'|sed 's:^~:'"${HOME}"':')"
-            echo "$mpd_music_dir/$(mpc -f '%file%' current)" | xsel -bi
+            path_copy
         elif echo "$arg" | rg "pipewire_output" > /dev/null; then
-            mpc pause
-            mpc enable PipeWire
-            mpc disable "$dac_name" && mpc play
+            pipewire_output
         elif echo "$arg" | rg "alsa_output" > /dev/null; then
-            mpc pause
-            mpc enable "$dac_name"
-            mpc disable PipeWire
-            mpc play
-            sleep "$timeout";
-            mpc play
+            alsa_output
         elif echo "$arg" | rg "game_start" > /dev/null; then
-            ~/bin/game start
+            game_start
         elif echo "$arg" | rg "game_end" > /dev/null; then
-            ~/bin/game end
+            game_end
+        elif echo "$arg" | rg "bt_headphones" > /dev/null; then
+            bt_headphones
+        elif echo "$arg" | rg "touchpad" > /dev/null; then
+            touchpad
+        elif echo "$arg" | rg "translate" > /dev/null; then
+            translate
         fi
     done
 }
