@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-blue="<span weight='bold' color='#395573'>"
-dac_name='SMSL SU9-PRO'
 main_menu='
 title_copy
 artist_copy
@@ -18,6 +16,7 @@ bt_headphones
 '
 
 generate_menu() {
+    blue="<span weight='bold' color='#395573'>"
     count=0
     for item in $main_menu; do
         count=$((count+1))
@@ -49,6 +48,7 @@ pipewire_output(){
 }
 
 alsa_output(){
+    timeout="5s"
     mpc pause
     mpc enable "$dac_name"
     mpc disable PipeWire
@@ -81,8 +81,7 @@ bt_headphones(){
 touchpad(){
     device="DELL0825:00 06CB:7E92 Touchpad"
     state=$(xinput list-props "$device" | grep "Device Enabled" | grep -o "[01]$")
-
-    if [ "$state" == "1" ]; then
+    if [ "$state" -eq "1" ]; then
         xinput --disable "$device"
         notify-send --hint=string:x-dunst-stack-tag:touchpad "Touchpad disabled"
     else
@@ -107,33 +106,15 @@ termbin(){
 }
 
 handler() {
-    timeout="5s"
     while IFS= read -r arg; do
-        if echo "$arg" | rg "title_copy" > /dev/null; then
-            title_copy
-        elif echo "$arg" | rg "album_copy" > /dev/null; then
-            album_copy
-        elif echo "$arg" | rg "artist_copy" > /dev/null; then
-            artist_copy
-        elif echo "$arg" | rg "path_copy" > /dev/null; then
-            path_copy
-        elif echo "$arg" | rg "pipewire_output" > /dev/null; then
-            pipewire_output
-        elif echo "$arg" | rg "alsa_output" > /dev/null; then
-            alsa_output
-        elif echo "$arg" | rg "game_start" > /dev/null; then
-            game_start
-        elif echo "$arg" | rg "game_end" > /dev/null; then
-            game_end
-        elif echo "$arg" | rg "bt_headphones" > /dev/null; then
-            bt_headphones
-        elif echo "$arg" | rg "touchpad" > /dev/null; then
-            touchpad
-        elif echo "$arg" | rg "translate" > /dev/null; then
-            translate
-        fi
+        for t in $main_menu; do
+            if echo "$arg" | rg "$t" > /dev/null; then
+                eval "$t"
+            fi
+        done
     done
 }
 
+dac_name='SMSL SU9-PRO'
 rofi_options="-auto-select -markup-rows -b -lines 1 -theme neg -dmenu -p '❯>'"
 generate_menu | eval "rofi $rofi_options" | handler
