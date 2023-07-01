@@ -66,6 +66,7 @@ _exists doas && {
     local logind_doas_list=(reboot halt poweroff)
     _exists iotop && alias iotop='doas iotop -oPa'
     _exists lsof && alias ports='doas lsof -Pni'
+    _exists kmon && alias kmon='doas kmon -u --color 19683a'
     for c in ${doas_list[@]}; {_exists "$c" && alias "$c=doas $c"}
     for i in ${logind_doas_list[@]}; alias "${i}=doas ${sysctl_pref} ${i}"
     unset doas_list noglob_list rlwrap_list nocorrect_list logind_doas_list
