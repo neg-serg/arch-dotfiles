@@ -20,7 +20,7 @@ generate_menu() {
     count=0
     for item in $main_menu; do
         count=$((count+1))
-        echo "$count:$blue⟬</span>$item$blue⟭</span>"
+        echo "$(printf %X $count):$blue⟬</span>$item$blue⟭</span>"
     done
 }
 
