@@ -55,7 +55,7 @@ return require'packer'.startup({function(use)
     use{'stevearc/dressing.nvim', -- better select ui
         config=function() require'cfg.dressing' end}
     use{'stevearc/oil.nvim',  -- nice netrw replacement
-        config=function()require'cfg.oil' require'cfg.oil' end}
+        config=function() require'cfg.oil' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
