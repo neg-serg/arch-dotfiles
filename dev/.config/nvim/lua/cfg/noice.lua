@@ -33,7 +33,17 @@ noice.setup({
         {filter={event='msg_show', kind='', find='1 time',}, opts={skip=true},},
         {filter={event='msg_show', kind='', find='Nothing to repeat',}, opts={skip=true},},
         {filter={event='msg_show', kind='', find='more line',}, opts={skip=true},},
-        {filter={event='msg_show', kind='', find='line yanked',}, opts={skip=true},},
+        {filter={event='msg_show', kind='', find='yanked',}, opts={skip=true},},
+        {filter={event="msg_show", find="; before #",}, opts={skip=true},},
+        {filter={event="msg_show", find="; after #",}, opts={skip=true},},
+        {filter={event="msg_show", find=" lines, ",}, opts={skip=true},},
+        {filter={event="msg_show", find="go up one level",}, opts={skip=true},},
+        {filter={find="No active Snippet"}, opts={skip=true},},
+        {filter={find="waiting for cargo metadata"}, opts={skip=true},},
+        -- Show "recording" messages
+        {view="notify", filter={event="msg_showmode"},},
+        -- Hide "No information available" messages
+        {view="notify", filter={find="No information available",}, opts={skip=true},},
     },
     views={
         vsplit={ size={ width="auto" } },
