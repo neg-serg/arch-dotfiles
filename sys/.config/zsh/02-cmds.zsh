@@ -93,7 +93,7 @@ _exists fd && {alias fd='fd -H --ignore-vcs' && alias fda='fd -Hu'}
 _exists objdump && alias objdump='objdump -M intel -d'
 _exists gdb && alias gdb="gdb -nh -x ${XDG_CONFIG_HOME}/gdb/gdbinit"
 _exists nvim && alias nvim='v'
-_exists iostat && alias iostat='iostat -mtx'
+_exists iostat && alias iostat='--compact -p -h -s'
 _exists patool && { alias se='patool extract'; alias pk='patool create'; }
 _exists xz && alias xz='xz --threads=0'
 _exists pigz && alias gzip='pigz'
