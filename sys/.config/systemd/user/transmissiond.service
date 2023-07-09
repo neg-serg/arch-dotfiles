@@ -5,7 +5,7 @@ ConditionPathExists=/usr/bin/transmission-daemon
 
 [Service]
 Type=notify
-ExecStart=/usr/bin/transmission-daemon -g %E/transmission-daemon -f --log-error
+ExecStart=/usr/bin/transmission-daemon -g %E/transmission-daemon -f --log-level=error
 Restart=on-failure
 RestartSec=30
 StartLimitBurst=8
