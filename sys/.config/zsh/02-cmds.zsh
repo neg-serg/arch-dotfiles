@@ -56,7 +56,7 @@ alias sort='sort --parallel 8 -S 16M'
 alias :q="exit"
 alias emptydir='ls -ld **/*(/^F)'
 _exists paru && {
-    _exists pueue && yay(){ if [[ $# > 1 ]]; then paru "$@"; else pa paru -Syyu --noconfirm; fi } || alias yay='paru'
+    alias yay='paru'
     alias rmorphans='paru -Rs $(paru -Qqdt)'
 }
 _exists pacman && {alias fat="LC_ALL=C pacman -Qi | egrep '^(Name|Installed)' | cut -f2 -d':' | paste - - | column -t | sort -nk 2 | grep MiB"}
