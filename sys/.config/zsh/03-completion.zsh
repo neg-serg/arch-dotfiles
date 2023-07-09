@@ -17,7 +17,11 @@ zstyle ':completion:*:history-words' list false
 # autorehash for completion
 zstyle ':completion:*' rehash true
 # match uppercase from lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z-_}={A-Z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list '' \
+  '+m:{[:lower:]}={[:upper:]}' \
+  '+m:{[:upper:]}={[:lower:]}' \
+  '+m:{_-}={-_}' \
+  'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # automatically load bash completion functions
 autoload -Uz bashcompinit && bashcompinit
 # separate matches into groups
