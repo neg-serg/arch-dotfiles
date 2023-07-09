@@ -265,3 +265,8 @@ zsh/.zsh/.zcompdump
 zsh/.zsh/zcomp-sanctum
 *.zwc
 __pycache__
+dht.dat
+blocklists
+resume
+torrents
+stats.json
