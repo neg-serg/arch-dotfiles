@@ -8,7 +8,7 @@ video-output-levels=full
 x11-bypass-compositor=yes
 video-sync=display-resample
 #--[Decoding]----------------------------------------------
-cache=auto
+cache=yes
 correct-downscaling
 # cscale=ewa_lanczossharp
 # dither-depth=auto
