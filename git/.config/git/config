@@ -77,7 +77,7 @@
     hub = !hub
     patch = !git --no-pager diff --no-color
     subpull = submodule foreach git pull
-    undo = "reset --soft HEAD^"
+    undo = "reset --soft @~"
 [interactive]
     diffFilter = delta --color-only
 [filter "lfs"]
