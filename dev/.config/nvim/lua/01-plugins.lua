@@ -57,7 +57,7 @@ return require'packer'.startup({function(use)
     use{'stevearc/oil.nvim',  -- nice netrw replacement
         config=function() require'cfg.oil' end}
     use {'linty-org/readline.nvim', -- readline stuff in cmdline
-         config=function() require'cfg.readline' end
+         config=function() require'cfg.readline' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
