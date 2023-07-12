@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 shots=$HOME/pic/shots
+which parallel>/dev/null || exit 1
 [ ! -d "$shots" ] && mkdir "$shots"
 if [ -n "$shots" ]; then
     inotifywait -q -m -e CREATE "$shots"/ | while read -r _; do
