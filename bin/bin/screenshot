@@ -5,7 +5,7 @@ filename="screenshot-$(date +%Y-%m-%d_%H-%M-%S).bmp"
 summary_="$scr_dir/$filename"
 arglist=" -p 0 "
 
-Shot() { arglist="$arglist $summary_"; maim -m 1 $arglist; ~/bin/pic-notify "$summary_"; }
+Shot() { arglist="$arglist $summary_"; maim -m 1 $arglist && ~/bin/pic-notify "$summary_"; }
 Select() { arglist="$arglist -s "; Shot "$@"; }
 Current() { arglist="$arglist -d 0.5 "; arglist="$arglist -i \"$(xdotool getactivewindow)\" "; Shot "$@"; }
 Delay() { arglist="$arglist -d 5 "; Shot "$@"; }
