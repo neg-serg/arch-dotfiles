@@ -11,8 +11,10 @@ elif [ $# -gt 0 ] && [ "$1" = 'update' ]; then
     else
         pip install --break-system-packages git+https://github.com/neg-serg/negwm
     fi
-elif [ $# -gt 0 ] && [ "$1" = 'debug' ]; then
-    /usr/bin/env python -m pdb -m negwm
+elif [ $# -gt 0 ]; then
+    if [ "$1" = 'debug' ] || [ "$1" = 'update' ]; then 
+        /usr/bin/env python -m pdb -m negwm
+    fi
 else 
     /usr/bin/env python -m negwm "$@"
 fi
