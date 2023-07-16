@@ -3,6 +3,8 @@ local gr = vim.api.nvim_create_augroup
 
 local main = gr("main", {clear=true})
 local shada = gr("shada", {clear=true})
+local kitty = gr("kitty", {clear=true})
+local utils = gr("utils", {clear=true})
 local mode_change = gr("mode_change", {clear=true})
 local custom_updates = gr("custom_updates", {clear=true})
 local hi_yank = gr("hi_yank", {clear=true})
@@ -58,3 +60,17 @@ au({'DirChanged'}, {pattern={'window','tab','tabpage','global'}, callback=functi
 if true == false then
     au({'CursorHold','TextYankPost','FocusGained','FocusLost'}, {pattern={'*'}, command='if exists(":rshada") | rshada | wshada | endif', group=shada})
 end
+au({'BufWritePost'}, {pattern={'*'}, 
+    callback=function()
+        if string.match(vim.fn.getline(1), "^#!") ~= nil then
+            if string.match(vim.fn.getline(1), "/bin/") ~= nil then vim.cmd([[silent !chmod a+x <afile>]]) end
+        end
+    end, group=utils})
+au({'BufNewFile','BufWritePre'}, {pattern={'*'},
+    command=[[if @% !~# '\(://\)' | call mkdir(expand('<afile>:p:h'), 'p') | endif]],
+    group=utils
+})
+au({'BufWritePost'},{pattern={'*/kitty/*.conf'}, callback=function()
+    vim.cmd(":silent !kill -SIGUSR1 $(grep kitty =(ps auxwww))") end,
+    group=kitty
+})
