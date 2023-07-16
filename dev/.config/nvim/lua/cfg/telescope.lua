@@ -1,12 +1,12 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ nvim-telescope/telescope.nvim                                                │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-local status, telescope = pcall(require, 'telescope')
+local status, telescope=pcall(require, 'telescope')
 if (not status) then return end
-local sorters = require'telescope.sorters'
-local previewers = require'telescope.previewers'
-local builtin = require'telescope.builtin'
-local actions = require'telescope.actions'
+local sorters=require'telescope.sorters'
+local previewers=require'telescope.previewers'
+local builtin=require'telescope.builtin'
+local actions=require'telescope.actions'
 telescope.setup{
     defaults={
         vimgrep_arguments={
@@ -68,27 +68,25 @@ telescope.setup{
                 ["<C-j>"]=actions.cycle_history_next,
 				["<C-k>"]=actions.cycle_history_prev,
 				["<Esc>"]=actions.close,
-                ["<C-Enter>"]={
-                    action=function(_) end
-                },
+                ["<C-Enter>"]={action=function(_) end},
             },
         },
-        undo = {
-            use_delta = true,
-            use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
-            side_by_side = false,
-            diff_context_lines = vim.o.scrolloff,
-            entry_format = "state #$ID, $STAT, $TIME",
-            mappings = {
-                i = {
+        undo={
+            use_delta=true,
+            use_custom_command=nil, -- setting this implies `use_delta=false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
+            side_by_side=false,
+            diff_context_lines=vim.o.scrolloff,
+            entry_format="state #$ID, $STAT, $TIME",
+            mappings={
+                i={
                     -- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
                     -- you want to replicate these defaults and use the following actions. This means
                     -- installing as a dependency of telescope in it's `requirements` and loading this
                     -- extension from there instead of having the separate plugin definition as outlined
                     -- above.
-                    ["<CR>"] = require("telescope-undo.actions").yank_additions,
-                    ["<S-CR>"] = require("telescope-undo.actions").yank_deletions,
-                    ["<C-CR>"] = require("telescope-undo.actions").restore,
+                    ["<CR>"]=require("telescope-undo.actions").yank_additions,
+                    ["<S-CR>"]=require("telescope-undo.actions").yank_deletions,
+                    ["<C-CR>"]=require("telescope-undo.actions").restore,
                 },
             },
         },
@@ -100,14 +98,14 @@ telescope.setup{
         },
         ['zf-native']={
             file={
-                enable = true, -- override default telescope file sorter
-                highlight_results = true, -- highlight matching text in results
-                match_filename = true, -- enable zf filename match priority
+                enable=true, -- override default telescope file sorter
+                highlight_results=true, -- highlight matching text in results
+                match_filename=true, -- enable zf filename match priority
             },
             generic={
-                enable = true, -- override default telescope generic item sorter
-                highlight_results = true, -- highlight matching text in results
-                match_filename = false, -- disable zf filename match priority
+                enable=true, -- override default telescope generic item sorter
+                highlight_results=true, -- highlight matching text in results
+                match_filename=false, -- disable zf filename match priority
             },
         },
     },
