@@ -137,6 +137,10 @@ return require'packer'.startup({function(use)
     use {'renerocksai/telekasten.nvim', -- better md wiki stuff
          event={'BufNewFile','BufRead'},
          config=function() require'cfg.telekasten' end}
+    use {'lukas-reineke/headlines.nvim',
+        ft={'markdown'},
+        dependencies='nvim-treesitter',
+        config=function() require'cfg.headline' end,}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
