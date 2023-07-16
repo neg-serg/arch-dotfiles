@@ -15,8 +15,12 @@ return require'packer'.startup({function(use)
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Generic                                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-    use {'akinsho/toggleterm.nvim', -- better way to toggle term
-        config=function() require'cfg.toggleterm' end,
+    -- use {'akinsho/toggleterm.nvim', -- better way to toggle term
+    --     config=function() require'cfg.toggleterm' end,
+    --     keys={'<leader>l'}}
+    use {'boltlessengineer/bufterm.nvim', -- use term as buffers
+        config=function() require'cfg.bufterm' end,
+        cmd={'BufTermEnter','BufTermNext','BufTermPrev'},
         keys={'<leader>l'}}
     use {'folke/persistence.nvim', config=function() require'cfg.persistence' end}
     use {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end}
