@@ -176,6 +176,11 @@ return require'packer'.startup({function(use)
     }}
     use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ Filetypes                                                                    │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+    use {'chr4/nginx.vim', ft='nginx'} -- nginx better ft
+    use {'imsnif/kdl.vim', ft='kdl'} -- kdl ft
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ DCVS                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'akinsho/git-conflict.nvim', -- visualize and resolve git conflicts
