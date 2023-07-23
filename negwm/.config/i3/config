@@ -85,7 +85,6 @@ set $scratchpad-teardrop [instance="teardrop"]
 set $scratchpad-torrment [instance="torrment"]
 set $scratchpad-transients [instance="Places" window_role="^(GtkFileChooserDialog|gimp-file-open)$"]
 set $scratchpad-webcam [instance="webcam"]
-set $scratchpad-youtube [instance="youtube"]
 for_window $scratchpad-discord floating enable, move absolute position 1734 550, resize set 1700 848
 for_window $scratchpad-im floating enable, move absolute position 2271 1, resize set 1168 1406
 for_window $scratchpad-ncmpcpp floating enable, move absolute position 674 803, resize set 2016 552
@@ -94,7 +93,6 @@ for_window $scratchpad-teardrop floating enable, move absolute position 0 0, res
 for_window $scratchpad-torrment floating enable, move absolute position 0 0, resize set 3440 866
 for_window $scratchpad-transients floating enable, move absolute position 620 873, resize set 1623 531
 for_window $scratchpad-webcam floating enable, move absolute position 1225 178, resize set 2206 1253
-for_window $scratchpad-youtube floating enable, move absolute position 117 0, resize set 3182 1234
 
 # :>> Config section workspaces
 set $term "︁ 𐌰:term"
@@ -200,7 +198,6 @@ bindsym Mod4+f $scratchpad toggle ncmpcpp
 bindsym Mod4+n $scratchpad toggle neomutt
 bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
-bindsym Mod4+Shift+y $scratchpad toggle youtube
 
 # :>> Config section resize
 bindsym Mod4+r mode "%{T4}%{T-}"
