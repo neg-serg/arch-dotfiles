@@ -98,7 +98,7 @@ def media_info(filename):
     out += pp.size(str(video_bitrate), 'kbps', pref='vidbrate')
     out += pp.wrap(str(vid_frame_rate), postfix='fps')
 
-    out += pp.size(str(audio_sample_rate), 'K', pref=None)
+    out += pp.size(str(audio_sample_rate), 'K', pref='')
     if str(audio_bitrate):
         out += pp.size(str(audio_bitrate), 'kbps', pref='audbrate')
 
