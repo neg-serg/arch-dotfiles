@@ -1,31 +1,32 @@
 #--[Main]--------------------------------------------------
 input-ipc-server=~/.config/mpv/socket
-# icc-profile-auto
+icc-profile-auto
 no-hidpi-window-scale
-target-prim=auto
-vf=format=colorlevels=full:colormatrix=auto
-video-output-levels=full
-x11-bypass-compositor=yes
-video-sync=display-resample
+target-prim=adobe
 #--[Decoding]----------------------------------------------
-cache=auto
+cache=no
 correct-downscaling
 # cscale=ewa_lanczossharp
 # dither-depth=auto
 dscale=mitchell
 hwdec-codecs=all
-hwdec=auto
 interpolation=no
 linear-downscaling=yes
 # scale=ewa_lanczossharp
 sigmoid-upscaling=yes
 vd-lavc-threads=8
-vo=gpu
-vulkan-swap-mode=immediate
+vo=gpu-next
+gpu-api=vulkan
+hwdec=auto
+# vulkan-swap-mode=fifo-relaxed
+video-sync=display-resample
+x11-bypass-compositor=yes
+vf=format=colorlevels=full:colormatrix=auto
+video-output-levels=full
 #--[Antiringing]-------------------------------------------
 cscale-antiring=0.7 # chroma upscale deringing
 dscale-antiring=0.7 # luma downscale deringing
-scale-antiring=0.7 # luma upscale deringing
+scale-antiring=0.7  # luma upscale deringing
 #--[Volume]------------------------------------------------
 ao=pipewire,alsa,jack
 volume-max=100
