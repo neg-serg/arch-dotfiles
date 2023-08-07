@@ -56,6 +56,8 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.dressing' end}
     use{'stevearc/oil.nvim',  -- nice netrw replacement
         config=function() require'cfg.oil' end}
+    use{'chrisgrieser/nvim-alt-substitute', -- alternative substitute
+        config=function() require'cfg.alt-substitute' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Completion                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
