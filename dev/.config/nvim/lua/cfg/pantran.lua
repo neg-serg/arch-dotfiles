@@ -1,3 +1,6 @@
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ potamides/pantran.nvim                                                       │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
 local status, pantran = pcall(require, 'pantran')
 if (not status) then return end
 pantran.setup{

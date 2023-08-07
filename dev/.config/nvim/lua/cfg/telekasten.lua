@@ -1,3 +1,6 @@
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ renerocksai/telekasten.nvim                                                  │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
 local home=vim.fn.expand("~/1st_level")
 local status, telekasten = pcall(require, 'telekasten')
 if (not status) then return end

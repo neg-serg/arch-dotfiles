@@ -1,3 +1,6 @@
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ sindrets/diffview.nvim                                                       │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
 local status, diffview = pcall(require, 'diffview')
 if (not status) then return end
 local cb = require 'diffview.config'.diffview_callback

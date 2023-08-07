@@ -1,3 +1,6 @@
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ kevinhwang91/nvim-bqf                                                        │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
 local ok, bqf = pcall(require, 'bqf')
 if not ok then return end
 -- format qf window to make it tolerable code from https://github.com/kevinhwang91/nvim-bqf

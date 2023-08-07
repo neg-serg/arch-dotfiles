@@ -1,3 +1,6 @@
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ svermeulen/vim-NotableFt                                                     │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
 vim.g.NotableFtUseDefaults=false
 
 map('n', ';', '<plug>NotableFtRepeatSearchForward', {silent=true})

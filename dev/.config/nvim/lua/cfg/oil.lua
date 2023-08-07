@@ -1,3 +1,6 @@
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ stevearc/oil.nvim                                                            │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
 require("oil").setup({
     -- Id is automatically added at the beginning, and name at the end
     -- See :help oil-columns
@@ -106,3 +109,7 @@ require("oil").setup({
         },
     },
 })
+
+vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<Cmd>q<CR>', {noremap=true})
+vim.api.nvim_buf_set_keymap(0, 'n', '<BS>', 'function() require("oil").open() end, { desc = "oil: goto parent dir" }', {noremap=true})
+vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ed', ':q<CR>', {noremap=true})
