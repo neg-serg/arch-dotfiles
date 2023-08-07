@@ -34,19 +34,20 @@ return require'packer'.startup({function(use)
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         requires={
+            'brookhong/telescope-pathogen.nvim', -- telescope change directory on the fly
             'crispgm/telescope-heading.nvim', -- telescope jump heading
             'debugloop/telescope-undo.nvim', -- telescope show undo
             'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
             'natecraddock/telescope-zf-native.nvim', -- telescope experimental zf native
             'nvim-lua/plenary.nvim', -- lua functions
+            {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}},
             'nvim-telescope/telescope-fzy-native.nvim', -- telescope with fzy native
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
             'romgrk/fzy-lua-native', -- fzy native lua integration
-            {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}},
         },
         module='telescope',
-        keys={'cd','<M-C-o>','<M-o>','<M-d>','<C-f>',
-              '<leader>.','[Qleader]e','[Qleader]f','[Qleader]c','[Qleader]p'},
+        keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>','<leader>.',
+              '[Qleader]c','[Qleader]e','[Qleader]f'},
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end}
