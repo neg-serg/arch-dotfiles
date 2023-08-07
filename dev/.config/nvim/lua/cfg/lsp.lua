@@ -56,7 +56,6 @@ mason_lspconfig.setup({ensure_installed={
     'rust_analyzer',
     'salt_ls',
     'taplo',
-    'terraformls',
     'yamlls',
 }})
 mason_null_ls.setup({
