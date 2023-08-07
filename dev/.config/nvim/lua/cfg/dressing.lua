@@ -10,8 +10,6 @@ dressing.setup({
         prompt_align = 'center',
         -- When true, <Esc> will close the modal
         insert_only = true,
-        -- These are passed to nvim_open_win
-        anchor = 'SW',
         -- 'editor' and 'win' will default to being centered
         relative = 'cursor',
         -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -48,8 +46,6 @@ dressing.setup({
         telescope = nil,
         -- Options for built-in selector
         builtin = {
-            -- These are passed to nvim_open_win
-            anchor = 'NW',
             -- 'editor' and 'win' will default to being centered
             relative = 'editor',
             -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
