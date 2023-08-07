@@ -111,7 +111,7 @@ _exists mpc && {
     alias unlove='mpc sendmessage mpdas unlove'
 }
 _exists yt-dlp && {
-    alias yt='yt-dlp --downloader aria2c'
+    alias yt='yt-dlp --downloader aria2c --embed-metadata --embed-thumbnail --embed-subs --sub-langs all --write-info-json'
     alias ytt='ytfzf --preview-side=left -t'
 }
 if _exists wget2; then
