@@ -2,6 +2,8 @@ function _G.map(mod, lhs, rhs, opt)
     vim.api.nvim_set_keymap(mod, lhs, rhs, opt or {})
 end
 
+_G.Map=_G.vim.keymap.set
+
 local M = {}
 
 function M.sudo_exec(cmd, print_output)

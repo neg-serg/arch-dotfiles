@@ -96,7 +96,7 @@ telescope.setup{
             ignore_patterns={ "*.git/*" },
             workspaces={}
         },
-        ["pathogen"]={use_last_search_for_live_grep=false},
+        pathogen={use_last_search_for_live_grep=false},
         ['zf-native']={
             file={
                 enable=true, -- override default telescope file sorter
@@ -130,21 +130,21 @@ telescope.setup{
     },
 }
 
--- require'telescope'.load_extension'fzy_native'
-require'telescope'.load_extension'zf-native'
-require'telescope'.load_extension'media_files'
-require'telescope'.load_extension'heading'
-require'telescope'.load_extension'undo'
-require'telescope'.load_extension'zoxide'
-require'telescope'.load_extension'pathogen'
+local frecency=telescope.load_extension'frecency'
+local headding=telescope.load_extension'heading'
+local media_files=telescope.load_extension'media_files'
+local pathogen=telescope.load_extension'pathogen'
+local undo=telescope.load_extension'undo'
+local zf_native=telescope.load_extension'zf-native'
+local zoxide=telescope.load_extension'zoxide'
 
 local opts={silent=true, noremap=true}
-map('n', "<leader>.", "<Cmd>lua require'telescope'.load_extension'frecency'; require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({layout_config={height=8},border=false}))<CR>", opts)
-map('n', '<C-f>', "<Cmd>lua require'telescope.builtin'.live_grep(require('telescope.themes').get_ivy({layout_config={height=14},border=false}))<CR>", opts)
-map('n', '<M-C-o>', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>', opts)
-map('n', '<M-l>', "<Cmd>lua require'telescope.builtin'.buffers()<CR>", opts)
-map('n', '<M-o>', "<Cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>", opts)
-map('n', '[Qleader]c', "<Cmd>lua require'telescope.builtin'.git_commits{}<CR>", opts)
-map('n', 'E', "<Cmd>ProjectRoot<CR><Cmd>lua require'telescope'.extensions['pathogen'].find_files{}<CR>", opts)
-map('n', '[Qleader]e', "<Cmd>lua require'telescope'.extensions['pathogen'].find_files{}<CR>", opts)
-map('n', 'cd', '<Cmd>lua require"telescope".extensions.zoxide.list(require"telescope.themes".get_ivy({layout_config={height=8},border=false}))<CR>', opts)
+Map('n', "<leader>.", function() builtin.oldfiles(require('telescope.themes').get_ivy({layout_config={height=8},border=false})) end, opts)
+Map('n', '<C-f>', function() builtin.live_grep(require'telescope.themes'.get_ivy({layout_config={height=14},border=false})) end, opts)
+Map('n', '<M-C-o>', function() builtin.lsp_dynamic_workspace_symbols() end, opts)
+Map('n', '<M-l>', function() builtin.buffers() end, opts)
+Map('n', '<M-o>', function() builtin.lsp_document_symbols() end, opts)
+Map('n', '[Qleader]c', function() builtin.git_commits{} end, opts)
+Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)
+Map('n', '[Qleader]e', function() pathogen.find_files{} end, opts)
+Map('n', 'cd', function() zoxide.list(require"telescope.themes".get_ivy({layout_config={height=8},border=false})) end, opts)
