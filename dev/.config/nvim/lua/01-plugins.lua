@@ -34,7 +34,7 @@ return require'packer'.startup({function(use)
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         requires={
-            'brookhong/telescope-pathogen.nvim', -- telescope change directory on the fly
+            'neg-serg/telescope-pathogen.nvim', -- telescope change directory on the fly
             'crispgm/telescope-heading.nvim', -- telescope jump heading
             'debugloop/telescope-undo.nvim', -- telescope show undo
             'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
