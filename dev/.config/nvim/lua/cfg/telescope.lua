@@ -9,7 +9,6 @@ local builtin=require'telescope.builtin'
 local actions=require'telescope.actions'
 
 local frecency=telescope.load_extension'frecency'
-local headding=telescope.load_extension'heading'
 local media_files=telescope.load_extension'media_files'
 local pathogen=telescope.load_extension'pathogen'
 local undo=telescope.load_extension'undo'
