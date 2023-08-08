@@ -38,12 +38,9 @@ return require'packer'.startup({function(use)
             'crispgm/telescope-heading.nvim', -- telescope jump heading
             'debugloop/telescope-undo.nvim', -- telescope show undo
             'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
-            'natecraddock/telescope-zf-native.nvim', -- telescope experimental zf native
             'nvim-lua/plenary.nvim', -- lua functions
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}},
-            'nvim-telescope/telescope-fzy-native.nvim', -- telescope with fzy native
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
-            'romgrk/fzy-lua-native', -- fzy native lua integration
         },
         module='telescope',
         keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>','<leader>.',

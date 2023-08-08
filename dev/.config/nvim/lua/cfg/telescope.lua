@@ -7,6 +7,14 @@ local sorters=require'telescope.sorters'
 local previewers=require'telescope.previewers'
 local builtin=require'telescope.builtin'
 local actions=require'telescope.actions'
+
+local frecency=telescope.load_extension'frecency'
+local headding=telescope.load_extension'heading'
+local media_files=telescope.load_extension'media_files'
+local pathogen=telescope.load_extension'pathogen'
+local undo=telescope.load_extension'undo'
+local zoxide=telescope.load_extension'zoxide'
+
 telescope.setup{
     defaults={
         vimgrep_arguments={
@@ -57,20 +65,7 @@ telescope.setup{
         buffer_previewer_maker=previewers.buffer_previewer_maker
     },
     extensions={
-        fzy_native={
-            override_generic_sorter=true,
-            override_file_sorter=true,
-        },
-        zoxide={
-            mappings={
-                ["<Enter>"]={action=function(selection) builtin.find_files{cwd=selection.path} end},
-                ["<Tab>"]={action=function(selection) builtin.find_files{cwd=selection.path} end},
-                ["<C-j>"]=actions.cycle_history_next,
-				["<C-k>"]=actions.cycle_history_prev,
-				["<Esc>"]=actions.close,
-                ["<C-Enter>"]={action=function(_) end},
-            },
-        },
+        pathogen={use_last_search_for_live_grep=false},
         undo={
             use_delta=true,
             use_custom_command=nil, -- setting this implies `use_delta=false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
@@ -79,14 +74,9 @@ telescope.setup{
             entry_format="state #$ID, $STAT, $TIME",
             mappings={
                 i={
-                    -- IMPORTANT: Note that telescope-undo must be available when telescope is configured if
-                    -- you want to replicate these defaults and use the following actions. This means
-                    -- installing as a dependency of telescope in it's `requirements` and loading this
-                    -- extension from there instead of having the separate plugin definition as outlined
-                    -- above.
-                    ["<CR>"]=require("telescope-undo.actions").yank_additions,
-                    ["<S-CR>"]=require("telescope-undo.actions").yank_deletions,
-                    ["<C-CR>"]=require("telescope-undo.actions").restore,
+                    ['<CR>']=require'telescope-undo.actions'.yank_additions,
+                    ['<S-CR>']=require'telescope-undo.actions'.yank_deletions,
+                    ['<C-CR>']=require'telescope-undo.actions'.restore,
                 },
             },
         },
@@ -96,17 +86,14 @@ telescope.setup{
             ignore_patterns={ "*.git/*" },
             workspaces={}
         },
-        pathogen={use_last_search_for_live_grep=false},
-        ['zf-native']={
-            file={
-                enable=true, -- override default telescope file sorter
-                highlight_results=true, -- highlight matching text in results
-                match_filename=true, -- enable zf filename match priority
-            },
-            generic={
-                enable=true, -- override default telescope generic item sorter
-                highlight_results=true, -- highlight matching text in results
-                match_filename=false, -- disable zf filename match priority
+        zoxide={
+            mappings={
+                ["<Enter>"]={action=function(selection) pathogen.find_files{cwd=selection.path} end},
+                ["<Tab>"]={action=function(selection) pathogen.find_files{cwd=selection.path} end},
+                ["<C-j>"]=actions.cycle_history_next,
+				["<C-k>"]=actions.cycle_history_prev,
+				["<Esc>"]=actions.close,
+                ["<C-Enter>"]={action=function(_) end},
             },
         },
     },
@@ -130,14 +117,6 @@ telescope.setup{
     },
 }
 
-local frecency=telescope.load_extension'frecency'
-local headding=telescope.load_extension'heading'
-local media_files=telescope.load_extension'media_files'
-local pathogen=telescope.load_extension'pathogen'
-local undo=telescope.load_extension'undo'
-local zf_native=telescope.load_extension'zf-native'
-local zoxide=telescope.load_extension'zoxide'
-
 local opts={silent=true, noremap=true}
 Map('n', "<leader>.", function() builtin.oldfiles(require('telescope.themes').get_ivy({layout_config={height=8},border=false})) end, opts)
 Map('n', '<C-f>', function() builtin.live_grep(require'telescope.themes'.get_ivy({layout_config={height=14},border=false})) end, opts)
@@ -147,4 +126,4 @@ Map('n', '<M-o>', function() builtin.lsp_document_symbols() end, opts)
 Map('n', '[Qleader]c', function() builtin.git_commits{} end, opts)
 Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)
 Map('n', '[Qleader]e', function() pathogen.find_files{} end, opts)
-Map('n', 'cd', function() zoxide.list(require"telescope.themes".get_ivy({layout_config={height=8},border=false})) end, opts)
+Map('n', 'cd', function() telescope.load_extension'zoxide'.list(require"telescope.themes".get_ivy({layout_config={height=8},border=false})) end, opts)
