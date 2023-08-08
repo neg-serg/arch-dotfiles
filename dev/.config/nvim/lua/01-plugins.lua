@@ -17,7 +17,7 @@ return require'packer'.startup({function(use)
 -- └───────────────────────────────────────────────────────────────────────────────────┘
     use {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
-        keys={'<leader>l'}}
+        keys={'[Qleader]t'}}
     use {'folke/persistence.nvim', config=function() require'cfg.persistence' end}
     use {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end}
     use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
@@ -43,7 +43,8 @@ return require'packer'.startup({function(use)
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
         },
         module='telescope',
-        keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>','<leader>.',
+        keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>',
+              '<leader>.','<leader>l',
               '[Qleader]c','[Qleader]e','[Qleader]f'},
         config=function() require'cfg.telescope' end}
     use {'haya14busa/vim-asterisk', -- smartcase star
