@@ -20,13 +20,11 @@ return require'packer'.startup({function(use)
         keys={'[Qleader]t'}}
     use {'folke/persistence.nvim', config=function() require'cfg.persistence' end}
     use {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end}
-    use {'yamatsum/nvim-nonicons', requires={'kyazdani42/nvim-web-devicons'},
-         after='nvim-web-devicons'} -- fancy webicons
     use {'kyazdani42/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end}
     use {'ghillb/cybu.nvim', -- fancy menu changing
          config=function() require'cfg.cybu' end,
-         keys={'<Tab>', '<S-Tab>'}}
+         keys={'<Tab>','<S-Tab>'}}
     use 'kopischke/vim-fetch' -- vim path/to/file.ext:12:3
     use {'jghauser/mkdir.nvim', -- auto make dir when needed
         config=function() require'mkdir' end, event='BufWritePre'}
@@ -34,11 +32,10 @@ return require'packer'.startup({function(use)
     use 'thinca/vim-ref' -- integrated reference viewer for help with separated window
     use {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         requires={
+            'nvim-lua/plenary.nvim', -- lua functions
             'neg-serg/telescope-pathogen.nvim', -- telescope change directory on the fly
-            'crispgm/telescope-heading.nvim', -- telescope jump heading
             'debugloop/telescope-undo.nvim', -- telescope show undo
             'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
-            'nvim-lua/plenary.nvim', -- lua functions
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}},
             'nvim-telescope/telescope-media-files.nvim', -- media files preview
         },
@@ -177,7 +174,8 @@ return require'packer'.startup({function(use)
             {'RRethy/nvim-treesitter-endwise', after='nvim-treesitter'}, -- ts-based endwise
             {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'} -- refactor modules for ts
     }}
-    use {'RRethy/vim-hexokinase', run='make hexokinase'} -- best way to display colors in the file
+    use {'RRethy/vim-hexokinase', -- best way to display colors in the file
+        run='cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make hexokinase'}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Filetypes                                                                    │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
