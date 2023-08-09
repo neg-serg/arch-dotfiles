@@ -23,6 +23,8 @@ video-sync=display-resample
 x11-bypass-compositor=yes
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
+gpu-shader-cache-dir=/home/neg/tmp/
+icc-cache-dir=/home/neg/tmp/
 #--[Antiringing]-------------------------------------------
 cscale-antiring=0.7 # chroma upscale deringing
 dscale-antiring=0.7 # luma downscale deringing
