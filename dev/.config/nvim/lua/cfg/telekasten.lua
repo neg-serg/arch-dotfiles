@@ -8,7 +8,7 @@ if (not status) then return end
 telekasten.setup({
     home=home,
     take_over_my_home=true, -- if true, telekasten will be enabled when opening a note within the configured home
-    auto_set_filetype=true,
+    auto_set_filetype=false,
     -- dir names for special notes (absolute path or subdir name)
     dailies='daily',
     weeklies='weekly',
