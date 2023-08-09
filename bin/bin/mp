@@ -10,7 +10,7 @@ main() {
         done
         command echo -n "$args" | xargs -0n10 -P 10 vid-info
     } &
-    mpv --vo=gpu --quiet "$@" > "$HOME/tmp/mpv.log"
+    mpv --quiet "$@" > "$HOME/tmp/mpv.log"
 }
 
 main "$@"
