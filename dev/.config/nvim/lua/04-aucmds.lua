@@ -3,7 +3,6 @@ local gr = vim.api.nvim_create_augroup
 
 local main = gr("main", {clear=true})
 local shada = gr("shada", {clear=true})
-local kitty = gr("kitty", {clear=true})
 local utils = gr("utils", {clear=true})
 local mode_change = gr("mode_change", {clear=true})
 local custom_updates = gr("custom_updates", {clear=true})
@@ -69,8 +68,4 @@ au({'BufWritePost'}, {pattern={'*'},
 au({'BufNewFile','BufWritePre'}, {pattern={'*'},
     command=[[if @% !~# '\(://\)' | call mkdir(expand('<afile>:p:h'), 'p') | endif]],
     group=utils
-})
-au({'BufWritePost'},{pattern={'*/kitty/*.conf'}, callback=function()
-    vim.cmd(":silent !kill -SIGUSR1 $(grep kitty =(ps auxwww))") end,
-    group=kitty
 })
