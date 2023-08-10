@@ -85,7 +85,7 @@ _exists rsync && alias rsync='rsync -az --compress-choice=zstd --info=FLIST,COPY
 _exists dig && alias dig='dig +noall +answer'
 _exists mtr && alias mtrr='mtr -wzbe'
 _exists dust && alias sp='dust -r' || alias sp='du -shc ./*|sort -h'
-_exists duf && alias df='duf -theme ansi' || alias df='df -hT'
+_exists duf && alias df="duf -theme ansi -hide 'special' -hide-mp $HOME/'*'" || alias df='df -hT'
 _exists btm && alias htop='btm -b -T --mem_as_value'
 _exists journalctl && journalctl() {command journalctl "${@:--b}";}
 _exists ip && alias ip='ip -c'
