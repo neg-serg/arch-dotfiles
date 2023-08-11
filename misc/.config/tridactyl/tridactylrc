@@ -8,6 +8,7 @@ set visualenterauto false
 set wordpattern [^\s\/]+
 set tabopencontaineraware false
 set tabopenpos last
+set tabsort mru
 set statusstylepretty true
 set incsearch true
 set modeindicator false
@@ -208,6 +209,8 @@ guiset_quiet hoverlink right
 guiset_quiet statuspanel right
 guiset_quiet tabcounters show
 
+set keyboardlayoutforce true
+set keyboatlayoutbase us
 " Cyrillic keymap support
 keymap , ?
 keymap . /
