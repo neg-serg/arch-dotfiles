@@ -1,0 +1,86 @@
+# vim:fileencoding=utf-8:ft=conf:foldmethod=marker
+
+#: Colors {{{
+
+# selection_foreground #FFFFFF
+# selection_background #5294E2
+
+#: Colors for selected text while grabbing.
+
+#: }}}
+
+#: Key shortcuts {{{
+
+# map q      quit
+# map Escape quit
+
+#: Exit the grabber without copying anything.
+
+# map Enter confirm
+
+#: Copy the selected region to clipboard and exit.
+
+# map Left      move left
+# map Right     move right
+# map Up        move up
+# map Down      move down
+# map Page_Up   move page up
+# map Page_Down move page down
+# map Home      move first
+# map a         move first nonwhite
+# map End       move last nonwhite
+# map e         move last
+# map Ctrl+Home  move top
+# map Ctrl+End   move bottom
+# map Ctrl+Left  move word left
+# map Ctrl+Right move word right
+
+#: Cancel selection and move the cursor around the screen.
+#: This will scroll the buffer if needed and possible.
+
+# map Ctrl+Up   scroll up
+# map Ctrl+Down scroll down
+
+#: Scroll the buffer, if possible.
+#: Cursor stays in the same position relative to the screen.
+
+# map Shift+Left      select stream left
+# map Shift+Right     select stream right
+# map Shift+Up        select stream up
+# map Shift+Down      select stream down
+# map Shift+Page_Up   select stream page up
+# map Shift+Page_Down select stream page down
+# map Shift+Home      select stream first
+# map A               select stream first nonwhite
+# map Shift+End       select stream last nonwhite
+# map E               select stream last
+# map Shift+Ctrl+Home  select stream top
+# map Shift+Ctrl+End   select stream bottom
+# map Shift+Ctrl+Left  select stream word left
+# map Shift+Ctrl+Right select stream word right
+
+#: Extend a stream selection.
+#: If no region is selected, start selecting.
+#: Stream selection includes all characters between the region ends.
+
+# map Alt+Left      select columnar left
+# map Alt+Right     select columnar right
+# map Alt+Up        select columnar up
+# map Alt+Down      select columnar down
+# map Alt+Page_Up   select columnar page up
+# map Alt+Page_Down select columnar page down
+# map Alt+Home      select columnar first
+# map Alt+A         select columnar first nonwhite
+# map Alt+End       select columnar last nonwhite
+# map Alt+E         select columnar last
+# map Alt+Ctrl+Home  select columnar top
+# map Alt+Ctrl+End   select columnar bottom
+# map Alt+Ctrl+Left  select columnar word left
+# map Alt+Ctrl+Right select columnar word right
+
+#: Extend a columnar selection.
+#: If no region is selected, start selecting.
+#: Columnar selection includes characters in the rectangle
+#: defined by the region ends.
+
+#: }}}
