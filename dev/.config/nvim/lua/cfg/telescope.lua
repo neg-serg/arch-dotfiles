@@ -15,7 +15,7 @@ local undo=telescope.load_extension'undo'
 local zoxide=telescope.load_extension'zoxide'
 
 local long_find = {'rg','--files','--hidden','-g','!.git'}
-local short_find = {'fd','-H','--ignore-vcs','-d','2'}
+local short_find = {'fd','-H','--ignore-vcs','-d','3'}
 
 telescope.setup{
     defaults={
