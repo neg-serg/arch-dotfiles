@@ -14,6 +14,9 @@ local pathogen=telescope.load_extension'pathogen'
 local undo=telescope.load_extension'undo'
 local zoxide=telescope.load_extension'zoxide'
 
+local long_find = {'rg','--files','--hidden','-g','!.git'}
+local short_find = {'fd','-H','--ignore-vcs','-d','1'}
+
 telescope.setup{
     defaults={
         vimgrep_arguments={
@@ -103,7 +106,7 @@ telescope.setup{
             previewer=false,
             sorting_strategy="descending",
             prompt_title=false,
-            find_command={'fd','-H','--ignore-vcs','-d','2'},
+            find_command=short_find,
             layout_config={height=12},
         },
         oldfiles={
@@ -118,10 +121,32 @@ telescope.setup{
 
 local opts={silent=true, noremap=true}
 Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)
-Map('n', 'cd', function() telescope.load_extension'zoxide'.list(require'telescope.themes'.get_ivy({layout_config={height=8},border=false})) end, opts)
-Map('n', "<leader>.", function() builtin.oldfiles(require'telescope.themes'.get_ivy({layout_config={height=8},border=false})) end, opts)
-Map('n', '<C-f>', function() builtin.live_grep(require'telescope.themes'.get_ivy({layout_config={height=12},border=true})) end, opts)
-Map('n', '<M-C-o>', function() builtin.lsp_dynamic_workspace_symbols() end, opts)
-Map('n', '<M-o>', function() builtin.lsp_document_symbols() end, opts)
-Map('n', '<leader>l', function() vim.cmd'chdir %:p:h'; pathogen.find_files{} end, opts)
-Map('n', '[Qleader]e', function() pathogen.find_files{} end, opts)
+Map('n', 'cd', function()
+    telescope.load_extension'zoxide'.list(
+        require'telescope.themes'.get_ivy(
+            {layout_config={height=8}, border=false}
+)) end, opts)
+Map('n', "<leader>.", function()
+    builtin.oldfiles(
+        require'telescope.themes'.get_ivy({
+            layout_config={height=8},
+            border=false
+})) end, opts)
+Map('n', '<C-f>', function()
+    builtin.live_grep(
+        require'telescope.themes'.get_ivy({
+            layout_config={height=12},
+            border=true
+})) end, opts)
+Map('n', '<M-C-o>', function()
+    builtin.lsp_dynamic_workspace_symbols() 
+end, opts)
+Map('n', '<M-o>', function() 
+    builtin.lsp_document_symbols() 
+end, opts)
+Map('n', '<leader>l', function()
+    vim.cmd'chdir %:p:h'; pathogen.find_files{}
+end, opts)
+Map('n', '[Qleader]e', function()
+    pathogen.find_files{} 
+end, opts)
