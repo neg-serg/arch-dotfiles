@@ -9,7 +9,6 @@ set $menu exec ~/src/negwm/menu
 set $actions nop actions
 set $circle nop circle
 set $configurator nop configurator
-set $executor nop executor
 set $fullscreen nop fullscreen
 set $lastgo nop lastgo
 set $reflection nop reflection
