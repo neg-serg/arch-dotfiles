@@ -2,6 +2,7 @@
 Description=Startup stuff depended on negwm
 Requires=negwm.service
 After=negwm.service
+After=executor.service
 
 [Service]
 Type=oneshot
