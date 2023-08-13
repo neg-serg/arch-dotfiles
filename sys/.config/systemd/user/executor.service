@@ -1,0 +1,10 @@
+[Unit]
+Description=Terminal manager
+PartOf=graphical-session.target
+StartLimitBurst=5
+StartLimitIntervalSec=1
+Requires=xsettingsd.service
+
+[Service]
+ExecStart=%h/bin/executor daemon
+Restart=on-failure
