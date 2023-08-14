@@ -1,5 +1,9 @@
 [Unit]
-Description=i3 window manager
+Description=i3 improved dynamic tiling window manager for X
+Documentation=man:i3(5)
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
+BindsTo=graphical-session.target
 PartOf=graphical-session.target
 After=i3-session.target
 Wants=i3-session.target
@@ -10,3 +14,5 @@ ExecReload=/usr/bin/i3-msg reload
 ExecReload=/bin/systemctl --user restart negwm.service
 ExecStopPost=/bin/systemctl --user stop --no-block graphical-session.target
 Restart=on-failure
+RestartSec=5
+TimeoutStopSec=10
