@@ -1,0 +1,51 @@
+ncmpcpp:
+  classw: ncmpcpp
+  exec: ncmpcpp
+  font: Iosevka
+  font_normal: Medium
+  font_size: 17
+  opacity: 0.95
+  padding: [4, 4]
+  term: kitty
+
+neomutt: {classw: neomutt, exec: neomutt, font: Iosevka, font_size: 17, term: kitty}
+
+nwim:
+  classw: nwim
+  exec: /usr/bin/nvim --listen localhost:7777
+  font: Iosevka
+  font_normal: Medium
+  font_size: 17
+  instance_group: smaller_term
+  opacity: 0.95
+  padding: [4, 4]
+  term: kitty
+
+teardrop:
+  classw: teardrop
+  exec: /usr/bin/btop
+  font: Iosevka
+  font_normal: Medium
+  font_size: 17
+  instance_group: smaller_term
+  padding: [8, 8]
+  term: kitty
+
+term:
+  classw: term
+  exec: zsh
+  font: Iosevka
+  font_size: 19
+  padding: [2, 2]
+  statusline: 1
+  term: kitty
+
+torrment:
+  classw: torrment
+  exec: /home/neg/.local/bin/stig
+  font: Iosevka
+  font_size: 18
+  instance_group: smaller_term
+  padding: [8, 8]
+  term: kitty
+
