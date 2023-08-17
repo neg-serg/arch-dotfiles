@@ -1,0 +1,32 @@
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = "~/.config/vdirsyncer/status/"
+
+[storage neg_contacts_local]
+type = "filesystem"
+path = "~/.config/vdirsyncer/contacts/"
+fileext = ".vcf"
+
+# [storage neg_contacts_remote]
+# type = "carddav"
+# url = "https://owncloud.example.com/remote.php/carddav/"
+
+# CALDAV
+[pair neg_calendar]
+a = "neg_calendar_local"
+b = "neg_calendar_remote"
+collections = ["from a", "from b"]
+
+# Calendars also have a color property
+metadata = ["displayname", "color"]
+
+[storage neg_calendar_local]
+type = "filesystem"
+path = "~/.config/vdirsyncer/calendars/"
+fileext = ".ics"
+
+[storage neg_calendar_remote]
+type = "google_calendar"
+token_file = "~/.config/vdirsyncer/token_stuff"
+client_id = "439658335779-41rctaqucvm78ft4vet7tp4r1f024sbd.apps.googleusercontent.com"
+client_secret = "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"

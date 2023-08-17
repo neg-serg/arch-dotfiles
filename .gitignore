@@ -270,3 +270,5 @@ blocklists
 resume
 torrents
 stats.json
+mail/.config/vdirsyncer/status/
+mail/.config/vdirsyncer/token_stuff
