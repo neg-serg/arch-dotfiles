@@ -1,0 +1,19 @@
+[calendars]
+
+[[neg_calendar_local]]
+path = ~/.config/vdirsyncer/calendars/*
+type = discover
+
+[[neg_contacts_local]]
+path = ~/.config/vdirsyncer/contacts/*
+type = discover
+
+[locale]
+timeformat = %H:%M
+dateformat = %d/%m/%Y
+longdateformat = %d/%m/%Y
+datetimeformat = %d/%m/%Y %H:%M
+longdatetimeformat = %d/%m/%Y %H:%M
+
+[default]
+default_calendar = serg.zorg@gmail.com
