@@ -30,7 +30,7 @@
   SPROMPT="%F{249}Correct: %F{4}%R%f %F{249}-> %F{2}%r%F{249} [nyae]? %f"
   PS2="%F{25}❭ %f"
   PS3='?# '
-  PS4='+%N:%i:%_> '
+  PS4='%F{23}+%F{25}%N:%i:%_>%F{-1} '
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
