@@ -1,5 +1,4 @@
 [calendars]
-
 [[neg_calendar_local]]
 path = ~/.config/vdirsyncer/calendars/*
 type = discover
@@ -9,11 +8,15 @@ path = ~/.config/vdirsyncer/contacts/*
 type = discover
 
 [locale]
+local_timezone = Europe/Moscow
 timeformat = %H:%M
 dateformat = %d/%m/%Y
 longdateformat = %d/%m/%Y
 datetimeformat = %d/%m/%Y %H:%M
 longdatetimeformat = %d/%m/%Y %H:%M
+firstweekday = 0
 
 [default]
-default_calendar = serg.zorg@gmail.com
+default_calendar = Main
+highlight_event_days = True
+timedelta = 30d
