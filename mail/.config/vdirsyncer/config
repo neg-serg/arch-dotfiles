@@ -1,5 +1,4 @@
 [general]
-# A folder where vdirsyncer can store some metadata about each pair.
 status_path = "~/.config/vdirsyncer/status/"
 
 [storage neg_contacts_local]
@@ -11,13 +10,10 @@ fileext = ".vcf"
 # type = "carddav"
 # url = "https://owncloud.example.com/remote.php/carddav/"
 
-# CALDAV
 [pair neg_calendar]
 a = "neg_calendar_local"
 b = "neg_calendar_remote"
 collections = ["from a", "from b"]
-
-# Calendars also have a color property
 metadata = ["displayname", "color"]
 
 [storage neg_calendar_local]
