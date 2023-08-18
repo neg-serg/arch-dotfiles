@@ -1,8 +1,8 @@
 require'modes'.setup{
     colors={
-        copy="#f5c359",
-        delete="#c75c6a",
-        insert="#00954a",
+        copy="#9a1515",
+        delete="#9a1515",
+        insert="#7820ff",
         visual="#9745be",
     },
     line_opacity=0.15, -- Set opacity for cursorline and number background
