@@ -121,7 +121,7 @@ return require'packer'.startup({function(use)
     use {'mzlogin/vim-markdown-toc', ft='md'} -- table of contents generator
     use {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end}
-    use {'nvim-orgmode/orgmode', config = function() require('orgmode').setup{} end,
+    use {'nvim-orgmode/orgmode', config=function() require'orgmode'.setup{} end,
         ft={'org'},
         requires={'nvim-treesitter/nvim-treesitter'}}
     use {'superhawk610/ascii-blocks.nvim'} -- box printer
