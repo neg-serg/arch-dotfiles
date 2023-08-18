@@ -35,7 +35,6 @@ return require'packer'.startup({function(use)
             'debugloop/telescope-undo.nvim', -- telescope show undo
             'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
             {'nvim-telescope/telescope-frecency.nvim', requires={'tami5/sqlite.lua'}},
-            'nvim-telescope/telescope-media-files.nvim', -- media files preview
         },
         module='telescope',
         keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>',

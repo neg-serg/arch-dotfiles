@@ -9,7 +9,6 @@ local builtin=require'telescope.builtin'
 local actions=require'telescope.actions'
 
 local frecency=telescope.load_extension'frecency'
-local media_files=telescope.load_extension'media_files'
 local pathogen=telescope.load_extension'pathogen'
 local undo=telescope.load_extension'undo'
 local zoxide=telescope.load_extension'zoxide'
@@ -48,11 +47,6 @@ telescope.setup{
 			"%.jar",        "%.docx",  "%.met",    "%.burp",  "%.mp4",  "%.mkv", "%.rar",
 			"%.zip",        "%.7z",    "%.tar",    "%.bz2",   "%.epub", "%.flac","%.tar.gz",
         },
-        media_files={
-			-- filetypes whitelist
-			filetypes={"png", "jpg", "mp4", "webm", "pdf"},
-			find_cmd="fd" -- find command (defaults to `fd`)
-		},
         generic_sorter=sorters.get_generic_fuzzy_sorter,
         path_display={ shorten=8 },
         winblend=8,
