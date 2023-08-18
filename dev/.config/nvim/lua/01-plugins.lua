@@ -66,11 +66,10 @@ return require'packer'.startup({function(use)
             {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
             {'hrsh7th/cmp-path', after='nvim-cmp'}, -- cmp path completion support
     }}
-    use({'folke/noice.nvim', -- better UX
+    use {'folke/noice.nvim', -- better UX
         event='VimEnter',
         config=function() require'cfg.noice' end,
-        requires={'MunifTanjim/nui.nvim'}
-    })
+        requires={'MunifTanjim/nui.nvim'}}
     use {'L3MON4D3/LuaSnip', -- snippets engine
         config=function() require'cfg.luasnip' end,
         requires='rafamadriz/friendly-snippets', -- additional snippets'
@@ -82,8 +81,7 @@ return require'packer'.startup({function(use)
             'williamboman/mason-lspconfig',
             'jay-babu/mason-null-ls.nvim',
             'jose-elias-alvarez/null-ls.nvim',
-        },
-        event={'InsertEnter'}}
+        }, event={'InsertEnter'}}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Dev                                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -136,7 +134,7 @@ return require'packer'.startup({function(use)
     use {'lukas-reineke/headlines.nvim',
         ft={'markdown'},
         dependencies='nvim-treesitter',
-        config=function() require'cfg.headline' end,}
+        config=function() require'cfg.headline' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Edit                                                                         │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
