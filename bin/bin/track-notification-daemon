@@ -50,7 +50,10 @@ def on_track_change(player, data):
         sys.exit()
 
 log=logging.getLogger()
-log.addHandler(journal.JournalHandler())
+try:
+    log.addHandler(journal.JournaldLogHandler())
+except:
+    log.error('Cannot setup systemd log')
 
 # noqa: E402
 try:
