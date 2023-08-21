@@ -75,7 +75,8 @@ def media_info(filename):
         if stream['codec_type'] == 'video':
             out += pp.wrap(str(stream['width']) + 'x' + str(stream['height']))
             frame_rate = stream['avg_frame_rate'].split('/')
-            vid_frame_rate = round(float(frame_rate[0]) / float(frame_rate[1]))
+            if float(frame_rate[1]): 
+                vid_frame_rate = round(float(frame_rate[0]) / float(frame_rate[1]))
         if stream['codec_type'] == 'audio':
             if stream.get('bit_rate', ''):
                 audio_bitrate = math.floor(convert_unit(
