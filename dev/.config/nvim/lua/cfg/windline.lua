@@ -4,7 +4,6 @@ local helper=require('windline.helpers')
 local b_components=require('windline.components.basic')
 local cache_utils=require('windline.cache_utils')
 local state=_G.WindLine.state
-
 local lsp_comps=require('windline.components.lsp')
 local git_comps=require('windline.components.git')
 

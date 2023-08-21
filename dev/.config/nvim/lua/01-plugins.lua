@@ -89,8 +89,6 @@ return require'packer'.startup({function(use)
         keys={'<leader>X'}, opt=true}
     use {'potamides/pantran.nvim', config=function() require'cfg.pantran' end}
     use {'jamessan/vim-gnupg', ft='gpg'} -- transparent work with gpg-encrypted files
-    use {'kevinhwang91/nvim-bqf', -- better quickfix
-        config=function() require'cfg.bqf' end, ft='qf'}
     use {'lervag/vimtex', ft={'tex','latex'}} -- modern TeX support
     use {'numToStr/Comment.nvim', -- modern commenter
         config=function() require'cfg.comment' end,
