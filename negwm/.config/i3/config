@@ -23,7 +23,7 @@ set $circle-games [class="^(Steam|steam)$"]
 set $circle-term [instance="term"]
 set $circle-vid [class="mpv"]
 set $circle-vm [class="spicy"]
-set $circle-web [class="^(firefox|firefoxdeveloperedition|Tor Browser|Chromium|Thorium-browser|Palemoon)$"]
+set $circle-web [class="^(firefox|firefoxdeveloperedition|Tor Browser|Chromium|Thorium-browser|Palemoon|Pale moon)$"]
 for_window $circle-bitwig move to workspace $sound,focus
 for_window $circle-doc move to workspace $doc,focus
 for_window $circle-dev move to workspace $dev,focus
