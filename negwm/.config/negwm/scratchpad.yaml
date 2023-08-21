@@ -1,0 +1,54 @@
+discord:
+  classw: [discord]
+  geom: 1898x1273+1936+825
+  keybind_toggle: [Mod4+v]
+  prog: discord
+
+im:
+  classw: [KotatogramDesktop, vkteams, Skype, Slack, TelegramDesktop, zoom]
+  geom: 1304x2109+2536+2
+  keybind_toggle: [Mod4+e]
+  prog: telegram-desktop
+  tel:
+    classw: [TelegramDesktop]
+    keybind_spec_subtag: [t]
+    prog: telegram-desktop
+
+ncmpcpp:
+  classw: [ncmpcpp]
+  geom: 2251x828+753+1205
+  keybind_toggle: [Mod4+f]
+  prog: ~/bin/executor run ncmpcpp
+
+neomutt:
+  classw: [mutterfox]
+  exec: neomutt
+  geom: 3670x2228+104+0
+  instance: [mutterfox, neomutt]
+  keybind_toggle: [Mod4+n]
+
+teardrop:
+  geom: 3840x1300+0+0
+  instance: [teardrop]
+  keybind_toggle: [Mod4+d]
+  prog: ~/bin/executor run teardrop
+
+torrment:
+  geom: 3840x1300+0+0
+  instance: [torrment]
+  keybind_toggle: [Mod4+t]
+  prog: ~/bin/executor run torrment
+
+transients:
+  geom: 1812x797+693+1310
+  instance: [Places]
+  keybind_spec_toggle: [a]
+  role: [GtkFileChooserDialog, gimp-file-open]
+
+webcam:
+  geom: 2463x1880+1368+268
+  instance: [webcam]
+  keybind_spec_toggle: [w]
+  prog: ~/bin/webcam
+
+configured_internally: true
