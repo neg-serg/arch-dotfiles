@@ -196,6 +196,7 @@ mode %{T4}%{T-} {
 	bindsym l exec ~/bin/x11lock, mode "default"
 	bindsym m $menu/xprop, mode "default"
 	bindsym o $menu/audio output, mode "default"
+	bindsym h exec ~/bin/game hack, mode "default"
 	bindsym f $circle subtag web firefox, mode "default"
 	bindsym 5 $circle subtag web tor, mode "default"
 	bindsym t $scratchpad subtag im tel, mode "default"
