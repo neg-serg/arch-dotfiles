@@ -1,7 +1,7 @@
-include ~/.config/i3/settings.conf
-include ~/.config/i3/autostart.conf
-include ~/.config/i3/theme.conf
-include ~/.config/i3/rules.conf
+include $XDG_CONFIG_HOME/i3/settings.conf
+include $XDG_CONFIG_HOME/i3/autostart.conf
+include $XDG_CONFIG_HOME/i3/theme.conf
+include $XDG_CONFIG_HOME/i3/rules.conf
 set $menu exec ~/src/negwm/menu
 
 # :>> NegWM
