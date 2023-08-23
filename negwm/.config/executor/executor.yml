@@ -6,7 +6,6 @@ ncmpcpp:
   font_size: 17
   opacity: 0.95
   padding: [4, 4]
-  term: kitty
 
 neomutt: {classw: neomutt, exec: neomutt, font: Iosevka, font_size: 17, term: kitty}
 
@@ -42,10 +41,17 @@ term:
 
 torrment:
   classw: torrment
-  exec: /home/neg/.local/bin/stig
+  exec: ~/.local/bin/stig
   font: Iosevka
   font_size: 18
   instance_group: smaller_term
   padding: [8, 8]
   term: kitty
 
+ncpamixer:
+  classw: ncpamixer
+  exec: ncpamixer
+  font: Iosevka
+  font_normal: Medium
+  font_size: 14
+  opacity: 0.95

@@ -39,18 +39,18 @@ set $scratchpad-discord [class="discord"]
 set $scratchpad-im [class="^(KotatogramDesktop|vkteams|Skype|Slack|TelegramDesktop|zoom)$"]
 set $scratchpad-ncmpcpp [class="ncmpcpp"]
 set $scratchpad-neomutt [class="mutterfox" instance="^(mutterfox|neomutt)$"]
+set $scratchpad-mixer [instance="ncpamixer"]
 set $scratchpad-teardrop [instance="teardrop"]
 set $scratchpad-torrment [instance="torrment"]
 set $scratchpad-transients [instance="Places" window_role="^(GtkFileChooserDialog|gimp-file-open)$"]
-set $scratchpad-webcam [instance="webcam"]
-for_window $scratchpad-discord floating enable, move absolute position 1734 550, resize set 1700 848
+for_window $scratchpad-discord floating enable, move absolute position 1734 550, resize set 1880 950
 for_window $scratchpad-im floating enable, move absolute position 2271 1, resize set 1168 1406
 for_window $scratchpad-ncmpcpp floating enable, move absolute position 674 803, resize set 2016 552
-for_window $scratchpad-neomutt floating enable, move absolute position 93 0, resize set 3287 1485
+for_window $scratchpad-neomutt floating enable, move absolute position 0 0, resize set 3440 1397
+for_window $scratchpad-mixer floating enable, move absolute position 1828 804, resize set 1612 590
 for_window $scratchpad-teardrop floating enable, move absolute position 0 0, resize set 3440 866
 for_window $scratchpad-torrment floating enable, move absolute position 0 0, resize set 3440 866
-for_window $scratchpad-transients floating enable, move absolute position 620 873, resize set 1623 531
-for_window $scratchpad-webcam floating enable, move absolute position 1225 178, resize set 2206 1253
+for_window $scratchpad-transients floating enable, move absolute position 685 621, resize set 1897 765
 
 # :>> Config section workspaces
 set $term "︁ 𐌰:term"
@@ -154,6 +154,7 @@ bindsym Mod4+v $scratchpad toggle discord
 bindsym Mod4+e $scratchpad toggle im
 bindsym Mod4+f $scratchpad toggle ncmpcpp
 bindsym Mod4+n $scratchpad toggle neomutt
+bindsym Mod4+Ctrl+p $scratchpad toggle mixer
 bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
 
@@ -199,7 +200,6 @@ mode %{T4}%{T-} {
 	bindsym 5 $circle subtag web tor, mode "default"
 	bindsym t $scratchpad subtag im tel, mode "default"
 	bindsym a $scratchpad toggle transients, mode "default"
-	bindsym w $scratchpad toggle webcam, mode "default"
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
 	bindsym space, mode "default"
