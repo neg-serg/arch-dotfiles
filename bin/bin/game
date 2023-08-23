@@ -1,12 +1,11 @@
 #!/usr/bin/env sh
-xrandr --auto
 game_start(){
     systemctl --user stop picom # Disable compositor
-    nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=On}"
+    nvidia-settings --assign CurrentMetaMode="HDMI-0: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=On}"
 }
 
 game_stop(){
-    nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=Off}"
+    nvidia-settings --assign CurrentMetaMode="HDMI-0: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=Off}"
     systemctl --user start picom # Re-enable your compositor
 }
 
