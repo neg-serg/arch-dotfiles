@@ -1,24 +1,23 @@
 #!/usr/bin/env sh
-second_screen=false
 xrandr --auto
+game_start(){
+    systemctl --user stop picom # Disable compositor
+    nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=On}"
+}
+
+game_stop(){
+    nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=Off}"
+    systemctl --user start picom # Re-enable your compositor
+}
+
 case "$1" in
-    start) 
-        systemctl --user stop picom # Disable compositor
-        if [ $second_screen = true ]; then
-            nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=On}, HDMI-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=Off}"
-            xrandr --output HDMI-1 --off #Disable 2º screen
+    start) game_start "$@" ;;
+    end) game_stop "$@" ;;
+    toggle)
+        if pgrep picom > /dev/null; then
+            game_start "$@"
         else
-            nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=On}"
-        fi
-    ;;
-    end) 
-        if [ $second_screen = true ]; then
-            xrandr --output HDMI-0 --auto # Re-enable 2º screen
-            nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=On, AllowGSYNCCompatible=Off}, HDMI-0: nvidia-auto-select +0+0 {ForceCompositionPipeline=On}"
-        else
-            nvidia-settings --assign CurrentMetaMode="DP-2: 3440x1440_175 +0+0 {ForceCompositionPipeline=On, AllowGSYNCCompatible=Off}"
-        fi
-        systemctl --user start picom # Re-enable your compositor
-    ;;
+            game_stop "$@"
+        fi ;;
     *) true ;;
 esac
