@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-MONITOR="HDMI-0"
+MONITOR="$(xrandr|awk '/ connected /{print $1}')"
 
 game_start(){
     systemctl --user stop picom # Disable compositor
