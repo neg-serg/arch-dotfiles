@@ -22,9 +22,7 @@ def on_track_change(player, data):
     if data is None or not data:
         log.error('No data')
         sys.exit()
-    if 'mpris:artUrl' in data:
-        cover=data['mpris:artUrl']
-        sys.exit()
+    cover=data['mpris:artUrl']
     if cover:
         try:
             cover=remove_prefix(cover, 'file://')
