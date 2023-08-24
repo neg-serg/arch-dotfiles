@@ -79,7 +79,6 @@ bindsym Mod4+Shift+8 exec --no-startup-id ~/bin/pl vol unmute
 bindsym Mod4+Shift+9 exec --no-startup-id /usr/bin/dunstctl history-pop
 bindsym Mod4+Shift+l exec --no-startup-id ~/bin/rofi-lutris
 bindsym Mod4+Shift+m exec --no-startup-id ~/bin/main-menu
-bindsym Mod4+Shift+x exec --no-startup-id ~/bin/game toggle
 bindsym Mod4+c exec --no-startup-id ~/bin/clip
 bindsym Mod4+m exec --no-startup-id /bin/zsh -c "~/bin/music-rename current"
 bindsym Mod4+p exec --no-startup-id /usr/bin/rofi-pass
@@ -158,7 +157,7 @@ bindsym Mod4+Ctrl+p $scratchpad toggle mixer
 bindsym Mod4+d $scratchpad toggle teardrop
 bindsym Mod4+t $scratchpad toggle torrment
 
-# :>> Config section resize
+# :>> Config section mod-r
 bindsym Mod4+r mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym j $actions resize bottom 20
@@ -185,7 +184,7 @@ mode %{T4}%{T-} {
 	bindsym Control+G, mode "default"
 }
 
-# :>> Config section spec
+# :>> Config section mod-e
 bindsym Mod1+e mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym Shift+d floating toggle, mode "default"
@@ -197,10 +196,7 @@ mode %{T4}%{T-} {
 	bindsym m $menu/xprop, mode "default"
 	bindsym o $menu/audio output, mode "default"
 	bindsym h exec ~/bin/game hack, mode "default"
-	bindsym f $circle subtag web firefox, mode "default"
-	bindsym 5 $circle subtag web tor, mode "default"
-	bindsym t $scratchpad subtag im tel, mode "default"
-	bindsym a $scratchpad toggle transients, mode "default"
+	bindsym g exec ~/bin/game toggle, mode "default"
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
 	bindsym space, mode "default"
@@ -208,7 +204,7 @@ mode %{T4}%{T-} {
 	bindsym Control+G, mode "default"
 }
 
-# :>> Config section wallpaper
+# :>> Config section mod-sh-6
 bindsym Mod4+Shift+6 mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym 6 exec --no-startup-id ~/bin/wl
@@ -220,8 +216,6 @@ mode %{T4}%{T-} {
 
 	bindsym Space  , mode "default"
 	bindsym q  , mode "default"
-	bindsym c $circle next nsxiv, mode "default"
-	bindsym Shift+c $circle subtag nsxiv wallpaper, mode "default"
 	bindsym Return, mode "default"
 	bindsym Escape, mode "default"
 	bindsym space, mode "default"
@@ -229,7 +223,7 @@ mode %{T4}%{T-} {
 	bindsym Control+G, mode "default"
 }
 
-# :>> Config section wm
+# :>> Config section mod-minus
 bindsym Mod4+minus mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym backslash layout splitv, mode "default"
