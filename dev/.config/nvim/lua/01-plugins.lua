@@ -148,6 +148,8 @@ return require'packer'.startup({function(use)
         config=function() require'cfg.surround' end}
     use 'wellle/targets.vim' -- new text objects
     use 'lambdalisue/suda.vim' -- sudo write commands
+    use {'cappyzawa/trim.nvim', -- trim trailing whitespace etc
+        config=function() require'cfg.trim' end}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ Appearance                                                                   │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
