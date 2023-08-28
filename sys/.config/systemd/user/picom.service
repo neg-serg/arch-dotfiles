@@ -10,5 +10,6 @@ Requires=x11.service
 ExecStart=/usr/bin/picom --dbus --backend glx
 ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 Restart=on-failure
-RestartSec=5
+RestartSec=1
 StartLimitBurst=3
+StartLimitIntervalSec=0

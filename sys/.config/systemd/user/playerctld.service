@@ -7,7 +7,7 @@ BindsTo=mpd.service
 Type=forking
 ExecStart=/usr/bin/playerctld daemon
 RestartSec=3
-StartLimitBurst=30
+StartLimitBurst=0
 
 [Install]
 WantedBy=default.target

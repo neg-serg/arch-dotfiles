@@ -7,4 +7,4 @@ StartLimitIntervalSec=60
 ExecStart=/usr/bin/unclutter --timeout 3 --jitter 50 --ignore-scrolling --start-hidden
 Restart=on-failure
 RestartSec=3
-StartLimitBurst=30
+StartLimitIntervalSec=0

@@ -8,3 +8,4 @@ ExecStart=/usr/bin/warpd -f
 Restart=always
 RestartSec=2
 StartLimitBurst=8
+StartLimitIntervalSec=0
