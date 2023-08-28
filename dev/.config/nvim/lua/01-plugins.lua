@@ -165,10 +165,10 @@ return require'packer'.startup({function(use)
             {'nvim-treesitter/nvim-treesitter-textobjects',
                 after='nvim-treesitter',
                 config=function() require'cfg.treesitter' end},
-            {'https://gitlab.com/HiPhish/nvim-ts-rainbow2', after='nvim-treesitter'}, -- treesitter-based rainbow
             {'RRethy/nvim-treesitter-endwise', after='nvim-treesitter'}, -- ts-based endwise
-            {'nvim-treesitter/nvim-treesitter-refactor', after='nvim-treesitter'} -- refactor modules for ts
     }}
+    use {'hiphish/rainbow-delimiters.nvim', -- rainbow parenthesis
+        config=function() require'cfg.rainbow-delimiters' end}
     use {'RRethy/vim-hexokinase', -- best way to display colors in the file
         run='cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make hexokinase'}
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
