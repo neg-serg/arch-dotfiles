@@ -1,0 +1,7 @@
+[Unit]
+Description=Vdirsyncer synchronization service
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/vdirsyncer metasync
+ExecStart=/usr/bin/vdirsyncer sync
