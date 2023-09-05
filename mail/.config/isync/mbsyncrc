@@ -2,7 +2,8 @@
 IMAPAccount gmail
 Host imap.gmail.com
 User serg.zorg@gmail.com
-PassCmd "pass show gmail-pass"
+PassCmd "pass show google/neomutt"
+AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
@@ -14,31 +15,42 @@ Subfolders Verbatim
 Path ~/.local/mail/gmail/
 Inbox ~/.local/mail/gmail/Inbox/
 
-Channel gmail-default
-Master :gmail-remote:
-Slave :gmail-local:
-Patterns "INBOX"
-
-Channel gmail-sent
-Master :gmail-remote:"[Gmail]/Sent Mail"
-Slave :gmail-local:sent
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
 Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
-Create Slave
+# Or include everything
+#Patterns *
+Create Both # Automatically create missing mailboxes, both locally and on the server
+Expunge Both # Sync the movement of messages between folders and deletions, add after making sure the sync works
+SyncState * # Save the synchronization state files in the relevant directory
 
-Channel gmail-trash
-Master :gmail-remote:"[Gmail]/Trash"
-Slave :gmail-local:trash
-Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
-Create Slave
-
-Channel gmail-all
-Master :gmail-remote:"[Gmail]/All Mail"
-Slave :gmail-local:trash
-Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
-Create Slave
-
-Group gmail
-Channel gmail-default
-Channel gmail-sent
-Channel gmail-trash
-Channel gmail-all
+# Channel gmail-default
+# Far :gmail-remote:
+# Near :gmail-local:
+# Patterns "INBOX"
+#
+# Channel gmail-sent
+# Far :gmail-remote:"[Gmail]/Sent Mail"
+# Near :gmail-local:sent
+# Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Create Near
+#
+# Channel gmail-trash
+# Far :gmail-remote:"[Gmail]/Trash"
+# Near :gmail-local:trash
+# Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Create Near
+#
+# Channel gmail-all
+# Far :gmail-remote:"[Gmail]/All Mail"
+# Near :gmail-local:trash
+# Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Create Near
+#
+# Group gmail
+# Channel gmail-default
+# Channel gmail-sent
+# Channel gmail-trash
+# Channel gmail-all
