@@ -1,18 +1,15 @@
 #!/bin/sh
 # thx to https://copyninja.info/blog/email_setup.html
-
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
 export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
-
 MDIR="gmail"
 mbsync -a -c "$XDG_CONFIG_HOME"/isync/mbsyncrc
 notmuch new
-
 for mdir in $MDIR; do
-    for fdir in $(ls -d /home/neg/.local/mail/$mdir/*); do
-        if [ $(basename $fdir) != "INBOX" ]; then
-            notmuch tag +$(basename $fdir) -inbox -- folder:$mdir/$(basename $fdir)
-            notmuch tag +$mdir-$(basename "$fdir") -inbox -- folder:$mdir/$(basename $fdir)
+    for fdir in $(find ~/.local/mail/"$mdir" -maxdepth 1 -type d); do
+        if [ "$(basename "$fdir")" != "INBOX" ]; then
+            notmuch tag +"$(basename "$fdir")" -inbox -- folder:"$mdir/$(basename "$fdir")"
+            notmuch tag +"$mdir-$(basename "$fdir")" -inbox -- folder:"$mdir/$(basename "$fdir")"
         fi
     done
 done
