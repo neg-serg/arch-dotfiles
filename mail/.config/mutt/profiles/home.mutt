@@ -1,6 +1,6 @@
 set from = "serg.zorg@gmail.com"
 set realname = "Sergey Miroshnichenko"
-set spoolfile = "+gmail/Inbox"
+set spoolfile = "+gmail/inbox"
 
 set header_cache="$XDG_CONFIG_HOME/mutt/home.gmail/hcache"
 set certificate_file="$XDG_CONFIG_HOME/mutt/home.gmail/certificates"
@@ -23,17 +23,17 @@ macro index,pager A \
  "<save-message>+gmail/All Mail<enter>"  \
  "move message to the archive"
 macro index,pager I \
- "<save-message>+gmail/Inbox<enter>"  \
+ "<save-message>+gmail/inbox<enter>"  \
  "move message to the inbox"
 
-macro index ? '<change-vfolder>notmuch://?query=tag:gmail-Inbox and NOT tag:archive and '
+macro index ? '<change-vfolder>notmuch://?query=tag:gmail-inbox and NOT tag:archive and '
 
 macro index S "|bogofilter -s\ns=gmail/Spam"  "Learn as spam and save to junk"
 macro pager S "|bogofilter -s\ns=gmail/Spam"  "Learn as spam and save to junk"
 
 set nm_default_uri = "notmuch:///home/neg/.local/mail/"
 virtual-mailboxes \
-        "gmail" "notmuch://?query=tag:gmail-Inbox"\
-        "work" "notmuch://?query=tag:work-Inbox"
+        "gmail" "notmuch://?query=tag:gmail-inbox"\
+        "work" "notmuch://?query=tag:work-inbox"
 
 # vim: ft=muttrc syntax=neomuttrc
