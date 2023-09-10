@@ -7,12 +7,9 @@ local sorters=require'telescope.sorters'
 local previewers=require'telescope.previewers'
 local builtin=require'telescope.builtin'
 local actions=require'telescope.actions'
-
-local frecency=telescope.load_extension'frecency'
 local pathogen=telescope.load_extension'pathogen'
 local undo=telescope.load_extension'undo'
 local zoxide=telescope.load_extension'zoxide'
-
 local long_find = {'rg','--files','--hidden','-g','!.git'}
 local short_find = {'fd','-H','--ignore-vcs','-d','3'}
 
@@ -75,12 +72,6 @@ telescope.setup{
                     ['<C-CR>']=require'telescope-undo.actions'.restore,
                 },
             },
-        },
-        frecency={
-            show_scores=false,
-            show_unindexed=true,
-            ignore_patterns={ "*.git/*" },
-            workspaces={}
         },
         zoxide={
             mappings={
