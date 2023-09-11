@@ -1,53 +1,61 @@
-hint_activation_key: M-9
-grid_activation_key: M-u
-screen_activation_key: A-M-s
-activation_key: M-0
-hint_oneshot_key: A-M-l
-repeat_interval: 20
-speed: 400
-max_speed: 1500
-acceleration: 300
-accelerator_acceleration: 1800
+acceleration: 0
 accelerator: a
+accelerator_acceleration: 2400
+
+activation_key: M-0
 buttons: m , .
+copy_and_exit: c
+drag: v
+exit: esc
+exit: C-c
+max_speed: 7200
 oneshot_buttons: n - /
 oneshot_timeout: 300
-grid_exit: c
-exit: esc
-drag: v
-copy_and_exit: c
-grid: g
+repeat_interval: 5
 screen: s
+screen_activation_key: unbind
+screen_chars: hjkl
+speed: 200
+
+cursor_color: #005faf
+cursor_size: 14
+
 left: h
 down: j
 up: k
 right: l
-cursor_color: #005faf
-cursor_size: 7
+
+scroll_down: e
+scroll_up: r
+
+hint_activation_key: M-9
+hint_bgcolor: #000000
+hint_border_radius: 10
+hint_chars: wersdfa
+hint_fgcolor: #007A51
+hint_font: Iosevka
+hint_oneshot_key: A-M-l
+hint_size: 32
+hist_back: C-o
+hist_forward: C-i
+
 top: H
 middle: M
 bottom: L
 start: 0
 end: $
-hist_back: C-o
-hist_forward: C-i
-grid_nr: 2
-grid_nc: 2
-grid_up: w
-grid_left: a
-grid_down: s
-grid_right: d
-grid_keys: u i j k
-grid_color: #1c1c1e
-grid_size: 4
-grid_border_size: 0
+
+grid: g
+grid_activation_key: M-u
 grid_border_color: #ffffff
-hint_size: 28
-hint_bgcolor: #1c1c1e
-hint_fgcolor: #a1aba7
-hint_border_radius: 3
-scroll_down: e
-scroll_up: r
-screen_chars: jkl;asdfg
-hint_chars: abcdefghijklmnopqrstuvwxyz
-hint_font: Iosevka
+grid_border_size: 0
+grid_color: #1c1c1e
+grid_down: s
+grid_exit: c
+grid_keys: u i j k
+grid_left: a
+grid_nc: 2
+grid_nr: 2
+grid_right: d
+grid_size: 4
+grid_up: w
