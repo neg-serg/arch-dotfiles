@@ -6,14 +6,8 @@ ncmpcpp:
   font_size: 17
   opacity: 0.95
   padding: [4, 4]
-  term: alacritty
 
-neomutt:
-  classw: neomutt
-  exec: neomutt
-  font: Iosevka
-  font_size: 17
-  term: alacritty
+neomutt: {classw: neomutt, exec: neomutt, font: Iosevka, font_size: 17, term: kitty}
 
 nwim:
   classw: nwim
@@ -24,7 +18,7 @@ nwim:
   instance_group: smaller_term
   opacity: 0.95
   padding: [4, 4]
-  term: alacritty
+  term: kitty
 
 teardrop:
   classw: teardrop
@@ -34,7 +28,7 @@ teardrop:
   font_size: 17
   instance_group: smaller_term
   padding: [8, 8]
-  term: alacritty
+  term: kitty
 
 term:
   classw: term
@@ -43,7 +37,7 @@ term:
   font_size: 19
   padding: [2, 2]
   statusline: 1
-  term: alacritty
+  term: kitty
 
 torrment:
   classw: torrment
@@ -52,7 +46,7 @@ torrment:
   font_size: 18
   instance_group: smaller_term
   padding: [8, 8]
-  term: alacritty
+  term: kitty
 
 ncpamixer:
   classw: ncpamixer
@@ -61,4 +55,3 @@ ncpamixer:
   font_normal: Medium
   font_size: 14
   opacity: 0.95
-  term: alacritty
