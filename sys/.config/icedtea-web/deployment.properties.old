@@ -1,0 +1,5 @@
+#Netx deployment configuration
+#Wed Sep 13 13:26:54 MSK 2023
+deployment.security.itw.ignorecertissues=TRUE
+ows.install4j.propertyUpdate=1694600772357
+deployment.security.level=ALLOW_UNSIGNED
