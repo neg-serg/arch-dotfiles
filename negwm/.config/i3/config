@@ -112,7 +112,7 @@ bindsym Mod4+Control+s $scratchpad geom_dump
 bindsym Mod4+Control+space $scratchpad geom_restore
 bindsym Mod4+s $scratchpad hide_current
 
-bindsym Mod4+Shift+2 exec --no-startup-id ~/bin/pl cmd play-pause
+bindsym Mod4+2 exec --no-startup-id ~/bin/pl cmd play-pause
 bindsym Mod4+comma exec --no-startup-id ~/bin/pl cmd previous
 bindsym Mod4+period exec --no-startup-id ~/bin/pl cmd next
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/bin/pl vol down
