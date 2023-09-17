@@ -10,8 +10,19 @@ local actions=require'telescope.actions'
 local pathogen=telescope.load_extension'pathogen'
 local undo=telescope.load_extension'undo'
 local zoxide=telescope.load_extension'zoxide'
+local recent_files=telescope.load_extension'recent_files'
 local long_find = {'rg','--files','--hidden','-g','!.git'}
 local short_find = {'fd','-H','--ignore-vcs','-d','3'}
+local ignore_patterns={
+    "__pycache__/", "__pycache__/*",
+    "build/",       "gradle/",  "node_modules/", "node_modules/*",
+    "smalljre_*/*", "target/",  "vendor/*",
+    ".dart_tool/",  ".git/",   ".github/", ".gradle/",      ".idea/",        ".vscode/",
+    "%.sqlite3",    "%.ipynb", "%.lock",   "%.pdb",
+    "%.dll",        "%.class", "%.exe",    "%.cache", "%.pdf",  "%.dylib",
+    "%.jar",        "%.docx",  "%.met",    "%.burp",  "%.mp4",  "%.mkv", "%.rar",
+    "%.zip",        "%.7z",    "%.tar",    "%.bz2",   "%.epub", "%.flac","%.tar.gz",
+}
 
 telescope.setup{
     defaults={
@@ -34,16 +45,7 @@ telescope.setup{
             vertical={mirror=false},
         },
         file_sorter=sorters.get_zf_sorter,
-        file_ignore_patterns={
-            "__pycache__/", "__pycache__/*",
-			"build/",       "gradle/",  "node_modules/", "node_modules/*",
-			"smalljre_*/*", "target/",  "vendor/*",
-			".dart_tool/",  ".git/",   ".github/", ".gradle/",      ".idea/",        ".vscode/",
-			"%.sqlite3",    "%.ipynb", "%.lock",   "%.pdb",
-			"%.dll",        "%.class", "%.exe",    "%.cache", "%.pdf",  "%.dylib",
-			"%.jar",        "%.docx",  "%.met",    "%.burp",  "%.mp4",  "%.mkv", "%.rar",
-			"%.zip",        "%.7z",    "%.tar",    "%.bz2",   "%.epub", "%.flac","%.tar.gz",
-        },
+        file_ignore_patterns=ignore_patterns,
         generic_sorter=sorters.get_generic_fuzzy_sorter,
         path_display={ shorten=8 },
         winblend=8,
@@ -83,6 +85,11 @@ telescope.setup{
                 ["<C-Enter>"]={action=function(_) end},
             },
         },
+        extensions = {
+            recent_files = {
+                ignore_patterns=ignore_patterns
+            }
+        }
     },
     pickers={
         find_files={
@@ -93,14 +100,7 @@ telescope.setup{
             prompt_title=false,
             find_command=short_find,
             layout_config={height=12},
-        },
-        oldfiles={
-            theme="ivy",
-            border=false,
-            previewer=false,
-            sorting_strategy="descending",
-            prompt_title=false,
-        },
+        }
     },
 }
 
@@ -112,11 +112,13 @@ Map('n', 'cd', function()
             {layout_config={height=8}, border=false}
 )) end, opts)
 Map('n', "<leader>.", function()
-    builtin.oldfiles(
+    recent_files.pick(
         require'telescope.themes'.get_ivy({
             layout_config={height=8},
-            border=false
-})) end, opts)
+            border=false,
+            previewer=false,
+        })
+    ) end, opts)
 Map('n', '<C-f>', function()
     builtin.live_grep(
         require'telescope.themes'.get_ivy({

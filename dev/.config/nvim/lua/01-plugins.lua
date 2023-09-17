@@ -34,6 +34,7 @@ return require'packer'.startup({function(use)
             'neg-serg/telescope-pathogen.nvim', -- telescope change directory on the fly
             'debugloop/telescope-undo.nvim', -- telescope show undo
             'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
+            'smartpde/telescope-recent-files', -- alternative MRU
         },
         module='telescope',
         keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>',
