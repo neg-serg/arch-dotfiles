@@ -87,7 +87,8 @@ telescope.setup{
         },
         extensions = {
             recent_files = {
-                ignore_patterns=ignore_patterns
+                ignore_patterns=ignore_patterns,
+                show_current_file=true,
             }
         }
     },
