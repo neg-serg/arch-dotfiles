@@ -38,7 +38,6 @@ zinit wait lucid for \
     silent atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
     neg-serg/fast-syntax-highlighting \
     blockf zsh-users/zsh-completions
-
 source "${ZDOTDIR}/01-init.zsh"
 zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
 zsh-defer source "${ZDOTDIR}/03-completion.zsh"
@@ -46,6 +45,5 @@ source "${ZDOTDIR}/04-bindings.zsh"
 [[ -e "${XDG_CONFIG_HOME}/broot/launcher/bash/br" ]] && source "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 [[ -x "$(command -v zoxide > /dev/null)" ]] && eval "$(zoxide init zsh)"
 [[ $NEOVIM_TERMINAL ]] && source "${ZDOTDIR}/08-neovim-cd.zsh"
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
+[[ ! -f "$XDG_CONFIG_HOME/zsh/.p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/.p10k.zsh"
 # vim: ft=zsh:nowrap
