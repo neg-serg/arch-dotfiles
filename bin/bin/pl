@@ -20,7 +20,7 @@ pl() {
         rg -g \"'!{.git,node_modules}/*'\" -g \"'!*.srt'\"
         --files --hidden --follow
     )
-    run_command=(fzf-tmux)
+    run_command=(fzf)
     find_result="$(eval ${run_command[@]})"
     xsel <<< "${find_result}"
     if [[ ! -z ${find_result} ]]; then
