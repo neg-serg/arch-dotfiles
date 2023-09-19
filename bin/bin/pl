@@ -53,27 +53,25 @@ pl_rofi() {
     popd
 }
 
-mpd_status(){ playerctl -p mpd status }
-mpv_status(){ playerctl -p mpv status }
 vol(){ playerctl -p "$1" volume "$2" }
 vset(){
-    if [[ $(mpd_status) != 'Stopped' ]]; then
-        vol mpd "$1"
-    elif [[ $(mpv_status) != 'Stopped' ]]; then
-        vol mpv "$1"
-    else 
-        playerctl volume "$1"
-    fi
+    for p in mpv mpd; do
+        if [[ "$(playerctl -p $p status)" != 'Stopped' ]]; then
+            vol "$p" "$1"; break
+        else
+            playerctl volume "$1"
+        fi
+    done
 }
 
 vchange(){
-    if [[ $(mpd_status) != 'Stopped' ]]; then
-        vol mpd "$1" || playerctl -p mpd volume "$[$1/5]$2"
-    elif [[ $(mpv_status) != 'Stopped' ]]; then
-        vol mpv "$1" || playerctl -p mpv volume "$[$1/5]$2"
-    else 
-        playerctl volume "$1" || playerctl volume "$[$1/5]$2"
-    fi
+    for p in mpv mpd; do
+        if [[ "$(playerctl -p $p status)" != 'Stopped' ]]; then
+            vol "$p" "$1" || playerctl -p "$p" volume "$[$1/5]$2"; break
+        else
+            playerctl volume "$1" || playerctl volume "$[$1/5]$2"
+        fi
+    done
 }
 
 main() {
