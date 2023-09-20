@@ -25,8 +25,8 @@ teardrop:
   exec: /usr/bin/btop
   font: Iosevka
   font_normal: Medium
-  font_size: 17
-  instance_group: smaller_term
+  font_size: 15.5
+  instance_group: teardrop
   padding: [8, 8]
   term: kitty
 
