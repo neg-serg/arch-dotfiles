@@ -19,12 +19,6 @@ gitsigns.setup {
     },
     numhl=false,
     linehl=false,
-    keymaps={
-        noremap=true,
-        buffer=true,
-        ['n ]c']={ expr=true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"},
-        ['n [c']={ expr=true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"},
-    },
     watch_gitdir={interval=500, follow_files=true},
     sign_priority=6,
     update_debounce=100,
