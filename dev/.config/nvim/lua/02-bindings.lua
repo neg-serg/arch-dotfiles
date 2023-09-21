@@ -29,6 +29,7 @@ map('n', '[Qleader]l', ':normal :<C-u>clist<CR>', {silent=true})
 
 map('n', '[Qleader]w', ':w!<cr>', {silent=true})
 map('n', '[Qleader]W', ':SudoWrite<cr>', {silent=true})
+map('n', '[Qleader]s', ':source %<CR>', {silent=true})
 -- Fix for floating windows
 map('n', '<C-c>', '<C-[>')
 map('i', '<C-c>', '<C-[>')
