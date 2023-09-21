@@ -11,6 +11,7 @@ local pathogen=telescope.load_extension'pathogen'
 local undo=telescope.load_extension'undo'
 local zoxide=telescope.load_extension'zoxide'
 local recent_files=telescope.load_extension'recent_files'
+local manix=telescope.load_extension'manix'
 local long_find = {'rg','--files','--hidden','-g','!.git'}
 local short_find = {'fd','-H','--ignore-vcs','-d','3'}
 local ignore_patterns={
