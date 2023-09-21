@@ -7,13 +7,8 @@ local sorters=require'telescope.sorters'
 local previewers=require'telescope.previewers'
 local builtin=require'telescope.builtin'
 local actions=require'telescope.actions'
-local pathogen=telescope.load_extension'pathogen'
-local undo=telescope.load_extension'undo'
-local zoxide=telescope.load_extension'zoxide'
-local recent_files=telescope.load_extension'recent_files'
-local manix=telescope.load_extension'manix'
-local long_find = {'rg','--files','--hidden','-g','!.git'}
-local short_find = {'fd','-H','--ignore-vcs','-d','3'}
+local long_find={'rg','--files','--hidden','-g','!.git'}
+local short_find={'fd','-H','--ignore-vcs','-d','3'}
 local ignore_patterns={
     "__pycache__/", "__pycache__/*",
     "build/",       "gradle/",  "node_modules/", "node_modules/*",
@@ -62,6 +57,13 @@ telescope.setup{
     },
     extensions={
         pathogen={use_last_search_for_live_grep=false},
+        frecency={
+            show_scores=false,
+            show_unindexed=true,
+            ignore_patterns=ignore_patterns,
+            disable_devicons=false,
+            use_sqlite=false,
+        },
         undo={
             use_delta=true,
             use_custom_command=nil, -- setting this implies `use_delta=false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
@@ -86,12 +88,6 @@ telescope.setup{
                 ["<C-Enter>"]={action=function(_) end},
             },
         },
-        extensions = {
-            recent_files = {
-                ignore_patterns=ignore_patterns,
-                show_current_file=true,
-            }
-        }
     },
     pickers={
         find_files={
@@ -106,6 +102,12 @@ telescope.setup{
     },
 }
 
+local frecency=telescope.load_extension'frecency'
+local manix=telescope.load_extension'manix'
+local pathogen=telescope.load_extension'pathogen'
+local undo=telescope.load_extension'undo'
+local zoxide=telescope.load_extension'zoxide'
+
 local opts={silent=true, noremap=true}
 Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)
 Map('n', 'cd', function()
@@ -113,14 +115,7 @@ Map('n', 'cd', function()
         require'telescope.themes'.get_ivy(
             {layout_config={height=8}, border=false}
 )) end, opts)
-Map('n', "<leader>.", function()
-    recent_files.pick(
-        require'telescope.themes'.get_ivy({
-            layout_config={height=8},
-            border=false,
-            previewer=false,
-        })
-    ) end, opts)
+Map('n', "<leader>.", function() vim.cmd'Telescope frecency previewer=false theme=ivy layout_config={height=12} sorting_strategy=descending' end, opts)
 Map('n', '<C-f>', function()
     builtin.live_grep(
         require'telescope.themes'.get_ivy({
