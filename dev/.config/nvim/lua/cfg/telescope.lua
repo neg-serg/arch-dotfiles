@@ -66,7 +66,7 @@ telescope.setup{
             disable_devicons=false,
             use_sqlite=false,
 
-            sorter=sorters.fuzzy_with_index_bias(),
+            -- sorter=sorters.fuzzy_with_index_bias(),
             previewer=false,
             path_display={"relative"}
         },
