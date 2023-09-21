@@ -144,8 +144,15 @@ require'lazy'.setup({
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}},
     {'phaazon/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end},
-    {'svermeulen/vim-NotableFt', -- better f-t-bindings
-        config=function() require'cfg.ft' end},
+    {'folke/flash.nvim', event='VeryLazy',
+        opts={},
+        config=function() require'flash'.toggle() end,
+        keys={
+            {'s', mode={'o','x'}, function() require'flash'.jump() end, desc='Flash'},
+            {'S', mode={'o','x'}, function() require'flash'.treesitter() end, desc='Flash Treesitter'},
+            {'r', mode='o', function() require'flash'.remote() end, desc='Remote Flash'},
+            {'R', mode={'o','x'}, function() require'flash'.treesitter_search() end, desc='Treesitter Search'},
+    }},
     {'kylechui/nvim-surround', -- alternative surround
         config=function() require'cfg.surround' end},
     'wellle/targets.vim', -- new text objects
@@ -172,8 +179,6 @@ require'lazy'.setup({
     }},
     {'hiphish/rainbow-delimiters.nvim', -- rainbow parenthesis
         config=function() require'cfg.rainbow-delimiters' end},
-    {'RRethy/vim-hexokinase', -- best way to display colors in the file
-        build='cd ~/.local/share/nvim/lazy/vim-hexokinase && make'},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Filetypes                                                                    │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
