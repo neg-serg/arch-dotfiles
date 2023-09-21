@@ -59,13 +59,13 @@ require("lazy").setup({
     -- │ █▓▒░ Completion                                                                   │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'hrsh7th/nvim-cmp', -- completion engine
-        config=function() require'cfg.cmp' end, after={'LuaSnip'},
+        config=function() require'cfg.cmp' end,
         dependencies={
-            {'hrsh7th/cmp-nvim-lsp', after='nvim-cmp'}, -- cmp lsp support
-            {'lukas-reineke/cmp-under-comparator'}, -- better nvim-cmp sorter
-            {'hrsh7th/cmp-nvim-lua', after='nvim-cmp'}, -- cmp neovim lua api support
-            {'hrsh7th/cmp-nvim-lsp-signature-help', after='nvim-cmp'}, -- experiment with signature-help
-            {'hrsh7th/cmp-path', after='nvim-cmp'}, -- cmp path completion support
+            'hrsh7th/cmp-nvim-lsp', -- cmp lsp support
+            'hrsh7th/cmp-nvim-lsp-signature-help', -- experiment with signature-help
+            'hrsh7th/cmp-nvim-lua', -- cmp neovim lua api support
+            'hrsh7th/cmp-path', -- cmp path completion support
+            'lukas-reineke/cmp-under-comparator', -- better nvim-cmp sorter
     }},
     {'folke/noice.nvim', -- better UX
         event='VimEnter',
@@ -73,7 +73,10 @@ require("lazy").setup({
         dependencies={'MunifTanjim/nui.nvim'}},
     {'L3MON4D3/LuaSnip', -- snippets engine
         config=function() require'cfg.luasnip' end,
-        dependencies='rafamadriz/friendly-snippets', -- additional snippets'
+        dependencies={
+            'rafamadriz/friendly-snippets', -- additional snippets'
+            'hrsh7th/nvim-cmp', -- autocompletion engine
+        }, 
         event={'BufRead','BufNewFile','InsertEnter'}},
     {'neovim/nvim-lspconfig', -- lsp config
         config=function() require'cfg.lsp' end,
@@ -87,7 +90,7 @@ require("lazy").setup({
     -- │ █▓▒░ Dev                                                                          │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'folke/trouble.nvim', -- pretty list for diagnostics
-        dependencies={'kyazdani42/nvim-web-devicons', after='trouble.nvim'},
+        dependencies={'kyazdani42/nvim-web-devicons'},
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
         keys={'<leader>X'}, lazy=true},
@@ -114,7 +117,6 @@ require("lazy").setup({
             {'rcarriga/nvim-dap-ui'}, -- better ui for nvim-dap
             {'theHamsta/nvim-dap-virtual-text'}},  -- virtual debugging text support
         config=function() require'cfg.nvim-dap' end,
-        after={'nvim-dap-ui','nvim-dap-virtual-text'},
         event={'BufNewFile','BufRead'}},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Text                                                                         │
@@ -161,13 +163,12 @@ require("lazy").setup({
     {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         cmd='TSUpdate',
         event={'BufRead','BufNewFile','InsertEnter'},
-        run=':TSUpdate',  -- better highlight
+        build=':TSUpdate',  -- better highlight
         config=function() require'cfg.treesitter' end,
         dependencies={
             {'nvim-treesitter/nvim-treesitter-textobjects',
-            after='nvim-treesitter',
             config=function() require'cfg.treesitter' end},
-            {'RRethy/nvim-treesitter-endwise', after='nvim-treesitter'}, -- ts-based endwise
+            {'RRethy/nvim-treesitter-endwise'}, -- ts-based endwise
     }},
     {'hiphish/rainbow-delimiters.nvim', -- rainbow parenthesis
         config=function() require'cfg.rainbow-delimiters' end},
