@@ -36,7 +36,6 @@ au({"BufNewFile","BufRead"}, {
     callback=function() vim.bo.filetype="systemd" end})
 -- Update binds when sxhkdrc is updated.
 au({'BufWritePost'}, {pattern={'*sxhkdrc'}, command='!pkill -USR1 sxhkd', group=main})
-au({'BufWritePost','BufReadPost'}, {pattern={'01-plugins.lua'}, command='source <afile>', group=main})
 au({'BufEnter'}, {command='set noreadonly', group=main})
 au({'TermOpen'}, {pattern={'term://*'}, command='startinsert | setl nonumber | let &l:stl=" terminal %="', group=main})
 au({'BufLeave'}, {pattern={'term://*'}, command='stopinsert', group=main})
