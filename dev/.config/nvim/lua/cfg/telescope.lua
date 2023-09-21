@@ -115,7 +115,7 @@ Map('n', 'cd', function()
         require'telescope.themes'.get_ivy(
             {layout_config={height=8}, border=false}
 )) end, opts)
-Map('n', "<leader>.", function() vim.cmd'Telescope frecency previewer=false theme=ivy layout_config={height=12} sorting_strategy=descending path_display={"absolute"}' end, opts)
+Map('n', "<leader>.", function() vim.cmd'Telescope frecency previewer=false theme=ivy layout_config={height=12} sorting_strategy=descending path_display={"relative"}' end, opts)
 Map('n', '<C-f>', function()
     builtin.live_grep(
         require'telescope.themes'.get_ivy({
