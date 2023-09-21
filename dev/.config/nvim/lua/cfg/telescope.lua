@@ -45,7 +45,6 @@ telescope.setup{
             vertical={mirror=false},
         },
         file_ignore_patterns=ignore_patterns,
-        generic_sorter=sorters.get_generic_fuzzy_sorter,
         path_display={ shorten=8 },
         winblend=8,
         border={},
@@ -70,6 +69,18 @@ telescope.setup{
             sorter=sorters.fuzzy_with_index_bias(),
             previewer=false,
             path_display={"relative"}
+        },
+        ["zf-native"]={
+            file={ -- options for sorting file-like items
+                enable=true, -- override default telescope file sorter
+                highlight_results=true, -- highlight matching text in results
+                match_filename=true, -- enable zf filename match priority
+            },
+            generic={ -- options for sorting all other items
+                enable=true, -- override default telescope generic item sorter
+                highlight_results=true, -- highlight matching text in results
+                match_filename=false, -- disable zf filename match priority
+            },
         },
         undo={
             use_delta=true,
@@ -109,6 +120,7 @@ telescope.setup{
     },
 }
 local frecency=telescope.load_extension'frecency'
+local zf_native=telescope.load_extension'zf-native'
 
 local opts={silent=true, noremap=true}
 Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)

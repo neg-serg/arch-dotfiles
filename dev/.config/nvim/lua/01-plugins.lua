@@ -35,7 +35,8 @@ return require'packer'.startup({function(use)
             'debugloop/telescope-undo.nvim', -- telescope show undo
             'jvgrootveld/telescope-zoxide', -- telescope zoxide integration
             'MrcJkb/telescope-manix', -- manix support
-            'nvim-telescope/telescope-frecency.nvim' -- MRU frecency
+            'nvim-telescope/telescope-frecency.nvim', -- MRU frecency
+            'natecraddock/telescope-zf-native.nvim', -- zf native sorter
         },
         module='telescope',
         keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>',
