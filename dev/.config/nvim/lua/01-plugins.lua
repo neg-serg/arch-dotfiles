@@ -8,7 +8,8 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
+vim.g.mapleader=","
+require'lazy'.setup({
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐ 
     -- │ █▓▒░ Performance / Fixes                                                          │ 
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -40,11 +41,10 @@ require("lazy").setup({
             'MrcJkb/telescope-manix', -- manix support
             'nvim-telescope/telescope-frecency.nvim', -- MRU frecency
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
+            'renerocksai/telekasten.nvim', -- telescope + telekasten
         },
-        keys={'cd','E','<M-C-o>','<M-o>','<M-l>','<M-d>','<C-f>',
-        '<leader>.','<leader>l',
-        '[Qleader]c','[Qleader]e','[Qleader]f'},
-        config=function() require'cfg.telescope' end},
+        config=function() require'cfg.telescope' end,
+    },
     {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end},
     {'windwp/windline.nvim', -- most modern statusline
@@ -130,7 +130,7 @@ require("lazy").setup({
         dependencies={'nvim-treesitter/nvim-treesitter'}},
     {'superhawk610/ascii-blocks.nvim'}, -- box printer
     {'renerocksai/telekasten.nvim', -- better md wiki stuff
-        event={'BufNewFile','BufRead'},
+        ft={'md'},
         config=function() require'cfg.telekasten' end},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Edit                                                                         │
