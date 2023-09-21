@@ -3,6 +3,10 @@
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 local status, telescope=pcall(require, 'telescope')
 if (not status) then return end
+local manix=telescope.load_extension'manix'
+local pathogen=telescope.load_extension'pathogen'
+local undo=telescope.load_extension'undo'
+local zoxide=telescope.load_extension'zoxide'
 local sorters=require'telescope.sorters'
 local previewers=require'telescope.previewers'
 local builtin=require'telescope.builtin'
@@ -40,7 +44,6 @@ telescope.setup{
             horizontal={mirror=false},
             vertical={mirror=false},
         },
-        file_sorter=sorters.get_zf_sorter,
         file_ignore_patterns=ignore_patterns,
         generic_sorter=sorters.get_generic_fuzzy_sorter,
         path_display={ shorten=8 },
@@ -63,6 +66,10 @@ telescope.setup{
             ignore_patterns=ignore_patterns,
             disable_devicons=false,
             use_sqlite=false,
+
+            sorter=sorters.fuzzy_with_index_bias(),
+            previewer=false,
+            path_display={"relative"}
         },
         undo={
             use_delta=true,
@@ -101,12 +108,7 @@ telescope.setup{
         }
     },
 }
-
 local frecency=telescope.load_extension'frecency'
-local manix=telescope.load_extension'manix'
-local pathogen=telescope.load_extension'pathogen'
-local undo=telescope.load_extension'undo'
-local zoxide=telescope.load_extension'zoxide'
 
 local opts={silent=true, noremap=true}
 Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)
@@ -115,7 +117,9 @@ Map('n', 'cd', function()
         require'telescope.themes'.get_ivy(
             {layout_config={height=8}, border=false}
 )) end, opts)
-Map('n', "<leader>.", function() vim.cmd'Telescope frecency previewer=false theme=ivy layout_config={height=12} sorting_strategy=descending path_display={"relative"}' end, opts)
+Map('n', "<leader>.", function()
+    vim.cmd'Telescope frecency theme=ivy layout_config={height=12} sorting_strategy=descending' 
+end, opts)
 Map('n', '<C-f>', function()
     builtin.live_grep(
         require'telescope.themes'.get_ivy({
