@@ -19,7 +19,7 @@ require'lazy'.setup({
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
-        keys={'[Qleader]t'}},
+        keys={'[Qleader]3'}},
     {'folke/persistence.nvim',
         config=function() require'cfg.persistence' end,
         event='BufReadPre', -- this will only start session saving when an actual file was opened

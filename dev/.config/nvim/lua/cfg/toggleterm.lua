@@ -19,4 +19,4 @@ navigator=Terminal:new({
     cmd='zsh',
     env={NEOVIM_TERMINAL=1}
 })
-map('n', '[Qleader]t', '<Cmd>lua navigator:toggle()<CR>', {noremap=true, silent=true})
+map('n', '[Qleader]3', '<Cmd>lua navigator:toggle()<CR>', {noremap=true, silent=true})
