@@ -3,14 +3,13 @@
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 local status, persistence = pcall(require, 'persistence')
 if (not status) then return end
-
-persistence.setup {
+persistence.setup{
     dir=vim.fn.expand(vim.fn.stdpath('config') .. '/sessions/'), -- directory where session files are saved
     options={'buffers','curdir','tabpages','winsize'}, -- sessionoptions used for saving
 }
 -- restore the session for the current directory
-map('n', '<leader>qs', [[<cmd>lua require('persistence').load()<cr>]], {})
+Map('n', '<leader>qs', function() persistence.load() end, {})
 -- restore the last session
-map('n', '<leader>ql', [[<cmd>lua require('persistence').load({ last = true })<cr>]], {})
+Map('n', '<leader>ql', function() persistence.load({last=true}) end, {})
 -- stop Persistence => session won't be saved on exit
-map('n', '<leader>qd', [[<cmd>lua require('persistence').stop()<cr>]], {})
+Map('n', '<leader>qd', function() persistence.stop() end, {})
