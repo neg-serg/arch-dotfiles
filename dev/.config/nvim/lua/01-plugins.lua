@@ -137,7 +137,6 @@ require'lazy'.setup({
     {'nvim-orgmode/orgmode', config=function() require'cfg.orgmode' end,
         event='VeryLazy',
         dependencies={'nvim-treesitter/nvim-treesitter',lazy=true}},
-    {'superhawk610/ascii-blocks.nvim', cmd='AsciiBlockify'}, -- box printer
     {'renerocksai/telekasten.nvim', ft='md', -- better md wiki stuff
         config=function() require'cfg.telekasten' end},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
