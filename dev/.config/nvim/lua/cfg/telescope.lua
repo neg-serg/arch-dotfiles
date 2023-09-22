@@ -58,13 +58,15 @@ telescope.setup{
     extensions={
         pathogen={use_last_search_for_live_grep=false},
         frecency={
+            disable_devicons=false,
+            ignore_patterns=ignore_patterns,
+            path_display={"relative"},
+            previewer=false,
+            prompt_title=false,
+            results_title=false,
             show_scores=false,
             show_unindexed=true,
-            ignore_patterns=ignore_patterns,
-            disable_devicons=false,
             use_sqlite=false,
-            previewer=false,
-            path_display={"relative"}
         },
         ["zf-native"]={
             file={ -- options for sorting file-like items
