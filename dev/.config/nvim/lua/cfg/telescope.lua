@@ -5,7 +5,6 @@ local status, telescope=pcall(require, 'telescope')
 if (not status) then return end
 local manix=telescope.load_extension'manix'
 local pathogen=telescope.load_extension'pathogen'
-local undo=telescope.load_extension'undo'
 local zoxide=telescope.load_extension'zoxide'
 local sorters=require'telescope.sorters'
 local previewers=require'telescope.previewers'
@@ -45,13 +44,12 @@ telescope.setup{
             vertical={mirror=false},
         },
         file_ignore_patterns=ignore_patterns,
-        path_display={ shorten=8 },
+        path_display={shorten=8},
         winblend=8,
         border={},
         borderchars={'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
         color_devicons=true,
         use_less=false,
-        set_env={['COLORTERM']='truecolor'},
         file_previewer=previewers.vim_buffer_cat.new,
         grep_previewer=previewers.vim_buffer_vimgrep.new,
         qflist_previewer=previewers.vim_buffer_qflist.new,
@@ -65,8 +63,6 @@ telescope.setup{
             ignore_patterns=ignore_patterns,
             disable_devicons=false,
             use_sqlite=false,
-
-            -- sorter=sorters.fuzzy_with_index_bias(),
             previewer=false,
             path_display={"relative"}
         },
@@ -84,10 +80,19 @@ telescope.setup{
         },
         undo={
             use_delta=true,
-            use_custom_command=nil, -- setting this implies `use_delta=false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
-            side_by_side=false,
-            diff_context_lines=vim.o.scrolloff,
-            entry_format="state #$ID, $STAT, $TIME",
+            side_by_side=true,
+            previewer=true,
+            layout_strategy="flex",
+            layout_config={
+                horizontal={
+                    prompt_position="bottom",
+                    preview_width=0.70,
+                },
+                vertical={mirror=false},
+                width=0.87,
+                height=0.80,
+                preview_cutoff=120,
+            },
             mappings={
                 i={
                     ['<CR>']=require'telescope-undo.actions'.yank_additions,
@@ -121,6 +126,7 @@ telescope.setup{
 }
 local frecency=telescope.load_extension'frecency'
 local zf_native=telescope.load_extension'zf-native'
+local undo=telescope.load_extension'undo'
 
 local opts={silent=true, noremap=true}
 Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)

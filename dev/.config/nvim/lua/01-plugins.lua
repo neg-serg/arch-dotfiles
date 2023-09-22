@@ -33,9 +33,9 @@ require'lazy'.setup({
     'kopischke/vim-fetch', -- vim path/to/file.ext:12:4
     {'jghauser/mkdir.nvim', -- auto make dir when needed
         config=function() require'mkdir' end, event='BufWritePre'},
-    {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, lazy=true}, -- undo tree
     'thinca/vim-ref', -- integrated reference viewer for help with separated window
     {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
+        event='VeryLazy',
         dependencies={
             'nvim-lua/plenary.nvim', -- lua functions
             'neg-serg/telescope-pathogen.nvim', -- telescope change directory on the fly
@@ -46,7 +46,6 @@ require'lazy'.setup({
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
             'renerocksai/telekasten.nvim', -- telescope + telekasten
         },
-        -- cmd={'Telescope'},
         config=function() require'cfg.telescope' end,
     },
     {'haya14busa/vim-asterisk', -- smartcase star
