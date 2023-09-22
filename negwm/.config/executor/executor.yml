@@ -43,8 +43,8 @@ torrment:
   classw: torrment
   exec: ~/.local/bin/stig
   font: Iosevka
-  font_size: 18
-  instance_group: smaller_term
+  font_size: 15.5
+  instance_group: torrment
   padding: [8, 8]
   term: kitty
 
