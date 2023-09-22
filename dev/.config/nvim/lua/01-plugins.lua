@@ -1,11 +1,11 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git", "clone", "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        'git', 'clone', '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader=","
@@ -20,18 +20,21 @@ require'lazy'.setup({
     {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
         keys={'[Qleader]t'}},
-    {'folke/persistence.nvim', config=function() require'cfg.persistence' end},
+    {'folke/persistence.nvim',
+        config=function() require'cfg.persistence' end,
+        event='BufReadPre', -- this will only start session saving when an actual file was opened
+    },
     {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end},
-    {'kyazdani42/nvim-web-devicons', -- better icons
+    {'nvim-tree/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end},
     {'ghillb/cybu.nvim', -- fancy menu changing
         config=function() require'cfg.cybu' end,
         keys={'<Tab>','<S-Tab>'}},
-    {'kopischke/vim-fetch'}, -- vim path/to/file.ext:12:4
+    'kopischke/vim-fetch', -- vim path/to/file.ext:12:4
     {'jghauser/mkdir.nvim', -- auto make dir when needed
         config=function() require'mkdir' end, event='BufWritePre'},
     {'simnalamburt/vim-mundo', cmd={'MundoToggle'}, lazy=true}, -- undo tree
-    {'thinca/vim-ref'}, -- integrated reference viewer for help with separated window
+    'thinca/vim-ref', -- integrated reference viewer for help with separated window
     {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         dependencies={
             'nvim-lua/plenary.nvim', -- lua functions
@@ -43,6 +46,7 @@ require'lazy'.setup({
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
             'renerocksai/telekasten.nvim', -- telescope + telekasten
         },
+        -- cmd={'Telescope'},
         config=function() require'cfg.telescope' end,
     },
     {'haya14busa/vim-asterisk', -- smartcase star
@@ -52,9 +56,13 @@ require'lazy'.setup({
     {'stevearc/dressing.nvim', -- better select ui
         config=function() require'cfg.dressing' end},
     {'stevearc/oil.nvim',  -- nice netrw replacement
-        config=function() require'cfg.oil' end},
+        config=function() require'cfg.oil' end,
+        dependencies={'nvim-tree/nvim-web-devicons'},
+    },
     {'chrisgrieser/nvim-alt-substitute', -- alternative substitute
-        config=function() require'cfg.alt-substitute' end},
+        config=function() require'cfg.alt-substitute' end,
+        event='CmdlineEnter',  -- lazy-loading with `cmd =` does not work well with incremental preview
+    },
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Completion                                                                   │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -68,7 +76,7 @@ require'lazy'.setup({
             'lukas-reineke/cmp-under-comparator', -- better nvim-cmp sorter
     }},
     {'folke/noice.nvim', -- better UX
-        event='VimEnter',
+        event='VeryLazy',
         config=function() require'cfg.noice' end,
         dependencies={'MunifTanjim/nui.nvim'}},
     {'L3MON4D3/LuaSnip', -- snippets engine
@@ -90,7 +98,7 @@ require'lazy'.setup({
     -- │ █▓▒░ Dev                                                                          │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'folke/trouble.nvim', -- pretty list for diagnostics
-        dependencies={'kyazdani42/nvim-web-devicons'},
+        dependencies={'nvim-tree/nvim-web-devicons'},
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
         keys={'<leader>X'}, lazy=true},
@@ -107,7 +115,7 @@ require'lazy'.setup({
         cmd={'Dispatch','Make','Focus','Start'}},
     {'windwp/nvim-autopairs', -- super powerful autopairs
         config=function() require'cfg.autopairs' end,
-        event={'InsertEnter'}},
+        event='InsertEnter'},
     {'willchao612/vim-diagon', cmd='Diagon'}, -- creates diagrams from text. dependencies diagon from snap.
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Debug                                                                        │
@@ -122,15 +130,18 @@ require'lazy'.setup({
     -- │ █▓▒░ Text                                                                         │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'plasticboy/vim-markdown', ft='md'}, -- markdown vim mode
-    {'mzlogin/vim-markdown-toc', ft='md'}, -- table of contents generator
+    {'mzlogin/vim-markdown-toc', ft='md', -- table of contents generator
+        cmd={'GenTocGFM','GenTocRedcarpet','GenTocGitLab','GenTocMarked','UpdateToc','RemoveToc'}
+    },
     {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end},
-    {'nvim-orgmode/orgmode', config=function() require'orgmode'.setup{} end,
-        ft={'org'},
-        dependencies={'nvim-treesitter/nvim-treesitter'}},
-    {'superhawk610/ascii-blocks.nvim'}, -- box printer
+    {'nvim-orgmode/orgmode', config=function() require'cfg.orgmode' end,
+        event='VeryLazy',
+        dependencies={'nvim-treesitter/nvim-treesitter',lazy=true},
+    },
+    {'superhawk610/ascii-blocks.nvim', cmd='AsciiBlockify'}, -- box printer
     {'renerocksai/telekasten.nvim', -- better md wiki stuff
-        ft={'md'},
+        ft='md',
         config=function() require'cfg.telekasten' end},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Edit                                                                         │
@@ -142,11 +153,11 @@ require'lazy'.setup({
         config=function() require'cfg.argwrap' end},
     {'junegunn/vim-easy-align', -- use easy-align, instead of tabular
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}},
-    {'phaazon/hop.nvim', -- speed motions
+    {'smoka7/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end},
     {'kylechui/nvim-surround', -- alternative surround
-        config=function() require'cfg.surround' end},
-    'wellle/targets.vim', -- new text objects
+        config=function() require'cfg.surround' end,
+        event="VeryLazy"},
     'lambdalisue/suda.vim', -- sudo write commands
     {'cappyzawa/trim.nvim', -- trim trailing whitespace etc
         config=function() require'cfg.trim' end},
@@ -155,13 +166,12 @@ require'lazy'.setup({
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end},
-    {'Tsuzat/NeoSolarized.nvim'}, -- NeoSolarized colorscheme
+    {'Tsuzat/NeoSolarized.nvim', event='VeryLazy'}, -- NeoSolarized colorscheme
     {'mvllow/modes.nvim', -- simple mode-dependent cursor highlight
         config=function() require'cfg.modes' end},
     {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
-        cmd='TSUpdate',
-        event={'BufRead','BufNewFile','InsertEnter'},
-        build=':TSUpdate',  -- better highlight
+        event={'VeryLazy'},
+        build='TSUpdate',  -- better highlight
         config=function() require'cfg.treesitter' end,
         dependencies={
             {'nvim-treesitter/nvim-treesitter-textobjects',
@@ -186,7 +196,7 @@ require'lazy'.setup({
     {'sindrets/diffview.nvim', -- diff view for multiple files
         config=function() require'cfg.diffview' end,
         cmd={'DiffviewOpen','DiffviewFileHistory'},
-        dependencies={'kyazdani42/nvim-web-devicons','nvim-lua/plenary.nvim'},
+        dependencies={'nvim-tree/nvim-web-devicons','nvim-lua/plenary.nvim'},
         keys={'<C-S-G>','\\a','\\c','\\r','\\f','\\0','\\1','\\2','\\3','\\4'}, lazy=true},
     {'lewis6991/gitsigns.nvim', -- fast git decorations
         dependencies='plenary.nvim',
