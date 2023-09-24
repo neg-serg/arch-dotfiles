@@ -8,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.g.mapleader=","
+vim.g.mapleader=','
 require'lazy'.setup({
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐ 
     -- │ █▓▒░ Performance / Fixes                                                          │ 
@@ -153,7 +153,7 @@ require'lazy'.setup({
         config=function() require'cfg.ft' end},
     {'kylechui/nvim-surround', -- alternative surround
         config=function() require'cfg.surround' end,
-        event="VeryLazy"},
+        event='VeryLazy'},
     'lambdalisue/suda.vim', -- sudo write commands
     {'cappyzawa/trim.nvim', -- trim trailing whitespace etc
         config=function() require'cfg.trim' end},
