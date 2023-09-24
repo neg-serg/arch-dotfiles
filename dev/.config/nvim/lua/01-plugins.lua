@@ -22,8 +22,7 @@ require'lazy'.setup({
         keys={'[Qleader]3'}},
     {'folke/persistence.nvim',
         config=function() require'cfg.persistence' end,
-        event='BufReadPre', -- this will only start session saving when an actual file was opened
-    },
+        event='BufReadPre'}, -- this will only start session saving when an actual file was opened
     {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end},
     {'nvim-tree/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end},
@@ -46,8 +45,7 @@ require'lazy'.setup({
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
             'renerocksai/telekasten.nvim', -- telescope + telekasten
         },
-        config=function() require'cfg.telescope' end,
-    },
+        config=function() require'cfg.telescope' end},
     {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end},
     {'windwp/windline.nvim', -- most modern statusline
@@ -56,12 +54,10 @@ require'lazy'.setup({
         config=function() require'cfg.dressing' end},
     {'stevearc/oil.nvim',  -- nice netrw replacement
         config=function() require'cfg.oil' end,
-        dependencies={'nvim-tree/nvim-web-devicons'},
-    },
+        dependencies={'nvim-tree/nvim-web-devicons'}},
     {'chrisgrieser/nvim-alt-substitute', -- alternative substitute
         config=function() require'cfg.alt-substitute' end,
-        event='CmdlineEnter',  -- lazy-loading with `cmd =` does not work well with incremental preview
-    },
+        event='CmdlineEnter'},  -- lazy-loading with `cmd =` does not work well with incremental preview
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Completion                                                                   │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -72,8 +68,7 @@ require'lazy'.setup({
             'hrsh7th/cmp-nvim-lsp-signature-help', -- experiment with signature-help
             'hrsh7th/cmp-nvim-lua', -- cmp neovim lua api support
             'hrsh7th/cmp-path', -- cmp path completion support
-            'lukas-reineke/cmp-under-comparator', -- better nvim-cmp sorter
-    }},
+            'lukas-reineke/cmp-under-comparator'}}, -- better nvim-cmp sorter
     {'folke/noice.nvim', -- better UX
         event='VeryLazy',
         config=function() require'cfg.noice' end,
@@ -82,8 +77,7 @@ require'lazy'.setup({
         config=function() require'cfg.luasnip' end,
         dependencies={
             'rafamadriz/friendly-snippets', -- additional snippets'
-            'hrsh7th/nvim-cmp', -- autocompletion engine
-        }, 
+            'hrsh7th/nvim-cmp'}, -- autocompletion engine
         event={'BufRead','BufNewFile','InsertEnter'}},
     {'neovim/nvim-lspconfig', -- lsp config
         config=function() require'cfg.lsp' end,
@@ -105,8 +99,7 @@ require'lazy'.setup({
     {'jamessan/vim-gnupg', ft='gpg'}, -- transparent work with gpg-encrypted files
     {'lervag/vimtex', ft={'tex','latex'}}, -- modern TeX support
     {'numToStr/Comment.nvim', -- modern commenter
-        config=function() require'cfg.comment' end,
-        lazy=true,
+        config=function() require'cfg.comment' end, lazy=true,
         keys={
             {'gbc',mode='n', desc='Comment toggle current block'},
             {'gb',mode={'n','o'}, desc='Comment toggle blockwise'},
@@ -114,16 +107,14 @@ require'lazy'.setup({
             {'gcc',mode='n', desc='Comment toggle current line'},
             {'gc',mode={'n','o'}, desc='Comment toggle linewise'},
             {'gc',mode='x', desc='Comment toggle linewise (visual)'},
-        },
-    }, -- commenter plugin
+    }}, 
     'tpope/vim-apathy', -- better include jump
     {'tpope/vim-dispatch', -- provide async build
         config=function() require'cfg.dispatch' end,
         keys={'MK','MC','[QLeader]cc','[QLeader]mc'},
         cmd={'Dispatch','Make','Focus','Start'}},
     {'windwp/nvim-autopairs', -- super powerful autopairs
-        config=function() require'cfg.autopairs' end,
-        event='InsertEnter'},
+        config=function() require'cfg.autopairs' end, event='InsertEnter'},
     {'willchao612/vim-diagon', cmd='Diagon'}, -- creates diagrams from text. dependencies diagon from snap.
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Debug                                                                        │
@@ -139,13 +130,11 @@ require'lazy'.setup({
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'plasticboy/vim-markdown', ft='md'}, -- markdown vim mode
     {'mzlogin/vim-markdown-toc', ft='md', -- table of contents generator
-        cmd={'GenTocGFM','GenTocRedcarpet','GenTocGitLab','GenTocMarked','UpdateToc','RemoveToc'}
-    },
+        cmd={'GenTocGFM','GenTocRedcarpet','GenTocGitLab','GenTocMarked','UpdateToc','RemoveToc'}},
     {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end},
     {'nvim-orgmode/orgmode', config=function() require'cfg.orgmode' end,
-        event='VeryLazy',
-        dependencies={'nvim-treesitter/nvim-treesitter',lazy=true}},
+        event='VeryLazy', dependencies={'nvim-treesitter/nvim-treesitter',lazy=true}},
     {'renerocksai/telekasten.nvim', ft='md', -- better md wiki stuff
         config=function() require'cfg.telekasten' end},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
