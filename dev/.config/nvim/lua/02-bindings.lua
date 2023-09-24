@@ -19,6 +19,7 @@ map('', '<up>', '<NOP>')
 map('', '<down>', '<NOP>')
 map('', '<left>', '<NOP>')
 map('', '<right>', '<NOP>')
+map('n', '<C-S-c>', '<cmd> %y+ <CR>', {silent=true})
 
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
 map('n', '[Qleader]p', ':normal :<C-u>cprevious<CR>', {silent=true})
@@ -28,7 +29,7 @@ map('n', '[Qleader]P', ':normal :<C-u>clast<CR>', {silent=true})
 map('n', '[Qleader]l', ':normal :<C-u>clist<CR>', {silent=true})
 
 map('n', '[Qleader]w', ':w!<cr>', {silent=true})
-map('n', '[Qleader]W', ':SudoWrite<cr>', {silent=true})
+map('n', '[Qleader]W', ':SudaWrite<cr>', {silent=true})
 map('n', '[Qleader]s', ':source %<CR>', {silent=true})
 -- Fix for floating windows
 map('n', '<C-c>', '<C-[>')
