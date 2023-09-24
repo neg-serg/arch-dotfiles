@@ -161,19 +161,13 @@ basic.git = {
 }
 
 local quickfix={
-    filetypes={'qf', 'Trouble'},
+    filetypes={'qf','Trouble'},
     active={
-        {'🚦 Quickfix ', {'white', 'black'}},
-        {helper.separators.slant_right, {'black', 'base'}},
-        {function()
-            return vim.fn.getqflist({title=0}).title
-        end, {'blue', 'base'}},
-        {' Total : %L ', {'blue', 'base'}},
-        {helper.separators.slant_right, {'base', 'InactiveBg'}},
-        {' ', {'InactiveFg', 'InactiveBg'}},
-        basic.divider,
-        {helper.separators.slant_right, {'InactiveBg', 'black'}},
-        {'🧛 ', {'white', 'black'}},
+        {'Quickfix ',{'white','black'}},
+        {function() return vim.fn.getqflist({title=0}).title end,{'blue','base'}},
+        {' Total:%L ',{'base','black'}},
+        {' ',{'InactiveFg','black'}},
+        {'',{'black','black'}},
     },
     always_active=true,
     show_last_status=true,
