@@ -106,7 +106,16 @@ require'lazy'.setup({
     {'lervag/vimtex', ft={'tex','latex'}}, -- modern TeX support
     {'numToStr/Comment.nvim', -- modern commenter
         config=function() require'cfg.comment' end,
-        event={'BufNewFile','BufRead'}}, -- commenter plugin
+        lazy=true,
+        keys={
+            {'gbc',mode='n', desc='Comment toggle current block'},
+            {'gb',mode={'n','o'}, desc='Comment toggle blockwise'},
+            {'gb',mode='x', desc='Comment toggle blockwise (visual)'},
+            {'gcc',mode='n', desc='Comment toggle current line'},
+            {'gc',mode={'n','o'}, desc='Comment toggle linewise'},
+            {'gc',mode='x', desc='Comment toggle linewise (visual)'},
+        },
+    }, -- commenter plugin
     'tpope/vim-apathy', -- better include jump
     {'tpope/vim-dispatch', -- provide async build
         config=function() require'cfg.dispatch' end,
