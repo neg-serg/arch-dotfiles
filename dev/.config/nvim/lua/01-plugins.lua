@@ -48,8 +48,11 @@ require'lazy'.setup({
         config=function() require'cfg.telescope' end},
     {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end},
-    {'windwp/windline.nvim', -- most modern statusline
-        config=function() require'cfg.windline' end},
+    -- {'windwp/windline.nvim', -- most modern statusline
+    --     config=function() require'cfg.windline' end},
+    {'freddiehaddad/feline.nvim',
+        config=function() require'cfg.feline' end,
+    },
     {'stevearc/dressing.nvim', -- better select ui
         config=function() require'cfg.dressing' end},
     {'stevearc/oil.nvim',  -- nice netrw replacement
