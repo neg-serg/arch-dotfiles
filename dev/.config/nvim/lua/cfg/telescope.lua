@@ -32,6 +32,12 @@ telescope.setup{
             "--glob='!*.git*'", "--glob='!*.obsidian'",
             "--hidden"
         },
+        mappings={
+            i={
+                ["<esc>"]=actions.close,
+                ["<C-u>"]=false,
+            },
+        },
         dynamic_preview_title=true,
         prompt_prefix="❯> ",
         selection_caret="• ",
