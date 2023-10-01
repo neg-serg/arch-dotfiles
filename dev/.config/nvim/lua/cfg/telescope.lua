@@ -11,7 +11,7 @@ local previewers=require'telescope.previewers'
 local builtin=require'telescope.builtin'
 local actions=require'telescope.actions'
 local long_find={'rg','--files','--hidden','-g','!.git'}
-local short_find={'fd','-H','--ignore-vcs','-d','3'}
+local short_find={'fd','-H','--ignore-vcs','-d','3','--strip-cwd-prefix'}
 local ignore_patterns={
     "__pycache__/", "__pycache__/*",
     "build/",       "gradle/",  "node_modules/", "node_modules/*",
