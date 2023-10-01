@@ -143,8 +143,8 @@ require'lazy'.setup({
     {'andymass/vim-matchup', -- generic matcher
         config=function() require'cfg.matchup' end,
         event={'BufRead','BufNewFile'}},
-    {'FooSoft/vim-argwrap', -- vim arg wrapper
-        config=function() require'cfg.argwrap' end},
+    {'Wansmer/treesj', -- vim arg wrapper
+        config=function() require'cfg.treesj' end},
     {'junegunn/vim-easy-align', -- use easy-align, instead of tabular
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}},
     {'smoka7/hop.nvim', -- speed motions
