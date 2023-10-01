@@ -6,14 +6,8 @@ target-prim=adobe
 #--[Decoding]----------------------------------------------
 cache=no
 correct-downscaling
-# cscale=ewa_lanczossharp
-# dither-depth=auto
-dscale=mitchell
 hwdec-codecs=all
 interpolation=no
-linear-downscaling=yes
-# scale=ewa_lanczossharp
-sigmoid-upscaling=yes
 vd-lavc-threads=8
 vo=gpu-next
 gpu-api=vulkan
@@ -25,6 +19,13 @@ vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
 gpu-shader-cache-dir=/home/neg/tmp/
 icc-cache-dir=/home/neg/tmp/
+#--[Scaling]-----------------------------------------------
+# cscale=ewa_lanczossharp
+# dither-depth=auto
+dscale=mitchell
+linear-downscaling=yes
+# scale=ewa_lanczossharp
+sigmoid-upscaling=yes
 #--[Antiringing]-------------------------------------------
 cscale-antiring=0.7 # chroma upscale deringing
 dscale-antiring=0.7 # luma downscale deringing
@@ -66,6 +67,14 @@ ytdl-format=bestvideo+bestaudio/best
 #--[ETC]---------------------------------------------------
 screenshot-template="~/dw/scr-%F_%P"
 #--[Audio]-------------------------------------------------
+[extension.ape]
+term-osd-bar-chars = "──╼ ·"
+term-osd-bar=yes
+term-osd=auto
+[extension.alac]
+term-osd-bar-chars = "──╼ ·"
+term-osd-bar=yes
+term-osd=auto
 [extension.flac]
 term-osd-bar-chars = "──╼ ·"
 term-osd-bar=yes
@@ -74,4 +83,11 @@ term-osd=auto
 term-osd-bar-chars = "──╼ ·"
 term-osd-bar=yes
 term-osd=auto
+[extension.wav]
+term-osd-bar-chars = "──╼ ·"
+term-osd-bar=yes
+term-osd=auto
+[extension.gif]
+osc=no
+loop-file
 # vim: set ft=dosini:
