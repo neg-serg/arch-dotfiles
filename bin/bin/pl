@@ -56,7 +56,7 @@ pl_rofi() {
 vol(){ playerctl -p "$1" volume "$2" }
 vset(){
     for p in mpv mpd; do
-        if [[ "$(playerctl -p $p status)" != 'Stopped' ]]; then
+        if [[ "$(playerctl -p $p status)" =~ 'Stopped|No players found' ]]; then
             vol "$p" "$1"; break
         else
             playerctl volume "$1"
@@ -66,7 +66,7 @@ vset(){
 
 vchange(){
     for p in mpv mpd; do
-        if [[ "$(playerctl -p $p status)" != 'Stopped' ]]; then
+        if [[ "$(playerctl -p $p status)" =~ 'Stopped|No players found' ]]; then
             vol "$p" "$1" || playerctl -p "$p" volume "$[$1/5]$2"; break
         else
             playerctl volume "$1" || playerctl volume "$[$1/5]$2"
