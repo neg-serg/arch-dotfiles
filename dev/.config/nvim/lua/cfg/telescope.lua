@@ -109,6 +109,14 @@ telescope.setup{
                     ['<S-CR>']=require'telescope-undo.actions'.yank_deletions,
                     ['<C-CR>']=require'telescope-undo.actions'.restore,
                 },
+                n={
+                    ["cd"]=function(prompt_bufnr)
+                        local selection=require("telescope.actions.state").get_selected_entry()
+                        local dir=vim.fn.fnamemodify(selection.path, ":p:h")
+                        require("telescope.actions").close(prompt_bufnr)
+                        vim.cmd(string.format("silent lcd %s", dir)) -- Depending on what you want put `cd`, `lcd`, `tcd`
+                    end
+                }
             },
         },
         zoxide={
