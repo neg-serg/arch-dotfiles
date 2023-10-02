@@ -3,7 +3,7 @@ if vim.fn.has("nvim-0.9.2") ~= 1 then
     local message = table.concat({"You are using an unsupported version of Neovim."}, "\n")
     vim.notify(message, vim.log.levels.ERROR)
 end
-vim.loader.enable()
+if vim.loader then vim.loader.enable() end
 require'filetype_nvim'
 require'00-settings'
 require'01-helpers'
