@@ -6,11 +6,12 @@ if (not status) then return end
 
 noice.setup({
     cmdline={
-        view="cmdline",
+        enabled=true,
+        view='cmdline',
         format={
-            IncRename={ title=" Rename " },
-            substitute={ pattern="^:%%?s/", icon=" ", ft="regex", title="" },
-            input={ icon=" ", lang="text", view="cmdline_popup", title="" },
+            IncRename={title=' Rename '},
+            substitute={pattern='^:%%?s/', icon=' ', ft='regex', title=''},
+            input={icon=' ', lang='text', view='cmdline_popup', title=''},
         },
     },
     presets={
@@ -20,15 +21,14 @@ noice.setup({
         lsp_doc_border=true, -- add a border to hover docs and signature help
         inc_rename=true, -- enables an input dialog for inc-rename.nvim
     },
-    smart_move = {
+    smart_move={
         -- noice tries to move out of the way of existing floating windows.
-        enabled = false, -- you can disable this behaviour here
+        enabled=false, -- you can disable this behaviour here
         -- add any filetypes here, that shouldn't trigger smart move.
-        excluded_filetypes = { "cmp_menu", "cmp_docs", "notify" },
+        excluded_filetypes={'cmp_menu', 'cmp_docs', 'notify'},
     },
     routes={
-        {
-            opts={skip=true},
+        {opts={skip=true},
             filter={
                 any={
                     {event='msg_show', kind='search_count'},
@@ -38,50 +38,50 @@ noice.setup({
                     {event='msg_show', kind='', find='1 time',},
                     {event='msg_show', kind='', find='Nothing to repeat',},
                     {event='msg_show', kind='', find='yanked',},
-                    {event="msg_show", find="; before #",},
-                    {event="msg_show", find="; after #",},
-                    {event="msg_show", find="%d+ lines, %d+ bytes"},
+                    {event='msg_show', find='; before #',},
+                    {event='msg_show', find='; after #',},
+                    {event='msg_show', find='%d+ lines, %d+ bytes'},
                     {event='msg_show', kind='', find='line less',},
                     {event='msg_show', kind='', find='more line',},
-                    {event="msg_show", find="go up one level",},
-                    {event="msg_show", find="line %d+ of %d+"},
-                    {event="msg_show", find="%d+ line"},
-                    {event="msg_show", find="%d+ more line"},
-                    {event="msg_show", kind="search_count"},
-                    {event="msg_show", find="%d+L, %d+B"},
-                    {event="msg_show", find="^Hunk %d+ of %d"},
-                    {event="msg_show", find="%d+ change"},
+                    {event='msg_show', find='go up one level',},
+                    {event='msg_show', find='line %d+ of %d+'},
+                    {event='msg_show', find='%d+ line'},
+                    {event='msg_show', find='%d+ more line'},
+                    {event='msg_show', kind='search_count'},
+                    {event='msg_show', find='%d+L, %d+B'},
+                    {event='msg_show', find='^Hunk %d+ of %d'},
+                    {event='msg_show', find='%d+ change'},
                 }
             }
         },
-        {filter={find="No active Snippet"}, opts={skip=true},},
-        {filter={find="waiting for cargo metadata"}, opts={skip=true},},
-        -- Show "recording" messages
-        {view="notify", filter={event="msg_showmode"},},
-        -- Hide "No information available" messages
-        {view="notify", filter={find="No information available",}, opts={skip=true},},
+        {filter={find='No active Snippet'}, opts={skip=true}},
+        {filter={find='waiting for cargo metadata'}, opts={skip=true}},
+        -- Show 'recording' messages
+        {view='notify', filter={event='msg_showmode'}},
+        -- Hide 'No information available' messages
+        {view='notify', filter={find='No information available',}, opts={skip=true}},
     },
     views={
-        vsplit={ size={ width="auto" } },
-        split={ win_options={ winhighlight={ Normal="Normal" } } },
+        vsplit={size={width="auto"}},
+        split={win_options={winhighlight={Normal="Normal"}}},
         popup={
-            border={ style=border, padding={ 0, 1 } },
-        },
+            border={style=border, padding={0, 1}},
+       },
         cmdline_popup={
-            position={ row=5, col="50%" },
-            size={ width="auto", height="auto" },
-            border={ style=border, padding={ 0, 1 } },
-        },
+            position={row=5, col="50%"},
+            size={width="auto", height="auto"},
+            border={style=border, padding={0, 1}},
+       },
         confirm={
-            border={ style=border, padding={ 0, 1 }, text={ top="" } },
-        },
+            border={style=border, padding={0, 1}, text={top=""}},
+       },
         popupmenu={
             relative="editor",
-            size={ width=60, height=8 },
-            border={ style=border, padding={ 0, 1 } },
-            win_options={ winhighlight={ Normal="NotifyFloat", FloatBorder="FloatBorder" } },
-        },
-    },
+            size={width=60, height=8},
+            border={style=border, padding={0, 1}},
+            win_options={winhighlight={Normal="NotifyFloat", FloatBorder="FloatBorder"}},
+       },
+   },
     lsp={
         progress={
             enabled=true,
@@ -93,11 +93,9 @@ noice.setup({
         override={
             ['vim.lsp.util.convert_input_to_markdown_lines']=true,
             ['vim.lsp.util.stylize_markdown']=true,
-            ["cmp.entry.get_documentation"]=true,
+            ['cmp.entry.get_documentation']=true,
         },
-        hover={
-            enabled=true,
-        },
+        hover={enabled=true},
         signature={
             enabled=true,
             auto_open={
@@ -116,11 +114,11 @@ noice.setup({
         messages={
             -- Messages shown by lsp servers
             enabled=true,
-            view="notify",
-            view_error = "notify", -- view for errors
-            view_warn = "notify", -- view for warnings
-            view_history = "messages", -- view for :messages
-            view_search = false, -- view for search count messages. Set to `false` to disable
+            view='notify',
+            view_error='notify', -- view for errors
+            view_warn='notify', -- view for warnings
+            view_history='messages', -- view for :messages
+            view_search=false, -- view for search count messages. Set to `false` to disable
             opts={},
         },
         popupmenu={
