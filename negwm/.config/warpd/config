@@ -1,6 +1,7 @@
 acceleration: 0
-accelerator: a
-accelerator_acceleration: 2400
+accelerator: p
+decelerator: i
+accelerator_acceleration: 9400
 
 activation_key: M-0
 buttons: m , .
@@ -12,18 +13,18 @@ max_speed: 7200
 oneshot_buttons: n - /
 oneshot_timeout: 300
 repeat_interval: 5
-screen: s
+screen: S-s
 screen_activation_key: unbind
 screen_chars: hjkl
-speed: 200
+speed: 1200
 
 cursor_color: #005faf
 cursor_size: 14
 
-left: h
-down: j
-up: k
-right: l
+left: a
+down: s
+up: w
+right: d
 
 scroll_down: e
 scroll_up: r
@@ -50,12 +51,12 @@ grid_activation_key: M-u
 grid_border_color: #ffffff
 grid_border_size: 0
 grid_color: #1c1c1e
-grid_down: s
 grid_exit: c
 grid_keys: u i j k
-grid_left: a
 grid_nc: 2
 grid_nr: 2
-grid_right: d
 grid_size: 4
-grid_up: w
+grid_left: C-a
+grid_down: C-s
+grid_up: C-w
+grid_right: C-d
