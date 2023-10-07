@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-while read -r file; do
-	case "$1" in
-	esac
-done
