@@ -195,12 +195,14 @@ quickmark V patreon.com/m/834691/posts?filters[tag]=Tutorial
 quickmark c twitch.tv/cooller
 quickmark e ektoplazm.com/
 quickmark g gmail.com
+quickmark h sci-hub.hkvisa.net/
 quickmark k reddit.com/r/MechanicalKeyboards/
 quickmark l last.fm/user/e7z0x1
 quickmark s store.steampowered.com
 quickmark u reddit.com/r/unixporn
 quickmark v vk.com
 quickmark y youtube.com/
+quickmark z z-lib.is
 
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
 " command line, so set an option to move the status bar to the right.
