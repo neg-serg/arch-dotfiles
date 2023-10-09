@@ -4,7 +4,7 @@ After=network.target sound.target mpd.service
 Requires=mpd.service
 
 [Service]
-ExecStart=/usr/sbin/mpdas -c %E/mpdas/neg.rc
+ExecStart=/run/current-system/sw/bin/mpdas -c %E/mpdas/neg.rc
 Restart=on-failure
 RestartSec=10
 

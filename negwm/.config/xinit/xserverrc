@@ -1,1 +1,2 @@
-exec /usr/bin/Xorg -ardelay 250 -arinterval 20 -nolisten tcp "$@" vt$XDG_VTNR
+export PATH=PATH:/run/current-system/sw/bin
+exec Xorg -ardelay 250 -arinterval 20 -nolisten tcp vt$XDG_VTNR -keeptty -configdir /home/neg/.config/xorg.conf.d "$@"

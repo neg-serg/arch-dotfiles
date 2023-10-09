@@ -19,13 +19,14 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 typeset -gx P9K_SSH=0
-fpath=(
-    ${HOME}/.zinit/completions
-    ${ZDOTDIR}/lazyfuncs
-    /usr/share/zsh/site-functions
-    /usr/share/zsh/functions/{Misc,Zle,Completion}
-    /usr/share/zsh/functions/Completion/*
-)
+fpath+=${ZDOTDIR}/lazyfuncs
+# fpath=(
+#     ${HOME}/.zinit/completions
+#     ${ZDOTDIR}/lazyfuncs
+#     /usr/share/zsh/site-functions
+#     /usr/share/zsh/functions/{Misc,Zle,Completion}
+#     /usr/share/zsh/functions/Completion/*
+# )
 
 zinit atload"!source ${ZDOTDIR}/.p10k.zsh" lucid nocd for romkatv/powerlevel10k # best prompt
 zinit load romkatv/zsh-defer
@@ -39,8 +40,8 @@ zinit wait lucid for \
     neg-serg/fast-syntax-highlighting \
     blockf zsh-users/zsh-completions
 source "${ZDOTDIR}/01-init.zsh"
-zsh-defer source "${ZDOTDIR}/02-cmds.zsh"
-zsh-defer source "${ZDOTDIR}/03-completion.zsh"
+source "${ZDOTDIR}/02-cmds.zsh"
+source "${ZDOTDIR}/03-completion.zsh"
 source "${ZDOTDIR}/04-bindings.zsh"
 [[ -e "${XDG_CONFIG_HOME}/broot/launcher/bash/br" ]] && source "${XDG_CONFIG_HOME}/broot/launcher/bash/br"
 [[ -x "$(command -v zoxide > /dev/null)" ]] && eval "$(zoxide init zsh)"

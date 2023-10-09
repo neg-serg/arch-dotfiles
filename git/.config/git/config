@@ -112,3 +112,5 @@
     trustExitCode = true
 [credential]
     helper = cache --timeout=28800
+[safe]
+	directory = /etc/nixos

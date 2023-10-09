@@ -9,8 +9,8 @@ After=i3-session.target
 Wants=i3-session.target
 
 [Service]
-ExecStart=/usr/bin/i3
-ExecReload=/usr/bin/i3-msg reload
+ExecStart=/etc/profiles/per-user/neg/bin/i3
+ExecReload=/etc/profiles/per-user/neg/bin/i3-msg reload
 ExecReload=/bin/systemctl --user restart negwm.service
 ExecStopPost=/bin/systemctl --user stop --no-block graphical-session.target
 Restart=on-failure
