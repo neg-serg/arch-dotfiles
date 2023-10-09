@@ -6,6 +6,7 @@ if (not status) then return end
 local manix=telescope.load_extension'manix'
 local pathogen=telescope.load_extension'pathogen'
 local zoxide=telescope.load_extension'zoxide'
+local z_utils=require'telescope._extensions.zoxide.utils'
 local sorters=require'telescope.sorters'
 local previewers=require'telescope.previewers'
 local builtin=require'telescope.builtin'
@@ -123,8 +124,21 @@ telescope.setup{
             mappings={
                 ["<Enter>"]={action=function(selection) pathogen.find_files{cwd=selection.path} end},
                 ["<Tab>"]={action=function(selection) pathogen.find_files{cwd=selection.path} end},
+                ["<C-e>"]={action=z_utils.create_basic_command("edit")},
                 ["<C-j>"]=actions.cycle_history_next,
 				["<C-k>"]=actions.cycle_history_prev,
+				["<C-b>"]={
+					keepinsert=true,
+					action=function(selection)
+						telescope.extensions.file_browser.file_browser({cwd=selection.path})
+					end,
+				},
+				["<C-f>"]={
+					keepinsert=true,
+					action=function(selection)
+						builtin.find_files({cwd=selection.path})
+					end,
+				},
 				["<Esc>"]=actions.close,
                 ["<C-Enter>"]={action=function(_) end},
             },
