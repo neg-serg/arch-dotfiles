@@ -1,10 +1,6 @@
 const actions = {};
 const util = {};
 const {
-    addSearchAlias,
-    removeSearchAlias,
-    tabOpenLink,
-    readText,
     Clipboard,
     Front,
     Hints,
@@ -12,8 +8,12 @@ const {
     Normal,
 } = api;
 
-function dbg(s) {
-    console.log("[megakeys]: " + s);
+function dbg(s) { console.log("[megakeys]: " + s); }
+function swapKeys(key1, key2, mode="map", mode_remove="unmap") {
+  api[mode]("temp", key1);
+  api[mode](key1, key2);
+  api[mode](key2, key1);
+  api[mode_remove]("temp");
 }
 
 settings.hintAlign = "left";
@@ -24,22 +24,13 @@ settings.blocklistPattern = /mail.google.com/;
 settings.modeAfterYank = "Normal";
 settings.scrollStepSize = 100;
 settings.omnibarPosition = "bottom";
-//Hints.characters = 'yuiophjklnm'; // for right hand
-api.Hints.characters = 'fjdkrueisl'; // Home row without pinky
-
-api.cmap('e', '<Tab>');
-api.cmap('E', '<Shift-Tab>');
-
 settings.hintAlign = "left";
-//Hints.characters = 'yuiophjklnm'; // for right hand
-api.Hints.characters = "fjdkrueisl"; // Home row without pinky
 
 // -- [ HINTS ]
 Hints.characters = "qwertasdfgzxcvb";
-// Link Hints
 Hints.style(`
-    font-family: 'JetBrainsMono Nerd Font Mono', 'SF Pro', monospace;
-    font-size: 15px;
+    font-family: 'Iosevka', 'SF Pro', monospace;
+    font-size: 14px;
     font-weight: bold;
     text-transform: lowercase;
     color: #E5E9F0 !important;
@@ -50,10 +41,9 @@ Hints.style(`
     line-height: 1;
 `);
 
-// Text Hints
 Hints.style(`
-    font-family: 'JetBrainsMono Nerd Font Mono', 'SF Pro', monospace;
-    font-size: 15px;
+    font-family: 'Iosevka', monospace;
+    font-size: 14px;
     font-weight: bold;
     text-transform: lowercase;
     color: #E5E9F0 !important;
@@ -67,14 +57,7 @@ Hints.style(`
 
 let videoKeys = ["v", "s", "d", "h", "l", "r"]; //Video Speed Controller Keys
 let youtubeKeys = ["i", "f", "c", "0"];
-let blockSites = [
-  "netflix.com",
-  "youtube.com",
-  ".*dizi.*",
-  ".*film.*",
-  ".*anime.*",
-  "udemy.com",
-];
+let blockSites = ["netflix.com", "youtube.com", ".*dizi.*", ".*film.*", ".*anime.*", "udemy.com"];
 
 const leaderKey = ",";
 const alt_key = (key) => leaderKey + key;
@@ -86,14 +69,6 @@ const key = (newKey, oldKey, domain) => {
   api.unmap(oldKey);
 };
 
-
-function swapKeys(key1, key2, mode="map", mode_remove="unmap") {
-  api[mode]("temp", key1);
-  api[mode](key1, key2);
-  api[mode](key2, key1);
-  api[mode_remove]("temp");
-}
-
 let videoBlockedKeys = new RegExp(blockSites.join("|"), "i");
 let youtubeBlockedKeys = new RegExp(blockSites.join("|"), "i");
 
@@ -103,35 +78,40 @@ youtubeKeys.forEach((i) => api.map(alt_key(i), i, youtubeBlockedKeys));
 videoKeys.forEach((i) => api.unmap(i, videoBlockedKeys));
 youtubeKeys.forEach((i) => api.unmap(i, youtubeBlockedKeys));
 
-// key("J", "E");
-// key("K", "R");
-// key("H", "S");
 key(";o", "<Ctrl-6>");
-// key("L", "D");
-// key("F", "gf");
 
-api.unmap("<Ctrl-j>");
-api.unmap("<Ctrl-h>");
-api.unmap(";m")
-api.unmap(";m")
+swapKeys("o", "t");
+swapKeys("x", "d");
 
-// Mine!
-api.unmap("e")
-api.unmap("P");
-api.unmap("C")
-api.unmap("<Ctrl-i>")
 swapKeys(";u", ";U");
 swapKeys("P", "p");
 api.vunmap("p");
-// history Back/Forward
 api.map("H", "S");
 api.map("L", "D");
 api.map("F", "gf"); // open link in new tab
-// page up/down
-api.map("<Ctrl-f>", "d");
-api.map("<Ctrl-b>", "e");
+// api.map("<Ctrl-f>", "d");
+// api.map("<Ctrl-b>", "e");
+
 api.unmap("<Alt-p>"); // pin/unpin current tab
 api.unmap("<Alt-m>"); // mute/unmute current tab
+
+api.unmap("C")
+api.unmap("<Ctrl-h>");
+api.unmap("<Ctrl-i>")
+api.unmap("<Ctrl-j>");
+api.unmap("e")
+api.unmap(";m")
+api.unmap("P");
+api.unmap("w")
+api.unmap("b")
+
+api.map("e", "<C-Tab>");
+api.map("E", "<C-Shift-Tab>");
+
+api.imap("<Ctrl-[>", "<Esc>");
+api.imap("<Ctrl-c>", "<Esc>");
+api.cmap("<Ctrl-[>", "<Esc>");
+api.cmap("<Ctrl-c>", "<Esc>");
 
 api.mapkey(';i', 'Copy src URL of an image', function() {
     Hints.create('img[src]',(element, event) =>  {
@@ -148,14 +128,14 @@ api.mapkey(';mi', 'Copy multiple link URLs to the clipboard', function() {
 });
 
 api.mapkey(';n', 'Go to next episode',
-       function next_episode(){
-           base_url = window.location.href
-           ep_no = base_url.match(/(\d+)(?!.*\d)/)[0];
-           new_ep = parseInt(ep_no, 10) + 1;
-           n = base_url.lastIndexOf(ep_no);
-           new_url = base_url.slice(0, n) + base_url.slice(n).replace(ep_no, new_ep);
-           window.location = new_url;
-       });
+   function next_episode(){
+       base_url = window.location.href
+       ep_no = base_url.match(/(\d+)(?!.*\d)/)[0];
+       new_ep = parseInt(ep_no, 10) + 1;
+       n = base_url.lastIndexOf(ep_no);
+       new_url = base_url.slice(0, n) + base_url.slice(n).replace(ep_no, new_ep);
+       window.location = new_url;
+});
 
 api.mapkey(";c", "Copy title and url for org mode", () => {
   let url = document.URL;
@@ -169,15 +149,11 @@ const showCurrentTrainingBindings = () => {
             description: row[1]
         }))
         .map(obj => `${obj.binding}\t\t\t\t${obj.description}`)
-
     Front.showPopup(`<h1>${messages.join('<br>')} </h1>`);
 }
-
 api.mapkey(";?", "Show currently training keybindings", showCurrentTrainingBindings);
 
-api.mapkey(
-  "ec",
-  "GitHub Clone Repo (HTTPS)",
+api.mapkey("ec", "GitHub Clone Repo (HTTPS)",
   () => {
     const gitURL = `${document.URL}.git`;
     const terminalCommand = `git clone ${gitURL}`;
@@ -186,14 +162,11 @@ api.mapkey(
   { domain: /github.com/i }
 );
 
-// -- EDITOR/ACE
 api.aceVimMap(",w", ":w", "normal");
 api.aceVimMap(",q", ":q", "normal");
 api.aceVimMap("kj", "<Esc>", "insert");
 api.aceVimMap("<C-c>", "<Esc>", "insert");
-api.vmapkey("<Ctrl-c>", "#9Exit visual mode", function () {
-  Visual.exit();
-});
+api.vmapkey("<Ctrl-c>", "#9Exit visual mode", function () { Visual.exit(); });
 api.vmapkey("<Ctrl-[>", "#9Exit visual mode", function () {
   if (Visual.state > 1) {
     Visual.hideCursor();
@@ -207,7 +180,6 @@ api.vmapkey("<Ctrl-[>", "#9Exit visual mode", function () {
   Visual._onStateChange();
 });
 
-// set visual-mode style
 Visual.style(
     "marks",
     "background-color: #A3BE8C; border: 1px solid #3B4252 !important; text-decoration: underline;"
@@ -216,12 +188,6 @@ Visual.style(
     "cursor",
     "background-color: #E5E9F0 !important; border: 1px solid #6272a4 !important; border-bottom: 2px solid green !important; padding: 2px !important; outline: 1px solid rgba(255,255,255,.75) !important;"
 );
-
-// -- ESC hatch
-api.imap("<Ctrl-[>", "<Esc>");
-api.imap("<Ctrl-c>", "<Esc>");
-api.cmap("<Ctrl-[>", "<Esc>");
-api.cmap("<Ctrl-c>", "<Esc>");
 
 // set theme
 settings.theme = `
@@ -487,14 +453,11 @@ api.mapkey("gH", "tmp", () => {
 `;
 });
 
-api.Hints.style(
-  "padding: 1px; color:#efe1eb; background: none; background-color: #b16286; font-size: 14px;"
-);
+api.Hints.style("padding: 1px; color:#efe1eb; background: none; background-color: #b16286; font-size: 14px;");
 
 api.Hints.style(
   "div{color:#efe1eb; background: none; background-color: #a73a1e;} div.begin{color:#ea6962; font-size: 0.9em;}",
-  "text"
-);
+  "text");
 
 ////////////////////////////////////////////////////////////////
 // github default shortcut lists                              //
