@@ -1,3 +1,5 @@
+map('n', 'e', '[Qleader]')
+
 map('i', '<C-j>', '<ESC>', {nowait = true})
 map('v', '<C-j>', '<ESC>', {nowait = true})
 map('n', '<C-j>', '<C-w>j', {nowait = true})
@@ -7,18 +9,18 @@ map('n', '<C-h>', '<C-w>h', {nowait = true})
 
 map('n', '_', "<Cmd>exe 'e ' . getcwd()<CR>")
 
-map('n', 'q', '<NOP>')
-map('n', 'Q', '<NOP>')
-map('', '<F1>', '<NOP>')
+Map('n', 'q', '<NOP>')
+Map('n', 'Q', '<NOP>')
+Map('', '<F1>', '<NOP>')
 
 -- Escape as normal
 map('t', '<Esc>', '<C-\\><C-n>', {silent=true})
 
 -- Don't use arrow keys
-map('', '<up>', '<NOP>')
-map('', '<down>', '<NOP>')
-map('', '<left>', '<NOP>')
-map('', '<right>', '<NOP>')
+Map('', '<up>', '<NOP>')
+Map('', '<down>', '<NOP>')
+Map('', '<left>', '<NOP>')
+Map('', '<right>', '<NOP>')
 map('n', '<C-S-c>', '<cmd> %y+ <CR>', {silent=true})
 
 map('n', '[Qleader]n', ':normal :<C-u>cnext<CR>', {silent=true})
@@ -43,7 +45,6 @@ map('n', ',,', ':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<CR><C-l>')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 map('n', '<C-g>', 'g<C-g>')
-map('n', 'e', '[Qleader]')
 -- Swap implementations of ` and ' jump to markers
 -- By default, ' jumps to the marked line, ` jumps to the marked line and
 -- column, so swap them
@@ -58,7 +59,9 @@ map('c', '<C-b>', '<left>', {noremap=true})
 map('c', '<C-n>', '<down>', {noremap=true})
 map('c', '<C-p>', '<up>', {noremap=true})
 map('c', '<C-d>', '<Del>', {noremap=true})
+map('c', '<C-f>', '<right>', {noremap=true})
 map('c', '<M-f>', '<S-Right>', {noremap=true})
+map('c', '<M-b>', '<S-Left>', {noremap=true})
 map('i', '<C-d>', '<Del>', {noremap=true})
 map('i', '<C-b>', '<left>', {noremap=true})
 map('i', '<C-f>', '<right>', {noremap=true})
