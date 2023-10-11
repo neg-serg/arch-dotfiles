@@ -115,6 +115,7 @@ require'lazy'.setup({
         cmd={'Dispatch','Make','Focus','Start'}},
     {'windwp/nvim-autopairs', -- super powerful autopairs
         config=function() require'cfg.autopairs' end, event='InsertEnter'},
+    {'stevearc/conform.nvim', config=function() require'cfg.formatter' end}, -- neovim modern formatter
     {'willchao612/vim-diagon', cmd='Diagon'}, -- creates diagrams from text. dependencies diagon from snap.
     -- {'kawre/leetcode.nvim', build = ':TSUpdate html',
     --     dependencies={
