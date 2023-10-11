@@ -137,11 +137,11 @@ require'lazy'.setup({
         event='VeryLazy', dependencies={'nvim-treesitter/nvim-treesitter',lazy=true}},
     {'renerocksai/telekasten.nvim', ft='md', -- better md wiki stuff
         config=function() require'cfg.telekasten' end},
-    {'epwalsh/obsidian.nvim', dependencies={
-        'nvim-lua/plenary.nvim',
-        'hrsh7th/nvim-cmp',
-        'nvim-telescope/telescope.nvim',
-        }, config=function() require'obsidian'.setup({dir='~/1st_level'}) end},
+    -- {'epwalsh/obsidian.nvim', dependencies={
+    --     'nvim-lua/plenary.nvim',
+    --     'hrsh7th/nvim-cmp',
+    --     'nvim-telescope/telescope.nvim',
+    --     }, config=function() require'obsidian'.setup({dir='~/1st_level'}) end},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Edit                                                                         │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
