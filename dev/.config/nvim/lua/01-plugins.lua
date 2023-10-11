@@ -117,29 +117,16 @@ require'lazy'.setup({
         config=function() require'cfg.autopairs' end, event='InsertEnter'},
     {'stevearc/conform.nvim', config=function() require'cfg.conform' end}, -- neovim modern formatter
     {'willchao612/vim-diagon', cmd='Diagon'}, -- creates diagrams from text. dependencies diagon from snap.
-    -- {'kawre/leetcode.nvim', build = ':TSUpdate html',
-    --     dependencies={
-    --         'nvim-treesitter/nvim-treesitter',
-    --         'nvim-telescope/telescope.nvim',
-    --         'nvim-lua/plenary.nvim', -- required by telescope
-    --         'MunifTanjim/nui.nvim',
-    --         'nvim-tree/nvim-web-devicons',
-    --     }, opts={}},
-
-    -- {'Dhanus3133/LeetBuddy.nvim',
-    --     dependencies={
-    --         'nvim-lua/plenary.nvim',
-    --         'nvim-telescope/telescope.nvim',
-    --     },
-    --     config=function() require'leetbuddy'.setup({}) end,
-    --     keys={
-    --         {'<leader>lq', '<cmd>LBQuestions<cr>', desc='List Questions'},
-    --         {'<leader>ll', '<cmd>LBQuestion<cr>', desc='View Question'},
-    --         {'<leader>lr', '<cmd>LBReset<cr>', desc='Reset Code'},
-    --         {'<leader>lt', '<cmd>LBTest<cr>', desc='Run Code'},
-    --         {'<leader>ls', '<cmd>LBSubmit<cr>', desc='Submit Code'},
-    --     }},
-
+    {'Dhanus3133/LeetBuddy.nvim',
+        dependencies={'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim'},
+        config=function() require'leetbuddy'.setup({}) end,
+        keys={
+            {'<leader>lq', '<cmd>LBQuestions<cr>', desc='List Questions'},
+            {'<leader>ll', '<cmd>LBQuestion<cr>', desc='View Question'},
+            {'<leader>lr', '<cmd>LBReset<cr>', desc='Reset Code'},
+            {'<leader>lt', '<cmd>LBTest<cr>', desc='Run Code'},
+            {'<leader>ls', '<cmd>LBSubmit<cr>', desc='Submit Code'},
+        }},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Debug                                                                        │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
