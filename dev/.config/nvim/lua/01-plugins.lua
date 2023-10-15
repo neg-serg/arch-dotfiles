@@ -189,7 +189,7 @@ require'lazy'.setup({
         config=function() require'cfg.modes' end},
     {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         event={'VeryLazy'},
-        build='TSUpdate',  -- better highlight
+        build=':TSUpdate', -- better highlight
         config=function() require'cfg.treesitter' end,
         dependencies={
             {'nvim-treesitter/nvim-treesitter-textobjects',
