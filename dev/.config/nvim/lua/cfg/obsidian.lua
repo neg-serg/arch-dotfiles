@@ -1,11 +1,5 @@
 require'obsidian'.setup({
       dir="~/1st_level", -- Required, the path to your vault directory.
-      daily_notes={
-        folder="notes/dailies",
-        date_format="%Y-%m-%d",
-        alias_format="%B %-d, %Y",
-        template=nil
-      },
       completion={
         nvim_cmp=true, -- If using nvim-cmp, otherwise set to false
         min_chars=2, -- Trigger completion at 2 chars
@@ -32,7 +26,7 @@ require'obsidian'.setup({
         end
         return tostring(os.time()) .. "-" .. suffix
       end,
-      disable_frontmatter=false,
+      disable_frontmatter=true,
       note_frontmatter_func=function(note)
         local out={ id=note.id, aliases=note.aliases, tags=note.tags }
         if note.metadata ~= nil and require("obsidian").util.table_length(note.metadata) > 0 then
@@ -47,7 +41,6 @@ require'obsidian'.setup({
         vim.fn.jobstart({"xdg-open", url})  -- linux
       end,
       use_advanced_uri=true, -- https://github.com/Vinzent03/obsidian-advanced-uri
-      -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
       open_app_foreground=false,
       finder="telescope.nvim",
       sort_by="modified",
