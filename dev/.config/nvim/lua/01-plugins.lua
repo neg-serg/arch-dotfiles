@@ -26,9 +26,6 @@ require'lazy'.setup({
     {'ahmedkhalf/project.nvim', config=function() require'cfg.project' end},
     {'nvim-tree/nvim-web-devicons', -- better icons
         config=function() require'cfg.devicons' end},
-    {'ghillb/cybu.nvim', -- fancy menu changing
-        config=function() require'cfg.cybu' end,
-        keys={'<Tab>','<S-Tab>'}},
     'kopischke/vim-fetch', -- vim path/to/file.ext:12:4
     {'jghauser/mkdir.nvim', -- auto make dir when needed
         config=function() require'mkdir' end, event='BufWritePre'},
