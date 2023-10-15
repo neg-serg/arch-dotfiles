@@ -14,14 +14,14 @@ local actions=require'telescope.actions'
 local long_find={'rg','--files','--hidden','-g','!.git'}
 local short_find={'fd','-H','--ignore-vcs','-d','3','--strip-cwd-prefix'}
 local ignore_patterns={
-    "__pycache__/", "__pycache__/*",
-    "build/",       "gradle/",  "node_modules/", "node_modules/*",
-    "smalljre_*/*", "target/",  "vendor/*",
-    ".dart_tool/",  ".git/",   ".github/", ".gradle/",      ".idea/",        ".vscode/",
-    "%.sqlite3",    "%.ipynb", "%.lock",   "%.pdb",
-    "%.dll",        "%.class", "%.exe",    "%.cache", "%.pdf",  "%.dylib",
-    "%.jar",        "%.docx",  "%.met",    "%.burp",  "%.mp4",  "%.mkv", "%.rar",
-    "%.zip",        "%.7z",    "%.tar",    "%.bz2",   "%.epub", "%.flac","%.tar.gz",
+    '__pycache__/', '__pycache__/*',
+    'build/', 'gradle/', 'node_modules/', 'node_modules/*',
+    'smalljre_*/*', 'target/', 'vendor/*',
+    '.dart_tool/', '.git/', '.github/', '.gradle/', '.idea/', '.vscode/',
+    '%.sqlite3', '%.ipynb', '%.lock', '%.pdb', '%.dll', '%.class', '%.exe',
+    '%.cache', '%.pdf', '%.dylib', '%.jar', '%.docx', '%.met', '%.burp',
+    '%.mp4', '%.mkv', '%.rar', '%.zip', '%.7z', '%.tar', '%.bz2', '%.epub',
+    '%.flac','%.tar.gz',
 }
 
 telescope.setup{
