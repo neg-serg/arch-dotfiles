@@ -25,6 +25,7 @@ tsconf.setup {
     textobjects={
         select={
             enable=true,
+            lookahead=true,
             keymaps={
                 ["af"]="@function.outer",
                 ["if"]="@function.inner",
@@ -35,6 +36,7 @@ tsconf.setup {
                 ["aa"]="@parameter.outer",
                 ["ia"]="@parameter.inner",
                 ["as"]="@statement.outer",
+                ["ic"]={query="@class.inner", desc="Select inner part of a class region" },
             },
         },
     },
