@@ -8,7 +8,7 @@ cache=no
 correct-downscaling
 hwdec-codecs=all
 interpolation=no
-vd-lavc-threads=8
+vd-lavc-threads=12
 vo=gpu-next
 gpu-api=vulkan
 hwdec=auto
@@ -18,11 +18,10 @@ video-output-levels=full
 gpu-shader-cache-dir=/home/neg/tmp/
 icc-cache-dir=/home/neg/tmp/
 #--[Scaling]-----------------------------------------------
-# cscale=ewa_lanczossharp
-# dither-depth=auto
+cscale=ewa_lanczossharp
+dither-depth=auto
 dscale=mitchell
 linear-downscaling=yes
-# scale=ewa_lanczossharp
 sigmoid-upscaling=yes
 #--[Antiringing]-------------------------------------------
 cscale-antiring=0.7 # chroma upscale deringing
