@@ -6,6 +6,6 @@ PartOf=graphical-session.target
 Type=oneshot
 ExecStart=/usr/bin/xset -b
 ExecStart=/usr/bin/xsetroot -cursor_name left_ptr
-ExecStart=/usr/bin/xset s off -dpms
+ExecStart=/usr/bin/xset dpms 0 0 0
 StartLimitBurst=10
 RemainAfterExit=false
