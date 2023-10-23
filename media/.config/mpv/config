@@ -12,9 +12,7 @@ vd-lavc-threads=8
 vo=gpu-next
 gpu-api=vulkan
 hwdec=auto
-# vulkan-swap-mode=fifo-relaxed
-video-sync=display-resample
-x11-bypass-compositor=yes
+vulkan-swap-mode=fifo-relaxed
 vf=format=colorlevels=full:colormatrix=auto
 video-output-levels=full
 gpu-shader-cache-dir=/home/neg/tmp/
@@ -47,7 +45,7 @@ sub-font="Helvetica Neue LT Std"
 sub-font="HelveticaNeue LT CYR 57 Cond"
 sub-gauss=.82
 sub-gray=yes
-sub-scale=.4
+sub-scale=0.7
 #--[OSD]---------------------------------------------------
 osc=no
 osd-bar=no
