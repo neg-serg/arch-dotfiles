@@ -18,11 +18,15 @@ def compare_images() -> str:
         return 'ok'
 
 def on_track_change(player, data):
-    cover=None
+    cover=False
     if data is None or not data:
         log.error('No data')
         sys.exit()
-    cover=data['mpris:artUrl']
+    try:
+        cover=data['mpris:artUrl']
+    except:
+        log.error('No cover')
+        sys.exit()
     if cover:
         try:
             cover=remove_prefix(cover, 'file://')
