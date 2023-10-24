@@ -68,6 +68,15 @@ set $wine " 𐌻:wine"
 
 # :>> Config section default
 
+bindsym Mod1+Control+e layout toggle split
+bindsym Mod1+Control+r layout tabbed
+bindsym Mod1+Control+s layout stacking
+bindsym Mod1+Control+t layout tabbed
+bindsym Mod4+Escape kill
+bindsym Mod4+q fullscreen toggle
+bindsym Mod4+y sticky toggle
+bindsym Mod4+Up focus mode_toggle
+
 bindsym Mod4+4 exec ~/bin/screenshot
 bindsym Mod4+Control+4 exec ~/bin/screenshot -r
 bindsym Mod4+Shift+4 exec /usr/bin/flameshot gui
@@ -129,14 +138,6 @@ bindsym Mod4+Control+grave $menu/i3menu
 bindsym Mod4+Shift+a $menu/winact attach
 bindsym Mod4+Shift+d $menu/props del
 bindsym Mod4+Shift+s $menu/props
-
-bindsym Mod1+Control+e layout toggle split
-bindsym Mod1+Control+r layout tabbed
-bindsym Mod1+Control+s layout stacking
-bindsym Mod1+Control+t layout tabbed
-bindsym Mod4+Escape kill
-bindsym Mod4+q fullscreen toggle
-bindsym Mod4+y sticky toggle
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+1 $circle next dev
 bindsym Mod4+o $circle next doc
