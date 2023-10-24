@@ -100,7 +100,7 @@ require'lazy'.setup({
         dependencies={
             {'ray-x/guihua.lua', build='cd lua/fzy && make'},
             {'neovim/nvim-lspconfig'},
-        }},
+        }, cond=false},
     {'numToStr/Comment.nvim', -- modern commenter
         config=function() require'cfg.comment' end, lazy=true,
         keys={
