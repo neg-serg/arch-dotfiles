@@ -96,7 +96,7 @@ require'lazy'.setup({
     {'jamessan/vim-gnupg', ft='gpg'}, -- transparent work with gpg-encrypted files
     {'lervag/vimtex', ft={'tex','latex'}}, -- modern TeX support
     {'ray-x/navigator.lua',
-        config=function() require'navigator'.setup() end,
+        config=function() require'cfg.navigator' end,
         dependencies={
             {'ray-x/guihua.lua', build='cd lua/fzy && make'},
             {'neovim/nvim-lspconfig'},
