@@ -71,4 +71,3 @@ Map('o', '<M-e>', '<End>', {noremap=true})
 Map('i', '<C-e>', "<C-o>$", {noremap=true})
 
 map('i', '<C-v>', 'paste#paste_cmd["i"]', {expr=true})
-map('v', '<C-v>', 'paste#paste_cmd["v"]', {expr=true})
