@@ -81,7 +81,7 @@ main() {
         run=pl_rofi
         shift;
     fi
-    if [[ $1 == "rofi-filebrowser" ]]; then
+    if [[ $1 == "video" ]]; then
         run=(rofi -modi file-browser-extended -show file-browser-extended \
             -file-browser-dir "~/vid/new" -file-browser-depth 2 \
             -file-browser-open-multi-key "kb-accept-alt" \
