@@ -12,8 +12,7 @@ game_stop(){
 }
 
 game_hack(){
-    nvidia-settings --assign CurrentMetaMode="$MONITOR: 3440x1440_120 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=Off}"
-    nvidia-settings --assign CurrentMetaMode="$MONITOR: 3440x1440_175 +0+0 {ForceCompositionPipeline=Off, AllowGSYNCCompatible=Off}"
+    nvidia-settings --assign CurrentMetaMode="$MONITOR: 3440x1440_175 +0+0 { ForceCompositionPipeline=Off, AllowGSYNCCompatible=Off, UseModePool=false }"
 }
 
 case "$1" in
