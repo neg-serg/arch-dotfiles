@@ -4,5 +4,5 @@ After=x11.service
 Requires=x11.service
 
 [Service]
-ExecStart=/usr/bin/xss-lock --transfer-sleep-lock -- i3lockr -p 8
+ExecStart=/usr/bin/xss-lock --transfer-sleep-lock -- /home/neg/bin/x11lock
 Restart=on-failure
