@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
-filelist="$(fd . ~/dw/ -d 1 -t f -0 -e pdf -e djvu -e epub | xargs -0n1 | awk 'NF')"
+filelist="$(fd . ~/dw/ -d 1 -t f -0 -e pdf -e djvu -e epub | xargs -0n1)"
 if [ ! -z "$filelist" ]; then
-    echo -n "$filelist" | rofi -auto-select -modi file-browser-extended -show file-browser-extended \
+    echo "$filelist" | rofi -auto-select -modi file-browser-extended -show file-browser-extended \
         -file-browser-dir "~/dw" -file-browser-depth 1 \
         -file-browser-open-multi-key "kb-accept-alt" \
         -file-browser-open-custom-key "kb-custom-11" \
@@ -10,6 +10,4 @@ if [ ! -z "$filelist" ]; then
         -file-browser-stdin \
         -file-browser-path-sep "/" -theme clip.rasi \
         -file-browser-cmd 'zathura' "$@"
-else
-    zathura "$@"
 fi
