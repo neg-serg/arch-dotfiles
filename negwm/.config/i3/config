@@ -132,12 +132,12 @@ bindsym XF86AudioPlay exec --no-startup-id ~/bin/pl cmd play
 bindsym XF86AudioPrev exec --no-startup-id ~/bin/pl cmd previous
 bindsym XF86AudioStop exec --no-startup-id ~/bin/pl cmd stop
 
-bindsym Mod1+Control+g $menu/winact ws
-bindsym Mod1+g $menu/winact win
-bindsym Mod4+Control+grave $menu/i3menu
-bindsym Mod4+Shift+a $menu/winact attach
-bindsym Mod4+Shift+d $menu/props del
-bindsym Mod4+Shift+s $menu/props
+bindsym Mod1+Control+g $menu/winact-menu ws
+bindsym Mod1+g $menu/winact-menu win
+bindsym Mod4+Control+grave $menu/i3-menu
+bindsym Mod4+Shift+a $menu/winact-menu attach
+bindsym Mod4+Shift+d $menu/props-menu del
+bindsym Mod4+Shift+s $menu/props-menu
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+1 $circle next dev
 bindsym Mod4+o $circle next doc
@@ -189,13 +189,13 @@ mode %{T4}%{T-} {
 bindsym Mod1+e mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym Shift+d floating toggle, mode "default"
-	bindsym Shift+i $menu/xsettings icon, mode "default"
-	bindsym Shift+t $menu/xsettings gtk, mode "default"
+	bindsym Shift+i $menu/xsettings-menu icon, mode "default"
+	bindsym Shift+t $menu/xsettings-menu gtk, mode "default"
 	bindsym e [urgent=latest] focus, mode "default"
-	bindsym i $menu/audio input, mode "default"
+	bindsym i $menu/audio-menu input, mode "default"
 	bindsym l exec xset dpms force suspend, mode "default"
-	bindsym m $menu/xprop, mode "default"
-	bindsym o $menu/audio output, mode "default"
+	bindsym m $menu/xprop-menu, mode "default"
+	bindsym o $menu/audio-menu output, mode "default"
 	bindsym g exec ~/bin/game toggle, mode "default"
 	bindsym f $circle subtag web firefox, mode "default"
 	bindsym 5 $circle subtag web tor, mode "default"
