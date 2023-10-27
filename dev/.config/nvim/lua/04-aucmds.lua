@@ -23,7 +23,6 @@ local function restore_cursor()
     })
 end
 
-au({'Filetype'}, {command='setlocal formatoptions-=c formatoptions-=r formatoptions-=o', group=main})
 au({'FocusGained','BufEnter','FileChangedShell','WinEnter'}, {command='checktime', group=main})
 -- Disables automatic commenting on newline:
 au({'Filetype'}, {
@@ -44,10 +43,6 @@ au({"BufReadPost"}, {callback=restore_cursor, group=main, desc="auto line return
 -- highlighting of whatever was searched for with hlsearch on. It should also
 -- not be persisted between sessions.
 au({'BufReadPre','FileReadPre'}, {command=[[let @/ = '']], group=mode_change})
-au({'BufWritePost'}, {
-    pattern='~/.config/xorg/Xdefaults',
-    command='!xrdb -merge ~/.config/X11/xresources',
-    group=custom_updates})
 au({'BufWritePost'}, {pattern='fonts.conf', command='!fc-cache', group=custom_updates})
 au({'TextYankPost'}, {
     callback=function() require'vim.highlight'.on_yank({timeout=60, higroup="Search"}) end,
