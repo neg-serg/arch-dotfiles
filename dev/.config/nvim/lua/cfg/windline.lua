@@ -87,7 +87,7 @@ local function dir_symbol()
 end
 
 local cache_dir_name = function(default, modify)
-    return cache_utils.cache_on_buffer('BufEnter', 'WL_filename', dir_name(default, modify))
+    return cache_utils.cache_on_buffer({'BufEnter', 'DirChanged'}, 'WL_filename', dir_name(default, modify))
 end
 local cache_delimiter = function()
     return cache_utils.cache_on_buffer('BufEnter', 'delimiter', delimiter())
