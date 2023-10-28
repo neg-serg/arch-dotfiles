@@ -2,7 +2,6 @@ include $XDG_CONFIG_HOME/i3/settings.conf
 include $XDG_CONFIG_HOME/i3/autostart.conf
 include $XDG_CONFIG_HOME/i3/theme.conf
 include $XDG_CONFIG_HOME/i3/rules.conf
-set $menu exec ~/src/negwm/menu
 
 # :>> NegWM
 # :>> Module bindings
@@ -132,12 +131,12 @@ bindsym XF86AudioPlay exec --no-startup-id ~/bin/pl cmd play
 bindsym XF86AudioPrev exec --no-startup-id ~/bin/pl cmd previous
 bindsym XF86AudioStop exec --no-startup-id ~/bin/pl cmd stop
 
-bindsym Mod1+Control+g $menu/winact-menu ws
-bindsym Mod1+g $menu/winact-menu win
-bindsym Mod4+Control+grave $menu/i3-menu
-bindsym Mod4+Shift+a $menu/winact-menu attach
-bindsym Mod4+Shift+d $menu/props-menu del
-bindsym Mod4+Shift+s $menu/props-menu
+bindsym Mod1+Control+g exec ~/.local/bin/winact-menu ws
+bindsym Mod1+g exec ~/.local/bin/winact-menu win
+bindsym Mod4+Control+grave exec ~/.local/bin/i3-menu
+bindsym Mod4+Shift+a exec ~/.local/bin/winact-menu attach
+bindsym Mod4+Shift+d exec ~/.local/bin/props-menu del
+bindsym Mod4+Shift+s exec ~/.local/bin/props-menu
 bindsym Mod4+Control+b $circle next bitwig
 bindsym Mod4+1 $circle next dev
 bindsym Mod4+o $circle next doc
@@ -189,13 +188,13 @@ mode %{T4}%{T-} {
 bindsym Mod1+e mode "%{T4}%{T-}"
 mode %{T4}%{T-} {
 	bindsym Shift+d floating toggle, mode "default"
-	bindsym Shift+i $menu/xsettings-menu icon, mode "default"
-	bindsym Shift+t $menu/xsettings-menu gtk, mode "default"
+	bindsym Shift+i exec ~/.local/bin/xsettings-menu icon, mode "default"
+	bindsym Shift+t exec ~/.local/bin/xsettings-menu gtk, mode "default"
 	bindsym e [urgent=latest] focus, mode "default"
-	bindsym i $menu/audio-menu input, mode "default"
+	bindsym i exec ~/.local/bin/audio-menu input, mode "default"
 	bindsym l exec xset dpms force suspend, mode "default"
-	bindsym m $menu/xprop-menu, mode "default"
-	bindsym o $menu/audio-menu output, mode "default"
+	bindsym m exec ~/.local/bin/xprop-menu, mode "default"
+	bindsym o exec ~/.local/bin/audio-menu output, mode "default"
 	bindsym g exec ~/bin/game toggle, mode "default"
 	bindsym f $circle subtag web firefox, mode "default"
 	bindsym 5 $circle subtag web tor, mode "default"
