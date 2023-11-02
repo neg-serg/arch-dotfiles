@@ -14,7 +14,6 @@ require'obsidian'.setup({
           opts={ noremap=false, expr=true, buffer=true },
         },
       },
-      overwrite_mappings=false,
       note_id_func=function(title)
         local suffix=""
         if title ~= nil then
