@@ -2,8 +2,8 @@ reloaddead
 colors neg
 " sanitise tridactyllocal
 
-set searchengine @astiango
-" set searchengine @google
+" set searchengine @astiango
+set searchengine @google
 set allowautofocus true
 set visualenterauto false
 set wordpattern [^\s\/]+
