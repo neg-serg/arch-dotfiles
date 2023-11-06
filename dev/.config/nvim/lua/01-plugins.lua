@@ -204,6 +204,7 @@ require'lazy'.setup({
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'chr4/nginx.vim', ft='nginx'}, -- nginx better ft
     {'imsnif/kdl.vim', ft='kdl'}, -- kdl ft
+    {'tridactyl/vim-tridactyl', ft='tridactyl'}, -- tridactyl support
     {'codethread/qmk.nvim', config=function() require'cfg.qmk' end, ft='dts', lazy=true}, -- qmk ft
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ DCVS                                                                         │
