@@ -15,8 +15,6 @@ set modeindicatorshowkeys false
 set findresults 40
 set downloadsskiphistory true
 set minincsearchlen 1
-set newtab https://online.bonjourr.fr/
-" hints settings
 set hintdelay 80
 set hintfiltermode vimperator-reflow
 set hintnames short
@@ -24,7 +22,6 @@ set hintshift true
 set hintchars wersdfa
 set hintuppercase true
 set completionfuzziness 1
-" cyrillic support
 set keytranslatemodes.nmaps true
 set keytranslatemodes.imaps true
 set keytranslatemodes.inputmaps true
