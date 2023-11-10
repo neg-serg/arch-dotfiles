@@ -21,7 +21,7 @@ require'navigator'.setup({
         diagnostic_head='🐛',
         diagnostic_head_severity_1='🈲',
     },
-    -- mason=true, -- set to true if you would like use the lsp installed by williamboman/mason
+    mason=true, -- set to true if you would like use the lsp installed by williamboman/mason
     lsp={
         enable=true,
         diagnostic_virtual_text=true,  -- show virtual for diagnostic message
@@ -60,7 +60,6 @@ vim.keymap.set('n', '<C-]', require('navigator.definition').definition) -- desc=
 vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help) -- desc='signature_help'
 vim.keymap.set('n', '<Leader>ct', require('navigator.ctags').ctags) -- desc = 'ctags'
 vim.keymap.set('n', '<Leader>dt', require('navigator.diagnostics').toggle_diagnostics) -- desc = 'toggle_diagnostics'
-vim.keymap.set('n', '<Leader>e', vim.lsp.diagnostic.show_line_diagnostics) -- desc = 'show_line_diagnostics'
 vim.keymap.set('n', '<Leader>gT', require('navigator.treesitter').bufs_ts) -- desc = 'bufs_ts'
 vim.keymap.set('n', '<Leader>gi', require('navigator.cclshierarchy').incoming_calls) -- desc = 'incoming_calls'
 vim.keymap.set('n', '<Leader>gi', vim.lsp.buf.incoming_calls) -- desc = 'incoming_calls'
@@ -93,7 +92,6 @@ vim.keymap.set('n', 'gi', vim.lsp.buf.implementation) -- desc = 'implementation'
 vim.keymap.set('n', 'gr', require('navigator.reference').async_ref) -- desc='async_ref'
 vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition) -- desc='type_definition'
 vim.keymap.set('v', '<Space>ca', require('navigator.codeAction').range_code_action) -- desc = 'range_code_action'
-
 -- This broke <C-v>
 -- vim.keymap.set('n', 'gp', require('navigator.definition').definition_preview) -- desc='definition_preview'
 -- vim.keymap.set('n', 'gP', require('navigator.definition').type_definition_preview) -- desc='type_definition_preview'

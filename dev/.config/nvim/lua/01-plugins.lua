@@ -79,9 +79,7 @@ require'lazy'.setup({
         config=function() require'cfg.lsp' end,
         dependencies={
             'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig',
-            'jay-babu/mason-null-ls.nvim',
-            'jose-elias-alvarez/null-ls.nvim',
+            'williamboman/mason-lspconfig.nvim',
         }, event={'InsertEnter'}},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Dev                                                                          │
