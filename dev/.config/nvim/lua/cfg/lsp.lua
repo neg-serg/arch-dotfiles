@@ -13,18 +13,8 @@ local on_attach=function(_, bufnr)
     buf_set_keymap('n', '<C-K>', '<Cmd>lua require"lsp_signature".signature()<CR>', opts)
     buf_set_keymap('n', ']d', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '[d', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua require"telescope.builtin".lsp_definitions()<CR>', opts)
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'ge', '<Cmd>lua vim.diagnostic.open_float(0, { scope="line", })<CR>', opts)
-    buf_set_keymap('n', 'gI', '<Cmd>lua require"telescope.builtin".lsp_implementations()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<Cmd>lua require"telescope.builtin".lsp_references()<CR>', opts)
-    buf_set_keymap('n', 'gt', '<Cmd>lua require"telescope.builtin".lsp_type_definitions()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', '<leader>A', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', '<leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '<leader>ge', '<Cmd>lua require"telescope.builtin".diagnostics()<CR>', opts)
-    buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-    buf_set_keymap('n', '<leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
 vim.diagnostic.config({
