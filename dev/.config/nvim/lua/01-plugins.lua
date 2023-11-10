@@ -62,7 +62,6 @@ require'lazy'.setup({
         config=function() require'cfg.cmp' end,
         dependencies={
             'hrsh7th/cmp-nvim-lsp', -- cmp lsp support
-            'hrsh7th/cmp-nvim-lsp-signature-help', -- experiment with signature-help
             'hrsh7th/cmp-nvim-lua', -- cmp neovim lua api support
             'hrsh7th/cmp-path', -- cmp path completion support
             'lukas-reineke/cmp-under-comparator'}}, -- better nvim-cmp sorter
