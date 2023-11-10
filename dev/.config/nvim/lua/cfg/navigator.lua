@@ -8,7 +8,7 @@ require'navigator'.setup({
     preview_height=0.35, -- max height of preview windows
     border={"╭", "─", "╮", "│", "╯", "─", "╰", "│"}, -- border style, can be one of 'none', 'single', 'double', 'shadow', or a list of chars which defines the border
     ts_fold=false,  -- modified version of treesitter folding
-    default_mapping=true,  -- set to false if you will remap every key or if you using old version of nvim-
+    default_mapping=false,  -- set to false if you will remap every key or if you using old version of nvim-
     keymaps={{key="gK", func=vim.lsp.declaration, desc='declaration'}}, -- a list of key maps please check mapping.lua for all keymaps
     treesitter_analysis=true, -- treesitter variable context
     treesitter_navigation=true, -- bool|table false: use lsp to navigate between symbol ']r/[r', table: a list of
@@ -55,19 +55,4 @@ require'navigator'.setup({
         tagfile='tags',
         options='-R --exclude=.git --exclude=node_modules --exclude=test --exclude=vendor --excmd=number',
     },
-    -- hover={
-    --     enable=true,
-    --     keymap={
-    --         ['<C-k>']={
-    --             go=function()
-    --                 local w=vim.fn.expand('<cWORD>')
-    --                 vim.cmd('GoDoc ' .. w)
-    --             end,
-    --             default=function()
-    --                 local w=vim.fn.expand('<cWORD>')
-    --                 vim.lsp.buf.workspace_symbol(w)
-    --             end,
-    --         },
-    --     },
-    -- },
 })
