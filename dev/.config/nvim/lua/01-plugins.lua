@@ -165,6 +165,10 @@ require'lazy'.setup({
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}},
     {'smoka7/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end},
+    {'folke/flash.nvim', event='VeryLazy',
+        opts={modes={search={enabled=false}}},
+        keys={},
+    },
     {'svermeulen/vim-NotableFt', -- better f-t-bindings
         config=function() require'cfg.ft' end},
     {'kylechui/nvim-surround', -- alternative surround
