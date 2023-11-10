@@ -31,7 +31,7 @@ require'lazy'.setup({
         config=function() require'mkdir' end, event='BufWritePre'},
     'thinca/vim-ref', -- integrated reference viewer for help with separated window
     {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
-        event='VeryLazy',
+        event={'VeryLazy'},
         dependencies={
             'nvim-lua/plenary.nvim', -- lua functions
             'neg-serg/telescope-pathogen.nvim', -- telescope change directory on the fly
@@ -54,7 +54,7 @@ require'lazy'.setup({
         dependencies={'nvim-tree/nvim-web-devicons'}},
     {'chrisgrieser/nvim-alt-substitute', -- alternative substitute
         config=function() require'cfg.alt-substitute' end,
-        event='CmdlineEnter'},  -- lazy-loading with `cmd =` does not work well with incremental preview
+        event={'CmdlineEnter'}},  -- lazy-loading with `cmd =` does not work well with incremental preview
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Completion                                                                   │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -66,7 +66,7 @@ require'lazy'.setup({
             'hrsh7th/cmp-path', -- cmp path completion support
             'lukas-reineke/cmp-under-comparator'}}, -- better nvim-cmp sorter
     {'folke/noice.nvim', -- better UX
-        event='VeryLazy',
+        event={'VeryLazy'},
         config=function() require'cfg.noice' end,
         dependencies={'MunifTanjim/nui.nvim'}},
     {'L3MON4D3/LuaSnip', -- snippets engine
@@ -114,7 +114,7 @@ require'lazy'.setup({
         keys={'MK','MC','[QLeader]cc','[QLeader]mc'},
         cmd={'Dispatch','Make','Focus','Start'}},
     {'windwp/nvim-autopairs', -- super powerful autopairs
-        config=function() require'cfg.autopairs' end, event='InsertEnter'},
+        config=function() require'cfg.autopairs' end, event={'InsertEnter'}},
     {'stevearc/conform.nvim', config=function() require'cfg.conform' end}, -- neovim modern formatter
     {'willchao612/vim-diagon', cmd='Diagon'}, -- creates diagrams from text. dependencies diagon from snap.
     {'Dhanus3133/LeetBuddy.nvim',
@@ -145,7 +145,7 @@ require'lazy'.setup({
     {'cstsunfu/md-bullets.nvim', -- markdown org-like bullets(better highlighting)
         config=function() require'cfg.bullets' end},
     {'nvim-orgmode/orgmode', config=function() require'cfg.orgmode' end,
-        event='VeryLazy', dependencies={'nvim-treesitter/nvim-treesitter',lazy=true}},
+        event={'VeryLazy'}, dependencies={'nvim-treesitter/nvim-treesitter',lazy=true}},
     {'renerocksai/telekasten.nvim', ft='md', -- better md wiki stuff
         config=function() require'cfg.telekasten' end},
     {'epwalsh/obsidian.nvim', dependencies={
@@ -165,7 +165,7 @@ require'lazy'.setup({
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}},
     {'smoka7/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end},
-    {'folke/flash.nvim', event='VeryLazy',
+    {'folke/flash.nvim', event={'VeryLazy'},
         opts={modes={search={enabled=false}}},
         keys={},
     },
@@ -173,7 +173,7 @@ require'lazy'.setup({
         config=function() require'cfg.ft' end},
     {'kylechui/nvim-surround', -- alternative surround
         config=function() require'cfg.surround' end,
-        event='VeryLazy'},
+        event={'VeryLazy'}},
     'lambdalisue/suda.vim', -- sudo write commands
     {'cappyzawa/trim.nvim', -- trim trailing whitespace etc
         config=function() require'cfg.trim' end},
@@ -182,7 +182,7 @@ require'lazy'.setup({
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end},
-    {'Tsuzat/NeoSolarized.nvim', event='VeryLazy'}, -- NeoSolarized colorscheme
+    {'Tsuzat/NeoSolarized.nvim', event={'VeryLazy'}}, -- NeoSolarized colorscheme
     {'mvllow/modes.nvim', -- simple mode-dependent cursor highlight
         config=function() require'cfg.modes' end},
     {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
