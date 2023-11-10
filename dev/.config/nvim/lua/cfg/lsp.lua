@@ -22,12 +22,8 @@ mason_lspconfig.setup({ensure_installed={
     'bashls',
     'clangd',
     'dockerls',
-    'hls',
     'jsonls',
     'pyright',
-    'remark_ls',
     'rust_analyzer',
     'salt_ls',
-    'taplo',
-    'yamlls',
 }})
