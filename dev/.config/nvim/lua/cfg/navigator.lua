@@ -34,8 +34,9 @@ require'navigator'.setup({
         diagnostic_scrollbar_sign={'╍', 'ﮆ'}, -- experimental:  diagnostic status in scroll bar area; set to false to disable the diagnostic sign,
         code_action={enable=true, sign=true, sign_priority=40, virtual_text=true},
         code_lens_action={enable=true, sign=true, sign_priority=40, virtual_text=true},
-        document_highlight=true, -- LSP reference highlight, it might already supported by you setup, e.g. LunarVim
+        document_highlight=false, -- LSP reference highlight, it might already supported by you setup, e.g. LunarVim
         format_on_save=false,
+        hover={enable=true},
         diagnostic={
             underline=true,
             virtual_text=true, -- show virtual for diagnostic message
@@ -50,7 +51,7 @@ require'navigator'.setup({
             },
         },
     },
-    ctags ={
+    ctags={
         cmd='ctags',
         tagfile='tags',
         options='-R --exclude=.git --exclude=node_modules --exclude=test --exclude=vendor --excmd=number',
