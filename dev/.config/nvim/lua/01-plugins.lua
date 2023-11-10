@@ -100,7 +100,7 @@ require'lazy'.setup({
         dependencies={
             {'ray-x/guihua.lua', build='cd lua/fzy && make'},
             {'neovim/nvim-lspconfig'},
-        }, cond=false},
+        }},
     {'numToStr/Comment.nvim', -- modern commenter
         config=function() require'cfg.comment' end, lazy=true,
         keys={
@@ -110,7 +110,7 @@ require'lazy'.setup({
             {'gcc',mode='n', desc='Comment toggle current line'},
             {'gc',mode={'n','o'}, desc='Comment toggle linewise'},
             {'gc',mode='x', desc='Comment toggle linewise (visual)'},
-    }}, 
+    }},
     'tpope/vim-apathy', -- better include jump
     {'tpope/vim-dispatch', -- provide async build
         config=function() require'cfg.dispatch' end,
