@@ -91,7 +91,7 @@ require'lazy'.setup({
         dependencies={'nvim-tree/nvim-web-devicons'},
         cmd={'Trouble','TroubleClose','TroubleToggle','TroubleRefresh'},
         config=function() require'cfg.trouble' end,
-        keys={'<leader>X'}, lazy=true},
+        keys={'<leader>x'}, lazy=true},
     {'potamides/pantran.nvim', config=function() require'cfg.pantran' end},
     {'jamessan/vim-gnupg', ft='gpg'}, -- transparent work with gpg-encrypted files
     {'lervag/vimtex', ft={'tex','latex'}}, -- modern TeX support

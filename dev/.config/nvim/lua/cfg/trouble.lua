@@ -4,7 +4,7 @@
 local status, trouble = pcall(require, 'trouble')
 if (not status) then return end
 
-map('n', '<leader>X', '<cmd>TroubleToggle<cr>')
+map('n', '<leader>x', '<cmd>TroubleToggle<cr>')
 
 trouble.setup {
     position = 'bottom', -- position of the list can be: bottom, top, left, right
