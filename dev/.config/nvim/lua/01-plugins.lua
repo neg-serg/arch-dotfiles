@@ -113,8 +113,11 @@ require'lazy'.setup({
         config=function() require'cfg.dispatch' end,
         keys={'MK','MC','[QLeader]cc','[QLeader]mc'},
         cmd={'Dispatch','Make','Focus','Start'}},
-    {'windwp/nvim-autopairs', -- super powerful autopairs
-        config=function() require'cfg.autopairs' end, event={'InsertEnter'}},
+    {'altermo/ultimate-autopair.nvim',
+        event={'InsertEnter','CmdlineEnter'},
+        branch='v0.6', --recomended as each new version will have breaking changes
+        opts={},
+    },
     {'stevearc/conform.nvim', config=function() require'cfg.conform' end}, -- neovim modern formatter
     {'willchao612/vim-diagon', cmd='Diagon'}, -- creates diagrams from text. dependencies diagon from snap.
     {'Dhanus3133/LeetBuddy.nvim',
