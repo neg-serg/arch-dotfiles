@@ -137,6 +137,7 @@ o.undodir=home_ .. '/trash/'                 -- Setup undo dir
 o.undofile=true                              -- Enable undofile
 o.swapfile=false                             -- Do not use swapfiles
 o.shada="!,'9000,<50,s1500,h,:100,%,/100"    -- Shada settings
+o.cdhome=true                                -- :cd without argument goes to the home directory
 o.completeopt='menu,menuone,noselect'        -- Completion options
 o.formatoptions='n1jcroqlj'                  -- Format settings
 o.cpoptions='_$ABFWcdesa'                    -- Vim-exclusive stuff
