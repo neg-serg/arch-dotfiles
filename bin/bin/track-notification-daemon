@@ -25,7 +25,7 @@ def on_track_change(player, data):
     try:
         cover=data['mpris:artUrl']
     except:
-        log.error('No cover')
+        log.error(f'No cover :: {data}')
         sys.exit()
     if cover:
         try:
