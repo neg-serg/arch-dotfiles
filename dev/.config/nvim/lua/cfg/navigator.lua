@@ -7,7 +7,6 @@ require'navigator'.setup({
     height=0.4, -- max list window height, 0.3 by default
     preview_height=0.3, -- max height of preview windows
     border={"╭", "─", "╮", "│", "╯", "─", "╰", "│"}, -- border style, can be one of 'none', 'single', 'double', 'shadow', or a list of chars which defines the border
-    ts_fold=false,  -- modified version of treesitter folding
     default_mapping=false,  -- set to false if you will remap every key or if you using old version of nvim-
     treesitter_analysis=true, -- treesitter variable context
     treesitter_navigation=true, -- bool|table false: use lsp to navigate between symbol ']r/[r', table: a list of
