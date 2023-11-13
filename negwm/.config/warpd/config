@@ -1,5 +1,7 @@
 acceleration: 0
 accelerator: p
+accelerator: l
+decelerator: space
 decelerator: i
 accelerator_acceleration: 9400
 decelerator_speed: 200
