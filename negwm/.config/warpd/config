@@ -2,6 +2,7 @@ acceleration: 0
 accelerator: p
 decelerator: i
 accelerator_acceleration: 9400
+decelerator_speed: 200
 
 activation_key: M-0
 buttons: m , .
