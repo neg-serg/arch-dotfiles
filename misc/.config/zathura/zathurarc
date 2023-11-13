@@ -3,7 +3,7 @@ set database sqlite
 unmap q
 unmap d
 unmap <C-q>
-set font "Iosevka 12"
+set font "Iosevka 11"
 
 set statusbar-h-padding 0
 set statusbar-v-padding 0
