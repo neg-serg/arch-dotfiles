@@ -47,6 +47,7 @@ def on_track_change(player, data):
                 md5sums.append(cover_sum.split()[0])
             except subprocess.CalledProcessError:
                 log.error('Cannot do mpd5sum for file')
+                continue
             if player:
                 import os
                 track_notify=os.path.expanduser('~/bin/track-notify')
