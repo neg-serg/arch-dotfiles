@@ -92,7 +92,7 @@ require'lazy'.setup({
     {'potamides/pantran.nvim', config=function() require'cfg.pantran' end},
     {'jamessan/vim-gnupg', ft='gpg'}, -- transparent work with gpg-encrypted files
     {'lervag/vimtex', ft={'tex','latex'}}, -- modern TeX support
-    {'ray-x/navigator.lua',
+    {'ray-x/navigator.lua', -- great source code ui
         config=function() require'cfg.navigator' end,
         dependencies={
             {'ray-x/guihua.lua', build='cd lua/fzy && make'},
@@ -168,10 +168,9 @@ require'lazy'.setup({
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}},
     {'smoka7/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end},
-    {'folke/flash.nvim', event={'VeryLazy'},
-        opts={modes={search={enabled=false}}},
-        keys={},
-    },
+    -- {'folke/flash.nvim', event={'VeryLazy'},
+    --     opts={modes={search={enabled=false}}},
+    --     keys={}},
     {'svermeulen/vim-NotableFt', -- better f-t-bindings
         config=function() require'cfg.ft' end},
     {'kylechui/nvim-surround', -- alternative surround
@@ -185,7 +184,6 @@ require'lazy'.setup({
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end},
-    {'Tsuzat/NeoSolarized.nvim', event={'VeryLazy'}}, -- NeoSolarized colorscheme
     {'mvllow/modes.nvim', -- simple mode-dependent cursor highlight
         config=function() require'cfg.modes' end},
     {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
