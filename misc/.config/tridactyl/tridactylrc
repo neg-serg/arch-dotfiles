@@ -73,10 +73,11 @@ unbind <F1><C-q><SA-ArrowUp><SA-ArrowUp><SA-ArrowDown><SA-ArrowDown><SA-ArrowLef
 
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
-
 bindurl reddit.com f hint -Jc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 bindurl reddit.com F hint -Jtc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 bindurl reddit.com F hint -Jqbc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
+bindurl reddit.com gu urlparent 4
+
 bindurl github.com/.*/.*/blob f hint -c .blob-num,a
 bindurl youtu((\.be)|(be\.com)) f hint -J
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
@@ -84,6 +85,7 @@ bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .c
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search gF hint -Jqbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 bindurl lkml.org/lkml gl js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) + 1].querySelector("a").href
 bindurl lkml.org/lkml gh js let lis = Array.from(document.querySelectorAll(".threadlist:nth-of-type(1)")[0].querySelectorAll("li")); document.location.href = lis[lis.findIndex(li => li.className.match("origin")) - 1].querySelector("a").href
+command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
 
 " thx to: https://github.com/vishes-shell/dotfiles/blob/master/.config/tridactyl/tridactylrc
 " Ctrl-F should use the browser's native 'find' functionality.
@@ -93,8 +95,13 @@ bind --mode=normal <S-Tab> findnext -1
 bind ,, nohlsearch
 " Git{Hub,Lab} git clone via SSH yank
 bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+" "bindurl ^https://github.com gl hint -Vc .AppHeader-searchButton
 " As above but execute it and open terminal in folder
 bind zG js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
+
+command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+command fixamo js tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""').then(tri.excmds.fillcmdline_tmp(3000, "Permissions added to user.js. Please restart Firefox to make them take affect.")))
+fixamo_quiet
 
 setpref accessibility.typeaheadfind.flashBar 0
 setpref browser.bookmarks.addedImportButton = false
