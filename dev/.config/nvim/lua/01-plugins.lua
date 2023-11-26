@@ -40,8 +40,7 @@ require'lazy'.setup({
             'MrcJkb/telescope-manix', -- manix support
             'nvim-telescope/telescope-frecency.nvim', -- MRU frecency
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
-            'renerocksai/telekasten.nvim', -- telescope + telekasten
-        },
+            'renerocksai/telekasten.nvim',}, -- telescope + telekasten
         config=function() require'cfg.telescope' end},
     {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end},
@@ -79,8 +78,7 @@ require'lazy'.setup({
         config=function() require'cfg.lsp' end,
         dependencies={
             'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-        }, event={'InsertEnter'}},
+            'williamboman/mason-lspconfig.nvim'}, event={'InsertEnter'}},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Dev                                                                          │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -96,8 +94,7 @@ require'lazy'.setup({
         config=function() require'cfg.navigator' end,
         dependencies={
             {'ray-x/guihua.lua', build='cd lua/fzy && make'},
-            {'neovim/nvim-lspconfig'},
-        }},
+            {'neovim/nvim-lspconfig'}}},
     {'numToStr/Comment.nvim', -- modern commenter
         config=function() require'cfg.comment' end, lazy=true,
         keys={
@@ -116,8 +113,7 @@ require'lazy'.setup({
     {'altermo/ultimate-autopair.nvim',
         event={'InsertEnter','CmdlineEnter'},
         branch='v0.6', --recomended as each new version will have breaking changes
-        opts={},
-    },
+        opts={}},
     {'stevearc/conform.nvim', config=function() require'cfg.conform' end}, -- neovim modern formatter
     {'willchao612/vim-diagon', cmd='Diagon'}, -- creates diagrams from text. dependencies diagon from snap.
     {'Dhanus3133/LeetBuddy.nvim',
@@ -128,8 +124,7 @@ require'lazy'.setup({
             {'<leader>ll', '<cmd>LBQuestion<cr>', desc='View Question'},
             {'<leader>lr', '<cmd>LBReset<cr>', desc='Reset Code'},
             {'<leader>lt', '<cmd>LBTest<cr>', desc='Run Code'},
-            {'<leader>ls', '<cmd>LBSubmit<cr>', desc='Submit Code'},
-        }},
+            {'<leader>ls', '<cmd>LBSubmit<cr>', desc='Submit Code'}}},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Debug                                                                        │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -154,8 +149,7 @@ require'lazy'.setup({
     {'epwalsh/obsidian.nvim', dependencies={
         'nvim-lua/plenary.nvim',
         'hrsh7th/nvim-cmp',
-        'nvim-telescope/telescope.nvim',
-        }, config=function() require'cfg.obsidian' end},
+        'nvim-telescope/telescope.nvim'}, config=function() require'cfg.obsidian' end},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Edit                                                                         │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -193,8 +187,7 @@ require'lazy'.setup({
         dependencies={
             {'nvim-treesitter/nvim-treesitter-textobjects',
             config=function() require'cfg.treesitter' end},
-            {'RRethy/nvim-treesitter-endwise'}, -- ts-based endwise
-    }},
+            {'RRethy/nvim-treesitter-endwise'}}}, -- ts-based endwise
     {'hiphish/rainbow-delimiters.nvim', -- rainbow parenthesis
         config=function() require'cfg.rainbow-delimiters' end},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
