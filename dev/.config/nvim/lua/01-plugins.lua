@@ -20,6 +20,19 @@ require'lazy'.setup({
     {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
         keys={'[Qleader]3'}},
+    {'mikesmithgh/kitty-scrollback.nvim',
+        enabled=true, lazy=true,
+        cmd={'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth'},
+        event={'User KittyScrollbackLaunch'},
+        opts={
+            kitty_get_text = {
+                extent = 'last_cmd_output',
+                ansi = true,
+            },
+        },
+        -- version='*', -- latest stable version, may have breaking changes if major version changed
+        -- version='^2.0.0', -- pin major version, include fixes and features that do not have breaking changes
+        config=function() require('kitty-scrollback').setup() end},
     {'folke/persistence.nvim',
         config=function() require'cfg.persistence' end,
         event='BufReadPre'}, -- this will only start session saving when an actual file was opened
@@ -178,6 +191,7 @@ require'lazy'.setup({
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         config=function() vim.cmd'colorscheme neg' end},
+    {'sainttttt/flesh-and-blood'}, -- red gothic colorscheme
     {'mvllow/modes.nvim', -- simple mode-dependent cursor highlight
         config=function() require'cfg.modes' end},
     {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
