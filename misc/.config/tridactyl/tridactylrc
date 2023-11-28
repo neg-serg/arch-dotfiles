@@ -1,8 +1,6 @@
 reloaddead
 colors neg
-" sanitise tridactyllocal
 
-" set searchengine @astiango
 set searchengine @google
 set allowautofocus true
 set visualenterauto false
@@ -36,7 +34,6 @@ set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
 set searchurls.gi https://google.com/search?q=%s&tbm=isch
 set searchurls.gmaps https://google.com/maps/search/%s
 set searchurls.imdb https://imdb.com/find?q=%s
-set searchurls.mdn https://developer.mozilla.org/en-US/search?q=%s&topic=api&topic=js
 set searchurls.osm https://openstreetmap.org/search?query=%s
 set searchurls.pydoc https://docs.python.org/3/search.html?q=%s
 set searchurls.rustdoc https://doc.rust-lang.org/std/index.html?search=%s
@@ -44,7 +41,6 @@ set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 set searchurls.steam https://store.steampowered.com/search/?term=%s
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
 set searchurls.y https://youtube.com/results?search_query=%s
-
 jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.catch(()=>{}).then(_ => tri.excmds.setnull("searchurls." + u)), Promise.resolve())
 
 blacklistadd 192.168.1.1
@@ -73,12 +69,8 @@ unbind <F1><C-q><SA-ArrowUp><SA-ArrowUp><SA-ArrowDown><SA-ArrowDown><SA-ArrowLef
 
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
-bindurl reddit.com f hint -Jc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
-bindurl reddit.com F hint -Jtc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
-bindurl reddit.com F hint -Jqbc a[data-click-id="subreddit"],a[data-click-id="body"],a.styled-outbound-link
 bindurl reddit.com gu urlparent 4
 
-bindurl github.com/.*/.*/blob f hint -c .blob-num,a
 bindurl youtu((\.be)|(be\.com)) f hint -J
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search f hint -Jc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
 bindurl google(\.[a-zA-Z0-9]+){1,2}/search F hint -Jbc #top_nav a, #search a, .card-section a, a.fl, #pnnext, #pnprev
@@ -93,10 +85,7 @@ bind --mode=normal / fillcmdline find
 bind --mode=normal <Tab> findnext 1
 bind --mode=normal <S-Tab> findnext -1
 bind ,, nohlsearch
-" Git{Hub,Lab} git clone via SSH yank
 bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
-" "bindurl ^https://github.com gl hint -Vc .AppHeader-searchButton
-" As above but execute it and open terminal in folder
 bind zG js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
 command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
@@ -185,10 +174,7 @@ bind --mode=normal y composite get_current_url | yank
 bind D tabclose
 bind s hint -S
 bind ;S hint -s
-" thx to: https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc
-" Stupid workaround to let hint -; be used with composite which steals semi-colons
 command hint_focus hint -;
-" Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
 
 quickmark A magazine.artstation.com/
@@ -212,7 +198,7 @@ quickmark z z-lib.is
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl
 " command line, so set an option to move the status bar to the right.
 guiset_quiet hoverlink right
-guiset_quiet statuspanel right
+guiset_quiet statuspanel left
 guiset_quiet tabcounters show
 
 set keyboardlayoutforce true
