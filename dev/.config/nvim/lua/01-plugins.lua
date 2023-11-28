@@ -24,14 +24,8 @@ require'lazy'.setup({
         enabled=true, lazy=true,
         cmd={'KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth'},
         event={'User KittyScrollbackLaunch'},
-        opts={
-            kitty_get_text = {
-                extent = 'last_cmd_output',
-                ansi = true,
-            },
-        },
-        -- version='*', -- latest stable version, may have breaking changes if major version changed
-        -- version='^2.0.0', -- pin major version, include fixes and features that do not have breaking changes
+        opts={kitty_get_text={extent='last_cmd_output', ansi=false}},
+        version='*', -- latest stable version, may have breaking changes if major version changed
         config=function() require('kitty-scrollback').setup() end},
     {'folke/persistence.nvim',
         config=function() require'cfg.persistence' end,
