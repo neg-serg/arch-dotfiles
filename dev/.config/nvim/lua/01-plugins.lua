@@ -47,8 +47,7 @@ require'lazy'.setup({
             'MrcJkb/telescope-manix', -- manix support
             'nvim-telescope/telescope-frecency.nvim', -- MRU frecency
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
-            'renerocksai/telekasten.nvim',}, -- telescope + telekasten
-        config=function() require'cfg.telescope' end},
+            'renerocksai/telekasten.nvim'}}, -- telescope + telekasten
     'mangelozzi/rgflow.nvim',
     {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end},
