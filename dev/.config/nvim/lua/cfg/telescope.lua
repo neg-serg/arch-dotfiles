@@ -156,9 +156,9 @@ telescope.setup{
         }
     },
 }
-local frecency=telescope.load_extension'frecency'
-local zf_native=telescope.load_extension'zf-native'
-local undo=telescope.load_extension'undo'
+telescope.load_extension'frecency'
+telescope.load_extension'zf-native'
+telescope.load_extension'undo'
 
 local opts={silent=true, noremap=true}
 Map('n', 'E', function() vim.cmd'ProjectRoot'; pathogen.find_files{} end, opts)
@@ -168,17 +168,17 @@ Map('n', 'cd', function()
             {layout_config={height=8}, border=false}
 )) end, opts)
 Map('n', "<leader>.", function()
-    vim.cmd'Telescope frecency theme=ivy layout_config={height=12} sorting_strategy=descending' 
+    vim.cmd'Telescope frecency theme=ivy layout_config={height=12} sorting_strategy=descending'
 end, opts)
 Map('n', '<M-C-o>', function()
-    builtin.lsp_dynamic_workspace_symbols() 
+    builtin.lsp_dynamic_workspace_symbols()
 end, opts)
-Map('n', '<M-o>', function() 
-    builtin.lsp_document_symbols() 
+Map('n', '<M-o>', function()
+    builtin.lsp_document_symbols()
 end, opts)
 Map('n', '<leader>l', function()
     vim.cmd'chdir %:p:h'; pathogen.find_files{}
 end, opts)
 Map('n', '[Qleader]e', function()
-    pathogen.find_files{} 
+    pathogen.find_files{}
 end, opts)
