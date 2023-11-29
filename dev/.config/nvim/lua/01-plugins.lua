@@ -196,7 +196,7 @@ require'lazy'.setup({
     -- │ █▓▒░ Appearance                                                                   │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
-        config=function() vim.cmd'colorscheme neg' end},
+        opts={colorscheme='neg'}},
     {'sainttttt/flesh-and-blood'}, -- red gothic colorscheme
     {'mvllow/modes.nvim', -- simple mode-dependent cursor highlight
         config=function() require'cfg.modes' end},
