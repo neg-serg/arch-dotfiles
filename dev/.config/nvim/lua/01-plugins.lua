@@ -26,7 +26,7 @@ require'lazy'.setup({
         event={'User KittyScrollbackLaunch'},
         opts={kitty_get_text={extent='all', ansi=false}},
         version='*', -- latest stable version, may have breaking changes if major version changed
-        config=function() require('kitty-scrollback').setup() end},
+        config=function() require'kitty-scrollback'.setup() end},
     {'folke/persistence.nvim',
         config=function() require'cfg.persistence' end,
         event='BufReadPre'}, -- this will only start session saving when an actual file was opened
@@ -49,6 +49,7 @@ require'lazy'.setup({
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
             'renerocksai/telekasten.nvim',}, -- telescope + telekasten
         config=function() require'cfg.telescope' end},
+    'mangelozzi/rgflow.nvim',
     {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end},
     {'windwp/windline.nvim', -- most modern statusline
