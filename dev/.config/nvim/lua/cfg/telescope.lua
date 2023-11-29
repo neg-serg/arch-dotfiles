@@ -170,12 +170,6 @@ Map('n', 'cd', function()
 Map('n', "<leader>.", function()
     vim.cmd'Telescope frecency theme=ivy layout_config={height=12} sorting_strategy=descending' 
 end, opts)
-Map('n', '<C-f>', function()
-    builtin.live_grep(
-        require'telescope.themes'.get_ivy({
-            layout_config={height=12},
-            border=true
-})) end, opts)
 Map('n', '<M-C-o>', function()
     builtin.lsp_dynamic_workspace_symbols() 
 end, opts)
