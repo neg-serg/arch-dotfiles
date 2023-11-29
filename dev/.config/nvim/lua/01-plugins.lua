@@ -49,18 +49,6 @@ require'lazy'.setup({
             'natecraddock/telescope-zf-native.nvim', -- zf native sorter
             'renerocksai/telekasten.nvim',}, -- telescope + telekasten
         config=function() require'cfg.telescope' end},
-    {'mangelozzi/rgflow.nvim',
-        config=function()
-            require("rgflow").setup({
-                    default_trigger_mappings=true,
-                    default_ui_mappings=true,
-                    default_quickfix_mappings=true,
-                    cmd_flags=("--smart-case -g *.{*,py} -g !*.{min.js,pyc} --fixed-strings --no-fixed-strings --no-ignore -M 500"
-                    .. " -g !**/.angular/"
-                    .. " -g !**/node_modules/"
-                    .. " -g !**/static/*/jsapp/"
-                    .. " -g !**/static/*/wcapp/"
-                    )}) end},
     {'haya14busa/vim-asterisk', -- smartcase star
         config=function() require'cfg.asterisk' end},
     {'windwp/windline.nvim', -- most modern statusline
