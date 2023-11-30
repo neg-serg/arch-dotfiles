@@ -88,10 +88,6 @@ bind ,, nohlsearch
 bind zg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 bind zG js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
-command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
-command fixamo js tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""').then(tri.excmds.fillcmdline_tmp(3000, "Permissions added to user.js. Please restart Firefox to make them take affect.")))
-fixamo_quiet
-
 setpref accessibility.typeaheadfind.flashBar 0
 setpref browser.bookmarks.addedImportButton = false
 setpref browser.bookmarks.restore_default_bookmarks = false
