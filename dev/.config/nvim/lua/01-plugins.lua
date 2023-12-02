@@ -58,6 +58,8 @@ require'lazy'.setup({
     {'stevearc/oil.nvim',  -- nice netrw replacement
         config=function() require'cfg.oil' end,
         dependencies={'nvim-tree/nvim-web-devicons'}},
+    {'diegoulloao/nvim-file-location', -- copy current location
+        config=function() require'cfg.nvim-file-location' end},
     {'chrisgrieser/nvim-alt-substitute', -- alternative substitute
         config=function() require'cfg.alt-substitute' end,
         event={'CmdlineEnter'}},  -- lazy-loading with `cmd =` does not work well with incremental preview
