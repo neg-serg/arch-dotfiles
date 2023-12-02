@@ -1,4 +1,4 @@
-vim.api.nvim_exec([[
+vim.api.nvim_exec2([[
 function! Redir(cmd, rng, start, end)
 	for win in range(1, winnr('$'))
 		if getwinvar(win, 'scratch')
@@ -27,7 +27,7 @@ function! Redir(cmd, rng, start, end)
 	setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
 	call setline(1, output)
 endfunction
-]], true)
+]],{})
 
 vim.api.nvim_cmd({cmd="command", args={'-bang', '-nargs=*', '-complete=file', 'E', 'e<bang>', '<args>'}}, {})
 vim.api.nvim_cmd({cmd="command", args={'-bang', '-nargs=*', '-complete=file', 'Wq', 'wq<bang>', '<args>'}}, {})

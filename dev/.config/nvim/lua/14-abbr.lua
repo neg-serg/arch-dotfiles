@@ -26,7 +26,7 @@ vim.api.nvim_cmd({cmd='cnoreabbrev', args={'Wq', 'wq'}}, {})
 vim.api.nvim_cmd({cmd='cnoreabbrev', args={'WQ', 'wq'}}, {})
 vim.api.nvim_cmd({cmd='cnoreabbrev', args={'W', 'w'}}, {})
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec2([[
 function! CCR()
     let cmdline = getcmdline()
     if cmdline =~ '^\k\+$'
@@ -36,4 +36,4 @@ function! CCR()
     endif
 endfunction
 cnoremap <expr> <CR> CCR()
-]], true)
+]],{})
