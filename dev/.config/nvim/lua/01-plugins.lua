@@ -192,8 +192,6 @@ require'lazy'.setup({
     {'neg-serg/neg.nvim', -- my pure-dark neovim colorscheme
         opts={colorscheme='neg'}},
     {'sainttttt/flesh-and-blood'}, -- red gothic colorscheme
-    {'mvllow/modes.nvim', -- simple mode-dependent cursor highlight
-        config=function() require'cfg.modes' end},
     {'nvim-treesitter/nvim-treesitter', -- nvim treesitter support
         event={'VeryLazy'},
         build=':TSUpdate', -- better highlight
