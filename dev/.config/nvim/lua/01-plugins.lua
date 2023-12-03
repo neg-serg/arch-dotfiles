@@ -10,13 +10,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader=','
 require'lazy'.setup({
-    -- ┌───────────────────────────────────────────────────────────────────────────────────┐ 
-    -- │ █▓▒░ Performance / Fixes                                                          │ 
+    -- ┌───────────────────────────────────────────────────────────────────────────────────┐
+    -- │ █▓▒░ Performance / Fixes                                                          │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'dstein64/vim-startuptime', cmd='StartupTime'}, -- startup time measurement
-    {'EtiamNullam/deferred-clipboard.nvim', config=function() require'deferred-clipboard'.setup() end}, -- faster clipboard
-    -- ┌───────────────────────────────────────────────────────────────────────────────────┐ 
-    -- │ █▓▒░ Generic                                                                      │ 
+    {'EtiamNullam/deferred-clipboard.nvim',
+        config=function() require'deferred-clipboard'.setup({fallback='unnamedplus'}) end}, -- faster clipboard
+    -- ┌───────────────────────────────────────────────────────────────────────────────────┐
+    -- │ █▓▒░ Generic                                                                      │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'akinsho/toggleterm.nvim', -- better way to toggle term
         config=function() require'cfg.toggleterm' end,
