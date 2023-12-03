@@ -71,7 +71,6 @@ o.cedit='<C-y>'                              -- Enter Command-line Mode from com
 o.writebackup=true                           -- Backuping is good for write
 o.cindent=true                               -- Smart indenting for c-like code
 o.cinoptions='b1,g0,N-s,t0,(0,W4'            -- See :h cinoptions-values
-o.clipboard='unnamedplus'                    -- Always clipboard all operations
 o.copyindent=true                            -- Copy the previous indentation on autoindenting
 o.diffopt='internal,filler,closeoff,algorithm:patience,indent-heuristic' -- Use the indent heuristic for the internal diff library.
 o.eadirection='hor'                          -- Ver/hor/both - where does equalalways apply

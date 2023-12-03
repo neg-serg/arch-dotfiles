@@ -14,6 +14,7 @@ require'lazy'.setup({
     -- │ █▓▒░ Performance / Fixes                                                          │ 
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'dstein64/vim-startuptime', cmd='StartupTime'}, -- startup time measurement
+    {'EtiamNullam/deferred-clipboard.nvim', config=function() require'deferred-clipboard'.setup() end}, -- faster clipboard
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐ 
     -- │ █▓▒░ Generic                                                                      │ 
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -63,6 +64,7 @@ require'lazy'.setup({
     {'chrisgrieser/nvim-alt-substitute', -- alternative substitute
         config=function() require'cfg.alt-substitute' end,
         event={'CmdlineEnter'}},  -- lazy-loading with `cmd =` does not work well with incremental preview
+    {'ashfinal/qfview.nvim', event='UIEnter', config=true}, -- better quickfix
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Completion                                                                   │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
@@ -78,6 +80,7 @@ require'lazy'.setup({
         config=function() require'cfg.noice' end,
         dependencies={'MunifTanjim/nui.nvim'}},
     {'L3MON4D3/LuaSnip', -- snippets engine
+        tag = "v2.*",
         config=function() require'cfg.luasnip' end,
         dependencies={
             'rafamadriz/friendly-snippets', -- additional snippets'
@@ -224,4 +227,8 @@ require'lazy'.setup({
         dependencies='plenary.nvim',
         config=function() require'cfg.gitsigns' end,
         event={'BufNewFile','BufRead'}}, -- async gitsigns
+    {'chrisgrieser/nvim-tinygit', -- tiny git client
+        ft={'gitrebase', 'gitcommit'}, -- so ftplugins are loaded
+        config=function() require'cfg.nvim-tinygit' end,
+        dependencies={'stevearc/dressing.nvim'}},
 })
