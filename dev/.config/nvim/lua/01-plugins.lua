@@ -124,6 +124,7 @@ require'lazy'.setup({
         keys={'MK','MC','[QLeader]cc','[QLeader]mc'},
         cmd={'Dispatch','Make','Focus','Start'}},
     {'altermo/ultimate-autopair.nvim',
+        config={cmap=false}, -- remove cmdline autoclose
         event={'InsertEnter','CmdlineEnter'},
         branch='v0.6', --recomended as each new version will have breaking changes
         opts={}},
