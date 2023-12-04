@@ -81,7 +81,7 @@ require'lazy'.setup({
         config=function() require'cfg.noice' end,
         dependencies={'MunifTanjim/nui.nvim'}},
     {'L3MON4D3/LuaSnip', -- snippets engine
-        tag = "v2.*",
+        tag="v2.1.1",
         config=function() require'cfg.luasnip' end,
         dependencies={
             'rafamadriz/friendly-snippets', -- additional snippets'
