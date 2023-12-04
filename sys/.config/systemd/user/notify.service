@@ -4,6 +4,7 @@ Description=Send systemd notification for failure
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/dunstify systemd-failed %i
+ExecStart=/home/neg/bin/shit
 
 [Install]
 WantedBy=multi-user.target
