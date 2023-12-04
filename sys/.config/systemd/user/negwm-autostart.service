@@ -3,6 +3,7 @@ Description=Startup stuff depended on negwm
 Requires=negwm.service
 After=negwm.service
 After=executor.service
+OnFailure=notify@%i.service
 
 [Service]
 Type=oneshot

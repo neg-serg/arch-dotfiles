@@ -2,6 +2,7 @@
 Description=transmission service
 After=network.target
 ConditionPathExists=/usr/bin/transmission-daemon
+OnFailure=notify@%i.service
 
 [Service]
 Type=notify

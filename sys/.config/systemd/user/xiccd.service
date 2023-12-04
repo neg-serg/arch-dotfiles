@@ -2,6 +2,7 @@
 Description=X color management
 PartOf=graphical-session.target
 Requires=x11.service
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/xiccd --edid

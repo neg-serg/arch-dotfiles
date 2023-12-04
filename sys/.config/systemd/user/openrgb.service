@@ -2,6 +2,7 @@
 Description=OpenRGB Configuration utility for RGB lights supporting motherboards, RAM, & peripherals
 After=dbus.socket
 PartOf=graphical-session.target
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/openrgb --server -p neg.orp

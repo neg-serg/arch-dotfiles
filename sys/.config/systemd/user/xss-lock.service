@@ -2,6 +2,7 @@
 Description=Session locker
 After=x11.service
 Requires=x11.service
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/xss-lock --transfer-sleep-lock -- /home/neg/bin/x11lock

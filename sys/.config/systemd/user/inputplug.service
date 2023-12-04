@@ -1,6 +1,7 @@
 [Unit]
 Description=XInput event monitor
 PartOf=graphical-session.target
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/inputplug -d -0 -c %h/bin/input-event

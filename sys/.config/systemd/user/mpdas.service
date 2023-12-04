@@ -2,6 +2,7 @@
 Description=mpdas last.fm scrobbler
 After=network.target sound.target mpd.service
 Requires=mpd.service
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/sbin/mpdas -c %E/mpdas/neg.rc

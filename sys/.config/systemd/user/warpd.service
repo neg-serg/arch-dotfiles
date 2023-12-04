@@ -2,6 +2,7 @@
 Description=Modal keyboard driven interface for mouse manipulation
 PartOf=graphical-session.target
 After=dbus.socket
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/warpd -f

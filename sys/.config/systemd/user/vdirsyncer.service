@@ -1,5 +1,6 @@
 [Unit]
 Description=Vdirsyncer synchronization service
+OnFailure=notify@%i.service
 
 [Service]
 Type=oneshot

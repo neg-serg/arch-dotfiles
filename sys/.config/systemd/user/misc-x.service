@@ -1,6 +1,7 @@
 [Unit]
 Description=Various xsettings
 PartOf=graphical-session.target
+OnFailure=notify@%i.service
 
 [Service]
 Type=oneshot

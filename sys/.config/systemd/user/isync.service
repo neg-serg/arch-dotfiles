@@ -1,5 +1,6 @@
 [Unit]
 Description=Mailbox synchronization service
+OnFailure=notify@%i.service
 
 [Service]
 Type=oneshot

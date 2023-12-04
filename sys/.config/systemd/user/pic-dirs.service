@@ -1,6 +1,7 @@
 [Unit]
 Description=Pic dirs notification
 After=sockets.target
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/bin/sh -c '%h/bin/pic-dirs-list'

@@ -1,6 +1,7 @@
 [Unit]
 Description=Optimize screenshots
 After=sockets.target
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/bin/sh -c '%h/bin/shot-optimizer'

@@ -2,6 +2,7 @@
 Description=Startup with dex
 Requires=negwm.service
 ConditionPathExists=/usr/bin/dex
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/dex -a

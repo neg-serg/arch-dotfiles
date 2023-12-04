@@ -1,6 +1,7 @@
 [Unit]
 Description=GNOME Keyring Daemon
 IgnoreOnIsolate=true
+OnFailure=notify@%i.service
 
 [Service]
 Type=dbus

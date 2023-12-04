@@ -1,6 +1,7 @@
 [Unit]
 Description=Start tmux in detached session
 After=sockets.target
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/tmux -S %h/.cache/negwm/tmux_sockets/term.socket new-session -s term -d

@@ -3,6 +3,7 @@ Description=mpDris2 - Music Player Daemon D-Bus bridge
 Requires=mpd.service
 BindsTo=mpd.service
 ConditionPathExists=/usr/bin/mpDris2
+OnFailure=notify@%i.service
 
 [Service]
 Restart=on-failure

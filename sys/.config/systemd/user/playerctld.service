@@ -2,6 +2,7 @@
 Description=Keep track of media player activity
 After=network.target sound.target
 BindsTo=mpd.service
+OnFailure=notify@%i.service
 
 [Service]
 Type=forking

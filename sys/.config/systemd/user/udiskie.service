@@ -1,6 +1,7 @@
 [Unit]
 Description=handle automounting
 After=dbus.service
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/udiskie

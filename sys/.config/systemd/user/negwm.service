@@ -4,6 +4,7 @@ PartOf=graphical-session.target
 StartLimitBurst=5
 StartLimitIntervalSec=0
 Requires=xsettingsd.service
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=%h/bin/negwm

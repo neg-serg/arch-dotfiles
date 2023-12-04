@@ -2,9 +2,9 @@
 Description=Compositing manager
 After=dbus.socket
 PartOf=graphical-session.target
-# Don't try to restart after 60 seconds
 StartLimitIntervalSec=60
 Requires=x11.service
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/picom --dbus --backend glx

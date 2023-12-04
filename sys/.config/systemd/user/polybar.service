@@ -4,6 +4,7 @@ PartOf=graphical-session.target
 StartLimitIntervalSec=60
 Requires=xsettingsd.service
 BindsTo=xsettingsd.service
+OnFailure=notify@%i.service
 
 [Service]
 ExecStart=/usr/bin/polybar -q main
