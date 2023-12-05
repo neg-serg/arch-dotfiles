@@ -139,6 +139,13 @@ require'lazy'.setup({
             {'<leader>lr', '<cmd>LBReset<cr>', desc='Reset Code'},
             {'<leader>lt', '<cmd>LBTest<cr>', desc='Run Code'},
             {'<leader>ls', '<cmd>LBSubmit<cr>', desc='Submit Code'}}},
+    {'dhananjaylatkar/cscope_maps.nvim',
+        dependencies={
+            'folke/which-key.nvim', -- optional [for whichkey hints]
+            'nvim-telescope/telescope.nvim', -- optional [for picker='telescope']
+            'ibhagwan/fzf-lua', -- optional [for picker='fzf-lua']
+            'nvim-tree/nvim-web-devicons', -- optional [for devicons in telescope or fzf]
+        }, opts={}},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Debug                                                                        │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
