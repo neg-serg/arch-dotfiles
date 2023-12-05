@@ -145,6 +145,7 @@ require'lazy'.setup({
             'nvim-telescope/telescope.nvim', -- optional [for picker='telescope']
             'ibhagwan/fzf-lua', -- optional [for picker='fzf-lua']
             'nvim-tree/nvim-web-devicons', -- optional [for devicons in telescope or fzf]
+        enabled=false,
         }, opts={}},
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Debug                                                                        │
@@ -183,9 +184,9 @@ require'lazy'.setup({
         config=function() require'cfg.vim-easy-align' end, keys={'ga'}},
     {'smoka7/hop.nvim', -- speed motions
         config=function() require'cfg.hop' end},
-    -- {'folke/flash.nvim', event={'VeryLazy'},
-    --     opts={modes={search={enabled=false}}},
-    --     keys={}},
+    {'folke/flash.nvim', event={'VeryLazy'},
+        opts={modes={search={enabled=false}}},
+        keys={}},
     {'svermeulen/vim-NotableFt', -- better f-t-bindings
         config=function() require'cfg.ft' end},
     {'kylechui/nvim-surround', -- alternative surround
