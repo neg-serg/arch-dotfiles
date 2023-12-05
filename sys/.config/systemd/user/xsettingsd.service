@@ -4,6 +4,7 @@ PartOf=graphical-session.target
 After=x11.service
 Requires=x11.service
 OnFailure=notify@%i.service
+StartLimitIntervalSec=0
 
 [Service]
 Restart=on-failure
@@ -13,4 +14,3 @@ ExecReload=/usr/bin/kill -HUP $MAINPID
 ExecReload=/usr/bin/i3-msg reload
 ExecReload=/bin/systemctl --user try-restart polybar.service
 ExecReload=/bin/systemctl --user try-reload-or-restart picom.service
-StartLimitIntervalSec=0

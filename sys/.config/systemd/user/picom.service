@@ -5,6 +5,7 @@ PartOf=graphical-session.target
 StartLimitIntervalSec=60
 Requires=x11.service
 OnFailure=notify@%i.service
+StartLimitIntervalSec=0
 
 [Service]
 ExecStart=/usr/bin/picom --dbus --backend glx
@@ -12,4 +13,3 @@ ExecReload=/usr/bin/kill -SIGUSR1 $MAINPID
 Restart=on-failure
 RestartSec=1
 StartLimitBurst=3000
-StartLimitIntervalSec=0

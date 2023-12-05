@@ -8,4 +8,3 @@ OnFailure=notify@%i.service
 ExecStart=/usr/bin/unclutter --timeout 3 --jitter 50 --ignore-scrolling --start-hidden
 Restart=on-failure
 RestartSec=3
-StartLimitIntervalSec=0

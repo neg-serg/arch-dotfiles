@@ -3,10 +3,10 @@ Description=Modal keyboard driven interface for mouse manipulation
 PartOf=graphical-session.target
 After=dbus.socket
 OnFailure=notify@%i.service
+StartLimitIntervalSec=0
 
 [Service]
 ExecStart=/usr/bin/warpd -f
 Restart=always
 RestartSec=2
 StartLimitBurst=8
-StartLimitIntervalSec=0
