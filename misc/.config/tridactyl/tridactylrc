@@ -176,7 +176,7 @@ bind ;C composite hint_focus; !s xdotool key Menu
 quickmark A magazine.artstation.com/
 quickmark E projecteuler.net/
 quickmark G github.com/neg-serg
-quickmark L gen.lib.rus.ec
+quickmark L libgen.li
 quickmark S uso.kkx.one
 quickmark V patreon.com/m/834691/posts?filters[tag]=Tutorial
 quickmark c twitch.tv/cooller
