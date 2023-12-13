@@ -7,13 +7,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader=','
+-- require('lazy').setup {
+--   import = 'plugins',
+-- }
 require'lazy'.setup{
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Performance / Fixes                                                          │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
     {'dstein64/vim-startuptime', cmd='StartupTime'}, -- startup time measurement
-    {'EtiamNullam/deferred-clipboard.nvim',
-        config=function() require'deferred-clipboard'.setup({fallback='unnamedplus'}) end}, -- faster clipboard
     -- ┌───────────────────────────────────────────────────────────────────────────────────┐
     -- │ █▓▒░ Generic                                                                      │
     -- └───────────────────────────────────────────────────────────────────────────────────┘
