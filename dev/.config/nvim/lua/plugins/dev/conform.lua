@@ -1,8 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ stevearc/conform.nvim                                                        │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-return {
-    'stevearc/conform.nvim', -- neovim modern formatter
+return {'stevearc/conform.nvim', -- neovim modern formatter
     config=function()
         require'conform'.setup({
             formatters_by_ft={

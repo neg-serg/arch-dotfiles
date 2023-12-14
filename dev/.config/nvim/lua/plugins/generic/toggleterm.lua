@@ -14,10 +14,7 @@ return {'akinsho/toggleterm.nvim', -- better way to toggle term
             close_on_exit=true,
         })
         local Terminal=require('toggleterm.terminal').Terminal
-        navigator=Terminal:new({
-            cmd='zsh',
-            env={NEOVIM_TERMINAL=1}
-        })
+        navigator=Terminal:new({cmd='zsh', env={NEOVIM_TERMINAL=1}})
         map('n', '[Qleader]3', '<Cmd>lua navigator:toggle()<CR>', {noremap=true, silent=true})
     end,
     keys={'[Qleader]3'},

@@ -1,8 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ kyazdani42/nvim-web-devicons                                                 │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-return {
-    'nvim-tree/nvim-web-devicons', -- better icons
+return {'nvim-tree/nvim-web-devicons', -- better icons
     config=function()
         vim.g.DevIconsEnableFoldersOpenClose=1
         vim.g.WebDevIconsUnicodeDecorateFileNodesExtensionSymbols={}

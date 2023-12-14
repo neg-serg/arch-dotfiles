@@ -1,8 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ codethread/qmk.nvim                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-return {
-    'codethread/qmk.nvim', -- qmk ft
+return {'codethread/qmk.nvim', -- qmk ft
     config=function()
         qmk.setup {
             name='LAYOUT_preonic_grid', -- identify your layout name

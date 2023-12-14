@@ -1,8 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ folke/persistence.nvim                                                       │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-return {
-    'folke/persistence.nvim',
+return {'folke/persistence.nvim', -- simple lua plugin for automated session management
     config=function()
         require'persistence'.setup{
             dir=vim.fn.expand(vim.fn.stdpath('config') .. '/sessions/'), -- directory where session files are saved
@@ -14,5 +13,4 @@ return {
         Map('n', '<leader>ql', function() persistence.load({last=true}) end, {})
         -- stop Persistence => session won't be saved on exit
         Map('n', '<leader>qd', function() persistence.stop() end, {})
-    end,
-} -- this will only start session saving when an actual file was opened
+    end}

@@ -2,43 +2,43 @@
 -- │ █▓▒░ ray-x/navigator.lua                                                          │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 return {'ray-x/navigator.lua', -- great source code ui
-        config=function()
-            require'navigator'.setup({
-                debug=false, -- log output, set to true and log path: ~/.cache/nvim/gh.log
-                width=0.85, -- max width ratio (number of cols for the floating window) / (window width)
-                height=0.4, -- max list window height, 0.3 by default
-                preview_height=0.3, -- max height of preview windows
-                border={"╭", "─", "╮", "│", "╯", "─", "╰", "│"}, -- border style, can be one of 'none', 'single', 'double', 'shadow', or a list of chars which defines the border
-                default_mapping=false,  -- set to false if you will remap every key or if you using old version of nvim-
-                treesitter_analysis=true, -- treesitter variable context
-                treesitter_navigation=true, -- bool|table false: use lsp to navigate between symbol ']r/[r', table: a list of
-                treesitter_analysis_max_num=100, -- how many items to run treesitter analysis
-                treesitter_analysis_condense=true, -- condense form for treesitter analysis this value prevent slow in large projects, e.g. found 100000 reference in a project
-                transparency=50, -- 0 ~ 100 blur the main window, 100: fully transparent, 0: opaque,  set to nil or 100 to disable it
-                lsp_signature_help=false, -- ray-x/lsp_signature plugin in navigator setup here. if it is nil, navigator will not init signature help
-                icons={ -- refer to lua/navigator.lua for more icons config
-                icons=true, -- requires nerd fonts or nvim-web-devicons
-                code_action_icon='🏏', -- note: need terminal support, for those not support unicode, might crash
-                diagnostic_head='🐛',
-                diagnostic_head_severity_1='🈲',
-            },
-            mason=true, -- set to true if you would like use the lsp installed by williamboman/mason
-            lsp={
-                enable=true,
-                diagnostic_virtual_text=true,  -- show virtual for diagnostic message
-                diagnostic_update_in_insert=false, -- update diagnostic message in insert mode
-                display_diagnostic_qf=true, -- always show quickfix if there are diagnostic errors, set to false if you want to ignore it
-                diagnostic_scrollbar_sign={'╍', '▃'}, -- experimental:  diagnostic status in scroll bar area; set to false to disable the diagnostic sign,
-                code_action={enable=true, sign=true, sign_priority=40, virtual_text=false},
-                code_lens_action={enable=true, sign=true, sign_priority=40, virtual_text=true},
-                document_highlight=false, -- LSP reference highlight, it might already supported by you setup, e.g. LunarVim
-                format_on_save=false,
-                hover={enable=true},
-                diagnostic={
-                    underline=true,
-                    virtual_text=true, -- show virtual for diagnostic message
-                    update_in_insert=false, -- update diagnostic message in insert mode
-                    float={                 -- setup for floating windows style
+    config=function()
+        require'navigator'.setup({
+            debug=false, -- log output, set to true and log path: ~/.cache/nvim/gh.log
+            width=0.85, -- max width ratio (number of cols for the floating window) / (window width)
+            height=0.4, -- max list window height, 0.3 by default
+            preview_height=0.3, -- max height of preview windows
+            border={"╭", "─", "╮", "│", "╯", "─", "╰", "│"}, -- border style, can be one of 'none', 'single', 'double', 'shadow', or a list of chars which defines the border
+            default_mapping=false,  -- set to false if you will remap every key or if you using old version of nvim-
+            treesitter_analysis=true, -- treesitter variable context
+            treesitter_navigation=true, -- bool|table false: use lsp to navigate between symbol ']r/[r', table: a list of
+            treesitter_analysis_max_num=100, -- how many items to run treesitter analysis
+            treesitter_analysis_condense=true, -- condense form for treesitter analysis this value prevent slow in large projects, e.g. found 100000 reference in a project
+            transparency=50, -- 0 ~ 100 blur the main window, 100: fully transparent, 0: opaque,  set to nil or 100 to disable it
+            lsp_signature_help=false, -- ray-x/lsp_signature plugin in navigator setup here. if it is nil, navigator will not init signature help
+            icons={ -- refer to lua/navigator.lua for more icons config
+            icons=true, -- requires nerd fonts or nvim-web-devicons
+            code_action_icon='🏏', -- note: need terminal support, for those not support unicode, might crash
+            diagnostic_head='🐛',
+            diagnostic_head_severity_1='🈲',
+        },
+        mason=true, -- set to true if you would like use the lsp installed by williamboman/mason
+        lsp={
+            enable=true,
+            diagnostic_virtual_text=true,  -- show virtual for diagnostic message
+            diagnostic_update_in_insert=false, -- update diagnostic message in insert mode
+            display_diagnostic_qf=true, -- always show quickfix if there are diagnostic errors, set to false if you want to ignore it
+            diagnostic_scrollbar_sign={'╍', '▃'}, -- experimental:  diagnostic status in scroll bar area; set to false to disable the diagnostic sign,
+            code_action={enable=true, sign=true, sign_priority=40, virtual_text=false},
+            code_lens_action={enable=true, sign=true, sign_priority=40, virtual_text=true},
+            document_highlight=false, -- LSP reference highlight, it might already supported by you setup, e.g. LunarVim
+            format_on_save=false,
+            hover={enable=true},
+            diagnostic={
+                underline=true,
+                virtual_text=true, -- show virtual for diagnostic message
+                update_in_insert=false, -- update diagnostic message in insert mode
+                float={                 -- setup for floating windows style
                     focusable=false,
                     sytle='minimal',
                     border='rounded',

@@ -1,8 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ ahmedkhalf/project.nvim                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-return {
-    'ahmedkhalf/project.nvim', 
+return {'ahmedkhalf/project.nvim', -- superior project management
     config=function()
         require'project_nvim'.setup{
             manual_mode=true,

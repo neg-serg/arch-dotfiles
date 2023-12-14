@@ -1,8 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ haya14busa/vim-asterisk                                                      │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-return {
-    'haya14busa/vim-asterisk', -- smartcase star
+return {'haya14busa/vim-asterisk', -- smartcase star
     config=function() 
         map('n', '*',   '<Plug>(asterisk-#)')
         map('n', '#',   '<Plug>(asterisk-*)')

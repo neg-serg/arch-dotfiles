@@ -1,5 +1,7 @@
-return {
-    'ashfinal/qfview.nvim', -- better quickfix
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ ashfinal/qfview.nvim                                                         │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+return {'ashfinal/qfview.nvim', -- better quickfix
     event='UIEnter',
     config=true
 }

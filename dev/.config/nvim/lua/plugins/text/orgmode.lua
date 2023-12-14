@@ -1,4 +1,7 @@
-return {'nvim-orgmode/orgmode', config=function()
+-- ┌───────────────────────────────────────────────────────────────────────────────────┐
+-- │ █▓▒░ nvim-orgmode/orgmode                                                         │
+-- └───────────────────────────────────────────────────────────────────────────────────┘
+return {'nvim-orgmode/orgmode', config=function() -- orgmode support
         require'orgmode'.setup_ts_grammar() -- Load treesitter grammar for org
         require'nvim-treesitter.configs'.setup({ -- Setup treesitter
             highlight={

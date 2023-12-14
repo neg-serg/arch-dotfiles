@@ -1,8 +1,7 @@
 -- ┌───────────────────────────────────────────────────────────────────────────────────┐
 -- │ █▓▒░ hiphish/rainbow-delimiters.nvim                                              │
 -- └───────────────────────────────────────────────────────────────────────────────────┘
-return {
-    'hiphish/rainbow-delimiters.nvim', -- rainbow parenthesis
+return {'hiphish/rainbow-delimiters.nvim', -- rainbow parenthesis
     config=function()
         local rainbow_delimiters=require'rainbow-delimiters'
         vim.g.rainbow_delimiters={
