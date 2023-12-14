@@ -14,14 +14,14 @@ return {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         'renerocksai/telekasten.nvim'}, -- telescope + telekasten
     config=function()
         local telescope=require'telescope'
-        local manix=telescope.load_extension'manix'
         local pathogen=telescope.load_extension'pathogen'
-        local zoxide=telescope.load_extension'zoxide'
         local z_utils=require'telescope._extensions.zoxide.utils'
-        local sorters=require'telescope.sorters'
         local previewers=require'telescope.previewers'
         local builtin=require'telescope.builtin'
         local actions=require'telescope.actions'
+        local manix=telescope.load_extension'manix'
+        local zoxide=telescope.load_extension'zoxide'
+        local sorters=require'telescope.sorters'
         local long_find={'rg','--files','--hidden','-g','!.git'}
         local short_find={'fd','-H','--ignore-vcs','-d','3','--strip-cwd-prefix'}
         local ignore_patterns={
