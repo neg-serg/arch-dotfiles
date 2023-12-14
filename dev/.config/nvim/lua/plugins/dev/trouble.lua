@@ -7,9 +7,7 @@ return {'folke/trouble.nvim', -- pretty list for diagnostics
     config=function() 
         local status, trouble=pcall(require, 'trouble')
         if (not status) then return end
-
         map('n', '<leader>x', '<cmd>TroubleToggle<cr>')
-
         trouble.setup {
             position='bottom', -- position of the list can be: bottom, top, left, right
             height=10, -- height of the trouble list
@@ -40,7 +38,6 @@ return {'folke/trouble.nvim', -- pretty list for diagnostics
         auto_preview=false, -- automatically preview the location of the diagnostic. <esc> to close preview and go back
         use_diagnostic_signs=true,
         signs={
-            -- icons / text used for a diagnostic
             error="",
             warning="",
             hint="",

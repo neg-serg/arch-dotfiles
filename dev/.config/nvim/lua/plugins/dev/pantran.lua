@@ -3,7 +3,7 @@
 -- └───────────────────────────────────────────────────────────────────────────────────┘
 return {'potamides/pantran.nvim', -- various machine translation engines support
     config=function()
-        local status, pantran = pcall(require, 'pantran')
+        local status, pantran=pcall(require, 'pantran')
         if (not status) then return end
         pantran.setup{
             default_engine="yandex",

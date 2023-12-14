@@ -17,11 +17,8 @@ return {'stevearc/dressing.nvim', -- better select ui
                 max_width={ 140, 0.9 },
                 min_width={ 20, 0.2 },
                 override=function(conf)
-                    -- This is the config that will be passed to nvim_open_win.
-                    -- Change values here to customize the layout
                     return conf
                 end,
-                -- see :help dressing_get_config
                 get_config=nil,
                 win_options={
                     winblend=0, -- Window transparency (0-100)
@@ -52,8 +49,6 @@ return {'stevearc/dressing.nvim', -- better select ui
                         winhighlight='', -- Change default highlight groups (see :help winhl)
                     },
                     override=function(conf)
-                        -- This is the config that will be passed to nvim_open_win.
-                        -- Change values here to customize the layout
                         return conf
                     end,
                 },

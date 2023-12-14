@@ -186,17 +186,9 @@ return {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         Map('n', "<leader>.", function()
             vim.cmd'Telescope frecency theme=ivy layout_config={height=12} sorting_strategy=descending'
         end, opts)
-        Map('n', '<M-C-o>', function()
-            builtin.lsp_dynamic_workspace_symbols()
-        end, opts)
-        Map('n', '<M-o>', function()
-            builtin.lsp_document_symbols()
-        end, opts)
-        Map('n', '<leader>l', function()
-            vim.cmd'chdir %:p:h'; pathogen.find_files{}
-        end, opts)
-        Map('n', '[Qleader]e', function()
-            pathogen.find_files{}
-        end, opts)
+        Map('n', '<M-C-o>', function() builtin.lsp_dynamic_workspace_symbols() end, opts)
+        Map('n', '<M-o>', function() builtin.lsp_document_symbols() end, opts)
+        Map('n', '<leader>l', function() vim.cmd'chdir %:p:h'; pathogen.find_files{} end, opts)
+        Map('n', '[Qleader]e', function() pathogen.find_files{} end, opts)
     end
 }
