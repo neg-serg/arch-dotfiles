@@ -39,6 +39,7 @@ for _, plugin in pairs(disabled_built_ins) do
 end
 vim.g.netrw_banner=0 -- Do not show netrw banner
 vim.g.netrw_fastbrowse=0 -- Try to fix weird netrw window
+vim.g.mapleader=',' -- set default mapleader
 if vim.fn.executable('ugrep') == 1 then
     o.grepprg='ugrep -RInk -j -u --tabs=1 --ignore-files'
     o.grepformat='%f:%l:%c:%m,%f+%l+%c+%m,%-G%f\\|%l\\|%c\\|%m'
