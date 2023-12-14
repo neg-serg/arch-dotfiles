@@ -11,7 +11,12 @@ return {'nvim-telescope/telescope.nvim', -- modern fuzzy-finder over lists
         'MrcJkb/telescope-manix', -- manix support
         'nvim-telescope/telescope-frecency.nvim', -- MRU frecency
         'natecraddock/telescope-zf-native.nvim', -- zf native sorter
-        'renerocksai/telekasten.nvim'}, -- telescope + telekasten
+        'renerocksai/telekasten.nvim', -- telekasten support
+        {'cljoly/telescope-repo.nvim', -- telescope repo jumping
+        keys={{'<leader>rr', '<cmd>Telescope repo list<cr>', desc='Open git repository'}},
+        config=function() require'telescope'.load_extension 'repo' end},
+    }, -- telescope + telekasten
+    keys={{'<M-x>', '<cmd>Telescope commands<cr>', desc='Run Command'}},
     config=function()
         local telescope=require'telescope'
         local pathogen=telescope.load_extension'pathogen'
