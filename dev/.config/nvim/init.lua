@@ -5,12 +5,10 @@
 -- :profile pause
 -- :noautocmd qall!
 if vim.fn.has("nvim-0.9.2") ~= 1 then
-    -- Check version, thx to doom-neovim
-    local message = table.concat({"You are using an unsupported version of Neovim."}, "\n")
+    local message=table.concat({"You are using an unsupported version of Neovim."}, "\n")
     vim.notify(message, vim.log.levels.ERROR)
 end
 if vim.loader then vim.loader.enable() end
-require'filetype_nvim'
 require'00-settings'
 require'01-helpers'
 require'01-plugins'

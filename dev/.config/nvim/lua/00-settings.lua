@@ -35,7 +35,7 @@ local disabled_built_ins={
     'zipPlugin',
 }
 for _, plugin in pairs(disabled_built_ins) do
-    vim.g['loaded_' .. plugin]=1
+    vim.g['loaded_'..plugin]=1
 end
 vim.g.netrw_banner=0 -- Do not show netrw banner
 vim.g.netrw_fastbrowse=0 -- Try to fix weird netrw window
@@ -49,18 +49,13 @@ if vim.fn.executable('nvr') == 1 then
     env_.EDITOR='nvr -l --remote'
     env_.VISUAL='nvr -l --remote'
 end
-o.path=config_home_ .. '/nvim,' ..
-	config_home_ .. '/nvim/after,' ..
-	home_ .. '/.local/share/nvim/site/' ..
-		',.,..,/usr/include,./include,../include,**'
-o.fillchars={
-  foldopen="",
-  foldclose="",
-  fold=" ",
-  foldsep=" ",
-  diff="╱",
-  eob=" ", -- Disable ~ symbol
-}
+o.path='.,..,'..config_home_..'/nvim,'..
+    	config_home_..'/nvim/lua,'..
+	config_home_..'/nvim/after,'..
+	home_..'/.local/share/nvim/site/,/usr/include'
+o.fillchars={foldopen="", foldclose="",
+    fold=" ", foldsep=" ",
+    diff="╱", eob=" "}
 o.formatprg='par -140'                       -- Better format
 o.report=0                                   -- No report on substitution
 o.fileformats='unix,dos,mac'                 -- File format fallback
@@ -102,12 +97,12 @@ o.shiftround=false                           -- Makes indenting a multiple of sh
 o.shiftwidth=4                               -- Spaces for autoindents
 o.termguicolors=true                         -- Enable termguicolors
 o.wildignorecase=true                        -- Ignore case for wildmenu
-o.wildignore='*.7z,*.aux,*.avi,*.bak,*.bib,*.class,*.cls,*.cmi,' ..
-'*.cmo,*.doc,*.docx,*.dvi,*.flac,*.flv,*.gif,*.ico,' ..
-'*.jpeg,*.jpg,*.log,*.min*.js,*.mov,*.mp3,*.mp4,*.mpg,' ..
-'*.nav,*.o,*.ods,*.odt,*.ogg,*.opus,*.out,*.pdf,*.pem,' ..
-'*.png,*.rar,*.sty,*.svg,*.swp,*.swp*.,*.tar,*.tgz,' ..
-'*.toc,*.wav,*.webm,*.xcf,*.xls,*.xlsx,*.zip'
+o.wildignore='*.7z,*.aux,*.avi,*.bak,*.bib,*.class,*.cls,*.cmi,'..
+    '*.cmo,*.doc,*.docx,*.dvi,*.flac,*.flv,*.gif,*.ico,'..
+    '*.jpeg,*.jpg,*.log,*.min*.js,*.mov,*.mp3,*.mp4,*.mpg,'..
+    '*.nav,*.o,*.ods,*.odt,*.ogg,*.opus,*.out,*.pdf,*.pem,'..
+    '*.png,*.rar,*.sty,*.svg,*.swp,*.swp*.,*.tar,*.tgz,'..
+    '*.toc,*.wav,*.webm,*.xcf,*.xls,*.xlsx,*.zip'
 o.shortmess='OcsliFtfnToAIqx'                  -- Shorting messages for all
 o.more=false                                 -- Do not ask to press enter
 o.showmode=false                             -- Do not show the mode ("-- INSERT --" at the bottom)
@@ -132,9 +127,9 @@ o.winminwidth=0                              -- Windows can be 0 line width
 o.wrap=false                                 -- Do not wrap lines by default
 o.mouse='a'                                  -- Add mouse support
 o.mousescroll={'ver:2','hor:1'}              -- More conservative mouse scroll
-o.backupdir=home_ .. '/trash/'               -- Setup backupdir
-o.directory=home_ .. '/trash/'               -- Directory for swap files
-o.undodir=home_ .. '/trash/'                 -- Setup undo dir
+o.backupdir=home_..'/trash/'               -- Setup backupdir
+o.directory=home_..'/trash/'               -- Directory for swap files
+o.undodir=home_..'/trash/'                 -- Setup undo dir
 o.undofile=true                              -- Enable undofile
 o.swapfile=false                             -- Do not use swapfiles
 o.shada="!,'9000,<50,s1500,h,:100,%,/100"    -- Shada settings
