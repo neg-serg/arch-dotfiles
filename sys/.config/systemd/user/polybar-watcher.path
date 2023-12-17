@@ -1,3 +1,6 @@
+[Unit]
+Description=Enable polybar on change
+
 [Path]
 PathChanged=%E/polybar/config.ini
 
